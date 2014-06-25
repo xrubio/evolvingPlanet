@@ -1,0 +1,301 @@
+(http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml)
+
+Google-Specific Magic
+
+      cpplint
+      Use cpplint.py to detect style errors.
+
+      cpplint.py is a tool that reads a source file and identifies many style errors. It is not perfect, and has both false positives and false negatives, but it is still a valuable tool. False positives can be ignored by putting // NOLINT at the end of the line.
+
+      Some projects have instructions on how to run cpplint.py from their project tools. If the project you are contributing to does not, you can download (http://google-styleguide.googlecode.com/svn/trunk/cpplint/cpplint.py) separately.
+
+
+Header Files
+
+    - The #define Guard: 
+	
+	All header files should have #define guards to prevent multiple inclusion. The format of the symbol name should be <PROJECT>_<PATH>_<FILE>_H_. 
+	
+	To guarantee uniqueness, they should be based on the full path in a project's source tree. For example, the file foo/src/bar/baz.h in project foo should have the following guard:
+
+	#ifndef FOO_BAR_BAZ_H_
+	#define FOO_BAR_BAZ_H_
+
+	...
+
+	#endif  // FOO_BAR_BAZ_H_
+
+
+    - Forward Declarations:
+	
+	<< No esta clar >>
+	
+	
+    - Inline functions (Prescindible):
+	
+	Define functions inline only when they are small, say, 10 lines or less. It's typically not cost effective to inline functions with loops or switch statements
+	
+	
+    - Function Parameter Ordering:
+	
+	When defining a function, parameter order is: inputs, then outputs. 
+	
+	
+    - Names and Order of Includes:
+    
+	In dir/foo.cc, order your includes as follows:
+
+	1. dir/foo.h 
+	2. C system files.
+	3. C++ system files.
+	4. Other libraries' .h files.
+	5. Your project's .h files.
+
+      
+Scoping
+
+    - Namespaces:
+    
+	Unnamed namespaces in .cc files are encouraged. With named namespaces, choose the name based on the project, and possibly its path. Do not use a using-directive. Do not use inline namespaces. 
+      
+    
+    - Nested classes (Prescindible):
+      
+	Although you may use public nested classes when they are part of an interface, consider a namespace to keep declarations out of the global scope. Do not make nested classes public unless they are actually part of the interface, e.g., a class that holds a set of options for some method.
+	
+    
+    - Nonmember, Static Member, and Global Functions:
+    
+	Prefer nonmember functions within a namespace or static member functions to global functions; use completely global functions rarely. 
+	
+	
+    - Local Variables:
+    
+	Place a function's variables in the narrowest scope possible, and initialize variables in the declaration. 
+	
+	
+    - Static and Global Variables:
+
+	Static or global variables of class type are forbidden: they cause hard-to-find bugs due to indeterminate order of construction and destruction. However, such variables are allowed if they are constexpr: they have no dynamic initialization or destruction.
+
+	Objects with static storage duration, including global variables, static variables, static class member variables, and function static variables, must be Plain Old Data (POD): only ints, chars, floats, or pointers, or arrays/structs of POD. 
+	
+	We only allow static variables to contain POD data. This rule completely disallows vector (use C arrays instead), or string (use const char []). 
+	
+	If you need a static or global variable of a class type, consider initializing a pointer (which will never be freed), from either your main() function or from pthread_once(). Note that this must be a raw pointer, not a "smart" pointer, since the smart pointer's destructor will have the order-of-destructor issue that we are trying to avoid. 
+	
+	
+Classes
+
+    - Doing Work in Constructors:
+
+	Avoid doing complex initialization in constructors (in particular, initialization that can fail or that requires virtual method calls). Constructors should never call virtual functions or attempt to raise non-fatal failures. If your object requires non-trivial initialization, consider using a factory function or Init() method. 
+	
+	
+    - Initialization:
+    
+	Use in-class member initialization for simple initializations, especially when a member variable must be initialized the same way in more than one constructor.
+
+	If your class defines member variables that aren't initialized in-class, and if it has no other constructors, you must define a default constructor (one that takes no arguments). It should preferably initialize the object in such a way that its internal state is consistent and valid. 
+
+	If your class inherits from an existing class but you add no new member variables, you are not required to have a default constructor. 
+	
+	
+    - Explicit Constructors:
+
+	Use the C++ keyword explicit for constructors with one argument. 
+	
+	
+    - Copy Constructors:
+
+	Provide a copy constructor and assignment operator only when necessary. Otherwise, disable them with DISALLOW_COPY_AND_ASSIGN. 
+
+	
+    - Delegating and inheriting constructors
+
+	Use delegating and inheriting constructors when they reduce code duplication. 
+	
+	
+    - Structs vs. Classes
+
+	Use a struct only for passive objects that carry data; everything else is a class. 
+	If in doubt, make it a class. 
+	
+	All inheritance should be public. If you want to do private inheritance, you should be including an instance of the base class as a member instead.
+	 
+
+    - Inheritance:
+
+	Do not overuse implementation inheritance. Composition is often more appropriate. Try to restrict use of inheritance to the "is-a" case: Bar subclasses Foo if it can reasonably be said that Bar "is a kind of" Foo.
+
+	Make your destructor virtual if necessary. If your class has virtual methods, its destructor should be virtual.
+
+	Limit the use of protected to those member functions that might need to be accessed from subclasses. Note that data members should be private.
+
+	When redefining an inherited virtual function, explicitly declare it virtual in the declaration of the derived class. Rationale: If virtual is omitted, the reader has to check all ancestors of the class in question to determine if the function is virtual or not. 
+	
+	
+    - Multiple Inheritance:
+
+	Only very rarely is multiple implementation inheritance actually useful. We allow multiple inheritance only when at most one of the base classes has an implementation; all other base classes must be pure interface classes tagged with the Interface suffix. 
+	
+	
+    - Operator Overloading:
+
+	Do not overload operators except in rare, special circumstances. Do not create user-defined literals. 
+	
+	
+    - Access Control:
+  
+	Make data members private, and provide access to them through accessor functions as needed. 
+	Exception: static const data members need not be private. 
+	
+
+    - Declaration Order:
+
+	Use the specified order of declarations within a class: public: before private:, methods before data members (variables), etc.
+
+	Your class definition should start with its public: section, followed by its protected: section and then its private: section. If any of these sections are empty, omit them.
+
+	Within each section, the declarations generally should be in the following order:
+
+	  Typedefs and Enums
+	  Constants (static const data members)
+	  Constructors
+	  Destructor
+	  Methods, including static methods
+	  Data Members (except static const data members)
+	  
+	The DISALLOW_COPY_AND_ASSIGN macro invocation should be at the end of the private: section. It should be the last thing in the class.
+	
+	
+    - Write Short Functions:
+
+	Prefer small and focused functions. 
+	If a function exceeds about 40 lines, think about whether it can be broken up without harming the structure of the program. 
+	
+	
+Other C++ Features
+
+    - Reference Arguments:
+
+	All parameters passed by reference must be labeled const. 
+	
+	
+    - Function Overloading:
+
+	Use overloaded functions (including constructors) only if a reader looking at a call site can get a good idea of what is happening without having to first figure out exactly which overload is being called. 
+	
+	If you want to overload a function, consider qualifying the name with some information about the arguments, e.g., AppendString(), AppendInt() rather than just Append(). 
+	
+	
+    - Default Arguments:
+
+	We do not allow default function parameters, except in limited situations.
+	
+	One specific exception is when the function is a static function (or in an unnamed namespace) in a .cc file. In this case, the cons don't apply since the function's use is so localized.
+
+	Another specific exception is when default arguments are used to simulate variable-length argument lists. 
+	
+	
+    - Exceptions:
+
+	We do not use C++ exceptions. 
+	
+
+    - Casting:
+
+	Use C++ casts like static_cast<>(). Do not use other cast formats like int y = (int)x; or int y = int(x);. 
+	
+	
+    - Preincrement and Predecrement:
+
+	Use prefix form (++i) of the increment and decrement operators with iterators and other template objects. 
+	
+	For simple scalar (non-object) values there is no reason to prefer one form and we allow either. For iterators and other template types, use pre-increment. 
+	
+	
+    - Use of const:
+
+	Use const whenever it makes sense. With C++11, constexpr is a better choice for some uses of const.
+	
+	1. If a function does not modify an argument passed by reference or by pointer, that argument should be const.
+	2. Declare methods to be const whenever possible. Accessors should almost always be const. Other methods should be const if they do not modify any data members, do not call any non-const methods, and do not return a non-const pointer or non-const reference to a data member.
+	3. Consider making data members const whenever they do not need to be modified after construction.
+	
+	
+    - 0 and nullptr/NULL:
+
+	Use 0 for integers, 0.0 for reals, nullptr (C++11) or NULL (C++03) for pointers, and '\0' for chars. 
+	
+	
+    - auto:
+
+	Use auto to avoid type names that are just clutter. Continue to use manifest type declarations when it helps readability, and never use auto for anything but local variables. 
+	
+	
+Naming
+
+    - General Naming Rules:
+
+	Function names, variable names, and filenames should be descriptive; eschew abbreviation.
+
+	Give as descriptive a name as possible, within reason. Do not worry about saving horizontal space as it is far more important to make your code immediately understandable by a new reader. Do not use abbreviations that are ambiguous or unfamiliar to readers outside your project, and do not abbreviate by deleting letters within a word. 
+	
+	
+    - File Names (A decidir):
+
+	Filenames should be all lowercase and can include underscores (_).
+	
+	
+    - Type Names:
+
+	Type names start with a capital letter and have a capital letter for each new word, with no underscores: MyExcitingClass, MyExcitingEnum. 
+	
+	
+    - Variable Names:
+
+	Common Variable names:
+	
+	  Variable names are all lowercase, with underscores between words.
+
+	Class Data Members:
+
+	  Data members (also called instance variables or member variables) are lowercase with optional underscores like regular variable names, but always end with a trailing underscore.
+
+	Struct Variables:
+
+	  Data members in structs should be named like regular variables without the trailing underscores that data members in classes have.
+
+	Global Variables (a decidir):
+
+	  There are no special requirements for global variables, which should be rare in any case, but if you use one, consider prefixing it with g_ or some other marker to easily distinguish it from local variables.
+	  
+	  
+    - Constant Names.
+
+	Use a k followed by mixed case: kDaysInAWeek. 
+	
+	
+    - Function Names:
+
+	Regular functions have mixed case (MyExcitingFunction(), MyExcitingMethod()); accessors and mutators match the name of the variable (my_exciting_member_variable(), set_my_exciting_member_variable()). 
+	
+	
+    - Namespace Names:
+
+	Namespace names are all lower-case.
+	
+	
+    - Enumerator Names:
+
+	Enumerators should be named like constants (kEnumName).
+
+	The enumeration name, UrlTableErrors, is a type, and therefore mixed case. 
+	
+	
+Comments
+
+
+Formatting
+
