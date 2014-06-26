@@ -92,7 +92,7 @@ Classes
 	Avoid doing complex initialization in constructors (in particular, initialization that can fail or that requires virtual method calls). Constructors should never call virtual functions or attempt to raise non-fatal failures. If your object requires non-trivial initialization, consider using a factory function or Init() method. 
 	
 	
-    - Initialization:
+    - Initialization (in-class vs initialization list):
     
 	Use in-class member initialization for simple initializations, especially when a member variable must be initialized the same way in more than one constructor.
 
@@ -296,6 +296,22 @@ Naming
 	
 Comments
 
+    - File Comments:
+    
+	Start each file with license boilerplate, followed by a description of its contents. 
+	
+	
+    - Class Comments
 
+	Every class definition should have an accompanying comment that describes what it is for and how it should be used. 
+	
+	
+    - Function Comments
+
+	Declaration comments describe use of the function; comments at the definition of a function describe operation. 
+
+	
 Formatting
+
+
 
