@@ -22,10 +22,31 @@ public:
     CREATE_FUNC(HelloWorld);
 
     cocos2d::Sprite *worldMap;
+    cocos2d::Sprite *hotSpot;
+    cocos2d::LabelTTF *label;
 
     void onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
     void onTouchesMoved(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
     void onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    
+    
+private:
+    bool moveBackground = false;
+    bool moveBackgroundLeft = false;
+    bool moveBackgroundRight = false;
+    bool moveBackgroundUp = false;
+    bool moveBackgroundDown = false;
+    bool zoomBackground = true;
+    float zoomScale = 0.5;
+    std::vector<cocos2d::Touch *> _touches;
+        
+    bool selectSpriteForTouch(cocos2d::Sprite *sprite, cocos2d::Point p);
+    void checkBackgroundLimitsInTheScreen(cocos2d::Point destPoint);
+    int getValueAtPoint(cocos2d::Point pt);
+    void continentSelection(cocos2d::Touch *touch);
+    float sqrOfDistanceBetweenPoints(cocos2d::Point p1, cocos2d::Point p2);
+    void pinchZoomWithMovedTouch(cocos2d::Touch *movedTouch);
+
 
 };
 
