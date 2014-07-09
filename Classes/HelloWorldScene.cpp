@@ -77,6 +77,8 @@ bool HelloWorld::init() {
     
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+    setBackgroundSize();
+    
 	return true;
 }
 
@@ -259,72 +261,24 @@ void HelloWorld::checkBackgroundLimitsInTheScreen(cocos2d::Point destPoint)
     
 }
 
-int HelloWorld::getValueAtPoint(cocos2d::Point pt)
+
+int HelloWorld::getValueAtPointFromPNG(Point pt)
 {
-    // set the value to 255, a default no hotspot selected value
     int retValue = 255;
-    int imageWidth = 1024;
-    int imageHeight = 768;
-    cocos2d::Rect image(0, 0, imageWidth, imageHeight);
+    CCImage *img = new CCImage();
+    img->initWithImageFile("WorldMapIpadR0.png");
+    int x=3;
+    if(img->hasAlpha()) x=4;
+    unsigned char *data = new unsigned char[img->getDataLen()*x];
+    data = img->getData();
     
-    CCLOG("%d x %d", imageWidth,imageHeight);
+    unsigned char *pixel = data + ((int)pt.x + (int)pt.y * img->getWidth()) * x;
     
-    Data *data = new Data(cocos2d::FileUtils::getInstance()->getDataFromFile("/Users/glaborda/Desktop/simulplay/Resources/_WorldMapIpadR0RAW.raw"));
-    unsigned char *c = data->getBytes();
+    // You can see/change pixels' RGBA value(0-255) here !
+    unsigned char r = *pixel;
+
+    retValue = (int)r;
     
-    //_20110705_piranah_hotspot
-    FILE *file = fopen("/Users/glaborda/Desktop/simulplay/Resources/_WorldMapIpadR0RAW.raw", "rb");
-    
-    // Check if the image lookup data is present and the value is within
-    // the bounds of the image
-    if(image.containsPoint(pt))// and file != NULL)
-    {
-        // scale the image to screen size ratio (in case there is no specific assets for specific resolution)
-        /*float scaleXFactor = 1;
-        float scaleYFactor = 1;
-        cocos2d::Size winSize = cocos2d::Director::getInstance()->getWinSize();
-        hotSpot->setScaleX((winSize.width / hotSpot->getContentSize().width) * scaleXFactor);
-        hotSpot->setScaleY((winSize.height / hotSpot->getContentSize().height) * scaleYFactor);
-        Size visibleSize = Director::getInstance()->getVisibleSize();
-        Vec2 origin = Director::getInstance()->getVisibleOrigin();
-        // position the sprite on the center of the screen
-        hotSpot->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-        Color3B *buffer = new Color3B();
-        glReadPixels(pt.x, pt.y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-        retValue = buffer[0].r;
-        CCLOG("%d",buffer[0].r);*/
-        
-        // The raw data assumes a top left origin
-        
-        //pt.y = pt.y - imageHeight - 1;
-        
-        // calculate an offset
-        int offset = pt.y * imageWidth + pt.x;
-        
-        //1
-        retValue = (int)c[offset];
-        CCLOG("%d, retv = %d",offset, retValue);
-        
-        //2
-        /*char buff[1];
-        fseek(file, offset, SEEK_SET);
-        fread(buff, 1, 1, file);
-        retValue = atoi(buff);
-        CCLOG("%d",atoi(buff));
-        CCLOG("Offset: %d, Val = %d",offset,retValue);
-        
-        //3
-         
-        char buff2[1];
-        std::ifstream binaryFile;
-        binaryFile.open("/Users/glaborda/Desktop/simulplay/Resources/_WorldMapIpadR0RAW.raw", std::ifstream::in|std::ifstream::binary);
-        binaryFile.seekg(offset, binaryFile.beg);
-        binaryFile.read(buff2, 1);
-        CCLOG("%d", (int)(buff2[0]));
-        retValue = atoi(buff2);
-        CCLOG("Offset: %d, Val = %d",offset,retValue);*/
-        
-    }
     return retValue;
 }
 
@@ -343,14 +297,9 @@ void HelloWorld::continentSelection(cocos2d::Touch *touch)
     // by 100 pixels to the right and 50 pixels up the
     // hit areas would not be correct
     loc = worldMap->convertToNodeSpace(loc);
+    loc.y = backgroundHeight - loc.y;
     
-    //loc.y = 768 - loc.y;
-    
-    //NSLog(@"touch (%g %g)",loc.x, loc.y);
-    
-    CCLOG("%f - %f",loc.x,loc.y);
-    //1073741824 - 1081737869
-    int value = getValueAtPoint(loc);
+    int value = getValueAtPointFromPNG(loc);
     
     // update the label
     switch (value) {
@@ -397,4 +346,53 @@ float HelloWorld::sqrOfDistanceBetweenPoints(Point p1, Point p2)
 {
     Point diff = ccpSub(p1, p2);
     return diff.x * diff.x + diff.y * diff.y;
+}
+
+void HelloWorld::setBackgroundSize()
+{
+    auto screenSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+
+    if (2048 == screenSize.width or 2048 == screenSize.height)
+    {
+        backgroundWidth = 2048;
+        backgroundHeight = 1536;
+    }
+    else if (1024 == screenSize.width or 1024 == screenSize.height)
+    {
+        backgroundWidth = 1024;
+        backgroundHeight = 768;
+    }
+    else if (1136 == screenSize.width or 1136 == screenSize.height)
+    {
+        backgroundWidth = 1136;
+        backgroundHeight = 640;
+    }
+    else if (960 == screenSize.width or 960 == screenSize.height)
+    {
+        backgroundWidth = 960;
+        backgroundHeight = 640;
+    }
+    else
+    {
+        if (screenSize.width > 1080)
+        {
+            backgroundWidth = 960;
+            backgroundHeight = 640;
+        }
+        else
+        {
+            backgroundWidth = 480;
+            backgroundHeight = 320;
+        }
+    }
+}
+
+void HelloWorld::setBackgroundWidth(int width)
+{
+    backgroundWidth = width;
+}
+
+void HelloWorld::setBackgroundHeight(int height)
+{
+    backgroundHeight = height;
 }

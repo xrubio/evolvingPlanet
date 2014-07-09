@@ -29,6 +29,9 @@ public:
     void onTouchesMoved(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
     void onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
     
+    void setBackgroundWidth(int width);
+    void setBackgroundHeight(int height);
+    
     
 private:
     bool moveBackground = false;
@@ -39,15 +42,18 @@ private:
     bool zoomBackground = true;
     float zoomScale = 0.5;
     std::vector<cocos2d::Touch *> _touches;
-        
+    int backgroundWidth = 1024;
+    int backgroundHeight = 768;
+
+    
     bool selectSpriteForTouch(cocos2d::Sprite *sprite, cocos2d::Point p);
     void checkBackgroundLimitsInTheScreen(cocos2d::Point destPoint);
-    int getValueAtPoint(cocos2d::Point pt);
     void continentSelection(cocos2d::Touch *touch);
+    int getValueAtPointFromPNG(cocos2d::Point pt);
     float sqrOfDistanceBetweenPoints(cocos2d::Point p1, cocos2d::Point p2);
     void pinchZoomWithMovedTouch(cocos2d::Touch *movedTouch);
-
-
+    void setBackgroundSize(void);
+    
 };
 
 #endif // __HELLOWORLD_SCENE_H__
