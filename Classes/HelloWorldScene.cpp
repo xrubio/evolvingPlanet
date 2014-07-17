@@ -1,6 +1,6 @@
 #include "HelloWorldScene.h"
-#include <iostream>
-#include <fstream>
+#include "SimpleAudioEngine.h"
+#include <time.h>
 
 USING_NS_CC;
 
@@ -26,25 +26,10 @@ bool HelloWorld::init() {
 		return false;
 	}
     
+    createThreadForNewLevel();
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    
-	/////////////////////////////
-	// 2. add a menu item with "X" image, which is clicked to quit the program
-	//    you may modify it.
-    
-	// add a "close" icon to exit the progress. it's an autorelease object
-	auto closeItem = MenuItemImage::create("CloseNormal.png",
-                                           "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
-    
-	closeItem->setPosition(Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width / 2,
-                                origin.y + closeItem->getContentSize().height / 2));
-    
-	// create menu, it's an autorelease object
-	auto menu = Menu::create(closeItem, NULL);
-	menu->setPosition(Vec2::ZERO);
-	this->addChild(menu, 1);
     
 	/////////////////////////////
 	// 3. add your codes below...
@@ -62,10 +47,18 @@ bool HelloWorld::init() {
 	this->addChild(label, 1);
     
 	// add "HelloWorld" splash screen"
-	worldMap = Sprite::create("WorldMapIpad.png");
+	worldMap = Sprite::create("WorldMap.png");
     
 	// position the sprite on the center of the screen
 	worldMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    
+    backgroundHotSpot = new Image();
+    backgroundHotSpot->initWithImageFile("WorldMapR0.png");
+    int x=3;
+    if(backgroundHotSpot->hasAlpha()) x=4;
+    dataBackgroundHotSpot = new unsigned char[backgroundHotSpot->getDataLen()*x];
+    dataBackgroundHotSpot = backgroundHotSpot->getData();
+
     
 	// add the sprite as a child to this layer
 	this->addChild(worldMap, 0);
@@ -76,34 +69,88 @@ bool HelloWorld::init() {
 	listener->onTouchesEnded = CC_CALLBACK_2(HelloWorld::onTouchesEnded, this);
     
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    
+    mario = Sprite::create("mario.png");
+    mario->cocos2d::Node::setPosition(newLevel->positionPlayer.x, newLevel->positionPlayer.y);
+    worldMap->addChild(mario);
+    
+    cocos2d::Vector<cocos2d::MenuItem*> pMenuItems;
+    
+    cocos2d::MenuItem* pCloseItem = cocos2d::MenuItemImage::create(
+                                                                   "CloseNormal.png",
+                                                                   "CloseSelected.png",
+                                                                   this,
+                                                                   menu_selector(HelloWorld::menuCloseCallback));
+    pCloseItem->setScale(3);
+    pMenuItems.pushBack(pCloseItem); // add close item to vector
+    cocos2d::MenuItem* pPauseItem = cocos2d::MenuItemImage::create(
+                                                                   "PauseNormal.png",
+                                                                   "PauseSelected.png",
+                                                                   this,
+                                                                   menu_selector(HelloWorld::menuPauseCallback));
+    
+    pPauseItem->setPosition(pCloseItem->getPositionX()-120*3, pCloseItem->getPositionY());
+    pPauseItem->setScale(3);
+    pMenuItems.pushBack(pPauseItem); // add pause item to vector
+    
+    cocos2d::MenuItem* pPlayItem = cocos2d::MenuItemImage::create(
+                                                                   "PlayNormal.png",
+                                                                   "PlaySelected.png",
+                                                                   this,
+                                                                   menu_selector(HelloWorld::menuPlayCallback));
+    
+    pPlayItem->setPosition(pCloseItem->getPositionX()-80*3, pCloseItem->getPositionY());
+    pPlayItem->setScale(3);
+    pMenuItems.pushBack(pPlayItem); // add pause item to vector
+    
+    cocos2d::MenuItem* pFastForwardItem = cocos2d::MenuItemImage::create(
+                                                                  "FastForwardNormal.png",
+                                                                  "FastForwardSelected.png",
+                                                                  this,
+                                                                  menu_selector(HelloWorld::menuFastForwardCallback));
+    
+    pFastForwardItem->setPosition(pCloseItem->getPositionX()-40*3, pCloseItem->getPositionY());
+    pFastForwardItem->setScale(3);
+    pMenuItems.pushBack(pFastForwardItem); // add pause item to vector
+    
+    
+    cocos2d::Menu* pMenu = cocos2d::Menu::createWithArray(pMenuItems);
+    pMenu->setPosition(Point(cocos2d::Director::getInstance()->getWinSize().width - pCloseItem->getContentSize().width,
+                             pCloseItem->getContentSize().height*3/2));
+    
+    this->addChild(pMenu, 1);
+
+    //Creat root node frome export file by scene editor.
+    //cocos2d::Node *pNode = cocostudio::SceneReader::getInstance()->createNodeWithSceneFile("MainMenu_1.json");
+    //add the node to new scene
+    //this->addChild(pNode,0,1);
 
     setBackgroundSize();
+    
+    //CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("scene2track.mp3", true);
+    
+    time(&timeTaken);
+    
+    //planificar l'update quan es vulgui
+    this->schedule(schedule_selector(HelloWorld::update), 0.01);
+    
+    //quan es necessiti renderitzar, es fa update automatic
+    //this->scheduleUpdate();
     
 	return true;
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender) {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-	MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
-	return;
-#endif
-    
-	Director::getInstance()->end();
-    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
-}
 
 void HelloWorld::onTouchesBegan(const std::vector<cocos2d::Touch *> &touches,
                                 cocos2d::Event *event)
 {
-	CCLOG("ON TOUCHES BEGAN");
-
-    continentSelection(touches.at(0));
     for (auto touch : touches)
     {
-        _touches.push_back(touch);
+        _touches.pushBack(touch);
+    }
+    if (touches.size() == 1)
+    {
+        firstTouchLocation = touches.at(0)->getLocation();
     }
     
     for (auto touch : touches) {
@@ -118,10 +165,8 @@ void HelloWorld::onTouchesBegan(const std::vector<cocos2d::Touch *> &touches,
 void HelloWorld::onTouchesMoved(const std::vector<cocos2d::Touch *> &touches,
                                 cocos2d::Event *event)
 {
-	CCLOG("ON TOUCHES MOVED: ");
-    
     //ZOOM
-    if (_touches.size() > 1)
+    if (touches.size() == 2)
     {
         CCLOG("ZOOM");
         for (auto touch : touches) {
@@ -129,38 +174,47 @@ void HelloWorld::onTouchesMoved(const std::vector<cocos2d::Touch *> &touches,
         }
         CCLOG("%f",zoomScale);
         worldMap->setScale(zoomScale);
+
+        /*cocos2d::Point touch0 = touches.at(0)->getLocation();
+        cocos2d::Point touch1 = touches.at(1)->getLocation();
+        cocos2d::Point pointBetweenFingers = ccpAdd(touch0,(ccpSub(touch1,touch0)/2));
+        Point visible = CCDirector::sharedDirector()->getVisibleSize();
+        Point currentCenter = worldMap->getPosition() - ( pointBetweenFingers - visible/2 ) ;
+        worldMap->setPosition(currentCenter);
+        worldMap->setScale(zoomScale);
+*/
         
         Point reLocate = worldMap->getPosition();
         checkBackgroundLimitsInTheScreen(reLocate);
         while (!moveBackgroundLeft)
         {
-            CCLOG("Left");
-            reLocate.x -= 0.2;
+            //CCLOG("Left");
+            reLocate.x -= 2.0;
             checkBackgroundLimitsInTheScreen(reLocate);
         }
         while (!moveBackgroundRight)
         {
-            CCLOG("Right");
-            reLocate.x += 0.2;
+            //CCLOG("Right");
+            reLocate.x += 2.0;
             checkBackgroundLimitsInTheScreen(reLocate);
         }
         while (!moveBackgroundUp)
         {
-            CCLOG("Up");
-            reLocate.y += 0.2;
+            //CCLOG("Up");
+            reLocate.y += 2.0;
             checkBackgroundLimitsInTheScreen(reLocate);
         }
         while (!moveBackgroundDown)
         {
-            CCLOG("Down");
-            reLocate.y -= 0.2;
+            //CCLOG("Down");
+            reLocate.y -= 2.0;
             checkBackgroundLimitsInTheScreen(reLocate);
         }
         
         worldMap->setPosition(reLocate);
     }
     //PAN
-    else if (_touches.size() == 1)
+    else if (touches.size() == 1)
     {
         CCLOG("PAN");
         if (moveBackground)
@@ -176,25 +230,25 @@ void HelloWorld::onTouchesMoved(const std::vector<cocos2d::Touch *> &touches,
             
             checkBackgroundLimitsInTheScreen(newPos);
             
-            cocos2d::Point destPost = worldMap->getPosition();
-            if (moveBackgroundLeft and ccpSub(touchLocation, oldTouchLocation).x > 0)
+            cocos2d::Point destPos = worldMap->getPosition();
+            if (moveBackgroundLeft and translation.x > 0)
             {
-                destPost.x = newPos.x;
+                destPos.x = newPos.x;
             }
-            if (moveBackgroundRight and ccpSub(touchLocation, oldTouchLocation).x < 0)
+            if (moveBackgroundRight and translation.x < 0)
             {
-                destPost.x = newPos.x;
+                destPos.x = newPos.x;
             }
-            if (moveBackgroundUp and ccpSub(touchLocation, oldTouchLocation).y < 0)
+            if (moveBackgroundUp and translation.y < 0)
             {
-                destPost.y = newPos.y;
+                destPos.y = newPos.y;
             }
-            if (moveBackgroundDown and ccpSub(touchLocation, oldTouchLocation).y > 0)
+            if (moveBackgroundDown and translation.y > 0)
             {
-                destPost.y = newPos.y;
+                destPos.y = newPos.y;
             }
             
-            worldMap->cocos2d::Node::setPosition(destPost);
+            worldMap->cocos2d::Node::setPosition(destPos);
         }
     }
 }
@@ -202,12 +256,11 @@ void HelloWorld::onTouchesMoved(const std::vector<cocos2d::Touch *> &touches,
 void HelloWorld::onTouchesEnded(const std::vector<cocos2d::Touch *> &touches,
                                 cocos2d::Event *event)
 {
-	CCLOG("ON TOUCHES ENDED: ");
-    
-    for (auto touch : touches)
+    if (touches.size() == 1 and firstTouchLocation.fuzzyEquals(touches.at(0)->getLocation(), 10.0))
     {
-        _touches.pop_back();
+        continentSelection(touches.at(0));
     }
+    _touches.clear();
 }
 
 bool HelloWorld::selectSpriteForTouch(cocos2d::Sprite *sprite, cocos2d::Point touchLocation)
@@ -265,14 +318,9 @@ void HelloWorld::checkBackgroundLimitsInTheScreen(cocos2d::Point destPoint)
 int HelloWorld::getValueAtPointFromPNG(Point pt)
 {
     int retValue = 255;
-    CCImage *img = new CCImage();
-    img->initWithImageFile("WorldMapIpadR0.png");
     int x=3;
-    if(img->hasAlpha()) x=4;
-    unsigned char *data = new unsigned char[img->getDataLen()*x];
-    data = img->getData();
-    
-    unsigned char *pixel = data + ((int)pt.x + (int)pt.y * img->getWidth()) * x;
+    if(backgroundHotSpot->hasAlpha()) x=4;
+    unsigned char *pixel = dataBackgroundHotSpot + ((int)pt.x + (int)pt.y * backgroundHotSpot->getWidth()) * x;
     
     // You can see/change pixels' RGBA value(0-255) here !
     unsigned char r = *pixel;
@@ -339,6 +387,10 @@ void HelloWorld::pinchZoomWithMovedTouch(cocos2d::Touch *movedTouch)
         {
             zoomScale = 1;
         }
+        if (zoomScale > 3)
+        {
+            zoomScale = 3;
+        }
     }
 }
 
@@ -395,4 +447,78 @@ void HelloWorld::setBackgroundWidth(int width)
 void HelloWorld::setBackgroundHeight(int height)
 {
     backgroundHeight = height;
+}
+
+void HelloWorld::menuCloseCallback(Ref* pSender)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+    MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+    return;
+#endif
+    
+    Director::getInstance()->end();
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
+}
+
+void HelloWorld::menuPauseCallback(Ref* pSender)
+{
+    newLevel->velocityMultiplier = 0;
+}
+
+void HelloWorld::menuPlayCallback(Ref* pSender)
+{
+    newLevel->velocityMultiplier = 1;
+}
+
+void HelloWorld::menuFastForwardCallback(Ref* pSender)
+{
+    newLevel->velocityMultiplier = 4;
+}
+
+void HelloWorld::update(float delta)
+{
+    time_t currentTime;
+    double seconds;
+    
+    time(&currentTime);  /* get current time; same as: timer = time(NULL)  */
+    
+    seconds = difftime(currentTime,timeTaken);
+
+    timeTaken = currentTime;
+
+    auto action = MoveTo::create(0.2,cocos2d::Point(newLevel->positionPlayer.x, newLevel->positionPlayer.y));
+    //+(backgroundWidth/1000*velocityMultiplier);
+    //mario->runAction(action);
+    mario->setPosition(newLevel->positionPlayer);
+    //CCLOG("seconds: %f",seconds);
+    
+}
+
+void HelloWorld::createThreadForNewLevel(void)
+{
+    pthread_t thread;
+    newLevel = new LevelPlayDomain();
+    SimpleStructure* args = new SimpleStructure();
+    args->lvl = newLevel;
+    args->hllwrld = this;
+    pthread_create(&thread, NULL, &HelloWorld::createLevel, args);
+}
+
+void* HelloWorld::createLevel(void* arg)
+{
+    SimpleStructure* l = (SimpleStructure*)arg;
+    l->hllwrld->playLevel(l->lvl);
+    delete l;
+    return nullptr;
+}
+
+void HelloWorld::playLevel(void* lvl)
+{
+    pthread_mutex_lock(&mutex);
+    LevelPlayDomain *nwLvl = (LevelPlayDomain*)lvl;
+    nwLvl->playLevel();
+    pthread_mutex_unlock(&mutex);
 }
