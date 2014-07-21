@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "MainMenu.h"
+#include "GameData.h"
 
 USING_NS_CC;
 
@@ -83,6 +84,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
         }
     }
     
+
+        GameData::getInstance()->setAgePlayer(CCUserDefault::getInstance()->getIntegerForKey("agePlayer"));
+
+    std::cout << GameData::getInstance()->getAgePlayer() << std::endl;
+    
     fileUtils->setSearchPaths(resDirOrders);
     
     // create a scene. it's an autorelease object
@@ -98,6 +104,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 void AppDelegate::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 
+    CCUserDefault::getInstance()->setIntegerForKey("agePlayer", GameData::getInstance()->getAgePlayer());
+    CCUserDefault::getInstance()->flush();
+    
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }

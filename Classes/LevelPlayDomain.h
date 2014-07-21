@@ -12,6 +12,7 @@
 #include <iostream>
 #include <cocos2d.h>
 
+
 class LevelPlayDomain
 {
 public:
@@ -20,7 +21,8 @@ public:
     cocos2d::Point positionPlayer;
     
     bool finishedLevel = false;
-    clock_t timeTaken;
+    clock_t timeTakenPosition;
+    clock_t timeTakenAge;
     
     int velocityMultiplier = 1;
     int direction = 1;

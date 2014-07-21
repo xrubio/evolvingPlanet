@@ -30,6 +30,7 @@ public:
     cocos2d::Image *backgroundHotSpot;
     unsigned char *dataBackgroundHotSpot;
     cocos2d::LabelTTF *label;
+    cocos2d::LabelTTF *labelAge;
     cocos2d::Sprite *mario;
 
     void onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);

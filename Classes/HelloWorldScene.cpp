@@ -1,6 +1,8 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include <time.h>
+#include "GameData.h"
+#include <string>
 
 USING_NS_CC;
 
@@ -43,8 +45,12 @@ bool HelloWorld::init() {
 	label->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - label->getContentSize().height));
     
+    labelAge = LabelTTF::create("X","Arial",24);
+    labelAge->setPosition(500, 500);
+    
 	// add the label as a child to this layer
 	this->addChild(label, 1);
+    this->addChild(labelAge, 1);
     
 	// add "HelloWorld" splash screen"
 	worldMap = Sprite::create("WorldMap.png");
@@ -136,7 +142,7 @@ bool HelloWorld::init() {
     
     //quan es necessiti renderitzar, es fa update automatic
     //this->scheduleUpdate();
-    
+        
 	return true;
 }
 
@@ -456,6 +462,9 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     return;
 #endif
     
+    CCUserDefault::getInstance()->setIntegerForKey("agePlayer", GameData::getInstance()->getAgePlayer());
+    CCUserDefault::getInstance()->flush();
+    
     Director::getInstance()->end();
     
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -489,10 +498,11 @@ void HelloWorld::update(float delta)
 
     timeTaken = currentTime;
 
-    auto action = MoveTo::create(0.2,cocos2d::Point(newLevel->positionPlayer.x, newLevel->positionPlayer.y));
+    //auto action = MoveTo::create(0.2,cocos2d::Point(newLevel->positionPlayer.x, newLevel->positionPlayer.y));
     //+(backgroundWidth/1000*velocityMultiplier);
     //mario->runAction(action);
     mario->setPosition(newLevel->positionPlayer);
+    labelAge->setString(std::to_string(GameData::getInstance()->getAgePlayer()));
     //CCLOG("seconds: %f",seconds);
     
 }
