@@ -130,7 +130,8 @@ bool UIGameplayMap::init()
     areaPower2->setVisible(false);
     this->addChild(cooldownPower1, 4);
     this->addChild(cooldownPower2, 4);
-    this->addChild(areaPower2, 4);
+    //this->addChild(areaPower2, 4);
+    gameplayMap->addChild(areaPower2);
 
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
@@ -170,7 +171,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
             power1Button->setScale(1.25);
         } else if (GameLevel::getInstance()->getCooldownPower2() == 0 and selectSpriteForTouch(power2Button, touchLocation)) {
             movePower2 = true;
-            areaPower2->setPosition(power2Button->getPosition());
+            areaPower2->setPosition(gameplayMap->convertToNodeSpace(power2Button->getPosition()));
             areaPower2->setVisible(true);
             /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
             area->erasePoint(0);
@@ -240,11 +241,11 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
             }
             gameplayMap->Node::setPosition(destPos);
         } else if (movePower2) {
-            Point touch = gameplayMap->convertToWorldSpace(Director::getInstance()->convertToGL(touches.at(0)->getLocationInView()));
-            Point touchArea = Director::getInstance()->convertToGL(touches.at(0)->getLocationInView());
+            Point touchArea = gameplayMap->convertToNodeSpace(Director::getInstance()->convertToGL(touches.at(0)->getLocationInView()));
+            Point touch = Director::getInstance()->convertToGL(touches.at(0)->getLocationInView());
             if (touches.at(0)) {
                 power2Button->setPosition(touch);
-                areaPower2->setPosition(touch);
+                areaPower2->setPosition(touchArea);
                 /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
                 area->erasePoint(0);
                 area->appendPoint(touchArea, 1, 0, 0);
@@ -264,12 +265,12 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
         GameLevel::getInstance()->setPower1Active(5);
         cooldownPower1->setVisible(true);
     } else if (movePower2) {
-        /*Point touchArea = gameplayMap->convertToNodeSpace(power2Button->getPosition());
-        DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
+        Point touchArea = gameplayMap->convertToNodeSpace(power2Button->getPosition());
+        /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
         area->erasePoint(0);
         area->appendPoint(touchArea, 1, 0, 0);
         area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);*/
-        areaPower2->setPosition(touchLocation);
+        areaPower2->setPosition(touchArea);
         GameLevel::getInstance()->setPower2Active(10);
         movePower2 = false;
         cooldownPower2->setVisible(true);
