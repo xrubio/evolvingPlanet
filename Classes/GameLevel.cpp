@@ -55,7 +55,7 @@ int GameLevel::getAgentAttribute(string key)
     return agentAttributes[key];
 }
 
-void GameLevel::setAgentAttributes(string key, int value)
+void GameLevel::setAgentAttribute(string key, int value)
 {
     agentAttributes[key] = value;
 }
@@ -165,13 +165,34 @@ void GameLevel::setPower2Active(int cd)
     power2Active = cd;
 }
 
+int GameLevel::getEvolutionPoints(void)
+{
+    return evolutionPoints;
+}
+
+void GameLevel::setEvolutionPoints(int points)
+{
+    evolutionPoints = points;
+}
+
+int GameLevel::getAttributeCost(string key)
+{
+    return attributesCost[key];
+}
+
+void GameLevel::setAttributeCost(string key, int val)
+{
+    attributesCost[key] = val;
+}
+
 void GameLevel::playLevel(void)
 {
     clock_t stepTime = clock();
     while (finishedGame == 0) {
         currentTime = clock();
         if (timeSpeed != 0) {
-            if (((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC) > timeSpeed) {
+            float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
+            if (step > timeSpeed) {
                 stepTime = clock();
                 while (gameplayMap->play == false)
                     ;
@@ -198,6 +219,9 @@ void GameLevel::playLevel(void)
                     cooldownPower2--;
                 }
                 timeSteps++;
+                if (timeSteps % 4 == 0) {
+                    evolutionPoints++;
+                }
                 paint = true;
                 //gameplayMap->updateAgents(agents);
             }
@@ -223,6 +247,14 @@ void GameLevel::resetLevel(void)
     timeSteps = 0;
     timeSpeed = 2.5;
 
+    power1Active = 0;
+    power2Active = 0;
+
+    cooldownPower1 = 0;
+    cooldownPower2 = 0;
+
+    evolutionPoints = 0;
+
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
     //4 = finishedBack
     finishedGame = 0;
@@ -235,6 +267,13 @@ void GameLevel::createLevel(int lvl)
     //aplicar atributs als agents de forma independent a cadascun
     generateInitialAgents();
     paint = true;
+}
+
+void GameLevel::initializeAttributesCost(void)
+{
+    attributesCost["att1"] = 1;
+    attributesCost["att2"] = 1;
+    attributesCost["att3"] = 1;
 }
 
 void GameLevel::generateInitialAgents(void)
@@ -333,7 +372,7 @@ void GameLevel::dieAndReproduce(void)
 
     //int index = 0;
     unsigned long dieAgentsSize = agents.size();
-    for (int i = 0; i < dieAgentsSize; i++) {
+    for (int i = dieAgentsSize - 1; i >= 0; i--) {
         int zone = gameplayMap->getValueAtGameplayMapHotSpot(agents.at(i)->getPosition()->getX(),
                                                              agents.at(i)->getPosition()->getY());
         int harm;
@@ -373,7 +412,7 @@ void GameLevel::dieAndReproduce(void)
             //deletedAgents.push_back(index);
             agents.erase(agents.begin() + i);
             dieAgentsSize--;
-            i--;
+            //i--;
         }
         //si viu, reproduce
         else {

@@ -64,6 +64,7 @@ private:
     //vector<Sprite*> agentsSprite;
 
     Label* timeSteps;
+    Label* evolutionPointsLabel;
 
     Sprite* power1Button; //boost reproduction
     Sprite* power2Button; //boost resistance

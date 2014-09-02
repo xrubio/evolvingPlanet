@@ -68,6 +68,12 @@ bool UIGameplayMap::init()
     menu->setPosition(0, 0);
     this->addChild(menu, 2);
 
+    evolutionPointsLabel = Label::createWithSystemFont("Evolution Points: " + to_string(GameLevel::getInstance()->getEvolutionPoints()),
+                                                       "Arial", 65);
+    evolutionPointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3,
+                                      visibleSize.height - (agentsButton->getContentSize().height / 2));
+    this->addChild(evolutionPointsLabel, 1);
+
     Vector<MenuItem*> timeButtons;
 
     MenuItem* fastForwardButton = MenuItemImage::create(
@@ -606,4 +612,5 @@ void UIGameplayMap::update(float delta)
     } else {
         cooldownPower2->setVisible(false);
     }
+    evolutionPointsLabel->setString("Evolution Points: " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
 }

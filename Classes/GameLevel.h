@@ -30,7 +30,7 @@ public:
     int getNumLevel(void);
     void setNumLevel(int lvl);
     int getAgentAttribute(string key);
-    void setAgentAttributes(string key, int value);
+    void setAgentAttribute(string key, int value);
     vector<Agent*> getAgents(void);
     void setAgents(vector<Agent*> ags);
     int getAddedAgents(void);
@@ -53,8 +53,13 @@ public:
     void setPower1Active(int cd);
     int getPower2Active(void);
     void setPower2Active(int cd);
+    int getEvolutionPoints(void);
+    void setEvolutionPoints(int points);
+    int getAttributeCost(string key);
+    void setAttributeCost(string key, int val);
 
     void createLevel(int lvl);
+    void initializeAttributesCost(void);
     void playLevel(void);
     void resetLevel(void);
 
@@ -67,6 +72,7 @@ private:
     clock_t currentTime = 0;
     int numLevel = 0;
     map<string, int> agentAttributes;
+    map<string, int> attributesCost;
     map<string, int> powers;
     vector<Agent*> agents;
     int addedAgents = 0;
@@ -82,6 +88,8 @@ private:
 
     int cooldownPower1 = 0;
     int cooldownPower2 = 0;
+
+    int evolutionPoints = 0;
 
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
     //4 = finishedBack
