@@ -9,6 +9,7 @@
 #include "UIGoals.h"
 #include "UIAgents.h"
 #include "GameData.h"
+#include "LocalizedString.h"
 
 Scene* UIGoals::createScene()
 {
@@ -26,7 +27,7 @@ bool UIGoals::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Label* title = Label::createWithSystemFont("Goals", "Arial Rounded MT Bold", 180);
+    Label* title = Label::createWithSystemFont(LocalizedString::create("GOALS")->getCString(), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - ((visibleSize.height / 8))));
     this->addChild(title, 1);
@@ -81,7 +82,22 @@ void UIGoals::setLevelGoals(void)
     goalMap->setPosition(Vec2(origin.x + visibleSize.width / 4, origin.y + visibleSize.height / 2));
     this->addChild(goalMap, 1);
 
-    TextFieldTTF* goalList = TextFieldTTF::textFieldWithPlaceHolder("Reach checkpoint 1, then 2,\nthen 3 on specified timing", "Arial", 40);
-    goalList->setPosition(Vec2(origin.x + 3 * (visibleSize.width / 4), origin.y + visibleSize.height / 2));
-    this->addChild(goalList, 1);
+    //LocalizedString::create("GOAL_TEXT_LVL1")->getCString()
+    auto goal1 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_1")->getCString(),
+                                                        Size(visibleSize.width / 3, visibleSize.height / 4),
+                                                        TextHAlignment::CENTER, "Arial", 40);
+    auto goal2 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_2")->getCString(),
+                                                        Size(visibleSize.width / 3, visibleSize.height / 4),
+                                                        TextHAlignment::CENTER, "Arial", 40);
+    auto goal3 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_3")->getCString(),
+                                                        Size(visibleSize.width / 3, visibleSize.height / 4),
+                                                        TextHAlignment::CENTER, "Arial", 40);
+
+    goal1->setPosition(Vec2(origin.x + 3 * (visibleSize.width / 4), origin.y + (5 * visibleSize.height / 8)));
+    goal2->setPosition(Vec2(origin.x + 3 * (visibleSize.width / 4), origin.y + (4 * visibleSize.height / 8)));
+    goal3->setPosition(Vec2(origin.x + 3 * (visibleSize.width / 4), origin.y + (3 * visibleSize.height / 8)));
+
+    this->addChild(goal1, 1);
+    this->addChild(goal2, 1);
+    this->addChild(goal3, 1);
 }

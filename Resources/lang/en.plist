@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>START</key>
+	<string>Start</string>
+	<key>CONFIGURATION</key>
+	<string>Configuration</string>
+	<key>LANGUAGE</key>
+	<string>Language</string>
+	<key>CREDITS</key>
+	<string>Credits</string>
+	<key>GOALS</key>
+	<string>Goals</string>
+	<key>REPRODUCTION</key>
+	<string>Reproduction</string>
+	<key>MOBILITY</key>
+	<string>Mobility</string>
+	<key>RESISTANCE</key>
+	<string>Resistance</string>
+	<key>EVOLUTION_POINTS</key>
+	<string>Evolution points</string>
+	<key>GOAL_TEXT_LVL1_1</key>
+	<string>- Reach checkpoint 1 between 30 and 50 timesteps</string>
+	<key>GOAL_TEXT_LVL1_2</key>
+	<string>- Reach checkpoint 2 between 70 and 90 timesteps</string>
+	<key>GOAL_TEXT_LVL1_3</key>
+	<string>- Reach checkpoint 3 between 90 and 110 timesteps</string>
+</dict>
+</plist>

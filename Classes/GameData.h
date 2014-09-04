@@ -10,6 +10,7 @@
 #define __simulplay__GameData__
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -23,6 +24,8 @@ public:
     void setLevelScore(int level, int score);
     bool getGameStarted(void);
     void setGameStarted(bool gameStrtd);
+    string getLanguage(void);
+    void setLanguage(string lang);
 
 private:
     GameData() {}; // Private so that it can  not be called
@@ -32,6 +35,7 @@ private:
     static GameData* gamedataInstance;
     vector<int> levelsCompleted;
     bool gameStarted = false;
+    string language;
 };
 
 #endif /* defined(__simulplay__GameData__) */

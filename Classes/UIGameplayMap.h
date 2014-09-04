@@ -31,6 +31,10 @@ public:
     void pauseCallback(Ref* pSender);
     void playCallback(Ref* pSender);
     void fastForwardCallback(Ref* pSender);
+    void lifeCallback(Ref* pSender);
+    void reproductionCallback(Ref* pSender);
+    void mobilityCallback(Ref* pSender);
+    void resistanceCallback(Ref* pSender);
 
     int getValueAtGameplayMapHotSpot(int posx, int posy);
     bool isInBoostResistanceArea(int posx, int posy);
@@ -71,6 +75,9 @@ private:
     Sprite* areaPower2;
     Label* cooldownPower1;
     Label* cooldownPower2;
+
+    //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
+    int agentColor = 0;
 
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     bool selectSpriteForTouch(Sprite* sprite, Point p);

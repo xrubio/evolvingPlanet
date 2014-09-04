@@ -193,6 +193,7 @@ void GameLevel::playLevel(void)
         if (timeSpeed != 0) {
             float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
             if (step > timeSpeed) {
+                cout << step << endl;
                 stepTime = clock();
                 while (gameplayMap->play == false)
                     ;

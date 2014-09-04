@@ -20,6 +20,7 @@ public:
     virtual bool init();
 
     void menuStartCallback(Ref* pSender);
+    void menuConfigurationCallback(Ref* pSender);
     void menuCreditsCallback(Ref* pSender);
     void menuExitCallback(Ref* pSender);
 

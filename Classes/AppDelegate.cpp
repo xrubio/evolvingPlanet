@@ -1,5 +1,9 @@
 #include "AppDelegate.h"
 #include "UIMainMenu.h"
+#include "GameData.h"
+#include "LocalizedString.h"
+#include <iostream>
+#include <string>
 
 USING_NS_CC;
 
@@ -23,9 +27,16 @@ bool AppDelegate::applicationDidFinishLaunching()
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
+    //Primer cop language = '', agafar del dispositiu per defecte
+    string lang = UserDefault::getInstance()->getStringForKey("language");
+    if (lang.size() == 0) {
+        GameData::getInstance()->setLanguage(LocalizedString::getSystemLang());
+    } else {
+        GameData::getInstance()->setLanguage(lang);
+    }
+
     // create a scene. it's an autorelease object
     auto scene = UIMainMenu::createScene();
-
     // run
     director->runWithScene(scene);
 
@@ -37,6 +48,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 void AppDelegate::applicationDidEnterBackground()
 {
     Director::getInstance()->stopAnimation();
+
+    UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
+    UserDefault::getInstance()->flush();
 
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();

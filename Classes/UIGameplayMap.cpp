@@ -10,6 +10,7 @@
 #include "UIGoals.h"
 #include "UIAgents.h"
 #include "GameData.h"
+#include "LocalizedString.h"
 
 Scene* UIGameplayMap::createScene()
 {
@@ -45,7 +46,6 @@ bool UIGameplayMap::init()
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
 
     Vector<MenuItem*> menuButtons;
-
     MenuItem* backButton = MenuItemImage::create(
         "BackButton.png", "BackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
     backButton->setPosition(Vec2(origin.x + visibleSize.width - (backButton->getContentSize().width / 2),
@@ -68,14 +68,14 @@ bool UIGameplayMap::init()
     menu->setPosition(0, 0);
     this->addChild(menu, 2);
 
-    evolutionPointsLabel = Label::createWithSystemFont("Evolution Points: " + to_string(GameLevel::getInstance()->getEvolutionPoints()),
+    evolutionPointsLabel = Label::createWithSystemFont(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
+                                                       + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()),
                                                        "Arial", 65);
     evolutionPointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3,
                                       visibleSize.height - (agentsButton->getContentSize().height / 2));
     this->addChild(evolutionPointsLabel, 1);
 
     Vector<MenuItem*> timeButtons;
-
     MenuItem* fastForwardButton = MenuItemImage::create(
         "FastForwardButton.png", "FastForwardButtonPressed.png", "FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
     fastForwardButton->setPosition(Vec2(origin.x + visibleSize.width - (fastForwardButton->getContentSize().width / 2),
@@ -103,6 +103,41 @@ bool UIGameplayMap::init()
     timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getContentSize().width * 2,
                                 pauseButton->getPosition().y));
     this->addChild(timeSteps, 2);
+
+    //Attribute values
+    Vector<MenuItem*> attributesButtons;
+    MenuItem* lifeButton = MenuItemImage::create(
+        "LifeButton.png", "LifeButtonPressed.png", "LifeButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::lifeCallback, this));
+    lifeButton->setScale(1.5);
+    lifeButton->setPosition(Vec2(origin.x + visibleSize.width - (lifeButton->getBoundingBox().size.width / 2),
+                                 origin.y + visibleSize.height / 3));
+    lifeButton->setEnabled(false);
+    attributesButtons.pushBack(lifeButton);
+
+    MenuItem* reproductionButton = MenuItemImage::create(
+        "ReproductionButton.png", "ReproductionButtonPressed.png", "ReproductionButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::reproductionCallback, this));
+    reproductionButton->setScale(1.5);
+    reproductionButton->setPosition(Vec2(lifeButton->getPosition().x,
+                                         lifeButton->getPosition().y - lifeButton->getContentSize().height * 2));
+    attributesButtons.pushBack(reproductionButton);
+
+    MenuItem* mobilityButton = MenuItemImage::create(
+        "MobilityButton.png", "MobilityButtonPressed.png", "MobilityButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::mobilityCallback, this));
+    mobilityButton->setScale(1.5);
+    mobilityButton->setPosition(Vec2(lifeButton->getPosition().x,
+                                     reproductionButton->getPosition().y - reproductionButton->getContentSize().height * 2));
+    attributesButtons.pushBack(mobilityButton);
+
+    MenuItem* resistanceButton = MenuItemImage::create(
+        "ResistanceButton.png", "ResistanceButtonPressed.png", "ResistanceButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::resistanceCallback, this));
+    resistanceButton->setScale(1.5);
+    resistanceButton->setPosition(Vec2(lifeButton->getPosition().x,
+                                       mobilityButton->getPosition().y - mobilityButton->getContentSize().height * 2));
+    attributesButtons.pushBack(resistanceButton);
+
+    Menu* attributesMenu = Menu::createWithArray(attributesButtons);
+    attributesMenu->setPosition(Vec2(0, 0));
+    this->addChild(attributesMenu, 2);
 
     //Powers
     power1Button = Sprite::create("BoostReproductionButton.png");
@@ -160,31 +195,32 @@ bool UIGameplayMap::init()
 
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
-    for (auto touch : touches) {
-        _touches.pushBack(touch);
-    }
-    if (touches.size() == 1) {
-        firstTouchLocation = touches.at(0)->getLocation();
-    }
+    if (movePower2 == false) {
+        for (auto touch : touches) {
+            _touches.pushBack(touch);
+        }
+        if (touches.size() == 1) {
+            firstTouchLocation = touches.at(0)->getLocation();
+        }
 
-    for (auto touch : touches) {
-        Point touchLocation = this->convertTouchToNodeSpace(touch);
-        movePower1 = false;
-        movePower2 = false;
-        moveBackground = false;
-        if (GameLevel::getInstance()->getCooldownPower1() == 0 and selectSpriteForTouch(power1Button, touchLocation)) {
-            movePower1 = true;
-            power1Button->setScale(1.25);
-        } else if (GameLevel::getInstance()->getCooldownPower2() == 0 and selectSpriteForTouch(power2Button, touchLocation)) {
-            movePower2 = true;
-            areaPower2->setPosition(gameplayMap->convertToNodeSpace(power2Button->getPosition()));
-            areaPower2->setVisible(true);
-            /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
+        for (auto touch : touches) {
+            Point touchLocation = this->convertTouchToNodeSpace(touch);
+            movePower1 = false;
+            moveBackground = false;
+            if (GameLevel::getInstance()->getCooldownPower1() == 0 and selectSpriteForTouch(power1Button, touchLocation)) {
+                movePower1 = true;
+                power1Button->setScale(1.25);
+            } else if (GameLevel::getInstance()->getCooldownPower2() == 0 and selectSpriteForTouch(power2Button, touchLocation)) {
+                movePower2 = true;
+                areaPower2->setPosition(gameplayMap->convertToNodeSpace(power2Button->getPosition()));
+                areaPower2->setVisible(true);
+                /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
             area->erasePoint(0);
             area->appendPoint(touchLocation, 1, 0, 0);
             area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);*/
-        } else if (selectSpriteForTouch(gameplayMap, touchLocation)) {
-            moveBackground = true;
+            } else if (selectSpriteForTouch(gameplayMap, touchLocation)) {
+                moveBackground = true;
+            }
         }
     }
 }
@@ -193,30 +229,32 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 {
     // ZOOM
     if (touches.size() == 2) {
-        for (auto touch : touches) {
-            pinchZoomWithMovedTouch(touch);
-        }
-        gameplayMap->setScale(zoomScale);
+        if (movePower2 == false) {
+            for (auto touch : touches) {
+                pinchZoomWithMovedTouch(touch);
+            }
+            gameplayMap->setScale(zoomScale);
 
-        Point reLocate = gameplayMap->getPosition();
-        checkBackgroundLimitsInTheScreen(reLocate);
-        while (!moveBackgroundLeft) {
-            reLocate.x -= 2.0;
+            Point reLocate = gameplayMap->getPosition();
             checkBackgroundLimitsInTheScreen(reLocate);
+            while (!moveBackgroundLeft) {
+                reLocate.x -= 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            while (!moveBackgroundRight) {
+                reLocate.x += 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            while (!moveBackgroundUp) {
+                reLocate.y += 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            while (!moveBackgroundDown) {
+                reLocate.y -= 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            gameplayMap->setPosition(reLocate);
         }
-        while (!moveBackgroundRight) {
-            reLocate.x += 2.0;
-            checkBackgroundLimitsInTheScreen(reLocate);
-        }
-        while (!moveBackgroundUp) {
-            reLocate.y += 2.0;
-            checkBackgroundLimitsInTheScreen(reLocate);
-        }
-        while (!moveBackgroundDown) {
-            reLocate.y -= 2.0;
-            checkBackgroundLimitsInTheScreen(reLocate);
-        }
-        gameplayMap->setPosition(reLocate);
     }
     // PAN
     else if (touches.size() == 1) {
@@ -250,7 +288,8 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
             Point touchArea = gameplayMap->convertToNodeSpace(Director::getInstance()->convertToGL(touches.at(0)->getLocationInView()));
             Point touch = Director::getInstance()->convertToGL(touches.at(0)->getLocationInView());
             if (touches.at(0)) {
-                power2Button->setPosition(touch);
+                //power2Button->setPosition(touch);
+                power2Button->setColor(Color3B::GRAY);
                 areaPower2->setPosition(touchArea);
                 /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
                 area->erasePoint(0);
@@ -276,13 +315,17 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
         area->erasePoint(0);
         area->appendPoint(touchArea, 1, 0, 0);
         area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);*/
-        areaPower2->setPosition(touchArea);
-        GameLevel::getInstance()->setPower2Active(10);
+        //areaPower2->setPosition(touchArea);
+        power2Button->setColor(Color3B::WHITE);
+        if (selectSpriteForTouch(power2Button, touchLocation) == false) {
+            GameLevel::getInstance()->setPower2Active(10);
+            cooldownPower2->setVisible(true);
+        }
         movePower2 = false;
-        cooldownPower2->setVisible(true);
-        auto action = MoveTo::create(0.5, Vec2(power1Button->getPosition().x + power1Button->getContentSize().width,
+
+        /*auto action = MoveTo::create(0.5, Vec2(power1Button->getPosition().x + power1Button->getContentSize().width,
                                                power1Button->getPosition().y));
-        power2Button->runAction(action);
+        power2Button->runAction(action);*/
     }
     moveBackground = false;
     _touches.clear();
@@ -352,7 +395,67 @@ void UIGameplayMap::fastForwardCallback(Ref* pSender)
     playButton->setEnabled(true);
     pauseButton->setEnabled(true);
 
-    GameLevel::getInstance()->setTimeSpeed(1.0);
+    GameLevel::getInstance()->setTimeSpeed(1.2555);
+}
+
+void UIGameplayMap::lifeCallback(Ref* pSender)
+{
+    MenuItem* lifeButton = (MenuItem*)pSender;
+    lifeButton->setEnabled(false);
+    Menu* attributesMenu = (Menu*)lifeButton->getParent();
+    MenuItem* reproductionButton = (MenuItem*)attributesMenu->getChildren().at(1);
+    MenuItem* mobilityButton = (MenuItem*)attributesMenu->getChildren().at(2);
+    MenuItem* resistanceButton = (MenuItem*)attributesMenu->getChildren().at(3);
+
+    reproductionButton->setEnabled(true);
+    mobilityButton->setEnabled(true);
+    resistanceButton->setEnabled(true);
+    agentColor = 0;
+}
+
+void UIGameplayMap::reproductionCallback(Ref* pSender)
+{
+    MenuItem* reproductionButton = (MenuItem*)pSender;
+    reproductionButton->setEnabled(false);
+    Menu* attributesMenu = (Menu*)reproductionButton->getParent();
+    MenuItem* lifeButton = (MenuItem*)attributesMenu->getChildren().at(0);
+    MenuItem* mobilityButton = (MenuItem*)attributesMenu->getChildren().at(2);
+    MenuItem* resistanceButton = (MenuItem*)attributesMenu->getChildren().at(3);
+
+    lifeButton->setEnabled(true);
+    mobilityButton->setEnabled(true);
+    resistanceButton->setEnabled(true);
+    agentColor = 1;
+}
+
+void UIGameplayMap::mobilityCallback(Ref* pSender)
+{
+    MenuItem* mobilityButton = (MenuItem*)pSender;
+    mobilityButton->setEnabled(false);
+    Menu* attributesMenu = (Menu*)mobilityButton->getParent();
+    MenuItem* lifeButton = (MenuItem*)attributesMenu->getChildren().at(0);
+    MenuItem* reproductionButton = (MenuItem*)attributesMenu->getChildren().at(1);
+    MenuItem* resistanceButton = (MenuItem*)attributesMenu->getChildren().at(3);
+
+    lifeButton->setEnabled(true);
+    reproductionButton->setEnabled(true);
+    resistanceButton->setEnabled(true);
+    agentColor = 2;
+}
+
+void UIGameplayMap::resistanceCallback(Ref* pSender)
+{
+    MenuItem* resistanceButton = (MenuItem*)pSender;
+    resistanceButton->setEnabled(false);
+    Menu* attributesMenu = (Menu*)resistanceButton->getParent();
+    MenuItem* lifeButton = (MenuItem*)attributesMenu->getChildren().at(0);
+    MenuItem* reproductionButton = (MenuItem*)attributesMenu->getChildren().at(1);
+    MenuItem* mobilityButton = (MenuItem*)attributesMenu->getChildren().at(2);
+
+    lifeButton->setEnabled(true);
+    reproductionButton->setEnabled(true);
+    mobilityButton->setEnabled(true);
+    agentColor = 3;
 }
 
 void UIGameplayMap::createNewLevelThread(void)
@@ -488,6 +591,8 @@ void UIGameplayMap::initializeAgents(void)
 
     for (int i = 0; i < agentsDomain.size(); i++) {
         Sprite* s = Sprite::create("Agent.png");
+        s->setColor(Color3B(128, 4, 4));
+        s->setOpacity(100);
         s->setPosition(agentsDomain.at(i)->getPosition()->getX(), agentsDomain.at(i)->getPosition()->getY());
         gameplayMap->addChild(s, 1, agentsDomain.at(i)->getId());
     }
@@ -534,11 +639,68 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
         gameplayMap->removeChildByTag(GameLevel::getInstance()->getDeletedAgents().at(i));
     }
 
+    Vector<Node*> ags = gameplayMap->getChildren();
+    for (int i = 1; i < ags.size(); i++) {
+        Sprite* s = (Sprite*)ags.at(i);
+        int id = ags.at(i)->getTag();
+        bool found = false;
+        int j = 0;
+        while (j < agentsDomain.size() and found == false) {
+            if (agentsDomain.at(j)->getId() != id) {
+                j++;
+            } else {
+                found = true;
+            }
+        }
+        if (found == true) {
+            switch (agentColor) {
+            case 1:
+                s->setColor(Color3B(5, 5, 117));
+                s->setOpacity(agentsDomain.at(j)->getValOfAttribute("att1") * (255 / 10));
+                break;
+            case 2:
+                s->setColor(Color3B(212, 105, 11));
+                s->setOpacity(agentsDomain.at(j)->getValOfAttribute("att2") * (255 / 10));
+
+                break;
+            case 3:
+                s->setColor(Color3B(115, 8, 214));
+                s->setOpacity(agentsDomain.at(j)->getValOfAttribute("att3") * (255 / 10));
+                break;
+
+            default:
+                s->setColor(Color3B(128, 4, 4));
+                s->setOpacity(agentsDomain.at(j)->getLife() * (255 / 100));
+                break;
+            }
+        }
+    }
+
     unsigned long sizeAgents = agentsDomain.size() - 1;
     for (int i = 0; i < GameLevel::getInstance()->getAddedAgents(); i++) {
         Sprite* s = Sprite::create("Agent.png");
         s->setPosition(agentsDomain.at(sizeAgents)->getPosition()->getX(),
                        agentsDomain.at(sizeAgents)->getPosition()->getY());
+        switch (agentColor) {
+        case 1:
+            s->setColor(Color3B(5, 5, 117));
+            s->setOpacity(agentsDomain.at(sizeAgents)->getValOfAttribute("att1") * (255 / 10));
+            break;
+        case 2:
+            s->setColor(Color3B(212, 105, 11));
+            s->setOpacity(agentsDomain.at(sizeAgents)->getValOfAttribute("att2") * (255 / 10));
+
+            break;
+        case 3:
+            s->setColor(Color3B(115, 8, 214));
+            s->setOpacity(agentsDomain.at(sizeAgents)->getValOfAttribute("att3") * (255 / 10));
+            break;
+
+        default:
+            s->setColor(Color3B(128, 4, 4));
+            s->setOpacity(agentsDomain.at(sizeAgents)->getLife() * (255 / 100));
+            break;
+        }
         gameplayMap->addChild(s, 1, agentsDomain.at(sizeAgents)->getId());
         sizeAgents--;
     }
@@ -612,5 +774,6 @@ void UIGameplayMap::update(float delta)
     } else {
         cooldownPower2->setVisible(false);
     }
-    evolutionPointsLabel->setString("Evolution Points: " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
+    evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
+                                    + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
 }

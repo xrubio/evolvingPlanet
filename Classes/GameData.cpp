@@ -58,3 +58,13 @@ void GameData::setGameStarted(bool gameStrtd)
 {
     gameStarted = gameStrtd;
 }
+
+string GameData::getLanguage(void)
+{
+    return language;
+}
+
+void GameData::setLanguage(string lang)
+{
+    language = lang;
+}
