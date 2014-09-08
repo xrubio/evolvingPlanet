@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>START</key>
+	<string>Empezar</string>
+	<key>CONFIGURATION</key>
+	<string>Configuración</string>
+	<key>LANGUAGE</key>
+	<string>Idioma</string>
+	<key>CREDITS</key>
+	<string>Creditos</string>
+	<key>GOALS</key>
+	<string>Objetivos</string>
+	<key>REPRODUCTION</key>
+	<string>Reproducción</string>
+	<key>MOBILITY</key>
+	<string>Movilidad</string>
+	<key>RESISTANCE</key>
+	<string>Resistencia</string>
+	<key>EVOLUTION_POINTS</key>
+	<string>Puntos de evolución</string>
+	<key>GOAL_TEXT_LVL1_1</key>
+	<string>- Se debe llegar al punto de control 1 entre 30 y 50 pasos de tiempo</string>
+	<key>GOAL_TEXT_LVL1_2</key>
+	<string>- Se debe llegar al punto de control 2 entre 70 y 90 pasos de tiempo</string>
+	<key>GOAL_TEXT_LVL1_3</key>
+	<string>- Se debe llegar al punto de control 3 entre 90 y 110 pasos de tiempo</string>
+	<key>MUSIC</key>
+	<string>Música</string>
+	<key>SPECIAL_EFFECTS</key>
+	<string>SFX</string>
+	<key>ON</key>
+	<string>On</string>
+	<key>OFF</key>
+	<string>Off</string>
+</dict>
+</plist>
