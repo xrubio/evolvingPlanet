@@ -34,5 +34,17 @@
 	<string>On</string>
 	<key>OFF</key>
 	<string>Off</string>
+	<key>LEVEL_COMPLETED</key>
+	<string>Nivell complet</string>
+    <key>GAME_OVER</key>
+	<string>Nivell fallit</string>
+    <key>CONGRATULATIONS</key>
+	<string>Enhorabona!</string>
+    <key>GOAL_NO_COMPLETED</key>
+	<string>No has aconseguit l'objectiu</string>
+    <key>ALL_AGENTS_DIED</key>
+	<string>Han mort tots els agents</string>
+    <key>CONTINUE</key>
+	<string>Continuar</string>
 </dict>
 </plist>

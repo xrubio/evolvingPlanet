@@ -155,6 +155,11 @@ bool UIConfiguration::init()
 
 void UIConfiguration::menuBackCallback(Ref* pSender)
 {
+    UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
+    UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
+    UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
+    UserDefault::getInstance()->flush();
+
     auto scene = UIMainMenu::createScene();
     Director::getInstance()->replaceScene(scene);
 }

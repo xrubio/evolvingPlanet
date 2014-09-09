@@ -279,15 +279,15 @@ void GameLevel::initializeAttributesCost(void)
 
 void GameLevel::generateInitialAgents(void)
 {
-    int posy = 26;
+    int posy = 28;
     for (int i = 0; i < 10; i++) {
-        posy += 1;
+        posy += 2;
         int posx = 25;
         for (int j = 0; j < 10; j++) {
             auto a = new Agent(idCounter, 100, posx, posy);
             a->setAttributes(agentAttributes);
             agents.push_back(a);
-            posx += 1;
+            posx += 2;
             idCounter++;
         }
     }
@@ -418,7 +418,7 @@ void GameLevel::dieAndReproduce(void)
         }
         //si viu, reproduce
         else {
-            if (agents.size() < 3000) {
+            if (agents.size() < 1000) {
                 int probReproduction = agents.at(i)->getValOfAttribute("att1");
                 if (power1Active > 0) {
                     probReproduction += 3;
@@ -435,7 +435,6 @@ void GameLevel::dieAndReproduce(void)
                         int posx = rand() % (2 * mobility) + (agents.at(i)->getPosition()->getX() - mobility);
                         int posy = rand() % (2 * mobility) + (agents.at(i)->getPosition()->getY() - mobility);
                         if (validatePosition(posx, posy)) {
-                            cout << posx << " " << posy << endl;
                             auto ag = new Agent(idCounter, 100, posx, posy);
                             ag->setAttributes(agentAttributes);
                             //gameplayMap->addAgent(ag);
@@ -450,7 +449,7 @@ void GameLevel::dieAndReproduce(void)
         //index++;
     }
     if (agents.size() == 0) {
-        finishedGame = 3;
+        finishedGame = 1;
     }
 }
 

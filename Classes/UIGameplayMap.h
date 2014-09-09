@@ -61,11 +61,15 @@ private:
     bool movePower1 = false;
     bool movePower2 = false;
 
+    bool endGameWindowPainted = false;
+
     cocos2d::Vector<Touch*> _touches;
     cocos2d::Point firstTouchLocation;
 
     DrawPoint* agents;
     //vector<Sprite*> agentsSprite;
+
+    MenuItem* backButton;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
@@ -89,6 +93,8 @@ private:
     static void* createLevel(void* arg);
     void playLevel(void);
     void initializeAgents(void);
+
+    void createEndGameWindow(int mode);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

@@ -34,5 +34,17 @@
 	<string>On</string>
 	<key>OFF</key>
 	<string>Off</string>
+    <key>LEVEL_COMPLETED</key>
+	<string>Nivel completado</string>
+    <key>GAME_OVER</key>
+	<string>Nivel fallido</string>
+    <key>CONGRATULATIONS</key>
+	<string>¡Enhorabuena!</string>
+    <key>GOAL_NO_COMPLETED</key>
+	<string>No has cumplido con el objetivo</string>
+    <key>ALL_AGENTS_DIED</key>
+	<string>Han muerto todos los agentes</string>
+    <key>CONTINUE</key>
+	<string>Continuar</string>
 </dict>
 </plist>

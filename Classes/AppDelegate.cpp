@@ -51,13 +51,13 @@ void AppDelegate::applicationDidEnterBackground()
 {
     Director::getInstance()->stopAnimation();
 
-    UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
-    UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
-    UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
+    //UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
+    //UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
+    //UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
     UserDefault::getInstance()->flush();
 
     // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
