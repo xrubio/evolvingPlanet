@@ -11,6 +11,7 @@
 #include "UIAgents.h"
 #include "GameData.h"
 #include "LocalizedString.h"
+#include "SimpleAudioEngine.h"
 
 Scene* UIGameplayMap::createScene()
 {
@@ -567,7 +568,7 @@ void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
 int UIGameplayMap::getValueAtGameplayMapHotSpot(int posx, int posy)
 {
     Point loc(Point(posx, posy));
-    Size visibleSize = Director::getInstance()->getVisibleSize();
+    //Size visibleSize = Director::getInstance()->getVisibleSize();
     //loc.y = visibleSize.height - loc.y;
     loc.y = 200 - loc.y;
     return getValueAtGameplayMapHotSpot(loc);
@@ -678,23 +679,6 @@ void UIGameplayMap::createEndGameWindow(int mode)
     window->addChild(continueMenu);
 
     this->addChild(window, 10);
-}
-
-void UIGameplayMap::addAgent(Agent* ag)
-{
-    auto s = Sprite::create("Agent.png");
-    s->setPosition(ag->getPosition()->getX(), ag->getPosition()->getY());
-    gameplayMap->addChild(s, 1, ag->getId());
-    /*Point p(ag->getPosition()->getX(), ag->getPosition()->getY());
-    gameplayMap->convertToWorldSpace(p);
-    agents->appendPoint(p, 0, 1, 1);*/
-}
-
-void UIGameplayMap::deleteAgent(int tag, int i)
-{
-    //error al esborrar, exc_bad_acces quan es crida des del domini
-    gameplayMap->removeChildByTag(tag);
-    //agents->erasePoint(i);
 }
 
 void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)

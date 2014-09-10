@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 #include "Agent.h"
+#include "Act.h"
 
 class UIGameplayMap;
 
@@ -31,12 +32,20 @@ public:
     void setNumLevel(int lvl);
     int getAgentAttribute(string key);
     void setAgentAttribute(string key, int value);
+    map<string, int> getAgentAttributes(void);
+    void setAgentAttributes(map<string, int> atts);
     vector<Agent*> getAgents(void);
     void setAgents(vector<Agent*> ags);
+    void addAgent(Agent* ag);
+    void deleteAgent(int i);
     int getAddedAgents(void);
     void setAddedAgents(int i);
     vector<int> getDeletedAgents(void);
     void setDeletedAgents(vector<int> v);
+    void addDeletedAgent(int id);
+    void deleteDeletedAgent(int id);
+    int getIdCounter(void);
+    void setIdCounter(int count);
     int getFinishedGame(void);
     void setFinishedGame(int f);
     int getTimeSteps(void);
@@ -63,6 +72,8 @@ public:
     void playLevel(void);
     void resetLevel(void);
 
+    bool validatePosition(int posx, int posy);
+
     bool paint = false;
 
 private:
@@ -75,6 +86,8 @@ private:
     map<string, int> attributesCost;
     map<string, int> powers;
     vector<Agent*> agents;
+    vector<Act*> actions;
+
     int addedAgents = 0;
     vector<int> deletedAgents;
     int idCounter = 0;
@@ -100,10 +113,7 @@ private:
     GameLevel& operator=(GameLevel const&);
 
     void generateInitialAgents(void);
-    void reproduce(void);
-    void die(void);
-    void dieAndReproduce(void);
-    bool validatePosition(int posx, int posy);
+    void act(void);
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

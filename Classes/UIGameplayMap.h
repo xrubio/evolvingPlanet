@@ -38,8 +38,6 @@ public:
 
     int getValueAtGameplayMapHotSpot(int posx, int posy);
     bool isInBoostResistanceArea(int posx, int posy);
-    void addAgent(Agent* ag);
-    void deleteAgent(int tag, int i);
     void updateAgents(vector<Agent*> agentsDomain);
     virtual void update(float delta);
 

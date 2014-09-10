@@ -33,11 +33,6 @@ bool UIGoals::init()
     this->addChild(title, 1);
 
     Vector<cocos2d::MenuItem*> menuButtons;
-
-    //Mirar si s'ha iniciat una partida amb un boolea al domini que indiqui si hi ha una partida començada
-    //obtenir valor del domini (equivalent a gameStarted, esborrar de la vista) (false el primer cop), aleshores,
-    //desde la pantalla d'agents (primer cop), modificar el valor a cert, per indicar que s'ha començat
-
     MenuItem* nextButton;
     if (GameData::getInstance()->getGameStarted()) {
         nextButton = MenuItemImage::create(
@@ -82,7 +77,6 @@ void UIGoals::setLevelGoals(void)
     goalMap->setPosition(Vec2(origin.x + visibleSize.width / 4, origin.y + visibleSize.height / 2));
     this->addChild(goalMap, 1);
 
-    //LocalizedString::create("GOAL_TEXT_LVL1")->getCString()
     auto goal1 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_1")->getCString(),
                                                         Size(visibleSize.width / 3, visibleSize.height / 4),
                                                         TextHAlignment::CENTER, "Arial", 40);
