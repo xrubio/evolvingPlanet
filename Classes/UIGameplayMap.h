@@ -13,6 +13,7 @@
 #include "UIProgressMap.h"
 #include "DrawPoint.h"
 #include "GameLevel.h"
+#include "UIPower.h"
 
 class UIGameplayMap : public Layer {
 public:
@@ -40,6 +41,7 @@ public:
     bool isInBoostResistanceArea(int posx, int posy);
     void updateAgents(vector<Agent*> agentsDomain);
     virtual void update(float delta);
+    bool selectSpriteForTouch(Sprite* sprite, Point p);
 
     CREATE_FUNC(UIGameplayMap);
 
@@ -56,8 +58,6 @@ private:
     bool moveBackgroundUp = false;
     bool moveBackgroundDown = false;
     float zoomScale = 1;
-    bool movePower1 = false;
-    bool movePower2 = false;
 
     bool endGameWindowPainted = false;
 
@@ -72,17 +72,13 @@ private:
     Label* timeSteps;
     Label* evolutionPointsLabel;
 
-    Sprite* power1Button; //boost reproduction
-    Sprite* power2Button; //boost resistance
-    Sprite* areaPower2;
-    Label* cooldownPower1;
-    Label* cooldownPower2;
+    UIPower* power1Button; //boost reproduction
+    UIPower* power2Button; //boost resistance
 
     //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
     int agentColor = 0;
 
     void pinchZoomWithMovedTouch(Touch* movedTouch);
-    bool selectSpriteForTouch(Sprite* sprite, Point p);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
     int getValueAtGameplayMapHotSpot(Point pt);

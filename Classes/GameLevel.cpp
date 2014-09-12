@@ -346,12 +346,15 @@ void GameLevel::act(void)
     for (int i = dieAgentsSize - 1; i >= 0; i--) {
         //Die
         //Si ha fet modificacions retorna true (en aquest cas, esborrar un agent, per tant no s'ha de reproduir)
-        if (actions.at(0)->execute(i) == false) {
+        /*if (actions.at(0)->execute(i) == false) {
             //Reproduce
             //Retorna true si s'ha reproduit
             actions.at(1)->execute(i);
-        }
+        }*/
         //index++;
+
+        actions.at(1)->execute(i);
+        actions.at(0)->execute(i);
     }
     if (agents.size() == 0) {
         finishedGame = 1;

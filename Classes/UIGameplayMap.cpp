@@ -12,6 +12,8 @@
 #include "GameData.h"
 #include "LocalizedString.h"
 #include "SimpleAudioEngine.h"
+#include "UIMultiplierPower.h"
+#include "UIAreaPower.h"
 
 Scene* UIGameplayMap::createScene()
 {
@@ -141,39 +143,49 @@ bool UIGameplayMap::init()
     this->addChild(attributesMenu, 2);
 
     //Powers
-    power1Button = Sprite::create("BoostReproductionButton.png");
+    /*power1Button = Sprite::create("BoostReproductionButton.png");
     power1Button->setPosition(Vec2(goalsButton->getPosition().x + (3 * goalsButton->getContentSize().width / 2),
                                    goalsButton->getPosition().y));
-    this->addChild(power1Button, 3);
+    this->addChild(power1Button, 3);*/
+    power1Button = new UIMultiplierPower("BoostReproductionButton.png");
+    power1Button->setPosition(goalsButton->getPosition().x + (3 * goalsButton->getContentSize().width / 2),
+                              goalsButton->getPosition().y);
+    this->addChild(power1Button->getIcon(), 3);
 
-    power2Button = Sprite::create("BoostResistanceButton.png");
-    power2Button->setPosition(Vec2(power1Button->getPosition().x + power1Button->getContentSize().width,
-                                   power1Button->getPosition().y));
+    power2Button = new UIAreaPower("BoostResistanceButton.png");
+    power2Button->setPosition(power1Button->getIcon()->getPosition().x + power1Button->getIcon()->getContentSize().width,
+                              power1Button->getIcon()->getPosition().y);
+    this->addChild(power2Button->getIcon(), 3);
+    gameplayMap->addChild(((UIAreaPower*)power2Button)->getArea(), 3);
+
+    /*power2Button = Sprite::create("BoostResistanceButton.png");
+    power2Button->setPosition(Vec2(power1Button->getIcon()->getPosition().x + power1Button->getIcon()->getContentSize().width,
+                                   power1Button->getIcon()->getPosition().y));*/
 
     /*DrawPoint* area = DrawPoint::create();
     area->appendPoint(power2Button->getPosition(), 0, 0, 1);
     power2Button->addChild(area);*/
-    this->addChild(power2Button, 3);
+    //this->addChild(power2Button, 3);
 
-    cooldownPower1 = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getCooldownPower1()),
+    /*cooldownPower1 = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getCooldownPower1()),
                                                  "Arial Rounded MT Bold", 60);
     cooldownPower1->setColor(Color3B::MAGENTA);
     cooldownPower1->setPosition(Vec2(goalsButton->getPosition().x + (3 * goalsButton->getContentSize().width / 2),
                                      goalsButton->getPosition().y));
-    cooldownPower1->setVisible(false);
-    cooldownPower2 = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getCooldownPower2()),
+    cooldownPower1->setVisible(false);*/
+    /*cooldownPower2 = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getCooldownPower2()),
                                                  "Arial Rounded MT Bold", 60);
     cooldownPower2->setColor(Color3B::BLUE);
-    cooldownPower2->setPosition(Vec2(power1Button->getPosition().x + power1Button->getContentSize().width,
-                                     power1Button->getPosition().y));
-    cooldownPower2->setVisible(false);
-    areaPower2 = Sprite::create("BoostResistanceArea.png");
+    cooldownPower2->setPosition(Vec2(power1Button->getIcon()->getPosition().x + power1Button->getIcon()->getContentSize().width,
+                                     power1Button->getIcon()->getPosition().y));
+    cooldownPower2->setVisible(false);*/
+    /*areaPower2 = Sprite::create("BoostResistanceArea.png");
     areaPower2->setOpacity(100);
-    areaPower2->setVisible(false);
-    this->addChild(cooldownPower1, 4);
-    this->addChild(cooldownPower2, 4);
+    areaPower2->setVisible(false);*/
+    //this->addChild(cooldownPower1, 4);
+    //this->addChild(cooldownPower2, 4);
     //this->addChild(areaPower2, 4);
-    gameplayMap->addChild(areaPower2);
+    //gameplayMap->addChild(areaPower2);
 
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
@@ -201,7 +213,7 @@ bool UIGameplayMap::init()
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
     if (endGameWindowPainted == false) {
-        if (movePower2 == false) {
+        if (power2Button->getClicked() == false) {
             for (auto touch : touches) {
                 _touches.pushBack(touch);
             }
@@ -211,20 +223,25 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 
             for (auto touch : touches) {
                 Point touchLocation = this->convertTouchToNodeSpace(touch);
-                movePower1 = false;
+                //movePower1 = false;
+                power1Button->setClicked(false);
                 moveBackground = false;
-                if (GameLevel::getInstance()->getCooldownPower1() == 0 and selectSpriteForTouch(power1Button, touchLocation)) {
+                power1Button->onTouchesBegan(touchLocation);
+                power2Button->onTouchesBegan(touchLocation);
+                /*if (GameLevel::getInstance()->getCooldownPower1() == 0 and selectSpriteForTouch(power1Button, touchLocation)) {
                     movePower1 = true;
                     power1Button->setScale(1.25);
-                } else if (GameLevel::getInstance()->getCooldownPower2() == 0 and selectSpriteForTouch(power2Button, touchLocation)) {
+                } else */
+                /*if (GameLevel::getInstance()->getCooldownPower2() == 0 and selectSpriteForTouch(power2Button, touchLocation)) {
                     movePower2 = true;
                     areaPower2->setPosition(gameplayMap->convertToNodeSpace(power2Button->getPosition()));
-                    areaPower2->setVisible(true);
-                    /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
+                    areaPower2->setVisible(true);*/
+                /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
             area->erasePoint(0);
             area->appendPoint(touchLocation, 1, 0, 0);
             area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);*/
-                } else if (selectSpriteForTouch(gameplayMap, touchLocation)) {
+                //} else
+                if (power1Button->getClicked() == false and power2Button->getClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation)) {
                     moveBackground = true;
                 }
             }
@@ -237,7 +254,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
     if (endGameWindowPainted == false) {
         // ZOOM
         if (touches.size() == 2) {
-            if (movePower2 == false) {
+            if (power2Button->getClicked() == false) {
                 for (auto touch : touches) {
                     pinchZoomWithMovedTouch(touch);
                 }
@@ -266,6 +283,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
         }
         // PAN
         else if (touches.size() == 1) {
+            power2Button->onTouchesMoved(touches.at(0));
             if (moveBackground) {
                 Point touchLocation = this->convertTouchToNodeSpace(touches.at(0));
 
@@ -292,19 +310,20 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
                     destPos.y = newPos.y;
                 }
                 gameplayMap->Node::setPosition(destPos);
-            } else if (movePower2) {
+            }
+            /*else if (movePower2) {
                 Point touchArea = gameplayMap->convertToNodeSpace(Director::getInstance()->convertToGL(touches.at(0)->getLocationInView()));
                 Point touch = Director::getInstance()->convertToGL(touches.at(0)->getLocationInView());
                 if (touches.at(0)) {
                     //power2Button->setPosition(touch);
                     power2Button->setColor(Color3B::GRAY);
-                    areaPower2->setPosition(touchArea);
-                    /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
+                    areaPower2->setPosition(touchArea);*/
+            /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
                 area->erasePoint(0);
                 area->appendPoint(touchArea, 1, 0, 0);
                 area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);*/
-                }
-            }
+            /* }
+            }*/
         }
     }
 }
@@ -313,30 +332,34 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
 {
     if (endGameWindowPainted == false) {
         Point touchLocation = this->convertTouchToNodeSpace(touches.at(0));
-        power1Button->setScale(1);
-        if (selectSpriteForTouch(power1Button, touchLocation) and movePower1) {
+        //power1Button->setScale(1);
+        /*if (selectSpriteForTouch(power1Button, touchLocation) and movePower1) {
             //Activar boost reproduction un cop s'ha tocat i soltat a sobre la imatge que toca
-            power1Button->setColor(Color3B::GREEN);
+            power1Button->setColor(Color3B::GRAY);
             GameLevel::getInstance()->setPower1Active(5);
             cooldownPower1->setVisible(true);
-        } else if (movePower2) {
-            Point touchArea = gameplayMap->convertToNodeSpace(power2Button->getPosition());
-            /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
+        } else */
+        power1Button->onTouchesEnded(touchLocation);
+        power2Button->onTouchesEnded(touchLocation);
+
+        /* if (movePower2) {
+            Point touchArea = gameplayMap->convertToNodeSpace(power2Button->getPosition());*/
+        /*DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
         area->erasePoint(0);
         area->appendPoint(touchArea, 1, 0, 0);
         area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);*/
-            //areaPower2->setPosition(touchArea);
-            power2Button->setColor(Color3B::WHITE);
+        //areaPower2->setPosition(touchArea);
+        /* power2Button->setColor(Color3B::WHITE);
             if (selectSpriteForTouch(power2Button, touchLocation) == false) {
                 GameLevel::getInstance()->setPower2Active(10);
                 cooldownPower2->setVisible(true);
-            }
-            movePower2 = false;
+            }*/
+        //movePower2 = false;
 
-            /*auto action = MoveTo::create(0.5, Vec2(power1Button->getPosition().x + power1Button->getContentSize().width,
+        /*auto action = MoveTo::create(0.5, Vec2(power1Button->getPosition().x + power1Button->getContentSize().width,
                                                power1Button->getPosition().y));
         power2Button->runAction(action);*/
-        }
+        //}
         moveBackground = false;
         _touches.clear();
     }
@@ -576,7 +599,8 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int posx, int posy)
 
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
 {
-    return selectSpriteForTouch(areaPower2, Point(posx, posy));
+    //return selectSpriteForTouch(areaPower2, Point(posx, posy));
+    return selectSpriteForTouch(((UIAreaPower*)power2Button)->getArea(), Point(posx, posy));
 }
 
 int UIGameplayMap::getValueAtGameplayMapHotSpot(Point pt)
@@ -817,7 +841,7 @@ void UIGameplayMap::update(float delta)
         agentsSprite.push_back(s);
     }
     */
-    if (GameLevel::getInstance()->getPower1Active() == 0) {
+    /*if (GameLevel::getInstance()->getPower1Active() == 0) {
         power1Button->setColor(Color3B::WHITE);
     }
     if (GameLevel::getInstance()->getCooldownPower1() > 0) {
@@ -825,20 +849,22 @@ void UIGameplayMap::update(float delta)
         cooldownPower1->setString(to_string(GameLevel::getInstance()->getCooldownPower1()));
     } else {
         cooldownPower1->setVisible(false);
-    }
-    if (movePower2 == false and GameLevel::getInstance()->getPower2Active() == 0) {
+    }*/
+    power1Button->update();
+    power2Button->update();
+    /* if (movePower2 == false and GameLevel::getInstance()->getPower2Active() == 0) {
         areaPower2->setVisible(false);
-    }
+    }*/
     /*if (GameLevel::getInstance()->getPower2Active() > 0) {
         DrawPoint* area = (DrawPoint*)power2Button->getChildren().at(0);
         area->draw(Director::getInstance()->getRenderer(), gameplayMap->getNodeToWorldTransform(), false);
     }*/
-    if (GameLevel::getInstance()->getCooldownPower2() > 0) {
+    /*if (GameLevel::getInstance()->getCooldownPower2() > 0) {
         cooldownPower2->setVisible(true);
         cooldownPower2->setString(to_string(GameLevel::getInstance()->getCooldownPower2()));
     } else {
         cooldownPower2->setVisible(false);
-    }
+    }*/
     evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
                                     + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
 
