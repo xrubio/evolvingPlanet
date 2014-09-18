@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NUM_LEVEL>0</NUM_LEVEL>
+<NAME_LEVEL>Tutorial</NAME_LEVEL>
+<FILE_MAP>GameLevelMap</FILE_MAP>
+<INITIAL_ZONE>
+    <BOTTOM_LEFT>
+        <X>20</X>
+        <Y>20</Y>
+    </BOTTOM_LEFT>
+    <BOTTOM_RIGHT>
+        <X>40</X>
+        <Y>20</Y>
+    </BOTTOM_RIGHT>
+    <TOP_RIGHT>
+        <X>40</X>
+        <Y>40</Y>
+    </TOP_RIGHT>
+    <TOP_LEFT>
+        <X>20</X>
+        <Y>40</Y>
+    </TOP_LEFT>
+</INITIAL_ZONE>
+<AGENTS>
+    <MAX_AGENTS>1000</MAX_AGENTS>
+    <LIFE>100</LIFE>
+</AGENTS>
+<ATTRIBUTES>
+    <ATTRIBUTE NAME="REPRODUCTION">
+        <COST>Exponential</COST>
+    </ATTRIBUTE>
+    <ATTRIBUTE NAME="MOBILITY">
+        <COST>Lineal</COST>
+    </ATTRIBUTE>
+    <ATTRIBUTE NAME="RESISTANCE">
+        <COST>Lineal</COST>
+    </ATTRIBUTE>
+</ATTRIBUTES>
+<POWERS>
+    <POWER NAME="ReproductionBoost">
+        <COST>0</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>5</DURATION>
+        <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
+        <TYPE TYPE_NAME="Multiplier">
+            <MULTIPLIER>3</MULTIPLIER>
+        </TYPE>
+    </POWER>
+    <POWER NAME="ResistanceBoost">
+        <COST>0</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>10</DURATION>
+        <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
+        <TYPE TYPE_NAME="Area">
+            <RADIUS>20</RADIUS>
+        </TYPE>
+    </POWER>
+</POWERS>
+<ACTIONS>
+    <ACTION>Reproduce</ACTION>
+    <ACTION>Die</ACTION>
+</ACTIONS>
+<GOALS>
+    <CHECKPOINT_TIMES>
+        <CHECKPOINT_1>
+            <MIN>30</MIN>
+            <MAX>50</MAX>
+            <AVERAGE>40</AVERAGE>
+        </CHECKPOINT_1>
+        <CHECKPOINT_2>
+            <MIN>70</MIN>
+            <MAX>90</MAX>
+            <AVERAGE>80</AVERAGE>
+        </CHECKPOINT_2>
+        <CHECKPOINT_3>
+            <MIN>90</MIN>
+            <MAX>110</MAX>
+            <AVERAGE>100</AVERAGE>
+        </CHECKPOINT_3>
+    </CHECKPOINT_TIMES>
+</GOALS>

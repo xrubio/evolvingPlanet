@@ -12,12 +12,19 @@
 bool Reproduce::execute(int indexAgent)
 {
     Agent* agent = GameLevel::getInstance()->getAgents().at(indexAgent);
-    if (GameLevel::getInstance()->getAgents().size() < 1000) {
-        int probReproduction = agent->getValOfAttribute("att1");
-        if (GameLevel::getInstance()->getPower1Active() > 0) {
+    if (GameLevel::getInstance()->getAgents().size() < GameLevel::getInstance()->getMaxAgents()) {
+        int probReproduction = agent->getValOfAttribute("REPRODUCTION");
+        //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
+        Power* p = nullptr;
+        for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
+            if (GameLevel::getInstance()->getPowers().at(i)->getName() == "ReproductionBoost") {
+                p = GameLevel::getInstance()->getPowers().at(i);
+            }
+        }
+        if (p != nullptr and p->getDurationLeft() > 0) {
             probReproduction += 3;
         }
-        int mobility = agent->getValOfAttribute("att2");
+        int mobility = agent->getValOfAttribute("MOBILITY");
         if (probReproduction > 0) {
             int reproduce;
             if (probReproduction >= 10) {

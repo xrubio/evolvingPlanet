@@ -49,20 +49,27 @@ bool UIAgents::init()
                            origin.y + (nextButton->getContentSize().height / 2)));
     this->addChild(menu, 1);
 
-    Label* att1Label = Label::createWithSystemFont(string(LocalizedString::create("REPRODUCTION")->getCString())
-                                                   + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att1")) + ")",
+    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
+    int i = 0;
+    for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+        keys.push_back(it->first);
+        i++;
+    }
+
+    Label* att1Label = Label::createWithSystemFont(string(LocalizedString::create(keys.at(0).c_str())->getCString())
+                                                   + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(0))) + ")",
                                                    "Arial", 80);
     att1Label->setPosition(origin.x + visibleSize.width / 6, origin.y + 3 * (visibleSize.height / 4));
     this->addChild(att1Label, 1, 100);
 
-    Label* att2Label = Label::createWithSystemFont(string(LocalizedString::create("MOBILITY")->getCString())
-                                                   + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att2")) + ")",
+    Label* att2Label = Label::createWithSystemFont(string(LocalizedString::create(keys.at(1).c_str())->getCString())
+                                                   + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(1))) + ")",
                                                    "Arial", 80);
     att2Label->setPosition(origin.x + visibleSize.width / 6, origin.y + 2 * (visibleSize.height / 4));
     this->addChild(att2Label, 1, 200);
 
-    Label* att3Label = Label::createWithSystemFont(string(LocalizedString::create("RESISTANCE")->getCString())
-                                                   + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att3")) + ")",
+    Label* att3Label = Label::createWithSystemFont(string(LocalizedString::create(keys.at(2).c_str())->getCString())
+                                                   + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(2))) + ")",
                                                    "Arial", 80);
     att3Label->setPosition(origin.x + visibleSize.width / 6, origin.y + visibleSize.height / 4);
     this->addChild(att3Label, 1, 300);
@@ -106,9 +113,9 @@ bool UIAgents::init()
     //si no es el primer cop consultar a domini, si ho es, tot blanc
     if (GameData::getInstance()->getGameStarted()) {
         int tag = 0;
-        att1 = GameLevel::getInstance()->getAgentAttribute("att1");
-        att2 = GameLevel::getInstance()->getAgentAttribute("att2");
-        att3 = GameLevel::getInstance()->getAgentAttribute("att3");
+        att1 = GameLevel::getInstance()->getAgentAttribute(keys.at(0));
+        att2 = GameLevel::getInstance()->getAgentAttribute(keys.at(1));
+        att3 = GameLevel::getInstance()->getAgentAttribute(keys.at(2));
 
         for (int j = 3; j > 0; j--) {
             float posX = minusAtt1Button->getPosition().x + (minusAtt1Button->getContentSize().width / 2);
@@ -187,11 +194,11 @@ void UIAgents::minusAtt1Callback(Ref* pSender)
 {
     if (att1 > 0) {
         att1--;
-        GameLevel::getInstance()->setAgentAttribute("att1", att1);
-        GameLevel::getInstance()->setAttributeCost("att1", GameLevel::getInstance()->getAttributeCost("att1") + 1);
+        GameLevel::getInstance()->setAgentAttribute(keys.at(0), att1);
+        GameLevel::getInstance()->setAttributeCost(keys.at(0), GameLevel::getInstance()->getAttributeCost(keys.at(0)) + 1);
         Label* l = (Label*)this->getChildByTag(100);
-        l->setString(string(LocalizedString::create("REPRODUCTION")->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att1")) + ")");
+        l->setString(string(LocalizedString::create(keys.at(0).c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(0))) + ")");
 
         auto filledAttribute = this->getChildByTag(att1);
         auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
@@ -205,11 +212,11 @@ void UIAgents::plusAtt1Callback(Ref* pSender)
 {
     if (att1 < 10) {
         att1++;
-        GameLevel::getInstance()->setAgentAttribute("att1", att1);
-        GameLevel::getInstance()->setAttributeCost("att1", GameLevel::getInstance()->getAttributeCost("att1") + 1);
+        GameLevel::getInstance()->setAgentAttribute(keys.at(0), att1);
+        GameLevel::getInstance()->setAttributeCost(keys.at(0), GameLevel::getInstance()->getAttributeCost(keys.at(0)) + 1);
         Label* l = (Label*)this->getChildByTag(100);
-        l->setString(string(LocalizedString::create("REPRODUCTION")->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att1")) + ")");
+        l->setString(string(LocalizedString::create(keys.at(0).c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(0))) + ")");
 
         auto blankAttribute = this->getChildByTag(att1 - 1);
         auto filledAttribute = Sprite::create("FilledAttributePointButton.png");
@@ -223,11 +230,11 @@ void UIAgents::minusAtt2Callback(Ref* pSender)
 {
     if (att2 > 0) {
         att2--;
-        GameLevel::getInstance()->setAgentAttribute("att2", att2);
-        GameLevel::getInstance()->setAttributeCost("att2", GameLevel::getInstance()->getAttributeCost("att2") + 1);
+        GameLevel::getInstance()->setAgentAttribute(keys.at(1), att2);
+        GameLevel::getInstance()->setAttributeCost(keys.at(1), GameLevel::getInstance()->getAttributeCost(keys.at(1)) + 1);
         Label* l = (Label*)this->getChildByTag(200);
-        l->setString(string(LocalizedString::create("MOBILITY")->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att2")) + ")");
+        l->setString(string(LocalizedString::create(keys.at(1).c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(1))) + ")");
 
         auto filledAttribute = this->getChildByTag(att2 + 10);
         auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
@@ -241,11 +248,11 @@ void UIAgents::plusAtt2Callback(Ref* pSender)
 {
     if (att2 < 10) {
         att2++;
-        GameLevel::getInstance()->setAgentAttribute("att2", att2);
-        GameLevel::getInstance()->setAttributeCost("att2", GameLevel::getInstance()->getAttributeCost("att2") + 1);
+        GameLevel::getInstance()->setAgentAttribute(keys.at(1), att2);
+        GameLevel::getInstance()->setAttributeCost(keys.at(1), GameLevel::getInstance()->getAttributeCost(keys.at(1)) + 1);
         Label* l = (Label*)this->getChildByTag(200);
-        l->setString(string(LocalizedString::create("MOBILITY")->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att2")) + ")");
+        l->setString(string(LocalizedString::create(keys.at(1).c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(1))) + ")");
 
         auto blankAttribute = this->getChildByTag(att2 + 10 - 1);
         auto filledAttribute = Sprite::create("FilledAttributePointButton.png");
@@ -259,11 +266,11 @@ void UIAgents::minusAtt3Callback(Ref* pSender)
 {
     if (att3 > 0) {
         att3--;
-        GameLevel::getInstance()->setAgentAttribute("att3", att3);
-        GameLevel::getInstance()->setAttributeCost("att3", GameLevel::getInstance()->getAttributeCost("att3") + 1);
+        GameLevel::getInstance()->setAgentAttribute(keys.at(2), att3);
+        GameLevel::getInstance()->setAttributeCost(keys.at(2), GameLevel::getInstance()->getAttributeCost(keys.at(2)) + 1);
         Label* l = (Label*)this->getChildByTag(300);
-        l->setString(string(LocalizedString::create("RESISTANCE")->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att3")) + ")");
+        l->setString(string(LocalizedString::create(keys.at(2).c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(2))) + ")");
 
         auto filledAttribute = this->getChildByTag(att3 + 20);
         auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
@@ -277,11 +284,11 @@ void UIAgents::plusAtt3Callback(Ref* pSender)
 {
     if (att3 < 10) {
         att3++;
-        GameLevel::getInstance()->setAgentAttribute("att3", att3);
-        GameLevel::getInstance()->setAttributeCost("att3", GameLevel::getInstance()->getAttributeCost("att3") + 1);
+        GameLevel::getInstance()->setAgentAttribute(keys.at(2), att3);
+        GameLevel::getInstance()->setAttributeCost(keys.at(2), GameLevel::getInstance()->getAttributeCost(keys.at(2)) + 1);
         Label* l = (Label*)this->getChildByTag(300);
-        l->setString(string(LocalizedString::create("RESISTANCE")->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost("att3")) + ")");
+        l->setString(string(LocalizedString::create(keys.at(2).c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(keys.at(2))) + ")");
 
         auto blankAttribute = this->getChildByTag(att3 + 20 - 1);
         auto filledAttribute = Sprite::create("FilledAttributePointButton.png");

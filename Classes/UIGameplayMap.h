@@ -64,16 +64,12 @@ private:
     cocos2d::Vector<Touch*> _touches;
     cocos2d::Point firstTouchLocation;
 
-    DrawPoint* agents;
-    //vector<Sprite*> agentsSprite;
-
     MenuItem* backButton;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
 
-    UIPower* power1Button; //boost reproduction
-    UIPower* power2Button; //boost resistance
+    vector<UIPower*> powerButtons;
 
     //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
     int agentColor = 0;
@@ -89,6 +85,7 @@ private:
     void initializeAgents(void);
 
     void createEndGameWindow(int mode);
+    bool checkPowersClicked(void);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

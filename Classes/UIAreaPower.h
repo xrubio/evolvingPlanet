@@ -14,7 +14,7 @@
 class UIAreaPower : public UIPower {
 public:
     UIAreaPower() {};
-    UIAreaPower(string file);
+    UIAreaPower(Power* p);
     UIAreaPower(UIAreaPower const&) {};
     UIAreaPower& operator=(UIAreaPower const&);
 

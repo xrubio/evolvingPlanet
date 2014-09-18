@@ -14,7 +14,7 @@
 class UIMultiplierPower : public UIPower {
 public:
     UIMultiplierPower() {};
-    UIMultiplierPower(string file);
+    UIMultiplierPower(Power* p);
     UIMultiplierPower(UIMultiplierPower const&) {};
     UIMultiplierPower& operator=(UIMultiplierPower const&);
 

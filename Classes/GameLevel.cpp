@@ -10,6 +10,8 @@
 #include "UIGameplayMap.h"
 #include "Die.h"
 #include "Reproduce.h"
+#include "MultiplierPower.h"
+#include "AreaPower.h"
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
@@ -30,6 +32,26 @@ UIGameplayMap* GameLevel::getUIGameplayMap(void)
 void GameLevel::setUIGameplayMap(UIGameplayMap* gmplmap)
 {
     gameplayMap = gmplmap;
+}
+
+string GameLevel::getMapFilename(void)
+{
+    return mapFilename;
+}
+
+void GameLevel::setMapFilename(string filename)
+{
+    mapFilename = filename;
+}
+
+int GameLevel::getMaxAgents(void)
+{
+    return maxAgents;
+}
+
+void GameLevel::setMaxAgents(int max)
+{
+    maxAgents = max;
 }
 
 double GameLevel::getCurrentTime(void)
@@ -72,6 +94,26 @@ void GameLevel::setAgentAttributes(map<string, int> atts)
     agentAttributes.swap(atts);
 }
 
+vector<Power*> GameLevel::getPowers(void)
+{
+    return powers;
+}
+
+void GameLevel::setPowers(vector<Power*> p)
+{
+    powers.swap(p);
+}
+
+void GameLevel::addPower(Power* p)
+{
+    powers.push_back(p);
+}
+
+void GameLevel::deletePower(int i)
+{
+    powers.erase(powers.begin() + i);
+}
+
 vector<Agent*> GameLevel::getAgents(void)
 {
     return agents;
@@ -90,6 +132,26 @@ void GameLevel::addAgent(Agent* ag)
 void GameLevel::deleteAgent(int i)
 {
     agents.erase(agents.begin() + i);
+}
+
+vector<Act*> GameLevel::getActions(void)
+{
+    return actions;
+}
+
+void GameLevel::setActions(vector<Act*> a)
+{
+    actions.swap(a);
+}
+
+void GameLevel::addAction(Act* act)
+{
+    actions.push_back(act);
+}
+
+void GameLevel::deleteAction(int i)
+{
+    actions.erase(actions.begin() + i);
 }
 
 int GameLevel::getAddedAgents(void)
@@ -167,46 +229,6 @@ void GameLevel::setTimeSpeedBeforePause(float speed)
     timeSpeedBeforePause = speed;
 }
 
-int GameLevel::getCooldownPower1(void)
-{
-    return cooldownPower1;
-}
-
-void GameLevel::setCooldownPower1(int cd)
-{
-    cooldownPower1 = cd;
-}
-
-int GameLevel::getCooldownPower2(void)
-{
-    return cooldownPower2;
-}
-
-void GameLevel::setCooldownPower2(int cd)
-{
-    cooldownPower2 = cd;
-}
-
-int GameLevel::getPower1Active(void)
-{
-    return power1Active;
-}
-
-void GameLevel::setPower1Active(int cd)
-{
-    power1Active = cd;
-}
-
-int GameLevel::getPower2Active(void)
-{
-    return power2Active;
-}
-
-void GameLevel::setPower2Active(int cd)
-{
-    power2Active = cd;
-}
-
 int GameLevel::getEvolutionPoints(void)
 {
     return evolutionPoints;
@@ -241,23 +263,17 @@ void GameLevel::playLevel(void)
                     ;
                 paint = false;
                 act();
-                if (power1Active == 5) {
-                    cooldownPower1 = 20;
-                }
-                if (power2Active == 10) {
-                    cooldownPower2 = 20;
-                }
-                if (power1Active > 0) {
-                    power1Active--;
-                }
-                if (power2Active > 0) {
-                    power2Active--;
-                }
-                if (cooldownPower1 > 0) {
-                    cooldownPower1--;
-                }
-                if (cooldownPower2 > 0) {
-                    cooldownPower2--;
+                for (int i = 0; i < powers.size(); i++) {
+                    Power* p = powers.at(i);
+                    if (p->getDurationLeft() == p->getDuration()) {
+                        p->setCooldownLeft(p->getCooldown());
+                    }
+                    if (p->getDurationLeft() > 0) {
+                        p->setDurationLeft(p->getDurationLeft() - 1);
+                    }
+                    if (p->getCooldownLeft() > 0) {
+                        p->setCooldownLeft(p->getCooldownLeft() - 1);
+                    }
                 }
                 timeSteps++;
                 if (timeSteps % 4 == 0) {
@@ -289,12 +305,6 @@ void GameLevel::resetLevel(void)
     timeSteps = 0;
     timeSpeed = 2.5;
 
-    power1Active = 0;
-    power2Active = 0;
-
-    cooldownPower1 = 0;
-    cooldownPower2 = 0;
-
     evolutionPoints = 0;
 
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
@@ -306,18 +316,15 @@ void GameLevel::createLevel(int lvl)
 {
     numLevel = lvl;
 
-    actions.push_back(new Die());
-    actions.push_back(new Reproduce());
-
     generateInitialAgents();
     paint = true;
 }
 
 void GameLevel::initializeAttributesCost(void)
 {
-    attributesCost["att1"] = 1;
-    attributesCost["att2"] = 1;
-    attributesCost["att3"] = 1;
+    for (map<string, int>::const_iterator it = agentAttributes.begin(); it != agentAttributes.end(); it++) {
+        attributesCost[it->first] = 1;
+    }
 }
 
 void GameLevel::generateInitialAgents(void)
@@ -353,8 +360,8 @@ void GameLevel::act(void)
         }*/
         //index++;
 
-        actions.at(1)->execute(i);
         actions.at(0)->execute(i);
+        actions.at(1)->execute(i);
     }
     if (agents.size() == 0) {
         finishedGame = 1;

@@ -23,6 +23,7 @@ public:
     UIPower& operator=(UIPower const&);
 
     void setPosition(float x, float y);
+    Power* getPower(void);
     bool getClicked(void);
     void setClicked(bool b);
     Sprite* getIcon(void);
@@ -33,6 +34,8 @@ public:
     virtual void update() = 0;
 
 protected:
+    Power* power;
+
     Sprite* icon;
     Label* cooldown;
 

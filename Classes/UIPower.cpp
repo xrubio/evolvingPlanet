@@ -14,6 +14,11 @@ void UIPower::setPosition(float x, float y)
     cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
 }
 
+Power* UIPower::getPower(void)
+{
+    return power;
+}
+
 bool UIPower::getClicked(void)
 {
     return clicked;

@@ -13,7 +13,6 @@ bool Die::execute(int indexAgent)
 {
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     Agent* agent = GameLevel::getInstance()->getAgents().at(indexAgent);
-    int power2Active = GameLevel::getInstance()->getPower2Active();
 
     int zone = gameplayMap->getValueAtGameplayMapHotSpot(agent->getPosition()->getX(),
                                                          agent->getPosition()->getY());
@@ -35,8 +34,15 @@ bool Die::execute(int indexAgent)
         harm = 20;
         break;
     }
-    int resistance = agent->getValOfAttribute("att3");
-    if (power2Active > 0) {
+    int resistance = agent->getValOfAttribute("RESISTANCE");
+    //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
+    Power* p = nullptr;
+    for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
+        if (GameLevel::getInstance()->getPowers().at(i)->getName() == "ResistanceBoost") {
+            p = GameLevel::getInstance()->getPowers().at(i);
+        }
+    }
+    if (p != nullptr and p->getDurationLeft() > 0) {
         if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048 / 200),
                                                  agent->getPosition()->getY() * float(1536 / 200))) {
             harm /= 2;

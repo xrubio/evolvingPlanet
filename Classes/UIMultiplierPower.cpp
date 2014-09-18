@@ -9,11 +9,12 @@
 #include "UIMultiplierPower.h"
 #include "UIGameplayMap.h"
 
-UIMultiplierPower::UIMultiplierPower(string file)
+UIMultiplierPower::UIMultiplierPower(Power* p)
 {
-    icon = Sprite::create(file);
-    cooldown = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getCooldownPower1()),
-                                           "Arial Rounded MT Bold", 60);
+    power = p;
+    string filename = p->getName() + "Button" + ".png";
+    icon = Sprite::create(filename);
+    cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
     cooldown->setColor(Color3B::MAGENTA);
     cooldown->setVisible(false);
     cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
@@ -22,7 +23,8 @@ UIMultiplierPower::UIMultiplierPower(string file)
 
 void UIMultiplierPower::onTouchesBegan(Point touchLocation)
 {
-    if (GameLevel::getInstance()->getCooldownPower1() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+    //FER SERVIR punter a POWER
+    if (power->getCooldownLeft() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
         icon->setScale(1.25);
     }
@@ -38,19 +40,20 @@ void UIMultiplierPower::onTouchesEnded(Point touchLocation)
     if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked) {
         //Activar boost reproduction un cop s'ha tocat i soltat a sobre la imatge que toca
         icon->setColor(Color3B::GRAY);
-        GameLevel::getInstance()->setPower1Active(5);
+        power->setDurationLeft(power->getDuration());
         cooldown->setVisible(true);
     }
+    clicked = false;
 }
 
 void UIMultiplierPower::update()
 {
-    if (GameLevel::getInstance()->getPower1Active() == 0) {
+    if (power->getDurationLeft() == 0) {
         icon->setColor(Color3B::WHITE);
     }
-    if (GameLevel::getInstance()->getCooldownPower1() > 0) {
+    if (power->getCooldownLeft() > 0) {
         cooldown->setVisible(true);
-        cooldown->setString(to_string(GameLevel::getInstance()->getCooldownPower1()));
+        cooldown->setString(to_string(power->getCooldownLeft()));
     } else {
         cooldown->setVisible(false);
     }

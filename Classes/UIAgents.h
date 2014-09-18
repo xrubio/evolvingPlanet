@@ -33,6 +33,8 @@ public:
 private:
     bool gameStarted = true;
 
+    vector<string> keys;
+
     int att1 = 0;
     int att2 = 0;
     int att3 = 0;

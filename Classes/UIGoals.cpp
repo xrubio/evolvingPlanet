@@ -72,7 +72,7 @@ void UIGoals::setLevelGoals(void)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Sprite* goalMap = Sprite::create("GameLevelMapBackground.png");
+    Sprite* goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
     goalMap->setScale(0.5);
     goalMap->setPosition(Vec2(origin.x + visibleSize.width / 4, origin.y + visibleSize.height / 2));
     this->addChild(goalMap, 1);

@@ -9,11 +9,12 @@
 #include "UIAreaPower.h"
 #include "UIGameplayMap.h"
 
-UIAreaPower::UIAreaPower(string file)
+UIAreaPower::UIAreaPower(Power* p)
 {
-    icon = Sprite::create(file);
-    cooldown = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getCooldownPower2()),
-                                           "Arial Rounded MT Bold", 60);
+    power = p;
+    string filename = p->getName() + "Button" + ".png";
+    icon = Sprite::create(filename);
+    cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
     cooldown->setColor(Color3B::BLUE);
     cooldown->setVisible(false);
     cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
@@ -30,7 +31,7 @@ Sprite* UIAreaPower::getArea(void)
 
 void UIAreaPower::onTouchesBegan(Point touchLocation)
 {
-    if (GameLevel::getInstance()->getCooldownPower2() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+    if (power->getCooldownLeft() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
         area->setPosition(area->getParent()->convertToNodeSpace(icon->getPosition()));
         area->setVisible(true);
@@ -54,7 +55,7 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
     if (clicked) {
         icon->setColor(Color3B::WHITE);
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
-            GameLevel::getInstance()->setPower2Active(10);
+            power->setDurationLeft(power->getDuration());
             cooldown->setVisible(true);
         }
     }
@@ -63,12 +64,12 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
 
 void UIAreaPower::update()
 {
-    if (clicked == false and GameLevel::getInstance()->getPower2Active() == 0) {
+    if (clicked == false and power->getDurationLeft() == 0) {
         area->setVisible(false);
     }
-    if (GameLevel::getInstance()->getCooldownPower2() > 0) {
+    if (power->getCooldownLeft() > 0) {
         cooldown->setVisible(true);
-        cooldown->setString(to_string(GameLevel::getInstance()->getCooldownPower2()));
+        cooldown->setString(to_string(power->getCooldownLeft()));
     } else {
         cooldown->setVisible(false);
     }

@@ -9,6 +9,7 @@
 #include "UIProgressMap.h"
 #include "UIGoals.h"
 #include "GameData.h"
+#include "LevelLoader.h"
 
 Scene* UIProgressMap::createScene()
 {
@@ -66,6 +67,10 @@ void UIProgressMap::menuLevel1Callback(Ref* pSender)
 {
     GameLevel::getInstance()->resetLevel();
     GameData::getInstance()->setGameStarted(false);
+
+    LevelLoader loader;
+    loader.loadXmlFile("level0");
+
     auto scene = UIGoals::createScene();
     auto transition = TransitionShrinkGrow::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
