@@ -154,6 +154,26 @@ void GameLevel::deleteAction(int i)
     actions.erase(actions.begin() + i);
 }
 
+vector<Goal*> GameLevel::getGoals(void)
+{
+    return goals;
+}
+
+void GameLevel::setGoals(vector<Goal*> g)
+{
+    goals.swap(g);
+}
+
+void GameLevel::addGoal(Goal* g)
+{
+    goals.push_back(g);
+}
+
+void GameLevel::deleteGoal(int i)
+{
+    goals.erase(goals.begin() + i);
+}
+
 int GameLevel::getAddedAgents(void)
 {
     return addedAgents;

@@ -60,21 +60,19 @@
     <ACTION>Die</ACTION>
 </ACTIONS>
 <GOALS>
-    <CHECKPOINT_TIMES>
-        <CHECKPOINT_1>
-            <MIN>30</MIN>
-            <MAX>50</MAX>
-            <AVERAGE>40</AVERAGE>
-        </CHECKPOINT_1>
-        <CHECKPOINT_2>
-            <MIN>70</MIN>
-            <MAX>90</MAX>
-            <AVERAGE>80</AVERAGE>
-        </CHECKPOINT_2>
-        <CHECKPOINT_3>
-            <MIN>90</MIN>
-            <MAX>110</MAX>
-            <AVERAGE>100</AVERAGE>
-        </CHECKPOINT_3>
-    </CHECKPOINT_TIMES>
+    <CHECKPOINT_1>
+        <MIN>30</MIN>
+        <MAX>50</MAX>
+        <AVERAGE>40</AVERAGE>
+    </CHECKPOINT_1>
+    <CHECKPOINT_2>
+        <MIN>70</MIN>
+        <MAX>90</MAX>
+        <AVERAGE>80</AVERAGE>
+    </CHECKPOINT_2>
+    <CHECKPOINT_3>
+        <MIN>90</MIN>
+        <MAX>110</MAX>
+        <AVERAGE>100</AVERAGE>
+    </CHECKPOINT_3>
 </GOALS>

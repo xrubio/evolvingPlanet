@@ -86,6 +86,8 @@ private:
 
     void createEndGameWindow(int mode);
     bool checkPowersClicked(void);
+
+    void changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<string>* keys);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

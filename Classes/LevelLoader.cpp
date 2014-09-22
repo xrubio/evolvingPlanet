@@ -71,4 +71,17 @@ void LevelLoader::loadXmlFile(string filename)
         }
         acts = acts.next_sibling("ACTION");
     }
+    
+    //GOALS
+    int i = 0;
+    string checkpoint = "CHECKPOINT_";
+    xml_node goals = doc.child("GOALS").child((checkpoint+to_string(i+1)).c_str());
+    while (goals != nullptr) {
+        int minTime = atoi(goals.child("MIN").child_value());
+        int maxTime = atoi(goals.child("MAX").child_value());;
+        int averageTime = atoi(goals.child("AVERAGE").child_value());;
+        GameLevel::getInstance()->addGoal(new Goal(minTime,maxTime,averageTime));
+        i++;
+        goals = goals.next_sibling((checkpoint+to_string(i+1)).c_str());
+    }
 }

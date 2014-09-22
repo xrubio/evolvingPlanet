@@ -673,25 +673,7 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
             }
         }
         if (found == true) {
-            switch (agentColor) {
-            case 1:
-                s->setColor(Color3B(212, 105, 11));
-                s->setOpacity(agentsDomain.at(j)->getValOfAttribute(keys.at(0)) * (255 / 10));
-                break;
-            case 2:
-                s->setColor(Color3B(5, 5, 117));
-                s->setOpacity(agentsDomain.at(j)->getValOfAttribute(keys.at(1)) * (255 / 10));
-                break;
-            case 3:
-                s->setColor(Color3B(115, 8, 214));
-                s->setOpacity(agentsDomain.at(j)->getValOfAttribute(keys.at(2)) * (255 / 10));
-                break;
-
-            default:
-                s->setColor(Color3B(128, 4, 4));
-                s->setOpacity(agentsDomain.at(j)->getLife() * (255 / 100));
-                break;
-            }
+            changeAgentColourAndOpacity(s, agentsDomain.at(j), &keys);
         }
     }
 
@@ -700,25 +682,7 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
         Sprite* s = Sprite::create("Agent.png");
         s->setPosition((float)agentsDomain.at(sizeAgents)->getPosition()->getX() * float(2048.0 / 200.0),
                        (float)agentsDomain.at(sizeAgents)->getPosition()->getY() * float(1536.0 / 200.0));
-        switch (agentColor) {
-        case 1:
-            s->setColor(Color3B(212, 105, 11));
-            s->setOpacity(agentsDomain.at(sizeAgents)->getValOfAttribute(keys.at(0)) * (255 / 10));
-            break;
-        case 2:
-            s->setColor(Color3B(5, 5, 117));
-            s->setOpacity(agentsDomain.at(sizeAgents)->getValOfAttribute(keys.at(1)) * (255 / 10));
-            break;
-        case 3:
-            s->setColor(Color3B(115, 8, 214));
-            s->setOpacity(agentsDomain.at(sizeAgents)->getValOfAttribute(keys.at(2)) * (255 / 10));
-            break;
-
-        default:
-            s->setColor(Color3B(128, 4, 4));
-            s->setOpacity(agentsDomain.at(sizeAgents)->getLife() * (255 / 100));
-            break;
-        }
+        changeAgentColourAndOpacity(s, agentsDomain.at(sizeAgents), &keys);
         gameplayMap->addChild(s, 1, agentsDomain.at(sizeAgents)->getId());
         sizeAgents--;
     }
@@ -726,6 +690,29 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
     vector<int> null;
     GameLevel::getInstance()->setDeletedAgents(null);
     GameLevel::getInstance()->setAddedAgents(0);
+}
+
+void UIGameplayMap::changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<string>* keys)
+{
+    switch (agentColor) {
+    case 1:
+        s->setColor(Color3B(212, 105, 11));
+        s->setOpacity(agent->getValOfAttribute(keys->at(0)) * (255 / 10));
+        break;
+    case 2:
+        s->setColor(Color3B(5, 5, 117));
+        s->setOpacity(agent->getValOfAttribute(keys->at(1)) * (255 / 10));
+        break;
+    case 3:
+        s->setColor(Color3B(115, 8, 214));
+        s->setOpacity(agent->getValOfAttribute(keys->at(2)) * (255 / 10));
+        break;
+
+    default:
+        s->setColor(Color3B(128, 4, 4));
+        s->setOpacity(agent->getLife() * (255 / 100));
+        break;
+    }
 }
 
 void UIGameplayMap::update(float delta)

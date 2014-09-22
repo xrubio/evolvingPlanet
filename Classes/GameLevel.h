@@ -16,6 +16,7 @@
 #include "Agent.h"
 #include "Act.h"
 #include "Power.h"
+#include "Goal.h"
 
 class UIGameplayMap;
 
@@ -51,6 +52,10 @@ public:
     void setActions(vector<Act*> a);
     void addAction(Act* act);
     void deleteAction(int i);
+    vector<Goal*> getGoals(void);
+    void setGoals(vector<Goal*> g);
+    void addGoal(Goal* g);
+    void deleteGoal(int i);
     int getAddedAgents(void);
     void setAddedAgents(int i);
     vector<int> getDeletedAgents(void);
@@ -95,6 +100,7 @@ private:
     vector<Power*> powers;
     vector<Agent*> agents;
     vector<Act*> actions;
+    vector<Goal*> goals;
 
     int addedAgents = 0;
     vector<int> deletedAgents;
