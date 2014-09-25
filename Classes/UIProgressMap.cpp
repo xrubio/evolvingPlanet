@@ -10,6 +10,10 @@
 #include "UIGoals.h"
 #include "GameData.h"
 #include "LevelLoader.h"
+#include "SlidingMenu.h"
+#include "CocosGUI.h"
+
+using namespace ui;
 
 Scene* UIProgressMap::createScene()
 {
@@ -36,23 +40,41 @@ bool UIProgressMap::init()
     Sprite* progressMap = Sprite::create("ProgressMapBackground.png");
     progressMap->setPosition(Vec2(visibleSize.width / 2 + origin.x,
                                   visibleSize.height / 2 + origin.y));
-    this->addChild(progressMap, 0);
+    Sprite* progressMap2 = Sprite::create("ProgressMap2Background.png");
+    progressMap2->setPosition(Vec2(visibleSize.width + (visibleSize.width / 2) + origin.x,
+                                  visibleSize.height / 2 + origin.y));
+    //this->addChild(progressMap, 0);
 
-    Vector<cocos2d::MenuItem*> menuButtons;
-
+    Vector<MenuItem*> menuButtons;
     MenuItem* backButton = MenuItemImage::create(
         "BackButton.png", "BackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
     menuButtons.pushBack(backButton);
 
-    MenuItem* level1Button = MenuItemImage::create(
-        "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevel1Callback, this));
-    level1Button->setPosition(backButton->getPosition().x - 1730, backButton->getPosition().y + 180);
-    menuButtons.pushBack(level1Button);
-
-    Menu* menu = cocos2d::Menu::createWithArray(menuButtons);
+    Menu* menu = Menu::createWithArray(menuButtons);
     menu->setPosition(Vec2(origin.x + visibleSize.width - (backButton->getContentSize().width / 2),
                            origin.y + (backButton->getContentSize().height / 2)));
     this->addChild(menu, 1);
+    
+    
+    MenuItem* level1Button = MenuItemImage::create(
+                                                   "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevel1Callback, this));
+    level1Button->setPosition(288,180);
+    Vector<MenuItem*> level1Buttons;
+    level1Buttons.pushBack(level1Button);
+    Menu* level1 = Menu::createWithArray(level1Buttons);
+    level1->setPosition(0,0);
+    progressMap->addChild(level1);
+    
+    Size scollFrameSize = Size(visibleSize.width, visibleSize.height);
+    auto scrollView = ScrollView::create();
+    scrollView->setContentSize(Size(visibleSize.width*2,visibleSize.height));
+    scrollView->setBackGroundColor(Color3B(200, 200, 200));
+    scrollView->setSize(scollFrameSize);
+    scrollView->setDirection(ScrollView::Direction::HORIZONTAL);
+
+    scrollView->addChild(progressMap);
+    scrollView->addChild(progressMap2);
+    this->addChild(scrollView);
 
     return true;
 }

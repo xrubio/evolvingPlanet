@@ -16,6 +16,8 @@ bool Die::execute(int indexAgent)
 
     int zone = gameplayMap->getValueAtGameplayMapHotSpot(agent->getPosition()->getX(),
                                                          agent->getPosition()->getY());
+    
+    //CANVIAR -> ZONE = HARM 
     int harm;
     switch (zone) {
     case 1:

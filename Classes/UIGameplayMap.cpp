@@ -188,6 +188,28 @@ bool UIGameplayMap::init()
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
     }
+    
+    //FIND RECTANGLE
+    int xMenor=300;
+    int xMajor=0;
+    int yMenor=300;
+    int yMajor=0;
+    for (int x = 0; x <= 200; x++)
+    {
+        for (int y = 0; y <= 200; y++)
+        {
+            if( GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(x, y) == 1)
+            {
+                if (xMenor > x) xMenor = x;
+                if (xMajor < x) xMajor = x;
+                if (yMenor > y) yMenor = y;
+                if (yMajor < y) yMajor = y;
+                
+            }
+        }
+    }
+    
+    cout << xMenor << " " << xMajor << " " << yMenor << " " << yMajor << endl;
 
     return true;
 }

@@ -12,6 +12,7 @@
 #include "Die.h"
 #include "MultiplierPower.h"
 #include "AreaPower.h"
+#include "UIGameplayMap.h"
 
 #include "cocos2d.h"
 #include <iostream>

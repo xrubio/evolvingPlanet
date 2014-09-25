@@ -350,10 +350,10 @@ void GameLevel::initializeAttributesCost(void)
 void GameLevel::generateInitialAgents(void)
 {
     int posy = 28;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 8; i++) {
         posy += 2;
         int posx = 25;
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 8; j++) {
             auto a = new Agent(idCounter, 100, posx, posy);
             a->setAttributes(agentAttributes);
             agents.push_back(a);
