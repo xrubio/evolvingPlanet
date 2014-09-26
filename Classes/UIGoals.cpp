@@ -30,7 +30,7 @@ bool UIGoals::init()
     Label* title = Label::createWithSystemFont(LocalizedString::create("GOALS")->getCString(), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - ((visibleSize.height / 8))));
-    this->addChild(title, 1);
+    //this->addChild(title, 1);
 
     Vector<cocos2d::MenuItem*> menuButtons;
     MenuItem* nextButton;
@@ -47,9 +47,29 @@ bool UIGoals::init()
     Menu* menu = cocos2d::Menu::createWithArray(menuButtons);
     menu->setPosition(Vec2(origin.x + visibleSize.width - (nextButton->getContentSize().width / 2),
                            origin.y + (nextButton->getContentSize().height / 2)));
-    this->addChild(menu, 1);
+    //this->addChild(menu, 1);
 
-    setLevelGoals();
+    
+    PageView* pageView = PageView::create();
+    pageView->setTouchEnabled(true);
+    pageView->setSize(Size(visibleSize.width,visibleSize.height));
+    pageView->setPosition(Point(0,0));
+    
+    Layout* layout = Layout::create();
+    layout->setSize(Size(visibleSize.width,visibleSize.height));
+
+    layout->addChild(title);
+    //layout->addChild(menu);
+    setLevelGoals(layout);
+    pageView->addPage(layout);
+    
+    auto scene = UIAgents::createScene();
+    Layout* layout2 = Layout::create();
+    layout2->setSize(Size(visibleSize.width,visibleSize.height));
+    layout2->addChild(scene);
+    pageView->addPage(layout2);
+    
+    this->addChild(pageView);
 
     return true;
 }
@@ -67,7 +87,7 @@ void UIGoals::menuMapCallback(Ref* pSender)
     Director::getInstance()->popScene();
 }
 
-void UIGoals::setLevelGoals(void)
+void UIGoals::setLevelGoals(Layout* layout)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -75,7 +95,7 @@ void UIGoals::setLevelGoals(void)
     Sprite* goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
     goalMap->setScale(0.5);
     goalMap->setPosition(Vec2(origin.x + visibleSize.width / 4, origin.y + visibleSize.height / 2));
-    this->addChild(goalMap, 1);
+    layout->addChild(goalMap, 1);
 
     auto goal1 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_1")->getCString(),
                                                         Size(visibleSize.width / 3, visibleSize.height / 4),
@@ -91,7 +111,7 @@ void UIGoals::setLevelGoals(void)
     goal2->setPosition(Vec2(origin.x + 3 * (visibleSize.width / 4), origin.y + (4 * visibleSize.height / 8)));
     goal3->setPosition(Vec2(origin.x + 3 * (visibleSize.width / 4), origin.y + (3 * visibleSize.height / 8)));
 
-    this->addChild(goal1, 1);
-    this->addChild(goal2, 1);
-    this->addChild(goal3, 1);
+    layout->addChild(goal1, 1);
+    layout->addChild(goal2, 1);
+    layout->addChild(goal3, 1);
 }

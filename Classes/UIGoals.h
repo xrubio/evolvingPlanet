@@ -11,6 +11,9 @@
 
 #include "UIGameplayMap.h"
 #include "UIProgressMap.h"
+#include "CocosGUI.h"
+
+using namespace ui;
 
 class UIGoals : public Layer {
 public:
@@ -26,7 +29,7 @@ public:
 private:
     bool gameStarted = true;
 
-    void setLevelGoals(void);
+    void setLevelGoals(Layout* layout);
 };
 
 #endif /* defined(__simulplay__UIGoals__) */
