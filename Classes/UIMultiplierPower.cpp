@@ -23,7 +23,6 @@ UIMultiplierPower::UIMultiplierPower(Power* p)
 
 void UIMultiplierPower::onTouchesBegan(Point touchLocation)
 {
-    //FER SERVIR punter a POWER
     if (power->getCooldownLeft() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
         icon->setScale(1.25);

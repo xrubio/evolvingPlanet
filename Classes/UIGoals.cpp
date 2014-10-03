@@ -49,26 +49,25 @@ bool UIGoals::init()
                            origin.y + (nextButton->getContentSize().height / 2)));
     //this->addChild(menu, 1);
 
-    
     PageView* pageView = PageView::create();
     pageView->setTouchEnabled(true);
-    pageView->setSize(Size(visibleSize.width,visibleSize.height));
-    pageView->setPosition(Point(0,0));
-    
+    pageView->setSize(Size(visibleSize.width, visibleSize.height));
+    pageView->setPosition(Point(0, 0));
+
     Layout* layout = Layout::create();
-    layout->setSize(Size(visibleSize.width,visibleSize.height));
+    layout->setSize(Size(visibleSize.width, visibleSize.height));
 
     layout->addChild(title);
     //layout->addChild(menu);
     setLevelGoals(layout);
     pageView->addPage(layout);
-    
+
     auto scene = UIAgents::createScene();
     Layout* layout2 = Layout::create();
-    layout2->setSize(Size(visibleSize.width,visibleSize.height));
+    layout2->setSize(Size(visibleSize.width, visibleSize.height));
     layout2->addChild(scene);
     pageView->addPage(layout2);
-    
+
     this->addChild(pageView);
 
     return true;

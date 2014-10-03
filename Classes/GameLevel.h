@@ -94,7 +94,7 @@ private:
     int maxAgents;
 
     clock_t currentTime = 0;
-    int numLevel = 0;
+    int numLevel;
     map<string, int> agentAttributes;
     map<string, int> attributesCost;
     vector<Power*> powers;
@@ -112,7 +112,7 @@ private:
 
     int evolutionPoints = 0;
 
-    //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
+    //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut (goal no completed), 3 = finished0Agents,
     //4 = finishedBack
     int finishedGame = 0;
 
@@ -122,6 +122,7 @@ private:
 
     void generateInitialAgents(void);
     void act(void);
+    void checkGoals(void);
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

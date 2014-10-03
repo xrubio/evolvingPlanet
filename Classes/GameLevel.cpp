@@ -12,6 +12,7 @@
 #include "Reproduce.h"
 #include "MultiplierPower.h"
 #include "AreaPower.h"
+#include "GameData.h"
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
@@ -300,6 +301,7 @@ void GameLevel::playLevel(void)
                     evolutionPoints++;
                 }
                 paint = true;
+                checkGoals();
             }
         }
     }
@@ -384,7 +386,65 @@ void GameLevel::act(void)
         actions.at(1)->execute(i);
     }
     if (agents.size() == 0) {
-        finishedGame = 1;
+        finishedGame = 3;
+    }
+}
+
+void GameLevel::checkGoals(void)
+{
+    bool failed = false;
+    //bool timeNotReachedYet = false;
+    for (int i = 0; i < goals.size() and failed == false; i++) {
+        /*if (goals.at(i)->getMinTime() > timeSteps) {
+            timeNotReachedYet = true;
+        } else*/
+        if (goals.at(i)->getCompleted() == false) {
+            if (timeSteps > goals.at(i)->getMaxTime()) {
+                failed = true;
+                finishedGame = 2;
+            } else {
+                //Check agent at goal zone
+                bool foundAgentAtGoal = false;
+                cout << goals.at(i)->getColorZone() << " ";
+                for (int j = 0; j < agents.size() and foundAgentAtGoal == false; j++) {
+                    if (gameplayMap->getValueAtGameplayMapHotSpot(agents.at(j)->getPosition()->getX(),
+                                                                  agents.at(j)->getPosition()->getY()) == goals.at(i)->getColorZone()) {
+                        foundAgentAtGoal = true;
+                        if (goals.at(i)->getMinTime() > timeSteps) {
+                            cout << agents.at(j)->getPosition()->getX() << " " << agents.at(j)->getPosition()->getY() << endl;
+                            failed = true;
+                            finishedGame = 2;
+                        } else {
+                            goals.at(i)->setCompleted(true);
+                            int averageTime = goals.at(i)->getAverageTime();
+                            if (timeSteps >= averageTime - goals.at(i)->getDesviation2Star() and timeSteps <= averageTime + goals.at(i)->getDesviation2Star()) {
+                                if (timeSteps >= averageTime - goals.at(i)->getDesviation3Star() and timeSteps <= averageTime + goals.at(i)->getDesviation3Star()) {
+                                    // 3 STARS
+                                    goals.at(i)->setScore(3);
+                                } else {
+                                    //2 STARS
+                                    goals.at(i)->setScore(2);
+                                }
+                            } else {
+                                //1 STAR
+                                goals.at(i)->setScore(1);
+                            }
+                            if (i == goals.size() - 1) {
+                                //CALCULATE FINAL SCORE
+                                int finalScore;
+                                int k;
+                                for (k = 0; k < goals.size(); k++) {
+                                    finalScore += goals.at(k)->getScore();
+                                }
+                                cout << "FINAL SCORE: " << finalScore / k << endl;
+                                GameData::getInstance()->setLevelScore(numLevel, finalScore / k);
+                                finishedGame = 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

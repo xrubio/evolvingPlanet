@@ -8,11 +8,13 @@
 
 #include "Goal.h"
 
-Goal::Goal(int min, int max, int average, int color)
+Goal::Goal(int min, int max, int average, int des2, int des3, int color)
 {
     minTime = min;
     maxTime = max;
     averageTime = average;
+    desviation2Star = des2;
+    desviation3Star = des3;
     colorZone = color;
 }
 
@@ -46,6 +48,26 @@ void Goal::setAverageTime(int average)
     averageTime = average;
 }
 
+int Goal::getDesviation2Star(void)
+{
+    return desviation2Star;
+}
+
+void Goal::setDesviation2Star(int des)
+{
+    desviation2Star = des;
+}
+
+int Goal::getDesviation3Star(void)
+{
+    return desviation3Star;
+}
+
+void Goal::setDesviation3Star(int des)
+{
+    desviation3Star = des;
+}
+
 int Goal::getColorZone(void)
 {
     return colorZone;
@@ -54,4 +76,24 @@ int Goal::getColorZone(void)
 void Goal::setColorZone(int color)
 {
     colorZone = color;
+}
+
+bool Goal::getCompleted(void)
+{
+    return completed;
+}
+
+void Goal::setCompleted(bool c)
+{
+    completed = c;
+}
+
+int Goal::getScore(void)
+{
+    return score;
+}
+
+void Goal::setScore(int s)
+{
+    score = s;
 }

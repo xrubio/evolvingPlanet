@@ -188,27 +188,27 @@ bool UIGameplayMap::init()
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
     }
-    
+
     //FIND RECTANGLE
-    int xMenor=300;
-    int xMajor=0;
-    int yMenor=300;
-    int yMajor=0;
-    for (int x = 0; x <= 200; x++)
-    {
-        for (int y = 0; y <= 200; y++)
-        {
-            if( GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(x, y) == 1)
-            {
-                if (xMenor > x) xMenor = x;
-                if (xMajor < x) xMajor = x;
-                if (yMenor > y) yMenor = y;
-                if (yMajor < y) yMajor = y;
-                
+    int xMenor = 300;
+    int xMajor = 0;
+    int yMenor = 300;
+    int yMajor = 0;
+    for (int x = 0; x <= 200; x++) {
+        for (int y = 0; y <= 200; y++) {
+            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(x, y) == 1) {
+                if (xMenor > x)
+                    xMenor = x;
+                if (xMajor < x)
+                    xMajor = x;
+                if (yMenor > y)
+                    yMenor = y;
+                if (yMajor < y)
+                    yMajor = y;
             }
         }
     }
-    
+
     cout << xMenor << " " << xMajor << " " << yMenor << " " << yMajor << endl;
 
     return true;
@@ -618,14 +618,17 @@ void UIGameplayMap::createEndGameWindow(int mode)
         title = LocalizedString::create("LEVEL_COMPLETED")->getCString();
         text = LocalizedString::create("CONGRATULATIONS")->getCString();
         int starCount = 1;
-        auto starFull = Sprite::create("StarFull.png");
-        starFull->setPosition(window->getPosition().x / 4, 5.5 * window->getContentSize().height / 8);
-        window->addChild(starFull);
-        starCount++;
+        int score = GameData::getInstance()->getLevelScore(GameLevel::getInstance()->getNumLevel());
         while (starCount < 4) {
-            auto starEmpty = Sprite::create("StarEmpty.png");
-            starEmpty->setPosition(starCount * window->getPosition().x / 4, 5.5 * window->getContentSize().height / 8);
-            window->addChild(starEmpty);
+            if (starCount <= score) {
+                auto starFull = Sprite::create("StarFull.png");
+                starFull->setPosition(starCount * window->getPosition().x / 4, 5.5 * window->getContentSize().height / 8);
+                window->addChild(starFull);
+            } else {
+                auto starEmpty = Sprite::create("StarEmpty.png");
+                starEmpty->setPosition(starCount * window->getPosition().x / 4, 5.5 * window->getContentSize().height / 8);
+                window->addChild(starEmpty);
+            }
             starCount++;
         }
     } else {
@@ -682,7 +685,7 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
     }
 
     Vector<Node*> ags = gameplayMap->getChildren();
-    for (int i = 1; i < ags.size(); i++) {
+    for (int i = 0; i < ags.size(); i++) {
         Sprite* s = (Sprite*)ags.at(i);
         int id = ags.at(i)->getTag();
         bool found = false;
