@@ -101,6 +101,7 @@ private:
     vector<Agent*> agents;
     vector<Act*> actions;
     vector<Goal*> goals;
+    Agent* agentsMap[200][200];
 
     int addedAgents = 0;
     vector<int> deletedAgents;

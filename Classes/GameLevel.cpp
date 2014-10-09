@@ -128,10 +128,12 @@ void GameLevel::setAgents(vector<Agent*> ags)
 void GameLevel::addAgent(Agent* ag)
 {
     agents.push_back(ag);
+    agentsMap[ag->getPosition()->getX()][ag->getPosition()->getY()] = ag;
 }
 
 void GameLevel::deleteAgent(int i)
 {
+    delete agentsMap[agents.at(i)->getPosition()->getX()][agents.at(i)->getPosition()->getY()]; // = nullptr;
     agents.erase(agents.begin() + i);
 }
 
@@ -297,7 +299,7 @@ void GameLevel::playLevel(void)
                     }
                 }
                 timeSteps++;
-                if (timeSteps % 4 == 0) {
+                if (timeSteps % 2 == 0) {
                     evolutionPoints++;
                 }
                 paint = true;
@@ -345,7 +347,12 @@ void GameLevel::createLevel(int lvl)
 void GameLevel::initializeAttributesCost(void)
 {
     for (map<string, int>::const_iterator it = agentAttributes.begin(); it != agentAttributes.end(); it++) {
-        attributesCost[it->first] = 1;
+        //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
+        if (agentAttributes[it->first] != 0) {
+            attributesCost[it->first] = 0;
+        } else {
+            attributesCost[it->first] = 1;
+        }
     }
 }
 

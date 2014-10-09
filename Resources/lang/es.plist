@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>START</key>
-	<string>Empezar</string>
+	<string>EMPEZAR</string>
 	<key>CONFIGURATION</key>
-	<string>Configuración</string>
+	<string>CONFIGURACIÓN</string>
 	<key>LANGUAGE</key>
 	<string>Idioma</string>
 	<key>CREDITS</key>
-	<string>Creditos</string>
+	<string>CRÉDITOS</string>
 	<key>GOALS</key>
 	<string>Objetivos</string>
 	<key>REPRODUCTION</key>
@@ -34,17 +34,17 @@
 	<string>On</string>
 	<key>OFF</key>
 	<string>Off</string>
-    <key>LEVEL_COMPLETED</key>
+	<key>LEVEL_COMPLETED</key>
 	<string>Nivel completado</string>
-    <key>GAME_OVER</key>
+	<key>GAME_OVER</key>
 	<string>Nivel fallido</string>
-    <key>CONGRATULATIONS</key>
+	<key>CONGRATULATIONS</key>
 	<string>¡Enhorabuena!</string>
-    <key>GOAL_NO_COMPLETED</key>
+	<key>GOAL_NO_COMPLETED</key>
 	<string>No has cumplido con el objetivo</string>
-    <key>ALL_AGENTS_DIED</key>
+	<key>ALL_AGENTS_DIED</key>
 	<string>Han muerto todos los agentes</string>
-    <key>CONTINUE</key>
+	<key>CONTINUE</key>
 	<string>Continuar</string>
 </dict>
 </plist>

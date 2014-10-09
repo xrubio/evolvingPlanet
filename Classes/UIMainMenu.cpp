@@ -31,7 +31,7 @@ bool UIMainMenu::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Label* title = Label::createWithSystemFont("SimulPlay", "Arial Rounded MT Bold", 180);
+    Label* title = Label::createWithTTF("SimulPlay", "fonts/BebasNeue.otf", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - ((visibleSize.height / 5))));
     this->addChild(title, 1);
@@ -42,16 +42,16 @@ bool UIMainMenu::init()
         "MainButtonBackground.png", "MainButtonBackgroundPressed.png", CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
     startButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + 4 * (visibleSize.height / 8)));
 
-    Sprite* strokeSprite = Sprite::create("MainButtonBackground.png");
+    /*Sprite* strokeSprite = Sprite::create("MainButtonBackground.png");
     strokeSprite->setColor(Color3B::RED);
     strokeSprite->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     strokeSprite->setScale(1.1, 1.2);
-    startButton->addChild(strokeSprite, -1);
+    startButton->addChild(strokeSprite, -1);*/
 
-    auto lbl = LabelTTF::create(LocalizedString::create("START")->getCString(), "Calibri", 50);
+    auto lbl = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 80);
     // amb Label*   lbl->enableShadow();
-    lbl->enableShadow(Size(2, 2), 60, 40);
-    lbl->enableStroke(Color3B::RED, 2);
+    //lbl->enableShadow(Size(2, 2), 60, 40);
+    //lbl->enableStroke(Color3B::RED, 2);
     MenuItem* startLabel = MenuItemLabel::create(lbl);
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     /*Vector<Node*> words = startLabel->getChildren();
@@ -62,13 +62,21 @@ bool UIMainMenu::init()
     menuButtons.pushBack(startButton);
 
     MenuItem* configurationButton = MenuItemImage::create(
-        "ConfigurationButton.png", "ConfigurationButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
+        "MainButtonBackground.png", "MainButtonBackgroundPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + 3 * (visibleSize.height / 8)));
+    auto lblConf = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 40);
+    MenuItem* confLabel = MenuItemLabel::create(lblConf);
+    confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
+    configurationButton->addChild(confLabel);
     menuButtons.pushBack(configurationButton);
 
     MenuItem* creditsButton = MenuItemImage::create(
-        "CreditsButton.png", "CreditsButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
+        "MainButtonBackground.png", "MainButtonBackgroundPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
     creditsButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + 2 * (visibleSize.height / 8)));
+    auto lblCred = Label::createWithTTF(LocalizedString::create("CREDITS")->getCString(), "fonts/BebasNeue.otf", 20);
+    MenuItem* credLabel = MenuItemLabel::create(lblCred);
+    credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
+    creditsButton->addChild(credLabel);
     menuButtons.pushBack(creditsButton);
 
     /*MenuItem* exitButton = MenuItemImage::create(

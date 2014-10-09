@@ -38,7 +38,7 @@ void LevelLoader::loadXmlFile(string filename)
     //ATTRIBUTES
     xml_node atts = doc.child("ATTRIBUTES").child("ATTRIBUTE");
     while (atts != nullptr) {
-        GameLevel::getInstance()->setAgentAttribute(atts.attribute("NAME").value(), 0);
+        GameLevel::getInstance()->setAgentAttribute(atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
         atts = atts.next_sibling("ATTRIBUTE");
     }
 

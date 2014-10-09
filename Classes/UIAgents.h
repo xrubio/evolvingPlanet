@@ -21,23 +21,13 @@ public:
 
     void menuStartCallback(Ref* pSender);
     void menuMapCallback(Ref* pSender);
-    void minusAtt1Callback(Ref* pSender);
-    void plusAtt1Callback(Ref* pSender);
-    void minusAtt2Callback(Ref* pSender);
-    void plusAtt2Callback(Ref* pSender);
-    void minusAtt3Callback(Ref* pSender);
-    void plusAtt3Callback(Ref* pSender);
+    void minusAttCallback(Ref* pSender);
+    void plusAttCallback(Ref* pSender);
 
     CREATE_FUNC(UIAgents);
 
 private:
-    bool gameStarted = true;
-
     vector<string> keys;
-
-    int att1 = 0;
-    int att2 = 0;
-    int att3 = 0;
 };
 
 #endif /* defined(__simulplay__UIAgents__) */

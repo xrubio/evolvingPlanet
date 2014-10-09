@@ -15,6 +15,43 @@ bool Reproduce::execute(int indexAgent)
     if (GameLevel::getInstance()->getAgents().size() < GameLevel::getInstance()->getMaxAgents()) {
         int probReproduction = agent->getValOfAttribute("REPRODUCTION");
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
+
+        int mobility = agent->getValOfAttribute("MOBILITY") + 6;
+        switch (probReproduction) {
+        case 1:
+            probReproduction = 20;
+            break;
+        case 2:
+            probReproduction = 25;
+            break;
+        case 3:
+            probReproduction = 30;
+            break;
+        case 4:
+            probReproduction = 35;
+            break;
+        case 5:
+            probReproduction = 40;
+            break;
+        case 6:
+            probReproduction = 45;
+            break;
+        case 7:
+            probReproduction = 55;
+            break;
+        case 8:
+            probReproduction = 65;
+            break;
+        case 9:
+            probReproduction = 80;
+            break;
+        case 10:
+            probReproduction = 100;
+            break;
+        default:
+            probReproduction = 0;
+            break;
+        }
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
             if (GameLevel::getInstance()->getPowers().at(i)->getName() == "ReproductionBoost") {
@@ -22,27 +59,19 @@ bool Reproduce::execute(int indexAgent)
             }
         }
         if (p != nullptr and p->getDurationLeft() > 0) {
-            probReproduction += 3;
+            probReproduction += 30;
         }
-        int mobility = agent->getValOfAttribute("MOBILITY");
-        if (probReproduction > 0) {
-            int reproduce;
-            if (probReproduction >= 10) {
-                reproduce = 0;
-            } else {
-                reproduce = rand() % (10 - probReproduction) + 0;
-            }
-            if (reproduce == 0) {
-                int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
-                int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);
-                if (GameLevel::getInstance()->validatePosition(posx, posy)) {
-                    auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, posx, posy);
-                    ag->setAttributes(GameLevel::getInstance()->getAgentAttributes());
-                    GameLevel::getInstance()->addAgent(ag);
-                    GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
-                    GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
-                    return true;
-                }
+        //srand(time(NULL));
+        if ((rand() % 100) < probReproduction) {
+            int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
+            int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);
+            if (GameLevel::getInstance()->validatePosition(posx, posy)) {
+                auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, posx, posy);
+                ag->setAttributes(GameLevel::getInstance()->getAgentAttributes());
+                GameLevel::getInstance()->addAgent(ag);
+                GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
+                GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
+                return true;
             }
         }
     }

@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>START</key>
-	<string>Començar</string>
+	<string>COMENÇAR</string>
 	<key>CONFIGURATION</key>
-	<string>Configuració</string>
+	<string>CONFIGURACIÓ</string>
 	<key>LANGUAGE</key>
 	<string>Idioma</string>
 	<key>CREDITS</key>
-	<string>Crèdits</string>
+	<string>CRÈDITS</string>
 	<key>GOALS</key>
 	<string>Objectius</string>
 	<key>REPRODUCTION</key>
@@ -36,15 +36,15 @@
 	<string>Off</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>Nivell complet</string>
-    <key>GAME_OVER</key>
+	<key>GAME_OVER</key>
 	<string>Nivell fallit</string>
-    <key>CONGRATULATIONS</key>
+	<key>CONGRATULATIONS</key>
 	<string>Enhorabona!</string>
-    <key>GOAL_NO_COMPLETED</key>
-	<string>No has aconseguit l'objectiu</string>
-    <key>ALL_AGENTS_DIED</key>
+	<key>GOAL_NO_COMPLETED</key>
+	<string>No has aconseguit l&apos;objectiu</string>
+	<key>ALL_AGENTS_DIED</key>
 	<string>Han mort tots els agents</string>
-    <key>CONTINUE</key>
+	<key>CONTINUE</key>
 	<string>Continuar</string>
 </dict>
 </plist>
