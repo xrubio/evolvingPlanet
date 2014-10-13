@@ -116,10 +116,10 @@ bool UIAgents::init()
 //Faig dues funcions per si el primer cop que es comença la partida s'ha d'intercalar una pantalla de càrrega
 void UIAgents::menuStartCallback(Ref* pSender)
 {
-    if (GameData::getInstance()->getGameStarted() == false) {
+    /*if (GameData::getInstance()->getGameStarted() == false) {
         GameLevel::getInstance()->createLevel(0);
     }
-    GameData::getInstance()->setGameStarted(true);
+    GameData::getInstance()->setGameStarted(true);*/
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);

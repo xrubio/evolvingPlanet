@@ -77,7 +77,7 @@ public:
     int getAttributeCost(string key);
     void setAttributeCost(string key, int val);
 
-    void createLevel(int lvl);
+    void createLevel(int lvl, int minX, int maxX, int minY, int maxY);
     void initializeAttributesCost(void);
     void playLevel(void);
     void resetLevel(void);
@@ -101,7 +101,7 @@ private:
     vector<Agent*> agents;
     vector<Act*> actions;
     vector<Goal*> goals;
-    Agent* agentsMap[200][200];
+    Agent* agentsMap[480][320];
 
     int addedAgents = 0;
     vector<int> deletedAgents;
@@ -121,7 +121,7 @@ private:
     GameLevel(GameLevel const&) {};
     GameLevel& operator=(GameLevel const&);
 
-    void generateInitialAgents(void);
+    void generateInitialAgents(int minX, int maxX, int minY, int maxY);
     void act(void);
     void checkGoals(void);
 };

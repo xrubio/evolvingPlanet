@@ -336,11 +336,11 @@ void GameLevel::resetLevel(void)
     finishedGame = 0;
 }
 
-void GameLevel::createLevel(int lvl)
+void GameLevel::createLevel(int lvl, int minX, int maxX, int minY, int maxY)
 {
     numLevel = lvl;
 
-    generateInitialAgents();
+    generateInitialAgents(minX, maxX, minY, maxY);
     paint = true;
 }
 
@@ -356,18 +356,18 @@ void GameLevel::initializeAttributesCost(void)
     }
 }
 
-void GameLevel::generateInitialAgents(void)
+void GameLevel::generateInitialAgents(int minX, int maxX, int minY, int maxY)
 {
-    int posy = 28;
-    for (int i = 0; i < 8; i++) {
-        posy += 2;
-        int posx = 25;
-        for (int j = 0; j < 8; j++) {
+    int i = 0;
+    while (i < 100) {
+        int posx = rand() % maxX + minX;
+        int posy = rand() % maxY + minY;
+        if (gameplayMap->getValueAtGameplayMapHotSpot(posx, posy) == 1 and GameLevel::getInstance()->validatePosition(posx, posy)) {
             auto a = new Agent(idCounter, 100, posx, posy);
             a->setAttributes(agentAttributes);
-            agents.push_back(a);
-            posx += 2;
+            addAgent(a);
             idCounter++;
+            i++;
         }
     }
 }
@@ -412,13 +412,11 @@ void GameLevel::checkGoals(void)
             } else {
                 //Check agent at goal zone
                 bool foundAgentAtGoal = false;
-                cout << goals.at(i)->getColorZone() << " ";
                 for (int j = 0; j < agents.size() and foundAgentAtGoal == false; j++) {
                     if (gameplayMap->getValueAtGameplayMapHotSpot(agents.at(j)->getPosition()->getX(),
                                                                   agents.at(j)->getPosition()->getY()) == goals.at(i)->getColorZone()) {
                         foundAgentAtGoal = true;
                         if (goals.at(i)->getMinTime() > timeSteps) {
-                            cout << agents.at(j)->getPosition()->getX() << " " << agents.at(j)->getPosition()->getY() << endl;
                             failed = true;
                             finishedGame = 2;
                         } else {
@@ -458,20 +456,21 @@ void GameLevel::checkGoals(void)
 bool GameLevel::validatePosition(int posx, int posy)
 {
     //Fora del mapa
-    if (posx < 0 or posx > 200 or posy < 0 or posy > 200) {
+    if (posx < 0 or posx > 480 or posy < 0 or posy > 320) {
         return false;
     }
-
     //Aigua o similar
     if (gameplayMap->getValueAtGameplayMapHotSpot(posx, posy) == 0) {
         return false;
     }
-
     //Hi ha un agent
-    for (int i = 0; i < agents.size(); i++) {
+    /*for (int i = 0; i < agents.size(); i++) {
         if (agents.at(i)->getPosition()->getX() == posx and agents.at(i)->getPosition()->getY() == posy) {
             return false;
         }
+    }*/
+    if (agentsMap[posx][posy] != nullptr) {
+        return false;
     }
     return true;
 }

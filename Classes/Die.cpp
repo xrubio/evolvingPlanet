@@ -32,6 +32,12 @@ bool Die::execute(int indexAgent)
     case 4:
         harm = 70;
         break;
+    case 8:
+        harm = 30;
+        break;
+    case 9:
+        harm = 100;
+        break;
     default:
         harm = 50;
         break;

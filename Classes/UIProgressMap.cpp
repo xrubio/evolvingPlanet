@@ -56,13 +56,24 @@ bool UIProgressMap::init()
     this->addChild(menu, 1);
 
     MenuItem* level1Button = MenuItemImage::create(
-        "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevel1Callback, this));
+        "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level1Button->setPosition(288, 180);
+    level1Button->setTag(1);
     Vector<MenuItem*> level1Buttons;
     level1Buttons.pushBack(level1Button);
     Menu* level1 = Menu::createWithArray(level1Buttons);
     level1->setPosition(0, 0);
-    progressMap->addChild(level1);
+    progressMap->addChild(level1, 1);
+
+    MenuItem* level2Button = MenuItemImage::create(
+        "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+    level2Button->setPosition(688, 980);
+    level2Button->setTag(2);
+    Vector<MenuItem*> level2Buttons;
+    level2Buttons.pushBack(level2Button);
+    Menu* level2 = Menu::createWithArray(level2Buttons);
+    level2->setPosition(0, 0);
+    progressMap2->addChild(level2);
 
     Size scollFrameSize = Size(visibleSize.width, visibleSize.height);
     auto scrollView = ScrollView::create();
@@ -133,13 +144,28 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
     Director::getInstance()->replaceScene(scene);
 }
 
-void UIProgressMap::menuLevel1Callback(Ref* pSender)
+void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
     GameLevel::getInstance()->resetLevel();
     GameData::getInstance()->setGameStarted(false);
 
+    MenuItem* pMenuItem = (MenuItem*)(pSender);
+    int tag = pMenuItem->getTag();
+
+    string filename;
+    switch (tag) {
+    case 1:
+        filename = "level1";
+        break;
+    case 2:
+        filename = "level2";
+        break;
+    default:
+        filename = "";
+        break;
+    }
     LevelLoader loader;
-    loader.loadXmlFile("level0");
+    loader.loadXmlFile(filename);
 
     auto scene = UIGoals::createScene();
     auto transition = TransitionShrinkGrow::create(1.0f, scene);

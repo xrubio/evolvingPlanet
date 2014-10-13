@@ -53,6 +53,7 @@ bool UIGameplayMap::init()
     }
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
+    GameLevel::getInstance()->setUIGameplayMap(this);
 
     Vector<MenuItem*> menuButtons;
     backButton = MenuItemImage::create(
@@ -178,25 +179,18 @@ bool UIGameplayMap::init()
     listener->onTouchesEnded = CC_CALLBACK_2(UIGameplayMap::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    initializeAgents();
-    GameLevel::getInstance()->setUIGameplayMap(this);
-    createNewLevelThread();
-
-    this->scheduleUpdate();
-    //this->schedule(schedule_selector(UIGameplayMap::update), 1);
-
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
     }
 
     //FIND RECTANGLE
-    int xMenor = 300;
+    int xMenor = 500;
     int xMajor = 0;
-    int yMenor = 300;
+    int yMenor = 500;
     int yMajor = 0;
-    for (int x = 0; x <= 200; x++) {
-        for (int y = 0; y <= 200; y++) {
-            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(x, y) == 1) {
+    for (int x = 0; x <= 480; x++) {
+        for (int y = 0; y <= 320; y++) {
+            if (getValueAtGameplayMapHotSpot(x, y) == 1) {
                 if (xMenor > x)
                     xMenor = x;
                 if (xMajor < x)
@@ -209,7 +203,16 @@ bool UIGameplayMap::init()
         }
     }
 
-    cout << xMenor << " " << xMajor << " " << yMenor << " " << yMajor << endl;
+    if (GameData::getInstance()->getGameStarted() == false) {
+        GameLevel::getInstance()->createLevel(0, xMenor, xMajor, yMenor, yMajor);
+    }
+    GameData::getInstance()->setGameStarted(true);
+
+    initializeAgents();
+    createNewLevelThread();
+
+    this->scheduleUpdate();
+    //this->schedule(schedule_selector(UIGameplayMap::update), 1);
 
     return true;
 }
@@ -557,7 +560,7 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int posx, int posy)
     Point loc(Point(posx, posy));
     //Size visibleSize = Director::getInstance()->getVisibleSize();
     //loc.y = visibleSize.height - loc.y;
-    loc.y = 200 - loc.y;
+    loc.y = 320 - loc.y;
     return getValueAtGameplayMapHotSpot(loc);
 }
 
@@ -592,7 +595,7 @@ void UIGameplayMap::initializeAgents(void)
         Sprite* s = Sprite::create("Agent.png");
         s->setColor(Color3B(128, 4, 4));
         s->setOpacity(100);
-        s->setPosition(agentsDomain.at(i)->getPosition()->getX() * float(2048 / 200), agentsDomain.at(i)->getPosition()->getY() * float(1536 / 200));
+        s->setPosition(agentsDomain.at(i)->getPosition()->getX() * float(2048 / 480), ((1536 - 1365) / 2) + (agentsDomain.at(i)->getPosition()->getY() * float(1365 / 320)));
         gameplayMap->addChild(s, 1, agentsDomain.at(i)->getId());
     }
     play = true;
@@ -705,8 +708,8 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
     unsigned long sizeAgents = agentsDomain.size() - 1;
     for (int i = 0; i < GameLevel::getInstance()->getAddedAgents(); i++) {
         Sprite* s = Sprite::create("Agent.png");
-        s->setPosition((float)agentsDomain.at(sizeAgents)->getPosition()->getX() * float(2048.0 / 200.0),
-                       (float)agentsDomain.at(sizeAgents)->getPosition()->getY() * float(1536.0 / 200.0));
+        s->setPosition((float)agentsDomain.at(sizeAgents)->getPosition()->getX() * float(2048.0 / 480.0),
+                       ((1536 - 1365) / 2) + ((float)agentsDomain.at(sizeAgents)->getPosition()->getY() * float(1365.0 / 320.0)));
         changeAgentColourAndOpacity(s, agentsDomain.at(sizeAgents), &keys);
         gameplayMap->addChild(s, 1, agentsDomain.at(sizeAgents)->getId());
         sizeAgents--;

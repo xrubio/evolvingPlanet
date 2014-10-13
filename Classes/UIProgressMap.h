@@ -18,7 +18,7 @@ public:
     virtual bool init();
 
     void menuBackCallback(Ref* pSender);
-    void menuLevel1Callback(Ref* pSender);
+    void menuLevelCallback(Ref* pSender);
 
     CREATE_FUNC(UIProgressMap);
 };
