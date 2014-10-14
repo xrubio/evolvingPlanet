@@ -30,8 +30,16 @@ public:
     void setUIGameplayMap(UIGameplayMap* gmplmap);
     string getMapFilename(void);
     void setMapFilename(string filename);
-    int getMaxAgents(void);
-    void setMaxAgents(int max);
+    vector<int> getMaxAgents(void);
+    void setMaxAgents(vector<int> max);
+    int getMaxAgent(int type);
+    void setMaxAgent(int type, int max);
+
+    vector<int> getNumInitialAgents(void);
+    void setNumInitialAgents(vector<int> ini);
+    int getNumInitialAgent(int type);
+    void setNumInitialAgent(int type, int ini);
+
     double getCurrentTime(void);
     void setCurrentTime(double time);
     int getNumLevel(void);
@@ -77,7 +85,7 @@ public:
     int getAttributeCost(string key);
     void setAttributeCost(string key, int val);
 
-    void createLevel(int lvl, int minX, int maxX, int minY, int maxY);
+    void createLevel(void);
     void initializeAttributesCost(void);
     void playLevel(void);
     void resetLevel(void);
@@ -91,7 +99,9 @@ private:
     UIGameplayMap* gameplayMap;
 
     string mapFilename;
-    int maxAgents;
+    //VECTOR POSITION = TYPE
+    vector<int> maxAgents;
+    vector<int> numInitialAgents;
 
     clock_t currentTime = 0;
     int numLevel;
@@ -121,7 +131,7 @@ private:
     GameLevel(GameLevel const&) {};
     GameLevel& operator=(GameLevel const&);
 
-    void generateInitialAgents(int minX, int maxX, int minY, int maxY);
+    void generateInitialAgents(int type);
     void act(void);
     void checkGoals(void);
 };

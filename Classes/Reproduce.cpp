@@ -12,7 +12,7 @@
 bool Reproduce::execute(int indexAgent)
 {
     Agent* agent = GameLevel::getInstance()->getAgents().at(indexAgent);
-    if (GameLevel::getInstance()->getAgents().size() < GameLevel::getInstance()->getMaxAgents()) {
+    if (GameLevel::getInstance()->getAgents().size() < GameLevel::getInstance()->getMaxAgent(agent->getType())) {
         int probReproduction = agent->getValOfAttribute("REPRODUCTION");
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
 
@@ -66,7 +66,7 @@ bool Reproduce::execute(int indexAgent)
             int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
             int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);
             if (GameLevel::getInstance()->validatePosition(posx, posy)) {
-                auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, posx, posy);
+                auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, agent->getType(), posx, posy);
                 ag->setAttributes(GameLevel::getInstance()->getAgentAttributes());
                 GameLevel::getInstance()->addAgent(ag);
                 GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);

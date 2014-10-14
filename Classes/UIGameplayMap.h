@@ -37,7 +37,7 @@ public:
     void mobilityCallback(Ref* pSender);
     void resistanceCallback(Ref* pSender);
 
-    int getValueAtGameplayMapHotSpot(int posx, int posy);
+    int getValueAtGameplayMapHotSpot(int rgb, int posx, int posy);
     bool isInBoostResistanceArea(int posx, int posy);
     void updateAgents(vector<Agent*> agentsDomain);
     virtual void update(float delta);
@@ -77,7 +77,7 @@ private:
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
-    int getValueAtGameplayMapHotSpot(Point pt);
+    int getValueAtGameplayMapHotSpot(int rgb, Point pt);
 
     void createNewLevelThread(void);
     static void* createLevel(void* arg);

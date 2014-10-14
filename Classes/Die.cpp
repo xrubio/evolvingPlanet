@@ -14,34 +14,8 @@ bool Die::execute(int indexAgent)
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     Agent* agent = GameLevel::getInstance()->getAgents().at(indexAgent);
 
-    int zone = gameplayMap->getValueAtGameplayMapHotSpot(agent->getPosition()->getX(),
-                                                         agent->getPosition()->getY());
+    int harm = gameplayMap->getValueAtGameplayMapHotSpot(0, agent->getPosition()->getX(), agent->getPosition()->getY());
 
-    //CANVIAR -> ZONE = HARM
-    int harm;
-    switch (zone) {
-    case 1:
-        harm = 50;
-        break;
-    case 2:
-        harm = 50;
-        break;
-    case 3:
-        harm = 40;
-        break;
-    case 4:
-        harm = 70;
-        break;
-    case 8:
-        harm = 30;
-        break;
-    case 9:
-        harm = 100;
-        break;
-    default:
-        harm = 50;
-        break;
-    }
     int resistance = agent->getValOfAttribute("RESISTANCE");
     switch (resistance) {
     case 1:
@@ -86,8 +60,8 @@ bool Die::execute(int indexAgent)
         }
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
-        if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048 / 200),
-                                                 agent->getPosition()->getY() * float(1536 / 200))) {
+        if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048.0 / 480.0),
+                                                 ((1536 - 1365) / 2) + (agent->getPosition()->getY() * float(1365.0 / 320.0)))) {
             harm /= 2;
         }
     }

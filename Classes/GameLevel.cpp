@@ -45,14 +45,44 @@ void GameLevel::setMapFilename(string filename)
     mapFilename = filename;
 }
 
-int GameLevel::getMaxAgents(void)
+vector<int> GameLevel::getMaxAgents(void)
 {
     return maxAgents;
 }
 
-void GameLevel::setMaxAgents(int max)
+void GameLevel::setMaxAgents(vector<int> max)
 {
-    maxAgents = max;
+    maxAgents.swap(max);
+}
+
+int GameLevel::getMaxAgent(int type)
+{
+    return maxAgents.at(type);
+}
+
+void GameLevel::setMaxAgent(int type, int max)
+{
+    maxAgents.insert(maxAgents.begin() + type, max);
+}
+
+vector<int> GameLevel::getNumInitialAgents(void)
+{
+    return numInitialAgents;
+}
+
+void GameLevel::setNumInitialAgents(vector<int> ini)
+{
+    numInitialAgents.swap(ini);
+}
+
+int GameLevel::getNumInitialAgent(int type)
+{
+    return numInitialAgents.at(type);
+}
+
+void GameLevel::setNumInitialAgent(int type, int ini)
+{
+    numInitialAgents.insert(numInitialAgents.begin() + type, ini);
 }
 
 double GameLevel::getCurrentTime(void)
@@ -324,6 +354,9 @@ void GameLevel::resetLevel(void)
     deletedAgents.clear();
     idCounter = 0;
 
+    maxAgents.clear();
+    numInitialAgents.clear();
+
     actions.clear();
 
     timeSteps = 0;
@@ -336,11 +369,11 @@ void GameLevel::resetLevel(void)
     finishedGame = 0;
 }
 
-void GameLevel::createLevel(int lvl, int minX, int maxX, int minY, int maxY)
+void GameLevel::createLevel(void)
 {
-    numLevel = lvl;
-
-    generateInitialAgents(minX, maxX, minY, maxY);
+    for (int i = 0; i < numInitialAgents.size(); i++) {
+        generateInitialAgents(i);
+    }
     paint = true;
 }
 
@@ -356,14 +389,34 @@ void GameLevel::initializeAttributesCost(void)
     }
 }
 
-void GameLevel::generateInitialAgents(int minX, int maxX, int minY, int maxY)
+void GameLevel::generateInitialAgents(int type)
 {
+    //FIND RECTANGLE
+    int minX = 500;
+    int maxX = 0;
+    int minY = 500;
+    int maxY = 0;
+    for (int x = 0; x <= 480; x++) {
+        for (int y = 0; y <= 320; y++) {
+            if (gameplayMap->getValueAtGameplayMapHotSpot(1, x, y) == type) {
+                if (minX > x)
+                    minX = x;
+                if (maxX < x)
+                    maxX = x;
+                if (minY > y)
+                    minY = y;
+                if (maxY < y)
+                    maxY = y;
+            }
+        }
+    }
+
     int i = 0;
-    while (i < 100) {
+    while (i < numInitialAgents.at(type)) {
         int posx = rand() % maxX + minX;
         int posy = rand() % maxY + minY;
-        if (gameplayMap->getValueAtGameplayMapHotSpot(posx, posy) == 1 and GameLevel::getInstance()->validatePosition(posx, posy)) {
-            auto a = new Agent(idCounter, 100, posx, posy);
+        if (gameplayMap->getValueAtGameplayMapHotSpot(1, posx, posy) == type and GameLevel::getInstance()->validatePosition(posx, posy)) {
+            auto a = new Agent(idCounter, 100, type, posx, posy);
             a->setAttributes(agentAttributes);
             addAgent(a);
             idCounter++;
@@ -413,7 +466,7 @@ void GameLevel::checkGoals(void)
                 //Check agent at goal zone
                 bool foundAgentAtGoal = false;
                 for (int j = 0; j < agents.size() and foundAgentAtGoal == false; j++) {
-                    if (gameplayMap->getValueAtGameplayMapHotSpot(agents.at(j)->getPosition()->getX(),
+                    if (gameplayMap->getValueAtGameplayMapHotSpot(1, agents.at(j)->getPosition()->getX(),
                                                                   agents.at(j)->getPosition()->getY()) == goals.at(i)->getColorZone()) {
                         foundAgentAtGoal = true;
                         if (goals.at(i)->getMinTime() > timeSteps) {
@@ -460,7 +513,7 @@ bool GameLevel::validatePosition(int posx, int posy)
         return false;
     }
     //Aigua o similar
-    if (gameplayMap->getValueAtGameplayMapHotSpot(posx, posy) == 0) {
+    if (gameplayMap->getValueAtGameplayMapHotSpot(0, posx, posy) == 0) {
         return false;
     }
     //Hi ha un agent

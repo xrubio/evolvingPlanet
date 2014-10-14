@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NUM_LEVEL>2</NUM_LEVEL>
-<NAME_LEVEL>Tutorial</NAME_LEVEL>
+<NAME_LEVEL>Recollection</NAME_LEVEL>
 <FILE_MAP>Level2</FILE_MAP>
-<INITIAL_ZONE>
-    <BOTTOM_LEFT>
-        <X>20</X>
-        <Y>20</Y>
-    </BOTTOM_LEFT>
-    <BOTTOM_RIGHT>
-        <X>40</X>
-        <Y>20</Y>
-    </BOTTOM_RIGHT>
-    <TOP_RIGHT>
-        <X>40</X>
-        <Y>40</Y>
-    </TOP_RIGHT>
-    <TOP_LEFT>
-        <X>20</X>
-        <Y>40</Y>
-    </TOP_LEFT>
-</INITIAL_ZONE>
 <AGENTS>
-    <MAX_AGENTS>1000</MAX_AGENTS>
-    <LIFE>100</LIFE>
+    <AGENT TYPE="0">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>350</MAX_AGENTS>
+    </AGENT>
+    <AGENT TYPE="1">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>350</MAX_AGENTS>
+    </AGENT>
+    <AGENT TYPE="2">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>350</MAX_AGENTS>
+    </AGENT>
 </AGENTS>
 <ATTRIBUTES>
     <ATTRIBUTE NAME="REPRODUCTION">

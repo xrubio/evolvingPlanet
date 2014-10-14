@@ -183,28 +183,8 @@ bool UIGameplayMap::init()
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
     }
 
-    //FIND RECTANGLE
-    int xMenor = 500;
-    int xMajor = 0;
-    int yMenor = 500;
-    int yMajor = 0;
-    for (int x = 0; x <= 480; x++) {
-        for (int y = 0; y <= 320; y++) {
-            if (getValueAtGameplayMapHotSpot(x, y) == 1) {
-                if (xMenor > x)
-                    xMenor = x;
-                if (xMajor < x)
-                    xMajor = x;
-                if (yMenor > y)
-                    yMenor = y;
-                if (yMajor < y)
-                    yMajor = y;
-            }
-        }
-    }
-
     if (GameData::getInstance()->getGameStarted() == false) {
-        GameLevel::getInstance()->createLevel(0, xMenor, xMajor, yMenor, yMajor);
+        GameLevel::getInstance()->createLevel();
     }
     GameData::getInstance()->setGameStarted(true);
 
@@ -555,13 +535,13 @@ void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
     }
 }
 
-int UIGameplayMap::getValueAtGameplayMapHotSpot(int posx, int posy)
+int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, int posx, int posy)
 {
     Point loc(Point(posx, posy));
     //Size visibleSize = Director::getInstance()->getVisibleSize();
     //loc.y = visibleSize.height - loc.y;
     loc.y = 320 - loc.y;
-    return getValueAtGameplayMapHotSpot(loc);
+    return getValueAtGameplayMapHotSpot(rgb, loc);
 }
 
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
@@ -573,19 +553,29 @@ bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
     return selectSpriteForTouch(((UIAreaPower*)powerButtons.at(i))->getArea(), Point(posx, posy));
 }
 
-int UIGameplayMap::getValueAtGameplayMapHotSpot(Point pt)
+int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
 {
-    int retValue = 255;
     int x = 3;
     if (gameplayMapHotSpot->hasAlpha()) {
         x = 4;
     }
     unsigned char* pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
     // You can see/change pixels' RGBA value(0-255) here !
-    unsigned char r = *pixel;
-    retValue = (int)r;
 
-    return retValue;
+    if (rgb == 0) {
+        unsigned char r = *pixel;
+        return (int)r;
+    } else if (rgb == 1) {
+        unsigned char g = *(pixel + 1);
+        return (int)g;
+    } else if (rgb == 2) {
+        unsigned char b = *(pixel + 2);
+        return (int)b;
+    } else if (rgb == 3) {
+        unsigned char a = *(pixel + 3);
+        return (int)a;
+    }
+    return 255;
 }
 
 void UIGameplayMap::initializeAgents(void)

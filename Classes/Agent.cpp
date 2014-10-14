@@ -8,10 +8,11 @@
 
 #include "Agent.h"
 
-Agent::Agent(int i, int lf, int posx, int posy)
+Agent::Agent(int i, int lf, int t, int posx, int posy)
 {
     id = i;
     life = lf;
+    type = t;
     position = new Position(posx, posy);
 }
 
@@ -28,6 +29,16 @@ int Agent::getLife(void)
 void Agent::setLife(int lf)
 {
     life = lf;
+}
+
+int Agent::getType(void)
+{
+    return type;
+}
+
+void Agent::setType(int t)
+{
+    type = t;
 }
 
 Position* Agent::getPosition(void)
