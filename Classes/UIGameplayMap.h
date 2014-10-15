@@ -22,6 +22,10 @@ public:
     static Scene* createScene();
 
     virtual bool init();
+    ~UIGameplayMap()
+    {
+        delete[] m_TextureData;
+    };
 
     void onTouchesBegan(const vector<Touch*>& touches, Event* event);
     void onTouchesMoved(const vector<Touch*>& touches, Event* event);
@@ -61,8 +65,8 @@ private:
 
     bool endGameWindowPainted = false;
 
-    cocos2d::Vector<Touch*> _touches;
-    cocos2d::Point firstTouchLocation;
+    Vector<Touch*> _touches;
+    Point firstTouchLocation;
 
     MenuItem* backButton;
 
@@ -88,6 +92,10 @@ private:
     bool checkPowersClicked(void);
 
     void changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<string>* keys);
+
+    Color4B* m_TextureData = new Color4B[2048 * 1536];
+    Texture2D* m_Texture;
+    Sprite* m_Sprite;
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

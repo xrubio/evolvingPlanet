@@ -16,7 +16,7 @@ bool Reproduce::execute(int indexAgent)
         int probReproduction = agent->getValOfAttribute("REPRODUCTION");
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
 
-        int mobility = agent->getValOfAttribute("MOBILITY") + 6;
+        int mobility = agent->getValOfAttribute("MOBILITY") * 5;
         switch (probReproduction) {
         case 1:
             probReproduction = 20;

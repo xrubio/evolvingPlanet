@@ -37,45 +37,45 @@ bool UIProgressMap::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     //Set background progress map and all its functionalities
-    Sprite* progressMap = Sprite::create("ProgressMapBackground.png");
+    auto progressMap = Sprite::create("ProgressMapBackground.png");
     progressMap->setPosition(Vec2(visibleSize.width / 2 + origin.x,
                                   visibleSize.height / 2 + origin.y));
-    Sprite* progressMap2 = Sprite::create("ProgressMap2Background.png");
+    auto progressMap2 = Sprite::create("ProgressMap2Background.png");
     progressMap2->setPosition(Vec2(visibleSize.width + (visibleSize.width / 2) + origin.x,
                                    visibleSize.height / 2 + origin.y));
     //this->addChild(progressMap, 0);
 
     Vector<MenuItem*> menuButtons;
-    MenuItem* backButton = MenuItemImage::create(
+    auto backButton = MenuItemImage::create(
         "BackButton.png", "BackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
     menuButtons.pushBack(backButton);
 
-    Menu* menu = Menu::createWithArray(menuButtons);
+    auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(Vec2(origin.x + visibleSize.width - (backButton->getContentSize().width / 2),
                            origin.y + (backButton->getContentSize().height / 2)));
     this->addChild(menu, 1);
 
-    MenuItem* level1Button = MenuItemImage::create(
+    auto level1Button = MenuItemImage::create(
         "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level1Button->setPosition(288, 180);
     level1Button->setTag(1);
     Vector<MenuItem*> level1Buttons;
     level1Buttons.pushBack(level1Button);
-    Menu* level1 = Menu::createWithArray(level1Buttons);
+    auto level1 = Menu::createWithArray(level1Buttons);
     level1->setPosition(0, 0);
     progressMap->addChild(level1, 1);
 
-    MenuItem* level2Button = MenuItemImage::create(
+    auto level2Button = MenuItemImage::create(
         "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level2Button->setPosition(688, 980);
     level2Button->setTag(2);
     Vector<MenuItem*> level2Buttons;
     level2Buttons.pushBack(level2Button);
-    Menu* level2 = Menu::createWithArray(level2Buttons);
+    auto level2 = Menu::createWithArray(level2Buttons);
     level2->setPosition(0, 0);
     progressMap2->addChild(level2);
 
-    Size scollFrameSize = Size(visibleSize.width, visibleSize.height);
+    auto scollFrameSize = Size(visibleSize.width, visibleSize.height);
     auto scrollView = ScrollView::create();
     scrollView->setContentSize(Size(visibleSize.width * 2, visibleSize.height));
     scrollView->setBackGroundColor(Color3B(200, 200, 200));
@@ -149,7 +149,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     GameLevel::getInstance()->resetLevel();
     GameData::getInstance()->setGameStarted(false);
 
-    MenuItem* pMenuItem = (MenuItem*)(pSender);
+    auto pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
 
     string filename;

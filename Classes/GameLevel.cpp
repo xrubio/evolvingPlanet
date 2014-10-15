@@ -489,7 +489,7 @@ void GameLevel::checkGoals(void)
                             }
                             if (i == goals.size() - 1) {
                                 //CALCULATE FINAL SCORE
-                                int finalScore;
+                                int finalScore = 0;
                                 int k;
                                 for (k = 0; k < goals.size(); k++) {
                                     finalScore += goals.at(k)->getScore();

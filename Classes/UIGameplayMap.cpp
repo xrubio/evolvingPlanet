@@ -41,8 +41,7 @@ bool UIGameplayMap::init()
 
     //Set background gameplay map and all its functionalities
     gameplayMap = Sprite::create(map + background + ext);
-    gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x,
-                                  visibleSize.height / 2 + origin.y));
+    gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(gameplayMap, 0);
 
     gameplayMapHotSpot = new Image();
@@ -54,6 +53,27 @@ bool UIGameplayMap::init()
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
     GameLevel::getInstance()->setUIGameplayMap(this);
+
+    //INITIALIZE TEXTUREDATA
+    Color4B white;
+    white.r = 255;
+    white.g = 255;
+    white.b = 255;
+    white.a = 0;
+    for (int i = 0; i < 2048 * 1536; i++) {
+        m_TextureData[i] = white; // i is an index running from 0 to w*h-1
+    }
+
+    Size contentSize;
+    contentSize.width = 2048;
+    contentSize.height = 1536;
+
+    m_Texture = new Texture2D;
+    //12582912
+    m_Texture->initWithData(m_TextureData, 2048 * 1536, kCCTexture2DPixelFormat_RGBA8888, 2048, 1536, contentSize);
+    m_Sprite = Sprite::createWithTexture(m_Texture);
+    m_Sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    gameplayMap->addChild(m_Sprite, 1);
 
     Vector<MenuItem*> menuButtons;
     backButton = MenuItemImage::create(
@@ -581,13 +601,31 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
 void UIGameplayMap::initializeAgents(void)
 {
     vector<Agent*> agentsDomain = GameLevel::getInstance()->getAgents();
+    Color4B red;
+    red.r = 255;
+    red.g = 0;
+    red.b = 0;
+    red.a = 255;
     for (int i = 0; i < agentsDomain.size(); i++) {
-        Sprite* s = Sprite::create("Agent.png");
+        /*Sprite* s = Sprite::create("Agent.png");
         s->setColor(Color3B(128, 4, 4));
         s->setOpacity(100);
         s->setPosition(agentsDomain.at(i)->getPosition()->getX() * float(2048 / 480), ((1536 - 1365) / 2) + (agentsDomain.at(i)->getPosition()->getY() * float(1365 / 320)));
-        gameplayMap->addChild(s, 1, agentsDomain.at(i)->getId());
+        gameplayMap->addChild(s, 1, agentsDomain.at(i)->getId());*/
+
+        int x = (int)(agentsDomain.at(i)->getPosition()->getX() * float(2048 / 480));
+        int y = (int)(((1536 - 1365) / 2) + ((agentsDomain.at(i)->getPosition()->getY()) * float(1365 / 320)));
+
+        int pos = x + ((1536 - y) * 2048);
+        int k = -4096;
+        while (k <= 4096) {
+            for (int j = -2; j < 3; j++) {
+                m_TextureData[pos + j + k] = Color4B::BLACK;
+            }
+            k += 2048;
+        }
     }
+    m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
     play = true;
 }
 
@@ -663,7 +701,7 @@ void UIGameplayMap::createEndGameWindow(int mode)
     this->addChild(window, 10);
 }
 
-void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
+/*void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
 {
     map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
     vector<string> keys;
@@ -708,6 +746,38 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
     vector<int> null;
     GameLevel::getInstance()->setDeletedAgents(null);
     GameLevel::getInstance()->setAddedAgents(0);
+}*/
+
+void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
+{
+    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
+    vector<string> keys;
+    int i = 0;
+    for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+        keys.push_back(it->first);
+        i++;
+    }
+
+    unsigned long sizeAgents = agentsDomain.size() - 1;
+    for (int i = 0; i < GameLevel::getInstance()->getAddedAgents(); i++) {
+        int x = (int)(agentsDomain.at(sizeAgents)->getPosition()->getX() * float(2048 / 480));
+        int y = (int)(((1536 - 1365) / 2) + ((agentsDomain.at(sizeAgents)->getPosition()->getY()) * float(1365 / 320)));
+
+        int pos = x + ((1536 - y) * 2048);
+        int k = -4096;
+        while (k <= 4096) {
+            for (int j = -2; j < 3; j++) {
+                m_TextureData[pos + j + k] = Color4B::BLACK;
+            }
+            k += 2048;
+        }
+        sizeAgents--;
+    }
+    m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
+
+    vector<int> null;
+    GameLevel::getInstance()->setDeletedAgents(null);
+    GameLevel::getInstance()->setAddedAgents(0);
 }
 
 void UIGameplayMap::changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<string>* keys)
@@ -735,22 +805,22 @@ void UIGameplayMap::changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<
 
 void UIGameplayMap::update(float delta)
 {
-    if (GameLevel::getInstance()->paint == true) {
-        play = false;
-        updateAgents(GameLevel::getInstance()->getAgents());
-        timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-        play = true;
-    }
-
-    for (int i = 0; i < powerButtons.size(); i++) {
-        powerButtons.at(i)->update();
-    }
-
-    evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
-                                    + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
-
     if (GameLevel::getInstance()->getFinishedGame() > 0 and endGameWindowPainted == false) {
         createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
         endGameWindowPainted = true;
+    } else {
+        if (GameLevel::getInstance()->paint == true) {
+            play = false;
+            updateAgents(GameLevel::getInstance()->getAgents());
+            timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+            play = true;
+        }
+
+        for (int i = 0; i < powerButtons.size(); i++) {
+            powerButtons.at(i)->update();
+        }
+
+        evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
+                                        + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
     }
 }
