@@ -78,6 +78,10 @@ private:
     //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
     int agentColor = 0;
 
+    Color4B* m_TextureData = new Color4B[2048 * 1536];
+    Texture2D* m_Texture;
+    Sprite* m_Sprite;
+
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
@@ -91,11 +95,8 @@ private:
     void createEndGameWindow(int mode);
     bool checkPowersClicked(void);
 
-    void changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<string>* keys);
-
-    Color4B* m_TextureData = new Color4B[2048 * 1536];
-    Texture2D* m_Texture;
-    Sprite* m_Sprite;
+    // 0 = square
+    void drawAgent(Point pos, Color4B colour, int geometry = 0);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

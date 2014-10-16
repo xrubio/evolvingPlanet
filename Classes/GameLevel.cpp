@@ -217,19 +217,19 @@ void GameLevel::setAddedAgents(int i)
     addedAgents = i;
 }
 
-vector<int> GameLevel::getDeletedAgents(void)
+vector<Point> GameLevel::getDeletedAgents(void)
 {
     return deletedAgents;
 }
 
-void GameLevel::setDeletedAgents(vector<int> v)
+void GameLevel::setDeletedAgents(vector<Point> v)
 {
     deletedAgents.swap(v);
 }
 
-void GameLevel::addDeletedAgent(int id)
+void GameLevel::addDeletedAgent(Point p)
 {
-    deletedAgents.push_back(id);
+    deletedAgents.push_back(p);
 }
 
 void GameLevel::deleteDeletedAgent(int i)

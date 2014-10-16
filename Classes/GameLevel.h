@@ -17,6 +17,7 @@
 #include "Act.h"
 #include "Power.h"
 #include "Goal.h"
+#include "cocos2d.h"
 
 class UIGameplayMap;
 
@@ -34,12 +35,10 @@ public:
     void setMaxAgents(vector<int> max);
     int getMaxAgent(int type);
     void setMaxAgent(int type, int max);
-
     vector<int> getNumInitialAgents(void);
     void setNumInitialAgents(vector<int> ini);
     int getNumInitialAgent(int type);
     void setNumInitialAgent(int type, int ini);
-
     double getCurrentTime(void);
     void setCurrentTime(double time);
     int getNumLevel(void);
@@ -66,10 +65,10 @@ public:
     void deleteGoal(int i);
     int getAddedAgents(void);
     void setAddedAgents(int i);
-    vector<int> getDeletedAgents(void);
-    void setDeletedAgents(vector<int> v);
-    void addDeletedAgent(int id);
-    void deleteDeletedAgent(int id);
+    vector<cocos2d::Point> getDeletedAgents(void);
+    void setDeletedAgents(vector<cocos2d::Point> v);
+    void addDeletedAgent(cocos2d::Point p);
+    void deleteDeletedAgent(int i);
     int getIdCounter(void);
     void setIdCounter(int count);
     int getFinishedGame(void);
@@ -114,7 +113,7 @@ private:
     Agent* agentsMap[480][320];
 
     int addedAgents = 0;
-    vector<int> deletedAgents;
+    vector<cocos2d::Point> deletedAgents;
     int idCounter = 0;
 
     int timeSteps = 0;

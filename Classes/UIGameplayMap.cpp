@@ -601,29 +601,10 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
 void UIGameplayMap::initializeAgents(void)
 {
     vector<Agent*> agentsDomain = GameLevel::getInstance()->getAgents();
-    Color4B red;
-    red.r = 255;
-    red.g = 0;
-    red.b = 0;
-    red.a = 255;
     for (int i = 0; i < agentsDomain.size(); i++) {
-        /*Sprite* s = Sprite::create("Agent.png");
-        s->setColor(Color3B(128, 4, 4));
-        s->setOpacity(100);
-        s->setPosition(agentsDomain.at(i)->getPosition()->getX() * float(2048 / 480), ((1536 - 1365) / 2) + (agentsDomain.at(i)->getPosition()->getY() * float(1365 / 320)));
-        gameplayMap->addChild(s, 1, agentsDomain.at(i)->getId());*/
-
-        int x = (int)(agentsDomain.at(i)->getPosition()->getX() * float(2048 / 480));
-        int y = (int)(((1536 - 1365) / 2) + ((agentsDomain.at(i)->getPosition()->getY()) * float(1365 / 320)));
-
-        int pos = x + ((1536 - y) * 2048);
-        int k = -4096;
-        while (k <= 4096) {
-            for (int j = -2; j < 3; j++) {
-                m_TextureData[pos + j + k] = Color4B::BLACK;
-            }
-            k += 2048;
-        }
+        Color4B color = Color4B(255, 4, 4, agentsDomain.at(i)->getLife() * (255 / 100));
+        drawAgent(Point(agentsDomain.at(i)->getPosition()->getX(), agentsDomain.at(i)->getPosition()->getY()),
+                  color);
     }
     m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
     play = true;
@@ -701,53 +682,6 @@ void UIGameplayMap::createEndGameWindow(int mode)
     this->addChild(window, 10);
 }
 
-/*void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
-{
-    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
-    vector<string> keys;
-    int i = 0;
-    for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
-        keys.push_back(it->first);
-        i++;
-    }
-
-    for (int i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++) {
-        gameplayMap->removeChildByTag(GameLevel::getInstance()->getDeletedAgents().at(i));
-    }
-
-    Vector<Node*> ags = gameplayMap->getChildren();
-    for (int i = 0; i < ags.size(); i++) {
-        Sprite* s = (Sprite*)ags.at(i);
-        int id = ags.at(i)->getTag();
-        bool found = false;
-        int j = 0;
-        while (j < agentsDomain.size() and found == false) {
-            if (agentsDomain.at(j)->getId() != id) {
-                j++;
-            } else {
-                found = true;
-            }
-        }
-        if (found == true) {
-            changeAgentColourAndOpacity(s, agentsDomain.at(j), &keys);
-        }
-    }
-
-    unsigned long sizeAgents = agentsDomain.size() - 1;
-    for (int i = 0; i < GameLevel::getInstance()->getAddedAgents(); i++) {
-        Sprite* s = Sprite::create("Agent.png");
-        s->setPosition((float)agentsDomain.at(sizeAgents)->getPosition()->getX() * float(2048.0 / 480.0),
-                       ((1536 - 1365) / 2) + ((float)agentsDomain.at(sizeAgents)->getPosition()->getY() * float(1365.0 / 320.0)));
-        changeAgentColourAndOpacity(s, agentsDomain.at(sizeAgents), &keys);
-        gameplayMap->addChild(s, 1, agentsDomain.at(sizeAgents)->getId());
-        sizeAgents--;
-    }
-
-    vector<int> null;
-    GameLevel::getInstance()->setDeletedAgents(null);
-    GameLevel::getInstance()->setAddedAgents(0);
-}*/
-
 void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
 {
     map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
@@ -758,47 +692,56 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
         i++;
     }
 
-    unsigned long sizeAgents = agentsDomain.size() - 1;
-    for (int i = 0; i < GameLevel::getInstance()->getAddedAgents(); i++) {
-        int x = (int)(agentsDomain.at(sizeAgents)->getPosition()->getX() * float(2048 / 480));
-        int y = (int)(((1536 - 1365) / 2) + ((agentsDomain.at(sizeAgents)->getPosition()->getY()) * float(1365 / 320)));
-
-        int pos = x + ((1536 - y) * 2048);
-        int k = -4096;
-        while (k <= 4096) {
-            for (int j = -2; j < 3; j++) {
-                m_TextureData[pos + j + k] = Color4B::BLACK;
-            }
-            k += 2048;
-        }
-        sizeAgents--;
+    Color4B white = Color4B::WHITE;
+    white.a = 0;
+    for (int i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++) {
+        drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
     }
+
+    for (int i = 0; i < agentsDomain.size(); i++) {
+        Color4B color;
+        switch (agentColor) {
+        case 1:
+            color = Color4B(212, 105, 11, agentsDomain.at(i)->getValOfAttribute(keys.at(0)) * (255 / 10));
+            break;
+        case 2:
+            color = Color4B(5, 5, 117, agentsDomain.at(i)->getValOfAttribute(keys.at(1)) * (255 / 10));
+            break;
+        case 3:
+            color = Color4B(115, 8, 214, agentsDomain.at(i)->getValOfAttribute(keys.at(2)) * (255 / 10));
+            break;
+        default:
+            color = Color4B(255, 4, 4, agentsDomain.at(i)->getLife() * (255 / 100));
+            break;
+        }
+
+        drawAgent(Point(agentsDomain.at(i)->getPosition()->getX(), agentsDomain.at(i)->getPosition()->getY()),
+                  color);
+    }
+
     m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
 
     vector<int> null;
-    GameLevel::getInstance()->setDeletedAgents(null);
+    vector<Point> p;
+    GameLevel::getInstance()->setDeletedAgents(p);
     GameLevel::getInstance()->setAddedAgents(0);
 }
 
-void UIGameplayMap::changeAgentColourAndOpacity(Sprite* s, Agent* agent, vector<string>* keys)
+void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 {
-    switch (agentColor) {
-    case 1:
-        s->setColor(Color3B(212, 105, 11));
-        s->setOpacity(agent->getValOfAttribute(keys->at(0)) * (255 / 10));
-        break;
-    case 2:
-        s->setColor(Color3B(5, 5, 117));
-        s->setOpacity(agent->getValOfAttribute(keys->at(1)) * (255 / 10));
-        break;
-    case 3:
-        s->setColor(Color3B(115, 8, 214));
-        s->setOpacity(agent->getValOfAttribute(keys->at(2)) * (255 / 10));
-        break;
+    int x = (int)(pos.x * float(2048 / 480));
+    int y = (int)(((1536 - 1365) / 2) + ((pos.y) * float(1365 / 320)));
+    int position = x + ((1536 - y) * 2048);
 
+    switch (geometry) {
     default:
-        s->setColor(Color3B(128, 4, 4));
-        s->setOpacity(agent->getLife() * (255 / 100));
+        int k = -4096;
+        while (k <= 4096) {
+            for (int j = -2; j < 3; j++) {
+                m_TextureData[position + j + k] = colour;
+            }
+            k += 2048;
+        }
         break;
     }
 }

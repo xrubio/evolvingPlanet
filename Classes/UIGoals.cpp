@@ -27,12 +27,11 @@ bool UIGoals::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Label* title = Label::createWithSystemFont(LocalizedString::create("GOALS")->getCString(), "Arial Rounded MT Bold", 180);
+    auto title = Label::createWithSystemFont(LocalizedString::create("GOALS")->getCString(), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - ((visibleSize.height / 8))));
     //this->addChild(title, 1);
 
-    Vector<cocos2d::MenuItem*> menuButtons;
     MenuItem* nextButton;
     if (GameData::getInstance()->getGameStarted()) {
         nextButton = MenuItemImage::create(
@@ -42,19 +41,18 @@ bool UIGoals::init()
         nextButton = MenuItemImage::create(
             "NextButton.png", "NextButtonPressed.png", CC_CALLBACK_1(UIGoals::menuNextCallback, this));
     }
-    menuButtons.pushBack(nextButton);
 
-    Menu* menu = cocos2d::Menu::createWithArray(menuButtons);
+    auto menu = cocos2d::Menu::createWithItem(nextButton);
     menu->setPosition(Vec2(origin.x + visibleSize.width - (nextButton->getContentSize().width / 2),
                            origin.y + (nextButton->getContentSize().height / 2)));
     //this->addChild(menu, 1);
 
-    PageView* pageView = PageView::create();
+    auto pageView = PageView::create();
     pageView->setTouchEnabled(true);
     pageView->setSize(Size(visibleSize.width, visibleSize.height));
     pageView->setPosition(Point(0, 0));
 
-    Layout* layout = Layout::create();
+    auto layout = Layout::create();
     layout->setSize(Size(visibleSize.width, visibleSize.height));
 
     layout->addChild(title);
@@ -63,7 +61,7 @@ bool UIGoals::init()
     pageView->addPage(layout);
 
     auto scene = UIAgents::createScene();
-    Layout* layout2 = Layout::create();
+    auto layout2 = Layout::create();
     layout2->setSize(Size(visibleSize.width, visibleSize.height));
     layout2->addChild(scene);
     pageView->addPage(layout2);
@@ -91,7 +89,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Sprite* goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
+    auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
     goalMap->setScale(0.5);
     goalMap->setPosition(Vec2(origin.x + visibleSize.width / 4, origin.y + visibleSize.height / 2));
     layout->addChild(goalMap, 1);

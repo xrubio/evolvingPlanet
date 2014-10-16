@@ -26,18 +26,15 @@ bool UICredits::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    Label* title = Label::createWithSystemFont(LocalizedString::create("CREDITS")->getCString(), "Arial Rounded MT Bold", 180);
+    auto title = Label::createWithSystemFont(LocalizedString::create("CREDITS")->getCString(), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - ((visibleSize.height / 8))));
     this->addChild(title, 1);
 
-    Vector<cocos2d::MenuItem*> menuButtons;
-
-    MenuItem* backButton = MenuItemImage::create(
+    auto backButton = MenuItemImage::create(
         "BackButton.png", "BackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
-    menuButtons.pushBack(backButton);
 
-    Menu* menu = cocos2d::Menu::createWithArray(menuButtons);
+    auto menu = cocos2d::Menu::createWithItem(backButton);
     menu->setPosition(Vec2(origin.x + visibleSize.width - (backButton->getContentSize().width / 2),
                            origin.y + (backButton->getContentSize().height / 2)));
     this->addChild(menu, 1);

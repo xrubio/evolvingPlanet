@@ -72,7 +72,7 @@ bool Die::execute(int indexAgent)
     agent->setLife(agent->getLife() - harm);
 
     if (agent->getLife() <= 0) {
-        GameLevel::getInstance()->addDeletedAgent(agent->getId());
+        GameLevel::getInstance()->addDeletedAgent(Point(agent->getPosition()->getX(), agent->getPosition()->getY()));
         GameLevel::getInstance()->deleteAgent(indexAgent);
         return true;
     }
