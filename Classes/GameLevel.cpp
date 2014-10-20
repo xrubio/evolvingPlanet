@@ -433,7 +433,7 @@ void GameLevel::act(void)
 
     int dieAgentsSize = (int)agents.size();
     for (int i = dieAgentsSize - 1; i >= 0; i--) {
-        for (int j = 0; j < actions.size(); j++) {
+        for (int j = 0; j < actions.size() - 1; j++) {
             actions.at(j)->execute(i);
         }
         //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
@@ -442,6 +442,9 @@ void GameLevel::act(void)
                 goals.at(j)->checkGoal(i);
             }
         }
+
+        //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
+        actions.at(actions.size() - 1)->execute(i);
 
         //ALL GOALS COMPLETED ??
         bool failed = false;
