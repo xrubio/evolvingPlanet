@@ -13,6 +13,7 @@
 #include "MultiplierPower.h"
 #include "AreaPower.h"
 #include "GameData.h"
+#include "ExpansionGoal.h"
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
@@ -333,7 +334,7 @@ void GameLevel::playLevel(void)
                     evolutionPoints++;
                 }
                 paint = true;
-                checkGoals();
+                //checkGoals();
             }
         }
     }
@@ -430,22 +431,36 @@ void GameLevel::act(void)
     deletedAgents.clear();
     addedAgents = 0;
 
-    //int index = 0;
     int dieAgentsSize = (int)agents.size();
     for (int i = dieAgentsSize - 1; i >= 0; i--) {
-        //Die
-        //Si ha fet modificacions retorna true (en aquest cas, esborrar un agent, per tant no s'ha de reproduir)
-        /*if (actions.at(0)->execute(i) == false) {
-            //Reproduce
-            //Retorna true si s'ha reproduit
-            actions.at(1)->execute(i);
-        }*/
-        //index++;
+        for (int j = 0; j < actions.size(); j++) {
+            actions.at(j)->execute(i);
+        }
+        //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
+        for (int j = 0; j < goals.size(); j++) {
+            if (goals.at(j)->getCompleted() == false) {
+                goals.at(j)->checkGoal(i);
+            }
+        }
 
-        actions.at(0)->execute(i);
-        actions.at(1)->execute(i);
+        //ALL GOALS COMPLETED ??
+        bool failed = false;
+        int finalScore = 0;
+        for (int j = 0; j < goals.size() and failed == false; j++) {
+            if (goals.at(j)->getCompleted() == false) {
+                failed = true;
+            } else {
+                finalScore += goals.at(j)->getScore();
+            }
+        }
+        if (failed == false and goals.size() > 0) {
+            cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
+            GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
+            finishedGame = 1;
+        }
     }
-    if (agents.size() == 0) {
+
+    if (finishedGame == 0 and agents.size() == 0) {
         finishedGame = 3;
     }
 }
@@ -466,8 +481,9 @@ void GameLevel::checkGoals(void)
                 //Check agent at goal zone
                 bool foundAgentAtGoal = false;
                 for (int j = 0; j < agents.size() and foundAgentAtGoal == false; j++) {
+                    int colorZone = ((ExpansionGoal*)goals.at(i))->getColorZone();
                     if (gameplayMap->getValueAtGameplayMapHotSpot(1, agents.at(j)->getPosition()->getX(),
-                                                                  agents.at(j)->getPosition()->getY()) == goals.at(i)->getColorZone()) {
+                                                                  agents.at(j)->getPosition()->getY()) == colorZone) {
                         foundAgentAtGoal = true;
                         if (goals.at(i)->getMinTime() > timeSteps) {
                             failed = true;

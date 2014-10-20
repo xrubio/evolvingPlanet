@@ -8,14 +8,24 @@
 
 #include "Goal.h"
 
-Goal::Goal(int min, int max, int average, int des2, int des3, int color)
+Goal::Goal(int agType, int min, int max, int average, int des2, int des3)
 {
+    agentType = agType;
     minTime = min;
     maxTime = max;
     averageTime = average;
     desviation2Star = des2;
     desviation3Star = des3;
-    colorZone = color;
+}
+
+int Goal::getAgentType(void)
+{
+    return agentType;
+}
+
+void Goal::setAgentType(int agType)
+{
+    agentType = agType;
 }
 
 int Goal::getMinTime(void)
@@ -66,16 +76,6 @@ int Goal::getDesviation3Star(void)
 void Goal::setDesviation3Star(int des)
 {
     desviation3Star = des;
-}
-
-int Goal::getColorZone(void)
-{
-    return colorZone;
-}
-
-void Goal::setColorZone(int color)
-{
-    colorZone = color;
 }
 
 bool Goal::getCompleted(void)

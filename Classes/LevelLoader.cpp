@@ -13,6 +13,7 @@
 #include "MultiplierPower.h"
 #include "AreaPower.h"
 #include "UIGameplayMap.h"
+#include "ExpansionGoal.h"
 
 #include "cocos2d.h"
 #include <iostream>
@@ -79,17 +80,17 @@ void LevelLoader::loadXmlFile(string filename)
 
     //GOALS
     int i = 0;
-    string checkpoint = "CHECKPOINT_";
-    xml_node goals = doc.child("GOALS").child((checkpoint + to_string(i + 1)).c_str());
+    xml_node goals = doc.child("GOALS").child("GOAL");
     while (goals != nullptr) {
+        int agentType = atoi(goals.child("AGENT_TYPE").child_value());
         int minTime = atoi(goals.child("MIN").child_value());
         int maxTime = atoi(goals.child("MAX").child_value());
         int averageTime = atoi(goals.child("AVERAGE").child_value());
         int desviation2Star = atoi(goals.child("DESVIATION_2_STAR").child_value());
         int desviation3Star = atoi(goals.child("DESVIATION_3_STAR").child_value());
         int color = atoi(goals.child("COLOR_ZONE").child_value());
-        GameLevel::getInstance()->addGoal(new Goal(minTime, maxTime, averageTime, desviation2Star, desviation3Star, color));
+        GameLevel::getInstance()->addGoal(new ExpansionGoal(minTime, maxTime, averageTime, desviation2Star, desviation3Star, color));
         i++;
-        goals = goals.next_sibling((checkpoint + to_string(i + 1)).c_str());
+        goals = goals.next_sibling("GOAL");
     }
 }
