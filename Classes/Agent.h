@@ -22,6 +22,7 @@ public:
     Agent(int i, int lf, int t, int posx, int posy);
     Agent(Agent const&) {};
     Agent& operator=(Agent const&);
+    ~Agent() {};
 
     int getId(void);
     int getLife(void);

@@ -44,8 +44,8 @@ void GameData::setLevelScore(int level, int score)
     if (levelsCompleted.size() == 0) {
         levelsCompleted.push_back(0);
     }
-    if (level >= levelsCompleted.size()) {
-        levelsCompleted.insert(levelsCompleted.begin() + level, score);
+    if (level == levelsCompleted.size()) {
+        levelsCompleted.push_back(score);
     } else {
         levelsCompleted.insert(levelsCompleted.begin() + level, score);
         levelsCompleted.erase(levelsCompleted.begin() + level + 1);

@@ -9,9 +9,9 @@
 #include "Reproduce.h"
 #include "UIGameplayMap.h"
 
-bool Reproduce::execute(int indexAgent)
+bool Reproduce::execute(int type, int indexAgent)
 {
-    Agent* agent = GameLevel::getInstance()->getAgents().at(indexAgent);
+    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     if (GameLevel::getInstance()->getAgents().size() < GameLevel::getInstance()->getMaxAgent(agent->getType())) {
         int probReproduction = agent->getValOfAttribute("REPRODUCTION");
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio

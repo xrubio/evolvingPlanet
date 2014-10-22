@@ -33,7 +33,7 @@ public:
     int getScore(void);
     void setScore(int s);
 
-    virtual void checkGoal(int indexAgent = 0) = 0;
+    virtual void checkGoal(int type = 0, int indexAgent = 0) = 0;
 
 protected:
     int agentType;

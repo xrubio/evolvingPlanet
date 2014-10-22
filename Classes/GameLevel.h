@@ -51,10 +51,10 @@ public:
     void setPowers(vector<Power*> p);
     void addPower(Power* p);
     void deletePower(int i);
-    vector<Agent*> getAgents(void);
-    void setAgents(vector<Agent*> ags);
+    vector<vector<Agent*> > getAgents(void);
+    void setAgents(vector<vector<Agent*> > ags);
     void addAgent(Agent* ag);
-    void deleteAgent(int i);
+    void deleteAgent(int type, int i);
     vector<Act*> getActions(void);
     void setActions(vector<Act*> a);
     void addAction(Act* act);
@@ -107,7 +107,7 @@ private:
     map<string, int> agentAttributes;
     map<string, int> attributesCost;
     vector<Power*> powers;
-    vector<Agent*> agents;
+    vector<vector<Agent*> > agents;
     vector<Act*> actions;
     vector<Goal*> goals;
     Agent* agentsMap[480][320];
@@ -132,7 +132,6 @@ private:
 
     void generateInitialAgents(int type);
     void act(void);
-    void checkGoals(void);
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

@@ -9,10 +9,10 @@
 #include "Die.h"
 #include "UIGameplayMap.h"
 
-bool Die::execute(int indexAgent)
+bool Die::execute(int type, int indexAgent)
 {
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
-    Agent* agent = GameLevel::getInstance()->getAgents().at(indexAgent);
+    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     int harm = gameplayMap->getValueAtGameplayMapHotSpot(0, agent->getPosition()->getX(), agent->getPosition()->getY());
 
@@ -73,7 +73,7 @@ bool Die::execute(int indexAgent)
 
     if (agent->getLife() <= 0) {
         GameLevel::getInstance()->addDeletedAgent(Point(agent->getPosition()->getX(), agent->getPosition()->getY()));
-        GameLevel::getInstance()->deleteAgent(indexAgent);
+        GameLevel::getInstance()->deleteAgent(agent->getType(), indexAgent);
         return true;
     }
     return false;

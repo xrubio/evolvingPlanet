@@ -18,7 +18,7 @@ public:
     Reproduce(Reproduce const&) {};
     Reproduce& operator=(Reproduce const&);
 
-    bool execute(int indexAgent);
+    bool execute(int type, int indexAgent);
 };
 
 #endif /* defined(__simulplay__Reproduce__) */

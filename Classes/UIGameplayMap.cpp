@@ -14,6 +14,7 @@
 #include "SimpleAudioEngine.h"
 #include "UIMultiplierPower.h"
 #include "UIAreaPower.h"
+#include "CollectionGoal.h"
 
 Scene* UIGameplayMap::createScene()
 {
@@ -105,6 +106,24 @@ bool UIGameplayMap::init()
                                       visibleSize.height - (agentsButton->getContentSize().height / 2));
     this->addChild(evolutionPointsLabel, 1);
 
+    //FER DINAMIC
+    if (GameLevel::getInstance()->getNumLevel() == 2) {
+        collect1PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(0))->getCurrentAmount()),
+                                                          "Arial", 65);
+        collect1PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3,
+                                         visibleSize.height - (agentsButton->getContentSize().height));
+        this->addChild(collect1PointsLabel, 1);
+        collect2PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(1))->getCurrentAmount()),
+                                                          "Arial", 65);
+        collect2PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3 + 400,
+                                         visibleSize.height - (agentsButton->getContentSize().height));
+        this->addChild(collect2PointsLabel, 1);
+        collect3PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(2))->getCurrentAmount()),
+                                                          "Arial", 65);
+        collect3PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3 + 800,
+                                         visibleSize.height - (agentsButton->getContentSize().height));
+        this->addChild(collect3PointsLabel, 1);
+    }
     Vector<MenuItem*> timeButtons;
     MenuItem* fastForwardButton = MenuItemImage::create(
         "FastForwardButton.png", "FastForwardButtonPressed.png", "FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
@@ -600,11 +619,13 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
 
 void UIGameplayMap::initializeAgents(void)
 {
-    vector<Agent*> agentsDomain = GameLevel::getInstance()->getAgents();
+    vector<vector<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
     for (int i = 0; i < agentsDomain.size(); i++) {
-        Color4B color = Color4B(255, 4, 4, agentsDomain.at(i)->getLife() * (255 / 100));
-        drawAgent(Point(agentsDomain.at(i)->getPosition()->getX(), agentsDomain.at(i)->getPosition()->getY()),
-                  color);
+        for (int j = 0; j < agentsDomain.at(i).size(); j++) {
+            Color4B color = Color4B(255, 4, 4, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+            drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
+                      color);
+        }
     }
     m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
     play = true;
@@ -682,8 +703,9 @@ void UIGameplayMap::createEndGameWindow(int mode)
     this->addChild(window, 10);
 }
 
-void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
+void UIGameplayMap::updateAgents(void)
 {
+    vector<vector<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
     map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
     vector<string> keys;
     int i = 0;
@@ -699,24 +721,26 @@ void UIGameplayMap::updateAgents(vector<Agent*> agentsDomain)
     }
 
     for (int i = 0; i < agentsDomain.size(); i++) {
-        Color4B color;
-        switch (agentColor) {
-        case 1:
-            color = Color4B(212, 105, 11, agentsDomain.at(i)->getValOfAttribute(keys.at(0)) * (255 / 10));
-            break;
-        case 2:
-            color = Color4B(5, 5, 117, agentsDomain.at(i)->getValOfAttribute(keys.at(1)) * (255 / 10));
-            break;
-        case 3:
-            color = Color4B(115, 8, 214, agentsDomain.at(i)->getValOfAttribute(keys.at(2)) * (255 / 10));
-            break;
-        default:
-            color = Color4B(255, 4, 4, agentsDomain.at(i)->getLife() * (255 / 100));
-            break;
-        }
+        for (int j = 0; j < agentsDomain.at(i).size(); j++) {
+            Color4B color;
+            switch (agentColor) {
+            case 1:
+                color = Color4B(212, 105, 11, agentsDomain.at(i).at(j)->getValOfAttribute(keys.at(0)) * (255 / 10));
+                break;
+            case 2:
+                color = Color4B(5, 5, 117, agentsDomain.at(i).at(j)->getValOfAttribute(keys.at(1)) * (255 / 10));
+                break;
+            case 3:
+                color = Color4B(115, 8, 214, agentsDomain.at(i).at(j)->getValOfAttribute(keys.at(2)) * (255 / 10));
+                break;
+            default:
+                color = Color4B(255, 4, 4, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+                break;
+            }
 
-        drawAgent(Point(agentsDomain.at(i)->getPosition()->getX(), agentsDomain.at(i)->getPosition()->getY()),
-                  color);
+            drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
+                      color);
+        }
     }
 
     m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
@@ -754,7 +778,7 @@ void UIGameplayMap::update(float delta)
     } else {
         if (GameLevel::getInstance()->paint == true) {
             play = false;
-            updateAgents(GameLevel::getInstance()->getAgents());
+            updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
             play = true;
         }
@@ -765,5 +789,11 @@ void UIGameplayMap::update(float delta)
 
         evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
                                         + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
+
+        if (GameLevel::getInstance()->getNumLevel() == 2) {
+            collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(0))->getCurrentAmount()));
+            collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(1))->getCurrentAmount()));
+            collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(2))->getCurrentAmount()));
+        }
     }
 }

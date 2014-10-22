@@ -32,6 +32,7 @@ bool UIProgressMap::init()
     //Alliberar memòria
     SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
     Director::getInstance()->getTextureCache()->removeUnusedTextures();
+    GameLevel::getInstance()->resetLevel();
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -146,7 +147,6 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 
 void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
-    GameLevel::getInstance()->resetLevel();
     GameData::getInstance()->setGameStarted(false);
 
     auto pMenuItem = (MenuItem*)(pSender);

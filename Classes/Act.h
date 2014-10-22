@@ -20,7 +20,7 @@ public:
     Act(Act const&) {};
     Act& operator=(Act const&);
 
-    virtual bool execute(int indexAgent = 0) = 0;
+    virtual bool execute(int type = 0, int indexAgent = 0) = 0;
 };
 
 #endif /* defined(__simulplay__Act__) */

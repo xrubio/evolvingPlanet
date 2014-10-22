@@ -18,7 +18,7 @@ public:
     Die(Die const&) {};
     Die& operator=(Die const&);
 
-    bool execute(int indexAgent);
+    bool execute(int type, int indexAgent);
 };
 
 #endif /* defined(__simulplay__Die__) */

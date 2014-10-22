@@ -43,7 +43,7 @@ public:
 
     int getValueAtGameplayMapHotSpot(int rgb, int posx, int posy);
     bool isInBoostResistanceArea(int posx, int posy);
-    void updateAgents(vector<Agent*> agentsDomain);
+    void updateAgents(void);
     virtual void update(float delta);
     bool selectSpriteForTouch(Sprite* sprite, Point p);
 
@@ -72,6 +72,9 @@ private:
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
+    Label* collect1PointsLabel;
+    Label* collect2PointsLabel;
+    Label* collect3PointsLabel;
 
     vector<UIPower*> powerButtons;
 

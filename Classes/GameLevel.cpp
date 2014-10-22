@@ -146,26 +146,30 @@ void GameLevel::deletePower(int i)
     powers.erase(powers.begin() + i);
 }
 
-vector<Agent*> GameLevel::getAgents(void)
+vector<vector<Agent*> > GameLevel::getAgents(void)
 {
     return agents;
 }
 
-void GameLevel::setAgents(vector<Agent*> ags)
+void GameLevel::setAgents(vector<vector<Agent*> > ags)
 {
     agents = ags;
 }
 
 void GameLevel::addAgent(Agent* ag)
 {
-    agents.push_back(ag);
+    while (agents.size() <= ag->getType()) {
+        vector<Agent*> v;
+        agents.push_back(v);
+    }
+    agents.at(ag->getType()).push_back(ag);
     agentsMap[ag->getPosition()->getX()][ag->getPosition()->getY()] = ag;
 }
 
-void GameLevel::deleteAgent(int i)
+void GameLevel::deleteAgent(int type, int i)
 {
-    delete agentsMap[agents.at(i)->getPosition()->getX()][agents.at(i)->getPosition()->getY()]; // = nullptr;
-    agents.erase(agents.begin() + i);
+    delete agentsMap[agents.at(type).at(i)->getPosition()->getX()][agents.at(type).at(i)->getPosition()->getY()]; // = nullptr;
+    agents.at(type).erase(agents.at(type).begin() + i);
 }
 
 vector<Act*> GameLevel::getActions(void)
@@ -334,7 +338,6 @@ void GameLevel::playLevel(void)
                     evolutionPoints++;
                 }
                 paint = true;
-                //checkGoals();
             }
         }
     }
@@ -347,9 +350,11 @@ void GameLevel::resetLevel(void)
     numLevel = 0;
     agentAttributes.clear();
     powers.clear();
-    for (int i = 0; i < agents.size(); i++) {
-        delete agents.at(i);
-    }
+    /*for (int i = 0; i < agents.size(); i++) {
+        for (int j = 0; j < agents.at(i).size(); j++) {
+            delete agents.at(i).at(j);
+        }
+    }*/
     agents.clear();
     addedAgents = 0;
     deletedAgents.clear();
@@ -359,6 +364,12 @@ void GameLevel::resetLevel(void)
     numInitialAgents.clear();
 
     actions.clear();
+    goals.clear();
+    for (int i = 0; i < 480; i++) {
+        for (int j = 0; j < 320; j++) {
+            agentsMap[i][j] = nullptr;
+        }
+    }
 
     timeSteps = 0;
     timeSpeed = 2.5;
@@ -431,97 +442,42 @@ void GameLevel::act(void)
     deletedAgents.clear();
     addedAgents = 0;
 
-    int dieAgentsSize = (int)agents.size();
-    for (int i = dieAgentsSize - 1; i >= 0; i--) {
-        for (int j = 0; j < actions.size() - 1; j++) {
-            actions.at(j)->execute(i);
-        }
-        //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
-        for (int j = 0; j < goals.size(); j++) {
-            if (goals.at(j)->getCompleted() == false) {
-                goals.at(j)->checkGoal(i);
+    for (int k = 0; k < agents.size(); k++) {
+        int dieAgentsSize = (int)agents.at(k).size();
+        for (int i = dieAgentsSize - 1; i >= 0; i--) {
+            for (int j = 0; j < actions.size() - 1; j++) {
+                actions.at(j)->execute(k, i);
             }
-        }
-
-        //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
-        actions.at(actions.size() - 1)->execute(i);
-
-        //ALL GOALS COMPLETED ??
-        bool failed = false;
-        int finalScore = 0;
-        for (int j = 0; j < goals.size() and failed == false; j++) {
-            if (goals.at(j)->getCompleted() == false) {
-                failed = true;
-            } else {
-                finalScore += goals.at(j)->getScore();
+            //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
+            for (int j = 0; j < goals.size(); j++) {
+                if (goals.at(j)->getCompleted() == false) {
+                    goals.at(j)->checkGoal(k, i);
+                }
             }
-        }
-        if (failed == false and goals.size() > 0) {
-            cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
-            GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
-            finishedGame = 1;
+
+            //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
+            actions.at(actions.size() - 1)->execute(k, i);
+
+            //ALL GOALS COMPLETED ??
+            bool failed = false;
+            int finalScore = 0;
+            for (int j = 0; j < goals.size() and failed == false; j++) {
+                if (goals.at(j)->getCompleted() == false) {
+                    failed = true;
+                } else {
+                    finalScore += goals.at(j)->getScore();
+                }
+            }
+            if (failed == false and goals.size() > 0) {
+                cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
+                GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
+                finishedGame = 1;
+            }
         }
     }
 
     if (finishedGame == 0 and agents.size() == 0) {
         finishedGame = 3;
-    }
-}
-
-void GameLevel::checkGoals(void)
-{
-    bool failed = false;
-    //bool timeNotReachedYet = false;
-    for (int i = 0; i < goals.size() and failed == false; i++) {
-        /*if (goals.at(i)->getMinTime() > timeSteps) {
-            timeNotReachedYet = true;
-        } else*/
-        if (goals.at(i)->getCompleted() == false) {
-            if (timeSteps > goals.at(i)->getMaxTime()) {
-                failed = true;
-                finishedGame = 2;
-            } else {
-                //Check agent at goal zone
-                bool foundAgentAtGoal = false;
-                for (int j = 0; j < agents.size() and foundAgentAtGoal == false; j++) {
-                    int colorZone = ((ExpansionGoal*)goals.at(i))->getColorZone();
-                    if (gameplayMap->getValueAtGameplayMapHotSpot(1, agents.at(j)->getPosition()->getX(),
-                                                                  agents.at(j)->getPosition()->getY()) == colorZone) {
-                        foundAgentAtGoal = true;
-                        if (goals.at(i)->getMinTime() > timeSteps) {
-                            failed = true;
-                            finishedGame = 2;
-                        } else {
-                            goals.at(i)->setCompleted(true);
-                            int averageTime = goals.at(i)->getAverageTime();
-                            if (timeSteps >= averageTime - goals.at(i)->getDesviation2Star() and timeSteps <= averageTime + goals.at(i)->getDesviation2Star()) {
-                                if (timeSteps >= averageTime - goals.at(i)->getDesviation3Star() and timeSteps <= averageTime + goals.at(i)->getDesviation3Star()) {
-                                    // 3 STARS
-                                    goals.at(i)->setScore(3);
-                                } else {
-                                    //2 STARS
-                                    goals.at(i)->setScore(2);
-                                }
-                            } else {
-                                //1 STAR
-                                goals.at(i)->setScore(1);
-                            }
-                            if (i == goals.size() - 1) {
-                                //CALCULATE FINAL SCORE
-                                int finalScore = 0;
-                                int k;
-                                for (k = 0; k < goals.size(); k++) {
-                                    finalScore += goals.at(k)->getScore();
-                                }
-                                cout << "FINAL SCORE: " << finalScore / k << endl;
-                                GameData::getInstance()->setLevelScore(numLevel, finalScore / k);
-                                finishedGame = 1;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -536,11 +492,6 @@ bool GameLevel::validatePosition(int posx, int posy)
         return false;
     }
     //Hi ha un agent
-    /*for (int i = 0; i < agents.size(); i++) {
-        if (agents.at(i)->getPosition()->getX() == posx and agents.at(i)->getPosition()->getY() == posy) {
-            return false;
-        }
-    }*/
     if (agentsMap[posx][posy] != nullptr) {
         return false;
     }

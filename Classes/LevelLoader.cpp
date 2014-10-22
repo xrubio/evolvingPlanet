@@ -9,11 +9,13 @@
 #include "LevelLoader.h"
 #include "GameLevel.h"
 #include "Reproduce.h"
+#include "Collect.h"
 #include "Die.h"
 #include "MultiplierPower.h"
 #include "AreaPower.h"
 #include "UIGameplayMap.h"
 #include "ExpansionGoal.h"
+#include "CollectionGoal.h"
 
 #include "cocos2d.h"
 #include <iostream>
@@ -72,6 +74,8 @@ void LevelLoader::loadXmlFile(string filename)
         string action = acts.child_value();
         if (action == "Reproduce") {
             GameLevel::getInstance()->addAction(new Reproduce());
+        } else if (action == "Collect") {
+            GameLevel::getInstance()->addAction(new Collect());
         } else if (action == "Die") {
             GameLevel::getInstance()->addAction(new Die());
         }
@@ -82,14 +86,20 @@ void LevelLoader::loadXmlFile(string filename)
     int i = 0;
     xml_node goals = doc.child("GOALS").child("GOAL");
     while (goals != nullptr) {
+        string type = goals.attribute("TYPE_GOAL").value();
         int agentType = atoi(goals.child("AGENT_TYPE").child_value());
         int minTime = atoi(goals.child("MIN").child_value());
         int maxTime = atoi(goals.child("MAX").child_value());
         int averageTime = atoi(goals.child("AVERAGE").child_value());
         int desviation2Star = atoi(goals.child("DESVIATION_2_STAR").child_value());
         int desviation3Star = atoi(goals.child("DESVIATION_3_STAR").child_value());
-        int color = atoi(goals.child("COLOR_ZONE").child_value());
-        GameLevel::getInstance()->addGoal(new ExpansionGoal(minTime, maxTime, averageTime, desviation2Star, desviation3Star, color));
+        if (type == "Expansion") {
+            int color = atoi(goals.child("COLOR_ZONE").child_value());
+            GameLevel::getInstance()->addGoal(new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color));
+        } else if (type == "Collection") {
+            int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
+            GameLevel::getInstance()->addGoal(new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount));
+        }
         i++;
         goals = goals.next_sibling("GOAL");
     }

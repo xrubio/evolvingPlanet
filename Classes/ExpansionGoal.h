@@ -15,16 +15,17 @@ class ExpansionGoal : public Goal {
 
 public:
     ExpansionGoal() {};
-    ExpansionGoal(int min, int max, int average, int des2, int des3, int color = 0);
+    ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color = 0);
     ExpansionGoal(ExpansionGoal const&) {};
     ExpansionGoal& operator=(ExpansionGoal const&);
 
     int getColorZone(void);
     void setColorZone(int color);
 
-    void checkGoal(int indexAgent = 0);
+    void checkGoal(int type, int indexAgent);
 
 private:
     int colorZone;
 };
+
 #endif /* defined(__simulplay__ExpansionGoal__) */
