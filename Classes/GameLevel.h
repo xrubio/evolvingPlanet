@@ -83,6 +83,10 @@ public:
     void setEvolutionPoints(int points);
     int getAttributeCost(string key);
     void setAttributeCost(string key, int val);
+    int getTimeExploited(int x, int y);
+    void setTimeExploited(int x, int y, int val);
+    bool getDepleted(int x, int y);
+    void setDepleted(int x, int y, bool val);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -111,6 +115,10 @@ private:
     vector<Act*> actions;
     vector<Goal*> goals;
     Agent* agentsMap[480][320];
+
+    //Resources exploitment
+    int timeExploitedMap[480][320] = { 0 };
+    bool depletedMap[480][320] = { false };
 
     int addedAgents = 0;
     vector<cocos2d::Point> deletedAgents;

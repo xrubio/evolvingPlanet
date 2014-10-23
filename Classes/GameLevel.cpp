@@ -307,6 +307,26 @@ void GameLevel::setAttributeCost(string key, int val)
     attributesCost[key] = val;
 }
 
+int GameLevel::getTimeExploited(int x, int y)
+{
+    return timeExploitedMap[x][y];
+}
+
+void GameLevel::setTimeExploited(int x, int y, int val)
+{
+    timeExploitedMap[x][y] = val;
+}
+
+bool GameLevel::getDepleted(int x, int y)
+{
+    return depletedMap[x][y];
+}
+
+void GameLevel::setDepleted(int x, int y, bool val)
+{
+    depletedMap[x][y] = val;
+}
+
 void GameLevel::playLevel(void)
 {
     clock_t stepTime = clock();

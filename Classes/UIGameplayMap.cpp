@@ -69,25 +69,32 @@ bool UIGameplayMap::init()
 
     GameLevel::getInstance()->setUIGameplayMap(this);
 
-    //INITIALIZE TEXTUREDATA
+    //INITIALIZE AGENTS AND EXPLOITED MAP TEXTUREDATA
     Color4B white;
     white.r = 255;
     white.g = 255;
     white.b = 255;
     white.a = 0;
     for (int i = 0; i < 2048 * 1536; i++) {
-        m_TextureData[i] = white; // i is an index running from 0 to w*h-1
+        agentsTextureData[i] = white; // i is an index running from 0 to w*h-1
+        exploitedMapTextureData[i] = white; // i is an index running from 0 to w*h-1
     }
 
     Size contentSize;
     contentSize.width = 2048;
     contentSize.height = 1536;
 
-    m_Texture = new Texture2D;
-    m_Texture->initWithData(m_TextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
-    m_Sprite = Sprite::createWithTexture(m_Texture);
-    m_Sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    gameplayMap->addChild(m_Sprite, 1);
+    agentsTexture = new Texture2D;
+    agentsTexture->initWithData(agentsTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
+    agentsSprite = Sprite::createWithTexture(agentsTexture);
+    agentsSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    gameplayMap->addChild(agentsSprite, 2);
+
+    exploitedMapTexture = new Texture2D;
+    exploitedMapTexture->initWithData(exploitedMapTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
+    exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
+    exploitedMapSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    gameplayMap->addChild(exploitedMapSprite, 1);
 
     Vector<MenuItem*> menuButtons;
     backButton = MenuItemImage::create(
@@ -675,7 +682,7 @@ void UIGameplayMap::initializeAgents(void)
                       color);
         }
     }
-    m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
+    agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
     play = true;
 }
 
@@ -788,10 +795,15 @@ void UIGameplayMap::updateAgents(void)
 
             drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
                       color);
+            if (GameLevel::getInstance()->getDepleted(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()) == true) {
+                drawExploitedMap(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
+                                 Color4B(100, 100, 100, 255));
+            }
         }
     }
 
-    m_Texture->updateWithData(m_TextureData, 0, 0, 2048, 1536);
+    agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
+    exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, 2048, 1536);
 
     vector<int> null;
     vector<Point> p;
@@ -810,7 +822,26 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
         int k = -4096;
         while (k <= 4096) {
             for (int j = -2; j < 3; j++) {
-                m_TextureData[position + j + k] = colour;
+                agentsTextureData[position + j + k] = colour;
+            }
+            k += 2048;
+        }
+        break;
+    }
+}
+
+void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
+{
+    int x = (int)(pos.x * float(2048 / 480));
+    int y = (int)(float((1536 - 1365) / 2) + ((pos.y) * float(1365 / 320)));
+    int position = x + ((1536 - y) * 2048);
+
+    switch (geometry) {
+    default:
+        int k = -4096;
+        while (k <= 4096) {
+            for (int j = -2; j < 3; j++) {
+                exploitedMapTextureData[position + j + k] = colour;
             }
             k += 2048;
         }

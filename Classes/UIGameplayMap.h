@@ -24,7 +24,8 @@ public:
     virtual bool init();
     ~UIGameplayMap()
     {
-        delete[] m_TextureData;
+        delete[] agentsTextureData;
+        delete[] exploitedMapTextureData;
     };
 
     void onTouchesBegan(const vector<Touch*>& touches, Event* event);
@@ -85,9 +86,13 @@ private:
     //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
     int agentColor = 0;
 
-    Color4B* m_TextureData = new Color4B[2048 * 1536];
-    Texture2D* m_Texture;
-    Sprite* m_Sprite;
+    Color4B* agentsTextureData = new Color4B[2048 * 1536];
+    Texture2D* agentsTexture;
+    Sprite* agentsSprite;
+
+    Color4B* exploitedMapTextureData = new Color4B[2048 * 1536];
+    Texture2D* exploitedMapTexture;
+    Sprite* exploitedMapSprite;
 
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
@@ -105,6 +110,7 @@ private:
 
     // 0 = square
     void drawAgent(Point pos, Color4B colour, int geometry = 0);
+    void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

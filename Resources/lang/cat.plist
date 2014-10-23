@@ -20,6 +20,8 @@
 	<string>Resistència</string>
 	<key>RECOLLECTION</key>
 	<string>Recolecció</string>
+	<key>SUSTAINABILITY</key>
+	<string>Sostenibilitat</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>Punts d&apos;evolució</string>
 	<key>GOAL_TEXT_LVL1_1</key>

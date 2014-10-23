@@ -15,6 +15,10 @@ bool Collect::execute(int type, int indexAgent)
     //UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
+    GameLevel::getInstance()->setTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY(),
+                                               GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(),
+                                                                                          agent->getPosition()->getY()) + 1);
+
     int recollection = agent->getValOfAttribute("RECOLLECTION");
     float efficiency;
     switch (recollection) {
@@ -65,8 +69,13 @@ bool Collect::execute(int type, int indexAgent)
 
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         if (GameLevel::getInstance()->getGoals().at(i)->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getGoalAmount() > 0) {
+            int mapSelector = 0;
+            if (GameLevel::getInstance()->getDepleted(agent->getPosition()->getX(), agent->getPosition()->getY()) == true) {
+                mapSelector = 1;
+            }
+
             ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->setCurrentAmount(
-                ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapResources(0, agent->getPosition()->getX(), agent->getPosition()->getY()) * efficiency));
+                ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapResources(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY()) * efficiency));
         }
     }
     return false;

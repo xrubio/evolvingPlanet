@@ -10,6 +10,7 @@
 #include "GameLevel.h"
 #include "Reproduce.h"
 #include "Collect.h"
+#include "Deplete.h"
 #include "Die.h"
 #include "MultiplierPower.h"
 #include "AreaPower.h"
@@ -76,6 +77,8 @@ void LevelLoader::loadXmlFile(string filename)
             GameLevel::getInstance()->addAction(new Reproduce());
         } else if (action == "Collect") {
             GameLevel::getInstance()->addAction(new Collect());
+        } else if (action == "Deplete") {
+            GameLevel::getInstance()->addAction(new Deplete());
         } else if (action == "Die") {
             GameLevel::getInstance()->addAction(new Die());
         }

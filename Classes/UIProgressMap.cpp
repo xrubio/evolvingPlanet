@@ -180,7 +180,10 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         filename = "level1";
         break;
     case 2:
-        filename = "level2";
+        filename = "level21";
+        break;
+    case 3:
+        filename = "level211";
         break;
     default:
         filename = "level2";
