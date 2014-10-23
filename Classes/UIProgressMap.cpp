@@ -66,12 +66,34 @@ bool UIProgressMap::init()
     level1->setPosition(0, 0);
     progressMap->addChild(level1, 1);
 
-    auto level2Button = MenuItemImage::create(
-        "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
-    level2Button->setPosition(688, 980);
-    level2Button->setTag(2);
+    auto level21Button = MenuItemImage::create(
+        "LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+    level21Button->setPosition(688, 980);
+    level21Button->setTag(2);
+    auto level21Label = Label::createWithSystemFont("2.1", "Arial", 40);
+    level21Label->setPosition(level21Button->getContentSize().width / 2, level21Button->getContentSize().height / 2);
+    level21Button->addChild(level21Label);
+
+    auto level211Button = MenuItemImage::create(
+        "LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+    level211Button->setPosition(988, 980);
+    level211Button->setTag(3);
+    auto level211Label = Label::createWithSystemFont("2.1.1", "Arial", 40);
+    level211Label->setPosition(level211Button->getContentSize().width / 2, level211Button->getContentSize().height / 2);
+    level211Button->addChild(level211Label);
+
+    auto level212Button = MenuItemImage::create(
+        "LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+    level212Button->setPosition(1188, 580);
+    level212Button->setTag(4);
+    auto level212Label = Label::createWithSystemFont("2.1.2", "Arial", 40);
+    level212Label->setPosition(level212Button->getContentSize().width / 2, level212Button->getContentSize().height / 2);
+    level212Button->addChild(level212Label);
+
     Vector<MenuItem*> level2Buttons;
-    level2Buttons.pushBack(level2Button);
+    level2Buttons.pushBack(level21Button);
+    level2Buttons.pushBack(level211Button);
+    level2Buttons.pushBack(level212Button);
     auto level2 = Menu::createWithArray(level2Buttons);
     level2->setPosition(0, 0);
     progressMap2->addChild(level2);
@@ -161,7 +183,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         filename = "level2";
         break;
     default:
-        filename = "";
+        filename = "level2";
         break;
     }
     LevelLoader loader;

@@ -42,6 +42,8 @@ public:
     void resistanceCallback(Ref* pSender);
 
     int getValueAtGameplayMapHotSpot(int rgb, int posx, int posy);
+    int getValueAtGameplayMapResources(int rgb, int posx, int posy);
+
     bool isInBoostResistanceArea(int posx, int posy);
     void updateAgents(void);
     virtual void update(float delta);
@@ -54,7 +56,9 @@ public:
 private:
     Sprite* gameplayMap;
     Image* gameplayMapHotSpot;
+    Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;
+    unsigned char* dataGameplayMapResources;
 
     bool moveBackground = false;
     bool moveBackgroundLeft = false;
@@ -89,6 +93,7 @@ private:
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
     int getValueAtGameplayMapHotSpot(int rgb, Point pt);
+    int getValueAtGameplayMapResources(int rgb, Point pt);
 
     void createNewLevelThread(void);
     static void* createLevel(void* arg);

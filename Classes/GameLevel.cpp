@@ -475,8 +475,14 @@ void GameLevel::act(void)
             }
         }
     }
+    bool noAgentsLeft = true;
+    for (int i = 0; i < agents.size(); i++) {
+        if (agents.at(i).size() > 0) {
+            noAgentsLeft = false;
+        }
+    }
 
-    if (finishedGame == 0 and agents.size() == 0) {
+    if (finishedGame == 0 and noAgentsLeft) {
         finishedGame = 3;
     }
 }

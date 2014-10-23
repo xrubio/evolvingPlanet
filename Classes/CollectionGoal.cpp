@@ -46,7 +46,7 @@ void CollectionGoal::checkGoal(int type, int indexAgent)
     if (timeSteps > maxTime) {
         GameLevel::getInstance()->setFinishedGame(2);
     } else {
-        if (currentAmount == goalAmount) {
+        if (currentAmount >= goalAmount) {
             if (minTime > timeSteps) {
                 GameLevel::getInstance()->setFinishedGame(2);
             } else {

@@ -18,6 +18,8 @@
 	<string>Mobility</string>
 	<key>RESISTANCE</key>
 	<string>Resistance</string>
+	<key>RECOLLECTION</key>
+	<string>Recollection</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>Evolution points</string>
 	<key>GOAL_TEXT_LVL1_1</key>

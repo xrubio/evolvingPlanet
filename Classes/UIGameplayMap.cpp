@@ -39,12 +39,14 @@ bool UIGameplayMap::init()
     string ext = ".png";
     string background = "Background";
     string hotSpotsBase = "HotSpotsBase";
+    string resources = "Resources";
 
     //Set background gameplay map and all its functionalities
     gameplayMap = Sprite::create(map + background + ext);
     gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(gameplayMap, 0);
 
+    //HOTSPOT
     gameplayMapHotSpot = new Image();
     gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
     int x = 3;
@@ -53,6 +55,18 @@ bool UIGameplayMap::init()
     }
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
+
+    //RESOURCES MAP (IF ANY)
+    gameplayMapResources = new Image();
+    if (gameplayMapResources->initWithImageFile(map + resources + ext)) {
+        x = 3;
+        if (gameplayMapResources->hasAlpha()) {
+            x = 4;
+        }
+        dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
+        dataGameplayMapResources = gameplayMapResources->getData();
+    }
+
     GameLevel::getInstance()->setUIGameplayMap(this);
 
     //INITIALIZE TEXTUREDATA
@@ -70,8 +84,7 @@ bool UIGameplayMap::init()
     contentSize.height = 1536;
 
     m_Texture = new Texture2D;
-    //12582912
-    m_Texture->initWithData(m_TextureData, 2048 * 1536, kCCTexture2DPixelFormat_RGBA8888, 2048, 1536, contentSize);
+    m_Texture->initWithData(m_TextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
     m_Sprite = Sprite::createWithTexture(m_Texture);
     m_Sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     gameplayMap->addChild(m_Sprite, 1);
@@ -124,6 +137,7 @@ bool UIGameplayMap::init()
                                          visibleSize.height - (agentsButton->getContentSize().height));
         this->addChild(collect3PointsLabel, 1);
     }
+
     Vector<MenuItem*> timeButtons;
     MenuItem* fastForwardButton = MenuItemImage::create(
         "FastForwardButton.png", "FastForwardButtonPressed.png", "FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
@@ -583,6 +597,15 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, int posx, int posy)
     return getValueAtGameplayMapHotSpot(rgb, loc);
 }
 
+int UIGameplayMap::getValueAtGameplayMapResources(int rgb, int posx, int posy)
+{
+    Point loc(Point(posx, posy));
+    //Size visibleSize = Director::getInstance()->getVisibleSize();
+    //loc.y = visibleSize.height - loc.y;
+    loc.y = 320 - loc.y;
+    return getValueAtGameplayMapResources(rgb, loc);
+}
+
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
 {
     int i = 0;
@@ -599,6 +622,31 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
         x = 4;
     }
     unsigned char* pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
+    // You can see/change pixels' RGBA value(0-255) here !
+
+    if (rgb == 0) {
+        unsigned char r = *pixel;
+        return (int)r;
+    } else if (rgb == 1) {
+        unsigned char g = *(pixel + 1);
+        return (int)g;
+    } else if (rgb == 2) {
+        unsigned char b = *(pixel + 2);
+        return (int)b;
+    } else if (rgb == 3) {
+        unsigned char a = *(pixel + 3);
+        return (int)a;
+    }
+    return 255;
+}
+
+int UIGameplayMap::getValueAtGameplayMapResources(int rgb, Point pt)
+{
+    int x = 3;
+    if (gameplayMapResources->hasAlpha()) {
+        x = 4;
+    }
+    unsigned char* pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
     // You can see/change pixels' RGBA value(0-255) here !
 
     if (rgb == 0) {
@@ -754,7 +802,7 @@ void UIGameplayMap::updateAgents(void)
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 {
     int x = (int)(pos.x * float(2048 / 480));
-    int y = (int)(((1536 - 1365) / 2) + ((pos.y) * float(1365 / 320)));
+    int y = (int)(float((1536 - 1365) / 2) + ((pos.y) * float(1365 / 320)));
     int position = x + ((1536 - y) * 2048);
 
     switch (geometry) {
@@ -780,6 +828,11 @@ void UIGameplayMap::update(float delta)
             play = false;
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+            if (GameLevel::getInstance()->getNumLevel() == 2) {
+                collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(0))->getCurrentAmount()));
+                collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(1))->getCurrentAmount()));
+                collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(2))->getCurrentAmount()));
+            }
             play = true;
         }
 
@@ -789,11 +842,5 @@ void UIGameplayMap::update(float delta)
 
         evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
                                         + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
-
-        if (GameLevel::getInstance()->getNumLevel() == 2) {
-            collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(0))->getCurrentAmount()));
-            collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(1))->getCurrentAmount()));
-            collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(2))->getCurrentAmount()));
-        }
     }
 }
