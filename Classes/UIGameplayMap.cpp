@@ -821,9 +821,9 @@ void UIGameplayMap::updateAgents(void)
 
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 {
-    int x = (int)(pos.x * float(2048 / 480));
-    int y = (int)(float((1536 - 1365) / 2) + ((pos.y) * float(1365 / 320)));
-    int position = x + ((1536 - y) * 2048);
+    int x = (int)(pos.x * float(2048.0 / 480.0));
+    int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((pos.y) * float(1365.0 / 320.0)));
+    int position = x + ((1536.0 - y) * 2048.0);
 
     switch (geometry) {
     default:
@@ -840,9 +840,9 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 
 void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
 {
-    int x = (int)(pos.x * float(2048 / 480));
-    int y = (int)(float((1536 - 1365) / 2) + ((pos.y) * float(1365 / 320)));
-    int position = x + ((1536 - y) * 2048);
+    int x = (int)(pos.x * float(2048.0 / 480.0));
+    int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((pos.y) * float(1365.0 / 320.0)));
+    int position = x + ((1536.0 - y) * 2048.0);
 
     switch (geometry) {
     default:
