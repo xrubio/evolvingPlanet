@@ -185,6 +185,9 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     case 3:
         filename = "level211";
         break;
+    case 4:
+        filename = "level212";
+        break;
     default:
         filename = "level2";
         break;

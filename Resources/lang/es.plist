@@ -22,6 +22,8 @@
 	<string>Recolección</string>
 	<key>SUSTAINABILITY</key>
 	<string>Sostenibilidad</string>
+	<key>ADAPTATION</key>
+	<string>Adaptación</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>Puntos de evolución</string>
 	<key>GOAL_TEXT_LVL1_1</key>

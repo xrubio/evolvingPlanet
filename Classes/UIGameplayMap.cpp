@@ -243,6 +243,10 @@ bool UIGameplayMap::init()
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
     }
 
+    time_t wait;
+    wait = clock();
+    while (clock() - wait < 3)
+        ;
     if (GameData::getInstance()->getGameStarted() == false) {
         GameLevel::getInstance()->createLevel();
     }
@@ -797,7 +801,11 @@ void UIGameplayMap::updateAgents(void)
                       color);
             if (GameLevel::getInstance()->getDepleted(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()) == true) {
                 drawExploitedMap(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
-                                 Color4B(100, 100, 100, 255));
+                                 Color4B(100, 100, 100, 100));
+            }
+            if (GameLevel::getInstance()->getEnvironmentAdaptation(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()) == true) {
+                drawExploitedMap(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
+                                 Color4B(0, 0, 0, 50));
             }
         }
     }

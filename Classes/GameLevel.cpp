@@ -327,6 +327,16 @@ void GameLevel::setDepleted(int x, int y, bool val)
     depletedMap[x][y] = val;
 }
 
+bool GameLevel::getEnvironmentAdaptation(int x, int y)
+{
+    return adaptedMap[x][y];
+}
+
+void GameLevel::setEnvironmentAdaptation(int x, int y, bool val)
+{
+    adaptedMap[x][y] = val;
+}
+
 void GameLevel::playLevel(void)
 {
     clock_t stepTime = clock();
@@ -366,6 +376,8 @@ void GameLevel::playLevel(void)
 
 void GameLevel::resetLevel(void)
 {
+    //REVISAR MEMORIA, O ESBORRAR INSTANCIA ENLLOC DE FER RESET I ALLIBERAR AL DESTRUCTOR
+
     currentTime = 0;
     numLevel = 0;
     agentAttributes.clear();
@@ -388,6 +400,9 @@ void GameLevel::resetLevel(void)
     for (int i = 0; i < 480; i++) {
         for (int j = 0; j < 320; j++) {
             agentsMap[i][j] = nullptr;
+            timeExploitedMap[i][j] = 0;
+            depletedMap[i][j] = false;
+            adaptedMap[i][j] = false;
         }
     }
 

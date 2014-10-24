@@ -87,6 +87,8 @@ public:
     void setTimeExploited(int x, int y, int val);
     bool getDepleted(int x, int y);
     void setDepleted(int x, int y, bool val);
+    bool getEnvironmentAdaptation(int x, int y);
+    void setEnvironmentAdaptation(int x, int y, bool val);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -119,6 +121,7 @@ private:
     //Resources exploitment
     int timeExploitedMap[480][320] = { 0 };
     bool depletedMap[480][320] = { false };
+    bool adaptedMap[480][320] = { false };
 
     int addedAgents = 0;
     vector<cocos2d::Point> deletedAgents;

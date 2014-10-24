@@ -22,6 +22,8 @@
 	<string>Recollection</string>
 	<key>SUSTAINABILITY</key>
 	<string>Sustainability</string>
+	<key>ADAPTATION</key>
+	<string>Adaptation</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>Evolution points</string>
 	<key>GOAL_TEXT_LVL1_1</key>

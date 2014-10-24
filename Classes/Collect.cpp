@@ -72,6 +72,8 @@ bool Collect::execute(int type, int indexAgent)
             int mapSelector = 0;
             if (GameLevel::getInstance()->getDepleted(agent->getPosition()->getX(), agent->getPosition()->getY()) == true) {
                 mapSelector = 1;
+            } else if (GameLevel::getInstance()->getEnvironmentAdaptation(agent->getPosition()->getX(), agent->getPosition()->getY()) == true) {
+                mapSelector = 2;
             }
 
             ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->setCurrentAmount(
