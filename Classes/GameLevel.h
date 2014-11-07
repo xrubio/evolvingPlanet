@@ -43,10 +43,10 @@ public:
     void setCurrentTime(double time);
     int getNumLevel(void);
     void setNumLevel(int lvl);
-    int getAgentAttribute(string key);
-    void setAgentAttribute(string key, int value);
-    map<string, int> getAgentAttributes(void);
-    void setAgentAttributes(map<string, int> atts);
+    int getAgentAttribute(int type, string key);
+    void setAgentAttribute(int type, string key, int value);
+    map<string, int> getAgentAttributes(int type);
+    void setAgentAttributes(vector<map<string, int> > atts);
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
     void addPower(Power* p);
@@ -81,14 +81,16 @@ public:
     void setTimeSpeedBeforePause(float speed);
     int getEvolutionPoints(void);
     void setEvolutionPoints(int points);
-    int getAttributeCost(string key);
-    void setAttributeCost(string key, int val);
+    int getAttributeCost(int type, string key);
+    void setAttributeCost(int type, string key, int val);
     int getTimeExploited(int x, int y);
     void setTimeExploited(int x, int y, int val);
     bool getDepleted(int x, int y);
     void setDepleted(int x, int y, bool val);
     bool getEnvironmentAdaptation(int x, int y);
     void setEnvironmentAdaptation(int x, int y, bool val);
+    int getCurrentAgentType(void);
+    void setCurrentAgentType(int i);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -110,8 +112,8 @@ private:
 
     clock_t currentTime = 0;
     int numLevel;
-    map<string, int> agentAttributes;
-    map<string, int> attributesCost;
+    vector<map<string, int> > agentAttributes;
+    vector<map<string, int> > attributesCost;
     vector<Power*> powers;
     vector<vector<Agent*> > agents;
     vector<Act*> actions;
@@ -136,6 +138,8 @@ private:
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut (goal no completed), 3 = finished0Agents,
     //4 = finishedBack
     int finishedGame = 0;
+
+    int currentAgentType = 0;
 
     GameLevel() {};
     GameLevel(GameLevel const&) {};

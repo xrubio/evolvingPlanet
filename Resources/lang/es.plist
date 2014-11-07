@@ -12,6 +12,8 @@
 	<string>CRÉDITOS</string>
 	<key>GOALS</key>
 	<string>Objetivos</string>
+	<key>AGENTS</key>
+	<string>Agentes</string>
 	<key>REPRODUCTION</key>
 	<string>Reproducción</string>
 	<key>MOBILITY</key>
@@ -24,6 +26,8 @@
 	<string>Sostenibilidad</string>
 	<key>ADAPTATION</key>
 	<string>Adaptación</string>
+	<key>CULTURAL_INFLUENCE</key>
+	<string>Infl Cultural</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>Puntos de evolución</string>
 	<key>GOAL_TEXT_LVL1_1</key>

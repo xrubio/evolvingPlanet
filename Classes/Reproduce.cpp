@@ -72,8 +72,14 @@ bool Reproduce::execute(int type, int indexAgent)
                 maxIterations--;
             }
             if (maxIterations > 0) {
-                auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, agent->getType(), posx, posy);
-                ag->setAttributes(GameLevel::getInstance()->getAgentAttributes());
+
+                //INFLUENCIA CULTURAL - CALCULAR TIPUS
+                int type = agent->getType();
+                if (agent->getValOfAttribute("CULTURAL_INFLUENCE") > 0) {
+                }
+
+                auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);
+                ag->setAttributes(GameLevel::getInstance()->getAgentAttributes(type));
                 GameLevel::getInstance()->addAgent(ag);
                 GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
                 GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);

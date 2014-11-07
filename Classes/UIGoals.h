@@ -24,6 +24,8 @@ public:
     void menuNextCallback(Ref* pSender);
     void menuMapCallback(Ref* pSender);
 
+    virtual void update(float delta);
+
     CREATE_FUNC(UIGoals);
 
 private:

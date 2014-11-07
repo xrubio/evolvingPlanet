@@ -68,12 +68,15 @@ private:
     bool moveBackgroundDown = false;
     float zoomScale = 1;
 
+    pthread_t thread;
+
     bool endGameWindowPainted = false;
 
     Vector<Touch*> _touches;
     Point firstTouchLocation;
 
     MenuItem* backButton;
+    ProgressTimer* timeBar;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;

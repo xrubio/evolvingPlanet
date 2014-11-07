@@ -60,13 +60,19 @@ bool UIGoals::init()
     setLevelGoals(layout);
     pageView->addPage(layout);
 
-    auto scene = UIAgents::createScene();
-    auto layout2 = Layout::create();
-    layout2->setSize(Size(visibleSize.width, visibleSize.height));
-    layout2->addChild(scene);
-    pageView->addPage(layout2);
+    for (int i = 0; i < GameLevel::getInstance()->getNumInitialAgents().size(); i++) {
+        GameLevel::getInstance()->setCurrentAgentType(i);
+        auto scene = UIAgents::createScene();
+        auto layout2 = Layout::create();
+        layout2->setSize(Size(visibleSize.width, visibleSize.height));
+        layout2->addChild(scene);
+        pageView->addPage(layout2);
+    }
 
+    pageView->setTag(10);
     this->addChild(pageView);
+
+    this->scheduleUpdate();
 
     return true;
 }
@@ -111,4 +117,10 @@ void UIGoals::setLevelGoals(Layout* layout)
     layout->addChild(goal1, 1);
     layout->addChild(goal2, 1);
     layout->addChild(goal3, 1);
+}
+
+void UIGoals::update(float delta)
+{
+    PageView* p = (PageView*)this->getChildByTag(10);
+    GameLevel::getInstance()->setCurrentAgentType(p->getCurPageIndex() - 1);
 }

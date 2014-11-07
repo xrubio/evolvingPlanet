@@ -106,22 +106,25 @@ void GameLevel::setNumLevel(int lvl)
     numLevel = lvl;
 }
 
-int GameLevel::getAgentAttribute(string key)
+int GameLevel::getAgentAttribute(int type, string key)
 {
-    return agentAttributes[key];
+    return agentAttributes.at(type)[key];
 }
 
-void GameLevel::setAgentAttribute(string key, int value)
+void GameLevel::setAgentAttribute(int type, string key, int value)
 {
-    agentAttributes[key] = value;
+    if (agentAttributes.size() <= type) {
+        agentAttributes.push_back(map<string, int>());
+    }
+    agentAttributes.at(type)[key] = value;
 }
 
-map<string, int> GameLevel::getAgentAttributes(void)
+map<string, int> GameLevel::getAgentAttributes(int type)
 {
-    return agentAttributes;
+    return agentAttributes.at(type);
 }
 
-void GameLevel::setAgentAttributes(map<string, int> atts)
+void GameLevel::setAgentAttributes(vector<map<string, int> > atts)
 {
     agentAttributes.swap(atts);
 }
@@ -297,14 +300,14 @@ void GameLevel::setEvolutionPoints(int points)
     evolutionPoints = points;
 }
 
-int GameLevel::getAttributeCost(string key)
+int GameLevel::getAttributeCost(int type, string key)
 {
-    return attributesCost[key];
+    return attributesCost.at(type)[key];
 }
 
-void GameLevel::setAttributeCost(string key, int val)
+void GameLevel::setAttributeCost(int type, string key, int val)
 {
-    attributesCost[key] = val;
+    attributesCost.at(type)[key] = val;
 }
 
 int GameLevel::getTimeExploited(int x, int y)
@@ -335,6 +338,16 @@ bool GameLevel::getEnvironmentAdaptation(int x, int y)
 void GameLevel::setEnvironmentAdaptation(int x, int y, bool val)
 {
     adaptedMap[x][y] = val;
+}
+
+int GameLevel::getCurrentAgentType(void)
+{
+    return currentAgentType;
+}
+
+void GameLevel::setCurrentAgentType(int i)
+{
+    currentAgentType = i;
 }
 
 void GameLevel::playLevel(void)
@@ -371,6 +384,7 @@ void GameLevel::playLevel(void)
             }
         }
     }
+    paint = false;
     cout << "End of game: " << finishedGame << endl;
 }
 
@@ -414,6 +428,8 @@ void GameLevel::resetLevel(void)
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
     //4 = finishedBack
     finishedGame = 0;
+
+    currentAgentType = 0;
 }
 
 void GameLevel::createLevel(void)
@@ -426,12 +442,15 @@ void GameLevel::createLevel(void)
 
 void GameLevel::initializeAttributesCost(void)
 {
-    for (map<string, int>::const_iterator it = agentAttributes.begin(); it != agentAttributes.end(); it++) {
-        //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
-        if (agentAttributes[it->first] != 0) {
-            attributesCost[it->first] = 0;
-        } else {
-            attributesCost[it->first] = 1;
+    for (int i = 0; i < agentAttributes.size(); i++) {
+        attributesCost.push_back(map<string, int>());
+        for (map<string, int>::const_iterator it = agentAttributes.at(i).begin(); it != agentAttributes.at(i).end(); it++) {
+            //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
+            if (agentAttributes.at(i)[it->first] != 0) {
+                attributesCost.at(i)[it->first] = 0;
+            } else {
+                attributesCost.at(i)[it->first] = 1;
+            }
         }
     }
 }
@@ -464,7 +483,7 @@ void GameLevel::generateInitialAgents(int type)
         int posy = rand() % maxY + minY;
         if (gameplayMap->getValueAtGameplayMapHotSpot(1, posx, posy) == type and GameLevel::getInstance()->validatePosition(posx, posy)) {
             auto a = new Agent(idCounter, 100, type, posx, posy);
-            a->setAttributes(agentAttributes);
+            a->setAttributes(agentAttributes.at(type));
             addAgent(a);
             idCounter++;
             i++;

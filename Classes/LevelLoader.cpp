@@ -34,6 +34,7 @@ void LevelLoader::loadXmlFile(string filename)
     GameLevel::getInstance()->setMapFilename(doc.child_value("FILE_MAP"));
     //AGENTS
     xml_node ags = doc.child("AGENTS").child("AGENT");
+    int numTypes = 0;
     while (ags != nullptr) {
         //TYPE
         int type = atoi(ags.attribute("TYPE").value());
@@ -42,11 +43,14 @@ void LevelLoader::loadXmlFile(string filename)
         //MAX_AGENTS
         GameLevel::getInstance()->setMaxAgent(type, atoi(ags.child("MAX_AGENTS").child_value()));
         ags = ags.next_sibling("AGENT");
+        numTypes++;
     }
     //ATTRIBUTES
     xml_node atts = doc.child("ATTRIBUTES").child("ATTRIBUTE");
     while (atts != nullptr) {
-        GameLevel::getInstance()->setAgentAttribute(atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
+        for (int i = 0; i < numTypes; i++) {
+            GameLevel::getInstance()->setAgentAttribute(i, atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
+        }
         atts = atts.next_sibling("ATTRIBUTE");
     }
 

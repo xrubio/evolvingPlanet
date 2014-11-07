@@ -31,16 +31,21 @@ bool UIMainMenu::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    auto title = Label::createWithTTF("SimulPlay", "fonts/BebasNeue.otf", 180);
+    auto background = Sprite::create("Pan1.jpg");
+    background->setPosition(Vec2(origin.x + visibleSize.width / 2,
+                                 origin.y + visibleSize.height / 2));
+    this->addChild(background, 0);
+
+    /*auto title = Label::createWithTTF("SimulPlay", "fonts/BebasNeue.otf", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
                             origin.y + visibleSize.height - ((visibleSize.height / 5))));
-    this->addChild(title, 1);
+    this->addChild(title, 1);*/
 
     Vector<cocos2d::MenuItem*> menuButtons;
 
     auto startButton = MenuItemImage::create(
         "MainButtonBackground.png", "MainButtonBackgroundPressed.png", CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
-    startButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + 4 * (visibleSize.height / 8)));
+    startButton->setPosition(Vec2(8 * visibleSize.width / 20, origin.y + 9 * (visibleSize.height / 20)));
 
     /*Sprite* strokeSprite = Sprite::create("MainButtonBackground.png");
     strokeSprite->setColor(Color3B::RED);
@@ -48,12 +53,13 @@ bool UIMainMenu::init()
     strokeSprite->setScale(1.1, 1.2);
     startButton->addChild(strokeSprite, -1);*/
 
-    auto lbl = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 80);
+    auto lbl = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 38);
     // amb Label*   lbl->enableShadow();
     //lbl->enableShadow(Size(2, 2), 60, 40);
     //lbl->enableStroke(Color3B::RED, 2);
     auto startLabel = MenuItemLabel::create(lbl);
-    startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
+    startLabel->setAnchorPoint(Vec2(0, 0.5));
+    startLabel->setPosition(3 * startButton->getContentSize().width / 6, startButton->getContentSize().height / 2);
     /*Vector<Node*> words = startLabel->getChildren();
     for (int i = 0; i < words.size(); i++) {
         Sprite* s = (Sprite*)words.at(i);
@@ -63,19 +69,21 @@ bool UIMainMenu::init()
 
     auto configurationButton = MenuItemImage::create(
         "MainButtonBackground.png", "MainButtonBackgroundPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
-    configurationButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + 3 * (visibleSize.height / 8)));
-    auto lblConf = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 40);
+    configurationButton->setPosition(Vec2(8.3 * visibleSize.width / 20, 8 * (visibleSize.height / 20)));
+    auto lblConf = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 38);
     auto confLabel = MenuItemLabel::create(lblConf);
-    confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
+    confLabel->setAnchorPoint(Vec2(0, 0.5));
+    confLabel->setPosition(3 * configurationButton->getContentSize().width / 6, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
     menuButtons.pushBack(configurationButton);
 
     auto creditsButton = MenuItemImage::create(
         "MainButtonBackground.png", "MainButtonBackgroundPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
-    creditsButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + 2 * (visibleSize.height / 8)));
-    auto lblCred = Label::createWithTTF(LocalizedString::create("CREDITS")->getCString(), "fonts/BebasNeue.otf", 20);
+    creditsButton->setPosition(Vec2(8 * visibleSize.width / 20, 7 * (visibleSize.height / 20)));
+    auto lblCred = Label::createWithTTF(LocalizedString::create("CREDITS")->getCString(), "fonts/BebasNeue.otf", 38);
     auto credLabel = MenuItemLabel::create(lblCred);
-    credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
+    credLabel->setAnchorPoint(Vec2(0, 0.5));
+    credLabel->setPosition(3 * creditsButton->getContentSize().width / 6, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
     menuButtons.pushBack(creditsButton);
 

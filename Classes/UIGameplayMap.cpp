@@ -30,7 +30,7 @@ bool UIGameplayMap::init()
         return false;
     }
 
-    Director::getInstance()->getTextureCache()->addImage("Agent.png");
+    //Director::getInstance()->getTextureCache()->addImage("Agent.png");
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -40,6 +40,13 @@ bool UIGameplayMap::init()
     string background = "Background";
     string hotSpotsBase = "HotSpotsBase";
     string resources = "Resources";
+
+    /*auto ff = MenuItemImage::create("Level0FFFocus.png", "Level0FFFocus.png");
+    ff->setOpacity(160);
+    ff->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    auto menuTutorial = Menu::create(ff, NULL);
+    menuTutorial->setPosition(0, 0);
+    this->addChild(menuTutorial, 50);*/
 
     //Set background gameplay map and all its functionalities
     gameplayMap = Sprite::create(map + background + ext);
@@ -71,9 +78,9 @@ bool UIGameplayMap::init()
 
     //INITIALIZE AGENTS AND EXPLOITED MAP TEXTUREDATA
     Color4B white;
-    white.r = 255;
-    white.g = 255;
-    white.b = 255;
+    white.r = 127;
+    white.g = 127;
+    white.b = 127;
     white.a = 0;
     for (int i = 0; i < 2048 * 1536; i++) {
         agentsTextureData[i] = white; // i is an index running from 0 to w*h-1
@@ -89,6 +96,7 @@ bool UIGameplayMap::init()
     agentsSprite = Sprite::createWithTexture(agentsTexture);
     agentsSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     gameplayMap->addChild(agentsSprite, 2);
+    agentsSprite->setCascadeOpacityEnabled(true);
 
     exploitedMapTexture = new Texture2D;
     exploitedMapTexture->initWithData(exploitedMapTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
@@ -232,6 +240,19 @@ bool UIGameplayMap::init()
             gameplayMap->addChild(((UIAreaPower*)powerButtons.at(i))->getArea(), 3);
         }
     }
+
+    //TIME PROGRESS BAR
+    auto timeBorderBar = Sprite::create("ProgressBarBorder.png");
+    timeBorderBar->setPosition(visibleSize.width - timeBorderBar->getContentSize().width / 2,
+                               pauseButton->getPosition().y - (pauseButton->getContentSize().height / 2) - (timeBorderBar->getContentSize().height / 2));
+    this->addChild(timeBorderBar);
+    timeBar = ProgressTimer::create(Sprite::create("ProgressBarContent.png"));
+    timeBar->setType(ProgressTimer::Type::BAR);
+    timeBar->setAnchorPoint(Vec2(0, 0));
+    timeBar->setMidpoint(Vec2(0, 0));
+    timeBar->setBarChangeRate(Vec2(1, 0));
+    timeBar->setPosition(19, 19);
+    timeBorderBar->addChild(timeBar);
 
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
@@ -381,8 +402,8 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameData::getInstance()->setGameStarted(false);
     GameLevel::getInstance()->setFinishedGame(4);
-    while (GameLevel::getInstance()->paint == false)
-        ;
+    /*while (GameLevel::getInstance()->paint == false)
+        ;*/
     auto scene = UIProgressMap::createScene();
     Director::getInstance()->replaceScene(scene);
 }
@@ -506,7 +527,6 @@ void UIGameplayMap::resistanceCallback(Ref* pSender)
 
 void UIGameplayMap::createNewLevelThread(void)
 {
-    pthread_t thread;
     pthread_create(&thread, NULL, &UIGameplayMap::createLevel, this);
 }
 
@@ -522,6 +542,7 @@ void UIGameplayMap::playLevel(void)
 {
     pthread_mutex_lock(&mutex);
     GameLevel::getInstance()->playLevel();
+    cout << "DONE" << endl;
     pthread_mutex_unlock(&mutex);
 }
 
@@ -683,7 +704,7 @@ void UIGameplayMap::initializeAgents(void)
         for (int j = 0; j < agentsDomain.at(i).size(); j++) {
             Color4B color = Color4B(255, 4, 4, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
             drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
-                      color);
+                      color, 1);
         }
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
@@ -765,7 +786,7 @@ void UIGameplayMap::createEndGameWindow(int mode)
 void UIGameplayMap::updateAgents(void)
 {
     vector<vector<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
-    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes();
+    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
     vector<string> keys;
     int i = 0;
     for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
@@ -798,7 +819,7 @@ void UIGameplayMap::updateAgents(void)
             }
 
             drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
-                      color);
+                      color, 1);
             if (GameLevel::getInstance()->getDepleted(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()) == true) {
                 drawExploitedMap(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
                                  Color4B(100, 100, 100, 100));
@@ -826,6 +847,17 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
     int position = x + ((1536.0 - y) * 2048.0);
 
     switch (geometry) {
+    case 1: {
+        int k = -4096;
+        while (k <= 4096) {
+            int i = abs(k / 2048);
+            for (int j = -2 + i; j < 3 - i; j++) {
+                agentsTextureData[position + j + k] = colour;
+            }
+            k += 2048;
+        }
+        break;
+    }
     default:
         int k = -4096;
         while (k <= 4096) {
@@ -867,6 +899,7 @@ void UIGameplayMap::update(float delta)
             play = false;
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+            timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
             if (GameLevel::getInstance()->getNumLevel() == 2) {
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(0))->getCurrentAmount()));
                 collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(1))->getCurrentAmount()));
