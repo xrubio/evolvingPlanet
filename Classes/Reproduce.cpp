@@ -75,7 +75,56 @@ bool Reproduce::execute(int type, int indexAgent)
 
                 //INFLUENCIA CULTURAL - CALCULAR TIPUS
                 int type = agent->getType();
-                if (agent->getValOfAttribute("CULTURAL_INFLUENCE") > 0) {
+                int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
+                if (probCulture > 0) {
+
+                    //CONTAR AGENTS ALREDEDOR SEGONS TIPUS
+                    vector<int> numAgentsPerType;
+                    for (int i = 0; i < GameLevel::getInstance()->getMaxAgents().size(); i++) {
+                        numAgentsPerType.push_back(0);
+                    }
+                    for (int i = -mobility / 2; i < mobility / 2; i++) {
+                        for (int j = -mobility / 2; j < mobility / 2; j++) {
+                            int posx = agent->getPosition()->getX() + i;
+                            int posy = agent->getPosition()->getY() + j;
+                            if (posx >= 0 and posy >= 0 and posx < 480 and posy < 320) {
+                                if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr) {
+                                    numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] = numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] + 1;
+                                }
+                            }
+                        }
+                    }
+
+                    //CALCULAR PROBABILITATS EN FUNCIO DEL NUMERO DAGENTS DE CADA TIPUS
+                    vector<float> probPerType;
+                    float probMid = 0;
+                    float probTotal = 0;
+                    for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
+                        probPerType.push_back(GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"]);
+                        probMid += GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"];
+                    }
+                    for (int i = 0; i < probPerType.size(); i++) {
+                        probPerType[i] = (probPerType[i] / probMid) * numAgentsPerType.at(i);
+                        probTotal += probPerType[i];
+                    }
+                    for (int i = 0; i < probPerType.size(); i++) {
+                        if (i == 0) {
+                            probPerType[i] = (probPerType[i] / probTotal) * 100;
+                        } else {
+                            probPerType[i] = ((probPerType[i] / probTotal) * 100) + probPerType[i - 1];
+                        }
+                    }
+                    int p = rand() % 100;
+                    bool exit = false;
+                    for (int i = 0; i < probPerType.size() and exit == false; i++) {
+                        if (i == 0 and p < probPerType.at(i)) {
+                            type = i;
+                            exit = true;
+                        } else if (p < probPerType.at(i) and p >= probPerType.at(i - 1)) {
+                            type = i;
+                            exit = true;
+                        }
+                    }
                 }
 
                 auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);

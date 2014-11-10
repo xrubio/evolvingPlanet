@@ -171,7 +171,10 @@ void GameLevel::addAgent(Agent* ag)
 
 void GameLevel::deleteAgent(int type, int i)
 {
-    delete agentsMap[agents.at(type).at(i)->getPosition()->getX()][agents.at(type).at(i)->getPosition()->getY()]; // = nullptr;
+    int posx = agents.at(type).at(i)->getPosition()->getX();
+    int posy = agents.at(type).at(i)->getPosition()->getY();
+    delete agentsMap[posx][posy]; // = nullptr;
+    agentsMap[posx][posy] = nullptr;
     agents.at(type).erase(agents.at(type).begin() + i);
 }
 
@@ -348,6 +351,11 @@ int GameLevel::getCurrentAgentType(void)
 void GameLevel::setCurrentAgentType(int i)
 {
     currentAgentType = i;
+}
+
+Agent* GameLevel::getAgentAtMap(int i, int j)
+{
+    return agentsMap[i][j];
 }
 
 void GameLevel::playLevel(void)
@@ -544,7 +552,7 @@ void GameLevel::act(void)
 bool GameLevel::validatePosition(int posx, int posy)
 {
     //Fora del mapa
-    if (posx < 0 or posx > 480 or posy < 0 or posy > 320) {
+    if (posx < 0 or posx >= 480 or posy < 0 or posy >= 320) {
         return false;
     }
     //Aigua o similar

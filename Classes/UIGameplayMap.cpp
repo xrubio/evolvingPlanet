@@ -704,7 +704,7 @@ void UIGameplayMap::initializeAgents(void)
         for (int j = 0; j < agentsDomain.at(i).size(); j++) {
             Color4B color = Color4B(255, 4, 4, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
             drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
-                      color, 1);
+                      color, 0);
         }
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
@@ -814,12 +814,25 @@ void UIGameplayMap::updateAgents(void)
                 color = Color4B(115, 8, 214, agentsDomain.at(i).at(j)->getValOfAttribute(keys.at(2)) * (255 / 10));
                 break;
             default:
-                color = Color4B(255, 4, 4, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+                switch (agentsDomain.at(i).at(j)->getType()) {
+                case 1:
+                    color = Color4B(0, 248, 251, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+                    break;
+                case 2:
+                    color = Color4B(237, 184, 0, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+                    break;
+                case 3:
+                    color = Color4B(246, 9, 255, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+                    break;
+                default:
+                    color = Color4B(255, 4, 4, agentsDomain.at(i).at(j)->getLife() * (255 / 100));
+                    break;
+                }
                 break;
             }
 
             drawAgent(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
-                      color, 1);
+                      color, 0);
             if (GameLevel::getInstance()->getDepleted(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()) == true) {
                 drawExploitedMap(Point(agentsDomain.at(i).at(j)->getPosition()->getX(), agentsDomain.at(i).at(j)->getPosition()->getY()),
                                  Color4B(100, 100, 100, 100));

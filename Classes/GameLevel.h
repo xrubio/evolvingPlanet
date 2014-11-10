@@ -91,6 +91,7 @@ public:
     void setEnvironmentAdaptation(int x, int y, bool val);
     int getCurrentAgentType(void);
     void setCurrentAgentType(int i);
+    Agent* getAgentAtMap(int i, int j);
 
     void createLevel(void);
     void initializeAttributesCost(void);
