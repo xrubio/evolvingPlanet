@@ -470,8 +470,8 @@ void GameLevel::generateInitialAgents(int type)
     int maxX = 0;
     int minY = 500;
     int maxY = 0;
-    for (int x = 0; x <= 480; x++) {
-        for (int y = 0; y <= 320; y++) {
+    for (int x = 0; x < 480; x++) {
+        for (int y = 0; y < 320; y++) {
             if (gameplayMap->getValueAtGameplayMapHotSpot(1, x, y) == type) {
                 if (minX > x)
                     minX = x;
@@ -507,16 +507,17 @@ void GameLevel::act(void)
     for (int k = 0; k < agents.size(); k++) {
         int dieAgentsSize = (int)agents.at(k).size();
         for (int i = dieAgentsSize - 1; i >= 0; i--) {
-            for (int j = 0; j < actions.size() - 1; j++) {
-                actions.at(j)->execute(k, i);
-            }
-            //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
-            for (int j = 0; j < goals.size(); j++) {
-                if (goals.at(j)->getCompleted() == false) {
-                    goals.at(j)->checkGoal(k, i);
+            if (agents.at(k).at(i)->getLife() > 0) {
+                for (int j = 0; j < actions.size() - 1; j++) {
+                    actions.at(j)->execute(k, i);
+                }
+                //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
+                for (int j = 0; j < goals.size(); j++) {
+                    if (goals.at(j)->getCompleted() == false) {
+                        goals.at(j)->checkGoal(k, i);
+                    }
                 }
             }
-
             //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
             actions.at(actions.size() - 1)->execute(k, i);
 

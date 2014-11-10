@@ -63,7 +63,7 @@ bool Reproduce::execute(int type, int indexAgent)
         }
         //srand(time(NULL));
         if ((rand() % 100) < probReproduction) {
-            int maxIterations = 1000;
+            int maxIterations = 100;
             int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
             int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);
             while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false) {

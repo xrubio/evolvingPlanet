@@ -28,6 +28,8 @@
 	<string>Adaptación</string>
 	<key>CULTURAL_INFLUENCE</key>
 	<string>Infl Cultural</string>
+	<key>HOSTILITY</key>
+	<string>Hostilidad</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>Puntos de evolución</string>
 	<key>GOAL_TEXT_LVL1_1</key>

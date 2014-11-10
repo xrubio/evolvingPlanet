@@ -12,6 +12,7 @@
 #include "Collect.h"
 #include "Deplete.h"
 #include "EnvironmentAdaptation.h"
+#include "Kill.h"
 #include "Die.h"
 #include "MultiplierPower.h"
 #include "AreaPower.h"
@@ -83,6 +84,8 @@ void LevelLoader::loadXmlFile(string filename)
             GameLevel::getInstance()->addAction(new Deplete());
         } else if (action == "EnvironmentAdaptation") {
             GameLevel::getInstance()->addAction(new EnvironmentAdaptation());
+        } else if (action == "Kill") {
+            GameLevel::getInstance()->addAction(new Kill());
         } else if (action == "Die") {
             GameLevel::getInstance()->addAction(new Die());
         }

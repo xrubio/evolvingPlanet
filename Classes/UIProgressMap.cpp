@@ -108,11 +108,21 @@ bool UIProgressMap::init()
     level3Label->setPosition(level3Button->getContentSize().width / 2, level3Button->getContentSize().height / 2);
     level3Button->addChild(level3Label);
 
+    auto level4Button = MenuItemImage::create(
+        "LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+    level4Button->setPosition(388, 680);
+    level4Button->setTag(6);
+    auto level4Label = Label::createWithSystemFont("4", "Arial", 40);
+    level4Label->setPosition(level4Button->getContentSize().width / 2, level4Button->getContentSize().height / 2);
+    level4Button->addChild(level4Label);
+
     Vector<MenuItem*> level2Buttons;
     level2Buttons.pushBack(level21Button);
     level2Buttons.pushBack(level211Button);
     level2Buttons.pushBack(level212Button);
     level2Buttons.pushBack(level3Button);
+    level2Buttons.pushBack(level4Button);
+
     auto level2 = Menu::createWithArray(level2Buttons);
     level2->setPosition(0, 0);
     progressMap2->addChild(level2);
@@ -212,6 +222,9 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         break;
     case 5:
         filename = "level3";
+        break;
+    case 6:
+        filename = "level4";
         break;
     default:
         filename = "level0";
