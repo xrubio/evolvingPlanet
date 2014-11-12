@@ -77,6 +77,15 @@
             <MULTIPLIER>3</MULTIPLIER>
         </TYPE>
     </POWER>
+    <POWER NAME="RestoreLand">
+        <COST>0</COST>
+        <COOLDOWN>4</COOLDOWN>
+        <DURATION>1</DURATION>
+        <ATTRIBUTE>SUSTAINABILITY</ATTRIBUTE>
+        <TYPE TYPE_NAME="Area">
+            <RADIUS>20</RADIUS>
+        </TYPE>
+    </POWER>
 </POWERS>
 <ACTIONS>
     <ACTION>Reproduce</ACTION>

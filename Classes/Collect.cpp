@@ -58,13 +58,24 @@ bool Collect::execute(int type, int indexAgent)
     }
 
     Power* p = nullptr;
+    Power* pRest = nullptr;
     for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
         if (GameLevel::getInstance()->getPowers().at(i)->getName() == "RecollectionBoost") {
             p = GameLevel::getInstance()->getPowers().at(i);
         }
+        if (GameLevel::getInstance()->getPowers().at(i)->getName() == "RestoreLand") {
+            pRest = GameLevel::getInstance()->getPowers().at(i);
+        }
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
         efficiency += 0.5;
+    }
+
+    if (pRest != nullptr and pRest->getDurationLeft() > 0) {
+        //RESTORE LAND
+        GameLevel::getInstance()->getUIGameplayMap()->restoreLand();
+        pRest->setDurationLeft(0);
+        pRest->setCooldownLeft(pRest->getCooldown() + 1);
     }
 
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {

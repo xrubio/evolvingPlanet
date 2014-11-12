@@ -101,6 +101,7 @@ public:
     bool validatePosition(int posx, int posy);
 
     bool paint = false;
+    int prevGoal = 0;
 
 private:
     static GameLevel* gamelevelInstance;

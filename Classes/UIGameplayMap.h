@@ -46,9 +46,12 @@ public:
     int getValueAtGameplayMapResources(int rgb, int posx, int posy);
 
     bool isInBoostResistanceArea(int posx, int posy);
+    void restoreLand(void);
     void updateAgents(void);
     virtual void update(float delta);
     bool selectSpriteForTouch(Sprite* sprite, Point p);
+
+    void moveGoalPopup(int index);
 
     CREATE_FUNC(UIGameplayMap);
 
@@ -77,6 +80,8 @@ private:
 
     MenuItem* backButton;
     ProgressTimer* timeBar;
+    Sprite* timeBorderBar;
+    Sprite* goalPopup;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;

@@ -173,7 +173,7 @@ void GameLevel::deleteAgent(int type, int i)
 {
     int posx = agents.at(type).at(i)->getPosition()->getX();
     int posy = agents.at(type).at(i)->getPosition()->getY();
-    delete agentsMap[posx][posy]; // = nullptr;
+    //delete agentsMap[posx][posy]; // = nullptr;
     agentsMap[posx][posy] = nullptr;
     agents.at(type).erase(agents.at(type).begin() + i);
 }
@@ -526,6 +526,10 @@ void GameLevel::act(void)
             int finalScore = 0;
             for (int j = 0; j < goals.size() and failed == false; j++) {
                 if (goals.at(j)->getCompleted() == false) {
+                    if (prevGoal != j) {
+                        gameplayMap->moveGoalPopup(j);
+                        prevGoal = j;
+                    }
                     failed = true;
                 } else {
                     finalScore += goals.at(j)->getScore();

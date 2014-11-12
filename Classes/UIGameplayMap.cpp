@@ -242,7 +242,7 @@ bool UIGameplayMap::init()
     }
 
     //TIME PROGRESS BAR
-    auto timeBorderBar = Sprite::create("ProgressBarBorder.png");
+    timeBorderBar = Sprite::create("ProgressBarBorder.png");
     timeBorderBar->setPosition(visibleSize.width - timeBorderBar->getContentSize().width / 2,
                                pauseButton->getPosition().y - (pauseButton->getContentSize().height / 2) - (timeBorderBar->getContentSize().height / 2));
     this->addChild(timeBorderBar);
@@ -253,6 +253,12 @@ bool UIGameplayMap::init()
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(19, 19);
     timeBorderBar->addChild(timeBar);
+    goalPopup = Sprite::create("GoalPopup.png");
+    goalPopup->setOpacity(127);
+    goalPopup->setAnchorPoint(Vec2(1, 1));
+    goalPopup->setPosition(visibleSize.width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals().at(0)->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime())),
+                           timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2);
+    this->addChild(goalPopup);
 
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
@@ -584,6 +590,12 @@ bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
     }
 }
 
+void UIGameplayMap::moveGoalPopup(int index)
+{
+    goalPopup->runAction(MoveTo::create(1.5, Vec2(Director::getInstance()->getVisibleSize().width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals().at(index)->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime())),
+                                                  timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2)));
+}
+
 float UIGameplayMap::sqrOfDistanceBetweenPoints(Point p1, Point p2)
 {
     Point diff = p1 - p2;
@@ -645,6 +657,28 @@ bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
         i++;
     }
     return selectSpriteForTouch(((UIAreaPower*)powerButtons.at(i))->getArea(), Point(posx, posy));
+}
+
+void UIGameplayMap::restoreLand(void)
+{
+    int i = 0;
+    while (powerButtons.at(i)->getPower()->getName() != "RestoreLand") {
+        i++;
+    }
+    Point pos = ((UIAreaPower*)powerButtons.at(i))->getArea()->getPosition();
+    Point posTransformed;
+    posTransformed.x = pos.x / float(2048.0 / 480.0),
+    posTransformed.y = ((pos.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0));
+    for (int i = -37; i < 37; i++) {
+        for (int j = -37; j < 37; j++) {
+            if (posTransformed.x + i >= 0 and posTransformed.x + i < 480 and posTransformed.y + j >= 0 and posTransformed.y + j < 320) {
+                GameLevel::getInstance()->setTimeExploited(posTransformed.x + i, posTransformed.y + j, 0);
+                GameLevel::getInstance()->setDepleted(posTransformed.x + i, posTransformed.y + j, false);
+                GameLevel::getInstance()->setEnvironmentAdaptation(posTransformed.x + i, posTransformed.y + j, false);
+                drawExploitedMap(Point(posTransformed.x + i, posTransformed.y + j), Color4B(127, 127, 127, 0), 0);
+            }
+        }
+    }
 }
 
 int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
