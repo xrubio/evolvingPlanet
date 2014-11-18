@@ -123,9 +123,9 @@ private:
     Agent* agentsMap[480][320];
 
     //Resources exploitment
-    int timeExploitedMap[480][320] = { {0} };
-    bool depletedMap[480][320] = { {false} };
-    bool adaptedMap[480][320] = { {false} };
+    int timeExploitedMap[480][320] = { 0 };
+    bool depletedMap[480][320] = { false };
+    bool adaptedMap[480][320] = { false };
 
     int addedAgents = 0;
     vector<cocos2d::Point> deletedAgents;

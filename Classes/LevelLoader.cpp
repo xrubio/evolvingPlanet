@@ -25,8 +25,9 @@
 
 void LevelLoader::loadXmlFile(string filename)
 {
+    string dir = "levels/";
     string ext = ".xml";
-    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(filename + ext);
+    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
     result = doc.load_file((fullPath).c_str());
     //NUM_LEVEL
     GameLevel::getInstance()->setNumLevel(atoi(doc.child_value("NUM_LEVEL")));

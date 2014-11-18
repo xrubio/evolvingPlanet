@@ -22,7 +22,7 @@ CCString* LocalizedString::create(const char* key)
     CCString* str;
 
     string fname = fileName;
-    fname = fname + ".plist";
+    fname = "lang/" + fname + ".plist";
 
     CCDictionary* language = CCDictionary::createWithContentsOfFile(fname.c_str());
 

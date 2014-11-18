@@ -11,7 +11,7 @@
 #include "GameData.h"
 #include "LevelLoader.h"
 #include "SlidingMenu.h"
-#include "../cocos2d/cocos/ui/CocosGUI.h"
+#include "CocosGUI.h"
 
 using namespace ui;
 

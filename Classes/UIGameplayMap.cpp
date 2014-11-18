@@ -35,6 +35,7 @@ bool UIGameplayMap::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     string map = GameLevel::getInstance()->getMapFilename();
+    cout << "MAPA " << map << endl;
     //fer DEFINES
     string ext = ".png";
     string background = "Background";
