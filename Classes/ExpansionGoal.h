@@ -22,7 +22,7 @@ public:
     int getColorZone(void);
     void setColorZone(int color);
 
-    void checkGoal(int type, int indexAgent);
+    void checkGoal(int type, Agent* agent);
 
 private:
     int colorZone;

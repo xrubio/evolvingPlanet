@@ -9,9 +9,9 @@
 #include "Deplete.h"
 #include "UIGameplayMap.h"
 
-bool Deplete::execute(int type, int indexAgent)
+typename list<Agent*>::iterator Deplete::execute(int type, Agent* agent)
 {
-    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
+    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     int sustainability = agent->getValOfAttribute("SUSTAINABILITY");
     switch (sustainability) {
@@ -55,6 +55,4 @@ bool Deplete::execute(int type, int indexAgent)
         and (rand() % 100) < sustainability) {
         GameLevel::getInstance()->setDepleted(agent->getPosition()->getX(), agent->getPosition()->getY(), true);
     }
-
-    return false;
 }

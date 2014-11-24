@@ -9,14 +9,79 @@
 #include "Reproduce.h"
 #include "UIGameplayMap.h"
 
-bool Reproduce::execute(int type, int indexAgent)
+typename list<Agent*>::iterator Reproduce::execute(int typeAgent, Agent* agent)
 {
-    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
-    if (GameLevel::getInstance()->getAgents().at(type).size() < GameLevel::getInstance()->getMaxAgent(agent->getType())) {
+    //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
+
+    //INFLUENCIA CULTURAL - CALCULAR TIPUS
+    int type = agent->getType();
+    int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
+    int mobility = agent->getValOfAttribute("MOBILITY") * 5;
+    if (probCulture > -1) {
+        //CONTAR AGENTS ALREDEDOR SEGONS TIPUS
+        vector<int> numAgentsPerType;
+        for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
+            numAgentsPerType.push_back(0);
+        }
+        for (int i = -mobility / 2; i < mobility / 2; i++) {
+            for (int j = -mobility / 2; j < mobility / 2; j++) {
+                int posx = agent->getPosition()->getX() + i;
+                int posy = agent->getPosition()->getY() + j;
+                if (posx >= 0 and posy >= 0 and posx < 480 and posy < 320) {
+                    if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr) {
+                        numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] = numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] + 1;
+                    }
+                }
+            }
+        }
+
+        //CALCULAR PROBABILITATS EN FUNCIO DEL NUMERO DAGENTS DE CADA TIPUS
+        vector<float> probPerType;
+        float probMid = 0.0;
+        float probTotal = 0.0;
+        for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
+            probPerType.push_back(float(GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"]));
+            probMid += float(GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"]);
+        }
+        for (int i = 0; i < probPerType.size(); i++) {
+            probPerType[i] = (probPerType[i] / probMid) * float(numAgentsPerType[i]);
+            probTotal += probPerType[i];
+        }
+        for (int i = 0; i < probPerType.size(); i++) {
+            if (i == 0) {
+                probPerType[i] = (probPerType[i] / probTotal) * 100.0;
+            } else {
+                probPerType[i] = ((probPerType[i] / probTotal) * 100.0) + probPerType[i - 1];
+            }
+        }
+        int p = rand() % 100;
+        bool exit = false;
+        for (int i = 0; i < probPerType.size() and exit == false; i++) {
+            if (i == 0 and p < probPerType[i]) {
+                type = i;
+                exit = true;
+            } else if (p < probPerType[i] and p >= probPerType[i - 1]) {
+                type = i;
+                exit = true;
+            }
+        }
+    }
+
+    //REPRODUIR-SE NORMAL (SI HI HA INLFUENCIA CULTURAL I EL TIPUS ES EL MATEIX TAMBE)
+    bool maxReached = false;
+    if (GameLevel::getInstance()->getMaxAllAgents() > 0) {
+        int numAgents = 0;
+        for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
+            numAgents += GameLevel::getInstance()->getAgents()[i].size();
+        }
+        maxReached = numAgents >= GameLevel::getInstance()->getMaxAllAgents();
+    } else {
+        maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
+    }
+    if (type == agent->getType() and maxReached == false) {
         int probReproduction = agent->getValOfAttribute("REPRODUCTION");
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
 
-        int mobility = agent->getValOfAttribute("MOBILITY") * 5;
         switch (probReproduction) {
         case 1:
             probReproduction = 20;
@@ -54,8 +119,8 @@ bool Reproduce::execute(int type, int indexAgent)
         }
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-            if (GameLevel::getInstance()->getPowers().at(i)->getName() == "ReproductionBoost") {
-                p = GameLevel::getInstance()->getPowers().at(i);
+            if (GameLevel::getInstance()->getPowers()[i]->getName() == "ReproductionBoost") {
+                p = GameLevel::getInstance()->getPowers()[i];
             }
         }
         if (p != nullptr and p->getDurationLeft() > 0) {
@@ -72,69 +137,22 @@ bool Reproduce::execute(int type, int indexAgent)
                 maxIterations--;
             }
             if (maxIterations > 0) {
-
-                //INFLUENCIA CULTURAL - CALCULAR TIPUS
-                int type = agent->getType();
-                int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
-                if (probCulture > 0) {
-
-                    //CONTAR AGENTS ALREDEDOR SEGONS TIPUS
-                    vector<int> numAgentsPerType;
-                    for (int i = 0; i < GameLevel::getInstance()->getMaxAgents().size(); i++) {
-                        numAgentsPerType.push_back(0);
-                    }
-                    for (int i = -mobility / 2; i < mobility / 2; i++) {
-                        for (int j = -mobility / 2; j < mobility / 2; j++) {
-                            int posx = agent->getPosition()->getX() + i;
-                            int posy = agent->getPosition()->getY() + j;
-                            if (posx >= 0 and posy >= 0 and posx < 480 and posy < 320) {
-                                if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr) {
-                                    numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] = numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] + 1;
-                                }
-                            }
-                        }
-                    }
-
-                    //CALCULAR PROBABILITATS EN FUNCIO DEL NUMERO DAGENTS DE CADA TIPUS
-                    vector<float> probPerType;
-                    float probMid = 0;
-                    float probTotal = 0;
-                    for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-                        probPerType.push_back(GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"]);
-                        probMid += GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"];
-                    }
-                    for (int i = 0; i < probPerType.size(); i++) {
-                        probPerType[i] = (probPerType[i] / probMid) * numAgentsPerType.at(i);
-                        probTotal += probPerType[i];
-                    }
-                    for (int i = 0; i < probPerType.size(); i++) {
-                        if (i == 0) {
-                            probPerType[i] = (probPerType[i] / probTotal) * 100;
-                        } else {
-                            probPerType[i] = ((probPerType[i] / probTotal) * 100) + probPerType[i - 1];
-                        }
-                    }
-                    int p = rand() % 100;
-                    bool exit = false;
-                    for (int i = 0; i < probPerType.size() and exit == false; i++) {
-                        if (i == 0 and p < probPerType.at(i)) {
-                            type = i;
-                            exit = true;
-                        } else if (p < probPerType.at(i) and p >= probPerType.at(i - 1)) {
-                            type = i;
-                            exit = true;
-                        }
-                    }
-                }
-
                 auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);
                 ag->setAttributes(GameLevel::getInstance()->getAgentAttributes(type));
                 GameLevel::getInstance()->addAgent(ag);
                 GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
                 GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
-                return true;
             }
         }
+
     }
-    return false;
+    //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
+    else if (type != agent->getType()) {
+        auto ag = new Agent(agent->getId(), agent->getLife(), type, agent->getPosition()->getX(), agent->getPosition()->getY());
+        ag->setAttributes(GameLevel::getInstance()->getAgentAttributes(type));
+        GameLevel::getInstance()->addAgent(ag);
+        agent->setLife(0);
+        //GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
+        //GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
+    }
 }

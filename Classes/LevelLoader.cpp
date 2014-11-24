@@ -25,7 +25,13 @@
 
 void LevelLoader::loadXmlFile(string filename)
 {
-    string dir = "levels/";
+
+    string dir = "/levels/";
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    dir = "";
+#endif
+
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
     result = doc.load_file((fullPath).c_str());
@@ -36,13 +42,20 @@ void LevelLoader::loadXmlFile(string filename)
     GameLevel::getInstance()->setMapFilename(doc.child_value("FILE_MAP"));
     //AGENTS
     xml_node ags = doc.child("AGENTS").child("AGENT");
+    int maxAllAgents = 0;
+    if (strncmp(doc.child("AGENTS").attribute("MAX_ALL").value(), "YES", 3) == 0) {
+        maxAllAgents = atoi(doc.child("AGENTS").attribute("MAX_AGENTS").value());
+        GameLevel::getInstance()->setMaxAllAgents(maxAllAgents);
+    }
     while (ags != nullptr) {
         //TYPE
         int type = atoi(ags.attribute("TYPE").value());
         //NUM_INITIAL_AGENTS
         GameLevel::getInstance()->setNumInitialAgent(type, atoi(ags.child("NUM_INITIAL_AGENTS").child_value()));
         //MAX_AGENTS
-        GameLevel::getInstance()->setMaxAgent(type, atoi(ags.child("MAX_AGENTS").child_value()));
+        if (maxAllAgents == 0) {
+            GameLevel::getInstance()->setMaxAgent(type, atoi(ags.child("MAX_AGENTS").child_value()));
+        }
         xml_node atts = ags.child("ATTRIBUTES").child("ATTRIBUTE");
 
         while (atts != nullptr) {

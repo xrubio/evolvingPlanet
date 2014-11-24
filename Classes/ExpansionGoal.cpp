@@ -30,7 +30,7 @@ void ExpansionGoal::setColorZone(int color)
     colorZone = color;
 }
 
-void ExpansionGoal::checkGoal(int type, int indexAgent)
+void ExpansionGoal::checkGoal(int type, Agent* agent)
 {
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
     if (type == agentType) {
@@ -38,7 +38,8 @@ void ExpansionGoal::checkGoal(int type, int indexAgent)
             GameLevel::getInstance()->setFinishedGame(2);
         } else {
             //Check agent at goal zone
-            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(1, GameLevel::getInstance()->getAgents().at(type).at(indexAgent)->getPosition()->getX(), GameLevel::getInstance()->getAgents().at(type).at(indexAgent)->getPosition()->getY()) == colorZone) {
+            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(1, agent->getPosition()->getX(),
+                                                                                           agent->getPosition()->getY()) == colorZone) {
                 if (minTime > timeSteps) {
                     GameLevel::getInstance()->setFinishedGame(2);
                 } else {

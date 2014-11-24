@@ -40,7 +40,7 @@ void CollectionGoal::setCurrentAmount(int currAm)
     currentAmount = currAm;
 }
 
-void CollectionGoal::checkGoal(int type, int indexAgent)
+void CollectionGoal::checkGoal(int type, Agent* agent)
 {
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
     if (timeSteps > maxTime) {

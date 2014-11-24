@@ -10,10 +10,10 @@
 #include "UIGameplayMap.h"
 #include "CollectionGoal.h"
 
-bool Collect::execute(int type, int indexAgent)
+typename list<Agent*>::iterator Collect::execute(int type, Agent* agent)
 {
     //UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
-    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
+    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     GameLevel::getInstance()->setTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY(),
                                                GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(),
@@ -60,11 +60,11 @@ bool Collect::execute(int type, int indexAgent)
     Power* p = nullptr;
     Power* pRest = nullptr;
     for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-        if (GameLevel::getInstance()->getPowers().at(i)->getName() == "RecollectionBoost") {
-            p = GameLevel::getInstance()->getPowers().at(i);
+        if (GameLevel::getInstance()->getPowers()[i]->getName() == "RecollectionBoost") {
+            p = GameLevel::getInstance()->getPowers()[i];
         }
-        if (GameLevel::getInstance()->getPowers().at(i)->getName() == "RestoreLand") {
-            pRest = GameLevel::getInstance()->getPowers().at(i);
+        if (GameLevel::getInstance()->getPowers()[i]->getName() == "RestoreLand") {
+            pRest = GameLevel::getInstance()->getPowers()[i];
         }
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
@@ -79,7 +79,7 @@ bool Collect::execute(int type, int indexAgent)
     }
 
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
-        if (GameLevel::getInstance()->getGoals().at(i)->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getGoalAmount() > 0) {
+        if (GameLevel::getInstance()->getGoals()[i]->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getGoalAmount() > 0) {
             int mapSelector = 0;
             if (GameLevel::getInstance()->getDepleted(agent->getPosition()->getX(), agent->getPosition()->getY()) == true) {
                 mapSelector = 1;
@@ -87,9 +87,8 @@ bool Collect::execute(int type, int indexAgent)
                 mapSelector = 2;
             }
 
-            ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->setCurrentAmount(
-                ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapResources(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY()) * efficiency));
+            ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(
+                ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapResources(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY()) * efficiency));
         }
     }
-    return false;
 }

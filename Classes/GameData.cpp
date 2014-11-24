@@ -36,7 +36,7 @@ void GameData::setLevelsCompleted(vector<int> lvlsCompleted)
 
 int GameData::getLevelScore(int level)
 {
-    return levelsCompleted.at(level);
+    return levelsCompleted[level];
 }
 
 void GameData::setLevelScore(int level, int score)

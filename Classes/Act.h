@@ -10,6 +10,7 @@
 #define __simulplay__Act__
 
 #include "Agent.h"
+#include <list>
 
 class UIGameplayMap;
 
@@ -20,7 +21,7 @@ public:
     Act(Act const&) {};
     Act& operator=(Act const&);
 
-    virtual bool execute(int type = 0, int indexAgent = 0) = 0;
+    virtual typename list<Agent*>::iterator execute(int type = 0, Agent* agent = nullptr) = 0;
 };
 
 #endif /* defined(__simulplay__Act__) */

@@ -18,7 +18,7 @@ public:
     EnvironmentAdaptation(EnvironmentAdaptation const&) {};
     EnvironmentAdaptation& operator=(EnvironmentAdaptation const&);
 
-    bool execute(int type, int indexAgent);
+    typename list<Agent*>::iterator execute(int type, Agent* agent);
 };
 
 #endif /* defined(__simulplay__EnvironmentAdaptation__) */

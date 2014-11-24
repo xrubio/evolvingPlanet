@@ -9,9 +9,9 @@
 #include "EnvironmentAdaptation.h"
 #include "UIGameplayMap.h"
 
-bool EnvironmentAdaptation::execute(int type, int indexAgent)
+typename list<Agent*>::iterator EnvironmentAdaptation::execute(int type, Agent* agent)
 {
-    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
+    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     int adaptation = agent->getValOfAttribute("ADAPTATION");
     switch (adaptation) {
@@ -55,6 +55,4 @@ bool EnvironmentAdaptation::execute(int type, int indexAgent)
         and (rand() % 100) < adaptation) {
         GameLevel::getInstance()->setEnvironmentAdaptation(agent->getPosition()->getX(), agent->getPosition()->getY(), true);
     }
-
-    return false;
 }

@@ -63,7 +63,11 @@ void Agent::setAttributes(map<string, int> map)
 
 int Agent::getValOfAttribute(string att)
 {
-    return attributes[att];
+    if (attributes.count(att) != 1) {
+        return -1;
+    } else {
+        return attributes[att];
+    }
 }
 
 void Agent::setValOfAttribute(string att, int val)

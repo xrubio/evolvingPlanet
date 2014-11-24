@@ -51,10 +51,10 @@ public:
     void setPowers(vector<Power*> p);
     void addPower(Power* p);
     void deletePower(int i);
-    vector<vector<Agent*> > getAgents(void);
-    void setAgents(vector<vector<Agent*> > ags);
+    vector<list<Agent*> > getAgents(void);
+    void setAgents(vector<list<Agent*> > ags);
     void addAgent(Agent* ag);
-    void deleteAgent(int type, int i);
+    typename list<Agent*>::iterator deleteAgent(int type, Agent* agent);
     vector<Act*> getActions(void);
     void setActions(vector<Act*> a);
     void addAction(Act* act);
@@ -92,6 +92,8 @@ public:
     int getCurrentAgentType(void);
     void setCurrentAgentType(int i);
     Agent* getAgentAtMap(int i, int j);
+    int getMaxAllAgents(void);
+    void setMaxAllAgents(int m);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -111,21 +113,22 @@ private:
     //VECTOR POSITION = TYPE
     vector<int> maxAgents;
     vector<int> numInitialAgents;
+    int maxAllAgents = 0;
 
     clock_t currentTime = 0;
     int numLevel;
     vector<map<string, int> > agentAttributes;
     vector<map<string, int> > attributesCost;
     vector<Power*> powers;
-    vector<vector<Agent*> > agents;
+    vector<list<Agent*> > agents;
     vector<Act*> actions;
     vector<Goal*> goals;
     Agent* agentsMap[480][320];
 
     //Resources exploitment
-    int timeExploitedMap[480][320] = { {0} };
-    bool depletedMap[480][320] = { {false} };
-    bool adaptedMap[480][320] = { {false} };
+    int timeExploitedMap[480][320] = { { 0 } };
+    bool depletedMap[480][320] = { { false } };
+    bool adaptedMap[480][320] = { { false } };
 
     int addedAgents = 0;
     vector<cocos2d::Point> deletedAgents;

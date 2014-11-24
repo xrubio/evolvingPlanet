@@ -24,7 +24,7 @@ public:
     int getCurrentAmount(void);
     void setCurrentAmount(int currAm);
 
-    void checkGoal(int type, int indexAgent);
+    void checkGoal(int type, Agent* agent);
 
 private:
     int goalAmount;

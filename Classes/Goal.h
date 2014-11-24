@@ -9,7 +9,10 @@
 #ifndef __simulplay__Goal__
 #define __simulplay__Goal__
 
+#include "Agent.h"
+
 class Goal {
+
 public:
     Goal() {};
     Goal(int agentType, int min, int max, int average, int des2, int des3);
@@ -33,7 +36,7 @@ public:
     int getScore(void);
     void setScore(int s);
 
-    virtual void checkGoal(int type = 0, int indexAgent = 0) = 0;
+    virtual void checkGoal(int type = 0, Agent* agent = nullptr) = 0;
 
 protected:
     int agentType;

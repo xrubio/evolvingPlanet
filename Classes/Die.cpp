@@ -9,10 +9,10 @@
 #include "Die.h"
 #include "UIGameplayMap.h"
 
-bool Die::execute(int type, int indexAgent)
+typename list<Agent*>::iterator Die::execute(int type, Agent* agent)
 {
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
-    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
+    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     int harm = gameplayMap->getValueAtGameplayMapHotSpot(0, agent->getPosition()->getX(), agent->getPosition()->getY());
 
@@ -55,8 +55,8 @@ bool Die::execute(int type, int indexAgent)
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     Power* p = nullptr;
     for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-        if (GameLevel::getInstance()->getPowers().at(i)->getName() == "ResistanceBoost") {
-            p = GameLevel::getInstance()->getPowers().at(i);
+        if (GameLevel::getInstance()->getPowers()[i]->getName() == "ResistanceBoost") {
+            p = GameLevel::getInstance()->getPowers()[i];
         }
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
@@ -73,8 +73,6 @@ bool Die::execute(int type, int indexAgent)
 
     if (agent->getLife() <= 0) {
         GameLevel::getInstance()->addDeletedAgent(Point(agent->getPosition()->getX(), agent->getPosition()->getY()));
-        GameLevel::getInstance()->deleteAgent(agent->getType(), indexAgent);
-        return true;
+        return GameLevel::getInstance()->deleteAgent(agent->getType(), agent);
     }
-    return false;
 }

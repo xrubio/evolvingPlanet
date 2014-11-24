@@ -9,9 +9,9 @@
 #include "Kill.h"
 #include "UIGameplayMap.h"
 
-bool Kill::execute(int type, int indexAgent)
+typename list<Agent*>::iterator Kill::execute(int type, Agent* agent)
 {
-    Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
+    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     int probKill = agent->getValOfAttribute("HOSTILITY");
     int mobility = agent->getValOfAttribute("MOBILITY") * 5;
     if ((rand() % 100) < probKill * 100) {
@@ -31,6 +31,4 @@ bool Kill::execute(int type, int indexAgent)
             maxIterations--;
         }
     }
-
-    return false;
 }

@@ -68,8 +68,8 @@ bool UIAgents::init()
     int tag = 0;
 
     for (int i = 0; i < keys.size(); i++) {
-        auto attLabel = Label::createWithSystemFont(string(LocalizedString::create(keys.at(i).c_str())->getCString())
-                                                    + " (" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i))) + ")",
+        auto attLabel = Label::createWithSystemFont(string(LocalizedString::create(keys[i].c_str())->getCString())
+                                                    + " (" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) + ")",
                                                     "Arial", 80);
         attLabel->setPosition(origin.x + visibleSize.width / 6, origin.y + (keys.size() - i) * (visibleSize.height / (keys.size() + 1)));
         this->addChild(attLabel, 1, (i + 1) * 1000);
@@ -94,10 +94,10 @@ bool UIAgents::init()
             posX = posX + incX;
             auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
             auto filledAttribute = Sprite::create("FilledAttributePointButton.png");
-            if (j >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i))) {
+            if (j >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) {
                 blankAttribute->setPosition(Vec2(posX, posY));
                 this->addChild(blankAttribute, 1, tag);
-            } else if (j < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i))) {
+            } else if (j < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) {
                 filledAttribute->setPosition(Vec2(posX, posY));
                 this->addChild(filledAttribute, 1, tag);
             }
@@ -142,18 +142,18 @@ void UIAgents::minusAttCallback(Ref* pSender)
     int tag = pMenuItem->getTag();
     int i = tag - 10;
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) > 0) {
-        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i), GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) - 1);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i), GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) + 1);
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
+        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
+        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)this->getChildByTag((i + 1) * 1000);
-        l->setString(string(LocalizedString::create(keys.at(i).c_str())->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i))) + ")");
+        l->setString(string(LocalizedString::create(keys[i].c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) + ")");
 
-        auto filledAttribute = this->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) + (i * 10));
+        auto filledAttribute = this->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 10));
         auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
         blankAttribute->setPosition(filledAttribute->getPosition());
-        this->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) + (i * 10));
-        this->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) + (i * 10));
+        this->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 10));
+        this->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 10));
     }
 }
 
@@ -163,17 +163,17 @@ void UIAgents::plusAttCallback(Ref* pSender)
     int tag = pMenuItem->getTag();
     int i = tag - 50;
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) < 10) {
-        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i), GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) + 1);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i), GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) + 1);
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 10) {
+        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)this->getChildByTag((i + 1) * 1000);
-        l->setString(string(LocalizedString::create(keys.at(i).c_str())->getCString())
-                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i))) + ")");
+        l->setString(string(LocalizedString::create(keys[i].c_str())->getCString())
+                     + " (" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) + ")");
 
-        auto blankAttribute = this->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) - 1) + (i * 10));
+        auto blankAttribute = this->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 10));
         auto filledAttribute = Sprite::create("FilledAttributePointButton.png");
         filledAttribute->setPosition(blankAttribute->getPosition());
-        this->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) - 1) + (i * 10));
-        this->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys.at(i)) - 1) + (i * 10));
+        this->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 10));
+        this->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 10));
     }
 }
