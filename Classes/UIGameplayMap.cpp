@@ -408,8 +408,10 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameLevel::getInstance()->setFinishedGame(4);
-    while (GameLevel::getInstance()->paint == true)
+    while (GameLevel::getInstance()->ended == false)
         ;
+    pthread_cancel(thread);
+    pthread_join(thread, nullptr);
     GameData::getInstance()->setGameStarted(false);
     auto scene = UIProgressMap::createScene();
     Director::getInstance()->replaceScene(scene);
@@ -944,7 +946,7 @@ void UIGameplayMap::update(float delta)
         createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
         endGameWindowPainted = true;
     } else {
-        if (GameLevel::getInstance()->paint == true) {
+        if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false) {
             play = false;
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));

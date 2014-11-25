@@ -402,6 +402,7 @@ void GameLevel::playLevel(void)
                 if (timeSteps % 2 == 0) {
                     evolutionPoints++;
                 }
+                paint = true;
                 cout << "DIFF: " << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
                 /*try {
                     if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
@@ -411,15 +412,10 @@ void GameLevel::playLevel(void)
                 catch (int e) {
                     cout << "Time Exceded" << endl;
                 }*/
-                paint = true;
-            }
-            int numAgents = 0;
-            for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-                numAgents += GameLevel::getInstance()->getAgents()[i].size();
             }
         }
     }
-    paint = false;
+    ended = true;
     cout << "End of game: " << finishedGame << endl;
 }
 
@@ -466,6 +462,10 @@ void GameLevel::resetLevel(void)
 
     currentAgentType = 0;
     maxAllAgents = 0;
+
+    paint = false;
+    ended = false;
+    prevGoal = 0;
 }
 
 void GameLevel::createLevel(void)

@@ -103,6 +103,7 @@ public:
     bool validatePosition(int posx, int posy);
 
     bool paint = false;
+    bool ended = false;
     int prevGoal = 0;
 
 private:
