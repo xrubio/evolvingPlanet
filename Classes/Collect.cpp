@@ -10,7 +10,7 @@
 #include "UIGameplayMap.h"
 #include "CollectionGoal.h"
 
-typename list<Agent*>::iterator Collect::execute(int type, Agent* agent)
+list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
 {
     //UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);

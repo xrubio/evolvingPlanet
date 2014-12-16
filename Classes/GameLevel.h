@@ -54,7 +54,7 @@ public:
     vector<list<Agent*> > getAgents(void);
     void setAgents(vector<list<Agent*> > ags);
     void addAgent(Agent* ag);
-    typename list<Agent*>::iterator deleteAgent(int type, Agent* agent);
+    list<Agent*>::reverse_iterator deleteAgent(int type, Agent* agent);
     vector<Act*> getActions(void);
     void setActions(vector<Act*> a);
     void addAction(Act* act);

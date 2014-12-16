@@ -12,8 +12,19 @@
 UIAreaPower::UIAreaPower(Power* p)
 {
     power = p;
-    string filename = p->getName() + "Button" + ".png";
-    icon = Sprite::create(filename);
+    icon = Sprite::create("PowerBackgroundButton.png");
+    auto button = Sprite::create(p->getName() + "Button" + ".png");
+    button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    icon->addChild(button, 2, 0);
+    auto actionTimer = ProgressTimer::create(Sprite::create(p->getName() + "ActionButton" + ".png"));
+    actionTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    actionTimer->setType(ProgressTimer::Type::RADIAL);
+    icon->addChild(actionTimer, 1, 1);
+    auto cooldownTimer = ProgressTimer::create(Sprite::create("PowerCooldownButton.png"));
+    cooldownTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    cooldownTimer->setType(ProgressTimer::Type::RADIAL);
+    cooldownTimer->setVisible(false);
+    icon->addChild(cooldownTimer, 3, 2);
     cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
     cooldown->setColor(Color3B::BLUE);
     cooldown->setVisible(false);
@@ -35,7 +46,10 @@ void UIAreaPower::onTouchesBegan(Point touchLocation)
         clicked = true;
         area->setPosition(area->getParent()->convertToNodeSpace(icon->getPosition()));
         area->setVisible(true);
+        icon->setScale(1.25);
         icon->setColor(Color3B::GRAY);
+        auto button = (Sprite*)icon->getChildByTag(0);
+        button->setColor(Color3B::GRAY);
     }
 }
 
@@ -52,8 +66,11 @@ void UIAreaPower::onTouchesMoved(Touch* touchLocation)
 
 void UIAreaPower::onTouchesEnded(Point touchLocation)
 {
+    icon->setScale(1);
     if (clicked) {
         icon->setColor(Color3B::WHITE);
+        auto button = (Sprite*)icon->getChildByTag(0);
+        button->setColor(Color3B::WHITE);
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
             power->setDurationLeft(power->getDuration());
             cooldown->setVisible(true);
@@ -62,15 +79,25 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
     clicked = false;
 }
 
-void UIAreaPower::update()
+void UIAreaPower::update(float delta)
 {
+    ProgressTimer* actionTimer = (ProgressTimer*)icon->getChildByTag(1);
+    ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
+
+    actionTimer->setPercentage(float(power->getDurationLeft()) / float(power->getDuration()) * 100.0);
+
     if (clicked == false and power->getDurationLeft() == 0) {
         area->setVisible(false);
     }
     if (power->getCooldownLeft() > 0) {
-        cooldown->setVisible(true);
+        //cooldown->setVisible(true);
         cooldown->setString(to_string(power->getCooldownLeft()));
+        cooldownTimer->setVisible(true);
+        cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
     } else {
         cooldown->setVisible(false);
+        cooldownTimer->setVisible(false);
+        actionTime = 0.0;
+        actionTimer->setPercentage(100.0);
     }
 }

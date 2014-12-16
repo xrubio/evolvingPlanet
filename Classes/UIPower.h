@@ -31,7 +31,7 @@ public:
     virtual void onTouchesBegan(Point touchLocation) = 0;
     virtual void onTouchesMoved(Touch* touchLocation) = 0;
     virtual void onTouchesEnded(Point touchLocation) = 0;
-    virtual void update() = 0;
+    virtual void update(float delta) = 0;
 
 protected:
     Power* power;

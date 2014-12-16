@@ -119,10 +119,10 @@ void LevelLoader::loadXmlFile(string filename)
         int desviation3Star = atoi(goals.child("DESVIATION_3_STAR").child_value());
         if (type == "Expansion") {
             int color = atoi(goals.child("COLOR_ZONE").child_value());
-            GameLevel::getInstance()->addGoal(new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color));
+            GameLevel::getInstance()->addGoal(new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, type, color));
         } else if (type == "Collection") {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
-            GameLevel::getInstance()->addGoal(new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount));
+            GameLevel::getInstance()->addGoal(new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, type, goalAmount));
         }
         i++;
         goals = goals.next_sibling("GOAL");

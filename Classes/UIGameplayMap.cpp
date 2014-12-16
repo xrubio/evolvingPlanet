@@ -15,6 +15,7 @@
 #include "UIMultiplierPower.h"
 #include "UIAreaPower.h"
 #include "CollectionGoal.h"
+#include "ExpansionGoal.h"
 
 Scene* UIGameplayMap::createScene()
 {
@@ -53,6 +54,14 @@ bool UIGameplayMap::init()
     gameplayMap = Sprite::create(map + background + ext);
     gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(gameplayMap, 0);
+
+    //FRAMES
+    auto topFrame = Sprite::create("FrameTop.png");
+    topFrame->setPosition(visibleSize.width / 2, visibleSize.height - (topFrame->getContentSize().height / 2));
+    this->addChild(topFrame, 1);
+    auto bottomFrame = Sprite::create("FrameBottom.png");
+    bottomFrame->setPosition(visibleSize.width / 2, bottomFrame->getContentSize().height / 2);
+    this->addChild(bottomFrame, 1);
 
     //HOTSPOT
     gameplayMapHotSpot = new Image();
@@ -112,28 +121,39 @@ bool UIGameplayMap::init()
                                  origin.y + (backButton->getContentSize().height / 2)));
     menuButtons.pushBack(backButton);
 
-    MenuItem* goalsButton = MenuItemImage::create(
-        "GoalsButton.png", "GoalsButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuGoalsCallback, this));
-    goalsButton->setPosition(Vec2(backButton->getPosition().x - visibleSize.width + goalsButton->getContentSize().width,
-                                  backButton->getPosition().y));
-    menuButtons.pushBack(goalsButton);
-
     MenuItem* agentsButton = MenuItemImage::create(
         "AgentsButton.png", "AgentsButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuAgentsCallback, this));
     agentsButton->setPosition(Vec2(backButton->getPosition().x - visibleSize.width + agentsButton->getContentSize().width,
                                    visibleSize.height - (agentsButton->getContentSize().height / 2)));
     menuButtons.pushBack(agentsButton);
 
+    MenuItem* goalsButton = MenuItemImage::create(
+        "GoalsButton.png", "GoalsButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuGoalsCallback, this));
+    goalsButton->setPosition(Vec2(backButton->getPosition().x - visibleSize.width + goalsButton->getContentSize().width,
+                                  visibleSize.height - agentsButton->getContentSize().height - (goalsButton->getContentSize().height / 2)));
+    menuButtons.pushBack(goalsButton);
+
     Menu* menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
     this->addChild(menu, 10);
 
-    evolutionPointsLabel = Label::createWithSystemFont(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
-                                                       + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()),
-                                                       "Arial", 65);
-    evolutionPointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3,
-                                      visibleSize.height - (agentsButton->getContentSize().height / 2));
-    this->addChild(evolutionPointsLabel, 1);
+    //EVOLUTION POINTS
+    //string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
+    auto evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
+    evolutionPointsIcon->setPosition(146 * visibleSize.width / 204, 18 * visibleSize.height / 155);
+    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()),
+                                                "fonts/BebasNeue.otf", 80);
+    evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+    evolutionPointsLabel->setColor(Color3B(216, 229, 235));
+    evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
+    this->addChild(evolutionPointsIcon, 1);
+
+    auto evolutionPointsStringLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")->getCString()),
+                                                           "fonts/BebasNeue.otf", 40);
+    evolutionPointsStringLabel->setColor(Color3B(216, 229, 235));
+    evolutionPointsStringLabel->setPosition(evolutionPointsIcon->getPosition().x + (20 * visibleSize.width / 204),
+                                            evolutionPointsIcon->getPosition().y);
+    this->addChild(evolutionPointsStringLabel, 3);
 
     //FER DINAMIC
     if (GameLevel::getInstance()->getNumLevel() == 2) {
@@ -154,23 +174,23 @@ bool UIGameplayMap::init()
         this->addChild(collect3PointsLabel, 1);
     }
 
+    //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
     MenuItem* fastForwardButton = MenuItemImage::create(
         "FastForwardButton.png", "FastForwardButtonPressed.png", "FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
-    fastForwardButton->setPosition(Vec2(origin.x + visibleSize.width - (fastForwardButton->getContentSize().width / 2),
-                                        origin.y + visibleSize.height - (fastForwardButton->getContentSize().height / 2)));
+    fastForwardButton->setPosition(Vec2(190 * visibleSize.width / 204, 145 * visibleSize.height / 155));
     timeButtons.pushBack(fastForwardButton);
 
     MenuItem* playButton = MenuItemImage::create(
         "PlayButton.png", "PlayButtonPressed.png", "PlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::playCallback, this));
-    playButton->setPosition(Vec2(fastForwardButton->getPosition().x - fastForwardButton->getContentSize().width,
+    playButton->setPosition(Vec2(fastForwardButton->getPosition().x - (12 * visibleSize.width / 204),
                                  fastForwardButton->getPosition().y));
     playButton->setEnabled(false);
     timeButtons.pushBack(playButton);
 
     MenuItem* pauseButton = MenuItemImage::create(
         "PauseButton.png", "PauseButtonPressed.png", "PauseButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::pauseCallback, this));
-    pauseButton->setPosition(Vec2(playButton->getPosition().x - playButton->getContentSize().width,
+    pauseButton->setPosition(Vec2(playButton->getPosition().x - (12 * visibleSize.width / 204),
                                   playButton->getPosition().y));
     timeButtons.pushBack(pauseButton);
 
@@ -179,7 +199,7 @@ bool UIGameplayMap::init()
     this->addChild(timeMenu, 2);
 
     timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
-    timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getContentSize().width * 2,
+    timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getContentSize().width * 1.5,
                                 pauseButton->getPosition().y));
     this->addChild(timeSteps, 2);
 
@@ -223,10 +243,10 @@ bool UIGameplayMap::init()
     for (int i = 0; i < pws.size(); i++) {
         Vec2 pos;
         if (i == 0) {
-            pos.x = goalsButton->getPosition().x + (3 * goalsButton->getContentSize().width / 2);
-            pos.y = goalsButton->getPosition().y;
+            pos.x = 13 * visibleSize.width / 204;
+            pos.y = 18 * visibleSize.height / 155;
         } else {
-            pos.x = powerButtons[i - 1]->getIcon()->getPosition().x + powerButtons[i - 1]->getIcon()->getContentSize().width;
+            pos.x = powerButtons[i - 1]->getIcon()->getPosition().x + (4 * visibleSize.width / 204) + powerButtons[i - 1]->getIcon()->getContentSize().width;
             pos.y = powerButtons[i - 1]->getIcon()->getPosition().y;
         }
 
@@ -242,24 +262,82 @@ bool UIGameplayMap::init()
         }
     }
 
+    //SET GOALS ON MAP
+    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+        //Set Checkpoint Area
+        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Expansion") {
+            //FIND AREA
+            int minX = 479;
+            int maxX = 0;
+            int minY = 319;
+            int maxY = 0;
+            for (int x = 0; x < 480; x++) {
+                for (int y = 0; y < 320; y++) {
+                    if (getValueAtGameplayMapHotSpot(1, x, y) == ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getColorZone()) {
+                        if (minX > x)
+                            minX = x;
+                        if (maxX < x)
+                            maxX = x;
+                        if (minY > y)
+                            minY = y;
+                        if (maxY < y)
+                            maxY = y;
+                    }
+                }
+            }
+            int x = (int)((maxX - ((maxX - minX) / 2)) * float(2048.0 / 480.0));
+            int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
+            auto area = Sprite::create("CheckpointArea.png");
+            if (i == 0) {
+                area->setColor(Color3B::BLUE);
+
+            } else {
+                area->setColor(Color3B::RED);
+            }
+            area->setPosition(x, y);
+            area->setTag(400 + i);
+            gameplayMap->addChild(area, 3);
+        }
+    }
+
     //TIME PROGRESS BAR
     timeBorderBar = Sprite::create("ProgressBarBorder.png");
-    timeBorderBar->setPosition(visibleSize.width - timeBorderBar->getContentSize().width / 2,
-                               pauseButton->getPosition().y - (pauseButton->getContentSize().height / 2) - (timeBorderBar->getContentSize().height / 2));
+    timeBorderBar->setPosition(102 * visibleSize.width / 204, 145 * visibleSize.height / 155);
     this->addChild(timeBorderBar);
     timeBar = ProgressTimer::create(Sprite::create("ProgressBarContent.png"));
     timeBar->setType(ProgressTimer::Type::BAR);
     timeBar->setAnchorPoint(Vec2(0, 0));
     timeBar->setMidpoint(Vec2(0, 0));
     timeBar->setBarChangeRate(Vec2(1, 0));
-    timeBar->setPosition(19, 19);
+    timeBar->setPosition(0, 0);
     timeBorderBar->addChild(timeBar);
-    goalPopup = Sprite::create("GoalPopup.png");
+    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")->getCString()), "fonts/BebasNeue.otf", 48);
+    labelGoals->setColor(Color3B(139, 146, 154));
+    labelGoals->setAnchorPoint(Vec2(0, 0.5));
+    labelGoals->setPosition(0, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
+    timeBorderBar->addChild(labelGoals, 2);
+
+    //SET GOALS ON TIME PROGRESS BAR
+    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+        float posX = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
+        auto goalMark = Sprite::create("GoalMark.png");
+        goalMark->setPosition(posX, timeBorderBar->getContentSize().height / 2);
+        timeBorderBar->addChild(goalMark, 2);
+        auto goalNum = Sprite::create("GoalNum.png");
+        goalNum->setPosition(posX, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
+        auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
+        labelGoalNum->setPosition(goalNum->getContentSize().width / 2, goalNum->getContentSize().height / 2);
+        labelGoalNum->setColor(Color3B(216, 229, 235));
+        goalNum->addChild(labelGoalNum, 2);
+        timeBorderBar->addChild(goalNum, 2);
+    }
+
+    /*goalPopup = Sprite::create("GoalPopup.png");
     goalPopup->setOpacity(127);
     goalPopup->setAnchorPoint(Vec2(1, 1));
     goalPopup->setPosition(visibleSize.width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals()[0]->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime())),
                            timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2);
-    this->addChild(goalPopup);
+    this->addChild(goalPopup);*/
 
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
@@ -471,7 +549,7 @@ void UIGameplayMap::fastForwardCallback(Ref* pSender)
     playButton->setEnabled(true);
     pauseButton->setEnabled(true);
 
-    GameLevel::getInstance()->setTimeSpeed(1.26);
+    GameLevel::getInstance()->setTimeSpeed(1.265);
 }
 
 void UIGameplayMap::lifeCallback(Ref* pSender)
@@ -595,8 +673,15 @@ bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
 
 void UIGameplayMap::moveGoalPopup(int index)
 {
-    goalPopup->runAction(MoveTo::create(1.5, Vec2(Director::getInstance()->getVisibleSize().width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals()[index]->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime())),
-                                                  timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2)));
+    /*goalPopup->runAction(MoveTo::create(1.5, Vec2(Director::getInstance()->getVisibleSize().width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals()[index]->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime())),
+                                                  timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2)));*/
+
+    if (GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
+        auto area = gameplayMap->getChildByTag(400 + index - 1);
+        area->setColor(Color3B::GREEN);
+        auto nextArea = gameplayMap->getChildByTag(400 + index);
+        nextArea->setColor(Color3B::BLUE);
+    }
 }
 
 float UIGameplayMap::sqrOfDistanceBetweenPoints(Point p1, Point p2)
@@ -909,6 +994,18 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
         }
         break;
     }
+    case 2: {
+        int k = -4096;
+        int times = 0;
+        while (k <= 4096) {
+            for (int j = times; j < abs(times) - 1; j++) {
+                agentsTextureData[position + j + k] = colour;
+            }
+            times--;
+            k += 2048;
+        }
+        break;
+    }
     default:
         int k = -4096;
         while (k <= 4096) {
@@ -942,10 +1039,7 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
 
 void UIGameplayMap::update(float delta)
 {
-    if (GameLevel::getInstance()->getFinishedGame() > 0 and endGameWindowPainted == false) {
-        createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
-        endGameWindowPainted = true;
-    } else {
+    if (GameLevel::getInstance()->getFinishedGame() == 0) {
         if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false) {
             play = false;
             updateAgents();
@@ -960,10 +1054,30 @@ void UIGameplayMap::update(float delta)
         }
 
         for (int i = 0; i < powerButtons.size(); i++) {
-            powerButtons[i]->update();
+            powerButtons[i]->update(delta);
         }
 
-        evolutionPointsLabel->setString(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
-                                        + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()));
+        evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
+    } else if (GameLevel::getInstance()->getFinishedGame() > 0 and endGameWindowPainted == false) {
+        //DARRER PINTAT
+        play = false;
+        updateAgents();
+        timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+        timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+        if (GameLevel::getInstance()->getNumLevel() == 2) {
+            collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()));
+            collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
+            collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
+        }
+        play = true;
+
+        for (int i = 0; i < powerButtons.size(); i++) {
+            powerButtons[i]->update(delta);
+        }
+
+        evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
+
+        createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
+        endGameWindowPainted = true;
     }
 }

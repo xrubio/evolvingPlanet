@@ -9,7 +9,7 @@
 #include "CollectionGoal.h"
 #include "UIGameplayMap.h"
 
-CollectionGoal::CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm)
+CollectionGoal::CollectionGoal(int agType, int min, int max, int average, int des2, int des3, string gType, int goalAm)
 {
     agentType = agType;
     minTime = min;
@@ -17,6 +17,7 @@ CollectionGoal::CollectionGoal(int agType, int min, int max, int average, int de
     averageTime = average;
     desviation2Star = des2;
     desviation3Star = des3;
+    goalType = gType;
     goalAmount = goalAm;
 }
 

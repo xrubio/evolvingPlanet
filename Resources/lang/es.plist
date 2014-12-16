@@ -11,7 +11,7 @@
 	<key>CREDITS</key>
 	<string>CRÉDITOS</string>
 	<key>GOALS</key>
-	<string>Objetivos</string>
+	<string>OBJETIVOS</string>
 	<key>AGENTS</key>
 	<string>Agentes</string>
 	<key>REPRODUCTION</key>
@@ -31,7 +31,7 @@
 	<key>HOSTILITY</key>
 	<string>Hostilidad</string>
 	<key>EVOLUTION_POINTS</key>
-	<string>Puntos de evolución</string>
+	<string>PUNTOS DE EVOLUCIÓN</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- Se debe llegar al punto de control 1 entre 30 y 50 pasos de tiempo</string>
 	<key>GOAL_TEXT_LVL1_2</key>

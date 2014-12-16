@@ -15,7 +15,7 @@ class Goal {
 
 public:
     Goal() {};
-    Goal(int agentType, int min, int max, int average, int des2, int des3);
+    Goal(int agentType, int min, int max, int average, int des2, int des3, string gType);
     Goal(Goal const&) {};
     Goal& operator=(Goal const&);
 
@@ -35,6 +35,8 @@ public:
     void setCompleted(bool c);
     int getScore(void);
     void setScore(int s);
+    string getGoalType(void);
+    void setGoalType(string gType);
 
     virtual void checkGoal(int type = 0, Agent* agent = nullptr) = 0;
 
@@ -48,6 +50,7 @@ protected:
     bool completed = false;
     //1, 2, 3 stars
     int score = 0;
+    string goalType = "";
 };
 
 #endif /* defined(__simulplay__Goal__) */

@@ -11,7 +11,7 @@
 	<key>CREDITS</key>
 	<string>CREDITS</string>
 	<key>GOALS</key>
-	<string>Goals</string>
+	<string>GOALS</string>
 	<key>AGENTS</key>
 	<string>Agents</string>
 	<key>REPRODUCTION</key>
@@ -31,7 +31,7 @@
 	<key>HOSTILITY</key>
 	<string>Hostility</string>
 	<key>EVOLUTION_POINTS</key>
-	<string>Evolution points</string>
+	<string>EVOLUTION POINTS</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- Reach checkpoint 1 between 30 and 50 timesteps</string>
 	<key>GOAL_TEXT_LVL1_2</key>

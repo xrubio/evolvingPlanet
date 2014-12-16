@@ -12,20 +12,35 @@
 UIMultiplierPower::UIMultiplierPower(Power* p)
 {
     power = p;
-    string filename = p->getName() + "Button" + ".png";
-    icon = Sprite::create(filename);
+    icon = Sprite::create("PowerBackgroundButton.png");
+    auto button = Sprite::create(p->getName() + "Button" + ".png");
+    button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    icon->addChild(button, 2, 0);
+    auto actionTimer = ProgressTimer::create(Sprite::create(p->getName() + "ActionButton" + ".png"));
+    actionTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    actionTimer->setType(ProgressTimer::Type::RADIAL);
+    icon->addChild(actionTimer, 1, 1);
+    auto cooldownTimer = ProgressTimer::create(Sprite::create("PowerCooldownButton.png"));
+    cooldownTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    cooldownTimer->setType(ProgressTimer::Type::BAR);
+    cooldownTimer->setBarChangeRate(Vec2(0, 1));
+    cooldownTimer->setMidpoint(Vec2(0, 0));
+    cooldownTimer->setVisible(false);
+    icon->addChild(cooldownTimer, 3, 2);
     cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
     cooldown->setColor(Color3B::MAGENTA);
     cooldown->setVisible(false);
     cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
-    icon->addChild(cooldown);
+    icon->addChild(cooldown, 3);
 }
 
 void UIMultiplierPower::onTouchesBegan(Point touchLocation)
 {
     if (power->getCooldownLeft() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
-        icon->setScale(1.25);
+        icon->setScale(0.80);
+        auto button = (Sprite*)icon->getChildByTag(0);
+        button->setColor(Color3B::GRAY);
     }
 }
 
@@ -38,22 +53,41 @@ void UIMultiplierPower::onTouchesEnded(Point touchLocation)
     icon->setScale(1);
     if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked) {
         //Activar boost reproduction un cop s'ha tocat i soltat a sobre la imatge que toca
-        icon->setColor(Color3B::GRAY);
+        //icon->setColor(Color3B::GRAY);
         power->setDurationLeft(power->getDuration());
         cooldown->setVisible(true);
+        auto button = (Sprite*)icon->getChildByTag(0);
+        button->setColor(Color3B::WHITE);
     }
     clicked = false;
+    actionTime = 0.0;
 }
 
-void UIMultiplierPower::update()
+void UIMultiplierPower::update(float delta)
 {
-    if (power->getDurationLeft() == 0) {
-        icon->setColor(Color3B::WHITE);
+    ProgressTimer* actionTimer = (ProgressTimer*)icon->getChildByTag(1);
+    ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
+
+    if (clicked == false and power->getDurationLeft() > 0) {
+        actionTime += delta;
+        if (actionTime > power->getDuration()) {
+            actionTime = 0.0;
+        }
     }
+
+    actionTimer->setPercentage((float(power->getDurationLeft() * GameLevel::getInstance()->getTimeSpeed()) - actionTime) / float(power->getDuration() * GameLevel::getInstance()->getTimeSpeed()) * 100.0);
+
+    //actionTimer->setPercentage((float(power->getDurationLeft())) / float(power->getDuration()) * 100.0);
+
     if (power->getCooldownLeft() > 0) {
-        cooldown->setVisible(true);
+        //cooldown->setVisible(true);
         cooldown->setString(to_string(power->getCooldownLeft()));
+        cooldownTimer->setVisible(true);
+        cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
     } else {
+        actionTimer->setPercentage(100.0);
+        actionTime = 0.0;
         cooldown->setVisible(false);
+        cooldownTimer->setVisible(false);
     }
 }

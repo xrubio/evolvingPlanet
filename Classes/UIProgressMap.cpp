@@ -38,11 +38,14 @@ bool UIProgressMap::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     //Set background progress map and all its functionalities
-    auto progressMap = Sprite::create("ProgressMapBackground.png");
-    progressMap->setPosition(Vec2(visibleSize.width / 2 + origin.x,
-                                  visibleSize.height / 2 + origin.y));
+    auto progressMap0 = Sprite::create("ProgressMap0Background.jpg");
+    progressMap0->setPosition(Vec2(visibleSize.width / 2 + origin.x,
+                                   visibleSize.height / 2 + origin.y));
+    auto progressMap1 = Sprite::create("ProgressMap1Background.png");
+    progressMap1->setPosition(Vec2(visibleSize.width + (visibleSize.width / 2) + origin.x,
+                                   visibleSize.height / 2 + origin.y));
     auto progressMap2 = Sprite::create("ProgressMap2Background.png");
-    progressMap2->setPosition(Vec2(visibleSize.width + (visibleSize.width / 2) + origin.x,
+    progressMap2->setPosition(Vec2(2 * visibleSize.width + (visibleSize.width / 2) + origin.x,
                                    visibleSize.height / 2 + origin.y));
     //this->addChild(progressMap, 0);
 
@@ -56,17 +59,20 @@ bool UIProgressMap::init()
                            origin.y + (backButton->getContentSize().height / 2)));
     this->addChild(menu, 1);
 
+    Vector<MenuItem*> level0Buttons;
+    auto levelButton = MenuItemImage::create(
+        "LevelButtonHexagonBackground.png", "LevelButtonHexagonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+    levelButton->setPosition(72 * visibleSize.width / 204, 49 * visibleSize.height / 155);
+    levelButton->setTag(0);
+    level0Buttons.pushBack(levelButton);
+    auto levelLabel = Label::createWithSystemFont("0", "Arial", 40);
+    levelLabel->setPosition(levelButton->getContentSize().width / 2, levelButton->getContentSize().height / 2);
+    levelButton->addChild(levelLabel);
+    auto level = Menu::createWithArray(level0Buttons);
+    level->setPosition(0, 0);
+    progressMap0->addChild(level, 1);
+
     Vector<MenuItem*> level1Buttons;
-
-    auto level0Button = MenuItemImage::create(
-        "LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
-    level0Button->setPosition(688, 980);
-    level0Button->setTag(0);
-    auto level0Label = Label::createWithSystemFont("0", "Arial", 40);
-    level0Label->setPosition(level0Button->getContentSize().width / 2, level0Button->getContentSize().height / 2);
-    level0Button->addChild(level0Label);
-    level1Buttons.pushBack(level0Button);
-
     auto level1Button = MenuItemImage::create(
         "Level1Button.png", "Level1ButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level1Button->setPosition(288, 180);
@@ -74,7 +80,7 @@ bool UIProgressMap::init()
     level1Buttons.pushBack(level1Button);
     auto level1 = Menu::createWithArray(level1Buttons);
     level1->setPosition(0, 0);
-    progressMap->addChild(level1, 1);
+    progressMap1->addChild(level1, 1);
 
     auto level21Button = MenuItemImage::create(
         "LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
@@ -129,14 +135,16 @@ bool UIProgressMap::init()
 
     auto scollFrameSize = Size(visibleSize.width, visibleSize.height);
     auto scrollView = ScrollView::create();
-    scrollView->setContentSize(Size(visibleSize.width * 2, visibleSize.height));
+    scrollView->setContentSize(Size(visibleSize.width * 3, visibleSize.height));
     scrollView->setBackGroundColor(Color3B(200, 200, 200));
     scrollView->setSize(scollFrameSize);
     scrollView->setDirection(ScrollView::Direction::HORIZONTAL);
 
-    scrollView->addChild(progressMap);
+    scrollView->addChild(progressMap0);
+    scrollView->addChild(progressMap1);
     scrollView->addChild(progressMap2);
     this->addChild(scrollView);
+
     /*
     PageView* pageView = PageView::create();
     pageView->setTouchEnabled(true);

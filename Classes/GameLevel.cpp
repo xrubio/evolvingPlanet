@@ -169,17 +169,18 @@ void GameLevel::addAgent(Agent* ag)
     agentsMap[ag->getPosition()->getX()][ag->getPosition()->getY()] = ag;
 }
 
-typename list<Agent*>::iterator GameLevel::deleteAgent(int type, Agent* agent)
+list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
 {
     int posx = agent->getPosition()->getX();
     int posy = agent->getPosition()->getY();
     //delete agentsMap[posx][posy]; // = nullptr;
     agentsMap[posx][posy] = nullptr;
     //agents.at(type).erase(agents.at(type).begin() + i);
-    typename list<Agent*>::iterator it = find(agents[type].begin(), agents[type].end(), agent);
-    typename list<Agent*>::iterator ret = agents[type].erase(it);
+    list<Agent*>::reverse_iterator it = find(agents[type].rbegin(), agents[type].rend(), agent);
+    //advance(it, 1);
+    agents[type].erase(--(it.base()));
     delete agent;
-    return ret;
+    return it;
 }
 
 vector<Act*> GameLevel::getActions(void)
@@ -548,9 +549,8 @@ void GameLevel::act(void)
             }
             //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
             int sizeBefore = agents[k].size();
-            list<Agent*>::iterator it = actions[actions.size() - 1]->execute(k, *end);
+            list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
             if (sizeBefore > agents[k].size()) {
-                list<Agent*>::reverse_iterator rit(it);
                 end = rit;
             } else {
                 end++;

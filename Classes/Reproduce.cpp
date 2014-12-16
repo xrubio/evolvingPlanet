@@ -9,7 +9,7 @@
 #include "Reproduce.h"
 #include "UIGameplayMap.h"
 
-typename list<Agent*>::iterator Reproduce::execute(int typeAgent, Agent* agent)
+list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
 

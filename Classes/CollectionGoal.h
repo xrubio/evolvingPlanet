@@ -15,7 +15,7 @@ class CollectionGoal : public Goal {
 
 public:
     CollectionGoal() {};
-    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm);
+    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, string gType, int goalAm);
     CollectionGoal(CollectionGoal const&) {};
     CollectionGoal& operator=(CollectionGoal const&);
 

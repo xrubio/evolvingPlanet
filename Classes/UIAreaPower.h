@@ -23,9 +23,10 @@ public:
     void onTouchesBegan(Point touchLocation);
     void onTouchesMoved(Touch* touchLocation);
     void onTouchesEnded(Point touchLocation);
-    void update();
+    void update(float delta);
 
 private:
+    float actionTime = 0.0;
     Sprite* area;
 };
 

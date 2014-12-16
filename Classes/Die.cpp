@@ -9,7 +9,7 @@
 #include "Die.h"
 #include "UIGameplayMap.h"
 
-typename list<Agent*>::iterator Die::execute(int type, Agent* agent)
+list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
 {
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
@@ -46,7 +46,7 @@ typename list<Agent*>::iterator Die::execute(int type, Agent* agent)
         resistance = 31;
         break;
     case 10:
-        resistance = 32;
+        resistance = 40;
         break;
     default:
         resistance = 0;

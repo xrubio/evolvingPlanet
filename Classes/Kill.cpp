@@ -9,7 +9,7 @@
 #include "Kill.h"
 #include "UIGameplayMap.h"
 
-typename list<Agent*>::iterator Kill::execute(int type, Agent* agent)
+list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     int probKill = agent->getValOfAttribute("HOSTILITY");

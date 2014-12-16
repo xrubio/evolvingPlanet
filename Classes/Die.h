@@ -18,7 +18,7 @@ public:
     Die(Die const&) {};
     Die& operator=(Die const&);
 
-    typename list<Agent*>::iterator execute(int type, Agent* agent);
+    list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };
 
 #endif /* defined(__simulplay__Die__) */

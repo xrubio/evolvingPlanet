@@ -18,7 +18,7 @@ public:
     EnvironmentAdaptation(EnvironmentAdaptation const&) {};
     EnvironmentAdaptation& operator=(EnvironmentAdaptation const&);
 
-    typename list<Agent*>::iterator execute(int type, Agent* agent);
+    list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };
 
 #endif /* defined(__simulplay__EnvironmentAdaptation__) */

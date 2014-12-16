@@ -9,7 +9,7 @@
 #include "ExpansionGoal.h"
 #include "UIGameplayMap.h"
 
-ExpansionGoal::ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color)
+ExpansionGoal::ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, string gType, int color)
 {
     agentType = agType;
     minTime = min;
@@ -17,6 +17,7 @@ ExpansionGoal::ExpansionGoal(int agType, int min, int max, int average, int des2
     averageTime = average;
     desviation2Star = des2;
     desviation3Star = des3;
+    goalType = gType;
     colorZone = color;
 }
 

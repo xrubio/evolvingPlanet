@@ -116,7 +116,7 @@ private:
     void createEndGameWindow(int mode);
     bool checkPowersClicked(void);
 
-    // 0 = square
+    // 0 = square, 1 = triangle
     void drawAgent(Point pos, Color4B colour, int geometry = 0);
     void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
 };

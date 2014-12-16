@@ -9,7 +9,7 @@
 #include "Deplete.h"
 #include "UIGameplayMap.h"
 
-typename list<Agent*>::iterator Deplete::execute(int type, Agent* agent)
+list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
