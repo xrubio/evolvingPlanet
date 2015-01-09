@@ -22,14 +22,14 @@ public:
 
     string getName(void);
     void setName(string n);
-    int getCooldown(void);
-    void setCooldown(int c);
-    int getDuration(void);
-    void setDuration(int d);
-    int getCooldownLeft(void);
-    void setCooldownLeft(int c);
-    int getDurationLeft(void);
-    void setDurationLeft(int d);
+    float getCooldown(void);
+    void setCooldown(float c);
+    float getDuration(void);
+    void setDuration(float d);
+    float getCooldownLeft(void);
+    void setCooldownLeft(float c);
+    float getDurationLeft(void);
+    void setDurationLeft(float d);
     string getAttribute(void);
     void setAttribute(string attr);
     string getType(void);
@@ -37,10 +37,10 @@ public:
 
 protected:
     string name;
-    int cooldown;
-    int duration;
-    int cooldownLeft;
-    int durationLeft;
+    float cooldown;
+    float duration;
+    float cooldownLeft;
+    float durationLeft;
     string attribute;
     string type;
 };

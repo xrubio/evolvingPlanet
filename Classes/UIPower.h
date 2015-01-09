@@ -37,7 +37,7 @@ protected:
     Power* power;
 
     Sprite* icon;
-    Label* cooldown;
+    //Label* cooldown;
 
     bool clicked = false;
 };

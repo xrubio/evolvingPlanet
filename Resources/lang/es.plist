@@ -58,5 +58,14 @@
 	<string>Han muerto todos los agentes</string>
 	<key>CONTINUE</key>
 	<string>Continuar</string>
+	<key>PROCEED</key>
+	<string>Proceed</string>
+	<key>BRIEF_LEVEL_1</key>
+	<string>Bienvenido, Comandante. Ya hemos acabado los tests iniciales del sistema y todo está a punto. Podremos desplegar los bots en la superfície del planeta en unas pocas horas.
+Hemos detectado las primeras trazas de esta especie alienígena en una pequeña península, desde la que parece que se expandieron al resto del continente, Sigyn. El equipo espera tus órdenes para empezar la misión!</string>
+	<key>CONTEXT_LEVEL_1</key>
+	<string>Este inicio me recuerda a nuestros propios orígenes...las primeras evidencias de seres humanos se han documentado en el este de Africa, hace unos 4 millones de años. Allí, los arqueólogos encontraros una especie llamada Homo Erectus. La informació recogida por nuestras sondas en Hnoss sugiere que Sigyn tenía unas condiciones bastante similares a estos primeros asentamientos...me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran una mezcla de cazadores, recolectores y carroñeros, más o menos como nuestros antecesores.
+
+En todo caso, vamos a empezar por el principio; los bots van a ser desplegados en esta primera zona con evidencias de XXX. Queremos examinar cómo se dispersaron desde esta península al resto del continente.</string>
 </dict>
 </plist>

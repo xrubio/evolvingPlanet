@@ -278,6 +278,11 @@ int GameLevel::getTimeSteps(void)
     return timeSteps;
 }
 
+void GameLevel::setTimeSteps(int steps)
+{
+    timeSteps = steps;
+}
+
 float GameLevel::getTimeSpeed(void)
 {
     return timeSpeed;
@@ -375,37 +380,31 @@ void GameLevel::setMaxAllAgents(int m)
 
 void GameLevel::playLevel(void)
 {
-    clock_t stepTime = clock();
     while (finishedGame == 0) {
-        currentTime = clock();
-        if (timeSpeed != 0) {
-            float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
-            if (step > timeSpeed) {
-                cout << step << endl;
-                stepTime = clock();
-                while (gameplayMap->play == false)
-                    ;
-                paint = false;
-                act();
-                for (int i = 0; i < powers.size(); i++) {
-                    Power* p = powers[i];
-                    if (p->getDurationLeft() == p->getDuration()) {
-                        p->setCooldownLeft(p->getCooldown());
-                    }
-                    if (p->getDurationLeft() > 0) {
-                        p->setDurationLeft(p->getDurationLeft() - 1);
-                    }
-                    if (p->getCooldownLeft() > 0) {
-                        p->setCooldownLeft(p->getCooldownLeft() - 1);
-                    }
+        if (Timing::getInstance()->act == true) {
+            Timing::getInstance()->act = false;
+            while (gameplayMap->play == false)
+                ;
+            paint = false;
+            act();
+            /*for (int i = 0; i < powers.size(); i++) {
+                Power* p = powers[i];
+                if (p->getDurationLeft() == p->getDuration()) {
+                    p->setCooldownLeft(p->getCooldown());
                 }
-                timeSteps++;
-                if (timeSteps % 2 == 0) {
-                    evolutionPoints++;
+                if (p->getDurationLeft() > 0) {
+                    p->setDurationLeft(p->getDurationLeft() - 1);
                 }
-                paint = true;
-                cout << "DIFF: " << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
-                /*try {
+                if (p->getCooldownLeft() > 0) {
+                    p->setCooldownLeft(p->getCooldownLeft() - 1);
+                }
+            }*/
+            timeSteps++;
+            if (timeSteps % 2 == 0) {
+                evolutionPoints++;
+            }
+            paint = true;
+            /*try {
                     if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
                         throw 2;
                     }
@@ -413,7 +412,6 @@ void GameLevel::playLevel(void)
                 catch (int e) {
                     cout << "Time Exceded" << endl;
                 }*/
-            }
         }
     }
     ended = true;

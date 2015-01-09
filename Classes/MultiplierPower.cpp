@@ -8,7 +8,7 @@
 
 #include "MultiplierPower.h"
 
-MultiplierPower::MultiplierPower(string n, int c, int dur, int cl, int dl, string attr, string t, float mult)
+MultiplierPower::MultiplierPower(string n, float c, float dur, float cl, float dl, string attr, string t, float mult)
 {
     name = n;
     cooldown = c;

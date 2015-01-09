@@ -10,6 +10,7 @@
 #define __simulplay__UIProgressMap__
 
 #include "UIMainMenu.h"
+#include "../cocos2d/cocos/ui/CocosGUI.h"
 
 class UIProgressMap : public Layer {
 public:
@@ -19,8 +20,12 @@ public:
 
     void menuBackCallback(Ref* pSender);
     void menuLevelCallback(Ref* pSender);
+    void proceedLevelCallback(Ref* pSender);
 
     CREATE_FUNC(UIProgressMap);
+
+private:
+    cocos2d::ui::ScrollView* scrollView;
 };
 
 #endif /* defined(__simulplay__UIProgressMap__) */

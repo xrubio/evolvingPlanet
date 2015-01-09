@@ -32,7 +32,17 @@ bool UIGoals::init()
                             origin.y + visibleSize.height - ((visibleSize.height / 8))));
     //this->addChild(title, 1);
 
-    MenuItem* nextButton;
+    Vector<MenuItem*> menuButtons;
+    auto backButton = MenuItemImage::create(
+        "BackButton.png", "BackButtonPressed.png", CC_CALLBACK_1(UIGoals::menuBackCallback, this));
+    menuButtons.pushBack(backButton);
+
+    auto menuBack = Menu::createWithArray(menuButtons);
+    menuBack->setPosition(Vec2(visibleSize.width - (backButton->getContentSize().width / 2),
+                               visibleSize.height - backButton->getContentSize().height / 2));
+    this->addChild(menuBack, 1);
+
+    /*MenuItem* nextButton;
     if (GameData::getInstance()->getGameStarted()) {
         nextButton = MenuItemImage::create(
             "MapButton.png", "MapButtonPressed.png", CC_CALLBACK_1(UIGoals::menuMapCallback, this));
@@ -45,12 +55,22 @@ bool UIGoals::init()
     auto menu = cocos2d::Menu::createWithItem(nextButton);
     menu->setPosition(Vec2(origin.x + visibleSize.width - (nextButton->getContentSize().width / 2),
                            origin.y + (nextButton->getContentSize().height / 2)));
-    //this->addChild(menu, 1);
+    this->addChild(menu, 1);*/
 
     auto pageView = PageView::create();
     pageView->setTouchEnabled(true);
     pageView->setSize(Size(visibleSize.width, visibleSize.height));
     pageView->setPosition(Point(0, 0));
+
+    /*auto layoutContext = Layout::create();
+    layoutContext->setSize(Size(visibleSize.width, visibleSize.height));
+    auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(),
+                                                          Size(visibleSize.width - 200, visibleSize.height),
+                                                          TextHAlignment::LEFT, "Arial", 50);
+    context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+    context->setColor(Color3B::WHITE);
+    layoutContext->addChild(context);
+    pageView->addPage(layoutContext);*/
 
     auto layout = Layout::create();
     layout->setSize(Size(visibleSize.width, visibleSize.height));
@@ -82,6 +102,13 @@ void UIGoals::menuNextCallback(Ref* pSender)
     auto scene = UIAgents::createScene();
     auto transition = TransitionMoveInR::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
+}
+
+void UIGoals::menuBackCallback(Ref* pSender)
+{
+    GameData::getInstance()->setGameStarted(false);
+    auto scene = UIProgressMap::createScene();
+    Director::getInstance()->replaceScene(scene);
 }
 
 void UIGoals::menuMapCallback(Ref* pSender)

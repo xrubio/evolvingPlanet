@@ -25,11 +25,11 @@ UIAreaPower::UIAreaPower(Power* p)
     cooldownTimer->setType(ProgressTimer::Type::RADIAL);
     cooldownTimer->setVisible(false);
     icon->addChild(cooldownTimer, 3, 2);
-    cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
-    cooldown->setColor(Color3B::BLUE);
-    cooldown->setVisible(false);
-    cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
-    icon->addChild(cooldown);
+    //cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
+    //cooldown->setColor(Color3B::BLUE);
+    //cooldown->setVisible(false);
+    //cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    //icon->addChild(cooldown);
     area = Sprite::create("BoostResistanceArea.png");
     area->setOpacity(100);
     area->setVisible(false);
@@ -42,7 +42,7 @@ Sprite* UIAreaPower::getArea(void)
 
 void UIAreaPower::onTouchesBegan(Point touchLocation)
 {
-    if (power->getCooldownLeft() == 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+    if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
         area->setPosition(area->getParent()->convertToNodeSpace(icon->getPosition()));
         area->setVisible(true);
@@ -73,7 +73,7 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
         button->setColor(Color3B::WHITE);
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
             power->setDurationLeft(power->getDuration());
-            cooldown->setVisible(true);
+            //cooldown->setVisible(true);
         }
     }
     clicked = false;
@@ -84,18 +84,18 @@ void UIAreaPower::update(float delta)
     ProgressTimer* actionTimer = (ProgressTimer*)icon->getChildByTag(1);
     ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
 
-    actionTimer->setPercentage(float(power->getDurationLeft()) / float(power->getDuration()) * 100.0);
+    actionTimer->setPercentage((power->getDurationLeft() / power->getDuration()) * 100.0);
 
-    if (clicked == false and power->getDurationLeft() == 0) {
+    if (clicked == false and power->getDurationLeft() <= 0) {
         area->setVisible(false);
     }
     if (power->getCooldownLeft() > 0) {
         //cooldown->setVisible(true);
-        cooldown->setString(to_string(power->getCooldownLeft()));
+        //cooldown->setString(to_string(power->getCooldownLeft()));
         cooldownTimer->setVisible(true);
         cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
     } else {
-        cooldown->setVisible(false);
+        //cooldown->setVisible(false);
         cooldownTimer->setVisible(false);
         actionTime = 0.0;
         actionTimer->setPercentage(100.0);

@@ -109,9 +109,9 @@ bool UIAgents::init()
     attributesMenu->setPosition(Vec2(0, 0));
     this->addChild(attributesMenu, 1, 100000);
 
-    Label* evolutionPointsLabel = Label::createWithSystemFont(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
-                                                              + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()),
-                                                              "Arial", 65);
+    Label* evolutionPointsLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
+                                                       + ": " + to_string(GameLevel::getInstance()->getEvolutionPoints()),
+                                                       "fonts/BebasNeue.otf", 65);
     evolutionPointsLabel->setPosition(origin.x + visibleSize.width / 6, origin.y + (nextButton->getContentSize().height / 2));
     this->addChild(evolutionPointsLabel, 1);
 

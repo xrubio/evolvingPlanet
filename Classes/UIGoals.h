@@ -22,6 +22,7 @@ public:
     virtual bool init();
 
     void menuNextCallback(Ref* pSender);
+    void menuBackCallback(Ref* pSender);
     void menuMapCallback(Ref* pSender);
 
     virtual void update(float delta);

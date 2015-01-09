@@ -18,42 +18,42 @@ void Power::setName(string n)
     name = n;
 }
 
-int Power::getCooldown(void)
+float Power::getCooldown(void)
 {
     return cooldown;
 }
 
-void Power::setCooldown(int c)
+void Power::setCooldown(float c)
 {
     cooldown = c;
 }
 
-int Power::getDuration(void)
+float Power::getDuration(void)
 {
     return duration;
 }
 
-void Power::setDuration(int d)
+void Power::setDuration(float d)
 {
     duration = d;
 }
 
-int Power::getCooldownLeft(void)
+float Power::getCooldownLeft(void)
 {
     return cooldownLeft;
 }
 
-void Power::setCooldownLeft(int c)
+void Power::setCooldownLeft(float c)
 {
     cooldownLeft = c;
 }
 
-int Power::getDurationLeft(void)
+float Power::getDurationLeft(void)
 {
     return durationLeft;
 }
 
-void Power::setDurationLeft(int d)
+void Power::setDurationLeft(float d)
 {
     durationLeft = d;
 }

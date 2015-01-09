@@ -11,7 +11,7 @@
 void UIPower::setPosition(float x, float y)
 {
     icon->setPosition(x, y);
-    cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
+    //cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
 }
 
 Power* UIPower::getPower(void)

@@ -17,7 +17,8 @@
 
 class UIGameplayMap : public Layer {
 public:
-    pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+    pthread_mutex_t gameLevelMutex = PTHREAD_MUTEX_INITIALIZER;
+    pthread_mutex_t timingMutex = PTHREAD_MUTEX_INITIALIZER;
 
     static Scene* createScene();
 
@@ -71,7 +72,8 @@ private:
     bool moveBackgroundDown = false;
     float zoomScale = 1;
 
-    pthread_t thread;
+    pthread_t timingThread;
+    pthread_t gameLevelThread;
 
     bool endGameWindowPainted = false;
 
@@ -108,6 +110,9 @@ private:
     int getValueAtGameplayMapHotSpot(int rgb, Point pt);
     int getValueAtGameplayMapResources(int rgb, Point pt);
 
+    void createTimingThread(void);
+    static void* createTiming(void* arg);
+    void startTiming(void);
     void createNewLevelThread(void);
     static void* createLevel(void* arg);
     void playLevel(void);

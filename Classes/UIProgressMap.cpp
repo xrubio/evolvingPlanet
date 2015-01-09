@@ -11,7 +11,7 @@
 #include "GameData.h"
 #include "LevelLoader.h"
 #include "SlidingMenu.h"
-#include "../cocos2d/cocos/ui/CocosGUI.h"
+#include "LocalizedString.h"
 
 using namespace ui;
 
@@ -68,6 +68,7 @@ bool UIProgressMap::init()
     auto levelLabel = Label::createWithSystemFont("0", "Arial", 40);
     levelLabel->setPosition(levelButton->getContentSize().width / 2, levelButton->getContentSize().height / 2);
     levelButton->addChild(levelLabel);
+
     auto level = Menu::createWithArray(level0Buttons);
     level->setPosition(0, 0);
     progressMap0->addChild(level, 1);
@@ -134,15 +135,15 @@ bool UIProgressMap::init()
     progressMap2->addChild(level2);
 
     auto scollFrameSize = Size(visibleSize.width, visibleSize.height);
-    auto scrollView = ScrollView::create();
+    scrollView = ScrollView::create();
     scrollView->setContentSize(Size(visibleSize.width * 3, visibleSize.height));
     scrollView->setBackGroundColor(Color3B(200, 200, 200));
     scrollView->setSize(scollFrameSize);
     scrollView->setDirection(ScrollView::Direction::HORIZONTAL);
 
-    scrollView->addChild(progressMap0);
-    scrollView->addChild(progressMap1);
-    scrollView->addChild(progressMap2);
+    scrollView->addChild(progressMap0, 0);
+    scrollView->addChild(progressMap1, 1);
+    scrollView->addChild(progressMap2, 2);
     this->addChild(scrollView);
 
     /*
@@ -208,6 +209,32 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
     GameData::getInstance()->setGameStarted(false);
 
+    auto pMenuItem = (MenuItem*)(pSender);
+    int tag = pMenuItem->getTag();
+
+    auto levelBriefContainer = Sprite::create("LevelBriefContainer.png");
+    auto brief = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("BRIEF_LEVEL_1")->getCString(),
+                                                        Size(levelBriefContainer->getContentSize().width - 160, levelBriefContainer->getContentSize().height), TextHAlignment::LEFT, "Arial", 35);
+    brief->setColor(Color3B::BLACK);
+    brief->setPosition((levelBriefContainer->getContentSize().width / 2) + 70, levelBriefContainer->getContentSize().height / 2);
+    levelBriefContainer->addChild(brief);
+
+    auto proceedButton = MenuItemImage::create("LevelButtonBackground.png", "LevelButtonBackground.png", CC_CALLBACK_1(UIProgressMap::proceedLevelCallback, this));
+    auto levelProceed = Label::createWithSystemFont(LocalizedString::create("PROCEED")->getCString(), "Arial", 40);
+    levelProceed->setPosition(proceedButton->getContentSize().width / 2, proceedButton->getContentSize().height / 2);
+    proceedButton->addChild(levelProceed);
+    proceedButton->setTag(tag);
+    auto menuProceed = Menu::createWithItem(proceedButton);
+    menuProceed->setPosition(levelBriefContainer->getContentSize().width / 2, 1 * levelBriefContainer->getContentSize().height / 6);
+    levelBriefContainer->addChild(menuProceed);
+
+    levelBriefContainer->setAnchorPoint(Vec2(0, 12.0 / 44.0));
+    levelBriefContainer->setPosition(pMenuItem->getPosition().x + pMenuItem->getContentSize().width / 2, pMenuItem->getPosition().y);
+    pMenuItem->getParent()->getParent()->addChild(levelBriefContainer);
+}
+
+void UIProgressMap::proceedLevelCallback(Ref* pSender)
+{
     auto pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
 

@@ -16,6 +16,7 @@
 #include "UIAreaPower.h"
 #include "CollectionGoal.h"
 #include "ExpansionGoal.h"
+#include "Timing.h"
 
 Scene* UIGameplayMap::createScene()
 {
@@ -351,7 +352,7 @@ bool UIGameplayMap::init()
 
     time_t wait;
     wait = clock();
-    while (clock() - wait < 3)
+    while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 1)
         ;
     if (GameData::getInstance()->getGameStarted() == false) {
         GameLevel::getInstance()->createLevel();
@@ -359,6 +360,10 @@ bool UIGameplayMap::init()
     GameData::getInstance()->setGameStarted(true);
 
     initializeAgents();
+    createTimingThread();
+    wait = clock();
+    while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 1)
+        ;
     createNewLevelThread();
 
     this->scheduleUpdate();
@@ -488,8 +493,10 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     GameLevel::getInstance()->setFinishedGame(4);
     while (GameLevel::getInstance()->ended == false)
         ;
-    pthread_cancel(thread);
-    pthread_join(thread, nullptr);
+    pthread_cancel(gameLevelThread);
+    pthread_cancel(timingThread);
+    pthread_join(gameLevelThread, nullptr);
+    pthread_join(timingThread, nullptr);
     GameData::getInstance()->setGameStarted(false);
     auto scene = UIProgressMap::createScene();
     Director::getInstance()->replaceScene(scene);
@@ -612,9 +619,30 @@ void UIGameplayMap::resistanceCallback(Ref* pSender)
     agentColor = 3;
 }
 
+void UIGameplayMap::createTimingThread(void)
+{
+    pthread_create(&timingThread, NULL, &UIGameplayMap::createTiming, this);
+}
+
+void* UIGameplayMap::createTiming(void* arg)
+{
+    UIGameplayMap* game = (UIGameplayMap*)arg;
+    game->startTiming();
+    //delete game;
+    return nullptr;
+}
+
+void UIGameplayMap::startTiming(void)
+{
+    pthread_mutex_lock(&timingMutex);
+    Timing::getInstance()->start();
+    cout << "DONE TIMING" << endl;
+    pthread_mutex_unlock(&timingMutex);
+}
+
 void UIGameplayMap::createNewLevelThread(void)
 {
-    pthread_create(&thread, NULL, &UIGameplayMap::createLevel, this);
+    pthread_create(&gameLevelThread, NULL, &UIGameplayMap::createLevel, this);
 }
 
 void* UIGameplayMap::createLevel(void* arg)
@@ -627,10 +655,10 @@ void* UIGameplayMap::createLevel(void* arg)
 
 void UIGameplayMap::playLevel(void)
 {
-    pthread_mutex_lock(&mutex);
+    pthread_mutex_lock(&gameLevelMutex);
     GameLevel::getInstance()->playLevel();
-    cout << "DONE" << endl;
-    pthread_mutex_unlock(&mutex);
+    cout << "DONE GAME LEVEL" << endl;
+    pthread_mutex_unlock(&gameLevelMutex);
 }
 
 void UIGameplayMap::pinchZoomWithMovedTouch(Touch* movedTouch)

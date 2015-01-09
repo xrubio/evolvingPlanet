@@ -18,6 +18,7 @@
 #include "Power.h"
 #include "Goal.h"
 #include "cocos2d.h"
+#include "Timing.h"
 
 class UIGameplayMap;
 
