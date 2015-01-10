@@ -1,0 +1,32 @@
+
+1. setup environment
+# download latest version of cocos2d
+$ unzip cocos2d-x-3.3.zip
+$ cd cocos2d-x-3.3/
+$ ./setup.py
+$ source /Users/xrubio/.bash_profile
+
+2. create cocos project
+# from the command line create a dummy project
+$ cocos new simulplay -p org.cocos2dx.simulplay -l cpp -d .
+# open XCode, go to 'open project' and look for simulplay/proj.ios_mac/simulplay.xcodeproj
+# compile and run the dummy project
+
+3. clone github
+# delete unneeded files
+$ rm -rf Classes Resources CMakeLists.txt 
+# clone repo inside structure
+$ git clone https://github.com/xrubio/simulplay repo
+# create links to needed files
+$ ln -s repo/Classes/ .
+$ ln -s repo/Resources/ .
+$ ln -s repo/libs/ .
+$ ln -s repo/CMakeLists.txt .
+
+4. update XCode
+# Open again XCode and delete Classes and Resources from left tree
+# Add Files to Simulplay -> Classes, libs and Resources as option Create Groups, remove lang and add as option 2 (Create Folder References) inside Resources
+
+
+
+
