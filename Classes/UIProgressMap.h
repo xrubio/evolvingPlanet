@@ -10,7 +10,7 @@
 #define __simulplay__UIProgressMap__
 
 #include "UIMainMenu.h"
-#include "../cocos2d/cocos/ui/CocosGUI.h"
+#include <ui/CocosGUI.h>
 
 class UIProgressMap : public Layer {
 public:

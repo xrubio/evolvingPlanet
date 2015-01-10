@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#include <audio/include/SimpleAudioEngine.h>
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {}
@@ -16,8 +18,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if (!glview) {
-        glview = GLView::create("simulplay");
+    if (!glview) {  
+        glview = GLViewImpl::create("simulplay");
         director->setOpenGLView(glview);
     }
 

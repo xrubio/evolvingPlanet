@@ -11,12 +11,13 @@
 #include "UIAgents.h"
 #include "GameData.h"
 #include "LocalizedString.h"
-#include "SimpleAudioEngine.h"
 #include "UIMultiplierPower.h"
 #include "UIAreaPower.h"
 #include "CollectionGoal.h"
 #include "ExpansionGoal.h"
 #include "Timing.h"
+
+#include <audio/include/SimpleAudioEngine.h>
 
 Scene* UIGameplayMap::createScene()
 {

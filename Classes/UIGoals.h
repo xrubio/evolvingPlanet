@@ -11,7 +11,7 @@
 
 #include "UIGameplayMap.h"
 #include "UIProgressMap.h"
-#include "../cocos2d/cocos/ui/CocosGUI.h"
+#include <ui/CocosGUI.h>
 
 using namespace ui;
 
