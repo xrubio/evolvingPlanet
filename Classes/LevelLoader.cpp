@@ -26,7 +26,7 @@
 void LevelLoader::loadXmlFile(string filename)
 {
 
-    string dir = "/levels/";
+    string dir = "levels/";
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     dir = "";

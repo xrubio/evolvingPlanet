@@ -22,7 +22,7 @@ CCString* LocalizedString::create(const char* key)
     CCString* str;
 
     string fname = fileName;
-    string dir = "/lang/";
+    string dir = "lang/";
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     dir = "";
