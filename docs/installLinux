@@ -1,0 +1,44 @@
+
+1. compile cocos2d-x
+
+# download latest version of cocos2d
+$ unzip cocos2d-x-3.3.zip
+$ cd cocos2d-x-3.3/build/
+$ ./install-deps-linux.sh
+# (if previous doesn't work)
+$ sudo apt-get install libx11-dev libxmu-dev libglu1-mesa-dev libgl2ps-dev libxi-dev g++ libzip-dev libpng12-dev libcurl4-gnutls-dev libfontconfig1-dev libsqlite3-dev libglew*-dev libssl-dev
+$ mkdir linux-build
+$ cmake ../../
+$ make
+# test
+$ cd bin/cpp-tests/
+$ ./cpp-tests
+# update bashrc
+$ cd ../../../../
+$ ./setup.py
+$ source ~/.bashrc
+
+2. create cocos project
+# setup dummy project
+$ cocos new simulplay -p org.cocos2dx.simulplay -l cpp -d .
+# compile hello world
+$ cd simulplay
+$ cocos compile -p linux
+# run hello world
+
+3. clone github into directory
+# delete unneeded files
+$ rm -rf Classes Resources CMakeLists.txt 
+# clone repo inside structure
+$ git clone https://github.com/xrubio/simulplay repo
+# create links to needed files
+$ ln -s repo/Classes/ .
+$ ln -s repo/Resources/ .
+$ ln -s repo/libs/ .
+$ ln -s repo/CMakeLists.txt .
+# edit file CMakeLists.txt and add all cpp and h files to GAME_SRC and GAME_HEADERS
+# add also the cpp/hpp of libs/pugixml
+# there is a sample file in this same dir (from cocos 3.3)
+# compile again
+$ cocos compile -p linux
+
