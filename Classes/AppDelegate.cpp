@@ -19,8 +19,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if (!glview) {  
-        glview = GLViewImpl::createWithFullScreen("simulplay");
+        glview = GLViewImpl::create("simulplay");
         director->setOpenGLView(glview);
+        glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
     }
 
     // turn on display FPS
