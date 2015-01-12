@@ -19,7 +19,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if (!glview) {  
-        glview = GLViewImpl::create("simulplay");
+        glview = GLViewImpl::createWithFullScreen("simulplay");
         director->setOpenGLView(glview);
         glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
     }
