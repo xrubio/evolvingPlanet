@@ -1,0 +1,29 @@
+
+download and install jdk, ndk and sdk.
+Following:
+http://www.cocos2d-x.org/wiki/Android_with_Terminal_Installation_and_Setup
+
+1. jdk
+$ tar zxvf jdk-8u25-linux-i586.tar.gz
+$ sudo mv jdk1.8.0_25 /opt/
+$ sudo ln -s /opt/jdk1.8.0_25/ /opt/jdk
+# add jdk to bashrc
+export PATH=$PATH:/opt/jdk/bin/
+$ source ~/.bashrc
+
+2. ant, ndk and sdk
+
+$ sudo apt-get install ant
+# Decompress ndk and sdk in folder ~/workspace/androidDev
+
+3. configure cocos2d-x
+# run setup.py inside cocos2d-x (refer to installLinux for details)
+Add pwd to sdk and ndk 
+$ source ~/.bashrc
+# go to build/
+$ android-build.py cpp-tests
+
+This should get android/cocos2d-x up and running
+
+TODO
+
