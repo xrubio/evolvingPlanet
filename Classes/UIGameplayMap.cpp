@@ -287,16 +287,22 @@ bool UIGameplayMap::init()
                     }
                 }
             }
+            ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->setCenterArea(maxX - ((maxX - minX) / 2), maxY - ((maxY - minY) / 2));
             int x = (int)((maxX - ((maxX - minX) / 2)) * float(2048.0 / 480.0));
             int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
             auto area = Sprite::create("CheckpointArea.png");
             if (i == 0) {
                 area->setColor(Color3B::BLUE);
-                auto blink = Blink::create(1.5, 2);
+                auto blink = Blink::create(2, 2);
                 auto repeatBlink = RepeatForever::create(blink);
                 area->setColor(Color3B::BLUE);
                 area->runAction(repeatBlink);
 
+                //GOAL EXPANSION DISTANCE
+                distanceLabel = Label::createWithTTF(" ", "fonts/BebasNeue.otf", 40);
+                distanceLabel->setColor(Color3B(216, 229, 235));
+                distanceLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
+                this->addChild(distanceLabel);
             } else {
                 area->setColor(Color3B::RED);
             }
@@ -712,12 +718,15 @@ void UIGameplayMap::moveGoalPopup(int index)
     if (GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
         auto area = gameplayMap->getChildByTag(400 + index - 1);
         area->stopAllActions();
+        area->setVisible(true);
         area->setColor(Color3B::GREEN);
-        auto nextArea = gameplayMap->getChildByTag(400 + index);
-        auto blink = Blink::create(2, 2);
-        auto repeatBlink = RepeatForever::create(blink);
-        nextArea->setColor(Color3B::BLUE);
-        nextArea->runAction(repeatBlink);
+        if (index < GameLevel::getInstance()->getGoals().size()) {
+            auto nextArea = gameplayMap->getChildByTag(400 + index);
+            auto blink = Blink::create(2, 2);
+            auto repeatBlink = RepeatForever::create(blink);
+            nextArea->setColor(Color3B::BLUE);
+            nextArea->runAction(repeatBlink);
+        }
     }
 }
 
@@ -1086,6 +1095,13 @@ void UIGameplayMap::update(float delta)
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()));
                 collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
                 collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
+            }
+            int i = 0;
+            while (GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
+                i++;
+            }
+            if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Expansion") {
+                distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
             play = true;
         }

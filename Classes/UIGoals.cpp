@@ -75,15 +75,10 @@ bool UIGoals::init()
     pages->setSize(Size(visibleSize.width, visibleSize.height));
     pages->setPosition(Point(0, 0));
 
-    /*auto layoutContext = Layout::create();
-    layoutContext->setSize(Size(visibleSize.width, visibleSize.height));
-    auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(),
-                                                          Size(visibleSize.width - 200, visibleSize.height),
-                                                          TextHAlignment::LEFT, "Arial", 50);
-    context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-    context->setColor(Color3B::WHITE);
-    layoutContext->addChild(context);
-    pageView->addPage(layoutContext);*/
+    auto layoutContext = Layout::create();
+    //TRIAR ESTIL SEGONS EL LVL
+    createContextLayout(layoutContext);
+    pages->addPage(layoutContext);
 
     auto layout = Layout::create();
     layout->setSize(Size(visibleSize.width, visibleSize.height));
@@ -185,6 +180,29 @@ void UIGoals::plusAttCallback(Ref* pSender)
         layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 10));
         layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 10));
     }
+}
+
+void UIGoals::createContextLayout(Layout* layoutContext)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    layoutContext->setSize(Size(visibleSize.width / 2, visibleSize.height / 2));
+    auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
+    goalMap->setScale(0.4);
+    goalMap->setPosition(Vec2(visibleSize.width / 4, visibleSize.height / 2));
+    /*auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(),
+                                                          Size(visibleSize.width / 2, visibleSize.height),
+                                                          TextHAlignment::LEFT, "Arial", 50);
+    context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+    context->setTextColor(Color4B(216, 229, 235, 255));*/
+    auto context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(), "Arial", 50);
+    context->setTextColor(Color4B(216, 229, 235, 255));
+    context->ignoreContentAdaptWithSize(false);
+    context->setContentSize(Size(visibleSize.width / 2, visibleSize.height));
+    context->setTextHorizontalAlignment(TextHAlignment::LEFT);
+    context->setTextVerticalAlignment(TextVAlignment::CENTER);
+    context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    context->addChild(goalMap);
+    layoutContext->addChild(context);
 }
 
 void UIGoals::setLevelGoals(Layout* layout)
@@ -299,5 +317,5 @@ void UIGoals::createUIAgent(Layout* layout)
 void UIGoals::update(float delta)
 {
     PageView* p = (PageView*)this->getChildByTag(0);
-    GameLevel::getInstance()->setCurrentAgentType(p->getCurPageIndex() - 1);
+    GameLevel::getInstance()->setCurrentAgentType(p->getCurPageIndex() - 2);
 }

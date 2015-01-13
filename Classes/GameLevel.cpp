@@ -382,6 +382,7 @@ void GameLevel::playLevel(void)
 {
     while (finishedGame == 0) {
         if (Timing::getInstance()->act == true) {
+            clock_t stepTime = clock();
             Timing::getInstance()->act = false;
             while (gameplayMap->play == false)
                 ;
@@ -404,14 +405,14 @@ void GameLevel::playLevel(void)
                 evolutionPoints++;
             }
             paint = true;
-            /*try {
-                    if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
-                        throw 2;
-                    }
+            try {
+                if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
+                    throw 2;
                 }
-                catch (int e) {
-                    cout << "Time Exceded" << endl;
-                }*/
+            }
+            catch (int e) {
+                cout << "Time Exceeded" << endl;
+            }
         }
     }
     ended = true;

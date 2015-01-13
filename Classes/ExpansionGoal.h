@@ -21,11 +21,17 @@ public:
 
     int getColorZone(void);
     void setColorZone(int color);
+    int getMinDistanceToGoal(void);
+    void setMinDistanceToGoal(int dis);
+    Position getCenterArea(void);
+    void setCenterArea(int x, int y);
 
     void checkGoal(int type, Agent* agent);
 
 private:
     int colorZone;
+    int minDistanceToGoal = 99999;
+    Position centerArea;
 };
 
 #endif /* defined(__simulplay__ExpansionGoal__) */

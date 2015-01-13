@@ -38,8 +38,8 @@ private:
     bool gameStarted = true;
     PageView* pages;
 
+    void createContextLayout(Layout* layoutContext);
     void setLevelGoals(Layout* layout);
-
     void createUIAgent(Layout* layout);
 };
 

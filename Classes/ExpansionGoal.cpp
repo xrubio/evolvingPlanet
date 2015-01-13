@@ -31,8 +31,32 @@ void ExpansionGoal::setColorZone(int color)
     colorZone = color;
 }
 
+int ExpansionGoal::getMinDistanceToGoal(void)
+{
+    return minDistanceToGoal;
+}
+
+void ExpansionGoal::setMinDistanceToGoal(int dis)
+{
+    minDistanceToGoal = dis;
+}
+
+Position ExpansionGoal::getCenterArea(void)
+{
+    return centerArea;
+}
+
+void ExpansionGoal::setCenterArea(int x, int y)
+{
+    centerArea.setPosition(x, y);
+}
+
 void ExpansionGoal::checkGoal(int type, Agent* agent)
 {
+    /*int dist = Point(agent->getPosition()->getX(), agent->getPosition()->getY()).getDistance(Vec2(centerArea.getX(), centerArea.getY()));
+    if (dist < minDistanceToGoal) {
+        minDistanceToGoal = dist;
+    }*/
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
     if (type == agentType) {
         if (timeSteps > maxTime) {

@@ -90,6 +90,7 @@ private:
     Label* collect1PointsLabel;
     Label* collect2PointsLabel;
     Label* collect3PointsLabel;
+    Label* distanceLabel;
 
     vector<UIPower*> powerButtons;
 
