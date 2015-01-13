@@ -292,6 +292,10 @@ bool UIGameplayMap::init()
             auto area = Sprite::create("CheckpointArea.png");
             if (i == 0) {
                 area->setColor(Color3B::BLUE);
+                auto blink = Blink::create(1.5, 2);
+                auto repeatBlink = RepeatForever::create(blink);
+                area->setColor(Color3B::BLUE);
+                area->runAction(repeatBlink);
 
             } else {
                 area->setColor(Color3B::RED);
@@ -707,9 +711,13 @@ void UIGameplayMap::moveGoalPopup(int index)
 
     if (GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
         auto area = gameplayMap->getChildByTag(400 + index - 1);
+        area->stopAllActions();
         area->setColor(Color3B::GREEN);
         auto nextArea = gameplayMap->getChildByTag(400 + index);
+        auto blink = Blink::create(2, 2);
+        auto repeatBlink = RepeatForever::create(blink);
         nextArea->setColor(Color3B::BLUE);
+        nextArea->runAction(repeatBlink);
     }
 }
 

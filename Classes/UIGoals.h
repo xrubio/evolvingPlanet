@@ -25,14 +25,22 @@ public:
     void menuBackCallback(Ref* pSender);
     void menuMapCallback(Ref* pSender);
 
+    void menuStartCallback(Ref* pSender);
+    void minusAttCallback(Ref* pSender);
+    void plusAttCallback(Ref* pSender);
+
     virtual void update(float delta);
 
     CREATE_FUNC(UIGoals);
 
 private:
+    vector<string> keys;
     bool gameStarted = true;
+    PageView* pages;
 
     void setLevelGoals(Layout* layout);
+
+    void createUIAgent(Layout* layout);
 };
 
 #endif /* defined(__simulplay__UIGoals__) */
