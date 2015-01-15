@@ -18,7 +18,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if (!glview) {  
+    if (!glview) {
         glview = GLViewImpl::createWithFullScreen("simulplay");
         director->setOpenGLView(glview);
         glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
@@ -34,11 +34,13 @@ bool AppDelegate::applicationDidFinishLaunching()
     string lang = UserDefault::getInstance()->getStringForKey("language");
     if (lang.size() == 0) {
         GameData::getInstance()->setLanguage(LocalizedString::getSystemLang());
+        GameData::getInstance()->setMusic(true);
+        GameData::getInstance()->setSFX(true);
     } else {
         GameData::getInstance()->setLanguage(lang);
+        GameData::getInstance()->setMusic(UserDefault::getInstance()->getBoolForKey("music"));
+        GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
     }
-    GameData::getInstance()->setMusic(UserDefault::getInstance()->getBoolForKey("music"));
-    GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
 
     // create a scene. it's an autorelease object
     auto scene = UIMainMenu::createScene();

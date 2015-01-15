@@ -11,6 +11,10 @@
 #include "UIConfiguration.h"
 #include "UIProgressMap.h"
 #include "LocalizedString.h"
+#include "GameData.h"
+
+#include <audio/include/SimpleAudioEngine.h>
+#include <iostream>
 
 USING_NS_CC;
 
@@ -95,6 +99,10 @@ bool UIMainMenu::init()
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(Vec2(0, 0));
     this->addChild(menu, 1);
+
+    if (GameData::getInstance()->getMusic() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("intro_try1.mp3", true);
+    }
 
     return true;
 }

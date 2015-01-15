@@ -13,6 +13,8 @@
 #include "SlidingMenu.h"
 #include "LocalizedString.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 using namespace ui;
 
 Scene* UIProgressMap::createScene()
@@ -27,6 +29,10 @@ bool UIProgressMap::init()
 {
     if (!Layer::init()) {
         return false;
+    }
+
+    if (GameData::getInstance()->getMusic() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("intro_body1.mp3", true);
     }
 
     //Alliberar memòria
