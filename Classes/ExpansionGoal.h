@@ -26,7 +26,7 @@ public:
     Position getCenterArea(void);
     void setCenterArea(int x, int y);
 
-    void checkGoal(int type, Agent* agent);
+    inline void checkGoal(int type, Agent* agent);
 
 private:
     int colorZone;

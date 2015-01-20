@@ -826,18 +826,29 @@ int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
     unsigned char* pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
     // You can see/change pixels' RGBA value(0-255) here !
 
-    if (rgb == 0) {
+    switch (rgb) {
+    case 0: {
         unsigned char r = *pixel;
         return (int)r;
-    } else if (rgb == 1) {
+        break;
+    }
+    case 1: {
         unsigned char g = *(pixel + 1);
         return (int)g;
-    } else if (rgb == 2) {
+        break;
+    }
+    case 2: {
         unsigned char b = *(pixel + 2);
         return (int)b;
-    } else if (rgb == 3) {
+        break;
+    }
+    case 3: {
         unsigned char a = *(pixel + 3);
         return (int)a;
+        break;
+    }
+    default:
+        break;
     }
     return 255;
 }
@@ -851,18 +862,29 @@ int UIGameplayMap::getValueAtGameplayMapResources(int rgb, Point pt)
     unsigned char* pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
     // You can see/change pixels' RGBA value(0-255) here !
 
-    if (rgb == 0) {
+    switch (rgb) {
+    case 0: {
         unsigned char r = *pixel;
         return (int)r;
-    } else if (rgb == 1) {
+        break;
+    }
+    case 1: {
         unsigned char g = *(pixel + 1);
         return (int)g;
-    } else if (rgb == 2) {
+        break;
+    }
+    case 2: {
         unsigned char b = *(pixel + 2);
         return (int)b;
-    } else if (rgb == 3) {
+        break;
+    }
+    case 3: {
         unsigned char a = *(pixel + 3);
         return (int)a;
+        break;
+    }
+    default:
+        break;
     }
     return 255;
 }

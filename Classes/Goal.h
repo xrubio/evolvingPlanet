@@ -38,7 +38,7 @@ public:
     string getGoalType(void);
     void setGoalType(string gType);
 
-    virtual void checkGoal(int type = 0, Agent* agent = nullptr) = 0;
+    inline virtual void checkGoal(int type = 0, Agent* agent = nullptr) = 0;
 
 protected:
     int agentType;

@@ -28,9 +28,9 @@ void Timing::start(void)
         clock_t currentTime = clock();
         if (GameLevel::getInstance()->getTimeSpeed() != 0) {
             float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
-            if (step > GameLevel::getInstance()->getTimeSpeed()) {
+            if (step >= GameLevel::getInstance()->getTimeSpeed()) {
                 act = true;
-                cout << step << endl;
+                //cout << step << endl;
                 //GameLevel::getInstance()->setTimeSteps(GameLevel::getInstance()->getTimeSteps() + 1);
                 stepTime = clock();
             }

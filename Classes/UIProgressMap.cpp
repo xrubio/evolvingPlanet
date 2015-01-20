@@ -275,6 +275,6 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
     loader.loadXmlFile(filename);
 
     auto scene = UIGoals::createScene();
-    auto transition = TransitionShrinkGrow::create(1.0f, scene);
+    auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
 }

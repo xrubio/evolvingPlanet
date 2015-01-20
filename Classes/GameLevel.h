@@ -101,7 +101,7 @@ public:
     void playLevel(void);
     void resetLevel(void);
 
-    bool validatePosition(int posx, int posy);
+    inline bool validatePosition(int posx, int posy);
 
     bool paint = false;
     bool ended = false;
@@ -153,7 +153,7 @@ private:
     GameLevel& operator=(GameLevel const&);
 
     void generateInitialAgents(int type);
-    void act(void);
+    inline void act(void);
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

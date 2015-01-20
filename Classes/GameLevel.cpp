@@ -382,11 +382,11 @@ void GameLevel::playLevel(void)
 {
     while (finishedGame == 0) {
         if (Timing::getInstance()->act == true) {
-            clock_t stepTime = clock();
             Timing::getInstance()->act = false;
             while (gameplayMap->play == false)
                 ;
             paint = false;
+            clock_t stepTime = clock();
             act();
             /*for (int i = 0; i < powers.size(); i++) {
                 Power* p = powers[i];
@@ -405,6 +405,7 @@ void GameLevel::playLevel(void)
                 evolutionPoints++;
             }
             paint = true;
+            cout << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
             try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
                     throw 2;
@@ -569,7 +570,7 @@ void GameLevel::act(void)
                     finalScore += goals[j]->getScore();
                 }
             }
-            if (failed == false and goals.size() > 0) {
+            if (failed == false and goals.empty()) {
                 cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
                 GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
                 finishedGame = 1;
@@ -579,7 +580,7 @@ void GameLevel::act(void)
 
     bool noAgentsLeft = true;
     for (int i = 0; i < agents.size(); i++) {
-        if (agents[i].size() > 0) {
+        if (agents[i].empty() == false) {
             noAgentsLeft = false;
         }
     }

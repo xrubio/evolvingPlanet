@@ -48,7 +48,7 @@ public:
 
     bool isInBoostResistanceArea(int posx, int posy);
     void restoreLand(void);
-    void updateAgents(void);
+    inline void updateAgents(void);
     virtual void update(float delta);
     bool selectSpriteForTouch(Sprite* sprite, Point p);
 
@@ -108,8 +108,8 @@ private:
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
-    int getValueAtGameplayMapHotSpot(int rgb, Point pt);
-    int getValueAtGameplayMapResources(int rgb, Point pt);
+    inline int getValueAtGameplayMapHotSpot(int rgb, Point pt);
+    inline int getValueAtGameplayMapResources(int rgb, Point pt);
 
     void createTimingThread(void);
     static void* createTiming(void* arg);
@@ -123,8 +123,8 @@ private:
     bool checkPowersClicked(void);
 
     // 0 = square, 1 = triangle
-    void drawAgent(Point pos, Color4B colour, int geometry = 0);
-    void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
+    inline void drawAgent(Point pos, Color4B colour, int geometry = 0);
+    inline void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

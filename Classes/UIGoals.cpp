@@ -45,6 +45,7 @@ bool UIGoals::init()
     if (GameData::getInstance()->getGameStarted() == false) {
         GameLevel::getInstance()->initializeAttributesCost();
     }
+    GameLevel::getInstance()->setCurrentAgentType(0);
     map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(GameLevel::getInstance()->getCurrentAgentType());
     int i = 0;
     for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
@@ -116,6 +117,7 @@ void UIGoals::menuNextCallback(Ref* pSender)
 void UIGoals::menuBackCallback(Ref* pSender)
 {
     GameData::getInstance()->setGameStarted(false);
+    GameLevel::getInstance()->resetLevel();
     auto scene = UIProgressMap::createScene();
     Director::getInstance()->replaceScene(scene);
 }
@@ -194,7 +196,7 @@ void UIGoals::createContextLayout(Layout* layoutContext)
                                                           TextHAlignment::LEFT, "Arial", 50);
     context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
     context->setTextColor(Color4B(216, 229, 235, 255));*/
-    auto context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(), "Arial", 50);
+    auto context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(), "fonts/BebasNeue.otf", 50);
     context->setTextColor(Color4B(216, 229, 235, 255));
     context->ignoreContentAdaptWithSize(false);
     context->setContentSize(Size(visibleSize.width / 2, visibleSize.height));
