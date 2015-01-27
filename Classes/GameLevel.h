@@ -95,6 +95,8 @@ public:
     Agent* getAgentAtMap(int i, int j);
     int getMaxAllAgents(void);
     void setMaxAllAgents(int m);
+    cocos2d::Point getFingerSpot(void);
+    void setFingerSpot(cocos2d::Point fp);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -148,6 +150,8 @@ private:
     int finishedGame = 0;
 
     int currentAgentType = 0;
+
+    cocos2d::Point fingerSpot;
 
     GameLevel() {};
     GameLevel(GameLevel const&) {};

@@ -79,6 +79,7 @@ private:
 
     Vector<Touch*> _touches;
     Point firstTouchLocation;
+    clock_t timeFingerSpot = 0;
 
     MenuItem* backButton;
     ProgressTimer* timeBar;

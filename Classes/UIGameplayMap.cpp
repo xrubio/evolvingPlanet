@@ -409,6 +409,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
             }
             if (touches.size() == 1) {
                 firstTouchLocation = touches[0]->getLocation();
+                timeFingerSpot = clock();
             }
 
             for (auto touch : touches) {
@@ -502,6 +503,11 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
         }
         moveBackground = false;
         _touches.clear();
+        //cout << (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC << " " << touches[0]->getLocation().x << " " << firstTouchLocation.x << endl;
+        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC > 1.5 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 20) {
+            GameLevel::getInstance()->setFingerSpot(Point(touches[0]->getLocation().x / float(2048.0 / 480.0),
+                                                          (touches[0]->getLocation().y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
+        }
     }
 }
 

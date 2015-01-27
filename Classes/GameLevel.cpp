@@ -378,6 +378,16 @@ void GameLevel::setMaxAllAgents(int m)
     maxAllAgents = m;
 }
 
+cocos2d::Point GameLevel::getFingerSpot(void)
+{
+    return fingerSpot;
+}
+
+void GameLevel::setFingerSpot(cocos2d::Point fp)
+{
+    fingerSpot = fp;
+}
+
 void GameLevel::playLevel(void)
 {
     while (finishedGame == 0) {
@@ -469,6 +479,8 @@ void GameLevel::resetLevel(void)
     paint = false;
     ended = false;
     prevGoal = 0;
+
+    fingerSpot.set(-1, -1);
 }
 
 void GameLevel::createLevel(void)

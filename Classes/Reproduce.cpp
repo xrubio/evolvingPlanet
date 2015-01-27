@@ -129,16 +129,39 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
         if (random(0, 100) < probReproduction) {
-            int maxIterations = 100;
+            int maxIterations = 40;
+            Point fingerSpot = GameLevel::getInstance()->getFingerSpot();
+            int minRandomX = agent->getPosition()->getX() - mobility;
+            int maxRandomX = agent->getPosition()->getX() + mobility;
+            int minRandomY = agent->getPosition()->getY() - mobility;
+            int maxRandomY = agent->getPosition()->getY() + mobility;
+            //INDICACIO DE DIRECCIO AMB EL DIT
+            if (fingerSpot.x > -1 and fingerSpot.y > -1) {
+                if (fingerSpot.x < agent->getPosition()->getX()) {
+                    //A L'ESQUERRA
+                    maxRandomX = agent->getPosition()->getX();
+                } else if (fingerSpot.x > agent->getPosition()->getX()) {
+                    //A LA DRETA
+                    minRandomX = agent->getPosition()->getX();
+                }
+                if (fingerSpot.y < agent->getPosition()->getY()) {
+                    //A BAIX
+                    maxRandomY = agent->getPosition()->getY();
+                } else if (fingerSpot.y > agent->getPosition()->getY()) {
+                    //A DALT
+                    minRandomY = agent->getPosition()->getY();
+                }
+            }
+
             /*int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
             int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
-            int posx = random(agent->getPosition()->getX() - mobility, agent->getPosition()->getX() + mobility);
-            int posy = random(agent->getPosition()->getY() - mobility, agent->getPosition()->getY() + mobility);
+            int posx = random(minRandomX, maxRandomX);
+            int posy = random(minRandomY, maxRandomY);
             while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false) {
                 /*posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
                 posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
-                posx = random(agent->getPosition()->getX() - mobility, agent->getPosition()->getX() + mobility);
-                posy = random(agent->getPosition()->getY() - mobility, agent->getPosition()->getY() + mobility);
+                posx = random(minRandomX, maxRandomX);
+                posy = random(minRandomY, maxRandomY);
                 maxIterations--;
             }
             if (maxIterations > 0) {
