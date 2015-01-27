@@ -15,7 +15,7 @@ class AreaPower : public Power {
 
 public:
     AreaPower() {};
-    AreaPower(string n, float c, float dur, float cl, float dl, string attr, string t, float rad);
+    AreaPower(string nS, int nI, float c, float dur, float cl, float dl, string attr, string t, float rad);
     AreaPower(AreaPower const&) {};
     AreaPower& operator=(AreaPower const&);
 

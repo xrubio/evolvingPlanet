@@ -188,22 +188,22 @@ void UIGoals::createContextLayout(Layout* layoutContext)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     layoutContext->setSize(Size(visibleSize.width / 2, visibleSize.height / 2));
-    auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
-    goalMap->setScale(0.4);
-    goalMap->setPosition(Vec2(visibleSize.width / 4, visibleSize.height / 2));
+    //auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
+    //goalMap->setScale(0.4);
+    //goalMap->setPosition(Vec2(visibleSize.width / 4, visibleSize.height / 2));
     /*auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(),
                                                           Size(visibleSize.width / 2, visibleSize.height),
                                                           TextHAlignment::LEFT, "Arial", 50);
     context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
     context->setTextColor(Color4B(216, 229, 235, 255));*/
-    auto context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(), "", 50);
     context->setTextColor(Color4B(216, 229, 235, 255));
     context->ignoreContentAdaptWithSize(false);
     context->setContentSize(Size(visibleSize.width / 2, visibleSize.height));
     context->setTextHorizontalAlignment(TextHAlignment::LEFT);
     context->setTextVerticalAlignment(TextVAlignment::CENTER);
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    context->addChild(goalMap);
+    //context->addChild(goalMap);
     layoutContext->addChild(context);
 }
 

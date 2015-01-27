@@ -19,12 +19,20 @@ public:
 
     virtual bool init();
 
+    void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
+
     void menuStartCallback(Ref* pSender);
     void menuConfigurationCallback(Ref* pSender);
     void menuCreditsCallback(Ref* pSender);
     void menuExitCallback(Ref* pSender);
 
     CREATE_FUNC(UIMainMenu);
+
+private:
+    bool stoppedAnimation = false;
+
+    void endActions(void);
+    bool allActionsFinished(void);
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

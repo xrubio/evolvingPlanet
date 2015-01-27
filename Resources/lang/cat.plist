@@ -4,6 +4,10 @@
 <dict>
 	<key>START</key>
 	<string>COMENÇAR</string>
+	<key>BACK</key>
+	<string>TORNAR</string>
+	<key>LEVEL</key>
+	<string>NIVELL</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURACIÓ</string>
 	<key>LANGUAGE</key>
@@ -58,11 +62,12 @@
 	<string>Han mort tots els agents</string>
 	<key>CONTINUE</key>
 	<string>Continuar</string>
-	<key>PROCEED</key>
-	<string>Procedir</string>
+	<key>PLAY</key>
+	<string>JUGAR</string>
 	<key>BRIEF_LEVEL_1</key>
 	<string>Salutacions, comandant. Ja hem acabat els tests inicials del sistema i tot està a punt. Podrem desplegar els bots a la superfície del planeta en unes poques hores.
-Hem detectat les primeres traces d&apos;aquesta espècie alienígena en una petita península, desde la qual sembla que es van expandir a la resta del continent, Sigyn. L&apos;equip espera les teves ordres per a començar la missió!</string>
+
+Hem detectat les primeres traces d&apos;aquesta espècie alienígena en una petita península, desde la qual sembla que es van expandir a la resta del continent, Sigyn. L&apos;equip espera les teves ordres per a començar la missió!Hem detectat les primeres traces d&apos;aquesta espècie alienígena en una petita península, desde la qual sembla que es van expandir a la resta del continent, Sigyn. L&apos;equip espera les teves ordres per a començar la missió!</string>
 	<key>CONTEXT_LEVEL_1</key>
 	<string>Aquests inicis em recorden als nostres propis orígens...les primeres evidències d&apos;éssers humans s&apos;han documentat a l&apos;est del continent africà farà uns 4 milions d&apos;anys. Els arqueòlegs van trobar allà una espècia anomenada Homo Erecturs. La informació recollida per les nostres sondes enviades a Hnoss suggereix que Sigyn tenia unes condicions ambientals similars a aquests primers assentaments...em pregunt com subsistien en aquest entorn; el més probable és que fossin una barreja de caçadors, recolectors y carronyaires, més o meyns com els nostres ancestres.
 

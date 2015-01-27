@@ -21,6 +21,7 @@ public:
     void menuBackCallback(Ref* pSender);
     void menuLevelCallback(Ref* pSender);
     void proceedLevelCallback(Ref* pSender);
+    void restoreProgressMap(Ref* pSender);
 
     CREATE_FUNC(UIProgressMap);
 

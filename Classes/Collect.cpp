@@ -60,10 +60,10 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
     Power* p = nullptr;
     Power* pRest = nullptr;
     for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-        if (GameLevel::getInstance()->getPowers()[i]->getName() == "RecollectionBoost") {
+        if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 2) {
             p = GameLevel::getInstance()->getPowers()[i];
         }
-        if (GameLevel::getInstance()->getPowers()[i]->getName() == "RestoreLand") {
+        if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 3) {
             pRest = GameLevel::getInstance()->getPowers()[i];
         }
     }

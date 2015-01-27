@@ -7,6 +7,7 @@
 //
 
 #include "Timing.h"
+#include "UIGameplayMap.h"
 
 Timing* Timing::timingInstance = nullptr;
 
@@ -26,11 +27,11 @@ void Timing::start(void)
 
     while (GameLevel::getInstance()->getFinishedGame() == 0) {
         clock_t currentTime = clock();
-        if (GameLevel::getInstance()->getTimeSpeed() != 0) {
+        if (GameLevel::getInstance()->getTimeSpeed() > 0.0) {
             float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
-            if (step >= GameLevel::getInstance()->getTimeSpeed()) {
+            if (step >= GameLevel::getInstance()->getTimeSpeed() and step > GameLevel::getInstance()->calcTime + 0.4 and act == false and GameLevel::getInstance()->paint == true and GameLevel::getInstance()->getUIGameplayMap()->play == true) {
                 act = true;
-                //cout << step << endl;
+                //cout << "Time: " << step << " " << act << endl;
                 //GameLevel::getInstance()->setTimeSteps(GameLevel::getInstance()->getTimeSteps() + 1);
                 stepTime = clock();
             }
@@ -50,6 +51,8 @@ void Timing::start(void)
                     }
                 }
             }
+        } else {
+            stepTime = clock();
         }
     }
 }

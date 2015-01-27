@@ -69,7 +69,18 @@ void LevelLoader::loadXmlFile(string filename)
     //POWERS
     xml_node pws = doc.child("POWERS").child("POWER");
     while (pws != nullptr) {
-        string name = pws.attribute("NAME").value();
+        string nameString = pws.attribute("NAME").value();
+        int nameInt = -1;
+        //0 = ReproductionBoost, 1 = ResistanceBoost, 2 = RecollectionBoost, 3 = RestoreLand
+        if (nameString == "ReproductionBoost") {
+            nameInt = 0;
+        } else if (nameString == "ResistanceBoost") {
+            nameInt = 1;
+        } else if (nameString == "RecollectionBoost") {
+            nameInt = 2;
+        } else if (nameString == "RestoreLand") {
+            nameInt = 3;
+        }
         int cooldown = atoi(pws.child("COOLDOWN").child_value());
         int duration = atoi(pws.child("DURATION").child_value());
         int durationLeft = 0;
@@ -78,10 +89,10 @@ void LevelLoader::loadXmlFile(string filename)
         string type = pws.child("TYPE").attribute("TYPE_NAME").value();
         if (type == "Multiplier") {
             float multiplier = atof(pws.child("TYPE").child("MULTIPLIER").child_value());
-            GameLevel::getInstance()->addPower(new MultiplierPower(name, cooldown, duration, durationLeft, cooldownLeft, attribute, type, multiplier));
+            GameLevel::getInstance()->addPower(new MultiplierPower(nameString, nameInt, cooldown, duration, durationLeft, cooldownLeft, attribute, type, multiplier));
         } else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
-            GameLevel::getInstance()->addPower(new AreaPower(name, cooldown, duration, durationLeft, cooldownLeft, attribute, type, radius));
+            GameLevel::getInstance()->addPower(new AreaPower(nameString, nameInt, cooldown, duration, durationLeft, cooldownLeft, attribute, type, radius));
         }
         pws = pws.next_sibling("POWER");
     }
@@ -127,4 +138,18 @@ void LevelLoader::loadXmlFile(string filename)
         i++;
         goals = goals.next_sibling("GOAL");
     }
+}
+
+string LevelLoader::getLevelFileMap(string filename)
+{
+    string dir = "levels/";
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    dir = "";
+#endif
+
+    string ext = ".xml";
+    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
+    result = doc.load_file((fullPath).c_str());
+    return doc.child_value("FILE_MAP");
 }

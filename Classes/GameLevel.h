@@ -105,6 +105,7 @@ public:
 
     bool paint = false;
     bool ended = false;
+    float calcTime = 0;
     int prevGoal = 0;
 
 private:

@@ -8,14 +8,24 @@
 
 #include "Power.h"
 
-string Power::getName(void)
+string Power::getNameString(void)
 {
-    return name;
+    return nameString;
 }
 
-void Power::setName(string n)
+void Power::setNameString(string n)
 {
-    name = n;
+    nameString = n;
+}
+
+int Power::getNameInt(void)
+{
+    return nameInt;
+}
+
+void Power::setNameInt(int n)
+{
+    nameInt = n;
 }
 
 float Power::getCooldown(void)

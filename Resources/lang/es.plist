@@ -4,6 +4,10 @@
 <dict>
 	<key>START</key>
 	<string>EMPEZAR</string>
+	<key>BACK</key>
+	<string>VOLVER</string>
+	<key>LEVEL</key>
+	<string>NIVEL</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURACIÓN</string>
 	<key>LANGUAGE</key>
@@ -58,8 +62,8 @@
 	<string>Han muerto todos los agentes</string>
 	<key>CONTINUE</key>
 	<string>Continuar</string>
-	<key>PROCEED</key>
-	<string>Proceed</string>
+	<key>PLAY</key>
+	<string>JUGAR</string>
 	<key>BRIEF_LEVEL_1</key>
 	<string>Bienvenido, Comandante. Ya hemos acabado los tests iniciales del sistema y todo está a punto. Podremos desplegar los bots en la superfície del planeta en unas pocas horas.
 Hemos detectado las primeras trazas de esta especie alienígena en una pequeña península, desde la que parece que se expandieron al resto del continente, Sigyn. El equipo espera tus órdenes para empezar la misión!</string>

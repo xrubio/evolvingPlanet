@@ -20,8 +20,10 @@ public:
     Power(Power const&) {};
     Power& operator=(Power const&);
 
-    string getName(void);
-    void setName(string n);
+    string getNameString(void);
+    void setNameString(string n);
+    int getNameInt(void);
+    void setNameInt(int n);
     float getCooldown(void);
     void setCooldown(float c);
     float getDuration(void);
@@ -36,7 +38,9 @@ public:
     void setType(string t);
 
 protected:
-    string name;
+    string nameString;
+    //0 = ReproductionBoost, 1 = ResistanceBoost, 2 = RecollectionBoost, 3 = RestoreLand
+    int nameInt;
     float cooldown;
     float duration;
     float cooldownLeft;

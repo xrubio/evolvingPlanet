@@ -382,11 +382,11 @@ void GameLevel::playLevel(void)
 {
     while (finishedGame == 0) {
         if (Timing::getInstance()->act == true) {
-            Timing::getInstance()->act = false;
             while (gameplayMap->play == false)
                 ;
             paint = false;
             clock_t stepTime = clock();
+            cout << "Start calc" << endl;
             act();
             /*for (int i = 0; i < powers.size(); i++) {
                 Power* p = powers[i];
@@ -405,15 +405,17 @@ void GameLevel::playLevel(void)
                 evolutionPoints++;
             }
             paint = true;
-            cout << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
-            try {
+            Timing::getInstance()->act = false;
+            cout << "Calculs: " << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
+            calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
+            /*try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
                     throw 2;
                 }
             }
             catch (int e) {
                 cout << "Time Exceeded" << endl;
-            }
+            }*/
         }
     }
     ended = true;
@@ -516,8 +518,8 @@ void GameLevel::generateInitialAgents(int type)
 
     int i = 0;
     while (i < numInitialAgents[type]) {
-        int posx = rand() % maxX + minX;
-        int posy = rand() % maxY + minY;
+        int posx = random(minX, maxX); //rand() % maxX + minX;
+        int posy = random(minY, maxY); //rand() % maxY + minY;
         if (GameLevel::getInstance()->validatePosition(posx, posy) and gameplayMap->getValueAtGameplayMapHotSpot(1, posx, posy) == type) {
             auto a = new Agent(idCounter, 100, type, posx, posy);
             a->setAttributes(agentAttributes[type]);

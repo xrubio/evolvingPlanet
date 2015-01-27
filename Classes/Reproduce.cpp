@@ -119,7 +119,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         }
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-            if (GameLevel::getInstance()->getPowers()[i]->getName() == "ReproductionBoost") {
+            if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 0) {
                 p = GameLevel::getInstance()->getPowers()[i];
             }
         }
@@ -127,13 +127,18 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             probReproduction += 30;
         }
         //srand(time(NULL));
-        if ((rand() % 100) < probReproduction) {
+        //if ((rand() % 100) < probReproduction) {
+        if (random(0, 100) < probReproduction) {
             int maxIterations = 100;
-            int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
-            int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);
+            /*int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
+            int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
+            int posx = random(agent->getPosition()->getX() - mobility, agent->getPosition()->getX() + mobility);
+            int posy = random(agent->getPosition()->getY() - mobility, agent->getPosition()->getY() + mobility);
             while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false) {
-                posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
-                posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);
+                /*posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
+                posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
+                posx = random(agent->getPosition()->getX() - mobility, agent->getPosition()->getX() + mobility);
+                posy = random(agent->getPosition()->getY() - mobility, agent->getPosition()->getY() + mobility);
                 maxIterations--;
             }
             if (maxIterations > 0) {

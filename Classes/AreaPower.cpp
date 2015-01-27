@@ -8,9 +8,10 @@
 
 #include "AreaPower.h"
 
-AreaPower::AreaPower(string n, float c, float dur, float cl, float dl, string attr, string t, float rad)
+AreaPower::AreaPower(string nS, int nI, float c, float dur, float cl, float dl, string attr, string t, float rad)
 {
-    name = n;
+    nameString = nS;
+    nameInt = nI;
     cooldown = c;
     duration = dur;
     cooldownLeft = cl;

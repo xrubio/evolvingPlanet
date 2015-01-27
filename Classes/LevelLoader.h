@@ -22,6 +22,7 @@ public:
     LevelLoader& operator=(LevelLoader const&);
 
     void loadXmlFile(string filename);
+    string getLevelFileMap(string filename);
 
 private:
     xml_document doc;

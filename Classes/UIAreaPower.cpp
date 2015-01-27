@@ -13,10 +13,10 @@ UIAreaPower::UIAreaPower(Power* p)
 {
     power = p;
     icon = Sprite::create("PowerBackgroundButton.png");
-    auto button = Sprite::create(p->getName() + "Button" + ".png");
+    auto button = Sprite::create(p->getNameString() + "Button" + ".png");
     button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     icon->addChild(button, 2, 0);
-    auto actionTimer = ProgressTimer::create(Sprite::create(p->getName() + "ActionButton" + ".png"));
+    auto actionTimer = ProgressTimer::create(Sprite::create(p->getNameString() + "ActionButton" + ".png"));
     actionTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     actionTimer->setType(ProgressTimer::Type::RADIAL);
     icon->addChild(actionTimer, 1, 1);

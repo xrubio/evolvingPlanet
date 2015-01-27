@@ -4,6 +4,10 @@
 <dict>
 	<key>START</key>
 	<string>START</string>
+	<key>BACK</key>
+	<string>BACK</string>
+	<key>LEVEL</key>
+	<string>LEVEL</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURATION</string>
 	<key>LANGUAGE</key>
@@ -58,8 +62,8 @@
 	<string>All agents died</string>
 	<key>CONTINUE</key>
 	<string>Continue</string>
-	<key>PROCEED</key>
-	<string>Proceed</string>
+	<key>PLAY</key>
+	<string>PLAY</string>
 	<key>BRIEF_LEVEL_1</key>
 	<string>Greetings, commander. After the initial tests the system is up and running, so we will be able to deploy the bots in the surface of the planet in a few hours.
 We have detected the first traces of the alien species in a small peninsula from where they suposedly expanded to the rest of the Sigyn continent. The team awaits your orders to start the mission!</string>

@@ -76,8 +76,15 @@ bool UIGameplayMap::init()
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
 
     //RESOURCES MAP (IF ANY)
-    gameplayMapResources = new Image();
-    if (gameplayMapResources->initWithImageFile(map + resources + ext)) {
+    bool resourcesMap = false;
+    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Collection") {
+            resourcesMap = true;
+        }
+    }
+    if (resourcesMap) {
+        gameplayMapResources = new Image();
+        gameplayMapResources->initWithImageFile(map + resources + ext);
         x = 3;
         if (gameplayMapResources->hasAlpha()) {
             x = 4;
@@ -787,7 +794,7 @@ int UIGameplayMap::getValueAtGameplayMapResources(int rgb, int posx, int posy)
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
 {
     int i = 0;
-    while (powerButtons[i]->getPower()->getName() != "ResistanceBoost") {
+    while (powerButtons[i]->getPower()->getNameInt() != 1) {
         i++;
     }
     return selectSpriteForTouch(((UIAreaPower*)powerButtons[i])->getArea(), Point(posx, posy));
@@ -796,7 +803,7 @@ bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
 void UIGameplayMap::restoreLand(void)
 {
     int i = 0;
-    while (powerButtons[i]->getPower()->getName() != "RestoreLand") {
+    while (powerButtons[i]->getPower()->getNameInt() != 3) {
         i++;
     }
     float radius = 37.0; //((UIAreaPower*)powerButtons.at(i))->getScale();
@@ -1038,10 +1045,10 @@ void UIGameplayMap::updateAgents(void)
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
     exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, 2048, 1536);
 
-    vector<int> null;
+    /*vector<int> null;
     vector<Point> p;
     GameLevel::getInstance()->setDeletedAgents(p);
-    GameLevel::getInstance()->setAddedAgents(0);
+    GameLevel::getInstance()->setAddedAgents(0);*/
 }
 
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
@@ -1110,6 +1117,7 @@ void UIGameplayMap::update(float delta)
     if (GameLevel::getInstance()->getFinishedGame() == 0) {
         if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false) {
             play = false;
+            clock_t beforeTime = clock();
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
             timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
@@ -1126,6 +1134,7 @@ void UIGameplayMap::update(float delta)
                 distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
             play = true;
+            //cout << "Pintat: " << ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC) << endl;
         }
 
         for (int i = 0; i < powerButtons.size(); i++) {

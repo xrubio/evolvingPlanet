@@ -15,7 +15,7 @@ class MultiplierPower : public Power {
 
 public:
     MultiplierPower() {};
-    MultiplierPower(string n, float c, float dur, float cl, float dl, string attr, string t, float mult);
+    MultiplierPower(string nS, int nI, float c, float dur, float cl, float dl, string attr, string t, float mult);
     MultiplierPower(MultiplierPower const&) {};
     MultiplierPower& operator=(MultiplierPower const&);
 
