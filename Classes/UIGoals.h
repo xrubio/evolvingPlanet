@@ -28,6 +28,8 @@ public:
     void menuStartCallback(Ref* pSender);
     void minusAttCallback(Ref* pSender);
     void plusAttCallback(Ref* pSender);
+    void menuArrowBackCallback(Ref* pSender);
+    void menuArrowNextCallback(Ref* pSender);
 
     virtual void update(float delta);
 
@@ -37,6 +39,8 @@ private:
     vector<string> keys;
     bool gameStarted = true;
     PageView* pages;
+    MenuItemImage* arrowNext;
+    MenuItemImage* arrowBack;
 
     void createContextLayout(Layout* layoutContext);
     void setLevelGoals(Layout* layout);

@@ -27,6 +27,7 @@ public:
 
 private:
     cocos2d::ui::ScrollView* scrollView;
+    Sprite* progressMap0;
 };
 
 #endif /* defined(__simulplay__UIProgressMap__) */

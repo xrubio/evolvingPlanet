@@ -10,30 +10,38 @@
 	<string>LEVEL</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURATION</string>
+	<key>ACHIEVEMENTS</key>
+	<string>ACHIEVEMENTS</string>
 	<key>LANGUAGE</key>
-	<string>Language</string>
+	<string>LANGUAGE</string>
 	<key>CREDITS</key>
 	<string>CREDITS</string>
 	<key>GOALS</key>
 	<string>GOALS</string>
+	<key>QUIT_QUESTION</key>
+	<string>QUIT ?</string>
+	<key>RETRY_QUESTION</key>
+	<string>RETRY ?</string>
 	<key>AGENTS</key>
 	<string>Agents</string>
+	<key>LIFE</key>
+	<string>LIFE</string>
 	<key>REPRODUCTION</key>
-	<string>Reproduction</string>
+	<string>REPRODUCTION</string>
 	<key>MOBILITY</key>
-	<string>Mobility</string>
+	<string>MOBILITY</string>
 	<key>RESISTANCE</key>
-	<string>Resistance</string>
+	<string>RESISTANCE</string>
 	<key>RECOLLECTION</key>
-	<string>Recollection</string>
+	<string>RECOLLECTION</string>
 	<key>SUSTAINABILITY</key>
-	<string>Sustainability</string>
+	<string>SUSTAINABILITY</string>
 	<key>ADAPTATION</key>
-	<string>Adaptation</string>
+	<string>ADAPTATION</string>
 	<key>CULTURAL_INFLUENCE</key>
-	<string>Cultural Infl</string>
+	<string>CULTURAL INFL</string>
 	<key>HOSTILITY</key>
-	<string>Hostility</string>
+	<string>HOSTILITY</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
 	<key>GOAL_TEXT_LVL1_1</key>
@@ -43,7 +51,7 @@
 	<key>GOAL_TEXT_LVL1_3</key>
 	<string>- Reach checkpoint 3 between 90 and 110 timesteps</string>
 	<key>MUSIC</key>
-	<string>Music</string>
+	<string>MUSIC</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
 	<key>ON</key>
@@ -51,9 +59,9 @@
 	<key>OFF</key>
 	<string>Off</string>
 	<key>LEVEL_COMPLETED</key>
-	<string>Level completed</string>
+	<string>COMPLETED</string>
 	<key>GAME_OVER</key>
-	<string>Game Over</string>
+	<string>FAILED</string>
 	<key>CONGRATULATIONS</key>
 	<string>Congratulations!</string>
 	<key>GOAL_NO_COMPLETED</key>
@@ -61,7 +69,7 @@
 	<key>ALL_AGENTS_DIED</key>
 	<string>All agents died</string>
 	<key>CONTINUE</key>
-	<string>Continue</string>
+	<string>CONTINUE</string>
 	<key>PLAY</key>
 	<string>PLAY</string>
 	<key>BRIEF_LEVEL_1</key>

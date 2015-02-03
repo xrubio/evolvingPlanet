@@ -10,6 +10,7 @@
 #include "UICredits.h"
 #include "UIConfiguration.h"
 #include "UIProgressMap.h"
+#include "UIAchievements.h"
 #include "LocalizedString.h"
 #include "GameData.h"
 
@@ -73,7 +74,6 @@ bool UIMainMenu::init()
     this->addChild(spaceship, 5, 3);
 
     auto particlesSpaceship = ParticleSun::create();
-    particlesSpaceship->setColor(Color3B(0, 0, 180));
     particlesSpaceship->setGravity(Vec2(0, 0));
     particlesSpaceship->setPosition(Vec2(21 * (spaceship->getContentSize().width / 25), 10 * (spaceship->getContentSize().height / 25)));
     spaceship->addChild(particlesSpaceship, -1);
@@ -84,17 +84,28 @@ bool UIMainMenu::init()
         "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
     startButton->setAnchorPoint(Vec2(0, 0.5));
     startButton->setPosition(Vec2(2 * (visibleSize.width / 25), 10 * (visibleSize.height / 18)));
-
-    menuButtons.pushBack(startButton);
     auto startLabel = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 50);
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
+    menuButtons.pushBack(startButton);
+
+    auto achievementsButton = MenuItemImage::create(
+        "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuAchievementsCallback, this));
+    achievementsButton->setScale(0.8);
+    achievementsButton->setPosition(Vec2(startButton->getPositionX() + (startButton->getContentSize().width / 2),
+                                         9 * (visibleSize.height / 18)));
+    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS")->getCString(), "fonts/BebasNeue.otf", 40);
+    achLabel->setColor(Color3B(219, 234, 241));
+    achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
+    achievementsButton->addChild(achLabel);
+    menuButtons.pushBack(achievementsButton);
 
     auto configurationButton = MenuItemImage::create(
         "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
-    configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
+    //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
+    configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 2 * (visibleSize.height / 18)));
     auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 30);
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
@@ -109,7 +120,7 @@ bool UIMainMenu::init()
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
-    menuButtons.pushBack(creditsButton);
+    //menuButtons.pushBack(creditsButton);
 
     /*MenuItem* exitButton = MenuItemImage::create(
         "ExitButton.png", "ExitButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
@@ -147,6 +158,17 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
         auto scene = UIProgressMap::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
+    } else {
+        endActions();
+    }
+}
+
+void UIMainMenu::menuAchievementsCallback(Ref* pSender)
+{
+    if (stoppedAnimation or allActionsFinished()) {
+        auto scene = UIAchievements::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
     } else {

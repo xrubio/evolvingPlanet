@@ -10,6 +10,8 @@
 #include "GameData.h"
 #include "LocalizedString.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 Scene* UIConfiguration::createScene()
 {
     auto scene = Scene::create();
@@ -25,47 +27,68 @@ bool UIConfiguration::init()
     }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    auto title = Label::createWithSystemFont(LocalizedString::create("CONFIGURATION")->getCString(), "Arial Rounded MT Bold", 180);
-    title->setPosition(Vec2(origin.x + visibleSize.width / 2,
-                            origin.y + visibleSize.height - ((visibleSize.height / 8))));
-    this->addChild(title, 1);
+    auto background = Sprite::create("MainMenuBackground.png");
+    background->setPosition(Vec2(visibleSize.width / 2,
+                                 visibleSize.height / 2));
+    this->addChild(background, 0);
 
+    auto title = Sprite::create("MainMenuTitle.png");
+    title->setAnchorPoint(Vec2(0, 0.5));
+    title->setPosition(Vec2(2 * (visibleSize.width / 25), 15 * (visibleSize.height / 18)));
+    this->addChild(title, 5, 0);
+
+    auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
+    planet2->setScale(1.3);
+    planet2->setPosition(Vec2(18 * visibleSize.width / 40, 10 * visibleSize.height / 31));
+    this->addChild(planet2, 1, 2);
+
+    auto popupBackground = Sprite::create("ConfigurationBackground.png");
+    popupBackground->setAnchorPoint(Vec2(0, 0.5));
+    popupBackground->setPosition(Vec2(2 * (visibleSize.width / 25), 8 * (visibleSize.height / 18)));
+    this->addChild(popupBackground, 6);
+
+    Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
-        "BackButton.png", "BackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
-    backButton->setPosition(Vec2(origin.x + visibleSize.width - (backButton->getContentSize().width / 2),
-                                 origin.y + (backButton->getContentSize().height / 2)));
+        "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
+    backButton->setAnchorPoint(Vec2(0, 0.5));
+    backButton->setPosition(Vec2(2 * (visibleSize.width / 25), 2 * (visibleSize.height / 25)));
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
+    backLabel->setColor(Color3B(205, 202, 207));
+    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->addChild(backLabel);
+    menuButtons.pushBack(backButton);
 
-    auto menu = Menu::createWithItem(backButton);
+    auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
     this->addChild(menu, 1);
 
+    auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 100);
+    configLabel->setColor(Color3B(255, 255, 255));
+    configLabel->setAnchorPoint(Vec2(1, 0.5));
+    configLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 13 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(configLabel);
+
     Vector<MenuItem*> languageItems;
-    auto languageLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("LANGUAGE")->getCString(),
-                                                                           "Arial Rounded MT Bold", 100));
-    languageLabel->setPosition(Vec2(origin.x + visibleSize.width / 4,
-                                    origin.y + visibleSize.height - ((3 * visibleSize.height / 8))));
-    languageLabel->setEnabled(false);
-    languageLabel->setColor(Color3B::WHITE);
-    languageItems.pushBack(languageLabel);
+    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE")->getCString(), "fonts/BebasNeue.otf", 80);
+    languageLabel->setColor(Color3B(72, 108, 118));
+    languageLabel->setAnchorPoint(Vec2(1, 0.5));
+    languageLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(languageLabel);
 
     auto catButton = MenuItemImage::create(
         "catFlag.png", "catFlagPressed.png", "catFlagPressed.png", CC_CALLBACK_1(UIConfiguration::catFlagCallback, this));
-    catButton->setPosition(Vec2(origin.x + (visibleSize.width / 2),
-                                languageLabel->getPosition().y));
+    catButton->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(catButton);
 
     auto esButton = MenuItemImage::create(
         "esFlag.png", "esFlagPressed.png", "esFlagPressed.png", CC_CALLBACK_1(UIConfiguration::esFlagCallback, this));
-    esButton->setPosition(Vec2(catButton->getPosition().x + catButton->getContentSize().width * 2,
-                               languageLabel->getPosition().y));
+    esButton->setPosition(Vec2(20 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(esButton);
 
     auto enButton = MenuItemImage::create(
         "enFlag.png", "enFlagPressed.png", "enFlagPressed.png", CC_CALLBACK_1(UIConfiguration::enFlagCallback, this));
-    enButton->setPosition(Vec2(esButton->getPosition().x + esButton->getContentSize().width * 2,
-                               languageLabel->getPosition().y));
+    enButton->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(enButton);
 
     string lang = GameData::getInstance()->getLanguage();
@@ -81,72 +104,71 @@ bool UIConfiguration::init()
 
     auto menuLanguage = Menu::createWithArray(languageItems);
     menuLanguage->setPosition(0, 0);
-    this->addChild(menuLanguage, 1);
+    popupBackground->addChild(menuLanguage, 10);
 
     Vector<MenuItem*> soundItems;
-    auto musicLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("MUSIC")->getCString(),
-                                                                        "Arial Rounded MT Bold", 100));
-    musicLabel->setPosition(Vec2(origin.x + visibleSize.width / 4,
-                                 origin.y + visibleSize.height - ((5 * visibleSize.height / 8))));
-    musicLabel->setEnabled(false);
-    musicLabel->setColor(Color3B::WHITE);
-    soundItems.pushBack(musicLabel);
 
-    auto musicOnLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("ON")->getCString(),
-                                                                          "Arial Rounded MT Bold", 100),
+    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC")->getCString(), "fonts/BebasNeue.otf", 80);
+    musicLabel->setColor(Color3B(72, 108, 118));
+    musicLabel->setAnchorPoint(Vec2(1, 0.5));
+    musicLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 6 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(musicLabel);
+
+    auto musicOnLabel = MenuItemImage::create("ActiveOff.png", "ActiveOff.png", "ActiveOn.png",
                                               CC_CALLBACK_1(UIConfiguration::musicOnCallback, this));
-    musicOnLabel->setPosition(Vec2(origin.x + (4 * visibleSize.width / 8),
-                                   musicLabel->getPosition().y));
+    musicOnLabel->setPosition(Vec2(Vec2(16 * popupBackground->getContentSize().width / 28,
+                                        6 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOnLabel);
 
-    auto musicOffLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("OFF")->getCString(),
-                                                                           "Arial Rounded MT Bold", 100),
+    auto musicSeparator = Sprite::create("ConfigurationSeparator.png");
+    musicSeparator->setPosition(Vec2(Vec2(20 * popupBackground->getContentSize().width / 28,
+                                          6 * popupBackground->getContentSize().height / 16)));
+    popupBackground->addChild(musicSeparator, 10);
+
+    auto musicOffLabel = MenuItemImage::create("InactiveOff.png", "InactiveOff.png", "InactiveOn.png",
                                                CC_CALLBACK_1(UIConfiguration::musicOffCallback, this));
-    musicOffLabel->setPosition(Vec2(origin.x + (6 * visibleSize.width / 8),
-                                    musicLabel->getPosition().y));
+    musicOffLabel->setPosition(Vec2(Vec2(24 * popupBackground->getContentSize().width / 28,
+                                         6 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOffLabel);
 
-    auto sfxLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("SPECIAL_EFFECTS")->getCString(),
-                                                                      "Arial Rounded MT Bold", 100));
-    sfxLabel->setPosition(Vec2(origin.x + visibleSize.width / 4,
-                               origin.y + visibleSize.height - ((6.5 * visibleSize.height / 8))));
-    sfxLabel->setEnabled(false);
-    sfxLabel->setColor(Color3B::WHITE);
-    soundItems.pushBack(sfxLabel);
+    auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS")->getCString(), "fonts/BebasNeue.otf", 80);
+    sfxLabel->setColor(Color3B(72, 108, 118));
+    sfxLabel->setAnchorPoint(Vec2(1, 0.5));
+    sfxLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 3 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(sfxLabel);
 
-    auto sfxOnLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("ON")->getCString(),
-                                                                        "Arial Rounded MT Bold", 100),
+    auto sfxOnLabel = MenuItemImage::create("ActiveOff.png", "ActiveOff.png", "ActiveOn.png",
                                             CC_CALLBACK_1(UIConfiguration::sfxOnCallback, this));
-    sfxOnLabel->setPosition(Vec2(origin.x + (4 * visibleSize.width / 8),
-                                 sfxLabel->getPosition().y));
+    sfxOnLabel->setPosition(Vec2(Vec2(16 * popupBackground->getContentSize().width / 28,
+                                      3 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOnLabel);
 
-    auto sfxOffLabel = MenuItemLabel::create(Label::createWithSystemFont(LocalizedString::create("OFF")->getCString(),
-                                                                         "Arial Rounded MT Bold", 100),
+    auto sfxSeparator = Sprite::create("ConfigurationSeparator.png");
+    sfxSeparator->setPosition(Vec2(Vec2(20 * popupBackground->getContentSize().width / 28,
+                                        3 * popupBackground->getContentSize().height / 16)));
+    popupBackground->addChild(sfxSeparator, 10);
+
+    auto sfxOffLabel = MenuItemImage::create("InactiveOff.png", "InactiveOff.png", "InactiveOn.png",
                                              CC_CALLBACK_1(UIConfiguration::sfxOffCallback, this));
-    sfxOffLabel->setPosition(Vec2(origin.x + (6 * visibleSize.width / 8),
-                                  sfxLabel->getPosition().y));
+    sfxOffLabel->setPosition(Vec2(Vec2(24 * popupBackground->getContentSize().width / 28,
+                                       3 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOffLabel);
 
     if (GameData::getInstance()->getMusic() == true) {
         musicOnLabel->setEnabled(false);
-        musicOnLabel->setColor(Color3B::GREEN);
     } else {
         musicOffLabel->setEnabled(false);
-        musicOffLabel->setColor(Color3B::GREEN);
     }
 
     if (GameData::getInstance()->getSFX() == true) {
         sfxOnLabel->setEnabled(false);
-        sfxOnLabel->setColor(Color3B::GREEN);
     } else {
         sfxOffLabel->setEnabled(false);
-        sfxOffLabel->setColor(Color3B::GREEN);
     }
 
     auto menuSound = Menu::createWithArray(soundItems);
     menuSound->setPosition(0, 0);
-    this->addChild(menuSound, 1);
+    popupBackground->addChild(menuSound, 10);
 
     return true;
 }
@@ -167,8 +189,8 @@ void UIConfiguration::catFlagCallback(Ref* pSender)
     auto catButton = (MenuItem*)pSender;
     catButton->setEnabled(false);
     auto menuLanguage = (Menu*)catButton->getParent();
-    auto esButton = (MenuItem*)menuLanguage->getChildren().at(2);
-    auto enButton = (MenuItem*)menuLanguage->getChildren().at(3);
+    auto esButton = (MenuItem*)menuLanguage->getChildren().at(1);
+    auto enButton = (MenuItem*)menuLanguage->getChildren().at(2);
 
     esButton->setEnabled(true);
     enButton->setEnabled(true);
@@ -182,8 +204,8 @@ void UIConfiguration::esFlagCallback(Ref* pSender)
     auto esButton = (MenuItem*)pSender;
     esButton->setEnabled(false);
     auto menuLanguage = (Menu*)esButton->getParent();
-    auto catButton = (MenuItem*)menuLanguage->getChildren().at(1);
-    auto enButton = (MenuItem*)menuLanguage->getChildren().at(3);
+    auto catButton = (MenuItem*)menuLanguage->getChildren().at(0);
+    auto enButton = (MenuItem*)menuLanguage->getChildren().at(2);
 
     catButton->setEnabled(true);
     enButton->setEnabled(true);
@@ -197,8 +219,8 @@ void UIConfiguration::enFlagCallback(Ref* pSender)
     auto enButton = (MenuItem*)pSender;
     enButton->setEnabled(false);
     auto menuLanguage = (Menu*)enButton->getParent();
-    auto catButton = (MenuItem*)menuLanguage->getChildren().at(1);
-    auto esButton = (MenuItem*)menuLanguage->getChildren().at(2);
+    auto catButton = (MenuItem*)menuLanguage->getChildren().at(0);
+    auto esButton = (MenuItem*)menuLanguage->getChildren().at(1);
 
     catButton->setEnabled(true);
     esButton->setEnabled(true);
@@ -211,37 +233,33 @@ void UIConfiguration::musicOnCallback(Ref* pSender)
 {
     auto musicOnLabel = (MenuItem*)pSender;
     musicOnLabel->setEnabled(false);
-    musicOnLabel->setColor(Color3B::GREEN);
     auto menuSound = (Menu*)musicOnLabel->getParent();
-    auto musicOffLabel = (MenuItem*)menuSound->getChildren().at(2);
+    auto musicOffLabel = (MenuItem*)menuSound->getChildren().at(1);
     musicOffLabel->setEnabled(true);
-    musicOffLabel->setColor(Color3B::WHITE);
 
     GameData::getInstance()->setMusic(true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("intro_try1.mp3", true);
 }
 
 void UIConfiguration::musicOffCallback(Ref* pSender)
 {
     auto musicOffLabel = (MenuItem*)pSender;
     musicOffLabel->setEnabled(false);
-    musicOffLabel->setColor(Color3B::GREEN);
     auto menuSound = (Menu*)musicOffLabel->getParent();
-    auto musicOnLabel = (MenuItem*)menuSound->getChildren().at(1);
+    auto musicOnLabel = (MenuItem*)menuSound->getChildren().at(0);
     musicOnLabel->setEnabled(true);
-    musicOnLabel->setColor(Color3B::WHITE);
 
     GameData::getInstance()->setMusic(false);
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 }
 
 void UIConfiguration::sfxOnCallback(Ref* pSender)
 {
     auto sfxOnLabel = (MenuItem*)pSender;
     sfxOnLabel->setEnabled(false);
-    sfxOnLabel->setColor(Color3B::GREEN);
     auto menuSound = (Menu*)sfxOnLabel->getParent();
-    auto sfxOffLabel = (MenuItem*)menuSound->getChildren().at(5);
+    auto sfxOffLabel = (MenuItem*)menuSound->getChildren().at(3);
     sfxOffLabel->setEnabled(true);
-    sfxOffLabel->setColor(Color3B::WHITE);
 
     GameData::getInstance()->setSFX(true);
 }
@@ -250,11 +268,9 @@ void UIConfiguration::sfxOffCallback(Ref* pSender)
 {
     auto sfxOffLabel = (MenuItem*)pSender;
     sfxOffLabel->setEnabled(false);
-    sfxOffLabel->setColor(Color3B::GREEN);
     auto menuSound = (Menu*)sfxOffLabel->getParent();
-    auto sfxOnLabel = (MenuItem*)menuSound->getChildren().at(4);
+    auto sfxOnLabel = (MenuItem*)menuSound->getChildren().at(2);
     sfxOnLabel->setEnabled(true);
-    sfxOnLabel->setColor(Color3B::WHITE);
 
     GameData::getInstance()->setSFX(false);
 }

@@ -584,7 +584,7 @@ void GameLevel::act(void)
                     finalScore += goals[j]->getScore();
                 }
             }
-            if (failed == false and goals.empty()) {
+            if (failed == false and goals.empty() == false) {
                 cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
                 GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
                 finishedGame = 1;

@@ -42,6 +42,16 @@ public:
     void reproductionCallback(Ref* pSender);
     void mobilityCallback(Ref* pSender);
     void resistanceCallback(Ref* pSender);
+    void quitCallback(Ref* pSender);
+    void retryCallback(Ref* pSender);
+    //void quitOkCallback(Ref* pSender); SAME AS MENUBACKCALLBACK
+    void retryOkCallback(Ref* pSender);
+    void NoCallback(Ref* pSender);
+    void agentTypeCallback(Ref* pSender);
+    void moveAttCallback(Ref* pSender);
+    void minusAttCallback(Ref* pSender);
+    void plusAttCallback(Ref* pSender);
+    void removeFingerSpot(Ref* pSender);
 
     int getValueAtGameplayMapHotSpot(int rgb, int posx, int posy);
     int getValueAtGameplayMapResources(int rgb, int posx, int posy);
@@ -64,6 +74,9 @@ private:
     Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;
     unsigned char* dataGameplayMapResources;
+
+    MenuItem* fingerSpot;
+    //Sprite* fingerSpotArea;
 
     bool moveBackground = false;
     bool moveBackgroundLeft = false;
@@ -105,6 +118,8 @@ private:
     Color4B* exploitedMapTextureData = new Color4B[2048 * 1536];
     Texture2D* exploitedMapTexture;
     Sprite* exploitedMapSprite;
+
+    vector<string> keys;
 
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);

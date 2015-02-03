@@ -22,6 +22,7 @@ public:
     void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
 
     void menuStartCallback(Ref* pSender);
+    void menuAchievementsCallback(Ref* pSender);
     void menuConfigurationCallback(Ref* pSender);
     void menuCreditsCallback(Ref* pSender);
     void menuExitCallback(Ref* pSender);

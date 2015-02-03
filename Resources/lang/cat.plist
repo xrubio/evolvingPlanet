@@ -10,30 +10,38 @@
 	<string>NIVELL</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURACIÓ</string>
+	<key>ACHIEVEMENTS</key>
+	<string>FITES</string>
 	<key>LANGUAGE</key>
-	<string>Idioma</string>
+	<string>IDIOMA</string>
 	<key>CREDITS</key>
 	<string>CRÈDITS</string>
 	<key>GOALS</key>
 	<string>OBJECTIUS</string>
+	<key>QUIT_QUESTION</key>
+	<string>SORTIR ?</string>
+	<key>RETRY_QUESTION</key>
+	<string>REPETIR ?</string>
 	<key>AGENTS</key>
 	<string>Agents</string>
+	<key>LIFE</key>
+	<string>VIDA</string>
 	<key>REPRODUCTION</key>
-	<string>Reproducció</string>
+	<string>REPRODUCCIÓ</string>
 	<key>MOBILITY</key>
-	<string>Mobilitat</string>
+	<string>MOBILITAT</string>
 	<key>RESISTANCE</key>
-	<string>Resistència</string>
+	<string>RESISTÈNCIA</string>
 	<key>RECOLLECTION</key>
-	<string>Recolecció</string>
+	<string>RECOLECCIÓ</string>
 	<key>SUSTAINABILITY</key>
-	<string>Sostenibilitat</string>
+	<string>SOSTENIBILITAT</string>
 	<key>ADAPTATION</key>
-	<string>Adaptació</string>
+	<string>ADAPTACIÓ</string>
 	<key>CULTURAL_INFLUENCE</key>
-	<string>Infl Cultural</string>
+	<string>INFL CULTURAL</string>
 	<key>HOSTILITY</key>
-	<string>Hostilitat</string>
+	<string>HOSTILITAT</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTS D&apos;EVOLUCIÓ</string>
 	<key>GOAL_TEXT_LVL1_1</key>
@@ -43,7 +51,7 @@
 	<key>GOAL_TEXT_LVL1_3</key>
 	<string>- S&apos;ha d&apos;arribar al punt de control 3 entre 90 i 110 passos de temps</string>
 	<key>MUSIC</key>
-	<string>Música</string>
+	<string>MÚSICA</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
 	<key>ON</key>
@@ -51,9 +59,9 @@
 	<key>OFF</key>
 	<string>Off</string>
 	<key>LEVEL_COMPLETED</key>
-	<string>Nivell complet</string>
+	<string>COMPLET</string>
 	<key>GAME_OVER</key>
-	<string>Nivell fallit</string>
+	<string>FALLIT</string>
 	<key>CONGRATULATIONS</key>
 	<string>Enhorabona!</string>
 	<key>GOAL_NO_COMPLETED</key>
@@ -61,7 +69,7 @@
 	<key>ALL_AGENTS_DIED</key>
 	<string>Han mort tots els agents</string>
 	<key>CONTINUE</key>
-	<string>Continuar</string>
+	<string>CONTINUAR</string>
 	<key>PLAY</key>
 	<string>JUGAR</string>
 	<key>BRIEF_LEVEL_1</key>
