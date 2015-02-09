@@ -42,6 +42,13 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
     }
 
+    //LOAD LEVELS
+    vector<int> levelsCompleted;
+    for (int i = 0; i < UserDefault::getInstance()->getIntegerForKey("maxLevel"); i++) {
+        levelsCompleted.push_back(UserDefault::getInstance()->getIntegerForKey(to_string(i).c_str()));
+    }
+    GameData::getInstance()->setLevelsCompleted(levelsCompleted);
+
     // create a scene. it's an autorelease object
     auto scene = UIMainMenu::createScene();
     // run

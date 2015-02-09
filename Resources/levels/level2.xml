@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NUM_LEVEL>2</NUM_LEVEL>
+<NAME_LEVEL>Recollection</NAME_LEVEL>
+<FILE_MAP>Level2</FILE_MAP>
+<AGENTS MAX_ALL="NO">
+    <AGENT TYPE="0">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>300</MAX_AGENTS>
+        <ATTRIBUTES>
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>10</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>3</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RESISTANCE">
+                <INITIAL_VALUE>-1</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RECOLLECTION">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+        </ATTRIBUTES>
+    </AGENT>
+    <AGENT TYPE="1">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>300</MAX_AGENTS>
+        <ATTRIBUTES>
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>10</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>3</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RESISTANCE">
+                <INITIAL_VALUE>-1</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RECOLLECTION">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+        </ATTRIBUTES>
+    </AGENT>
+    <AGENT TYPE="2">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>300</MAX_AGENTS>
+        <ATTRIBUTES>
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>10</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>3</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RESISTANCE">
+                <INITIAL_VALUE>-1</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RECOLLECTION">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+        </ATTRIBUTES>
+    </AGENT>
+</AGENTS>
+<POWERS>
+    <POWER NAME="RecollectionBoost">
+        <COST>0</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>10</DURATION>
+        <ATTRIBUTE>RECOLLECTION</ATTRIBUTE>
+        <TYPE TYPE_NAME="Multiplier">
+            <MULTIPLIER>3</MULTIPLIER>
+        </TYPE>
+    </POWER>
+</POWERS>
+<ACTIONS>
+    <ACTION>Reproduce</ACTION>
+    <ACTION>Collect</ACTION>
+    <ACTION>Deplete</ACTION>
+    <ACTION>Die</ACTION>
+</ACTIONS>
+<GOALS>
+    <GOAL TYPE_GOAL="Collection">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>60</MIN>
+        <MAX>100</MAX>
+        <AVERAGE>85</AVERAGE>
+        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
+        <GOAL_AMOUNT>500000</GOAL_AMOUNT>
+    </GOAL>
+    <GOAL TYPE_GOAL="Collection">
+        <AGENT_TYPE>1</AGENT_TYPE>
+        <MIN>60</MIN>
+        <MAX>100</MAX>
+        <AVERAGE>85</AVERAGE>
+        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
+        <GOAL_AMOUNT>760000</GOAL_AMOUNT>
+    </GOAL>
+    <GOAL TYPE_GOAL="Collection">
+        <AGENT_TYPE>2</AGENT_TYPE>
+        <MIN>60</MIN>
+        <MAX>100</MAX>
+        <AVERAGE>85</AVERAGE>
+        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
+        <GOAL_AMOUNT>500000</GOAL_AMOUNT>
+    </GOAL>
+</GOALS>

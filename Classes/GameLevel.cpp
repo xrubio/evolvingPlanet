@@ -479,6 +479,7 @@ void GameLevel::resetLevel(void)
     paint = false;
     ended = false;
     prevGoal = 0;
+    calcTime = 0;
 
     fingerSpot.set(-1, -1);
 }

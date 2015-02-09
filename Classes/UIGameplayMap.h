@@ -38,10 +38,7 @@ public:
     void pauseCallback(Ref* pSender);
     void playCallback(Ref* pSender);
     void fastForwardCallback(Ref* pSender);
-    void lifeCallback(Ref* pSender);
-    void reproductionCallback(Ref* pSender);
-    void mobilityCallback(Ref* pSender);
-    void resistanceCallback(Ref* pSender);
+    void attributeSelectionCallback(Ref* pSender);
     void quitCallback(Ref* pSender);
     void retryCallback(Ref* pSender);
     //void quitOkCallback(Ref* pSender); SAME AS MENUBACKCALLBACK

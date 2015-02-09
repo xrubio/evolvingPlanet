@@ -122,6 +122,10 @@ bool UIGoals::init()
     }
 
     pages->setTag(0);
+
+    //SI HI HA UNA CONFIGURACIO INICIAL NO BUIDA, SET CURRENT PAGE ALS ATRIBUTS
+    //pages->scrollToPage(2);
+
     this->addChild(pages);
 
     this->scheduleUpdate();
@@ -285,7 +289,7 @@ void UIGoals::createUIAgent(Layout* layout)
     auto playButton = MenuItemImage::create(
         "ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGoals::menuStartCallback, this));
     playButton->setPosition(Vec2(34 * visibleSize.width / 42, 5 * visibleSize.height / 31));
-    auto startPlay = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 40);
+    auto startPlay = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 50);
     startPlay->setPosition(playButton->getContentSize().width / 2, playButton->getContentSize().height / 2);
     startPlay->setColor(Color3B(207, 203, 208));
     playButton->addChild(startPlay);
@@ -303,7 +307,7 @@ void UIGoals::createUIAgent(Layout* layout)
                                              "fonts/BebasNeue.otf", 60);
         attLabel->setColor(Color3B(207, 203, 208));
         attLabel->setAnchorPoint(Vec2(1, 0.5));
-        attLabel->setPosition(18 * visibleSize.width / 42, (25 - ((keys.size() - i) * 5)) * visibleSize.height / 31);
+        attLabel->setPosition(18 * visibleSize.width / 42, (25 - ((i + 1) * 5)) * visibleSize.height / 31);
         //attLabel->setPosition(16 * visibleSize.width / 42, origin.y + (keys.size() - i) * (visibleSize.height / (keys.size() + 1)));
         layout->addChild(attLabel, 1, (i + 1) * 1000);
         auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])), "fonts/BebasNeue.otf", 80);
@@ -326,7 +330,7 @@ void UIGoals::createUIAgent(Layout* layout)
 
         float posX = minusAttButton->getPosition().x + (minusAttButton->getContentSize().width / 2);
         float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-        int posY = (25 - ((keys.size() - i) * 5)) * visibleSize.height / 31;
+        int posY = (25 - ((i + 1) * 5)) * visibleSize.height / 31;
 
         for (int j = 0; j < 5; j++) {
             posX = posX + incX;
@@ -364,7 +368,7 @@ void UIGoals::createUIAgent(Layout* layout)
 
 void UIGoals::update(float delta)
 {
-    GameLevel::getInstance()->setCurrentAgentType(pages->getCurPageIndex() - 2);
+    //GameLevel::getInstance()->setCurrentAgentType(pages->getCurPageIndex() - 2);
     if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {
         arrowBack->setVisible(true);
         arrowNext->setVisible(true);
