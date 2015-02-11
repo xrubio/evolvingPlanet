@@ -38,13 +38,17 @@ bool UIGameplayMap::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    Size contentSize;
+    contentSize.width = 2048;
+    contentSize.height = 1536;
+
     string map = GameLevel::getInstance()->getMapFilename();
-    cout << "MAPA " << map << endl;
     //fer DEFINES
     string ext = ".png";
     string background = "Background";
     string hotSpotsBase = "HotSpotsBase";
     string resources = "Resources";
+    string forest = "Forest";
 
     /*auto ff = MenuItemImage::create("Level0FFFocus.png", "Level0FFFocus.png");
     ff->setOpacity(160);
@@ -110,7 +114,6 @@ bool UIGameplayMap::init()
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
 
     //RESOURCES MAP (IF ANY)
-    bool resourcesMap = false;
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Collection") {
             resourcesMap = true;
@@ -125,6 +128,24 @@ bool UIGameplayMap::init()
         }
         dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
         dataGameplayMapResources = gameplayMapResources->getData();
+
+        exploitedMapTexture = new Texture2D;
+        Image* im = new Image();
+        im->initWithImageFile(map + forest + ext);
+        //4 = alpha
+        unsigned char* data = new unsigned char[im->getDataLen() * 4];
+        data = im->getData();
+
+        exploitedMapTexture->initWithData(exploitedMapTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
+        for (int i = 0; i < im->getWidth(); i++) {
+            for (int j = 0; j < im->getHeight(); j++) {
+                unsigned char* pixel = data + ((int)i + (int)j * im->getWidth()) * 4;
+                exploitedMapTextureData[i + (j * im->getWidth())] = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
+            }
+        }
+        exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
+        exploitedMapSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+        gameplayMap->addChild(exploitedMapSprite, 1);
     }
 
     GameLevel::getInstance()->setUIGameplayMap(this);
@@ -140,34 +161,12 @@ bool UIGameplayMap::init()
         exploitedMapTextureData[i] = white; // i is an index running from 0 to w*h-1
     }
 
-    Size contentSize;
-    contentSize.width = 2048;
-    contentSize.height = 1536;
-
     agentsTexture = new Texture2D;
     agentsTexture->initWithData(agentsTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
     agentsSprite = Sprite::createWithTexture(agentsTexture);
     agentsSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     gameplayMap->addChild(agentsSprite, 2);
     agentsSprite->setCascadeOpacityEnabled(true);
-
-    exploitedMapTexture = new Texture2D;
-    Image* im = new Image();
-    im->initWithImageFile("Level2Forest.png");
-    //4 = alpha
-    unsigned char* data = new unsigned char[im->getDataLen() * 4];
-    data = im->getData();
-
-    exploitedMapTexture->initWithData(exploitedMapTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
-    for (int i = 0; i < im->getWidth(); i++) {
-        for (int j = 0; j < im->getHeight(); j++) {
-            unsigned char* pixel = data + ((int)i + (int)j * im->getWidth()) * 4;
-            exploitedMapTextureData[i + (j * im->getWidth())] = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
-        }
-    }
-    exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
-    exploitedMapSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    gameplayMap->addChild(exploitedMapSprite, 1);
 
     //EVOLUTION POINTS
     //string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
@@ -233,7 +232,7 @@ bool UIGameplayMap::init()
     timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
     timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getContentSize().width * 1.5,
                                 pauseButton->getPosition().y));
-    this->addChild(timeSteps, 2);
+    //this->addChild(timeSteps, 2);
 
     //Attribute values
     /*Vector<MenuItem*> attributesButtons;
@@ -332,7 +331,7 @@ bool UIGameplayMap::init()
                 distanceLabel = Label::createWithTTF(" ", "fonts/BebasNeue.otf", 40);
                 distanceLabel->setColor(Color3B(216, 229, 235));
                 distanceLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
-                this->addChild(distanceLabel);
+                //this->addChild(distanceLabel);
             } else {
                 area->setColor(Color3B::RED);
             }
@@ -346,13 +345,14 @@ bool UIGameplayMap::init()
     timeBorderBar = Sprite::create("ProgressBarBorder.png");
     timeBorderBar->setPosition(102 * visibleSize.width / 204, 145 * visibleSize.height / 155);
     this->addChild(timeBorderBar);
-    timeBar = ProgressTimer::create(Sprite::create("ProgressBarContent.png"));
+    auto barContent = Sprite::create("ProgressBarContent.png");
+    timeBar = ProgressTimer::create(barContent);
     timeBar->setType(ProgressTimer::Type::BAR);
     timeBar->setAnchorPoint(Vec2(0, 0));
     timeBar->setMidpoint(Vec2(0, 0));
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(0, 0);
-    timeBorderBar->addChild(timeBar);
+    timeBorderBar->addChild(timeBar, 3);
     auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")->getCString()), "fonts/BebasNeue.otf", 48);
     labelGoals->setColor(Color3B(139, 146, 154));
     labelGoals->setAnchorPoint(Vec2(0, 0.5));
@@ -360,13 +360,18 @@ bool UIGameplayMap::init()
     timeBorderBar->addChild(labelGoals, 2);
 
     //SET GOALS ON TIME PROGRESS BAR
+    float pixelPerStep = barContent->getTexture()->getPixelsWide()
+                         / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime();
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
-        float posX = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
+        float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
         auto goalMark = Sprite::create("GoalMark.png");
-        goalMark->setPosition(posX, timeBorderBar->getContentSize().height / 2);
-        timeBorderBar->addChild(goalMark, 2);
+        float posXcentered = (float)(GameLevel::getInstance()->getGoals()[i]->getMinTime() + ((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) / 2)) / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
+        goalMark->setPosition(posXcentered, timeBorderBar->getContentSize().height / 2);
+        //SET SCALE GOAL MARK
+        goalMark->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
+        timeBorderBar->addChild(goalMark, 1);
         auto goalNum = Sprite::create("GoalNum.png");
-        goalNum->setPosition(posX, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
+        goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
         auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
         labelGoalNum->setPosition(goalNum->getContentSize().width / 2, goalNum->getContentSize().height / 2);
         labelGoalNum->setColor(Color3B(216, 229, 235));
@@ -1078,6 +1083,16 @@ void UIGameplayMap::moveGoalPopup(int index)
     }
 }
 
+float UIGameplayMap::getTimeProgressBar(void)
+{
+    return timeProgressBar;
+}
+
+void UIGameplayMap::setTimeProgressBar(float t)
+{
+    timeProgressBar = t;
+}
+
 float UIGameplayMap::sqrOfDistanceBetweenPoints(Point p1, Point p2)
 {
     Point diff = p1 - p2;
@@ -1255,8 +1270,6 @@ void UIGameplayMap::initializeAgents(void)
 
 void UIGameplayMap::createEndGameWindow(int mode)
 {
-    //backButton->setVisible(false);
-
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto background = Sprite::create("EndedGameBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
@@ -1287,40 +1300,40 @@ void UIGameplayMap::createEndGameWindow(int mode)
             }
             starCount++;
         }
+        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 120);
+        titleLabel->setColor(Color3B(255, 255, 255));
+        titleLabel->setPosition(5 * window->getContentSize().width / 18, 5 * window->getContentSize().height / 10);
+        window->addChild(titleLabel);
     } else {
         //game over
         title = LocalizedString::create("GAME_OVER")->getCString();
-        auto gameOver = Sprite::create("GameOverIcon.png");
-        gameOver->setScale(0.5, 0.5);
-        gameOver->setPosition(window->getPosition().x / 2, 5.5 * window->getContentSize().height / 8);
-        //window->addChild(gameOver);
 
         if (mode == 2) {
             text = LocalizedString::create("GOAL_NO_COMPLETED")->getCString();
         } else if (mode == 3) {
             text = LocalizedString::create("ALL_AGENTS_DIED")->getCString();
         }
+
+        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 120);
+        titleLabel->setColor(Color3B(255, 255, 255));
+        titleLabel->setPosition(9 * window->getContentSize().width / 18, 4 * window->getContentSize().height / 10);
+        window->addChild(titleLabel);
+
+        auto textLabel = Label::createWithSystemFont(text, "Corbel", 30);
+        textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
+        window->addChild(textLabel);
     }
 
     string space = " ";
     string lvl = LocalizedString::create("LEVEL")->getCString() + space + to_string(GameLevel::getInstance()->getNumLevel());
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 136);
-    levelLabel->setColor(Color3B(139, 146, 154));
-    levelLabel->setPosition(Vec2(5 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 100);
+    levelLabel->setColor(Color3B(85, 108, 117));
+    levelLabel->setPosition(Vec2(4 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
     window->addChild(levelLabel);
-
-    auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 100);
-    titleLabel->setColor(Color3B(255, 255, 255));
-    titleLabel->setPosition(5 * window->getContentSize().width / 18, 5 * window->getContentSize().height / 10);
-    window->addChild(titleLabel);
-
-    auto textLabel = Label::createWithTTF(text, "fonts/BebasNeue.otf", 50);
-    textLabel->setPosition(titleLabel->getPosition().x, window->getContentSize().height / 2);
-    //window->addChild(textLabel);
 
     auto continueButton = MenuItemImage::create(
         "ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
-    continueButton->setPosition(14 * window->getContentSize().width / 18, 2 * window->getContentSize().height / 10);
+    continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE")->getCString(), "fonts/BebasNeue.otf", 50);
     continueLabel->setColor(Color3B(205, 202, 207));
     continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
@@ -1331,7 +1344,7 @@ void UIGameplayMap::createEndGameWindow(int mode)
 
     auto retryButton = MenuItemImage::create(
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
-    retryButton->setPosition(4 * window->getContentSize().width / 18, 2 * window->getContentSize().height / 10);
+    retryButton->setPosition(4 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY")->getCString(), "fonts/BebasNeue.otf", 50);
     retryLabel->setColor(Color3B(205, 202, 207));
     retryLabel->setPosition(retryButton->getContentSize().width / 2, retryButton->getContentSize().height / 2);
@@ -1404,7 +1417,9 @@ void UIGameplayMap::updateAgents(void)
     }
 
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
-    exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, 2048, 1536);
+    if (resourcesMap) {
+        exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, 2048, 1536);
+    }
 
     /*vector<int> null;
     vector<Point> p;
@@ -1480,8 +1495,7 @@ void UIGameplayMap::update(float delta)
             play = false;
             //clock_t beforeTime = clock();
             updateAgents();
-            timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-            timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+            //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
             /*if (GameLevel::getInstance()->getNumLevel() == 2) {
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()));
                 collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
@@ -1492,12 +1506,14 @@ void UIGameplayMap::update(float delta)
                 i++;
             }
             if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Expansion") {
-                distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
+                //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
             play = true;
             //cout << "Pintat: " << ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC) << endl;
         }
-
+        if (GameLevel::getInstance()->getGoals().empty() == false) {
+            timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+        }
         for (int i = 0; i < powerButtons.size(); i++) {
             powerButtons[i]->update(delta);
         }
@@ -1507,8 +1523,10 @@ void UIGameplayMap::update(float delta)
         //DARRER PINTAT
         play = false;
         updateAgents();
-        timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-        timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+        //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+        if (GameLevel::getInstance()->getGoals().empty() == false) {
+            timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+        }
         /*if (GameLevel::getInstance()->getNumLevel() == 2) {
             collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()));
             collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));

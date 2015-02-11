@@ -61,6 +61,9 @@ public:
 
     void moveGoalPopup(int index);
 
+    float getTimeProgressBar(void);
+    void setTimeProgressBar(float t);
+
     CREATE_FUNC(UIGameplayMap);
 
     bool play = false;
@@ -95,6 +98,7 @@ private:
     ProgressTimer* timeBar;
     Sprite* timeBorderBar;
     Sprite* goalPopup;
+    float timeProgressBar = 0.0;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
@@ -117,6 +121,8 @@ private:
     Sprite* exploitedMapSprite;
 
     vector<string> keys;
+
+    bool resourcesMap = false;
 
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);

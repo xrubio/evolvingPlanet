@@ -56,7 +56,7 @@
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>70</MIN>
-        <MAX>90</MAX>
+        <MAX>85</MAX>
         <AVERAGE>80</AVERAGE>
         <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>

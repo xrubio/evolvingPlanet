@@ -55,16 +55,16 @@
     </GOAL>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>70</MIN>
-        <MAX>90</MAX>
-        <AVERAGE>80</AVERAGE>
+        <MIN>65</MIN>
+        <MAX>80</MAX>
+        <AVERAGE>70</AVERAGE>
         <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>90</MIN>
+        <MIN>95</MIN>
         <MAX>110</MAX>
         <AVERAGE>100</AVERAGE>
         <DESVIATION_2_STAR>6</DESVIATION_2_STAR>

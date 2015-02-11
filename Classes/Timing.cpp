@@ -23,12 +23,15 @@ Timing* Timing::getInstance()
 void Timing::start(void)
 {
     clock_t stepTime = clock();
+    clock_t stepTimePart = clock();
+
     clock_t powerTime = clock();
 
     while (GameLevel::getInstance()->getFinishedGame() == 0) {
         clock_t currentTime = clock();
         if (GameLevel::getInstance()->getTimeSpeed() > 0.0) {
             float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
+            float stepPart = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTimePart / CLOCKS_PER_SEC);
             if (step >= GameLevel::getInstance()->getTimeSpeed() and step > GameLevel::getInstance()->calcTime + 0.4 and act == false and GameLevel::getInstance()->paint == true and GameLevel::getInstance()->getUIGameplayMap()->play == true) {
                 act = true;
                 //cout << "Time: " << step << " " << act << endl;
@@ -51,8 +54,14 @@ void Timing::start(void)
                     }
                 }
             }
+            if (stepPart >= GameLevel::getInstance()->getTimeSpeed() / 10.0) {
+                GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + ((GameLevel::getInstance()->getTimeSpeed() / 10.0) / GameLevel::getInstance()->getTimeSpeed()));
+                stepTimePart = clock();
+            }
+
         } else {
             stepTime = clock();
+            stepTimePart = clock();
         }
     }
 }

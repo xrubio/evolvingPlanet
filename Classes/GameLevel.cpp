@@ -411,6 +411,7 @@ void GameLevel::playLevel(void)
                 }
             }*/
             timeSteps++;
+            gameplayMap->setTimeProgressBar(timeSteps);
             if (timeSteps % 2 == 0) {
                 evolutionPoints++;
             }
@@ -418,6 +419,7 @@ void GameLevel::playLevel(void)
             Timing::getInstance()->act = false;
             cout << "Calculs: " << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
             calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
+            cout << "Num agents: " << agents[0].size() << endl;
             /*try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
                     throw 2;
@@ -548,9 +550,9 @@ void GameLevel::act(void)
     deletedAgents.clear();
     addedAgents = 0;
 
-    for (int k = 0; k < agents.size(); k++) {
+    for (int k = 0; k < agents.size() and finishedGame == 0; k++) {
         list<Agent*>::reverse_iterator end = agents[k].rbegin();
-        while (end != agents[k].rend()) {
+        while (end != agents[k].rend() and finishedGame == 0) {
             if ((*end)->getLife() > 0) {
                 for (int j = 0; j < actions.size() - 1; j++) {
                     actions[j]->execute(k, *end);
