@@ -41,15 +41,16 @@ int GameData::getLevelScore(int level)
 
 void GameData::setLevelScore(int level, int score)
 {
-    //COMPROVAR QUE LA PUNTUACIO SIGUI MILLOR ABANS DE SOBREESCRIURE
     if (levelsCompleted.size() == 0) {
         levelsCompleted.push_back(0);
     }
     if (level == levelsCompleted.size()) {
         levelsCompleted.push_back(score);
     } else {
-        levelsCompleted.insert(levelsCompleted.begin() + level, score);
-        levelsCompleted.erase(levelsCompleted.begin() + level + 1);
+        if (score > levelsCompleted[level]) {
+            levelsCompleted.insert(levelsCompleted.begin() + level, score);
+            levelsCompleted.erase(levelsCompleted.begin() + level + 1);
+        }
     }
     cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(level).c_str(), score);
     cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", levelsCompleted.size());

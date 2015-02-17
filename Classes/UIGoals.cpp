@@ -110,7 +110,8 @@ bool UIGoals::init()
     setLevelGoals(layout);
     pages->addPage(layout);
 
-    for (int i = 0; i < GameLevel::getInstance()->getNumInitialAgents().size(); i++) {
+    //for (int i = 0; i < GameLevel::getInstance()->getNumInitialAgents().size(); i++) {
+    for (int i = 0; i < 1; i++) {
         GameLevel::getInstance()->setCurrentAgentType(i);
         //auto scene = UIAgents::createScene();
         auto layout2 = Layout::create();
@@ -145,7 +146,8 @@ void UIGoals::menuBackCallback(Ref* pSender)
     GameData::getInstance()->setGameStarted(false);
     GameLevel::getInstance()->resetLevel();
     auto scene = UIProgressMap::createScene();
-    Director::getInstance()->replaceScene(scene);
+    auto transition = TransitionFade::create(1.0f, scene);
+    Director::getInstance()->replaceScene(transition);
 }
 
 void UIGoals::menuMapCallback(Ref* pSender)
@@ -222,6 +224,34 @@ void UIGoals::menuArrowNextCallback(Ref* pSender)
     }
 }
 
+void UIGoals::contextPageIntroCallback(Ref* pSender)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    MenuItem* pMenuItem = (MenuItem*)(pSender);
+    pMenuItem->setEnabled(false);
+    Menu* menu = (Menu*)(pMenuItem->getParent());
+    MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(1);
+    pMenuItemInvers->setEnabled(true);
+    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString());
+    context->setString(LocalizedString::create("CONTEXT_LEVEL_1_INTRO")->getCString());
+    context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    contextImage->setVisible(false);
+}
+
+void UIGoals::contextPageDeploymentCallback(Ref* pSender)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    MenuItem* pMenuItem = (MenuItem*)(pSender);
+    pMenuItem->setEnabled(false);
+    Menu* menu = (Menu*)(pMenuItem->getParent());
+    MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(0);
+    pMenuItemInvers->setEnabled(true);
+    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT")->getCString());
+    context->setString(LocalizedString::create("CONTEXT_LEVEL_1_DEPLOYMENT")->getCString());
+    context->setPosition(Vec2(visibleSize.width / 2, 3.5 * visibleSize.height / 12));
+    contextImage->setVisible(true);
+}
+
 void UIGoals::createContextLayout(Layout* layoutContext)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -234,15 +264,52 @@ void UIGoals::createContextLayout(Layout* layoutContext)
                                                           TextHAlignment::LEFT, "Arial", 50);
     context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
     context->setTextColor(Color4B(216, 229, 235, 255));*/
-    auto context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(), "", 50);
+    context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1_INTRO")->getCString(), "Corbel", 40);
     context->setTextColor(Color4B(216, 229, 235, 255));
     context->ignoreContentAdaptWithSize(false);
-    context->setContentSize(Size(visibleSize.width / 2, visibleSize.height));
+    context->setContentSize(Size(visibleSize.width / 1.5, visibleSize.height));
     context->setTextHorizontalAlignment(TextHAlignment::LEFT);
     context->setTextVerticalAlignment(TextVAlignment::CENTER);
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     //context->addChild(goalMap);
     layoutContext->addChild(context);
+
+    contextLabel = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString(),
+                                        "fonts/BebasNeue.otf", 100);
+    contextLabel->setPosition(Vec2(7 * visibleSize.width / 42, 25 * visibleSize.height / 31));
+    contextLabel->setColor(Color3B(211, 230, 236));
+    contextLabel->setAnchorPoint(Vec2(0, 0.5));
+    layoutContext->addChild(contextLabel);
+
+    Vector<MenuItem*> contextVec;
+    auto contextPageIntro = MenuItemImage::create("ContextPageButton.png", "ContextPageButtonPressed.png", "ContextPageButtonPressed.png",
+                                                  CC_CALLBACK_1(UIGoals::contextPageIntroCallback, this));
+    contextPageIntro->setPosition(Vec2(20 * visibleSize.width / 42, 5 * visibleSize.height / 31));
+    auto labelContextPageIntro = Label::createWithTTF("1", "fonts/BebasNeue.otf", 50);
+    labelContextPageIntro->setPosition(contextPageIntro->getContentSize().width / 2, contextPageIntro->getContentSize().height / 2.2);
+    contextPageIntro->addChild(labelContextPageIntro);
+    contextPageIntro->setEnabled(false);
+    contextVec.pushBack(contextPageIntro);
+
+    auto contextPageDeployment = MenuItemImage::create("ContextPageButton.png", "ContextPageButtonPressed.png", "ContextPageButtonPressed.png",
+                                                       CC_CALLBACK_1(UIGoals::contextPageDeploymentCallback, this));
+    contextPageDeployment->setPosition(Vec2(23 * visibleSize.width / 42, 5 * visibleSize.height / 31));
+    auto labelContextPageDeployment = Label::createWithTTF("2", "fonts/BebasNeue.otf", 50);
+    labelContextPageDeployment->setPosition(contextPageDeployment->getContentSize().width / 2,
+                                            contextPageDeployment->getContentSize().height / 2.2);
+    contextPageDeployment->addChild(labelContextPageDeployment);
+    contextVec.pushBack(contextPageDeployment);
+
+    auto contextMenu = Menu::createWithArray(contextVec);
+    contextMenu->setPosition(0, 0);
+    layoutContext->addChild(contextMenu);
+
+    contextImage = Sprite::create("Level1Background.png");
+    contextImage->setScale(0.5, 0.4);
+    contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
+    contextImage->setVisible(false);
+
+    layoutContext->addChild(contextImage);
 }
 
 void UIGoals::setLevelGoals(Layout* layout)

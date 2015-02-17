@@ -13,8 +13,8 @@ list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     int probKill = agent->getValOfAttribute("HOSTILITY");
-    int mobility = agent->getValOfAttribute("MOBILITY") * 5;
-    if ((rand() % 100) < probKill * 100) {
+    int mobility = agent->getValOfAttribute("MOBILITY") * 3;
+    if ((rand() % 100) < probKill * 10) {
         int maxIterations = 100;
         bool kill = false;
         int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);

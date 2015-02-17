@@ -72,13 +72,20 @@
 	<string>CONTINUE</string>
 	<key>PLAY</key>
 	<string>PLAY</string>
+	<key>CONTEXT_TITLE_INTRO</key>
+	<string>INTRODUCTION</string>
+	<key>CONTEXT_TITLE_DEPLOYMENT</key>
+	<string>DEPLOYMENT</string>
 	<key>BRIEF_LEVEL_1</key>
 	<string>Greetings, commander. After the initial tests the system is up and running, so we will be able to deploy the bots in the surface of the planet in a few hours.
 We have detected the first traces of the alien species in a small peninsula from where they suposedly expanded to the rest of the Sigyn continent. The team awaits your orders to start the mission!</string>
-	<key>CONTEXT_LEVEL_1</key>
-	<string>These beginnings remind me of our own origins...the earliest evidences of human beings were documented in East Africa about 4 million years ago, where archaeologists found a species called Homo Erectus.
-The information gathered by the probes sent to Hnoss shows that Sigyn had similar conditions to these first sites...I wonder how they subsisted in this environment; the most probable idea is that they were hunters, gatherers and scavengers, just as our ancestors.
+	<key>CONTEXT_LEVEL_1_INTRO</key>
+	<string>These beginnings remind me of our own origins... 
 
-Anyway, let&apos;s start in the beginning; the bots will be deployed in the first zone with evidences of XXX. We want to examine how they dispersed from this peninsula to the rest of the continent.</string>
+The earliest evidences of human beings were documented in East Africa about 4 million years ago, where archaeologists found a species called Homo Erectus. The information gathered by the probes sent to Hnoss shows that Sigyn had similar conditions to these first sites...
+
+I wonder how they subsisted in this environment; the most probable idea is that they were hunters, gatherers and scavengers, just as our ancestors.</string>
+	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
+	<string>Anyway, let&apos;s start in the beginning; the bots will be deployed in the first zone with evidences of XXX. We want to examine how they dispersed from this peninsula to the rest of the continent.</string>
 </dict>
 </plist>

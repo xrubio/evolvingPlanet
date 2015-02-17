@@ -145,7 +145,7 @@ bool UIGameplayMap::init()
         }
         exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
         exploitedMapSprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-        gameplayMap->addChild(exploitedMapSprite, 1);
+        gameplayMap->addChild(exploitedMapSprite, 2);
     }
 
     GameLevel::getInstance()->setUIGameplayMap(this);
@@ -158,7 +158,7 @@ bool UIGameplayMap::init()
     white.a = 0;
     for (int i = 0; i < 2048 * 1536; i++) {
         agentsTextureData[i] = white; // i is an index running from 0 to w*h-1
-        exploitedMapTextureData[i] = white; // i is an index running from 0 to w*h-1
+        //exploitedMapTextureData[i] = white; // i is an index running from 0 to w*h-1
     }
 
     agentsTexture = new Texture2D;
@@ -187,13 +187,12 @@ bool UIGameplayMap::init()
     this->addChild(evolutionPointsStringLabel, 3);
 
     //FER DINAMIC
-    /*if (GameLevel::getInstance()->getNumLevel() == 2) {
-        collect1PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()),
+    if (GameLevel::getInstance()->getNumLevel() == 2) {
+        collect1PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()),
                                                           "Arial", 65);
-        collect1PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3,
-                                         visibleSize.height - (agentsButton->getContentSize().height));
+        collect1PointsLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
         this->addChild(collect1PointsLabel, 1);
-        collect2PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()),
+        /*collect2PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()),
                                                           "Arial", 65);
         collect2PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3 + 400,
                                          visibleSize.height - (agentsButton->getContentSize().height));
@@ -202,8 +201,8 @@ bool UIGameplayMap::init()
                                                           "Arial", 65);
         collect3PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3 + 800,
                                          visibleSize.height - (agentsButton->getContentSize().height));
-        this->addChild(collect3PointsLabel, 1);
-    }*/
+        this->addChild(collect3PointsLabel, 1);*/
+    }
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
@@ -391,8 +390,8 @@ bool UIGameplayMap::init()
 
     time_t wait;
     wait = clock();
-    while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.2)
-        ;
+    /*while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.2)
+        ;*/
     if (GameData::getInstance()->getGameStarted() == false) {
         GameLevel::getInstance()->createLevel();
     }
@@ -413,11 +412,18 @@ bool UIGameplayMap::init()
     //AGENT TYPE BUTTONS
     Vector<MenuItem*> agentTypeSelectorVec;
     for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-        auto agentTypeButton = MenuItemImage::create("AgentTypeButton.png", "AgentTypeButtonPressed.png",
-                                                     "AgentTypeButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::agentTypeCallback, this));
-        agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i),
-                                          5 * visibleSize.height / 155));
-        agentTypeSelectorVec.pushBack(agentTypeButton);
+        MenuItemImage* agentTypeButton;
+        //NOMES UN TIPUS DAGENT (PROVISIONAL)
+        if (i == 0) {
+            agentTypeButton = MenuItemImage::create("AgentTypeButton.png", "AgentTypeButtonPressed.png",
+                                                    "AgentTypeButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::agentTypeCallback, this));
+            agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i),
+                                              5 * visibleSize.height / 155));
+            auto agentTypeButtonLabel = Label::createWithTTF("A-BOTS", "fonts/BebasNeue.otf", 30);
+            agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
+            agentTypeButton->addChild(agentTypeButtonLabel);
+            agentTypeSelectorVec.pushBack(agentTypeButton);
+        }
         if (i == 0) {
             agentTypeButton->setEnabled(false);
             auto attColorsBackground = Sprite::create("AttributeColorsBackground.png");
@@ -561,7 +567,7 @@ bool UIGameplayMap::init()
 
     createTimingThread();
     wait = clock();
-    while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.3)
+    while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.1)
         ;
     createNewLevelThread();
 
@@ -1068,18 +1074,18 @@ void UIGameplayMap::moveGoalPopup(int index)
     /*goalPopup->runAction(MoveTo::create(1.5, Vec2(Director::getInstance()->getVisibleSize().width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals()[index]->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime())),
                                                   timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2)));*/
 
-    if (GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
+    if (GameLevel::getInstance()->getGoals()[index - 1]->getGoalType() == "Expansion") {
         auto area = gameplayMap->getChildByTag(400 + index - 1);
         area->stopAllActions();
         area->setVisible(true);
         area->setColor(Color3B::GREEN);
-        if (index < GameLevel::getInstance()->getGoals().size()) {
-            auto nextArea = gameplayMap->getChildByTag(400 + index);
-            auto blink = Blink::create(2, 2);
-            auto repeatBlink = RepeatForever::create(blink);
-            nextArea->setColor(Color3B::BLUE);
-            nextArea->runAction(repeatBlink);
-        }
+    }
+    if (index < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
+        auto nextArea = gameplayMap->getChildByTag(400 + index);
+        auto blink = Blink::create(2, 2);
+        auto repeatBlink = RepeatForever::create(blink);
+        nextArea->setColor(Color3B::BLUE);
+        nextArea->runAction(repeatBlink);
     }
 }
 
@@ -1378,13 +1384,13 @@ void UIGameplayMap::updateAgents(void)
             Color4B color;
             switch (agentColor) {
             case 1:
-                color = Color4B(212, 105, 11, (*it)->getValOfAttribute(keys[i]) * (255 / 10));
+                color = Color4B(212, 105, 11, (*it)->getValOfAttribute(keys[0]) * (255 / 5));
                 break;
             case 2:
-                color = Color4B(5, 5, 117, (*it)->getValOfAttribute(keys[1]) * (255 / 10));
+                color = Color4B(5, 5, 117, (*it)->getValOfAttribute(keys[1]) * (255 / 5));
                 break;
             case 3:
-                color = Color4B(115, 8, 214, (*it)->getValOfAttribute(keys[2]) * (255 / 10));
+                color = Color4B(115, 8, 214, (*it)->getValOfAttribute(keys[2]) * (255 / 5));
                 break;
             default:
                 switch ((*it)->getType()) {
@@ -1392,10 +1398,10 @@ void UIGameplayMap::updateAgents(void)
                     color = Color4B(0, 248, 251, (*it)->getLife() * (255 / 100));
                     break;
                 case 2:
-                    color = Color4B(237, 184, 0, (*it)->getLife() * (255 / 100));
+                    color = Color4B(210, 214, 47, (*it)->getLife() * (255 / 100));
                     break;
                 case 3:
-                    color = Color4B(246, 9, 255, (*it)->getLife() * (255 / 100));
+                    color = Color4B(68, 165, 195, (*it)->getLife() * (255 / 100));
                     break;
                 default:
                     color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 100));
@@ -1496,11 +1502,11 @@ void UIGameplayMap::update(float delta)
             //clock_t beforeTime = clock();
             updateAgents();
             //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-            /*if (GameLevel::getInstance()->getNumLevel() == 2) {
-                collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()));
-                collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-                collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
-            }*/
+            if (GameLevel::getInstance()->getNumLevel() == 2) {
+                collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
+                //collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
+                //collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
+            }
             int i = 0;
             while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
                 i++;
@@ -1527,11 +1533,11 @@ void UIGameplayMap::update(float delta)
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
         }
-        /*if (GameLevel::getInstance()->getNumLevel() == 2) {
-            collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[0])->getCurrentAmount()));
-            collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-            collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
-        }*/
+        if (GameLevel::getInstance()->getNumLevel() == 2) {
+            collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
+            //collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
+            //collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
+        }
         play = true;
 
         for (int i = 0; i < powerButtons.size(); i++) {

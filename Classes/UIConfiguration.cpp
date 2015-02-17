@@ -181,6 +181,7 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
     UserDefault::getInstance()->flush();
 
     auto scene = UIMainMenu::createScene();
+    auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(scene);
 }
 

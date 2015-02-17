@@ -30,6 +30,8 @@ public:
     void plusAttCallback(Ref* pSender);
     void menuArrowBackCallback(Ref* pSender);
     void menuArrowNextCallback(Ref* pSender);
+    void contextPageIntroCallback(Ref* pSender);
+    void contextPageDeploymentCallback(Ref* pSender);
 
     virtual void update(float delta);
 
@@ -41,6 +43,9 @@ private:
     PageView* pages;
     MenuItemImage* arrowNext;
     MenuItemImage* arrowBack;
+    Label* contextLabel;
+    Text* context;
+    Sprite* contextImage;
 
     void createContextLayout(Layout* layoutContext);
     void setLevelGoals(Layout* layout);

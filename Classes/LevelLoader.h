@@ -23,6 +23,7 @@ public:
 
     void loadXmlFile(string filename);
     string getLevelFileMap(string filename);
+    vector<string> getGoalTypes(string filename);
 
 private:
     xml_document doc;

@@ -45,5 +45,6 @@ bool UICredits::init()
 void UICredits::menuBackCallback(Ref* pSender)
 {
     auto scene = UIMainMenu::createScene();
-    Director::getInstance()->replaceScene(scene);
+    auto transition = TransitionFade::create(1.0f, scene);
+    Director::getInstance()->replaceScene(transition);
 }
