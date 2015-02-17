@@ -124,9 +124,29 @@ map<string, int> GameLevel::getAgentAttributes(int type)
     return agentAttributes[type];
 }
 
+vector<map<string, int> > GameLevel::getAgentAllAttributes(void)
+{
+    return agentAttributes;
+}
+
 void GameLevel::setAgentAttributes(vector<map<string, int> > atts)
 {
     agentAttributes.swap(atts);
+}
+
+vector<map<string, int> > GameLevel::getAgentAttributesInitialConfig(void)
+{
+    return agentAttributesInitialConfig;
+}
+
+void GameLevel::setAgentAttributesInitialConfig(vector<map<string, int> > atts)
+{
+    agentAttributesInitialConfig.swap(atts);
+}
+
+void GameLevel::resetAgentAttributesInitialConfig(void)
+{
+    agentAttributesInitialConfig.clear();
 }
 
 vector<Power*> GameLevel::getPowers(void)

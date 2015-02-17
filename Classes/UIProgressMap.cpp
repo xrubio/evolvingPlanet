@@ -289,6 +289,10 @@ bool UIProgressMap::init()
     auto delayC1 = DelayTime::create(5);
     auto seq = Sequence::create(spawn, spawn2, relocate, delayC1, NULL);
     cloud1->runAction(RepeatForever::create(seq));
+
+    //RESET INITIAL CONFIG
+    GameLevel::getInstance()->resetAgentAttributesInitialConfig();
+
     return true;
 }
 

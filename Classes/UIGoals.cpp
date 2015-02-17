@@ -163,6 +163,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
      GameLevel::getInstance()->createLevel(0);
      }
      GameData::getInstance()->setGameStarted(true);*/
+    GameLevel::getInstance()->setAgentAttributesInitialConfig(GameLevel::getInstance()->getAgentAllAttributes());
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
@@ -368,6 +369,11 @@ void UIGoals::createUIAgent(Layout* layout)
 
     Vector<cocos2d::MenuItem*> attributesButtons;
     int tag = 0;
+
+    if (GameLevel::getInstance()->getAgentAttributesInitialConfig().empty() == false) {
+        GameLevel::getInstance()->setAgentAttributes(GameLevel::getInstance()->getAgentAttributesInitialConfig());
+        pages->scrollToPage(2);
+    }
 
     for (int i = 0; i < keys.size(); i++) {
         auto attLabel = Label::createWithTTF(string(LocalizedString::create(keys[i].c_str())->getCString()) + " - ",

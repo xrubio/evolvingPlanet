@@ -48,6 +48,10 @@ public:
     void setAgentAttribute(int type, string key, int value);
     map<string, int> getAgentAttributes(int type);
     void setAgentAttributes(vector<map<string, int> > atts);
+    vector<map<string, int> > getAgentAllAttributes(void);
+    vector<map<string, int> > getAgentAttributesInitialConfig(void);
+    void setAgentAttributesInitialConfig(vector<map<string, int> > atts);
+    void resetAgentAttributesInitialConfig(void);
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
     void addPower(Power* p);
@@ -123,6 +127,7 @@ private:
     clock_t currentTime = 0;
     int numLevel;
     vector<map<string, int> > agentAttributes;
+    vector<map<string, int> > agentAttributesInitialConfig;
     vector<map<string, int> > attributesCost;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
