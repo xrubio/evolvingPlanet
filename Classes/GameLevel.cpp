@@ -418,18 +418,6 @@ void GameLevel::playLevel(void)
             clock_t stepTime = clock();
             cout << "Start calc" << endl;
             act();
-            /*for (int i = 0; i < powers.size(); i++) {
-                Power* p = powers[i];
-                if (p->getDurationLeft() == p->getDuration()) {
-                    p->setCooldownLeft(p->getCooldown());
-                }
-                if (p->getDurationLeft() > 0) {
-                    p->setDurationLeft(p->getDurationLeft() - 1);
-                }
-                if (p->getCooldownLeft() > 0) {
-                    p->setCooldownLeft(p->getCooldownLeft() - 1);
-                }
-            }*/
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
             if (timeSteps % 2 == 0) {
@@ -538,7 +526,7 @@ void GameLevel::generateInitialAgents(int type)
     int maxY = 0;
     for (int x = 0; x < 480; x++) {
         for (int y = 0; y < 320; y++) {
-            if (gameplayMap->getValueAtGameplayMapHotSpot(1, x, y) == type) {
+            if (gameplayMap->getValueAtGameplayMap(1, x, y, 0) == type) {
                 if (minX > x)
                     minX = x;
                 if (maxX < x)
@@ -555,7 +543,7 @@ void GameLevel::generateInitialAgents(int type)
     while (i < numInitialAgents[type]) {
         int posx = random(minX, maxX); //rand() % maxX + minX;
         int posy = random(minY, maxY); //rand() % maxY + minY;
-        if (GameLevel::getInstance()->validatePosition(posx, posy) and gameplayMap->getValueAtGameplayMapHotSpot(1, posx, posy) == type) {
+        if (GameLevel::getInstance()->validatePosition(posx, posy) and gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type) {
             auto a = new Agent(idCounter, 100, type, posx, posy);
             a->setAttributes(agentAttributes[type]);
             addAgent(a);
@@ -634,7 +622,7 @@ bool GameLevel::validatePosition(int posx, int posy)
         return false;
     }
     //Aigua o similar
-    if (gameplayMap->getValueAtGameplayMapHotSpot(0, posx, posy) == 0) {
+    if (gameplayMap->getValueAtGameplayMap(0, posx, posy, 0) == 0) {
         return false;
     }
     //Hi ha un agent

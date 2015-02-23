@@ -8,7 +8,6 @@
 
 #include "UIGameplayMap.h"
 #include "UIGoals.h"
-#include "UIAgents.h"
 #include "GameData.h"
 #include "LocalizedString.h"
 #include "UIMultiplierPower.h"
@@ -49,13 +48,6 @@ bool UIGameplayMap::init()
     string hotSpotsBase = "HotSpotsBase";
     string resources = "Resources";
     string forest = "Forest";
-
-    /*auto ff = MenuItemImage::create("Level0FFFocus.png", "Level0FFFocus.png");
-    ff->setOpacity(160);
-    ff->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    auto menuTutorial = Menu::create(ff, NULL);
-    menuTutorial->setPosition(0, 0);
-    this->addChild(menuTutorial, 50);*/
 
     //Set background gameplay map and all its functionalities
     gameplayMap = Sprite::create(map + background + ext);
@@ -192,16 +184,6 @@ bool UIGameplayMap::init()
                                                           "Arial", 65);
         collect1PointsLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
         this->addChild(collect1PointsLabel, 1);
-        /*collect2PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()),
-                                                          "Arial", 65);
-        collect2PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3 + 400,
-                                         visibleSize.height - (agentsButton->getContentSize().height));
-        this->addChild(collect2PointsLabel, 1);
-        collect3PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()),
-                                                          "Arial", 65);
-        collect3PointsLabel->setPosition(origin.x + agentsButton->getContentSize().width * 3 + 800,
-                                         visibleSize.height - (agentsButton->getContentSize().height));
-        this->addChild(collect3PointsLabel, 1);*/
     }
 
     //TIME BUTTONS
@@ -232,41 +214,6 @@ bool UIGameplayMap::init()
     timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getContentSize().width * 1.5,
                                 pauseButton->getPosition().y));
     //this->addChild(timeSteps, 2);
-
-    //Attribute values
-    /*Vector<MenuItem*> attributesButtons;
-    MenuItem* lifeButton = MenuItemImage::create(
-        "LifeButton.png", "LifeButtonPressed.png", "LifeButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::lifeCallback, this));
-    lifeButton->setScale(1.5);
-    lifeButton->setPosition(Vec2(origin.x + visibleSize.width - (lifeButton->getBoundingBox().size.width / 2),
-                                 origin.y + visibleSize.height / 3));
-    lifeButton->setEnabled(false);
-    attributesButtons.pushBack(lifeButton);
-
-    MenuItem* reproductionButton = MenuItemImage::create(
-        "ReproductionButton.png", "ReproductionButtonPressed.png", "ReproductionButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::reproductionCallback, this));
-    reproductionButton->setScale(1.5);
-    reproductionButton->setPosition(Vec2(lifeButton->getPosition().x,
-                                         lifeButton->getPosition().y - lifeButton->getContentSize().height * 2));
-    attributesButtons.pushBack(reproductionButton);
-
-    MenuItem* mobilityButton = MenuItemImage::create(
-        "MobilityButton.png", "MobilityButtonPressed.png", "MobilityButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::mobilityCallback, this));
-    mobilityButton->setScale(1.5);
-    mobilityButton->setPosition(Vec2(lifeButton->getPosition().x,
-                                     reproductionButton->getPosition().y - reproductionButton->getContentSize().height * 2));
-    attributesButtons.pushBack(mobilityButton);
-
-    MenuItem* resistanceButton = MenuItemImage::create(
-        "ResistanceButton.png", "ResistanceButtonPressed.png", "ResistanceButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::resistanceCallback, this));
-    resistanceButton->setScale(1.5);
-    resistanceButton->setPosition(Vec2(lifeButton->getPosition().x,
-                                       mobilityButton->getPosition().y - mobilityButton->getContentSize().height * 2));
-    attributesButtons.pushBack(resistanceButton);
-
-    Menu* attributesMenu = Menu::createWithArray(attributesButtons);
-    attributesMenu->setPosition(Vec2(0, 0));
-    this->addChild(attributesMenu, 2);*/
 
     //Powers
     vector<Power*> pws = GameLevel::getInstance()->getPowers();
@@ -303,7 +250,7 @@ bool UIGameplayMap::init()
             int maxY = 0;
             for (int x = 0; x < 480; x++) {
                 for (int y = 0; y < 320; y++) {
-                    if (getValueAtGameplayMapHotSpot(1, x, y) == ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getColorZone()) {
+                    if (getValueAtGameplayMap(1, x, y, 0) == ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getColorZone()) {
                         if (minX > x)
                             minX = x;
                         if (maxX < x)
@@ -359,7 +306,7 @@ bool UIGameplayMap::init()
     timeBorderBar->addChild(labelGoals, 2);
 
     //SET GOALS ON TIME PROGRESS BAR
-    float pixelPerStep = barContent->getTexture()->getPixelsWide()
+    float pixelPerStep = (barContent->getTexture()->getPixelsWide() - (barContent->getTexture()->getPixelsWide() / 10))
                          / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime();
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
@@ -602,9 +549,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                     auto fadeFinger = FadeIn::create(1);
                     fadeFinger->setTag(1);
                     fingerSpot->setPosition(Vec2(gameplayMap->convertToNodeSpace(firstTouchLocation)));
-                    //fingerSpot->setOpacity(0);
                     fingerSpot->setVisible(true);
-                    //fingerSpot->runAction(fadeFinger);
                 }
             }
 
@@ -736,15 +681,6 @@ void UIGameplayMap::menuGoalsCallback(Ref* pSender)
     Director::getInstance()->pushScene(transition);
 }
 
-void UIGameplayMap::menuAgentsCallback(Ref* pSender)
-{
-    GameLevel::getInstance()->setTimeSpeedBeforePause(GameLevel::getInstance()->getTimeSpeed());
-    GameLevel::getInstance()->setTimeSpeed(0);
-    auto scene = UIAgents::createScene();
-    auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->pushScene(transition);
-}
-
 void UIGameplayMap::pauseCallback(Ref* pSender)
 {
     MenuItem* pauseButton = (MenuItem*)pSender;
@@ -796,13 +732,6 @@ void UIGameplayMap::attributeSelectionCallback(Ref* pSender)
             item->setEnabled(true);
         }
     }
-    /*MenuItem* reproductionButton = (MenuItem*)attributesMenu->getChildren().at(1);
-    MenuItem* mobilityButton = (MenuItem*)attributesMenu->getChildren().at(2);
-    MenuItem* resistanceButton = (MenuItem*)attributesMenu->getChildren().at(3);
-
-    reproductionButton->setEnabled(true);
-    mobilityButton->setEnabled(true);
-    resistanceButton->setEnabled(true);*/
 }
 
 void UIGameplayMap::quitCallback(Ref* pSender)
@@ -862,10 +791,6 @@ void UIGameplayMap::retryCallback(Ref* pSender)
     auto ease = EaseBackOut::create(moveConfirm);
     confirmBackground->runAction(ease);
 }
-
-/*void UIGameplayMap::quitOkCallback(Ref* pSender)
-{
-}*/
 
 void UIGameplayMap::retryOkCallback(Ref* pSender)
 {
@@ -1135,22 +1060,13 @@ void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
     }
 }
 
-int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, int posx, int posy)
+int UIGameplayMap::getValueAtGameplayMap(int rgb, int posx, int posy, int map)
 {
     Point loc(Point(posx, posy));
     //Size visibleSize = Director::getInstance()->getVisibleSize();
     //loc.y = visibleSize.height - loc.y;
     loc.y = 320 - loc.y;
-    return getValueAtGameplayMapHotSpot(rgb, loc);
-}
-
-int UIGameplayMap::getValueAtGameplayMapResources(int rgb, int posx, int posy)
-{
-    Point loc(Point(posx, posy));
-    //Size visibleSize = Director::getInstance()->getVisibleSize();
-    //loc.y = visibleSize.height - loc.y;
-    loc.y = 320 - loc.y;
-    return getValueAtGameplayMapResources(rgb, loc);
+    return getValueAtGameplayMap(rgb, loc, map);
 }
 
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
@@ -1188,50 +1104,27 @@ void UIGameplayMap::restoreLand(void)
     }
 }
 
-int UIGameplayMap::getValueAtGameplayMapHotSpot(int rgb, Point pt)
+//map = 0 -> hotspot, map = 1 -> resources
+int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt, int map)
 {
+    unsigned char* pixel;
     int x = 3;
-    if (gameplayMapHotSpot->hasAlpha()) {
-        x = 4;
-    }
-    unsigned char* pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
-    // You can see/change pixels' RGBA value(0-255) here !
 
-    switch (rgb) {
-    case 0: {
-        unsigned char r = *pixel;
-        return (int)r;
+    switch (map) {
+    case 1:
+        if (gameplayMapResources->hasAlpha()) {
+            x = 4;
+        }
+        pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
         break;
-    }
-    case 1: {
-        unsigned char g = *(pixel + 1);
-        return (int)g;
-        break;
-    }
-    case 2: {
-        unsigned char b = *(pixel + 2);
-        return (int)b;
-        break;
-    }
-    case 3: {
-        unsigned char a = *(pixel + 3);
-        return (int)a;
-        break;
-    }
+
     default:
+        if (gameplayMapHotSpot->hasAlpha()) {
+            x = 4;
+        }
+        pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
         break;
     }
-    return 255;
-}
-
-int UIGameplayMap::getValueAtGameplayMapResources(int rgb, Point pt)
-{
-    int x = 3;
-    if (gameplayMapResources->hasAlpha()) {
-        x = 4;
-    }
-    unsigned char* pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
-    // You can see/change pixels' RGBA value(0-255) here !
 
     switch (rgb) {
     case 0: {
@@ -1504,8 +1397,6 @@ void UIGameplayMap::update(float delta)
             //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
             if (GameLevel::getInstance()->getNumLevel() == 2) {
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-                //collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-                //collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
             }
             int i = 0;
             while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
@@ -1535,8 +1426,6 @@ void UIGameplayMap::update(float delta)
         }
         if (GameLevel::getInstance()->getNumLevel() == 2) {
             collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-            //collect2PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-            //collect3PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[2])->getCurrentAmount()));
         }
         play = true;
 

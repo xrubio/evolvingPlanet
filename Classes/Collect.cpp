@@ -88,7 +88,7 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
             }
 
             ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(
-                ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapResources(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY()) * efficiency));
+                ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY(), 1) * efficiency));
         }
     }
 }

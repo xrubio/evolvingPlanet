@@ -7,7 +7,6 @@
 //
 
 #include "UIGoals.h"
-#include "UIAgents.h"
 #include "GameData.h"
 #include "LocalizedString.h"
 
@@ -71,20 +70,6 @@ bool UIGoals::init()
         }
         i++;
     }
-    /*MenuItem* nextButton;
-    if (GameData::getInstance()->getGameStarted()) {
-        nextButton = MenuItemImage::create(
-            "MapButton.png", "MapButtonPressed.png", CC_CALLBACK_1(UIGoals::menuMapCallback, this));
-
-    } else {
-        nextButton = MenuItemImage::create(
-            "NextButton.png", "NextButtonPressed.png", CC_CALLBACK_1(UIGoals::menuNextCallback, this));
-    }
-
-    auto menu = cocos2d::Menu::createWithItem(nextButton);
-    menu->setPosition(Vec2(origin.x + visibleSize.width - (nextButton->getContentSize().width / 2),
-                           origin.y + (nextButton->getContentSize().height / 2)));
-    this->addChild(menu, 1);*/
 
     pages = PageView::create();
     pages->setCustomScrollThreshold(0.3);
@@ -134,13 +119,6 @@ bool UIGoals::init()
     return true;
 }
 
-void UIGoals::menuNextCallback(Ref* pSender)
-{
-    auto scene = UIAgents::createScene();
-    auto transition = TransitionMoveInR::create(1.0f, scene);
-    Director::getInstance()->replaceScene(transition);
-}
-
 void UIGoals::menuBackCallback(Ref* pSender)
 {
     GameData::getInstance()->setGameStarted(false);
@@ -148,12 +126,6 @@ void UIGoals::menuBackCallback(Ref* pSender)
     auto scene = UIProgressMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
-}
-
-void UIGoals::menuMapCallback(Ref* pSender)
-{
-    GameLevel::getInstance()->setTimeSpeed(GameLevel::getInstance()->getTimeSpeedBeforePause());
-    Director::getInstance()->popScene();
 }
 
 //Faig dues funcions per si el primer cop que es comença la partida s'ha d'intercalar una pantalla de càrrega

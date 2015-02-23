@@ -41,7 +41,6 @@ public:
     void attributeSelectionCallback(Ref* pSender);
     void quitCallback(Ref* pSender);
     void retryCallback(Ref* pSender);
-    //void quitOkCallback(Ref* pSender); SAME AS MENUBACKCALLBACK
     void retryOkCallback(Ref* pSender);
     void NoCallback(Ref* pSender);
     void agentTypeCallback(Ref* pSender);
@@ -50,8 +49,7 @@ public:
     void plusAttCallback(Ref* pSender);
     void removeFingerSpot(Ref* pSender);
 
-    int getValueAtGameplayMapHotSpot(int rgb, int posx, int posy);
-    int getValueAtGameplayMapResources(int rgb, int posx, int posy);
+    int getValueAtGameplayMap(int rgb, int posx, int posy, int map);
 
     bool isInBoostResistanceArea(int posx, int posy);
     void restoreLand(void);
@@ -103,8 +101,6 @@ private:
     Label* timeSteps;
     Label* evolutionPointsLabel;
     Label* collect1PointsLabel;
-    Label* collect2PointsLabel;
-    Label* collect3PointsLabel;
     Label* distanceLabel;
 
     vector<UIPower*> powerButtons;
@@ -127,8 +123,7 @@ private:
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
-    inline int getValueAtGameplayMapHotSpot(int rgb, Point pt);
-    inline int getValueAtGameplayMapResources(int rgb, Point pt);
+    int getValueAtGameplayMap(int rgb, Point pt, int map);
 
     void createTimingThread(void);
     static void* createTiming(void* arg);

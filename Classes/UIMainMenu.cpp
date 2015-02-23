@@ -34,6 +34,7 @@ bool UIMainMenu::init()
     }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.png");
 
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
@@ -65,17 +66,27 @@ bool UIMainMenu::init()
     this->addChild(planet2, 1, 2);
 
     auto spaceship = Sprite::create("MainMenuBackgroundSpaceship.png");
-    spaceship->setPosition(Vec2(visibleSize.width, 0));
+    /*spaceship->setPosition(Vec2(visibleSize.width, 0));
     auto moveSpaceship = MoveTo::create(3.0, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 2);
     auto spaceshipDelay = DelayTime::create(2.0);
-    auto spaceshipSeq = Sequence::create(spaceshipDelay, moveEaseSpaceship, NULL);
+    auto spaceshipSeq = Sequence::create(spaceshipDelay, moveEaseSpaceship, NULL);*/
+    spaceship->setPosition(Vec2(visibleSize.width / 3, visibleSize.height / 2));
+    spaceship->setScale(0);
+    auto scaleSpaceship = ScaleTo::create(3.0, 1);
+    auto moveSpaceship = MoveTo::create(3.0, Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 5);
+    auto spaceshipDelay = DelayTime::create(1);
+    auto spaceshipSpawn = Spawn::create(moveEaseSpaceship, scaleSpaceship, NULL);
+    auto spaceshipSeq = Sequence::create(spaceshipDelay, spaceshipSpawn, NULL);
+
     spaceship->runAction(spaceshipSeq);
     this->addChild(spaceship, 5, 3);
 
     auto particlesSpaceship = ParticleSun::create();
     particlesSpaceship->setGravity(Vec2(0, 0));
-    particlesSpaceship->setPosition(Vec2(21 * (spaceship->getContentSize().width / 25), 10 * (spaceship->getContentSize().height / 25)));
+    //16,12
+    particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
     spaceship->addChild(particlesSpaceship, -1);
 
     Vector<cocos2d::MenuItem*> menuButtons;
@@ -226,6 +237,7 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(2)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(3)->stopAllActions();
     this->getChildByTag(3)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    this->getChildByTag(3)->setScale(1);
     this->getChildByTag(4)->stopAllActions();
     this->getChildByTag(4)->setOpacity(255);
 }

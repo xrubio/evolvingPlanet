@@ -14,7 +14,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
-    int harm = gameplayMap->getValueAtGameplayMapHotSpot(0, agent->getPosition()->getX(), agent->getPosition()->getY());
+    int harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition()->getX(), agent->getPosition()->getY(), 0);
 
     int resistance = agent->getValOfAttribute("RESISTANCE");
     switch (resistance) {

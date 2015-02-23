@@ -63,8 +63,8 @@ void ExpansionGoal::checkGoal(int type, Agent* agent)
             GameLevel::getInstance()->setFinishedGame(2);
         } else {
             //Check agent at goal zone
-            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMapHotSpot(1, agent->getPosition()->getX(),
-                                                                                           agent->getPosition()->getY()) == colorZone) {
+            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition()->getX(),
+                                                                                    agent->getPosition()->getY(), 0) == colorZone) {
                 if (minTime > timeSteps) {
                     GameLevel::getInstance()->setFinishedGame(2);
                 } else {

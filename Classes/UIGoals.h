@@ -21,10 +21,7 @@ public:
 
     virtual bool init();
 
-    void menuNextCallback(Ref* pSender);
     void menuBackCallback(Ref* pSender);
-    void menuMapCallback(Ref* pSender);
-
     void menuStartCallback(Ref* pSender);
     void minusAttCallback(Ref* pSender);
     void plusAttCallback(Ref* pSender);
