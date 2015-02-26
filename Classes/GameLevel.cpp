@@ -199,8 +199,19 @@ list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
     list<Agent*>::reverse_iterator it = find(agents[type].rbegin(), agents[type].rend(), agent);
     //advance(it, 1);
     agents[type].erase(--(it.base()));
-    delete agent;
+    agentsPool[type].push_back(agent);
+    //delete agent;
     return it;
+}
+
+vector<list<Agent*> > GameLevel::getAgentsPool(void)
+{
+    return agentsPool;
+}
+
+void GameLevel::popFrontAgentsPool(int type)
+{
+    agentsPool[type].pop_front();
 }
 
 vector<Act*> GameLevel::getActions(void)
@@ -427,7 +438,6 @@ void GameLevel::playLevel(void)
             Timing::getInstance()->act = false;
             cout << "Calculs: " << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
             calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
-            cout << "Num agents: " << agents[0].size() << endl;
             /*try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
                     throw 2;
@@ -456,6 +466,7 @@ void GameLevel::resetLevel(void)
         }
     }*/
     agents.clear();
+    agentsPool.clear();
     addedAgents = 0;
     deletedAgents.clear();
     idCounter = 0;
@@ -496,9 +507,11 @@ void GameLevel::resetLevel(void)
 
 void GameLevel::createLevel(void)
 {
+    initializeAgentsPool();
     for (int i = 0; i < numInitialAgents.size(); i++) {
         generateInitialAgents(i);
     }
+
     paint = true;
 }
 
@@ -514,6 +527,17 @@ void GameLevel::initializeAttributesCost(void)
                 attributesCost[i][it->first] = 1;
             }
         }
+    }
+}
+
+void GameLevel::initializeAgentsPool(void)
+{
+    for (int i = 0; i < maxAgents.size(); i++) {
+        list<Agent*> l_agent;
+        for (int j = 0; j < maxAgents[i]; j++) {
+            l_agent.push_back(new Agent());
+        }
+        agentsPool.push_back(l_agent);
     }
 }
 
@@ -544,7 +568,13 @@ void GameLevel::generateInitialAgents(int type)
         int posx = random(minX, maxX); //rand() % maxX + minX;
         int posy = random(minY, maxY); //rand() % maxY + minY;
         if (GameLevel::getInstance()->validatePosition(posx, posy) and gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type) {
-            auto a = new Agent(idCounter, 100, type, posx, posy);
+            //auto a =new Agent(idCounter, 100, type, posx, posy);
+            Agent* a = agentsPool[type].front();
+            agentsPool[type].pop_front();
+            a->setId(idCounter);
+            a->setLife(100);
+            a->setType(type);
+            a->setPosition(posx, posy);
             a->setAttributes(agentAttributes[type]);
             addAgent(a);
             idCounter++;
@@ -557,7 +587,9 @@ void GameLevel::act(void)
 {
     deletedAgents.clear();
     addedAgents = 0;
-
+    //cout << "Num agents: " << agents[0].size() << endl;
+    //cout << "Pool: " << agentsPool[0].size() << endl;
+    //cout << "Num agents + Pool: " << agents[0].size() + agentsPool[0].size() << endl;
     for (int k = 0; k < agents.size() and finishedGame == 0; k++) {
         list<Agent*>::reverse_iterator end = agents[k].rbegin();
         while (end != agents[k].rend() and finishedGame == 0) {

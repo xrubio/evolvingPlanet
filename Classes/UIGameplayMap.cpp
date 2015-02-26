@@ -213,7 +213,7 @@ bool UIGameplayMap::init()
     timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
     timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getContentSize().width * 1.5,
                                 pauseButton->getPosition().y));
-    //this->addChild(timeSteps, 2);
+    this->addChild(timeSteps, 2);
 
     //Powers
     vector<Power*> pws = GameLevel::getInstance()->getPowers();
@@ -1394,7 +1394,7 @@ void UIGameplayMap::update(float delta)
             play = false;
             //clock_t beforeTime = clock();
             updateAgents();
-            //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+            timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
             if (GameLevel::getInstance()->getNumLevel() == 2) {
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
             }

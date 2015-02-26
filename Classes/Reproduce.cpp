@@ -169,7 +169,13 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
                 maxIterations--;
             }
             if (maxIterations > 0) {
-                auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);
+                //auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);
+                Agent* ag = GameLevel::getInstance()->getAgentsPool()[type].front();
+                GameLevel::getInstance()->popFrontAgentsPool(type);
+                ag->setId(GameLevel::getInstance()->getIdCounter());
+                ag->setLife(100);
+                ag->setType(type);
+                ag->setPosition(posx, posy);
                 ag->setAttributes(GameLevel::getInstance()->getAgentAttributes(type));
                 GameLevel::getInstance()->addAgent(ag);
                 GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);

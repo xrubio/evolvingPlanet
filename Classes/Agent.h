@@ -18,13 +18,14 @@ using namespace std;
 class Agent {
 
 public:
-    Agent() {};
-    Agent(int i, int lf, int t, int posx, int posy);
+    //Agent() {};
+    Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     Agent(Agent const&) {};
     Agent& operator=(Agent const&);
     ~Agent() {};
 
     int getId(void);
+    void setId(int i);
     int getLife(void);
     void setLife(int lf);
     int getType(void);

@@ -60,6 +60,8 @@ public:
     void setAgents(vector<list<Agent*> > ags);
     void addAgent(Agent* ag);
     list<Agent*>::reverse_iterator deleteAgent(int type, Agent* agent);
+    vector<list<Agent*> > getAgentsPool(void);
+    void popFrontAgentsPool(int type);
     vector<Act*> getActions(void);
     void setActions(vector<Act*> a);
     void addAction(Act* act);
@@ -131,6 +133,7 @@ private:
     vector<map<string, int> > attributesCost;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
+    vector<list<Agent*> > agentsPool;
     vector<Act*> actions;
     vector<Goal*> goals;
     Agent* agentsMap[480][320];
@@ -162,6 +165,7 @@ private:
     GameLevel(GameLevel const&) {};
     GameLevel& operator=(GameLevel const&);
 
+    void initializeAgentsPool(void);
     void generateInitialAgents(int type);
     inline void act(void);
 };

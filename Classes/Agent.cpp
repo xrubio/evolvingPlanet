@@ -21,6 +21,11 @@ int Agent::getId(void)
     return id;
 }
 
+void Agent::setId(int i)
+{
+    id = i;
+}
+
 int Agent::getLife(void)
 {
     return life;
