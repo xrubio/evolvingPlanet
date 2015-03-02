@@ -171,7 +171,9 @@ void UIGoals::menuStartCallback(Ref* pSender)
     for (map<string, vector<int> >::const_iterator it = temp.begin(); it != temp.end(); it++) {
         for (int k = 0; k < 6; k++) {
             auto v = (ui::TextField*)pages->getPage(3)->getChildByTag((j * 6) + k);
-            GameLevel::getInstance()->setAttributesValues(it->first, k, std::stoi(v->getPlaceHolder()));
+            if (v->getString().empty() == false) {
+                GameLevel::getInstance()->setAttributesValues(it->first, k, stoi(v->getString()));
+            }
         }
         j++;
     }

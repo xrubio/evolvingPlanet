@@ -312,7 +312,7 @@ bool UIGameplayMap::init()
         float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
         auto goalMark = Sprite::create("GoalMark.png");
         float posXcentered = (float)(GameLevel::getInstance()->getGoals()[i]->getMinTime() + ((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) / 2)) / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
-        goalMark->setPosition(posXcentered, timeBorderBar->getContentSize().height / 2);
+        goalMark->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2) + (timeBorderBar->getContentSize().height / 35));
         //SET SCALE GOAL MARK
         goalMark->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
         timeBorderBar->addChild(goalMark, 1);
