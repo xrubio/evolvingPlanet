@@ -79,10 +79,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
     if (type == agent->getType() and maxReached == false) {
-        int probReproduction = agent->getValOfAttribute("REPRODUCTION");
+        int probReproduction = GameLevel::getInstance()->getAttributesValues("REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
 
-        switch (probReproduction) {
+        /*switch (probReproduction) {
         case 1:
             probReproduction = 20;
             break;
@@ -116,7 +116,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         default:
             probReproduction = 0;
             break;
-        }
+        }*/
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
             if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 0) {

@@ -16,8 +16,8 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
 
     int harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition()->getX(), agent->getPosition()->getY(), 0);
 
-    int resistance = agent->getValOfAttribute("RESISTANCE");
-    switch (resistance) {
+    int resistance = GameLevel::getInstance()->getAttributesValues("RESISTANCE", agent->getValOfAttribute("RESISTANCE"));
+    /*switch (resistance) {
     case 1:
         resistance = 5;
         break;
@@ -51,7 +51,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     default:
         resistance = 0;
         break;
-    }
+    }*/
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     Power* p = nullptr;
     for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {

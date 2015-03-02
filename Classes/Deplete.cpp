@@ -13,8 +13,8 @@ list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
-    int sustainability = agent->getValOfAttribute("SUSTAINABILITY");
-    switch (sustainability) {
+    int sustainability = GameLevel::getInstance()->getAttributesValues("SUSTAINABILITY", agent->getValOfAttribute("SUSTAINABILITY"));
+    /*switch (sustainability) {
     case 1:
         sustainability = 70;
         break;
@@ -48,7 +48,7 @@ list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
     default:
         sustainability = 100;
         break;
-    }
+    }*/
 
     //JUGAR AMB EL TEMPS QUE HA ESTAT OCUPAT L'ESPAI I LA PROBBILITAT
     if (GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY()) > 2

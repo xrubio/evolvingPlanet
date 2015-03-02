@@ -149,6 +149,27 @@ void GameLevel::resetAgentAttributesInitialConfig(void)
     agentAttributesInitialConfig.clear();
 }
 
+int GameLevel::getAttributesValues(string k, int i)
+{
+    return attributesValues[k][i];
+}
+
+map<string, vector<int> > GameLevel::getAttributesValues(void)
+{
+    return attributesValues;
+}
+
+void GameLevel::setAttributesValues(string k)
+{
+    vector<int> r(6, 0);
+    attributesValues[k] = r;
+}
+
+void GameLevel::setAttributesValues(string k, int i, int v)
+{
+    attributesValues[k][i] = v;
+}
+
 vector<Power*> GameLevel::getPowers(void)
 {
     return powers;

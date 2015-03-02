@@ -83,12 +83,12 @@ bool UIGoals::init()
     //TRIAR ESTIL SEGONS EL LVL
     createContextLayout(layoutContext);
     layoutContext->setBackGroundImage("PageBackground.png");
-    layoutContext->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
+    layoutContext->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     pages->addPage(layoutContext);
 
     auto layout = Layout::create();
     layout->setBackGroundImage("PageBackground.png");
-    layout->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
+    layout->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height / 31));
 
     //layout->addChild(title);
     //layout->addChild(menu);
@@ -101,11 +101,42 @@ bool UIGoals::init()
         //auto scene = UIAgents::createScene();
         auto layout2 = Layout::create();
         layout2->setBackGroundImage("PageBackground.png");
-        layout2->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
+        layout2->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height / 31));
         //layout2->addChild(scene);
         pages->addPage(layout2);
         createUIAgent(layout2);
     }
+
+    //temporal
+    auto layoutConfigValues = Layout::create();
+    layoutConfigValues->setBackGroundImage("PageBackground.png");
+    layoutConfigValues->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height / 31));
+    for (int i = 0; i < 6; i++) {
+        auto label = Label::createWithSystemFont(to_string(i), "", 40);
+        label->setPosition(Vec2((20 + (i * 5)) * layoutConfigValues->getContentSize().width / 42, 30 * layoutConfigValues->getContentSize().height / 31));
+        layoutConfigValues->addChild(label);
+    }
+    map<string, vector<int> > temp = GameLevel::getInstance()->getAttributesValues();
+    int j = 0;
+    for (map<string, vector<int> >::const_iterator it = temp.begin(); it != temp.end(); it++) {
+        auto label = Label::createWithSystemFont(it->first, "", 40);
+        label->setPosition(Vec2(12 * layoutConfigValues->getContentSize().width / 42, (28 - (j * 4)) * layoutConfigValues->getContentSize().height / 31));
+        layoutConfigValues->addChild(label);
+
+        for (int k = 0; k < 6; k++) {
+            ui::TextField* textField = ui::TextField::create();
+            textField->setPosition(Vec2((20 + (k * 5)) * layoutConfigValues->getContentSize().width / 42,
+                                        (28 - (j * 4)) * layoutConfigValues->getContentSize().height / 31));
+            textField->setContentSize(Size(100, 44));
+            textField->setPlaceHolder("0");
+            textField->setFontSize(40);
+            textField->setTag((j * 6) + k);
+            layoutConfigValues->addChild(textField);
+        }
+
+        j++;
+    }
+    pages->addPage(layoutConfigValues);
 
     pages->setTag(0);
 
@@ -135,6 +166,16 @@ void UIGoals::menuStartCallback(Ref* pSender)
      GameLevel::getInstance()->createLevel(0);
      }
      GameData::getInstance()->setGameStarted(true);*/
+    map<string, vector<int> > temp = GameLevel::getInstance()->getAttributesValues();
+    int j = 0;
+    for (map<string, vector<int> >::const_iterator it = temp.begin(); it != temp.end(); it++) {
+        for (int k = 0; k < 6; k++) {
+            auto v = (ui::TextField*)pages->getPage(3)->getChildByTag((j * 6) + k);
+            GameLevel::getInstance()->setAttributesValues(it->first, k, std::stoi(v->getPlaceHolder()));
+        }
+        j++;
+    }
+
     GameLevel::getInstance()->setAgentAttributesInitialConfig(GameLevel::getInstance()->getAgentAllAttributes());
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);

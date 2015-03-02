@@ -52,6 +52,12 @@ public:
     vector<map<string, int> > getAgentAttributesInitialConfig(void);
     void setAgentAttributesInitialConfig(vector<map<string, int> > atts);
     void resetAgentAttributesInitialConfig(void);
+    //temporal
+    int getAttributesValues(string k, int v);
+    map<string, vector<int> > getAttributesValues(void);
+    void setAttributesValues(string k);
+    void setAttributesValues(string k, int i, int v);
+
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
     void addPower(Power* p);
@@ -131,6 +137,8 @@ private:
     vector<map<string, int> > agentAttributes;
     vector<map<string, int> > agentAttributesInitialConfig;
     vector<map<string, int> > attributesCost;
+    //temporal
+    map<string, vector<int> > attributesValues;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
     vector<list<Agent*> > agentsPool;

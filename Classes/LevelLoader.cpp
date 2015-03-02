@@ -60,6 +60,9 @@ void LevelLoader::loadXmlFile(string filename)
 
         while (atts != nullptr) {
             GameLevel::getInstance()->setAgentAttribute(type, atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
+            if (type == 0) {
+                GameLevel::getInstance()->setAttributesValues(atts.attribute("NAME").value());
+            }
             atts = atts.next_sibling("ATTRIBUTE");
         }
 
