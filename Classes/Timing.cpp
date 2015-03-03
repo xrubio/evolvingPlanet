@@ -22,25 +22,37 @@ Timing* Timing::getInstance()
 
 void Timing::start(void)
 {
-    clock_t stepTime = clock();
-    clock_t stepTimePart = clock();
+    //clock_t stepTime = clock();
+    timeval stepTime;
+    gettimeofday(&stepTime, nullptr);
+    timeval stepTimePart;
+    timeval currentTimePart;
+    gettimeofday(&stepTimePart, nullptr);
 
-    clock_t powerTime = clock();
+    //clock_t powerTime = clock();
+    timeval powerTime;
+    gettimeofday(&powerTime, nullptr);
 
     while (GameLevel::getInstance()->getFinishedGame() == 0) {
-        clock_t currentTime = clock();
+        //clock_t currentTime = clock();
+        gettimeofday(&currentTimePart, nullptr);
         if (GameLevel::getInstance()->getTimeSpeed() > 0.0) {
-            float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
-            float stepPart = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTimePart / CLOCKS_PER_SEC);
+            //float step = ((float)currentTime / CLOCKS_PER_SEC) - ((float)stepTime / CLOCKS_PER_SEC);
+            float step = (currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (stepTime.tv_sec + (stepTime.tv_usec / 1000000.0));
+            //float stepPart = ((float)currentTimePart / CLOCKS_PER_SEC) - ((float)stepTimePart / CLOCKS_PER_SEC);
+            float stepPart = (currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (stepTimePart.tv_sec + (stepTimePart.tv_usec / 1000000.0));
             if (step >= GameLevel::getInstance()->getTimeSpeed() and step > GameLevel::getInstance()->calcTime + 0.4 and act == false and GameLevel::getInstance()->paint == true and GameLevel::getInstance()->getUIGameplayMap()->play == true) {
                 act = true;
                 //cout << "Time: " << step << " " << act << endl;
                 //GameLevel::getInstance()->setTimeSteps(GameLevel::getInstance()->getTimeSteps() + 1);
-                stepTime = clock();
+                //stepTime = clock();
+                gettimeofday(&stepTime, nullptr);
             }
 
-            if (((float)currentTime / CLOCKS_PER_SEC) - ((float)powerTime / CLOCKS_PER_SEC) >= 0.07) {
-                powerTime = clock();
+            //if (((float)currentTime / CLOCKS_PER_SEC) - ((float)powerTime / CLOCKS_PER_SEC) >= 0.07) {
+            if ((currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (powerTime.tv_sec + (powerTime.tv_usec / 1000000.0)) >= 0.07) {
+                //powerTime = clock();
+                gettimeofday(&powerTime, nullptr);
                 for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
                     Power* p = GameLevel::getInstance()->getPowers()[i];
                     if (p->getDurationLeft() == p->getDuration()) {
@@ -55,13 +67,16 @@ void Timing::start(void)
                 }
             }
             if (stepPart >= GameLevel::getInstance()->getTimeSpeed() / 10.0) {
-                GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + ((GameLevel::getInstance()->getTimeSpeed() / 10.0) / GameLevel::getInstance()->getTimeSpeed()));
-                stepTimePart = clock();
+                //cout << stepPart << endl;
+                GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + (0.09));
+                //stepTimePart = clock();
+                gettimeofday(&stepTimePart, nullptr);
             }
-
         } else {
-            stepTime = clock();
-            stepTimePart = clock();
+            //stepTime = clock();
+            gettimeofday(&stepTime, nullptr);
+            //stepTimePart = clock();
+            gettimeofday(&stepTimePart, nullptr);
         }
     }
 }
