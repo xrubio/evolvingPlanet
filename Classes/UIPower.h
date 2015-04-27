@@ -10,6 +10,7 @@
 #define __simulplay__UIPower__
 
 #include "GameLevel.h"
+#include "GameData.h"
 #include "cocos2d.h"
 
 using namespace cocos2d;

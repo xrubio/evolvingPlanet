@@ -9,6 +9,7 @@
 #ifndef __simulplay__GameData__
 #define __simulplay__GameData__
 
+#include "Achievement.h"
 #include <vector>
 #include <string>
 
@@ -20,6 +21,8 @@ public:
 
     vector<int> getLevelsCompleted(void);
     void setLevelsCompleted(vector<int> lvlsCompleted);
+    vector<Achievement*> getAchievements(void);
+    void setAchievements(vector<Achievement*> ach);
     int getLevelScore(int level);
     void setLevelScore(int level, int score);
     bool getGameStarted(void);
@@ -30,6 +33,14 @@ public:
     void setMusic(bool m);
     bool getSFX(void);
     void setSFX(bool s);
+    float getRaConversion(void);
+    void setRaConversion(float r);
+    float getRaWConversion(void);
+    void setRaWConversion(float r);
+    float getRaHConversion(void);
+    void setRaHConversion(float r);
+
+    void loadAchievements(void);
 
 private:
     GameData() {}; // Private so that it can  not be called
@@ -38,10 +49,14 @@ private:
 
     static GameData* gamedataInstance;
     vector<int> levelsCompleted;
+    vector<Achievement*> achievements;
     bool gameStarted = false;
     string language;
     bool music = true;
     bool sfx = true;
+    float raConversion = 1.0;
+    float raWConversion = 1.0;
+    float raHConversion = 1.0;
 };
 
 #endif /* defined(__simulplay__GameData__) */

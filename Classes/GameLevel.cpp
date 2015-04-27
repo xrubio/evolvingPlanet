@@ -149,25 +149,29 @@ void GameLevel::resetAgentAttributesInitialConfig(void)
     agentAttributesInitialConfig.clear();
 }
 
-int GameLevel::getAttributesValues(string k, int i)
+int GameLevel::getAttributesValues(int type, string k, int i)
 {
-    return attributesValues[k][i];
+    return attributesValues[type][k][i];
 }
 
-map<string, vector<int> > GameLevel::getAttributesValues(void)
+vector<map<string, vector<int> >> GameLevel::getAttributesValues(void)
 {
     return attributesValues;
 }
 
-void GameLevel::setAttributesValues(string k)
+void GameLevel::setAttributesValues(int type, string k)
 {
     vector<int> r(6, 0);
-    attributesValues[k] = r;
+    while (attributesValues.size() <= type)
+    {
+        attributesValues.push_back(map<string, vector<int>>());
+    }
+    attributesValues[type][k] = r;
 }
 
-void GameLevel::setAttributesValues(string k, int i, int v)
+void GameLevel::setAttributesValues(int type, string k, int i, int v)
 {
-    attributesValues[k][i] = v;
+    attributesValues[type][k][i] = v;
 }
 
 vector<Power*> GameLevel::getPowers(void)
@@ -430,14 +434,40 @@ void GameLevel::setMaxAllAgents(int m)
     maxAllAgents = m;
 }
 
-cocos2d::Point GameLevel::getFingerSpot(void)
+vector<cocos2d::Point> GameLevel::getAgentDirections(void)
 {
-    return fingerSpot;
+    return agentDirections;
 }
 
-void GameLevel::setFingerSpot(cocos2d::Point fp)
+void GameLevel::setAgentDirections(vector<cocos2d::Point> ad)
 {
-    fingerSpot = fp;
+    agentDirections = ad;
+}
+
+void GameLevel::setAgentDirection(int agentType, cocos2d::Point p)
+{
+    agentDirections[agentType] = p;
+}
+
+vector<vector<pair<int, cocos2d::Point>>> GameLevel::getAgentFutureDirections(void)
+{
+    return agentFutureDirections;
+}
+
+void GameLevel::setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point>>> afd)
+{
+    agentFutureDirections = afd;
+}
+
+void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
+{
+    pair <int, cocos2d::Point> par(step,p);
+    while (agentFutureDirections.size() <= type)
+    {
+        vector<pair <int, cocos2d::Point>> v;
+        agentFutureDirections.push_back(v);
+    }
+    agentFutureDirections[type].push_back(par);
 }
 
 void GameLevel::playLevel(void)
@@ -523,7 +553,9 @@ void GameLevel::resetLevel(void)
     prevGoal = 0;
     calcTime = 0;
 
-    fingerSpot.set(-1, -1);
+    agentDirections.clear();
+    agentFutureDirections.clear();
+    attributesValues.clear();
 }
 
 void GameLevel::createLevel(void)
@@ -531,6 +563,7 @@ void GameLevel::createLevel(void)
     initializeAgentsPool();
     for (int i = 0; i < numInitialAgents.size(); i++) {
         generateInitialAgents(i);
+        agentDirections.push_back(Point(-1,-1));
     }
 
     paint = true;
@@ -612,6 +645,17 @@ void GameLevel::act(void)
     //cout << "Pool: " << agentsPool[0].size() << endl;
     //cout << "Num agents + Pool: " << agents[0].size() + agentsPool[0].size() << endl;
     for (int k = 0; k < agents.size() and finishedGame == 0; k++) {
+        //CHECK DIRECTION
+        if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false)
+        {
+            cout <<agentFutureDirections[k][0].first << endl;
+            if (timeSteps == agentFutureDirections[k][0].first)
+            {
+                agentDirections[k] = agentFutureDirections[k][0].second;
+                agentFutureDirections[k].erase(agentFutureDirections[k].begin());
+            }
+        }
+        
         list<Agent*>::reverse_iterator end = agents[k].rbegin();
         while (end != agents[k].rend() and finishedGame == 0) {
             if ((*end)->getLife() > 0) {
@@ -657,11 +701,15 @@ void GameLevel::act(void)
     }
 
     bool noAgentsLeft = true;
-    for (int i = 0; i < agents.size(); i++) {
+    if (agents[0].empty() == false)
+    {
+        noAgentsLeft = false;
+    }
+    /*for (int i = 0; i < agents.size(); i++) {
         if (agents[i].empty() == false) {
             noAgentsLeft = false;
         }
-    }
+    }*/
 
     if (finishedGame == 0 and noAgentsLeft) {
         finishedGame = 3;

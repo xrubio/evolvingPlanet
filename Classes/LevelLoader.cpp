@@ -56,14 +56,25 @@ void LevelLoader::loadXmlFile(string filename)
         if (maxAllAgents == 0) {
             GameLevel::getInstance()->setMaxAgent(type, atoi(ags.child("MAX_AGENTS").child_value()));
         }
+        //ATTRIBUTES
         xml_node atts = ags.child("ATTRIBUTES").child("ATTRIBUTE");
 
         while (atts != nullptr) {
             GameLevel::getInstance()->setAgentAttribute(type, atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
-            if (type == 0) {
-                GameLevel::getInstance()->setAttributesValues(atts.attribute("NAME").value());
-            }
+            //temporal
+            GameLevel::getInstance()->setAttributesValues(type, atts.attribute("NAME").value());
+            
             atts = atts.next_sibling("ATTRIBUTE");
+        }
+        //DIRECTIONS
+        xml_node drs = ags.child("DIRECTIONS").child("DIRECTION");
+        
+        while (drs != nullptr) {
+            GameLevel::getInstance()->setAgentFutureDirection(type, atoi(drs.child("STEP").child_value()),
+                                                              cocos2d::Point(atoi(drs.child("POSITION").attribute("X").value()),
+                                                                             atoi(drs.child("POSITION").attribute("Y").value())));
+            
+            drs = drs.next_sibling("DIRECTION");
         }
 
         ags = ags.next_sibling("AGENT");

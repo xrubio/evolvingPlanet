@@ -13,6 +13,7 @@ UIAreaPower::UIAreaPower(Power* p)
 {
     power = p;
     icon = Sprite::create("PowerBackgroundButton.png");
+    icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto button = Sprite::create(p->getNameString() + "Button" + ".png");
     button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     icon->addChild(button, 2, 0);
@@ -31,6 +32,7 @@ UIAreaPower::UIAreaPower(Power* p)
     //cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     //icon->addChild(cooldown);
     area = Sprite::create("BoostResistanceArea.png");
+    area->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     area->setOpacity(100);
     area->setVisible(false);
 }
@@ -46,7 +48,7 @@ void UIAreaPower::onTouchesBegan(Point touchLocation)
         clicked = true;
         area->setPosition(area->getParent()->convertToNodeSpace(icon->getPosition()));
         area->setVisible(true);
-        icon->setScale(1.25);
+        icon->setScale(1.25 * GameData::getInstance()->getRaWConversion(), 1.25 * GameData::getInstance()->getRaHConversion());
         icon->setColor(Color3B::GRAY);
         auto button = (Sprite*)icon->getChildByTag(0);
         button->setColor(Color3B::GRAY);
@@ -66,7 +68,7 @@ void UIAreaPower::onTouchesMoved(Touch* touchLocation)
 
 void UIAreaPower::onTouchesEnded(Point touchLocation)
 {
-    icon->setScale(1);
+    icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (clicked) {
         icon->setColor(Color3B::WHITE);
         auto button = (Sprite*)icon->getChildByTag(0);

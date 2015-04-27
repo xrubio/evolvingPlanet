@@ -31,31 +31,40 @@ bool UIConfiguration::init()
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
                                  visibleSize.height / 2));
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 
     auto title = Sprite::create("MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
-    title->setPosition(Vec2(2 * (visibleSize.width / 25), 15 * (visibleSize.height / 18)));
+    title->setPosition(Vec2((2 * visibleSize.width / 25),
+                            (15 * visibleSize.height / 18)));
+    title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(title, 5, 0);
 
     auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
     planet2->setScale(1.3);
-    planet2->setPosition(Vec2(18 * visibleSize.width / 40, 10 * visibleSize.height / 31));
+    planet2->setPosition(Vec2((18 * visibleSize.width / 40),
+                              (10 * visibleSize.height / 31)));
+    planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(planet2, 1, 2);
 
     auto popupBackground = Sprite::create("ConfigurationBackground.png");
     popupBackground->setAnchorPoint(Vec2(0, 0.5));
-    popupBackground->setPosition(Vec2(2 * (visibleSize.width / 25), 8 * (visibleSize.height / 18)));
+    popupBackground->setPosition(Vec2((2 * visibleSize.width / 25),
+                                      (8 * visibleSize.height / 18)));
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(popupBackground, 6);
 
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(2 * (visibleSize.width / 25), 2 * (visibleSize.height / 25)));
+    backButton->setPosition(Vec2((2 * visibleSize.width / 25)  ,
+                                 (2 * visibleSize.height / 25)  ));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     backButton->addChild(backLabel);
     menuButtons.pushBack(backButton);
 
@@ -175,6 +184,10 @@ bool UIConfiguration::init()
 
 void UIConfiguration::menuBackCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
@@ -187,6 +200,10 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
 
 void UIConfiguration::catFlagCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto catButton = (MenuItem*)pSender;
     catButton->setEnabled(false);
     auto menuLanguage = (Menu*)catButton->getParent();
@@ -202,6 +219,10 @@ void UIConfiguration::catFlagCallback(Ref* pSender)
 
 void UIConfiguration::esFlagCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto esButton = (MenuItem*)pSender;
     esButton->setEnabled(false);
     auto menuLanguage = (Menu*)esButton->getParent();
@@ -217,6 +238,10 @@ void UIConfiguration::esFlagCallback(Ref* pSender)
 
 void UIConfiguration::enFlagCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto enButton = (MenuItem*)pSender;
     enButton->setEnabled(false);
     auto menuLanguage = (Menu*)enButton->getParent();
@@ -232,6 +257,10 @@ void UIConfiguration::enFlagCallback(Ref* pSender)
 
 void UIConfiguration::musicOnCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto musicOnLabel = (MenuItem*)pSender;
     musicOnLabel->setEnabled(false);
     auto menuSound = (Menu*)musicOnLabel->getParent();
@@ -239,11 +268,15 @@ void UIConfiguration::musicOnCallback(Ref* pSender)
     musicOffLabel->setEnabled(true);
 
     GameData::getInstance()->setMusic(true);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("intro_try1.mp3", true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
 }
 
 void UIConfiguration::musicOffCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto musicOffLabel = (MenuItem*)pSender;
     musicOffLabel->setEnabled(false);
     auto menuSound = (Menu*)musicOffLabel->getParent();
@@ -256,6 +289,10 @@ void UIConfiguration::musicOffCallback(Ref* pSender)
 
 void UIConfiguration::sfxOnCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto sfxOnLabel = (MenuItem*)pSender;
     sfxOnLabel->setEnabled(false);
     auto menuSound = (Menu*)sfxOnLabel->getParent();
@@ -267,6 +304,10 @@ void UIConfiguration::sfxOnCallback(Ref* pSender)
 
 void UIConfiguration::sfxOffCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true)
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
     auto sfxOffLabel = (MenuItem*)pSender;
     sfxOffLabel->setEnabled(false);
     auto menuSound = (Menu*)sfxOffLabel->getParent();

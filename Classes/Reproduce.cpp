@@ -79,7 +79,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
     if (type == agent->getType() and maxReached == false) {
-        int probReproduction = GameLevel::getInstance()->getAttributesValues("REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));
+        int probReproduction = GameLevel::getInstance()->getAttributesValues(typeAgent, "REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
 
         /*switch (probReproduction) {
@@ -129,12 +129,12 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
         if (random(0, 100) < probReproduction) {
-            int maxIterations = 40;
-            Point fingerSpot = GameLevel::getInstance()->getFingerSpot();
-            if (agent->getType() != 0) {
+            int maxIterations = 10;
+            Point fingerSpot = GameLevel::getInstance()->getAgentDirections()[typeAgent];
+            /*if (agent->getType() != 0) {
                 fingerSpot.x = -1;
                 fingerSpot.y = -1;
-            }
+            }*/
             int minRandomX = agent->getPosition()->getX() - mobility;
             int maxRandomX = agent->getPosition()->getX() + mobility;
             int minRandomY = agent->getPosition()->getY() - mobility;

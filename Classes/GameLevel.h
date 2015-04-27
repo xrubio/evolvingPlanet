@@ -53,10 +53,10 @@ public:
     void setAgentAttributesInitialConfig(vector<map<string, int> > atts);
     void resetAgentAttributesInitialConfig(void);
     //temporal
-    int getAttributesValues(string k, int v);
-    map<string, vector<int> > getAttributesValues(void);
-    void setAttributesValues(string k);
-    void setAttributesValues(string k, int i, int v);
+    int getAttributesValues(int type, string k, int v);
+    vector<map<string, vector<int> >> getAttributesValues(void);
+    void setAttributesValues(int type, string k);
+    void setAttributesValues(int type, string k, int i, int v);
 
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
@@ -107,8 +107,12 @@ public:
     Agent* getAgentAtMap(int i, int j);
     int getMaxAllAgents(void);
     void setMaxAllAgents(int m);
-    cocos2d::Point getFingerSpot(void);
-    void setFingerSpot(cocos2d::Point fp);
+    vector<cocos2d::Point> getAgentDirections(void);
+    void setAgentDirections(vector<cocos2d::Point> ad);
+    void setAgentDirection(int agentType, cocos2d::Point p);
+    vector<vector<pair<int, cocos2d::Point>>> getAgentFutureDirections(void);
+    void setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point>>> afd);
+    void setAgentFutureDirection(int type, int step, cocos2d::Point p);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -138,7 +142,7 @@ private:
     vector<map<string, int> > agentAttributesInitialConfig;
     vector<map<string, int> > attributesCost;
     //temporal
-    map<string, vector<int> > attributesValues;
+    vector<map<string, vector<int> >> attributesValues;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
     vector<list<Agent*> > agentsPool;
@@ -167,7 +171,8 @@ private:
 
     int currentAgentType = 0;
 
-    cocos2d::Point fingerSpot;
+    vector<cocos2d::Point> agentDirections;
+    vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
 
     GameLevel() {};
     GameLevel(GameLevel const&) {};

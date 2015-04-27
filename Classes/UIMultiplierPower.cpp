@@ -13,6 +13,7 @@ UIMultiplierPower::UIMultiplierPower(Power* p)
 {
     power = p;
     icon = Sprite::create("PowerBackgroundButton.png");
+    icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto button = Sprite::create(p->getNameString() + "Button" + ".png");
     button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     icon->addChild(button, 2, 0);
@@ -38,7 +39,7 @@ void UIMultiplierPower::onTouchesBegan(Point touchLocation)
 {
     if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
-        icon->setScale(0.80);
+        icon->setScale(0.8 * GameData::getInstance()->getRaWConversion(), 0.8 * GameData::getInstance()->getRaHConversion());
         auto button = (Sprite*)icon->getChildByTag(0);
         button->setColor(Color3B::GRAY);
     }
@@ -50,7 +51,7 @@ void UIMultiplierPower::onTouchesMoved(Touch* touchLocation)
 
 void UIMultiplierPower::onTouchesEnded(Point touchLocation)
 {
-    icon->setScale(1);
+    icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked) {
         //Activar boost reproduction un cop s'ha tocat i soltat a sobre la imatge que toca
         //icon->setColor(Color3B::GRAY);

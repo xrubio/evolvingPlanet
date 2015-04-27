@@ -7,6 +7,9 @@
 //
 
 #include "GameData.h"
+#include "../libs/pugixml/pugixml.hpp"
+
+using namespace pugi;
 
 // Global static pointer used to ensure a single instance of the class.
 GameData* GameData::gamedataInstance = NULL;
@@ -32,6 +35,16 @@ vector<int> GameData::getLevelsCompleted(void)
 void GameData::setLevelsCompleted(vector<int> lvlsCompleted)
 {
     levelsCompleted.swap(lvlsCompleted);
+}
+
+vector<Achievement*> GameData::getAchievements(void)
+{
+    return achievements;
+}
+
+void GameData::setAchievements(vector<Achievement*> ach)
+{
+    achievements.swap(ach);
 }
 
 int GameData::getLevelScore(int level)
@@ -96,4 +109,52 @@ bool GameData::getSFX(void)
 void GameData::setSFX(bool s)
 {
     sfx = s;
+}
+
+float GameData::getRaConversion(void)
+{
+    return raConversion;
+}
+
+void GameData::setRaConversion(float r)
+{
+    raConversion = r;
+}
+
+float GameData::getRaWConversion(void)
+{
+    return raWConversion;
+}
+
+void GameData::setRaWConversion(float r)
+{
+    raWConversion = r;
+}
+
+float GameData::getRaHConversion(void)
+{
+    return raHConversion;
+}
+
+void GameData::setRaHConversion(float r)
+{
+    raHConversion = r;
+}
+
+void GameData::loadAchievements(void)
+{
+    xml_document doc;
+    xml_parse_result result;
+    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("achievements.xml");
+    result = doc.load_file((fullPath).c_str());
+
+    //ACHIEVEMENTS
+    xml_node achs = doc.child("ACHIEVEMENT");
+    while (achs != nullptr) {
+        if (strncmp(achs.attribute("TYPE").value(), "LEVEL", 5) == 0) {
+
+        } else if (strncmp(achs.attribute("TYPE").value(), "PROGRESS", 8) == 0) {
+        }
+        achs = achs.next_sibling("ACHIEVEMENT");
+    }
 }
