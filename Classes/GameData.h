@@ -39,6 +39,14 @@ public:
     void setRaWConversion(float r);
     float getRaHConversion(void);
     void setRaHConversion(float r);
+    float getHeightProportionalResolution(void);
+    void setHeightProportionalResolution(float h);
+    float getRowDrawAgentPrecalc(void);
+    void setRowDrawAgentPrecalc(float r);
+    float getColumnOffsetDrawAgentPrecalc(void);
+    void setColumnOffsetDrawAgentPrecalc(float c);
+    float getColumnDrawAgentPrecalc(void);
+    void setColumnDrawAgentPrecalc(float c);
 
     void loadAchievements(void);
 
@@ -57,6 +65,11 @@ private:
     float raConversion = 1.0;
     float raWConversion = 1.0;
     float raHConversion = 1.0;
+    float heightProportionalResolution;
+    float rowDrawAgentPrecalc;
+    float columnOffsetDrawAgentPrecalc;
+    float columnDrawAgentPrecalc;
+    
 };
 
 #endif /* defined(__simulplay__GameData__) */

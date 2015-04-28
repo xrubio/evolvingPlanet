@@ -141,6 +141,46 @@ void GameData::setRaHConversion(float r)
     raHConversion = r;
 }
 
+float GameData::getHeightProportionalResolution(void)
+{
+    return heightProportionalResolution;
+}
+
+void GameData::setHeightProportionalResolution(float h)
+{
+    heightProportionalResolution = h;
+}
+
+float GameData::getRowDrawAgentPrecalc(void)
+{
+    return rowDrawAgentPrecalc;
+}
+
+void GameData::setRowDrawAgentPrecalc(float r)
+{
+    rowDrawAgentPrecalc = r;
+}
+
+float GameData::getColumnOffsetDrawAgentPrecalc(void)
+{
+    return columnOffsetDrawAgentPrecalc;
+}
+
+void GameData::setColumnOffsetDrawAgentPrecalc(float c)
+{
+    columnOffsetDrawAgentPrecalc = c;
+}
+
+float GameData::getColumnDrawAgentPrecalc(void)
+{
+    return columnDrawAgentPrecalc;
+}
+
+void GameData::setColumnDrawAgentPrecalc(float c)
+{
+    columnDrawAgentPrecalc = c;
+}
+
 void GameData::loadAchievements(void)
 {
     xml_document doc;

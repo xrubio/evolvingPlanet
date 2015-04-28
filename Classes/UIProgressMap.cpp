@@ -68,7 +68,7 @@ bool UIProgressMap::init()
     Vector<MenuItem*> levelButtons;
     //LEVEL 1
     auto level1Button = MenuItemImage::create(
-        "LevelPointerButton.png", "LevelPointerButton.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+        "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level1Button->setPosition((71 * progressMap0->getContentSize().width / 204), (50 * progressMap0->getContentSize().height / 155));
     level1Button->setTag(1);
     levelButtons.pushBack(level1Button);
@@ -84,7 +84,7 @@ bool UIProgressMap::init()
 
     //LEVEL 2
     auto level2Button = MenuItemImage::create(
-        "LevelPointerButton.png", "LevelPointerButton.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+        "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level2Button->setPosition(62 * progressMap0->getContentSize().width / 204, 59 * progressMap0->getContentSize().height / 155);
     level2Button->setTag(2);
     levelButtons.pushBack(level2Button);
@@ -100,7 +100,7 @@ bool UIProgressMap::init()
 
     //LEVEL 3
     auto level3Button = MenuItemImage::create(
-        "LevelPointerButton.png", "LevelPointerButton.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
+        "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
     level3Button->setPosition(48 * progressMap0->getContentSize().width / 204, 64 * progressMap0->getContentSize().height / 155);
     level3Button->setTag(3);
     levelButtons.pushBack(level3Button);

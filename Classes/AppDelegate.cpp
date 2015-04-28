@@ -107,11 +107,20 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
     }
     
-    //RA CONVERSION
+    //RA CONVERSION - PRECALCS
     Size visibleSize = Director::getInstance()->getVisibleSize();
     GameData::getInstance()->setRaConversion((2048.0 / 1536.0) / (visibleSize.width / visibleSize.height));
     GameData::getInstance()->setRaWConversion(visibleSize.width / 2048.0);
     GameData::getInstance()->setRaHConversion(visibleSize.height / 1536.0);
+    /*GameData::getInstance()->setHeightProportionalResolution((Director::getInstance()->getVisibleSize().width / 480.0) * 320.0);
+    GameData::getInstance()->setRowDrawAgentPrecalc(Director::getInstance()->getVisibleSize().width / 480.0);
+    GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((Director::getInstance()->getVisibleSize().height -
+                                                              GameData::getInstance()->getHeightProportionalResolution()) / 2.0);
+    GameData::getInstance()->setColumnDrawAgentPrecalc(GameData::getInstance()->getHeightProportionalResolution() / 320.0);*/
+    GameData::getInstance()->setHeightProportionalResolution((2048.0 / 480.0) * 320.0);
+    GameData::getInstance()->setRowDrawAgentPrecalc(2048.0 / 480.0);
+    GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((1536.0 - 1365.0) / 2.0);
+    GameData::getInstance()->setColumnDrawAgentPrecalc(1365.0 / 320.0);
 
     //LOAD LEVELS
     vector<int> levelsCompleted;
