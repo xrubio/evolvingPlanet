@@ -18,6 +18,9 @@ public:
     virtual bool init();
 
     void menuBackCallback(Ref* pSender);
+    void menuResetCallback(Ref* pSender);
+    void menuResetNoCallback(Ref* pSender);
+    void menuResetYesCallback(Ref* pSender);
     void catFlagCallback(Ref* pSender);
     void esFlagCallback(Ref* pSender);
     void enFlagCallback(Ref* pSender);
@@ -27,6 +30,10 @@ public:
     void sfxOffCallback(Ref* pSender);
 
     CREATE_FUNC(UIConfiguration);
+    
+private:
+    
+    void createWarningWindow(Sprite* popupBackground);
 };
 
 #endif /* defined(__simulplay__UIConfiguration__) */

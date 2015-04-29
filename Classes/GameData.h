@@ -47,8 +47,11 @@ public:
     void setColumnOffsetDrawAgentPrecalc(float c);
     float getColumnDrawAgentPrecalc(void);
     void setColumnDrawAgentPrecalc(float c);
+    bool getResetGameClicked(void);
+    void setResetGameClicked(bool r);
 
     void loadAchievements(void);
+    void resetGameProgress(void);
 
 private:
     GameData() {}; // Private so that it can  not be called
@@ -69,6 +72,7 @@ private:
     float rowDrawAgentPrecalc;
     float columnOffsetDrawAgentPrecalc;
     float columnDrawAgentPrecalc;
+    bool resetGameClicked = false;
     
 };
 

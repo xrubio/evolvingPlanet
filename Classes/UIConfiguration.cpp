@@ -49,55 +49,67 @@ bool UIConfiguration::init()
     this->addChild(planet2, 1, 2);
 
     auto popupBackground = Sprite::create("ConfigurationBackground.png");
-    popupBackground->setAnchorPoint(Vec2(0, 0.5));
-    popupBackground->setPosition(Vec2((2 * visibleSize.width / 25),
-                                      (8 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     this->addChild(popupBackground, 6);
 
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2((2 * visibleSize.width / 25)  ,
-                                 (2 * visibleSize.height / 25)  ));
+    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
-    backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     backButton->addChild(backLabel);
     menuButtons.pushBack(backButton);
+    
+    auto resetButton = MenuItemImage::create(
+        "ConfigurationResetGame.png", "ConfigurationResetGamePressed.png", "ConfigurationResetGamePressed.png",
+                                             CC_CALLBACK_1(UIConfiguration::menuResetCallback, this));
+    resetButton->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    auto resetLabel = Label::createWithTTF(LocalizedString::create("RESET")->getCString(), "fonts/BebasNeue.otf", 50);
+    resetLabel->setColor(Color3B(205, 202, 207));
+    resetLabel->setPosition(resetButton->getContentSize().width / 2, resetButton->getContentSize().height / 2);
+    resetButton->addChild(resetLabel);
+    menuButtons.pushBack(resetButton);
 
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
-    this->addChild(menu, 1);
+    popupBackground->addChild(menu, 1, 20);
+    
+    if (GameData::getInstance()->getResetGameClicked())
+    {
+        createWarningWindow(popupBackground);
+        resetButton->setEnabled(false);
+    }
 
     auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 100);
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(1, 0.5));
-    configLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 13 * popupBackground->getContentSize().height / 16));
+    configLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 13.5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(configLabel);
 
     Vector<MenuItem*> languageItems;
     auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE")->getCString(), "fonts/BebasNeue.otf", 80);
     languageLabel->setColor(Color3B(72, 108, 118));
     languageLabel->setAnchorPoint(Vec2(1, 0.5));
-    languageLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
+    languageLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(languageLabel);
 
     auto catButton = MenuItemImage::create(
         "catFlag.png", "catFlagPressed.png", "catFlagPressed.png", CC_CALLBACK_1(UIConfiguration::catFlagCallback, this));
-    catButton->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
+    catButton->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(catButton);
 
     auto esButton = MenuItemImage::create(
         "esFlag.png", "esFlagPressed.png", "esFlagPressed.png", CC_CALLBACK_1(UIConfiguration::esFlagCallback, this));
-    esButton->setPosition(Vec2(20 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
+    esButton->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(esButton);
 
     auto enButton = MenuItemImage::create(
         "enFlag.png", "enFlagPressed.png", "enFlagPressed.png", CC_CALLBACK_1(UIConfiguration::enFlagCallback, this));
-    enButton->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 10 * popupBackground->getContentSize().height / 16));
+    enButton->setPosition(Vec2(19 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(enButton);
 
     string lang = GameData::getInstance()->getLanguage();
@@ -120,47 +132,47 @@ bool UIConfiguration::init()
     auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC")->getCString(), "fonts/BebasNeue.otf", 80);
     musicLabel->setColor(Color3B(72, 108, 118));
     musicLabel->setAnchorPoint(Vec2(1, 0.5));
-    musicLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 6 * popupBackground->getContentSize().height / 16));
+    musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(musicLabel);
 
     auto musicOnLabel = MenuItemImage::create("ActiveOff.png", "ActiveOff.png", "ActiveOn.png",
                                               CC_CALLBACK_1(UIConfiguration::musicOnCallback, this));
-    musicOnLabel->setPosition(Vec2(Vec2(16 * popupBackground->getContentSize().width / 28,
-                                        6 * popupBackground->getContentSize().height / 16)));
+    musicOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
+                                        8 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOnLabel);
 
     auto musicSeparator = Sprite::create("ConfigurationSeparator.png");
-    musicSeparator->setPosition(Vec2(Vec2(20 * popupBackground->getContentSize().width / 28,
-                                          6 * popupBackground->getContentSize().height / 16)));
+    musicSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
+                                          8 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(musicSeparator, 10);
 
     auto musicOffLabel = MenuItemImage::create("InactiveOff.png", "InactiveOff.png", "InactiveOn.png",
                                                CC_CALLBACK_1(UIConfiguration::musicOffCallback, this));
-    musicOffLabel->setPosition(Vec2(Vec2(24 * popupBackground->getContentSize().width / 28,
-                                         6 * popupBackground->getContentSize().height / 16)));
+    musicOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
+                                         8 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOffLabel);
 
     auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS")->getCString(), "fonts/BebasNeue.otf", 80);
     sfxLabel->setColor(Color3B(72, 108, 118));
     sfxLabel->setAnchorPoint(Vec2(1, 0.5));
-    sfxLabel->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 3 * popupBackground->getContentSize().height / 16));
+    sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(sfxLabel);
 
     auto sfxOnLabel = MenuItemImage::create("ActiveOff.png", "ActiveOff.png", "ActiveOn.png",
                                             CC_CALLBACK_1(UIConfiguration::sfxOnCallback, this));
-    sfxOnLabel->setPosition(Vec2(Vec2(16 * popupBackground->getContentSize().width / 28,
-                                      3 * popupBackground->getContentSize().height / 16)));
+    sfxOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
+                                      5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOnLabel);
 
     auto sfxSeparator = Sprite::create("ConfigurationSeparator.png");
-    sfxSeparator->setPosition(Vec2(Vec2(20 * popupBackground->getContentSize().width / 28,
-                                        3 * popupBackground->getContentSize().height / 16)));
+    sfxSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
+                                        5 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(sfxSeparator, 10);
 
     auto sfxOffLabel = MenuItemImage::create("InactiveOff.png", "InactiveOff.png", "InactiveOn.png",
                                              CC_CALLBACK_1(UIConfiguration::sfxOffCallback, this));
-    sfxOffLabel->setPosition(Vec2(Vec2(24 * popupBackground->getContentSize().width / 28,
-                                       3 * popupBackground->getContentSize().height / 16)));
+    sfxOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
+                                       5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOffLabel);
 
     if (GameData::getInstance()->getMusic() == true) {
@@ -192,10 +204,41 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
     UserDefault::getInstance()->flush();
+    GameData::getInstance()->setResetGameClicked(false);
 
     auto scene = UIMainMenu::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
+}
+
+void UIConfiguration::menuResetCallback(Ref* pSender)
+{
+    MenuItemImage* pMenuItem = (MenuItemImage*)(pSender);
+    pMenuItem->setEnabled(false);
+    Sprite* popupBackground = (Sprite*)(pMenuItem->getParent()->getParent());
+    createWarningWindow(popupBackground);
+    GameData::getInstance()->setResetGameClicked(true);
+}
+
+void UIConfiguration::menuResetNoCallback(Ref* pSender)
+{
+    MenuItemImage* pMenuItem = (MenuItemImage*)(pSender);
+    auto popupBackground = (Sprite*)(pMenuItem->getParent()->getParent()->getParent());
+    popupBackground->removeChildByTag(30);
+    auto menuButtons = (Menu*)(popupBackground->getChildByTag(20));
+    ((MenuItemImage*)(menuButtons->getChildren().at(1)))->setEnabled(true);
+    GameData::getInstance()->setResetGameClicked(false);
+}
+
+void UIConfiguration::menuResetYesCallback(Ref* pSender)
+{
+    MenuItemImage* pMenuItem = (MenuItemImage*)(pSender);
+    auto popupBackground = (Sprite*)(pMenuItem->getParent()->getParent()->getParent());
+    popupBackground->removeChildByTag(30);
+    auto menuButtons = (Menu*)(popupBackground->getChildByTag(20));
+    ((MenuItemImage*)(menuButtons->getChildren().at(1)))->setEnabled(true);
+    GameData::getInstance()->setResetGameClicked(false);
+    GameData::getInstance()->resetGameProgress();
 }
 
 void UIConfiguration::catFlagCallback(Ref* pSender)
@@ -204,14 +247,7 @@ void UIConfiguration::catFlagCallback(Ref* pSender)
     {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
     }
-    auto catButton = (MenuItem*)pSender;
-    catButton->setEnabled(false);
-    auto menuLanguage = (Menu*)catButton->getParent();
-    auto esButton = (MenuItem*)menuLanguage->getChildren().at(1);
-    auto enButton = (MenuItem*)menuLanguage->getChildren().at(2);
 
-    esButton->setEnabled(true);
-    enButton->setEnabled(true);
     GameData::getInstance()->setLanguage("cat");
     auto scene = UIConfiguration::createScene();
     Director::getInstance()->replaceScene(scene);
@@ -223,14 +259,7 @@ void UIConfiguration::esFlagCallback(Ref* pSender)
     {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
     }
-    auto esButton = (MenuItem*)pSender;
-    esButton->setEnabled(false);
-    auto menuLanguage = (Menu*)esButton->getParent();
-    auto catButton = (MenuItem*)menuLanguage->getChildren().at(0);
-    auto enButton = (MenuItem*)menuLanguage->getChildren().at(2);
 
-    catButton->setEnabled(true);
-    enButton->setEnabled(true);
     GameData::getInstance()->setLanguage("es");
     auto scene = UIConfiguration::createScene();
     Director::getInstance()->replaceScene(scene);
@@ -242,14 +271,7 @@ void UIConfiguration::enFlagCallback(Ref* pSender)
     {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
     }
-    auto enButton = (MenuItem*)pSender;
-    enButton->setEnabled(false);
-    auto menuLanguage = (Menu*)enButton->getParent();
-    auto catButton = (MenuItem*)menuLanguage->getChildren().at(0);
-    auto esButton = (MenuItem*)menuLanguage->getChildren().at(1);
 
-    catButton->setEnabled(true);
-    esButton->setEnabled(true);
     GameData::getInstance()->setLanguage("en");
     auto scene = UIConfiguration::createScene();
     Director::getInstance()->replaceScene(scene);
@@ -315,4 +337,50 @@ void UIConfiguration::sfxOffCallback(Ref* pSender)
     sfxOnLabel->setEnabled(true);
 
     GameData::getInstance()->setSFX(false);
+}
+
+void UIConfiguration::createWarningWindow(Sprite* popupBackground)
+{
+    auto alertBackground = Sprite::create("ConfigurationAlert.png");
+    alertBackground->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    
+    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING")->getCString(), "fonts/BebasNeue.otf", 80);
+    alertLabel->setColor(Color3B(255,255,255));
+    alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
+    alertBackground->addChild(alertLabel);
+    
+    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT")->getCString(), "fonts/BebasNeue.otf", 50);
+    alertTextLabel->setColor(Color3B(255,255,255));
+    alertTextLabel->setMaxLineWidth(325);
+    alertTextLabel->setAlignment(TextHAlignment::CENTER);
+    alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
+    alertBackground->addChild(alertTextLabel);
+    
+    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("RESET")->getCString() + string(" ?"), "fonts/BebasNeue.otf", 50);
+    alertConfirmationLabel->setColor(Color3B(255,255,255));
+    alertConfirmationLabel->setPosition(Vec2(1.2 * alertBackground->getBoundingBox().size.width / 4,
+                                             alertBackground->getBoundingBox().size.height / 6));
+    alertBackground->addChild(alertConfirmationLabel);
+    
+    Vector<MenuItem*> confirmReset;
+    auto confirmResetYes = MenuItemImage::create("ConfigurationResetYes.png", "ConfigurationResetYesPressed.png",
+                                                 CC_CALLBACK_1(UIConfiguration::menuResetYesCallback, this));
+    confirmResetYes->setPosition(Vec2(Vec2(4 * alertBackground->getBoundingBox().size.width / 6,
+                                           alertBackground->getBoundingBox().size.height / 6)));
+    confirmReset.pushBack(confirmResetYes);
+    auto confirmSeparator = Sprite::create("ConfigurationResetSeparator.png");
+    confirmSeparator->setPosition(Vec2(Vec2(4.65 * alertBackground->getBoundingBox().size.width / 6,
+                                            alertBackground->getBoundingBox().size.height / 6)));
+    alertBackground->addChild(confirmSeparator);
+    auto confirmResetNo = MenuItemImage::create("ConfigurationResetNo.png", "ConfigurationResetNoPressed.png",
+                                                CC_CALLBACK_1(UIConfiguration::menuResetNoCallback, this));
+    confirmResetNo->setPosition(Vec2(Vec2(5.3 * alertBackground->getBoundingBox().size.width / 6,
+                                          alertBackground->getBoundingBox().size.height / 6)));
+    confirmReset.pushBack(confirmResetNo);
+    
+    auto menuConfirmReset = Menu::createWithArray(confirmReset);
+    menuConfirmReset->setPosition(0, 0);
+    alertBackground->addChild(menuConfirmReset, 10);
+    
+    popupBackground->addChild(alertBackground, 1, 30);
 }

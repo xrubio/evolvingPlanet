@@ -6,6 +6,12 @@
 	<string>COMENÇAR</string>
 	<key>BACK</key>
 	<string>TORNAR</string>
+	<key>RESET</key>
+	<string>RESETEJAR</string>
+	<key>WARNING</key>
+	<string>ALERTA</string>
+	<key>WARNING_TEXT</key>
+	<string>TORNAR ALS VALORS INICIALS ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
 	<key>LEVEL</key>
 	<string>NIVELL</string>
 	<key>CONFIGURATION</key>

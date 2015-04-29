@@ -181,6 +181,16 @@ void GameData::setColumnDrawAgentPrecalc(float c)
     columnDrawAgentPrecalc = c;
 }
 
+bool GameData::getResetGameClicked(void)
+{
+    return resetGameClicked;
+}
+
+void GameData::setResetGameClicked(bool r)
+{
+    resetGameClicked = r;
+}
+
 void GameData::loadAchievements(void)
 {
     xml_document doc;
@@ -198,3 +208,15 @@ void GameData::loadAchievements(void)
         achs = achs.next_sibling("ACHIEVEMENT");
     }
 }
+
+void GameData::resetGameProgress(void)
+{
+    for (int i = 0; i < levelsCompleted.size(); i++)
+    {
+        cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
+    }
+    cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", 0);
+    cocos2d::UserDefault::getInstance()->flush();
+    levelsCompleted.clear();
+}
+
