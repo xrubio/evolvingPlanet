@@ -17,8 +17,8 @@ using namespace std;
 class LevelLoader {
 
 public:
-    LevelLoader() {};
-    LevelLoader(LevelLoader const&) {};
+    LevelLoader(){};
+    LevelLoader(LevelLoader const&){};
     LevelLoader& operator=(LevelLoader const&);
 
     void loadXmlFile(string filename);

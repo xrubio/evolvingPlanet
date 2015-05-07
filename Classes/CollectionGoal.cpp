@@ -46,21 +46,25 @@ void CollectionGoal::checkGoal(int type, Agent* agent)
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
     if (timeSteps > maxTime) {
         GameLevel::getInstance()->setFinishedGame(2);
-    } else {
+    }
+    else {
         if (currentAmount >= goalAmount) {
             if (minTime > timeSteps) {
                 GameLevel::getInstance()->setFinishedGame(2);
-            } else {
+            }
+            else {
                 completed = true;
                 if (timeSteps >= averageTime - desviation2Star and timeSteps <= averageTime + desviation2Star) {
                     if (timeSteps >= averageTime - desviation3Star and timeSteps <= averageTime + desviation3Star) {
                         // 3 STARS
                         score = 3;
-                    } else {
+                    }
+                    else {
                         //2 STARS
                         score = 2;
                     }
-                } else {
+                }
+                else {
                     //1 STAR
                     score = 1;
                 }

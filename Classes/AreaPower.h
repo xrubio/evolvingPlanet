@@ -14,9 +14,9 @@
 class AreaPower : public Power {
 
 public:
-    AreaPower() {};
+    AreaPower(){};
     AreaPower(string nS, int nI, float c, float dur, float cl, float dl, string attr, string t, float rad);
-    AreaPower(AreaPower const&) {};
+    AreaPower(AreaPower const&){};
     AreaPower& operator=(AreaPower const&);
 
     float getRadius(void);

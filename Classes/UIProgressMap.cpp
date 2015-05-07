@@ -54,7 +54,7 @@ bool UIProgressMap::init()
     auto backButton = MenuItemImage::create(
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
     backButton->setPosition(Vec2((3 * progressMap0->getBoundingBox().size.width / 34),
-                                 (2 * progressMap0->getBoundingBox().size.height / 25)));
+        (2 * progressMap0->getBoundingBox().size.height / 25)));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
@@ -79,7 +79,7 @@ bool UIProgressMap::init()
 
     auto shadow1 = Sprite::create("LevelPointerButtonShadow.png");
     shadow1->setPosition(Vec2(71 * progressMap0->getContentSize().width / 204,
-                              (50 * progressMap0->getContentSize().height / 155) - (level1Button->getContentSize().height / 1.5)));
+        (50 * progressMap0->getContentSize().height / 155) - (level1Button->getContentSize().height / 1.5)));
     progressMap0->addChild(shadow1);
 
     //LEVEL 2
@@ -95,7 +95,7 @@ bool UIProgressMap::init()
 
     auto shadow2 = Sprite::create("LevelPointerButtonShadow.png");
     shadow2->setPosition(Vec2(62 * progressMap0->getContentSize().width / 204,
-                              (59 * progressMap0->getContentSize().height / 155) - (level2Button->getContentSize().height / 1.5)));
+        (59 * progressMap0->getContentSize().height / 155) - (level2Button->getContentSize().height / 1.5)));
     progressMap0->addChild(shadow2);
 
     //LEVEL 3
@@ -111,7 +111,7 @@ bool UIProgressMap::init()
 
     auto shadow3 = Sprite::create("LevelPointerButtonShadow.png");
     shadow3->setPosition(Vec2(48 * progressMap0->getContentSize().width / 204,
-                              (64 * progressMap0->getContentSize().height / 155) - (level3Button->getContentSize().height / 1.5)));
+        (64 * progressMap0->getContentSize().height / 155) - (level3Button->getContentSize().height / 1.5)));
     progressMap0->addChild(shadow3);
 
     for (int i = 0; i < levelButtons.size(); i++) {
@@ -144,13 +144,13 @@ bool UIProgressMap::init()
     //CLOUDS
     auto cloud2 = Sprite::create("Clouds2.png");
     cloud2->setPosition(Vec2((3 * progressMap0->getBoundingBox().size.width / 4),
-                             (progressMap0->getBoundingBox().size.height / 2)));
+        (progressMap0->getBoundingBox().size.height / 2)));
     progressMap0->addChild(cloud2);
     auto movBy1 = MoveBy::create(10, Vec2(-15 * GameData::getInstance()->getRaConversion(),
-                                          -15 * GameData::getInstance()->getRaConversion()));
+                                         -15 * GameData::getInstance()->getRaConversion()));
     auto easeBy1 = EaseIn::create(movBy1, 1);
     auto movBy2 = MoveBy::create(15, Vec2(15 * GameData::getInstance()->getRaConversion(),
-                                          15 * GameData::getInstance()->getRaConversion()));
+                                         15 * GameData::getInstance()->getRaConversion()));
     auto easeBy2 = EaseIn::create(movBy2, 2);
     auto seqC2 = Sequence::create(easeBy1, easeBy2, NULL);
     cloud2->runAction(RepeatForever::create(seqC2));
@@ -172,11 +172,11 @@ bool UIProgressMap::init()
     progressMap0->addChild(cloud1);
     auto fadeIn = FadeIn::create(35);
     auto move = MoveTo::create(60, Vec2(progressMap0->getBoundingBox().size.width,
-                                        (5 * progressMap0->getBoundingBox().size.height / 8)));
+                                       (5 * progressMap0->getBoundingBox().size.height / 8)));
     //auto ease = EaseIn::create(move, 1);
     auto spawn = Spawn::create(fadeIn, move, NULL);
-    auto move2 = MoveTo::create(25, Vec2((progressMap0->getBoundingBox().size.width * 1.5)  ,
-                                         (5 * progressMap0->getBoundingBox().size.height / 8)  ));
+    auto move2 = MoveTo::create(25, Vec2((progressMap0->getBoundingBox().size.width * 1.5),
+                                        (5 * progressMap0->getBoundingBox().size.height / 8)));
     auto fadeOut = FadeOut::create(15);
     auto spawn2 = Spawn::create(fadeOut, move2, NULL);
     auto relocate = MoveTo::create(0.1, Vec2(progressMap0->getBoundingBox().size.width / 2, progressMap0->getBoundingBox().size.height / 2));
@@ -186,7 +186,7 @@ bool UIProgressMap::init()
 
     //RESET INITIAL CONFIG
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
-    
+
     this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
     return true;
@@ -194,8 +194,7 @@ bool UIProgressMap::init()
 
 void UIProgressMap::menuBackCallback(Ref* pSender)
 {
-    if (GameData::getInstance()->getSFX() == true)
-    {
+    if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
     }
     auto scene = UIMainMenu::createScene();
@@ -205,8 +204,7 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 
 void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
-    if (GameData::getInstance()->getSFX() == true)
-    {
+    if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
     }
     GameData::getInstance()->setGameStarted(false);
@@ -230,7 +228,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     Vector<MenuItem*> menuButtons;
 
     auto darkBackground = MenuItemImage::create("ProgressMapDarkBackground.png", "ProgressMapDarkBackground.png",
-                                                CC_CALLBACK_1(UIProgressMap::restoreProgressMap, this));
+        CC_CALLBACK_1(UIProgressMap::restoreProgressMap, this));
     darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     menuButtons.pushBack(darkBackground);
 
@@ -258,19 +256,20 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         Sprite* iconLevel;
         if (goalTypes[i] == "Expansion") {
             iconLevel = Sprite::create("ExpansionGoalIcon.png");
-        } else if (goalTypes[i] == "Collection") {
+        }
+        else if (goalTypes[i] == "Collection") {
             iconLevel = Sprite::create("CollectionGoalIcon.png");
         }
         iconLevel->setAnchorPoint(Vec2(1, 0.75));
         iconLevel->setPosition(Vec2(mapPopup->getPosition().x + mapPopup->getBoundingBox().size.width - ((iconLevel->getContentSize().width * i) + (iconLevel->getContentSize().width / 10) * i),
-                                    mapPopup->getPosition().y - (mapPopup->getBoundingBox().size.height / 2)));
+            mapPopup->getPosition().y - (mapPopup->getBoundingBox().size.height / 2)));
         popupBackground->addChild(iconLevel);
     }
 
     auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("BRIEF_LEVEL_1")->getCString(),
-                                                            Size(13 * (popupBackground->getContentSize().width / 25),
-                                                                 7 * (popupBackground->getContentSize().height / 14)),
-                                                            TextHAlignment::LEFT, "Corbel", 26);
+        Size(13 * (popupBackground->getContentSize().width / 25),
+                                                                7 * (popupBackground->getContentSize().height / 14)),
+        TextHAlignment::LEFT, "Corbel", 26);
     briefText->setTextColor(Color4B(205, 202, 207, 255));
     briefText->setPosition(17 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14));
     popupBackground->addChild(briefText);
@@ -303,7 +302,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         }
         auto star = Sprite::create(starFile);
         star->setPosition(Vec2((11 * (popupBackground->getContentSize().width / 25)) + (i * (star->getContentSize().width + star->getContentSize().width / 3)),
-                               11.5 * (popupBackground->getContentSize().height / 14)));
+            11.5 * (popupBackground->getContentSize().height / 14)));
         popupBackground->addChild(star);
     }
 
@@ -340,8 +339,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
 
 void UIProgressMap::proceedLevelCallback(Ref* pSender)
 {
-    if (GameData::getInstance()->getSFX() == true)
-    {
+    if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
     }
     auto pMenuItem = (MenuItem*)(pSender);

@@ -12,7 +12,7 @@
 class Position {
 public:
     Position(int init_x = 0, int init_y = 0);
-    Position(Position const&) {};
+    Position(Position const&){};
     Position& operator=(Position const&);
 
     void setPosition(int init_x, int init_y);

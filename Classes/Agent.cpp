@@ -70,7 +70,8 @@ int Agent::getValOfAttribute(string att)
 {
     if (attributes.count(att) != 1) {
         return -1;
-    } else {
+    }
+    else {
         return attributes[att];
     }
 }

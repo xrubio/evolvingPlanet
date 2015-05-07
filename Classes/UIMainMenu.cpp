@@ -38,14 +38,14 @@ bool UIMainMenu::init()
 
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
-                                 visibleSize.height / 2));
+        visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 
     auto title = Sprite::create("MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
-    title->setPosition(Vec2((2 * visibleSize.width / 25) ,
-                            (12 * visibleSize.height / 18) ));
+    title->setPosition(Vec2((2 * visibleSize.width / 25),
+        (12 * visibleSize.height / 18)));
     title->setOpacity(0);
     title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto fadeTitle = FadeIn::create(2.0);
@@ -56,7 +56,7 @@ bool UIMainMenu::init()
 
     auto planet1 = Sprite::create("MainMenuBackgroundPlanet1.png");
     planet1->setPosition(Vec2((3 * visibleSize.width / 25),
-                              (7 * visibleSize.height / 18)));
+        (7 * visibleSize.height / 18)));
     planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto movePlanet1 = MoveTo::create(4, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEasePlanet1 = EaseInOut::create(movePlanet1, 1);
@@ -65,7 +65,7 @@ bool UIMainMenu::init()
 
     auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
     planet2->setPosition(Vec2((15 * visibleSize.width / 25),
-                              (13 * visibleSize.height / 18)));
+        (13 * visibleSize.height / 18)));
     planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto movePlanet2 = MoveTo::create(4.8, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEasePlanet2 = EaseBackOut::create(movePlanet2);
@@ -78,12 +78,12 @@ bool UIMainMenu::init()
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 2);
     auto spaceshipDelay = DelayTime::create(2.0);
     auto spaceshipSeq = Sequence::create(spaceshipDelay, moveEaseSpaceship, NULL);*/
-    spaceship->setPosition(Vec2((visibleSize.width / 3) ,
-                                (visibleSize.height / 2)));
+    spaceship->setPosition(Vec2((visibleSize.width / 3),
+        (visibleSize.height / 2)));
     spaceship->setScale(0);
     auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto moveSpaceship = MoveTo::create(3.0, Vec2((visibleSize.width / 2),
-                                                  (visibleSize.height / 2)));
+                                                 (visibleSize.height / 2)));
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 5);
     auto spaceshipDelay = DelayTime::create(1);
     auto spaceshipSpawn = Spawn::create(moveEaseSpaceship, scaleSpaceship, NULL);
@@ -104,7 +104,7 @@ bool UIMainMenu::init()
         "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
     startButton->setAnchorPoint(Vec2(0, 0.5));
     startButton->setPosition(Vec2((2 * visibleSize.width / 25),
-                                  (10 * visibleSize.height / 18)));
+        (10 * visibleSize.height / 18)));
     auto startLabel = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 50);
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
@@ -116,7 +116,7 @@ bool UIMainMenu::init()
         "MainMenuAchButton.png", "MainMenuAchButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuAchievementsCallback, this));
     achievementsButton->setAnchorPoint(Vec2(1, 0.5));
     achievementsButton->setPosition(Vec2(startButton->getPositionX() + startButton->getBoundingBox().size.width,
-                                         (8.5 * visibleSize.height / 18)));
+        (8.5 * visibleSize.height / 18)));
     auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS")->getCString(), "fonts/BebasNeue.otf", 40);
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
@@ -129,7 +129,7 @@ bool UIMainMenu::init()
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
     //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
     configurationButton->setPosition(Vec2((2 * visibleSize.width / 25),
-                                          (2 * visibleSize.height / 18)));
+        (2 * visibleSize.height / 18)));
     auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 30);
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
@@ -141,7 +141,7 @@ bool UIMainMenu::init()
         "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
     creditsButton->setAnchorPoint(Vec2(0, 0.5));
     creditsButton->setPosition(Vec2((2 * visibleSize.width / 25),
-                                    (2 * visibleSize.height / 18)));
+        (2 * visibleSize.height / 18)));
     auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS")->getCString(), "fonts/BebasNeue.otf", 30);
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
@@ -186,11 +186,11 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         auto scene = UIProgressMap::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
-        if (GameData::getInstance()->getSFX() == true)
-        {
+        if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
         }
-    } else {
+    }
+    else {
         endActions();
     }
 }
@@ -201,11 +201,11 @@ void UIMainMenu::menuAchievementsCallback(Ref* pSender)
         auto scene = UIAchievements::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
-        if (GameData::getInstance()->getSFX() == true)
-        {
+        if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
         }
-    } else {
+    }
+    else {
         endActions();
     }
 }
@@ -216,11 +216,11 @@ void UIMainMenu::menuConfigurationCallback(Ref* pSender)
         auto scene = UIConfiguration::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
-        if (GameData::getInstance()->getSFX() == true)
-        {
+        if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
         }
-    } else {
+    }
+    else {
         endActions();
     }
 }
@@ -231,7 +231,8 @@ void UIMainMenu::menuCreditsCallback(Ref* pSender)
         auto scene = UICredits::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
-    } else {
+    }
+    else {
         endActions();
     }
 }
@@ -259,7 +260,7 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(0)->stopAllActions();
     this->getChildByTag(0)->setOpacity(255);
     this->getChildByTag(1)->stopAllActions();
-    this->getChildByTag(1)->setPosition(Vec2(visibleSize.width / 2 , visibleSize.height / 2));
+    this->getChildByTag(1)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(2)->stopAllActions();
     this->getChildByTag(2)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(3)->stopAllActions();

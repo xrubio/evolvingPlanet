@@ -30,9 +30,8 @@ public:
     void sfxOffCallback(Ref* pSender);
 
     CREATE_FUNC(UIConfiguration);
-    
+
 private:
-    
     void createWarningWindow(Sprite* popupBackground);
 };
 

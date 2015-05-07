@@ -85,7 +85,8 @@ void UIMultiplierPower::update(float delta)
         //cooldown->setString(to_string(power->getCooldownLeft()));
         cooldownTimer->setVisible(true);
         cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
-    } else {
+    }
+    else {
         actionTimer->setPercentage(100.0);
         actionTime = 0.0;
         //cooldown->setVisible(false);

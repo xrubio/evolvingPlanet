@@ -14,9 +14,9 @@
 class ProgressAchievement : public Achievement {
 
 public:
-    ProgressAchievement() {};
+    ProgressAchievement(){};
     ProgressAchievement(bool c, bool o);
-    ProgressAchievement(ProgressAchievement const&) {};
+    ProgressAchievement(ProgressAchievement const&){};
     ProgressAchievement& operator=(ProgressAchievement const&);
 
     void checkAchievements(int n);

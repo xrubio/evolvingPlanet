@@ -14,8 +14,8 @@
 class Reproduce : public Act {
 
 public:
-    Reproduce() {};
-    Reproduce(Reproduce const&) {};
+    Reproduce(){};
+    Reproduce(Reproduce const&){};
     Reproduce& operator=(Reproduce const&);
 
     list<Agent*>::reverse_iterator execute(int type, Agent* agent);

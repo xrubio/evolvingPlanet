@@ -63,17 +63,17 @@ void LevelLoader::loadXmlFile(string filename)
             GameLevel::getInstance()->setAgentAttribute(type, atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
             //temporal
             GameLevel::getInstance()->setAttributesValues(type, atts.attribute("NAME").value());
-            
+
             atts = atts.next_sibling("ATTRIBUTE");
         }
         //DIRECTIONS
         xml_node drs = ags.child("DIRECTIONS").child("DIRECTION");
-        
+
         while (drs != nullptr) {
             GameLevel::getInstance()->setAgentFutureDirection(type, atoi(drs.child("STEP").child_value()),
-                                                              cocos2d::Point(atoi(drs.child("POSITION").attribute("X").value()),
-                                                                             atoi(drs.child("POSITION").attribute("Y").value())));
-            
+                cocos2d::Point(atoi(drs.child("POSITION").attribute("X").value()),
+                                                                  atoi(drs.child("POSITION").attribute("Y").value())));
+
             drs = drs.next_sibling("DIRECTION");
         }
 
@@ -88,11 +88,14 @@ void LevelLoader::loadXmlFile(string filename)
         //0 = ReproductionBoost, 1 = ResistanceBoost, 2 = RecollectionBoost, 3 = RestoreLand
         if (nameString == "ReproductionBoost") {
             nameInt = 0;
-        } else if (nameString == "ResistanceBoost") {
+        }
+        else if (nameString == "ResistanceBoost") {
             nameInt = 1;
-        } else if (nameString == "RecollectionBoost") {
+        }
+        else if (nameString == "RecollectionBoost") {
             nameInt = 2;
-        } else if (nameString == "RestoreLand") {
+        }
+        else if (nameString == "RestoreLand") {
             nameInt = 3;
         }
         int cooldown = atoi(pws.child("COOLDOWN").child_value());
@@ -104,7 +107,8 @@ void LevelLoader::loadXmlFile(string filename)
         if (type == "Multiplier") {
             float multiplier = atof(pws.child("TYPE").child("MULTIPLIER").child_value());
             GameLevel::getInstance()->addPower(new MultiplierPower(nameString, nameInt, cooldown, duration, durationLeft, cooldownLeft, attribute, type, multiplier));
-        } else if (type == "Area") {
+        }
+        else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
             GameLevel::getInstance()->addPower(new AreaPower(nameString, nameInt, cooldown, duration, durationLeft, cooldownLeft, attribute, type, radius));
         }
@@ -117,15 +121,20 @@ void LevelLoader::loadXmlFile(string filename)
         string action = acts.child_value();
         if (action == "Reproduce") {
             GameLevel::getInstance()->addAction(new Reproduce());
-        } else if (action == "Collect") {
+        }
+        else if (action == "Collect") {
             GameLevel::getInstance()->addAction(new Collect());
-        } else if (action == "Deplete") {
+        }
+        else if (action == "Deplete") {
             GameLevel::getInstance()->addAction(new Deplete());
-        } else if (action == "EnvironmentAdaptation") {
+        }
+        else if (action == "EnvironmentAdaptation") {
             GameLevel::getInstance()->addAction(new EnvironmentAdaptation());
-        } else if (action == "Kill") {
+        }
+        else if (action == "Kill") {
             GameLevel::getInstance()->addAction(new Kill());
-        } else if (action == "Die") {
+        }
+        else if (action == "Die") {
             GameLevel::getInstance()->addAction(new Die());
         }
         acts = acts.next_sibling("ACTION");
@@ -145,7 +154,8 @@ void LevelLoader::loadXmlFile(string filename)
         if (type == "Expansion") {
             int color = atoi(goals.child("COLOR_ZONE").child_value());
             GameLevel::getInstance()->addGoal(new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, type, color));
-        } else if (type == "Collection") {
+        }
+        else if (type == "Collection") {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
             GameLevel::getInstance()->addGoal(new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, type, goalAmount));
         }

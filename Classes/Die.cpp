@@ -61,7 +61,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
         if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048.0 / 480.0),
-                                                 ((1536 - 1365) / 2) + (agent->getPosition()->getY() * float(1365.0 / 320.0)))) {
+                ((1536 - 1365) / 2) + (agent->getPosition()->getY() * float(1365.0 / 320.0)))) {
             harm /= 2;
         }
     }

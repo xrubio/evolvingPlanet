@@ -54,8 +54,8 @@ public:
     void resetGameProgress(void);
 
 private:
-    GameData() {}; // Private so that it can  not be called
-    GameData(GameData const&) {}; // copy constructor is private
+    GameData(){}; // Private so that it can  not be called
+    GameData(GameData const&){}; // copy constructor is private
     GameData& operator=(GameData const&); // assignment operator is private
 
     static GameData* gamedataInstance;
@@ -73,7 +73,6 @@ private:
     float columnOffsetDrawAgentPrecalc;
     float columnDrawAgentPrecalc;
     bool resetGameClicked = false;
-    
 };
 
 #endif /* defined(__simulplay__GameData__) */

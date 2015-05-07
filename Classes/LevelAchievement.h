@@ -14,9 +14,9 @@
 class LevelAchievement : public Achievement {
 
 public:
-    LevelAchievement() {};
+    LevelAchievement(){};
     LevelAchievement(bool c, bool o);
-    LevelAchievement(LevelAchievement const&) {};
+    LevelAchievement(LevelAchievement const&){};
     LevelAchievement& operator=(LevelAchievement const&);
 
     void checkAchievements(int n, int level);

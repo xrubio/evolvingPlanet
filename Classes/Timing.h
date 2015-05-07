@@ -22,8 +22,8 @@ public:
 private:
     static Timing* timingInstance;
 
-    Timing() {};
-    Timing(Timing const&) {};
+    Timing(){};
+    Timing(Timing const&){};
     Timing& operator=(Timing const&);
 };
 

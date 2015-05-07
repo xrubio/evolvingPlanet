@@ -154,7 +154,7 @@ int GameLevel::getAttributesValues(int type, string k, int i)
     return attributesValues[type][k][i];
 }
 
-vector<map<string, vector<int> >> GameLevel::getAttributesValues(void)
+vector<map<string, vector<int> > > GameLevel::getAttributesValues(void)
 {
     return attributesValues;
 }
@@ -162,9 +162,8 @@ vector<map<string, vector<int> >> GameLevel::getAttributesValues(void)
 void GameLevel::setAttributesValues(int type, string k)
 {
     vector<int> r(6, 0);
-    while (attributesValues.size() <= type)
-    {
-        attributesValues.push_back(map<string, vector<int>>());
+    while (attributesValues.size() <= type) {
+        attributesValues.push_back(map<string, vector<int> >());
     }
     attributesValues[type][k] = r;
 }
@@ -449,22 +448,21 @@ void GameLevel::setAgentDirection(int agentType, cocos2d::Point p)
     agentDirections[agentType] = p;
 }
 
-vector<vector<pair<int, cocos2d::Point>>> GameLevel::getAgentFutureDirections(void)
+vector<vector<pair<int, cocos2d::Point> > > GameLevel::getAgentFutureDirections(void)
 {
     return agentFutureDirections;
 }
 
-void GameLevel::setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point>>> afd)
+void GameLevel::setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd)
 {
     agentFutureDirections = afd;
 }
 
 void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
 {
-    pair <int, cocos2d::Point> par(step,p);
-    while (agentFutureDirections.size() <= type)
-    {
-        vector<pair <int, cocos2d::Point>> v;
+    pair<int, cocos2d::Point> par(step, p);
+    while (agentFutureDirections.size() <= type) {
+        vector<pair<int, cocos2d::Point> > v;
         agentFutureDirections.push_back(v);
     }
     agentFutureDirections[type].push_back(par);
@@ -563,7 +561,7 @@ void GameLevel::createLevel(void)
     initializeAgentsPool();
     for (int i = 0; i < numInitialAgents.size(); i++) {
         generateInitialAgents(i);
-        agentDirections.push_back(Point(-1,-1));
+        agentDirections.push_back(Point(-1, -1));
     }
 
     paint = true;
@@ -577,7 +575,8 @@ void GameLevel::initializeAttributesCost(void)
             //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
             if (agentAttributes[i][it->first] != 0) {
                 attributesCost[i][it->first] = 0;
-            } else {
+            }
+            else {
                 attributesCost[i][it->first] = 1;
             }
         }
@@ -646,16 +645,14 @@ void GameLevel::act(void)
     //cout << "Num agents + Pool: " << agents[0].size() + agentsPool[0].size() << endl;
     for (int k = 0; k < agents.size() and finishedGame == 0; k++) {
         //CHECK DIRECTION
-        if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false)
-        {
-            cout <<agentFutureDirections[k][0].first << endl;
-            if (timeSteps == agentFutureDirections[k][0].first)
-            {
+        if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
+            cout << agentFutureDirections[k][0].first << endl;
+            if (timeSteps == agentFutureDirections[k][0].first) {
                 agentDirections[k] = agentFutureDirections[k][0].second;
                 agentFutureDirections[k].erase(agentFutureDirections[k].begin());
             }
         }
-        
+
         list<Agent*>::reverse_iterator end = agents[k].rbegin();
         while (end != agents[k].rend() and finishedGame == 0) {
             if ((*end)->getLife() > 0) {
@@ -674,7 +671,8 @@ void GameLevel::act(void)
             list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
             if (sizeBefore > agents[k].size()) {
                 end = rit;
-            } else {
+            }
+            else {
                 end++;
             }
 
@@ -688,7 +686,8 @@ void GameLevel::act(void)
                         prevGoal = j;
                     }
                     failed = true;
-                } else {
+                }
+                else {
                     finalScore += goals[j]->getScore();
                 }
             }
@@ -701,8 +700,7 @@ void GameLevel::act(void)
     }
 
     bool noAgentsLeft = true;
-    if (agents[0].empty() == false)
-    {
+    if (agents[0].empty() == false) {
         noAgentsLeft = false;
     }
     /*for (int i = 0; i < agents.size(); i++) {

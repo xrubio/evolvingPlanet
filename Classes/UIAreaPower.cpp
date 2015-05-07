@@ -96,7 +96,8 @@ void UIAreaPower::update(float delta)
         //cooldown->setString(to_string(power->getCooldownLeft()));
         cooldownTimer->setVisible(true);
         cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
-    } else {
+    }
+    else {
         //cooldown->setVisible(false);
         cooldownTimer->setVisible(false);
         actionTime = 0.0;

@@ -50,7 +50,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         for (int i = 0; i < probPerType.size(); i++) {
             if (i == 0) {
                 probPerType[i] = (probPerType[i] / probTotal) * 100.0;
-            } else {
+            }
+            else {
                 probPerType[i] = ((probPerType[i] / probTotal) * 100.0) + probPerType[i - 1];
             }
         }
@@ -60,7 +61,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             if (i == 0 and p < probPerType[i]) {
                 type = i;
                 exit = true;
-            } else if (p < probPerType[i] and p >= probPerType[i - 1]) {
+            }
+            else if (p < probPerType[i] and p >= probPerType[i - 1]) {
                 type = i;
                 exit = true;
             }
@@ -75,7 +77,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             numAgents += GameLevel::getInstance()->getAgents()[i].size();
         }
         maxReached = numAgents >= GameLevel::getInstance()->getMaxAllAgents();
-    } else {
+    }
+    else {
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
     if (type == agent->getType() and maxReached == false) {
@@ -144,14 +147,16 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
                 if (fingerSpot.x < agent->getPosition()->getX()) {
                     //A L'ESQUERRA
                     maxRandomX = agent->getPosition()->getX();
-                } else if (fingerSpot.x > agent->getPosition()->getX()) {
+                }
+                else if (fingerSpot.x > agent->getPosition()->getX()) {
                     //A LA DRETA
                     minRandomX = agent->getPosition()->getX();
                 }
                 if (fingerSpot.y < agent->getPosition()->getY()) {
                     //A BAIX
                     maxRandomY = agent->getPosition()->getY();
-                } else if (fingerSpot.y > agent->getPosition()->getY()) {
+                }
+                else if (fingerSpot.y > agent->getPosition()->getY()) {
                     //A DALT
                     minRandomY = agent->getPosition()->getY();
                 }
@@ -182,7 +187,6 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
                 GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
             }
         }
-
     }
     //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
     else if (type != agent->getType()) {

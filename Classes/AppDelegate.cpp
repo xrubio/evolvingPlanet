@@ -37,8 +37,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     //resDirOrders.push_back("ipadhd");
     glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
-    
-   /* if (2048 == screenSize.width or 2048 == screenSize.height) {
+
+    /* if (2048 == screenSize.width or 2048 == screenSize.height) {
         resDirOrders.push_back("ipadhd");
         resDirOrders.push_back("ipad");
         resDirOrders.push_back("iphonehd5");
@@ -92,7 +92,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         }
     }
 */
-    
+
     fileUtils->setSearchPaths(resDirOrders);
 
     //Primer cop language = '', agafar del dispositiu per defecte
@@ -101,12 +101,13 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setLanguage(LocalizedString::getSystemLang());
         GameData::getInstance()->setMusic(true);
         GameData::getInstance()->setSFX(true);
-    } else {
+    }
+    else {
         GameData::getInstance()->setLanguage(lang);
         GameData::getInstance()->setMusic(UserDefault::getInstance()->getBoolForKey("music"));
         GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
     }
-    
+
     //RA CONVERSION - PRECALCS
     Size visibleSize = Director::getInstance()->getVisibleSize();
     GameData::getInstance()->setRaConversion((2048.0 / 1536.0) / (visibleSize.width / visibleSize.height));

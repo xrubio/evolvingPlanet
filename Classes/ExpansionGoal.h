@@ -14,9 +14,9 @@
 class ExpansionGoal : public Goal {
 
 public:
-    ExpansionGoal() {};
+    ExpansionGoal(){};
     ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, string gType, int color = 0);
-    ExpansionGoal(ExpansionGoal const&) {};
+    ExpansionGoal(ExpansionGoal const&){};
     ExpansionGoal& operator=(ExpansionGoal const&);
 
     int getColorZone(void);

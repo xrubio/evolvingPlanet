@@ -16,8 +16,8 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     GameLevel::getInstance()->setTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY(),
-                                               GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(),
-                                                                                          agent->getPosition()->getY()) + 1);
+        GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(),
+            agent->getPosition()->getY()) + 1);
 
     float efficiency = GameLevel::getInstance()->getAttributesValues(type, "RECOLLECTION", agent->getValOfAttribute("RECOLLECTION")) / 100;
     /*float efficiency;
@@ -83,12 +83,12 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
             int mapSelector = 0;
             if (GameLevel::getInstance()->getDepleted(agent->getPosition()->getX(), agent->getPosition()->getY())) {
                 mapSelector = 1;
-            } else if (GameLevel::getInstance()->getEnvironmentAdaptation(agent->getPosition()->getX(), agent->getPosition()->getY())) {
+            }
+            else if (GameLevel::getInstance()->getEnvironmentAdaptation(agent->getPosition()->getX(), agent->getPosition()->getY())) {
                 mapSelector = 2;
             }
 
-            ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(
-                ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY(), 1) * efficiency));
+            ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY(), 1) * efficiency));
         }
     }
 }

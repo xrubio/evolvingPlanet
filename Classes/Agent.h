@@ -20,9 +20,9 @@ class Agent {
 public:
     //Agent() {};
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
-    Agent(Agent const&) {};
+    Agent(Agent const&){};
     Agent& operator=(Agent const&);
-    ~Agent() {};
+    ~Agent(){};
 
     int getId(void);
     void setId(int i);

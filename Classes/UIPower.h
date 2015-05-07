@@ -19,8 +19,8 @@ class UIGameplayMap;
 
 class UIPower : public Node {
 public:
-    UIPower() {};
-    UIPower(UIPower const&) {};
+    UIPower(){};
+    UIPower(UIPower const&){};
     UIPower& operator=(UIPower const&);
 
     void setPosition(float x, float y);

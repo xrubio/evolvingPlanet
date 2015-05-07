@@ -12,8 +12,8 @@
 class Achievement {
 
 public:
-    Achievement() {};
-    Achievement(Achievement const&) {};
+    Achievement(){};
+    Achievement(Achievement const&){};
     Achievement& operator=(Achievement const&);
 
     bool getCompleted(void);

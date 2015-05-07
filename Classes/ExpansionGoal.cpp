@@ -61,23 +61,27 @@ void ExpansionGoal::checkGoal(int type, Agent* agent)
     if (type == agentType) {
         if (timeSteps > maxTime) {
             GameLevel::getInstance()->setFinishedGame(2);
-        } else {
+        }
+        else {
             //Check agent at goal zone
             if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition()->getX(),
-                                                                                    agent->getPosition()->getY(), 0) == colorZone) {
+                    agent->getPosition()->getY(), 0) == colorZone) {
                 if (minTime > timeSteps) {
                     GameLevel::getInstance()->setFinishedGame(2);
-                } else {
+                }
+                else {
                     completed = true;
                     if (timeSteps >= averageTime - desviation2Star and timeSteps <= averageTime + desviation2Star) {
                         if (timeSteps >= averageTime - desviation3Star and timeSteps <= averageTime + desviation3Star) {
                             // 3 STARS
                             score = 3;
-                        } else {
+                        }
+                        else {
                             //2 STARS
                             score = 2;
                         }
-                    } else {
+                    }
+                    else {
                         //1 STAR
                         score = 1;
                     }

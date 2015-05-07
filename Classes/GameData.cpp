@@ -59,7 +59,8 @@ void GameData::setLevelScore(int level, int score)
     }
     if (level == levelsCompleted.size()) {
         levelsCompleted.push_back(score);
-    } else {
+    }
+    else {
         if (score > levelsCompleted[level]) {
             levelsCompleted.insert(levelsCompleted.begin() + level, score);
             levelsCompleted.erase(levelsCompleted.begin() + level + 1);
@@ -202,8 +203,8 @@ void GameData::loadAchievements(void)
     xml_node achs = doc.child("ACHIEVEMENT");
     while (achs != nullptr) {
         if (strncmp(achs.attribute("TYPE").value(), "LEVEL", 5) == 0) {
-
-        } else if (strncmp(achs.attribute("TYPE").value(), "PROGRESS", 8) == 0) {
+        }
+        else if (strncmp(achs.attribute("TYPE").value(), "PROGRESS", 8) == 0) {
         }
         achs = achs.next_sibling("ACHIEVEMENT");
     }
@@ -211,12 +212,10 @@ void GameData::loadAchievements(void)
 
 void GameData::resetGameProgress(void)
 {
-    for (int i = 0; i < levelsCompleted.size(); i++)
-    {
+    for (int i = 0; i < levelsCompleted.size(); i++) {
         cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
     }
     cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", 0);
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
 }
-

@@ -16,8 +16,8 @@ using namespace std;
 class Power {
 
 public:
-    Power() {};
-    Power(Power const&) {};
+    Power(){};
+    Power(Power const&){};
     Power& operator=(Power const&);
 
     string getNameString(void);

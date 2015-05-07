@@ -14,9 +14,9 @@
 class Goal {
 
 public:
-    Goal() {};
+    Goal(){};
     Goal(int agentType, int min, int max, int average, int des2, int des3, string gType);
-    Goal(Goal const&) {};
+    Goal(Goal const&){};
     Goal& operator=(Goal const&);
 
     int getAgentType(void);

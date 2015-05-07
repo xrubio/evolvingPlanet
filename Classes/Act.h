@@ -17,8 +17,8 @@ class UIGameplayMap;
 class Act {
 
 public:
-    Act() {};
-    Act(Act const&) {};
+    Act(){};
+    Act(Act const&){};
     Act& operator=(Act const&);
 
     virtual list<Agent*>::reverse_iterator execute(int type = 0, Agent* agent = nullptr) = 0;

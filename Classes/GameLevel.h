@@ -54,7 +54,7 @@ public:
     void resetAgentAttributesInitialConfig(void);
     //temporal
     int getAttributesValues(int type, string k, int v);
-    vector<map<string, vector<int> >> getAttributesValues(void);
+    vector<map<string, vector<int> > > getAttributesValues(void);
     void setAttributesValues(int type, string k);
     void setAttributesValues(int type, string k, int i, int v);
 
@@ -110,8 +110,8 @@ public:
     vector<cocos2d::Point> getAgentDirections(void);
     void setAgentDirections(vector<cocos2d::Point> ad);
     void setAgentDirection(int agentType, cocos2d::Point p);
-    vector<vector<pair<int, cocos2d::Point>>> getAgentFutureDirections(void);
-    void setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point>>> afd);
+    vector<vector<pair<int, cocos2d::Point> > > getAgentFutureDirections(void);
+    void setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd);
     void setAgentFutureDirection(int type, int step, cocos2d::Point p);
 
     void createLevel(void);
@@ -142,7 +142,7 @@ private:
     vector<map<string, int> > agentAttributesInitialConfig;
     vector<map<string, int> > attributesCost;
     //temporal
-    vector<map<string, vector<int> >> attributesValues;
+    vector<map<string, vector<int> > > attributesValues;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
     vector<list<Agent*> > agentsPool;
@@ -174,8 +174,8 @@ private:
     vector<cocos2d::Point> agentDirections;
     vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
 
-    GameLevel() {};
-    GameLevel(GameLevel const&) {};
+    GameLevel(){};
+    GameLevel(GameLevel const&){};
     GameLevel& operator=(GameLevel const&);
 
     void initializeAgentsPool(void);

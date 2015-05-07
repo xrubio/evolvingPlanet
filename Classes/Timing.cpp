@@ -72,7 +72,8 @@ void Timing::start(void)
                 //stepTimePart = clock();
                 gettimeofday(&stepTimePart, nullptr);
             }
-        } else {
+        }
+        else {
             //stepTime = clock();
             gettimeofday(&stepTime, nullptr);
             //stepTimePart = clock();
