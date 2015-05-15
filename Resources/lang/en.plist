@@ -24,6 +24,8 @@
 	<string>CREDITS</string>
 	<key>GOALS</key>
 	<string>GOALS</string>
+	<key>FIRST_ERA</key>
+	<string>FIRST ERA</string>
 	<key>QUIT_QUESTION</key>
 	<string>QUIT ?</string>
 	<key>RETRY_QUESTION</key>

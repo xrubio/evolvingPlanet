@@ -19,6 +19,7 @@ public:
     virtual bool init();
 
     void menuBackCallback(Ref* pSender);
+    void menuLevelZoneCallback(Ref* pSender);
     void menuLevelCallback(Ref* pSender);
     void proceedLevelCallback(Ref* pSender);
     void restoreProgressMap(Ref* pSender);

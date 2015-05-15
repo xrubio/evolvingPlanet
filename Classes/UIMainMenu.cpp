@@ -39,7 +39,7 @@ bool UIMainMenu::init()
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
-    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     this->addChild(background, 0);
 
     auto title = Sprite::create("MainMenuTitle.png");
@@ -47,7 +47,7 @@ bool UIMainMenu::init()
     title->setPosition(Vec2((2 * visibleSize.width / 25),
         (12 * visibleSize.height / 18)));
     title->setOpacity(0);
-    title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     auto fadeTitle = FadeIn::create(2.0);
     auto titleDelay = DelayTime::create(4.0);
     auto titleSeq = Sequence::create(titleDelay, fadeTitle, NULL);
@@ -57,7 +57,7 @@ bool UIMainMenu::init()
     auto planet1 = Sprite::create("MainMenuBackgroundPlanet1.png");
     planet1->setPosition(Vec2((3 * visibleSize.width / 25),
         (7 * visibleSize.height / 18)));
-    planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     auto movePlanet1 = MoveTo::create(4, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEasePlanet1 = EaseInOut::create(movePlanet1, 1);
     planet1->runAction(moveEasePlanet1);
@@ -66,7 +66,7 @@ bool UIMainMenu::init()
     auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
     planet2->setPosition(Vec2((15 * visibleSize.width / 25),
         (13 * visibleSize.height / 18)));
-    planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     auto movePlanet2 = MoveTo::create(4.8, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEasePlanet2 = EaseBackOut::create(movePlanet2);
     planet2->runAction(moveEasePlanet2);
@@ -81,7 +81,7 @@ bool UIMainMenu::init()
     spaceship->setPosition(Vec2((visibleSize.width / 3),
         (visibleSize.height / 2)));
     spaceship->setScale(0);
-    auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     auto moveSpaceship = MoveTo::create(3.0, Vec2((visibleSize.width / 2),
                                                  (visibleSize.height / 2)));
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 5);
@@ -109,7 +109,7 @@ bool UIMainMenu::init()
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
-    startButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    startButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     menuButtons.pushBack(startButton);
 
     auto achievementsButton = MenuItemImage::create(
@@ -121,7 +121,7 @@ bool UIMainMenu::init()
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
     achievementsButton->addChild(achLabel);
-    achievementsButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    achievementsButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     menuButtons.pushBack(achievementsButton);
 
     auto configurationButton = MenuItemImage::create(
@@ -134,7 +134,7 @@ bool UIMainMenu::init()
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
-    configurationButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    configurationButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     menuButtons.pushBack(configurationButton);
 
     auto creditsButton = MenuItemImage::create(
@@ -265,7 +265,7 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(2)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(3)->stopAllActions();
     this->getChildByTag(3)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    this->getChildByTag(3)->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    this->getChildByTag(3)->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     this->getChildByTag(4)->stopAllActions();
     this->getChildByTag(4)->setOpacity(255);
 }

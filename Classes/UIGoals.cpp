@@ -358,7 +358,7 @@ void UIGoals::createContextLayout(Layout* layoutContext)
     contextMenu->setPosition(0, 0);
     layoutContext->addChild(contextMenu);
 
-    contextImage = Sprite::create("Level1Background.png");
+    contextImage = Sprite::create("Level1Background.jpg");
     contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion(), 0.4 * GameData::getInstance()->getRaHConversion());
     contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
     contextImage->setVisible(false);
@@ -371,7 +371,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
+    auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".jpg");
     goalMap->setScale(0.4 * GameData::getInstance()->getRaConversion());
     goalMap->setPosition(Vec2((visibleSize.width / 4) + 130, origin.y + visibleSize.height / 2));
     layout->addChild(goalMap, 1);

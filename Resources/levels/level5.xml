@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NUM_LEVEL>5</NUM_LEVEL>
+<NAME_LEVEL>Hostility</NAME_LEVEL>
+<FILE_MAP>Level5</FILE_MAP>
+<AGENTS MAX_ALL="NO">
+    <AGENT TYPE="0">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>300</MAX_AGENTS>
+        <ATTRIBUTES>
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>8</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>5</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RESISTANCE">
+                <INITIAL_VALUE>-1</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="HOSTILITY">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+        </ATTRIBUTES>
+    </AGENT>
+    <AGENT TYPE="1">
+        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>300</MAX_AGENTS>
+        <ATTRIBUTES>
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>8</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>5</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RESISTANCE">
+                <INITIAL_VALUE>-1</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="HOSTILITY">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+        </ATTRIBUTES>
+    </AGENT>
+</AGENTS>
+<POWERS>
+</POWERS>
+<ACTIONS>
+    <ACTION>Reproduce</ACTION>
+    <ACTION>Kill</ACTION>
+    <ACTION>Die</ACTION>
+</ACTIONS>
+<GOALS>
+    <GOAL TYPE_GOAL="Collection">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>60</MIN>
+        <MAX>100</MAX>
+        <AVERAGE>85</AVERAGE>
+        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
+        <GOAL_AMOUNT>50000</GOAL_AMOUNT>
+    </GOAL>
+    <GOAL TYPE_GOAL="Collection">
+        <AGENT_TYPE>1</AGENT_TYPE>
+        <MIN>60</MIN>
+        <MAX>100</MAX>
+        <AVERAGE>85</AVERAGE>
+        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
+        <GOAL_AMOUNT>76000</GOAL_AMOUNT>
+    </GOAL>
+</GOALS>

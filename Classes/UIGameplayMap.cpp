@@ -299,6 +299,7 @@ bool UIGameplayMap::init()
             }
             else {
                 area->setColor(Color3B::RED);
+                area->setOpacity(0);
             }
             area->setPosition(x, y);
             area->setTag(400 + i);
@@ -1035,6 +1036,8 @@ void UIGameplayMap::moveGoalPopup(int index)
         area->stopAllActions();
         area->setVisible(true);
         area->setColor(Color3B::GREEN);
+        auto fadeOut = FadeOut::create(2.5);
+        area->runAction(fadeOut);
     }
     if (index < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
         auto nextArea = gameplayMap->getChildByTag(400 + index);
@@ -1042,6 +1045,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         auto repeatBlink = RepeatForever::create(blink);
         nextArea->setColor(Color3B::BLUE);
         nextArea->runAction(repeatBlink);
+        nextArea->setOpacity(255);
     }
 }
 

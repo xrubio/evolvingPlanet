@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NUM_LEVEL>4</NUM_LEVEL>
 <NAME_LEVEL>Hostility</NAME_LEVEL>
-<FILE_MAP>Level4</FILE_MAP>
+<FILE_MAP>Level3</FILE_MAP>
 <AGENTS MAX_ALL="NO">
     <AGENT TYPE="0">
         <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
