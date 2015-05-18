@@ -537,7 +537,7 @@ void GameLevel::resetLevel(void)
     timeSteps = 0;
     timeSpeed = 2.5;
 
-    evolutionPoints = 0;
+    evolutionPoints = 10;
 
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
     //4 = finishedBack

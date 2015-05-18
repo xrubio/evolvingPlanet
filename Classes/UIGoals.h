@@ -41,8 +41,9 @@ private:
     MenuItemImage* arrowNext;
     MenuItemImage* arrowBack;
     Label* contextLabel;
-    Text* context;
+    TextFieldTTF* context;
     Sprite* contextImage;
+    Label* evolutionPointsNumberIcon;
 
     void createContextLayout(Layout* layoutContext);
     void setLevelGoals(Layout* layout);

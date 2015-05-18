@@ -16,7 +16,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     //INFLUENCIA CULTURAL - CALCULAR TIPUS
     int type = agent->getType();
     int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
-    int mobility = agent->getValOfAttribute("MOBILITY") * 5;
+    int mobility = (agent->getValOfAttribute("MOBILITY") * 5) + 1;
     if (probCulture > -1) {
         //CONTAR AGENTS ALREDEDOR SEGONS TIPUS
         vector<int> numAgentsPerType;
@@ -82,10 +82,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
     if (type == agent->getType() and maxReached == false) {
-        int probReproduction = GameLevel::getInstance()->getAttributesValues(typeAgent, "REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));
+        /*int probReproduction = GameLevel::getInstance()->getAttributesValues(typeAgent, "REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));*/
+        int probReproduction = agent->getValOfAttribute("REPRODUCTION");
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
-
-        /*switch (probReproduction) {
+        switch (probReproduction) {
         case 1:
             probReproduction = 20;
             break;
@@ -96,10 +96,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             probReproduction = 30;
             break;
         case 4:
-            probReproduction = 35;
+            probReproduction = 40;
             break;
         case 5:
-            probReproduction = 40;
+            probReproduction = 50;
             break;
         case 6:
             probReproduction = 45;
@@ -117,9 +117,9 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             probReproduction = 100;
             break;
         default:
-            probReproduction = 0;
+            probReproduction = 10;
             break;
-        }*/
+        }
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
             if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 0) {

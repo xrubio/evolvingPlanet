@@ -34,7 +34,7 @@ bool UIMainMenu::init()
     }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
 
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,

@@ -191,12 +191,12 @@ bool UIGameplayMap::init()
     this->addChild(evolutionPointsStringLabel, 3);
 
     //FER DINAMIC
-    if (GameLevel::getInstance()->getNumLevel() == 2) {
+    /*if (GameLevel::getInstance()->getNumLevel() == 2) {
         collect1PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()),
             "Arial", 65);
         collect1PointsLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
         this->addChild(collect1PointsLabel, 1);
-    }
+    }*/
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
@@ -904,6 +904,7 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
 
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() + GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
@@ -923,8 +924,9 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     int i = tag - 50;
     Sprite* layout = (Sprite*)(pMenuItem->getParent()->getParent());
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5) {
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= GameLevel::getInstance()->getEvolutionPoints()) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
@@ -1405,9 +1407,9 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
         break;
     }
     default:
-        int k = -2048 * 2;
-        while (k <= 2048 * 2) {
-            for (int j = -2; j < 3; j++) {
+        int k = -2048 * GameLevel::getInstance()->agentPixelSize;
+        while (k <= 2048 * GameLevel::getInstance()->agentPixelSize) {
+            for (int j = -GameLevel::getInstance()->agentPixelSize; j < GameLevel::getInstance()->agentPixelSize + 1; j++) {
                 agentsTextureData[position + j + k] = colour;
             }
             k += 2048;
@@ -1443,9 +1445,9 @@ void UIGameplayMap::update(float delta)
             //clock_t beforeTime = clock();
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-            if (GameLevel::getInstance()->getNumLevel() == 2) {
+            /*if (GameLevel::getInstance()->getNumLevel() == 2) {
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-            }
+            }*/
             int i = 0;
             while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
                 i++;
@@ -1473,9 +1475,9 @@ void UIGameplayMap::update(float delta)
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
         }
-        if (GameLevel::getInstance()->getNumLevel() == 2) {
+        /*if (GameLevel::getInstance()->getNumLevel() == 2) {
             collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-        }
+        }*/
         play = true;
 
         for (int i = 0; i < powerButtons.size(); i++) {

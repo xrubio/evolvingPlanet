@@ -85,15 +85,16 @@
 	<key>CONTEXT_TITLE_DEPLOYMENT</key>
 	<string>DEPLOYMENT</string>
 	<key>BRIEF_LEVEL_1</key>
-	<string>Greetings, commander. After the initial tests the system is up and running, so we will be able to deploy the bots in the surface of the planet in a few hours.
-We have detected the first traces of the alien species in a small peninsula from where they suposedly expanded to the rest of the Sigyn continent. The team awaits your orders to start the mission!</string>
+	<string>Greetings, commander. 
+
+The first tests of the system are already finished. We have discovered the first traces of the alien specie in a forest zone of a small peninsula, from which it seems to have spread to a different ecosystem. The tracker(s)/seeker(s)?? bots are ready to be deployed in a few hours along the surface of Katram 0.2? 
+
+The team is waiting for your orders to start the mission.</string>
 	<key>CONTEXT_LEVEL_1_INTRO</key>
-	<string>These beginnings remind me of our own origins... 
-
-The earliest evidences of human beings were documented in East Africa about 4 million years ago, where archaeologists found a species called Homo Erectus. The information gathered by the probes sent to Hnoss shows that Sigyn had similar conditions to these first sites...
-
-I wonder how they subsisted in this environment; the most probable idea is that they were hunters, gatherers and scavengers, just as our ancestors.</string>
+	<string>Thanks Cassandra. 
+This beginnings remind me our own origins. The information recorded by our explorer ships show that Katram 0.2 have very similar environmental conditions to our first settlements in Africa. The earliest evidences of human beings were documented in East African forests about 4 million years ago. These human ancestors, the Australopithecines, had diversified into many forms that shared a vital characteristic: bipedalism. Walking upright enabled them to operate away from the forests in the open terrain of the savannah, giving them a wider food gathering range than other animals. </string>
 	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
-	<string>Anyway, let&apos;s start in the beginning; the bots will be deployed in the first zone with evidences of XXX. We want to examine how they dispersed from this peninsula to the rest of the continent.</string>
+	<string>Well, let&apos;s start the mission: the bots will be deployed along the forest zone with evidences of katramiants ??. We want to explore how they manage to subsist and expand along a very different different ecosystem, similar to the savannas of Planet Earth, till arrive to the objective 1.
+Cassandra, please execute the order.</string>
 </dict>
 </plist>

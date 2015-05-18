@@ -129,7 +129,7 @@ bool UIGoals::init()
     }
 
     //temporal
-    for (int index = 0; index < GameLevel::getInstance()->getNumInitialAgents().size(); index++) {
+    /*for (int index = 0; index < GameLevel::getInstance()->getNumInitialAgents().size(); index++) {
         auto layoutConfigValues = Layout::create();
         //layoutConfigValues->setBackGroundImage("PageBackground.png");
         auto pageBackground4 = Sprite::create("PageBackground.png");
@@ -164,7 +164,7 @@ bool UIGoals::init()
             j++;
         }
         pages->addPage(layoutConfigValues);
-    }
+    }*/
 
     pages->setTag(0);
 
@@ -197,7 +197,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
      GameLevel::getInstance()->createLevel(0);
      }
      GameData::getInstance()->setGameStarted(true);*/
-    for (int index = 0; index < GameLevel::getInstance()->getNumInitialAgents().size(); index++) {
+    /*for (int index = 0; index < GameLevel::getInstance()->getNumInitialAgents().size(); index++) {
         map<string, vector<int> > temp = GameLevel::getInstance()->getAttributesValues()[index];
         int j = 0;
         for (map<string, vector<int> >::const_iterator it = temp.begin(); it != temp.end(); it++) {
@@ -209,7 +209,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
             }
             j++;
         }
-    }
+    }*/
     GameLevel::getInstance()->setAgentAttributesInitialConfig(GameLevel::getInstance()->getAgentAllAttributes());
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
@@ -225,7 +225,8 @@ void UIGoals::minusAttCallback(Ref* pSender)
 
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() + GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
+        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
@@ -245,9 +246,10 @@ void UIGoals::plusAttCallback(Ref* pSender)
     int i = tag - 50;
     Layout* layout = (Layout*)(pMenuItem->getParent()->getParent());
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5) {
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= GameLevel::getInstance()->getEvolutionPoints()) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
@@ -283,7 +285,7 @@ void UIGoals::contextPageIntroCallback(Ref* pSender)
     MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(1);
     pMenuItemInvers->setEnabled(true);
     contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString());
-    context->setString(LocalizedString::create("CONTEXT_LEVEL_1_INTRO")->getCString());
+    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str())->getCString());
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     contextImage->setVisible(false);
 }
@@ -297,7 +299,7 @@ void UIGoals::contextPageDeploymentCallback(Ref* pSender)
     MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(0);
     pMenuItemInvers->setEnabled(true);
     contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT")->getCString());
-    context->setString(LocalizedString::create("CONTEXT_LEVEL_1_DEPLOYMENT")->getCString());
+    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str())->getCString());
     context->setPosition(Vec2(visibleSize.width / 2, (3.5 * visibleSize.height / 12)));
     contextImage->setVisible(true);
 }
@@ -314,15 +316,11 @@ void UIGoals::createContextLayout(Layout* layoutContext)
                                                           TextHAlignment::LEFT, "Arial", 50);
     context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
     context->setTextColor(Color4B(216, 229, 235, 255));*/
-    context = Text::create(LocalizedString::create("CONTEXT_LEVEL_1_INTRO")->getCString(), "Corbel", 40);
-    context->setTextColor(Color4B(216, 229, 235, 255));
-    context->ignoreContentAdaptWithSize(false);
-    context->setContentSize(Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height));
-    context->setTextHorizontalAlignment(TextHAlignment::LEFT);
-    context->setTextVerticalAlignment(TextVAlignment::CENTER);
+    context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str())->getCString(), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    context->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     //context->addChild(goalMap);
-    context->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    context->::UIGoals::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContext->addChild(context);
 
     contextLabel = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString(),
@@ -430,6 +428,17 @@ void UIGoals::createUIAgent(Layout* layout)
 
     if (GameLevel::getInstance()->getAgentAttributesInitialConfig().empty() == false) {
         GameLevel::getInstance()->setAgentAttributes(GameLevel::getInstance()->getAgentAttributesInitialConfig());
+        int initialEvolutionPoints = 10;
+        for (int i = 0; i < 3; i++) {
+            GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i],
+                GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+            int n = GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
+            while (n > 0) {
+                initialEvolutionPoints -= n;
+                n--;
+            }
+        }
+        GameLevel::getInstance()->setEvolutionPoints(initialEvolutionPoints);
         pages->scrollToPage(2);
     }
 
@@ -490,7 +499,7 @@ void UIGoals::createUIAgent(Layout* layout)
     layout->addChild(attributesMenu, 1, 100000);
 
     auto evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
-    auto evolutionPointsNumberIcon = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80);
+    evolutionPointsNumberIcon = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80);
     evolutionPointsNumberIcon->setColor(Color3B(211, 230, 236));
     evolutionPointsNumberIcon->setPosition(Vec2(evolutionPointsIcon->getContentSize().width / 2,
         evolutionPointsIcon->getContentSize().height / 2));
@@ -523,4 +532,6 @@ void UIGoals::update(float delta)
             arrowNext->setVisible(false);
         }
     }
+
+    evolutionPointsNumberIcon->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
 }

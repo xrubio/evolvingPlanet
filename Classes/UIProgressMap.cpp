@@ -114,8 +114,8 @@ bool UIProgressMap::init()
             labelButtonLevel->setColor(Color3B::GRAY);
         }
         int score = 0;
-        if (GameData::getInstance()->getLevelsCompleted().size() > i) {
-            score = GameData::getInstance()->getLevelScore(i);
+        if (GameData::getInstance()->getLevelsCompleted().size() > i + 1) {
+            score = GameData::getInstance()->getLevelScore(i + 1);
         }
         for (int i = 1; i < 4; i++) {
             string starFile;
@@ -422,12 +422,11 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         popupBackground->addChild(iconLevel);
     }
 
-    auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("BRIEF_LEVEL_1")->getCString(),
-        Size(13 * (popupBackground->getContentSize().width / 25),
-                                                                7 * (popupBackground->getContentSize().height / 14)),
-        TextHAlignment::LEFT, "Corbel", 26);
-    briefText->setTextColor(Color4B(255, 255, 255, 255));
-    briefText->setPosition(17 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14));
+    auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str())->getCString(),
+        Size(13 * (popupBackground->getContentSize().width / 25), 6 * (popupBackground->getContentSize().height / 14)),
+        TextHAlignment::LEFT, "Corbel", 28);
+    briefText->setColorSpaceHolder(Color3B(216, 229, 235));
+    briefText->setPosition(Vec2(17 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14)));
     popupBackground->addChild(briefText);
 
     auto playButton = MenuItemImage::create("ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIProgressMap::proceedLevelCallback, this));
@@ -483,7 +482,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         popupBackground->addChild(trophy);
         trophy->setOpacity(0);
         trophy->setScale(3);
-        auto trophyScale = ScaleTo::create(0.6, 1);
+        auto trophyScale = ScaleTo::create(0.5, 1);
         auto trophyFade = FadeIn::create(0.1);
         auto trophyRotate = RotateBy::create(0.3, 360);
         auto trophySpawn = Spawn::create(trophyScale, trophyFade, Repeat::create(trophyRotate, 2), NULL);
@@ -506,18 +505,23 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
         break;
     case 1:
         filename = "level1";
+        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 2:
         filename = "level2";
+        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 3:
         filename = "level3";
+        GameLevel::getInstance()->agentPixelSize = 1;
         break;
     case 4:
         filename = "level4";
+        GameLevel::getInstance()->agentPixelSize = 1;
         break;
     case 5:
         filename = "level5";
+        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 6:
         filename = "level6";

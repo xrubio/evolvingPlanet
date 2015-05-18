@@ -125,6 +125,7 @@ public:
     bool ended = false;
     float calcTime = 0;
     int prevGoal = 0;
+    int agentPixelSize = 1;
 
 private:
     static GameLevel* gamelevelInstance;
@@ -163,7 +164,7 @@ private:
     float timeSpeed = 2.5;
     float timeSpeedBeforePause = 2.5;
 
-    int evolutionPoints = 0;
+    int evolutionPoints = 10;
 
     //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut (goal no completed), 3 = finished0Agents,
     //4 = finishedBack
