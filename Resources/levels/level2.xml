@@ -21,7 +21,7 @@
 </AGENTS>
 <POWERS>
     <POWER NAME="ReproductionBoost">
-        <COST>0</COST>
+        <COST>5</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
         <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
@@ -30,7 +30,7 @@
         </TYPE>
     </POWER>
     <POWER NAME="ResistanceBoost">
-        <COST>0</COST>
+        <COST>5</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
         <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
