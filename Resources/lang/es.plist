@@ -40,6 +40,8 @@
 	<string>MOVILIDAD</string>
 	<key>RESISTANCE</key>
 	<string>RESISTENCIA</string>
+	<key>TECHNOLOGY</key>
+	<string>TECNOLOGÍA</string>
 	<key>RECOLLECTION</key>
 	<string>RECOLECCIÓN</string>
 	<key>SUSTAINABILITY</key>

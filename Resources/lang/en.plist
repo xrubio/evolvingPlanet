@@ -40,6 +40,8 @@
 	<string>MOBILITY</string>
 	<key>RESISTANCE</key>
 	<string>RESISTANCE</string>
+	<key>TECHNOLOGY</key>
+	<string>TECHNOLOGY</string>
 	<key>RECOLLECTION</key>
 	<string>RECOLLECTION</string>
 	<key>SUSTAINABILITY</key>
@@ -125,5 +127,18 @@ The bots are ready and the team is waiting for your orders to start the next mis
 Well, the evidences support the similarities between the behaviour of katramiants and human beings. On Planet Earth, due to various reasons (technological innovations? Social relations? Environmental changes? Population Growth ?, …), human groups spread throughout Africa and subsequently Eurasia, colonizing the different environments they found on its path.</string>
 	<key>CONTEXT_LEVEL_3_DEPLOYMENT</key>
 	<string>Cassandra, instructions for Mission 3: the bots will be sent to different ecosystems until reaching the objectives 4 to 8 and then colonize the entire continent called Sigyn. Install additional powers in the bots, we want to imitate the human expansion along the Planet Earth.</string>
+	<key>BRIEF_LEVEL_4</key>
+	<string>Greetings, commander. 
+
+The tests of the system made after the third mission show that the natives of Katram 0.2 developed and used different types of technology during their expansion to the continent Sigyn. 
+
+The bots are ready and the team is waiting for your orders to start the next mission.</string>
+	<key>CONTEXT_LEVEL_4_INTRO</key>
+	<string>Thanks Cassandra. 
+
+Ok... technology. The hominid species called Homo Erectus come to my mind. The very earliest examples of Homo erectus date from around 2 million years ago in East Africa. The tools that they made were of significantly improved design from those of their ancestors, and included shaped hand axes and cleaving tools, which were used for specific functions, such as butchering animals. These early humans were skilled hunters and brilliant opportunists, quick to take advantage of different environments, which must have been a key factor in the success of the species. They are known to have used fire, making settlement possible in cold locations, and allowing them to cook food, which in turn led to the evolution of smaller jaws and less robust teeth.</string>
+	<key>CONTEXT_LEVEL_4_DEPLOYMENT</key>
+	<string>The expansion of the Katramiants seems to be very similar. Cassandra, these are the instructions for the next Mission: introduce the capability of developing technology in the bots and repeat the Mission 3. Let&apos;s see what happen with the addition of this element.
+Please execute the order.</string>
 </dict>
 </plist>

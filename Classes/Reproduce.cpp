@@ -16,8 +16,31 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     //INFLUENCIA CULTURAL - CALCULAR TIPUS
     int type = agent->getType();
     int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
-    int mobility = (agent->getValOfAttribute("MOBILITY") * 5) + 1;
+    int techVal = agent->getValOfAttribute("TECHNOLOGY");
+    float tech = 1;
+    switch (techVal) {
+        case 1:
+            tech = 1.1;
+            break;
+        case 2:
+            tech = 1.3;
+            break;
+        case 3:
+            tech = 1.5;
+            break;
+        case 4:
+            tech = 2;
+            break;
+        case 5:
+            tech = 2.5;
+            break;
+        default:
+            tech = 1;
+            break;
+    }
+    int mobility = (agent->getValOfAttribute("MOBILITY") * 4) + 1 * tech;
     if (probCulture > -1) {
+        probCulture = probCulture * tech;
         //CONTAR AGENTS ALREDEDOR SEGONS TIPUS
         vector<int> numAgentsPerType;
         for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
@@ -120,6 +143,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             probReproduction = 10;
             break;
         }
+        probReproduction = probReproduction * tech;
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
             if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 0) {

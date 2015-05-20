@@ -698,7 +698,8 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     pthread_join(timingThread, nullptr);
     GameData::getInstance()->setGameStarted(false);
     auto scene = UIProgressMap::createScene();
-    Director::getInstance()->replaceScene(scene);
+    auto transition = TransitionFade::create(1.0f, scene);
+    Director::getInstance()->pushScene(transition);
 }
 
 void UIGameplayMap::menuGoalsCallback(Ref* pSender)
