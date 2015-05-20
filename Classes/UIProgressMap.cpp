@@ -65,10 +65,10 @@ bool UIProgressMap::init()
     menu->setPosition(0, 0);
     progressMap0->addChild(menu, 5);
 
-    auto popupLevelBackground = Sprite::create("ProgressMapLevelPopupBackground.png");
+    auto popupLevelBackground = ProgressTimer::create(Sprite::create("ProgressMapLevelPopupBackground.png"));
     auto popupLevelBorderTop = Sprite::create("ProgressMapLevelPopupBorderTop.png");
     popupLevelBorderTop->setAnchorPoint(Vec2(0, 0));
-    popupLevelBorderTop->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height));
+    //popupLevelBorderTop->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height));
     auto labelBorderTop = Label::createWithTTF(LocalizedString::create("FIRST_ERA")->getCString(), "fonts/BebasNeue.otf", 60);
     labelBorderTop->setColor(Color3B(Color3B::WHITE));
     labelBorderTop->setPosition(Vec2(popupLevelBorderTop->getBoundingBox().size.width / 2,
@@ -76,7 +76,7 @@ bool UIProgressMap::init()
     popupLevelBorderTop->addChild(labelBorderTop);
     auto popupLevelBorderBottom = Sprite::create("ProgressMapLevelPopupBorderBottom.png");
     popupLevelBorderBottom->setAnchorPoint(Vec2(0, 1));
-    popupLevelBorderBottom->setPosition(Vec2(0, 0));
+    //popupLevelBorderBottom->setPosition(Vec2(0, 0));
     //ADD ARROWS TO MENU ITEM
     auto arrowRight = MenuItemImage::create("ProgressMapArrowOn.png", "ProgressMapArrowOff.png", "ProgressMapArrowOff.png");
     arrowRight->setPosition(Vec2(5 * popupLevelBorderBottom->getBoundingBox().size.width / 6,
@@ -92,6 +92,9 @@ bool UIProgressMap::init()
     popupLevelBackground->addChild(popupLevelBorderBottom);
     popupLevelBackground->setAnchorPoint(Vec2(0, 0.5));
     popupLevelBackground->setPosition(Vec2(0, progressMap0->getBoundingBox().size.height / 2));
+    
+    popupLevelBorderTop->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height / 2));
+    popupLevelBorderBottom->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height / 2));
 
     Vector<MenuItem*> levelButtons;
 
@@ -105,9 +108,13 @@ bool UIProgressMap::init()
             "fonts/BebasNeue.otf", 45);
         labelButtonLevel->setColor(Color3B::WHITE);
         labelButtonLevel->setPosition(Vec2(2 * buttonLevel->getBoundingBox().size.width / 4, buttonLevel->getBoundingBox().size.height / 2));
+        labelButtonLevel->setOpacity(0);
+        labelButtonLevel->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
         buttonLevel->addChild(labelButtonLevel);
         auto hexagonButtonLevel = Sprite::create("ProgressMapHexagonLevelOff.png");
         hexagonButtonLevel->setPosition(Vec2(buttonLevel->getBoundingBox().size.width / 4, buttonLevel->getBoundingBox().size.height / 2));
+        hexagonButtonLevel->setOpacity(0);
+        hexagonButtonLevel->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
         buttonLevel->addChild(hexagonButtonLevel);
         if (i > 4) {
             buttonLevel->setEnabled(false);
@@ -130,6 +137,8 @@ bool UIProgressMap::init()
             auto star = Sprite::create(starFile);
             star->setPosition(Vec2((4.65 * buttonLevel->getBoundingBox().size.width / 7) + (i * (star->getContentSize().width + star->getContentSize().width / 4)),
                 buttonLevel->getBoundingBox().size.height / 2));
+            star->setOpacity(0);
+            star->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
             buttonLevel->addChild(star);
         }
         buttonLevel->setPosition(Vec2(2 * popupLevelBackground->getBoundingBox().size.width / 5,
@@ -139,6 +148,19 @@ bool UIProgressMap::init()
     auto menuLevelButtons = Menu::createWithArray(levelButtons);
     menuLevelButtons->setPosition(Vec2(0, 0));
     popupLevelBackground->addChild(menuLevelButtons);
+    
+    ProgressFromTo* horitzontalTimer = ProgressFromTo::create(0.6, 0, 100);
+    popupLevelBackground->setType(ProgressTimer::Type::BAR);
+    popupLevelBackground->setBarChangeRate(Vec2(0, 1));
+    popupLevelBackground->setMidpoint(Vec2(0.5, 0.5));
+    popupLevelBackground->runAction(Sequence::create(DelayTime::create(0.6), horitzontalTimer, NULL));
+    
+    auto moveUp = MoveTo::create(0.6, Vec2(0, popupLevelBackground->getBoundingBox().size.height));
+    popupLevelBorderTop->runAction(Sequence::create(DelayTime::create(0.6), moveUp, NULL));
+    
+    auto moveDown = MoveTo::create(0.6, Vec2(0, 0));
+    popupLevelBorderBottom->runAction(Sequence::create(DelayTime::create(0.6), moveDown, NULL));
+    
     progressMap0->addChild(popupLevelBackground, 8);
 
     this->addChild(progressMap0);
@@ -517,7 +539,7 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
         break;
     case 4:
         filename = "level4";
-        GameLevel::getInstance()->agentPixelSize = 1;
+        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 5:
         filename = "level5";

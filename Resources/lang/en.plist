@@ -92,9 +92,38 @@ The first tests of the system are already finished. We have discovered the first
 The team is waiting for your orders to start the mission.</string>
 	<key>CONTEXT_LEVEL_1_INTRO</key>
 	<string>Thanks Cassandra. 
-This beginnings remind me our own origins. The information recorded by our explorer ships show that Katram 0.2 have very similar environmental conditions to our first settlements in Africa. The earliest evidences of human beings were documented in East African forests about 4 million years ago. These human ancestors, the Australopithecines, had diversified into many forms that shared a vital characteristic: bipedalism. Walking upright enabled them to operate away from the forests in the open terrain of the savannah, giving them a wider food gathering range than other animals. </string>
+
+This beginnings remind me our own origins. The information recorded by our explorer ships show that Katram 0.2 have very similar environmental conditions to our first settlements in Africa. The earliest evidences of human beings were documented in East African forests about 4 million years ago. These human ancestors, the Australopithecines, had diversified into many forms that shared a vital characteristic: bipedalism. Walking upright enabled them to operate away from the forests in the open terrain of the savannah, giving them a wider food gathering range than other animals. 
+
+Well, let&apos;s start the mission: the bots will be deployed along the forest zone with evidences of katramiants ??.</string>
 	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
-	<string>Well, let&apos;s start the mission: the bots will be deployed along the forest zone with evidences of katramiants ??. We want to explore how they manage to subsist and expand along a very different different ecosystem, similar to the savannas of Planet Earth, till arrive to the objective 1.
+	<string>We want to explore how they manage to subsist and expand along a very different different ecosystem, similar to the savannas of Planet Earth, till arrive to the objective 1.
 Cassandra, please execute the order.</string>
+	<key>BRIEF_LEVEL_2</key>
+	<string>Greetings, commander. 
+
+The tests of the system made after the first mission are already finished. We have discovered more traces of Katram 0.2 natives in the same peninsula. They seem to have spread to many other different ecosystems. 
+
+The bots are ready and the team is waiting for your orders to start the next mission.</string>
+	<key>CONTEXT_LEVEL_2_INTRO</key>
+	<string>Thanks Cassandra. 
+
+As we know, after the first movements to other ecosystems, our first ancestors flourished throughout much of sub-Saharan Africa by 3 million years ago. They were hunters, gatherers and scavengers, and remained within the African continent for about 2 million years, as is shown by sites like Olduvay (Tanzania), Koobi Fora (Kenya) and Swartkrans and Sterkfontein (South Africa). 
+Is probable that katramiants have behaved in a similar way. </string>
+	<key>CONTEXT_LEVEL_2_DEPLOYMENT</key>
+	<string>These are the instructions for Mission 2: the bots will expand to different ecosystems until reaching the objectives 2, 3 and 4, to test how the katramiants spread to different areas.
+Cassandra, please execute the order.</string>
+	<key>BRIEF_LEVEL_3</key>
+	<string>Greetings, commander. 
+
+The tests of the system made after the second mission are already finished. The evidences show that the traces of the natives of Katram 0.2 extend to the entire continent called Sigyn. 
+
+The bots are ready and the team is waiting for your orders to start the next mission.</string>
+	<key>CONTEXT_LEVEL_3_INTRO</key>
+	<string>Thanks Cassandra. 
+
+Well, the evidences support the similarities between the behaviour of katramiants and human beings. On Planet Earth, due to various reasons (technological innovations? Social relations? Environmental changes? Population Growth ?, …), human groups spread throughout Africa and subsequently Eurasia, colonizing the different environments they found on its path.</string>
+	<key>CONTEXT_LEVEL_3_DEPLOYMENT</key>
+	<string>Cassandra, instructions for Mission 3: the bots will be sent to different ecosystems until reaching the objectives 4 to 8 and then colonize the entire continent called Sigyn. Install additional powers in the bots, we want to imitate the human expansion along the Planet Earth.</string>
 </dict>
 </plist>

@@ -4,8 +4,8 @@
 <FILE_MAP>Level2</FILE_MAP>
 <AGENTS MAX_ALL="NO">
     <AGENT TYPE="0">
-        <NUM_INITIAL_AGENTS>200</NUM_INITIAL_AGENTS>
-        <MAX_AGENTS>800</MAX_AGENTS>
+        <NUM_INITIAL_AGENTS>400</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>900</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
@@ -19,26 +19,6 @@
         </ATTRIBUTES>
     </AGENT>
 </AGENTS>
-<POWERS>
-    <POWER NAME="ReproductionBoost">
-        <COST>5</COST>
-        <COOLDOWN>20</COOLDOWN>
-        <DURATION>5</DURATION>
-        <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
-        <TYPE TYPE_NAME="Multiplier">
-            <MULTIPLIER>3</MULTIPLIER>
-        </TYPE>
-    </POWER>
-    <POWER NAME="ResistanceBoost">
-        <COST>5</COST>
-        <COOLDOWN>20</COOLDOWN>
-        <DURATION>10</DURATION>
-        <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
-        <TYPE TYPE_NAME="Area">
-            <RADIUS>20</RADIUS>
-        </TYPE>
-    </POWER>
-</POWERS>
 <ACTIONS>
     <ACTION>Reproduce</ACTION>
     <ACTION>Die</ACTION>
