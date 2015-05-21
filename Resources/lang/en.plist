@@ -140,5 +140,15 @@ Ok... technology. The hominid species called Homo Erectus come to my mind. The v
 	<key>CONTEXT_LEVEL_4_DEPLOYMENT</key>
 	<string>The expansion of the Katramiants seems to be very similar. Cassandra, these are the instructions for the next Mission: introduce the capability of developing technology in the bots and repeat the Mission 3. Let&apos;s see what happen with the addition of this element.
 Please execute the order.</string>
+	<key>BRIEF_LEVEL_5</key>
+	<string>Greetings, commander. 
+
+The tests of the system made after the last mission show evidences of the existence of a different alien specie in Katram 0.2. Data collected show that both species were very similar, but the organic and technological remains exhibit certain differences. There is no doubt that both species coexisted in the same environments, commander. </string>
+	<key>CONTEXT_LEVEL_5_INTRO</key>
+	<string>Thanks Cassandra. 
+In our History we have evidences of similar situations. For example, Neanderthals and Homo sapiens are both human species. In 2014, a study of Neanderthal bones and tools indicates that Neanderthals died out in Europe between 41,000 and 39,000 years ago, and that Homo sapiens arrived in Europe between 45,000 and 43,000 years ago, it is now apparent that the two different human populations shared Europe for as long as 5,000 years. Both species were expert hunters, who pursued animals with wooden and stone-tipped spears. They made sophisticated tools and dwelt in caves, rock shelters, and open camps. They may have been capable of speech. </string>
+	<key>CONTEXT_LEVEL_5_DEPLOYMENT</key>
+	<string>Cassandra, please send bots with different characteristics to the surface and repeat the Mission 4. We want to see how they manage the encounter with a different group and how both groups expand. 
+Please transmits my orders. </string>
 </dict>
 </plist>

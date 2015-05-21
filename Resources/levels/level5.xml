@@ -4,40 +4,61 @@
 <FILE_MAP>Level5</FILE_MAP>
 <AGENTS MAX_ALL="NO">
     <AGENT TYPE="0">
-        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
-        <MAX_AGENTS>300</MAX_AGENTS>
+        <NUM_INITIAL_AGENTS>100</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>600</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>8</INITIAL_VALUE>
+                <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
-                <INITIAL_VALUE>5</INITIAL_VALUE>
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="TECHNOLOGY">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>-1</INITIAL_VALUE>
+                <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="HOSTILITY">
-                <INITIAL_VALUE>0</INITIAL_VALUE>
+                <INITIAL_VALUE>-1</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
     </AGENT>
     <AGENT TYPE="1">
-        <NUM_INITIAL_AGENTS>50</NUM_INITIAL_AGENTS>
-        <MAX_AGENTS>300</MAX_AGENTS>
+        <NUM_INITIAL_AGENTS>100</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>400</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>8</INITIAL_VALUE>
-            </ATTRIBUTE>
-            <ATTRIBUTE NAME="MOBILITY">
                 <INITIAL_VALUE>5</INITIAL_VALUE>
             </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>3</INITIAL_VALUE>
+            </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>-1</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="HOSTILITY">
-                <INITIAL_VALUE>0</INITIAL_VALUE>
+                <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
+        <DIRECTIONS>
+            <DIRECTION>
+                <STEP>65</STEP>
+                <POSITION X="319" Y="232"/>
+            </DIRECTION>
+            <DIRECTION>
+                <STEP>70</STEP>
+                <POSITION X="338" Y="175"/>
+            </DIRECTION>
+            <DIRECTION>
+                <STEP>75</STEP>
+                <POSITION X="366" Y="123"/>
+            </DIRECTION>
+            <DIRECTION>
+                <STEP>80</STEP>
+                <POSITION X="397" Y="67"/>
+            </DIRECTION>
+        </DIRECTIONS>
     </AGENT>
 </AGENTS>
 <POWERS>
@@ -48,22 +69,31 @@
     <ACTION>Die</ACTION>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Collection">
+    <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>60</MIN>
-        <MAX>100</MAX>
-        <AVERAGE>85</AVERAGE>
-        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
-        <GOAL_AMOUNT>50000</GOAL_AMOUNT>
+        <MIN>21</MIN>
+        <MAX>29</MAX>
+        <AVERAGE>25</AVERAGE>
+        <DESVIATION_2_STAR>2</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Collection">
-        <AGENT_TYPE>1</AGENT_TYPE>
-        <MIN>60</MIN>
-        <MAX>100</MAX>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>55</MIN>
+        <MAX>65</MAX>
+        <AVERAGE>60</AVERAGE>
+        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>12</COLOR_ZONE>
+    </GOAL>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>80</MIN>
+        <MAX>90</MAX>
         <AVERAGE>85</AVERAGE>
-        <DESVIATION_2_STAR>1</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>1</DESVIATION_3_STAR>
-        <GOAL_AMOUNT>76000</GOAL_AMOUNT>
+        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>13</COLOR_ZONE>
     </GOAL>
 </GOALS>
