@@ -320,7 +320,8 @@ void UIGoals::createContextLayout(Layout* layoutContext)
     context->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     //context->addChild(goalMap);
-    context->::UIGoals::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    context->setScaleX(GameData::getInstance()->getRaWConversion());
+    context->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContext->addChild(context);
 
     contextLabel = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString(),

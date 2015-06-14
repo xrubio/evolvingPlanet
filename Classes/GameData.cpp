@@ -7,6 +7,7 @@
 //
 
 #include "GameData.h"
+#include <cocos2d.h>
 #include "../libs/pugixml/pugixml.hpp"
 
 using namespace pugi;

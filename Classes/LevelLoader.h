@@ -10,9 +10,11 @@
 #define __simulplay__LevelLoader__
 
 #include "../libs/pugixml/pugixml.hpp"
+#include <vector>
 
 using namespace pugi;
 using namespace std;
+
 
 class LevelLoader {
 

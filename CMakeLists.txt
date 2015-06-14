@@ -25,7 +25,7 @@ cmake_policy(SET CMP0017 NEW)
 
 cmake_minimum_required(VERSION 2.8)
 
-set(APP_NAME MyGame)
+set(APP_NAME EvolvingPlanet)
 project (${APP_NAME})
 
 set(COCOS2D_ROOT ${CMAKE_SOURCE_DIR}/cocos2d)
@@ -113,80 +113,32 @@ include_directories(
   Classes
 )
 
+file(GLOB evPlanet_SRC
+    "Classes/*.cpp"
+)
+
+file(GLOB pugi_SRC
+    "libs/pugixml/*.cpp"
+)
+
+
 set(GAME_SRC
-    Classes/Act.cpp
-    Classes/CollectionGoal.cpp        
-    Classes/ExpansionGoal.cpp  
-    Classes/LevelLoader.cpp      
-    Classes/Reproduce.cpp    
-    Classes/UIConfiguration.cpp  
-    Classes/UIMultiplierPower.cpp
-    Classes/Agent.cpp        
-    Classes/Deplete.cpp                
-    Classes/GameData.cpp       
-    Classes/LocalizedString.cpp  
-    Classes/SlidingMenu.cpp  
-    Classes/UICredits.cpp        
-    Classes/UIPower.cpp
-    Classes/AppDelegate.cpp  
-    Classes/Die.cpp                    
-    Classes/GameLevel.cpp      
-    Classes/MultiplierPower.cpp  
-    Classes/Timing.cpp       
-    Classes/UIGameplayMap.cpp    
-    Classes/UIProgressMap.cpp
-    Classes/AreaPower.cpp    
-    Classes/DrawPoint.cpp              
-    Classes/Goal.cpp           
-    Classes/Position.cpp         
-    Classes/UIAgents.cpp     
-    Classes/UIGoals.cpp
-    Classes/Collect.cpp      
-    Classes/EnvironmentAdaptation.cpp  
-    Classes/Kill.cpp           
-    Classes/Power.cpp            
-    Classes/UIAreaPower.cpp  
-    Classes/UIMainMenu.cpp
-    libs/pugixml/pugixml.cpp
+    ${evPlanet_SRC}        
+    ${pugi_SRC}        
   ${PLATFORM_SPECIFIC_SRC}
 )
 
+file(GLOB evPlanet_HEADERS
+    "Classes/*.h"
+)
+
+file(GLOB pugi_HEADERS
+    "libs/pugixml/*.hpp"
+)
+
 set(GAME_HEADERS
-    Classes/Act.h
-    Classes/CollectionGoal.h
-    Classes/ExpansionGoal.h
-    Classes/LevelLoader.h
-    Classes/Reproduce.h
-    Classes/UIConfiguration.h
-    Classes/UIMultiplierPower.h
-    Classes/Agent.h
-    Classes/Deplete.h 
-    Classes/GameData.h
-    Classes/LocalizedString.h
-    Classes/SlidingMenu.h
-    Classes/UICredits.h 
-    Classes/UIPower.h
-    Classes/AppDelegate.h
-    Classes/Die.h
-    Classes/GameLevel.h 
-    Classes/MultiplierPower.h 
-    Classes/Timing.h 
-    Classes/UIGameplayMap.h   
-    Classes/UIProgressMap.h
-    Classes/AreaPower.h  
-    Classes/DrawPoint.h    
-    Classes/Goal.h   
-    Classes/Position.h
-    Classes/UIAgents.h
-    Classes/UIGoals.h
-    Classes/Collect.h  
-    Classes/EnvironmentAdaptation.h 
-    Classes/Kill.h    
-    Classes/Power.h   
-    Classes/UIAreaPower.h
-    Classes/UIMainMenu.h
-    libs/pugixml/pugiconfig.hpp
-    libs/pugixml/pugixml.hpp
+    ${evPlanet_HEADERS}        
+    ${pugi_HEADERS}        
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 
