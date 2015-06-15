@@ -48,8 +48,6 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("StarFull.png");
     Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
     
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelPopupBackground.png");
-
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
@@ -142,8 +140,7 @@ bool UIMainMenu::init()
         "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
     //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
-    configurationButton->setPosition(Vec2((2 * visibleSize.width / 25),
-        (2 * visibleSize.height / 18)));
+    configurationButton->setPosition(Vec2((2 * visibleSize.width / 25), (2 * visibleSize.height / 18)));
     auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 30);
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
@@ -162,10 +159,19 @@ bool UIMainMenu::init()
     creditsButton->addChild(credLabel);
     //menuButtons.pushBack(creditsButton);
 
-    /*MenuItem* exitButton = MenuItemImage::create(
-        "ExitButton.png", "ExitButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
-    exitButton->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + (visibleSize.height / 8)));
-    menuButtons.pushBack(exitButton);*/
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_WP8 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    {
+    auto exitButton = MenuItemImage::create(
+        "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
+    exitButton->setAnchorPoint(Vec2(0, 0.5));
+    exitButton->setPosition(Vec2((2 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
+    auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT")->getCString(), "fonts/BebasNeue.otf", 30);
+    exitLabel->setColor(Color3B(73, 109, 118));
+    exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
+    exitButton->addChild(exitLabel);
+    exitButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    menuButtons.pushBack(exitButton);
+    }
 
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(Vec2(0, 0));
@@ -253,7 +259,7 @@ void UIMainMenu::menuCreditsCallback(Ref* pSender)
 
 void UIMainMenu::menuExitCallback(Ref* pSender)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
     MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.", "Alert");
     return;
 #endif
