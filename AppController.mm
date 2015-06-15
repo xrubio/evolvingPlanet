@@ -50,7 +50,7 @@ static AppDelegate s_sharedApplication;
     // Init the CCEAGLView
     CCEAGLView *eaglView = [CCEAGLView viewWithFrame: [window bounds]
                                          pixelFormat: (NSString*)cocos2d::GLViewImpl::_pixelFormat
-                                         depthFormat: cocos2d::GLViewImpl::_depthFormat
+                                         depthFormat: GL_DEPTH24_STENCIL8_OES
                                   preserveBackbuffer: NO
                                           sharegroup: nil
                                        multiSampling: NO
