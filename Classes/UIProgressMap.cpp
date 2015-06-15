@@ -502,7 +502,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     auto delayPopup = DelayTime::create(0.4);
     auto popupMoveTo = MoveTo::create(1, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto popupEase = EaseBackOut::create(popupMoveTo);
-    auto seqShowPopup = Sequence::create(delayPopup, popupEase, NULL);
+    auto seqShowPopup = Sequence::create(popupEase, NULL);
     popupBackground->runAction(seqShowPopup);
 
     //PAINT TROPHY
