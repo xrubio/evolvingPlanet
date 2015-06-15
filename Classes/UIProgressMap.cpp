@@ -240,15 +240,27 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 
 void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
 {
+
     auto pMenuItem = (MenuItem*)(pSender);
     bool doNothing = false;
     int tag = pMenuItem->getTag();
     MenuItemImage* levelButton;
     Sprite* shadow;
-    if (progressMap0->getChildByTag(tag) == nullptr) {
+    if (progressMap0->getChildByTag(tag) == nullptr and tag != tagLevelSelected) {
+        tagLevelSelected = tag;
+        //Flags
+        for (int i = 0; i < 11; i++) {
+            if (progressMap0->getChildByTag(i) != nullptr) {
+                progressMap0->removeChildByTag(i);
+            }
+        }
+        //Hexagon
+        if (progressMap0->getChildByTag(102) != nullptr) {
+            progressMap0->removeChildByTag(102);
+        }
+        restoreProgressMap(nullptr);
         switch (tag) {
         case 1: {
-            restoreProgressMap(nullptr);
             levelButton = MenuItemImage::create(
                 "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
             levelButton->setPosition((80 * progressMap0->getContentSize().width / 204), (32 * progressMap0->getContentSize().height / 155));
@@ -265,7 +277,6 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             break;
         }
         case 2: {
-            restoreProgressMap(nullptr);
             levelButton = MenuItemImage::create(
                 "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
             levelButton->setPosition(76 * progressMap0->getContentSize().width / 204, 54 * progressMap0->getContentSize().height / 155);
@@ -282,7 +293,6 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             break;
         }
         case 3: {
-            restoreProgressMap(nullptr);
             levelButton = MenuItemImage::create(
                 "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
             levelButton->setPosition(55 * progressMap0->getContentSize().width / 204, 71 * progressMap0->getContentSize().height / 155);
@@ -299,7 +309,6 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             break;
         }
         case 4: {
-            restoreProgressMap(nullptr);
             levelButton = MenuItemImage::create(
                 "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
             levelButton->setPosition(55 * progressMap0->getContentSize().width / 204, 71 * progressMap0->getContentSize().height / 155);
@@ -316,7 +325,6 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             break;
         }
         case 5: {
-            restoreProgressMap(nullptr);
             levelButton = MenuItemImage::create(
                 "LevelPointerButton.png", "LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
             levelButton->setPosition(52 * progressMap0->getContentSize().width / 204, 103 * progressMap0->getContentSize().height / 155);
@@ -562,12 +570,6 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
 
 void UIProgressMap::restoreProgressMap(Ref* pSender)
 {
-    //Flags
-    for (int i = 0; i < 11; i++) {
-        if (progressMap0->getChildByTag(i) != nullptr) {
-            progressMap0->removeChildByTag(i);
-        }
-    }
     //Menu
     if (this->getChildByTag(100) != nullptr) {
         this->removeChildByTag(100);
@@ -575,9 +577,5 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
     //Popup
     if (this->getChildByTag(101) != nullptr) {
         this->removeChildByTag(101);
-    }
-    //Hexagon
-    if (progressMap0->getChildByTag(102) != nullptr) {
-        progressMap0->removeChildByTag(102);
     }
 }

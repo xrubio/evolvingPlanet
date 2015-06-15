@@ -29,6 +29,7 @@ public:
 private:
     cocos2d::ui::ScrollView* scrollView;
     Sprite* progressMap0;
+    int tagLevelSelected = 0;
 };
 
 #endif /* defined(__simulplay__UIProgressMap__) */
