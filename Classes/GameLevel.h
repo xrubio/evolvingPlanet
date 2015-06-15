@@ -119,7 +119,7 @@ public:
     void playLevel(void);
     void resetLevel(void);
 
-    inline bool validatePosition(int posx, int posy);
+    bool validatePosition(int posx, int posy);
 
     bool paint = false;
     bool ended = false;
@@ -161,7 +161,7 @@ private:
     int idCounter = 0;
 
     int timeSteps = 0;
-    float timeSpeed = 2.5;
+    float timeSpeed = 0;
     float timeSpeedBeforePause = 2.5;
 
     int evolutionPoints = 10;

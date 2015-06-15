@@ -357,7 +357,7 @@ bool UIGameplayMap::init()
     }
 
     time_t wait;
-    wait = clock();
+    //wait = clock();
     /*while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.2)
         ;*/
     if (GameData::getInstance()->getGameStarted() == false) {
