@@ -535,7 +535,7 @@ void GameLevel::resetLevel(void)
     }
 
     timeSteps = 0;
-    timeSpeed = 2.5;
+    timeSpeed = 0;
 
     evolutionPoints = 10;
 

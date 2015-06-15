@@ -95,6 +95,7 @@ private:
     MenuItem* backButton;
     ProgressTimer* timeBar;
     Sprite* timeBorderBar;
+    Sprite* pauseDarkBackground;
     Sprite* goalPopup;
     float timeProgressBar = 0.0;
 

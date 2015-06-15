@@ -211,7 +211,6 @@ bool UIGameplayMap::init()
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     playButton->setPosition(Vec2(fastForwardButton->getPosition().x - (14 * visibleSize.width / 204),
         fastForwardButton->getPosition().y));
-    playButton->setEnabled(false);
     timeButtons.pushBack(playButton);
 
     MenuItem* pauseButton = MenuItemImage::create(
@@ -219,6 +218,16 @@ bool UIGameplayMap::init()
     pauseButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseButton->setPosition(Vec2(playButton->getPosition().x - (14 * visibleSize.width / 204),
         playButton->getPosition().y));
+    pauseButton->setEnabled(false);
+    pauseDarkBackground = Sprite::create("EndedGameBackground.png");
+    pauseDarkBackground->setOpacity(180);
+    pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("PAUSE")->getCString()), "fonts/BebasNeue.otf", 170);
+    pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
+    pauseDarkLabel->setPosition(pauseDarkBackground->getBoundingBox().size.width / 2, pauseDarkBackground->getBoundingBox().size.height / 2);
+    pauseDarkBackground->addChild(pauseDarkLabel);
+    this->addChild(pauseDarkBackground, 0);
     timeButtons.pushBack(pauseButton);
 
     Menu* timeMenu = Menu::createWithArray(timeButtons);
@@ -720,6 +729,7 @@ void UIGameplayMap::pauseCallback(Ref* pSender)
     MenuItem* playButton = (MenuItem*)timeMenu->getChildren().at(1);
     fastForwardButton->setEnabled(true);
     playButton->setEnabled(true);
+    pauseDarkBackground->setVisible(true);
 
     GameLevel::getInstance()->setTimeSpeed(0);
 }
@@ -733,6 +743,7 @@ void UIGameplayMap::playCallback(Ref* pSender)
     MenuItem* pauseButton = (MenuItem*)timeMenu->getChildren().at(2);
     fastForwardButton->setEnabled(true);
     pauseButton->setEnabled(true);
+    pauseDarkBackground->setVisible(false);
 
     GameLevel::getInstance()->setTimeSpeed(2.5);
 }
@@ -746,6 +757,7 @@ void UIGameplayMap::fastForwardCallback(Ref* pSender)
     MenuItem* pauseButton = (MenuItem*)timeMenu->getChildren().at(2);
     playButton->setEnabled(true);
     pauseButton->setEnabled(true);
+    pauseDarkBackground->setVisible(false);
 
     GameLevel::getInstance()->setTimeSpeed(1.265);
 }
