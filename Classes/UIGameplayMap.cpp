@@ -220,12 +220,12 @@ bool UIGameplayMap::init()
         playButton->getPosition().y));
     pauseButton->setEnabled(false);
     pauseDarkBackground = Sprite::create("EndedGameBackground.png");
-    pauseDarkBackground->setOpacity(180);
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    pauseDarkBackground->setOpacity(180);
     auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("PAUSE")->getCString()), "fonts/BebasNeue.otf", 170);
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
-    pauseDarkLabel->setPosition(pauseDarkBackground->getBoundingBox().size.width / 2, pauseDarkBackground->getBoundingBox().size.height / 2);
+    pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
     pauseDarkBackground->addChild(pauseDarkLabel);
     this->addChild(pauseDarkBackground, 0);
     timeButtons.pushBack(pauseButton);

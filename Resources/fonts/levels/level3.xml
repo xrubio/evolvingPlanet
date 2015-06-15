@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NUM_LEVEL>3</NUM_LEVEL>
+<NAME_LEVEL>Cultural Influence</NAME_LEVEL>
+<FILE_MAP>Level3</FILE_MAP>
+<AGENTS MAX_ALL="NO" >
+    <AGENT TYPE="0">
+        <NUM_INITIAL_AGENTS>350</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>1200</MAX_AGENTS>
+        <ATTRIBUTES>
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="RESISTANCE">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
+            </ATTRIBUTE>
+        </ATTRIBUTES>
+    </AGENT>
+</AGENTS>
+<POWERS>
+    <POWER NAME="ReproductionBoost">
+        <COST>5</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>5</DURATION>
+        <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
+        <TYPE TYPE_NAME="Multiplier">
+            <MULTIPLIER>3</MULTIPLIER>
+        </TYPE>
+    </POWER>
+    <POWER NAME="ResistanceBoost">
+        <COST>5</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>10</DURATION>
+        <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
+        <TYPE TYPE_NAME="Area">
+            <RADIUS>20</RADIUS>
+        </TYPE>
+    </POWER>
+</POWERS>
+<ACTIONS>
+    <ACTION>Reproduce</ACTION>
+    <ACTION>Die</ACTION>
+</ACTIONS>
+<GOALS>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>18</MIN>
+        <MAX>30</MAX>
+        <AVERAGE>24</AVERAGE>
+        <DESVIATION_2_STAR>2</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>11</COLOR_ZONE>
+    </GOAL>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>60</MIN>
+        <MAX>75</MAX>
+        <AVERAGE>70</AVERAGE>
+        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>12</COLOR_ZONE>
+    </GOAL>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>90</MIN>
+        <MAX>110</MAX>
+        <AVERAGE>100</AVERAGE>
+        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>13</COLOR_ZONE>
+    </GOAL>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>140</MIN>
+        <MAX>160</MAX>
+        <AVERAGE>150</AVERAGE>
+        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>14</COLOR_ZONE>
+    </GOAL>
+    <GOAL TYPE_GOAL="Expansion">
+        <AGENT_TYPE>0</AGENT_TYPE>
+        <MIN>170</MIN>
+        <MAX>190</MAX>
+        <AVERAGE>180</AVERAGE>
+        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <COLOR_ZONE>15</COLOR_ZONE>
+    </GOAL>
+</GOALS>

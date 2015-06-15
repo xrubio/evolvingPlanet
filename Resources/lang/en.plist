@@ -8,6 +8,8 @@
 	<string>BACK</string>
 	<key>RESET</key>
 	<string>RESET</string>
+	<key>PAUSE</key>
+	<string>PAUSE</string>
 	<key>WARNING</key>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>

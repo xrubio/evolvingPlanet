@@ -8,6 +8,8 @@
 	<string>TORNAR</string>
 	<key>RESET</key>
 	<string>RESETEJAR</string>
+	<key>PAUSE</key>
+	<string>PAUSA</string>
 	<key>WARNING</key>
 	<string>ALERTA</string>
 	<key>WARNING_TEXT</key>
