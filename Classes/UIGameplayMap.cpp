@@ -695,6 +695,38 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     }
 }
 
+void UIGameplayMap::onMouseScroll(Event* event)
+{
+    if (endGameWindowPainted == false) {
+        // ZOOM
+        EventMouse* e = (EventMouse*)event;
+            if (checkPowersClicked() == false) {
+                gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
+                                      zoomScale * GameData::getInstance()->getRaHConversion());
+                
+                Point reLocate = gameplayMap->getPosition();
+                checkBackgroundLimitsInTheScreen(reLocate);
+                while (!moveBackgroundLeft) {
+                    reLocate.x -= e->getScrollX();
+                    checkBackgroundLimitsInTheScreen(reLocate);
+                }
+                while (!moveBackgroundRight) {
+                    reLocate.x += e->getScrollX();
+                    checkBackgroundLimitsInTheScreen(reLocate);
+                }
+                while (!moveBackgroundUp) {
+                    reLocate.y += e->getScrollY();
+                    checkBackgroundLimitsInTheScreen(reLocate);
+                }
+                while (!moveBackgroundDown) {
+                    reLocate.y -= e->getScrollY();
+                    checkBackgroundLimitsInTheScreen(reLocate);
+                }
+                gameplayMap->setPosition(reLocate);
+            }
+        }
+}
+
 void UIGameplayMap::menuBackCallback(Ref* pSender)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
