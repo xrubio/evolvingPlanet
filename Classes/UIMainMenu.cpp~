@@ -259,8 +259,6 @@ void UIMainMenu::menuCreditsCallback(Ref* pSender)
 
 void UIMainMenu::menuExitCallback(Ref* pSender)
 {
-    if (stoppedAnimation or allActionsFinished()) {
-
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
     MessageBox("You pressed the close button. Windows Store Apps do not implement a close button.", "Alert");
     return;
@@ -271,10 +269,6 @@ void UIMainMenu::menuExitCallback(Ref* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
-    }
-    else {
-        endActions();
-    }
 }
 
 void UIMainMenu::endActions(void)

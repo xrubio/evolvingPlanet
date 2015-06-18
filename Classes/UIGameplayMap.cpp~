@@ -708,7 +708,8 @@ void UIGameplayMap::onMouseScroll(Event* event)
         // ZOOM
         EventMouse* e = (EventMouse*)event;
         if (checkPowersClicked() == false) {
-			zoomScale -= e->getScrollY() / 5;
+		   zoomScale -= e->getScrollY() / 5; // kPinchZoomCoeff is constant = 1.0 /
+		    // 200.0f Adjust it for your needs
 		    if (zoomScale < 1) {
 		        zoomScale = 1;
 		    }
