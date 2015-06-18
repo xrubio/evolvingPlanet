@@ -83,7 +83,7 @@ bool UIGoals::init()
     }
 
     pages = PageView::create();
-    pages->setCustomScrollThreshold(0.3);
+    pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->addChild(background);
     //pages->setBackGroundImage("MainMenuBackground.png");
     pages->setTouchEnabled(true);
