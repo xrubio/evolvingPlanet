@@ -44,6 +44,10 @@ private:
     TextFieldTTF* context;
     Sprite* contextImage;
     Label* evolutionPointsNumberIcon;
+    
+    MenuItemImage* hexagonButtonLevel0;
+    MenuItemImage* hexagonButtonLevel1;
+    MenuItemImage* hexagonButtonLevel2;
 
     void createContextLayout(Layout* layoutContext);
     void setLevelGoals(Layout* layout);

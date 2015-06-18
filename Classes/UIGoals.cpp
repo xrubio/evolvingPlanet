@@ -37,6 +37,29 @@ bool UIGoals::init()
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     //this->addChild(background, 0);
 
+    hexagonButtonLevel0 = MenuItemImage::create("ProgressMapHexagonLevelOn.png", "ProgressMapHexagonLevelOff.png",
+                                                        "ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel0->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel0->setPosition(Vec2((visibleSize.width / 2) - (hexagonButtonLevel0->getBoundingBox().size.width * 3),
+                                          visibleSize.height / 20));
+    hexagonButtonLevel0->setEnabled(false);
+    this->addChild(hexagonButtonLevel0, 1);
+    
+    hexagonButtonLevel1 = MenuItemImage::create("ProgressMapHexagonLevelOn.png", "ProgressMapHexagonLevelOff.png",
+                                                     "ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel1->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel1->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 20));
+    hexagonButtonLevel1->setEnabled(false);
+    this->addChild(hexagonButtonLevel1, 1);
+    
+    hexagonButtonLevel2 = MenuItemImage::create("ProgressMapHexagonLevelOn.png", "ProgressMapHexagonLevelOff.png",
+                                                     "ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel2->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel2->setPosition(Vec2((visibleSize.width / 2) + (hexagonButtonLevel2->getBoundingBox().size.width * 3),
+                                          visibleSize.height / 20));
+    hexagonButtonLevel2->setEnabled(false);
+    this->addChild(hexagonButtonLevel2, 1);
+
     auto title = Label::createWithSystemFont(LocalizedString::create("GOALS")->getCString(), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height - ((visibleSize.height / 8))));
@@ -519,6 +542,25 @@ void UIGoals::createUIAgent(Layout* layout)
 void UIGoals::update(float delta)
 {
     //GameLevel::getInstance()->setCurrentAgentType(pages->getCurPageIndex() - 2);
+    if (pages->getCurPageIndex() == 0)
+    {
+        hexagonButtonLevel0->setEnabled(true);
+        hexagonButtonLevel1->setEnabled(false);
+        hexagonButtonLevel2->setEnabled(false);
+    }
+    else if (pages->getCurPageIndex() == 1)
+    {
+        hexagonButtonLevel0->setEnabled(false);
+        hexagonButtonLevel1->setEnabled(true);
+        hexagonButtonLevel2->setEnabled(false);
+    }
+    else if (pages->getCurPageIndex() == 2)
+    {
+        hexagonButtonLevel0->setEnabled(false);
+        hexagonButtonLevel1->setEnabled(false);
+        hexagonButtonLevel2->setEnabled(true);
+    }
+    
     if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {
         arrowBack->setVisible(true);
         arrowNext->setVisible(true);

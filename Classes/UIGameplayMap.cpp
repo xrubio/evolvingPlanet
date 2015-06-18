@@ -415,6 +415,9 @@ bool UIGameplayMap::init()
             attBackground->setAnchorPoint(Vec2(0, 0));
             attBackground->setPosition(Vec2(visibleSize.width - attBackground->getBoundingBox().size.width,
                 (18.5 * visibleSize.height / 155)));
+            auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
+            auto ease = EaseBackInOut::create(move);
+            attBackground->runAction(ease);
             this->addChild(attBackground, 5);
             auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png",
                 CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
