@@ -14,7 +14,6 @@
 class ExpansionGoal : public Goal {
 
 public:
-    ExpansionGoal(){};
     ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color = 0);
 
     int getColorZone(void);
@@ -32,7 +31,7 @@ public:
 
 private:
     int colorZone;
-    int minDistanceToGoal = 99999;
+    int minDistanceToGoal;
     Position centerArea;
 };
 

@@ -8,14 +8,9 @@
 
 #include "AreaPower.h"
 
-AreaPower::AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float rad) : Power(name, id)
+AreaPower::AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float rad) : Power(name, id, c, dur, cl, dl, attr, t)
 {
-    cooldown = c;
-    duration = dur;
-    cooldownLeft = cl;
-    durationLeft = dl;
-    attribute = attr;
-    type = t;
+
     radius = rad;
 }
 

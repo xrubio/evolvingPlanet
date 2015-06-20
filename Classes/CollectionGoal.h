@@ -14,7 +14,6 @@
 class CollectionGoal : public Goal {
 
 public:
-    CollectionGoal(){};
     CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm);
 
     int getGoalAmount(void);
@@ -29,7 +28,7 @@ public:
     }
 private:
     int goalAmount;
-    int currentAmount = 0;
+    int currentAmount;
 };
 
 #endif /* defined(__simulplay__CollectionGoal__) */

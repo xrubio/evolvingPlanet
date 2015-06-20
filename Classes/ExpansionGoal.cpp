@@ -9,15 +9,8 @@
 #include "ExpansionGoal.h"
 #include "UIGameplayMap.h"
 
-ExpansionGoal::ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color)
+ExpansionGoal::ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color) : Goal(agType, min, max, average, des2, des3), colorZone(color), minDistanceToGoal(99999)
 {
-    agentType = agType;
-    minTime = min;
-    maxTime = max;
-    averageTime = average;
-    desviation2Star = des2;
-    desviation3Star = des3;
-    colorZone = color;
 }
 
 int ExpansionGoal::getColorZone(void)

@@ -20,7 +20,6 @@ enum GoalType
 class Goal {
 
 public:
-    Goal(){};
     Goal(int agentType, int min, int max, int average, int des2, int des3);
 
     int getAgentType(void);
@@ -50,9 +49,9 @@ protected:
     int averageTime;
     int desviation2Star;
     int desviation3Star;
-    bool completed = false;
+    bool completed;
     //1, 2, 3 stars
-    int score = 0;
+    int score;
 };
 
 #endif /* defined(__simulplay__Goal__) */

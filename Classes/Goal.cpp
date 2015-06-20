@@ -8,14 +8,8 @@
 
 #include "Goal.h"
 
-Goal::Goal(int agType, int min, int max, int average, int des2, int des3)
+Goal::Goal(int agType, int min, int max, int average, int des2, int des3) : agentType(agType), minTime(min), maxTime(max), averageTime(average), desviation2Star(des2), desviation3Star(des3), completed(false), score(0)
 {
-    agentType = agType;
-    minTime = min;
-    maxTime = max;
-    averageTime = average;
-    desviation2Star = des2;
-    desviation3Star = des3;
 }
 
 int Goal::getAgentType(void)

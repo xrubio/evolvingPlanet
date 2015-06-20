@@ -14,7 +14,6 @@
 class AreaPower : public Power {
 
 public:
-    AreaPower(){};
     AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float rad);
 
     float getRadius(void);
@@ -25,3 +24,4 @@ private:
 };
 
 #endif /* defined(__simulplay__AreaPower__) */
+

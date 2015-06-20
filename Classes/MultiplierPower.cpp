@@ -8,14 +8,8 @@
 
 #include "MultiplierPower.h"
 
-MultiplierPower::MultiplierPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float mult) : Power(name, id)
+MultiplierPower::MultiplierPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float mult) : Power(name, id, c, dur, cl, dl, attr, t)
 {
-    cooldown = c;
-    duration = dur;
-    cooldownLeft = cl;
-    durationLeft = dl;
-    attribute = attr;
-    type = t;
     multiplier = mult;
 }
 

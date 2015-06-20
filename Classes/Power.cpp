@@ -8,7 +8,7 @@
 
 #include "Power.h"
 
-Power::Power( const std::string & name, const PowerId & id ) : name(name), id(id)
+Power::Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t ) : name(name), id(id), cooldown(c), duration(dur), cooldownLeft(cl), durationLeft(dl), attribute(attr), type(t)
 {
 }
 
@@ -82,3 +82,4 @@ void Power::setType(string t)
 {
     type = t;
 }
+
