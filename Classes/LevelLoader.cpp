@@ -19,6 +19,7 @@
 #include "UIGameplayMap.h"
 #include "ExpansionGoal.h"
 #include "CollectionGoal.h"
+#include "Power.h"
 
 #include "cocos2d.h"
 #include <iostream>
@@ -86,19 +87,22 @@ void LevelLoader::loadXmlFile(string filename)
     xml_node pws = doc.child("POWERS").child("POWER");
     while (pws != nullptr) {
         string nameString = pws.attribute("NAME").value();
-        int nameInt = -1;
-        //0 = ReproductionBoost, 1 = ResistanceBoost, 2 = RecollectionBoost, 3 = RestoreLand
-        if (nameString == "ReproductionBoost") {
-            nameInt = 0;
+        PowerId id = NoPower;
+        if (nameString == "ReproductionBoost")
+        {
+            id = ReproductionBoost;
         }
-        else if (nameString == "ResistanceBoost") {
-            nameInt = 1;
+        else if (nameString == "ResistanceBoost")
+        {
+            id = ResistanceBoost;
         }
-        else if (nameString == "RecollectionBoost") {
-            nameInt = 2;
+        else if (nameString == "RecollectionBoost")
+        {
+            id = RecollectionBoost;
         }
-        else if (nameString == "RestoreLand") {
-            nameInt = 3;
+        else if (nameString == "RestoreLand")
+        {
+            id = RestoreLand;
         }
         int cooldown = atoi(pws.child("COOLDOWN").child_value());
         int duration = atoi(pws.child("DURATION").child_value());
@@ -108,11 +112,11 @@ void LevelLoader::loadXmlFile(string filename)
         string type = pws.child("TYPE").attribute("TYPE_NAME").value();
         if (type == "Multiplier") {
             float multiplier = atof(pws.child("TYPE").child("MULTIPLIER").child_value());
-            GameLevel::getInstance()->addPower(new MultiplierPower(nameString, nameInt, cooldown, duration, durationLeft, cooldownLeft, attribute, type, multiplier));
+            GameLevel::getInstance()->addPower(new MultiplierPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, multiplier));
         }
         else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
-            GameLevel::getInstance()->addPower(new AreaPower(nameString, nameInt, cooldown, duration, durationLeft, cooldownLeft, attribute, type, radius));
+            GameLevel::getInstance()->addPower(new AreaPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, radius));
         }
         pws = pws.next_sibling("POWER");
     }

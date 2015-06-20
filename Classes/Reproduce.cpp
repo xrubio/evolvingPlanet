@@ -145,10 +145,13 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         }
         probReproduction = probReproduction * tech;
         Power* p = nullptr;
-        for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-            if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 0) {
-                p = GameLevel::getInstance()->getPowers()[i];
+        for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
+        {
+            if (GameLevel::getInstance()->getPowers()[i]->getId() != ReproductionBoost)
+            {
+                continue;
             }
+            p = GameLevel::getInstance()->getPowers()[i];
         }
         if (p != nullptr and p->getDurationLeft() > 0) {
             probReproduction += 30;

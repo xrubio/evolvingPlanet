@@ -13,17 +13,29 @@
 
 using namespace std;
 
-class Power {
+enum PowerId
+{
+   ReproductionBoost = 0,
+   ResistanceBoost = 1,
+   RecollectionBoost = 2,
+   RestoreLand = 3,
+   NoPower = -1
+};
+
+class Power
+{
+    string name;
+    PowerId id;
 
 public:
-    Power(){};
+    Power( const std::string & name = "NoPower", const PowerId & id = NoPower);
     Power(Power const&){};
     Power& operator=(Power const&);
 
-    string getNameString(void);
-    void setNameString(string n);
-    int getNameInt(void);
-    void setNameInt(int n);
+    virtual ~Power(){}
+
+    const string & getName() const;
+    const PowerId & getId() const;
     float getCooldown(void);
     void setCooldown(float c);
     float getDuration(void);
@@ -38,9 +50,6 @@ public:
     void setType(string t);
 
 protected:
-    string nameString;
-    //0 = ReproductionBoost, 1 = ResistanceBoost, 2 = RecollectionBoost, 3 = RestoreLand
-    int nameInt;
     float cooldown;
     float duration;
     float cooldownLeft;
@@ -50,3 +59,4 @@ protected:
 };
 
 #endif /* defined(__simulplay__Power__) */
+

@@ -32,3 +32,4 @@ private:
 };
 
 #endif /* defined(__simulplay__CollectionGoal__) */
+

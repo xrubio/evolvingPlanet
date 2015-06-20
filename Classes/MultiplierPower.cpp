@@ -8,10 +8,8 @@
 
 #include "MultiplierPower.h"
 
-MultiplierPower::MultiplierPower(string nS, int nI, float c, float dur, float cl, float dl, string attr, string t, float mult)
+MultiplierPower::MultiplierPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float mult) : Power(name, id)
 {
-    nameString = nS;
-    nameInt = nI;
     cooldown = c;
     duration = dur;
     cooldownLeft = cl;

@@ -8,10 +8,8 @@
 
 #include "AreaPower.h"
 
-AreaPower::AreaPower(string nS, int nI, float c, float dur, float cl, float dl, string attr, string t, float rad)
+AreaPower::AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float rad) : Power(name, id)
 {
-    nameString = nS;
-    nameInt = nI;
     cooldown = c;
     duration = dur;
     cooldownLeft = cl;

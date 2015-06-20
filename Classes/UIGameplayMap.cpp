@@ -1174,7 +1174,8 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, int posx, int posy, int map)
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
 {
     int i = 0;
-    while (powerButtons[i]->getPower()->getNameInt() != 1) {
+    while(powerButtons[i]->getPower()->getId() != ResistanceBoost)
+    {
         i++;
     }
     Vec2 center = ((UIAreaPower*)powerButtons[i])->getArea()->getPosition();
@@ -1185,7 +1186,7 @@ bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
 void UIGameplayMap::restoreLand(void)
 {
     int i = 0;
-    while (powerButtons[i]->getPower()->getNameInt() != 3) {
+    while (powerButtons[i]->getPower()->getId() != RestoreLand) {
         i++;
     }
     float radius = 37.0; //((UIAreaPower*)powerButtons.at(i))->getScale();

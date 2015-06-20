@@ -55,10 +55,13 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     }
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     Power* p = nullptr;
-    for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-        if (GameLevel::getInstance()->getPowers()[i]->getNameInt() == 1) {
-            p = GameLevel::getInstance()->getPowers()[i];
+    for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
+    {
+        if (GameLevel::getInstance()->getPowers()[i]->getId() != ResistanceBoost)
+        {
+            continue;
         }
+        p = GameLevel::getInstance()->getPowers()[i];
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
         if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048.0 / 480.0),

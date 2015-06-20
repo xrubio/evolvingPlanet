@@ -8,24 +8,19 @@
 
 #include "Power.h"
 
-string Power::getNameString(void)
+Power::Power( const std::string & name, const PowerId & id ) : name(name), id(id)
 {
-    return nameString;
 }
 
-void Power::setNameString(string n)
+
+const string & Power::getName() const
 {
-    nameString = n;
+    return name;
 }
 
-int Power::getNameInt(void)
+const PowerId & Power::getId() const
 {
-    return nameInt;
-}
-
-void Power::setNameInt(int n)
-{
-    nameInt = n;
+    return id;
 }
 
 float Power::getCooldown(void)
