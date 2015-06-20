@@ -16,9 +16,7 @@ class MultiplierPower : public Power {
 public:
     MultiplierPower(){};
     MultiplierPower(const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float mult);
-    MultiplierPower(MultiplierPower const&){};
-    MultiplierPower& operator=(MultiplierPower const&);
-
+    
     float getMultiplier(void);
     void setMultiplier(float m);
 

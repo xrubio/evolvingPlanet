@@ -11,15 +11,15 @@
 
 #include "Achievement.h"
 
-class ProgressAchievement : public Achievement {
-
+class ProgressAchievement : public Achievement
+{
 public:
-    ProgressAchievement(){};
-    ProgressAchievement(bool c, bool o);
-    ProgressAchievement(ProgressAchievement const&){};
-    ProgressAchievement& operator=(ProgressAchievement const&);
-
-    void checkAchievements(int n);
+    ProgressAchievement(bool c = false, bool o = false);
+    
+    // TODO implement this method
+    void checkAchievements(int n, int level)
+    {
+    }
 
 private:
     int numGames;

@@ -20,8 +20,6 @@ class LevelLoader {
 
 public:
     LevelLoader(){};
-    LevelLoader(LevelLoader const&){};
-    LevelLoader& operator=(LevelLoader const&);
 
     void loadXmlFile(string filename);
     string getLevelFileMap(string filename);

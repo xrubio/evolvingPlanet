@@ -8,6 +8,10 @@
 
 #include "UIPower.h"
 
+UIPower::UIPower(Power * p) : power(p)
+{
+}
+
 void UIPower::setPosition(float x, float y)
 {
     icon->setPosition(x, y);

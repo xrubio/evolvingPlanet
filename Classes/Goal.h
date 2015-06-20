@@ -16,8 +16,6 @@ class Goal {
 public:
     Goal(){};
     Goal(int agentType, int min, int max, int average, int des2, int des3, string gType);
-    Goal(Goal const&){};
-    Goal& operator=(Goal const&);
 
     int getAgentType(void);
     void setAgentType(int agType);

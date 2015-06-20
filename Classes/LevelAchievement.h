@@ -14,12 +14,12 @@
 class LevelAchievement : public Achievement {
 
 public:
-    LevelAchievement(){};
-    LevelAchievement(bool c, bool o);
-    LevelAchievement(LevelAchievement const&){};
-    LevelAchievement& operator=(LevelAchievement const&);
-
-    void checkAchievements(int n, int level);
+    LevelAchievement(bool c = false, bool o = false);
+    
+    // TODO implement this method
+    void checkAchievements(int n, int level)
+    {
+    }
 };
 
 #endif /* defined(__simulplay__LevelAchievement__) */

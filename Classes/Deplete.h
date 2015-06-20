@@ -15,8 +15,6 @@ class Deplete : public Act {
 
 public:
     Deplete(){};
-    Deplete(Deplete const&){};
-    Deplete& operator=(Deplete const&);
 
     list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };

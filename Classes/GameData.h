@@ -55,8 +55,6 @@ public:
 
 private:
     GameData(){}; // Private so that it can  not be called
-    GameData(GameData const&){}; // copy constructor is private
-    GameData& operator=(GameData const&); // assignment operator is private
 
     static GameData* gamedataInstance;
     vector<int> levelsCompleted;

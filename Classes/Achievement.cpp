@@ -8,22 +8,16 @@
 
 #include "Achievement.h"
 
-bool Achievement::getCompleted(void)
+Achievement::Achievement( bool c, bool o) : completed(c), occult(o)
+{
+}
+
+bool Achievement::getCompleted() const
 {
     return completed;
 }
 
-void Achievement::setCompleted(bool b)
-{
-    completed = b;
-}
-
-bool Achievement::getOccult(void)
+bool Achievement::getOccult() const
 {
     return occult;
-}
-
-void Achievement::setOccult(bool b)
-{
-    occult = b;
 }

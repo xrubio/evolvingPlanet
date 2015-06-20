@@ -15,10 +15,9 @@ class Kill : public Act {
 
 public:
     Kill(){};
-    Kill(Kill const&){};
-    Kill& operator=(Kill const&);
 
     list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };
 
 #endif /* defined(__simulplay__Kill__) */
+

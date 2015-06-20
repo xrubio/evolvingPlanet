@@ -15,9 +15,6 @@ class Die : public Act {
 
 public:
     Die(){};
-    Die(Die const&){};
-    Die& operator=(Die const&);
-
     list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };
 

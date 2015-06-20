@@ -8,12 +8,7 @@
 
 #include "LevelAchievement.h"
 
-LevelAchievement::LevelAchievement(bool c, bool o)
+LevelAchievement::LevelAchievement(bool c, bool o) : Achievement(c,o)
 {
-    completed = c;
-    occult = o;
 }
 
-void LevelAchievement::checkAchievements(int n, int level)
-{
-}

@@ -8,8 +8,7 @@
 
 #include "ProgressAchievement.h"
 
-ProgressAchievement::ProgressAchievement(bool c, bool o)
+ProgressAchievement::ProgressAchievement(bool c, bool o) : Achievement(c,o)
 {
-    completed = c;
-    occult = o;
 }
+

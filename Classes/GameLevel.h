@@ -176,8 +176,6 @@ private:
     vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
 
     GameLevel(){};
-    GameLevel(GameLevel const&){};
-    GameLevel& operator=(GameLevel const&);
 
     void initializeAgentsPool(void);
     void generateInitialAgents(int type);

@@ -23,8 +23,6 @@ private:
     static Timing* timingInstance;
 
     Timing(){};
-    Timing(Timing const&){};
-    Timing& operator=(Timing const&);
 };
 
 #endif /* defined(__simulplay__Timing__) */

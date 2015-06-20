@@ -13,11 +13,8 @@
 
 class UIMultiplierPower : public UIPower {
 public:
-    UIMultiplierPower(){};
-    UIMultiplierPower(Power* p);
-    UIMultiplierPower(UIMultiplierPower const&){};
-    UIMultiplierPower& operator=(UIMultiplierPower const&);
-
+    UIMultiplierPower(Power* p = 0);
+    
     void onTouchesBegan(Point touchLocation);
     void onTouchesMoved(Touch* touchLocation);
     void onTouchesEnded(Point touchLocation);

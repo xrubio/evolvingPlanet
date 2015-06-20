@@ -15,8 +15,6 @@ class Collect : public Act {
 
 public:
     Collect(){};
-    Collect(Collect const&){};
-    Collect& operator=(Collect const&);
 
     list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };

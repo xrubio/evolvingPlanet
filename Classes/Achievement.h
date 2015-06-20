@@ -9,23 +9,17 @@
 #ifndef __simulplay__Achievement__
 #define __simulplay__Achievement__
 
-class Achievement {
-
+class Achievement
+{
+    bool completed;
+    bool occult;
 public:
-    Achievement(){};
-    Achievement(Achievement const&){};
-    Achievement& operator=(Achievement const&);
-
-    bool getCompleted(void);
-    void setCompleted(bool b);
-    bool getOccult(void);
-    void setOccult(bool b);
+    Achievement( bool c=false, bool o=false);
+    virtual ~Achievement(){}
+    bool getCompleted() const;
+    bool getOccult() const;
 
     virtual void checkAchievements(int n, int level = -1) = 0;
-
-protected:
-    bool completed = false;
-    bool occult = false;
 };
 
 #endif /* defined(__simulplay__Achievement__) */

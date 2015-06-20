@@ -29,8 +29,6 @@ class Power
 
 public:
     Power( const std::string & name = "NoPower", const PowerId & id = NoPower);
-    Power(Power const&){};
-    Power& operator=(Power const&);
 
     virtual ~Power(){}
 

@@ -13,10 +13,7 @@
 
 class UIAreaPower : public UIPower {
 public:
-    UIAreaPower(){};
-    UIAreaPower(Power* p);
-    UIAreaPower(UIAreaPower const&){};
-    UIAreaPower& operator=(UIAreaPower const&);
+    UIAreaPower(Power* p = 0);
 
     Sprite* getArea(void);
 

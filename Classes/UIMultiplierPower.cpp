@@ -9,9 +9,8 @@
 #include "UIMultiplierPower.h"
 #include "UIGameplayMap.h"
 
-UIMultiplierPower::UIMultiplierPower(Power* p)
+UIMultiplierPower::UIMultiplierPower(Power* p) : UIPower(p)
 {
-    power = p;
     icon = Sprite::create("PowerBackgroundButton.png");
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto button = Sprite::create(p->getName() + "Button" + ".png");

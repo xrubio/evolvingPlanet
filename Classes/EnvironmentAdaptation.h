@@ -15,8 +15,6 @@ class EnvironmentAdaptation : public Act {
 
 public:
     EnvironmentAdaptation(){};
-    EnvironmentAdaptation(EnvironmentAdaptation const&){};
-    EnvironmentAdaptation& operator=(EnvironmentAdaptation const&);
 
     list<Agent*>::reverse_iterator execute(int type, Agent* agent);
 };

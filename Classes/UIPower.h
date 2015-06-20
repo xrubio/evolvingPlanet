@@ -17,11 +17,10 @@ using namespace cocos2d;
 
 class UIGameplayMap;
 
-class UIPower : public Node {
+class UIPower : public Node
+{
 public:
-    UIPower(){};
-    UIPower(UIPower const&){};
-    UIPower& operator=(UIPower const&);
+    UIPower(Power* p = 0);
 
     void setPosition(float x, float y);
     Power* getPower(void);
