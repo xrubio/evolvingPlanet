@@ -15,7 +15,7 @@ class CollectionGoal : public Goal {
 
 public:
     CollectionGoal(){};
-    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, string gType, int goalAm);
+    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm);
 
     int getGoalAmount(void);
     void setGoalAmount(int goalAm);
@@ -23,7 +23,10 @@ public:
     void setCurrentAmount(int currAm);
 
     inline void checkGoal(int type, Agent* agent);
-
+    GoalType getGoalType() const
+    {
+        return Collection;
+    }
 private:
     int goalAmount;
     int currentAmount = 0;

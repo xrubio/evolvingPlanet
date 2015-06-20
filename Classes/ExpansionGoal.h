@@ -15,7 +15,7 @@ class ExpansionGoal : public Goal {
 
 public:
     ExpansionGoal(){};
-    ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, string gType, int color = 0);
+    ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color = 0);
 
     int getColorZone(void);
     void setColorZone(int color);
@@ -25,6 +25,10 @@ public:
     void setCenterArea(int x, int y);
 
     inline void checkGoal(int type, Agent* agent);
+    GoalType getGoalType() const
+    {
+        return Expansion;
+    }
 
 private:
     int colorZone;

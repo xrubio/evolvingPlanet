@@ -11,11 +11,17 @@
 
 #include "Agent.h"
 
+enum GoalType
+{
+    Collection = 0,
+    Expansion = 1
+};
+
 class Goal {
 
 public:
     Goal(){};
-    Goal(int agentType, int min, int max, int average, int des2, int des3, string gType);
+    Goal(int agentType, int min, int max, int average, int des2, int des3);
 
     int getAgentType(void);
     void setAgentType(int agType);
@@ -33,8 +39,7 @@ public:
     void setCompleted(bool c);
     int getScore(void);
     void setScore(int s);
-    string getGoalType(void);
-    void setGoalType(string gType);
+    virtual GoalType getGoalType() const = 0;
 
     inline virtual void checkGoal(int type = 0, Agent* agent = nullptr) = 0;
 
@@ -48,7 +53,7 @@ protected:
     bool completed = false;
     //1, 2, 3 stars
     int score = 0;
-    string goalType = "";
 };
 
 #endif /* defined(__simulplay__Goal__) */
+

@@ -116,7 +116,7 @@ bool UIGameplayMap::init()
 
     //RESOURCES MAP (IF ANY)
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
-        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Collection") {
+        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == Collection) {
             resourcesMap = true;
         }
     }
@@ -269,7 +269,7 @@ bool UIGameplayMap::init()
     //SET GOALS ON MAP
     for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         //Set Checkpoint Area
-        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Expansion") {
+        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
             //FIND AREA
             int minX = 479;
             int maxX = 0;
@@ -1094,7 +1094,7 @@ void UIGameplayMap::moveGoalPopup(int index)
     /*goalPopup->runAction(MoveTo::create(1.5, Vec2(Director::getInstance()->getVisibleSize().width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals()[index]->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime())),
                                                   timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2)));*/
 
-    if (GameLevel::getInstance()->getGoals()[index - 1]->getGoalType() == "Expansion") {
+    if (GameLevel::getInstance()->getGoals()[index - 1]->getGoalType() == Expansion) {
         auto area = gameplayMap->getChildByTag(400 + index - 1);
         area->stopAllActions();
         area->setVisible(true);
@@ -1102,7 +1102,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         auto fadeOut = FadeOut::create(2.5);
         area->runAction(fadeOut);
     }
-    if (index < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[index]->getGoalType() == "Expansion") {
+    if (index < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[index]->getGoalType() == Expansion) {
         auto nextArea = gameplayMap->getChildByTag(400 + index);
         auto blink = Blink::create(2, 2);
         auto repeatBlink = RepeatForever::create(blink);
@@ -1514,7 +1514,7 @@ void UIGameplayMap::update(float delta)
             while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
                 i++;
             }
-            if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == "Expansion") {
+            if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
                 //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
             play = true;
