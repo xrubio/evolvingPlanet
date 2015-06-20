@@ -22,7 +22,7 @@ public:
     int getCurrentAmount(void);
     void setCurrentAmount(int currAm);
 
-    inline void checkGoal(int type, Agent* agent);
+    void checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
     {
         return Collection;
