@@ -15,7 +15,6 @@
 #include "GameData.h"
 
 #include <audio/include/SimpleAudioEngine.h>
-#include <iostream>
 
 USING_NS_CC;
 

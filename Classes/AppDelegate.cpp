@@ -2,7 +2,6 @@
 #include "UIMainMenu.h"
 #include "GameData.h"
 #include "LocalizedString.h"
-#include <iostream>
 #include <string>
 
 #include <audio/include/SimpleAudioEngine.h>
@@ -130,7 +129,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
 
-    cout << Director::getInstance()->getVisibleSize().width << endl;
+    CCLOG("visible size width: %i", int(Director::getInstance()->getVisibleSize().width));
 
     // create a scene. it's an autorelease object
     auto scene = UIMainMenu::createScene();

@@ -6,9 +6,6 @@
 //
 //
 
-// TODO remove
-#include <iostream>
-
 #include "UIGameplayMap.h"
 #include "UIGoals.h"
 #include "GameData.h"
@@ -692,7 +689,7 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
         }
         moveBackground = false;
         _touches.clear();
-        //cout << (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC << " " << touches[0]->getLocation().x << " " << firstTouchLocation.x << endl;
+        //CCLOG("%f %i %i, (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC, touches[0]->getLocation().x, firstTouchLocation.x)
         /*if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC > 1 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 20) {
             GameLevel::getInstance()->setFingerSpot(Point(firstTouchLocation.x / float(2048.0 / 480.0),
                                                           (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
@@ -1028,7 +1025,7 @@ void UIGameplayMap::startTiming(void)
 {
     pthread_mutex_lock(&timingMutex);
     Timing::getInstance()->start();
-    cout << "DONE TIMING" << endl;
+    CCLOG("DONE TIMING");
     pthread_mutex_unlock(&timingMutex);
 }
 
@@ -1052,15 +1049,15 @@ void UIGameplayMap::playLevel(void)
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
     if(launchTutorial)
     {
-        std::cout << "launch tutorial for level: " << GameLevel::getInstance()->getNumLevel() << std::endl;
+        CCLOG("launch tutorial for level: %i", GameLevel::getInstance()->getNumLevel());
         GameLevel::getInstance()->playTutorial();
     }
     else
     {
-        std::cout << "don't launch tutorial for level: " << GameLevel::getInstance()->getNumLevel() << std::endl;
+        CCLog("don't launch tutorial for level: %i", GameLevel::getInstance()->getNumLevel());
         GameLevel::getInstance()->playLevel();
     }
-    cout << "DONE GAME LEVEL" << endl;
+    CCLOG("DONE GAME LEVEL");
     pthread_mutex_unlock(&gameLevelMutex);
 }
 
@@ -1090,7 +1087,7 @@ void UIGameplayMap::pinchZoomWithMovedTouch(Touch* movedTouch)
         if (zoomScale > 3) {
             zoomScale = 3;
         }
-        cout << zoomScale << endl;
+        CCLOG("zoom %f", zoomScale);
     }
 }
 
@@ -1535,7 +1532,7 @@ void UIGameplayMap::update(float delta)
                 //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
             play = true;
-            //cout << "Pintat: " << ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC) << endl;
+            //CCLOG("Pintat: %f", ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC));
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);

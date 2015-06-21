@@ -22,7 +22,6 @@
 #include "Power.h"
 
 #include "cocos2d.h"
-#include <iostream>
 
 void LevelLoader::loadXmlFile(string filename)
 {

@@ -6,6 +6,8 @@
 //
 //
 
+#define COCOS2D_DEBUG 1
+
 #include "UIGoals.h"
 #include "GameData.h"
 #include "LocalizedString.h"
@@ -18,6 +20,10 @@ Scene* UIGoals::createScene()
     auto layer = UIGoals::create();
     scene->addChild(layer);
     return scene;
+}
+
+UIGoals::~UIGoals()
+{
 }
 
 bool UIGoals::init()

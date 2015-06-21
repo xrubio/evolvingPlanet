@@ -18,6 +18,7 @@ using namespace ui;
 class UIGoals : public Layer {
 public:
     static Scene* createScene();
+    virtual ~UIGoals();
 
     virtual bool init();
 

@@ -32,7 +32,7 @@ bool Tutorial::loadTutorial()
         int num = stoi(level.attribute("num").value());
         if(numLevel==num)
         {
-            std::cout << "level: " << numLevel << " found!" << std::endl;
+            CCLOG("level: %i found!", numLevel);
             return true;
         }
         level = level.next_sibling("level");
@@ -40,7 +40,7 @@ bool Tutorial::loadTutorial()
     // not available tutorial for level
     if(!found)
     {
-        std::cout << "level: " << numLevel << " not found!" << std::endl;
+        CCLOG("levelt %i not found!", numLevel);
         return false;
     }
 }
