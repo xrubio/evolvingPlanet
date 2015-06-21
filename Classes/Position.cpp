@@ -6,7 +6,6 @@
 //
 //
 
-#include <iostream>
 #include "Position.h"
 
 Position::Position(int init_x, int init_y)

@@ -9,7 +9,6 @@
 #ifndef __simulplay__GameLevel__
 #define __simulplay__GameLevel__
 
-#include <iostream>
 #include <map>
 #include <string>
 #include <vector>

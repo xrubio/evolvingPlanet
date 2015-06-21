@@ -43,7 +43,7 @@ void Timing::start(void)
             float stepPart = (currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (stepTimePart.tv_sec + (stepTimePart.tv_usec / 1000000.0));
             if (step >= GameLevel::getInstance()->getTimeSpeed() and step > GameLevel::getInstance()->calcTime + 0.4 and act == false and GameLevel::getInstance()->paint == true and GameLevel::getInstance()->getUIGameplayMap()->play == true) {
                 act = true;
-                //cout << "Time: " << step << " " << act << endl;
+                //CCLOG("Time: %f %i", step, act);
                 //GameLevel::getInstance()->setTimeSteps(GameLevel::getInstance()->getTimeSteps() + 1);
                 //stepTime = clock();
                 gettimeofday(&stepTime, nullptr);
@@ -67,7 +67,7 @@ void Timing::start(void)
                 }
             }
             if (stepPart >= GameLevel::getInstance()->getTimeSpeed() / 10.0) {
-                //cout << stepPart << endl;
+                //CCLOG("stepPart %i", stepPart);
                 GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + (0.09));
                 //stepTimePart = clock();
                 gettimeofday(&stepTimePart, nullptr);

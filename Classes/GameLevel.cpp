@@ -477,7 +477,7 @@ void GameLevel::playLevel(void)
                 ;
             paint = false;
             clock_t stepTime = clock();
-            cout << "Start calc" << endl;
+            CCLOG("Start calc");
             act();
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
@@ -486,7 +486,7 @@ void GameLevel::playLevel(void)
             }
             paint = true;
             Timing::getInstance()->act = false;
-            cout << "Calculs: " << float(clock() - stepTime) / CLOCKS_PER_SEC << endl;
+            CCLOG("Calculs: %f", float(clock() - stepTime) / CLOCKS_PER_SEC);
             calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
             /*try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
@@ -494,12 +494,12 @@ void GameLevel::playLevel(void)
                 }
             }
             catch (int e) {
-                cout << "Time Exceeded" << endl;
+                CCLOG("Time Exceeded");
             }*/
         }
     }
     ended = true;
-    cout << "End of game: " << finishedGame << endl;
+    CCLOG("End of game: %i", finishedGame);
 }
 
 void GameLevel::resetLevel(void)
@@ -639,13 +639,13 @@ void GameLevel::act(void)
 {
     deletedAgents.clear();
     addedAgents = 0;
-    //cout << "Num agents: " << agents[0].size() << endl;
-    //cout << "Pool: " << agentsPool[0].size() << endl;
-    //cout << "Num agents + Pool: " << agents[0].size() + agentsPool[0].size() << endl;
+    //CCLOG("Num agents: %i", agents[0].size());
+    //CCLOG("Pool: %i", agentsPool[0].size());
+    //CCLOG("Num agents + Pool: %i", agents[0].size() + agentsPool[0].size());
     for (int k = 0; k < agents.size() and finishedGame == Running; k++) {
         //CHECK DIRECTION
         if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
-            cout << agentFutureDirections[k][0].first << endl;
+            CCLOG("check direction %i", agentFutureDirections[k][0].first);
             if (timeSteps == agentFutureDirections[k][0].first) {
                 agentDirections[k] = agentFutureDirections[k][0].second;
                 agentFutureDirections[k].erase(agentFutureDirections[k].begin());
@@ -691,7 +691,7 @@ void GameLevel::act(void)
                 }
             }
             if (failed == false and goals.empty() == false) {
-                cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
+                CCLOG("FINAL SCORE: %i", (finalScore/int(goals.size())));
                 GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
                 finishedGame = Success;
             }

@@ -9,7 +9,6 @@
 #include "LocalizedString.h"
 #include "GameData.h"
 #include <string>
-#include <iostream>
 
 using namespace std;
 

@@ -474,7 +474,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     if (GameData::getInstance()->getLevelsCompleted().size() > tag) {
         score = GameData::getInstance()->getLevelScore(tag);
     }
-    cout << "SCORE : " << score << endl;
+    CCLOG("SCORE: %i", score);
     for (int i = 1; i < 4; i++) {
         string starFile;
         //Estrella plena
@@ -579,3 +579,4 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
         this->removeChildByTag(101);
     }
 }
+
