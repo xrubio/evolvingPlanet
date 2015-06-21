@@ -746,7 +746,7 @@ void UIGameplayMap::onMouseScroll(Event* event)
 void UIGameplayMap::menuBackCallback(Ref* pSender)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-    GameLevel::getInstance()->setFinishedGame(4);
+    GameLevel::getInstance()->setFinishedGame(UserCancel);
     while (GameLevel::getInstance()->ended == false)
         ;
     pthread_cancel(gameLevelThread);
@@ -885,7 +885,7 @@ void UIGameplayMap::retryCallback(Ref* pSender)
 void UIGameplayMap::retryOkCallback(Ref* pSender)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-    GameLevel::getInstance()->setFinishedGame(4);
+    GameLevel::getInstance()->setFinishedGame(UserCancel);
     /*while (GameLevel::getInstance()->ended == false)
         ;*/
     pthread_cancel(gameLevelThread);
@@ -1270,7 +1270,7 @@ void UIGameplayMap::initializeAgents(void)
     play = true;
 }
 
-void UIGameplayMap::createEndGameWindow(int mode)
+void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto background = Sprite::create("EndedGameBackground.png");
@@ -1284,7 +1284,7 @@ void UIGameplayMap::createEndGameWindow(int mode)
     string title;
     string text;
 
-    if (mode == 1) {
+    if (mode == Success) {
         //success
         title = LocalizedString::create("LEVEL_COMPLETED")->getCString();
         text = LocalizedString::create("CONGRATULATIONS")->getCString();
@@ -1314,10 +1314,10 @@ void UIGameplayMap::createEndGameWindow(int mode)
         //game over
         title = LocalizedString::create("GAME_OVER")->getCString();
 
-        if (mode == 2) {
+        if (mode == GoalFail) {
             text = LocalizedString::create("GOAL_NO_COMPLETED")->getCString();
         }
-        else if (mode == 3) {
+        else if (mode == NoAgentsLeft) {
             text = LocalizedString::create("ALL_AGENTS_DIED")->getCString();
         }
 
@@ -1501,7 +1501,7 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
 
 void UIGameplayMap::update(float delta)
 {
-    if (GameLevel::getInstance()->getFinishedGame() == 0) {
+    if (GameLevel::getInstance()->getFinishedGame() == Running) {
         if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false) {
             play = false;
             //clock_t beforeTime = clock();
@@ -1529,7 +1529,7 @@ void UIGameplayMap::update(float delta)
 
         evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
     }
-    else if (GameLevel::getInstance()->getFinishedGame() > 0 and endGameWindowPainted == false) {
+    else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false) {
         //DARRER PINTAT
         play = false;
         updateAgents();

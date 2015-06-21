@@ -318,12 +318,12 @@ void GameLevel::setIdCounter(int count)
     idCounter = count;
 }
 
-int GameLevel::getFinishedGame(void)
+const LevelState & GameLevel::getFinishedGame() const
 {
     return finishedGame;
 }
 
-void GameLevel::setFinishedGame(int f)
+void GameLevel::setFinishedGame(const LevelState & f)
 {
     finishedGame = f;
 }
@@ -470,7 +470,8 @@ void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
 
 void GameLevel::playLevel(void)
 {
-    while (finishedGame == 0) {
+    while (finishedGame == Running)
+    {
         if (Timing::getInstance()->act == true) {
             while (gameplayMap->play == false)
                 ;
@@ -539,9 +540,7 @@ void GameLevel::resetLevel(void)
 
     evolutionPoints = 10;
 
-    //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut, 3 = finished0Agents,
-    //4 = finishedBack
-    finishedGame = 0;
+    finishedGame = Running;
 
     currentAgentType = 0;
     maxAllAgents = 0;
@@ -643,7 +642,7 @@ void GameLevel::act(void)
     //cout << "Num agents: " << agents[0].size() << endl;
     //cout << "Pool: " << agentsPool[0].size() << endl;
     //cout << "Num agents + Pool: " << agents[0].size() + agentsPool[0].size() << endl;
-    for (int k = 0; k < agents.size() and finishedGame == 0; k++) {
+    for (int k = 0; k < agents.size() and finishedGame == Running; k++) {
         //CHECK DIRECTION
         if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
             cout << agentFutureDirections[k][0].first << endl;
@@ -654,7 +653,7 @@ void GameLevel::act(void)
         }
 
         list<Agent*>::reverse_iterator end = agents[k].rbegin();
-        while (end != agents[k].rend() and finishedGame == 0) {
+        while (end != agents[k].rend() and finishedGame == Running) {
             if ((*end)->getLife() > 0) {
                 for (int j = 0; j < actions.size() - 1; j++) {
                     actions[j]->execute(k, *end);
@@ -694,23 +693,15 @@ void GameLevel::act(void)
             if (failed == false and goals.empty() == false) {
                 cout << "FINAL SCORE: " << finalScore / goals.size() << endl;
                 GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
-                finishedGame = 1;
+                finishedGame = Success;
             }
         }
     }
 
-    bool noAgentsLeft = true;
-    if (agents[0].empty() == false) {
-        noAgentsLeft = false;
-    }
-    /*for (int i = 0; i < agents.size(); i++) {
-        if (agents[i].empty() == false) {
-            noAgentsLeft = false;
-        }
-    }*/
-
-    if (finishedGame == 0 and noAgentsLeft) {
-        finishedGame = 3;
+    bool noAgentsLeft = agents[0].empty();
+    if(finishedGame==Running and noAgentsLeft)
+    {
+        finishedGame = NoAgentsLeft;
     }
 }
 

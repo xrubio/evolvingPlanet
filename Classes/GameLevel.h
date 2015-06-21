@@ -24,6 +24,15 @@ class UIGameplayMap;
 
 using namespace std;
 
+enum LevelState
+{
+    Running = 0,
+    Success = 1,
+    GoalFail = 2,
+    NoAgentsLeft = 3,
+    UserCancel = 4
+};
+
 class GameLevel {
 public:
     static GameLevel* getInstance();
@@ -84,8 +93,8 @@ public:
     void deleteDeletedAgent(int i);
     int getIdCounter(void);
     void setIdCounter(int count);
-    int getFinishedGame(void);
-    void setFinishedGame(int f);
+    const LevelState & getFinishedGame() const;
+    void setFinishedGame(const LevelState & f);
     int getTimeSteps(void);
     void setTimeSteps(int steps);
     float getTimeSpeed(void);
@@ -165,10 +174,8 @@ private:
     float timeSpeedBeforePause = 2.5;
 
     int evolutionPoints = 10;
-
-    //0 = notFinished, 1 = finishedCompleted, 2 = finishedTimeOut (goal no completed), 3 = finished0Agents,
-    //4 = finishedBack
-    int finishedGame = 0;
+    
+    LevelState finishedGame = Running;
 
     int currentAgentType = 0;
 
