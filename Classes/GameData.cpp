@@ -10,6 +10,9 @@
 #include <cocos2d.h>
 #include "../libs/pugixml/pugixml.hpp"
 
+// TODO remove
+#include <iostream>
+
 using namespace pugi;
 
 // Global static pointer used to ensure a single instance of the class.
@@ -220,3 +223,18 @@ void GameData::resetGameProgress(void)
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
 }
+
+bool GameData::launchTutorial(int level) const
+{
+    std::string key("tutorial_"+std::to_string(level));
+    std::cout << "launch: " << key << std::endl;
+    return cocos2d::UserDefault::getInstance()->getBoolForKey(key.c_str(), true);
+}
+
+void GameData::setTutorial(int level, bool launch)
+{
+    std::string key("tutorial_"+std::to_string(level));
+    std::cout << "set tutorial: " << key << " to: " << launch << std::endl;
+    cocos2d::UserDefault::getInstance()->setBoolForKey(key.c_str(),launch);
+}
+

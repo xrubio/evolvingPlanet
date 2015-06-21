@@ -53,6 +53,10 @@ public:
     void loadAchievements(void);
     void resetGameProgress(void);
 
+    // tutorial management
+    bool launchTutorial(int level) const;
+    void setTutorial(int level, bool launch);
+
 private:
     GameData(){}; // Private so that it can  not be called
 
@@ -74,3 +78,4 @@ private:
 };
 
 #endif /* defined(__simulplay__GameData__) */
+

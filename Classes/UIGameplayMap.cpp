@@ -6,6 +6,9 @@
 //
 //
 
+// TODO remove
+#include <iostream>
+
 #include "UIGameplayMap.h"
 #include "UIGoals.h"
 #include "GameData.h"
@@ -897,6 +900,7 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
     GameLevel::getInstance()->resetLevel();
     LevelLoader loader;
     loader.loadXmlFile(filename);
+
     auto scene = UIGoals::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
@@ -1044,7 +1048,18 @@ void* UIGameplayMap::createLevel(void* arg)
 void UIGameplayMap::playLevel(void)
 {
     pthread_mutex_lock(&gameLevelMutex);
-    GameLevel::getInstance()->playLevel();
+
+    bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
+    if(launchTutorial)
+    {
+        std::cout << "launch tutorial for level: " << GameLevel::getInstance()->getNumLevel() << std::endl;
+        GameLevel::getInstance()->playTutorial();
+    }
+    else
+    {
+        std::cout << "don't launch tutorial for level: " << GameLevel::getInstance()->getNumLevel() << std::endl;
+        GameLevel::getInstance()->playLevel();
+    }
     cout << "DONE GAME LEVEL" << endl;
     pthread_mutex_unlock(&gameLevelMutex);
 }
@@ -1309,6 +1324,8 @@ void UIGameplayMap::createEndGameWindow(int mode)
         titleLabel->setColor(Color3B(255, 255, 255));
         titleLabel->setPosition(5 * window->getContentSize().width / 18, 5 * window->getContentSize().height / 10);
         window->addChild(titleLabel);
+        // turn off tutorial for successful levels
+        GameData::getInstance()->setTutorial(GameLevel::getInstance()->getNumLevel(), false);
     }
     else {
         //game over

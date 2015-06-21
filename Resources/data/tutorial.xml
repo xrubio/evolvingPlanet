@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level num="0">
+    <note x="0" y="0" trigger="begin">
+        <message>Welcome commander!</message>
+    </note>
+</level>
+
+<level num="1">
+    <note x="20" y="10" trigger="begin">
+        <message>Tutorial level 2</message>
+    </note>
+</level>
+
