@@ -33,7 +33,7 @@ void Timing::start(void)
     timeval powerTime;
     gettimeofday(&powerTime, nullptr);
 
-    while (GameLevel::getInstance()->getFinishedGame() == 0) {
+    while (GameLevel::getInstance()->getFinishedGame() == Running) {
         //clock_t currentTime = clock();
         gettimeofday(&currentTimePart, nullptr);
         if (GameLevel::getInstance()->getTimeSpeed() > 0.0) {

@@ -135,7 +135,7 @@ private:
     void playLevel(void);
     void initializeAgents(void);
 
-    void createEndGameWindow(int mode);
+    void createEndGameWindow(const LevelState & mode);
     bool checkPowersClicked(void);
 
     // 0 = square, 1 = triangle
