@@ -32,7 +32,8 @@ enum LevelState
     UserCancel = 4
 };
 
-class GameLevel {
+class GameLevel
+{  
 public:
     static GameLevel* getInstance();
 
@@ -124,8 +125,6 @@ public:
 
     void createLevel(void);
     void initializeAttributesCost(void);
-    /** start the level and run it while checking for Tutorial notes, until some condition ends it **/
-    void playTutorial(void);
     /** start the level and run it until some condition ends it **/
     void playLevel(void);
     void resetLevel(void);
@@ -189,6 +188,8 @@ private:
     void initializeAgentsPool(void);
     void generateInitialAgents(int type);
     inline void act(void);
+
+
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

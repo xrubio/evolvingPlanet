@@ -14,7 +14,6 @@
 #include "AreaPower.h"
 #include "GameData.h"
 #include "ExpansionGoal.h"
-#include "Tutorial.h"
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
@@ -469,48 +468,6 @@ void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
     agentFutureDirections[type].push_back(par);
 }
 
-void GameLevel::playTutorial()
-{
-    Tutorial tutorial;
-    // no tutorial, playLevel standard and quit
-    if(tutorial.loadTutorial()==false)
-    {
-        playLevel();
-        return;
-    }
-    
-    CCLOG("beginning tutorial");
-
-    while (finishedGame == 0)
-    {
-        if (Timing::getInstance()->act == true)
-        {
-            while (gameplayMap->play == false)
-            {
-            }
-            paint = false;
-            clock_t stepTime = clock();  
-            CCLOG("Start calc");
-            act();
-
-            // TODO check list of tutorial messages to see if they apply
-
-            timeSteps++;
-            gameplayMap->setTimeProgressBar(timeSteps);
-            if (timeSteps % 2 == 0)
-            {
-                evolutionPoints++;
-            }
-            paint = true;
-            Timing::getInstance()->act = false; 
-            CCLOG("Calculs: %f", float(clock() - stepTime) / CLOCKS_PER_SEC);
-            calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
-        }
-    }
-    ended = true;
-    CCLOG("end of tutorial %i", finishedGame);
-}
-
 void GameLevel::playLevel(void)
 {
     while (finishedGame == Running)
@@ -764,3 +721,5 @@ bool GameLevel::validatePosition(int posx, int posy)
     }
     return true;
 }
+
+

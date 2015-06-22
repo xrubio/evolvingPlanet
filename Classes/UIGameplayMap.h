@@ -15,7 +15,13 @@
 #include "GameLevel.h"
 #include "UIPower.h"
 
-class UIGameplayMap : public Layer {
+class Message;
+class Tutorial;
+
+class UIGameplayMap : public Layer
+{
+    // TODO refactor into a class UIGameplayMapWithTutorial
+    Tutorial * _tutorial;
 public:
     pthread_mutex_t gameLevelMutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_mutex_t timingMutex = PTHREAD_MUTEX_INITIALIZER;
@@ -23,11 +29,7 @@ public:
     static Scene* createScene();
 
     virtual bool init();
-    ~UIGameplayMap()
-    {
-        delete[] agentsTextureData;
-        delete[] exploitedMapTextureData;
-    };
+    ~UIGameplayMap();
 
     void onTouchesBegan(const vector<Touch*>& touches, Event* event);
     void onTouchesMoved(const vector<Touch*>& touches, Event* event);
@@ -141,6 +143,14 @@ private:
     // 0 = square, 1 = triangle
     inline void drawAgent(Point pos, Color4B colour, int geometry = 0);
     inline void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
+
+    // tutorial related stuff
+    /** reference to current message. 0 if no message to show **/
+    const Message * _message;
+public:
+    // tutorial related methods
+    void setMessage(const Message * message);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */
+

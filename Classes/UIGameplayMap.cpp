@@ -16,7 +16,8 @@
 #include "ExpansionGoal.h"
 #include "Timing.h"
 #include "LevelLoader.h"
-
+#include "Message.h"
+#include "Tutorial.h"
 #include <audio/include/SimpleAudioEngine.h>
 
 Scene* UIGameplayMap::createScene()
@@ -27,12 +28,23 @@ Scene* UIGameplayMap::createScene()
     return scene;
 }
 
+UIGameplayMap::~UIGameplayMap()
+{
+    delete[] agentsTextureData;
+    delete[] exploitedMapTextureData;
+    if(_tutorial)
+    {
+        delete _tutorial;
+    }
+}
+
 bool UIGameplayMap::init()
 {
     if (!Layer::init()) {
         return false;
     }
 
+    _tutorial = 0;
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
     //Director::getInstance()->getTextureCache()->addImage("Agent.png");
@@ -103,6 +115,16 @@ bool UIGameplayMap::init()
     Menu* quitRetryMenu = Menu::createWithArray(quitRetryVec);
     quitRetryMenu->setPosition(0, 0);
     this->addChild(quitRetryMenu, 10);
+
+
+    // TUTORIAL MESSAGES
+    auto messageLabel = Label::createWithTTF("no message", "fonts/BebasNeue.otf", 24);
+    messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->setPosition(Vec2(visibleSize.width*2/3, visibleSize.height*2/3));
+    this->addChild(messageLabel);
+    messageLabel->setMaxLineWidth(300);
+    messageLabel->setVisible(false);
 
     //HOTSPOT
     gameplayMapHotSpot = new Image();
@@ -550,6 +572,8 @@ bool UIGameplayMap::init()
     menuAgentTypeSelector->setPosition(0, 0);
     this->addChild(menuAgentTypeSelector, 5);
 
+    _message = 0;
+
     createTimingThread();
     wait = clock();
     while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.1)
@@ -579,6 +603,13 @@ bool UIGameplayMap::checkPowersClicked(void)
 
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
+    // TODO if you touch the bounding box
+    if(_tutorial && _tutorial->getCurrentMessage())
+    {
+        _tutorial->removeCurrentMessage();
+        this->getChildByName("tutorial")->setVisible(false);
+        
+    }
     if (endGameWindowPainted == false) {
         if (checkPowersClicked() == false) {
             for (auto touch : touches) {
@@ -1049,14 +1080,15 @@ void UIGameplayMap::playLevel(void)
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
     if(launchTutorial)
     {
-        CCLOG("launch tutorial for level: %i", GameLevel::getInstance()->getNumLevel());
-        GameLevel::getInstance()->playTutorial();
+        _tutorial = new Tutorial();
+        /** delete tutorial if level doesn't have messages **/
+        if(!_tutorial->loadTutorial())
+        {
+            delete _tutorial;
+            _tutorial = 0;
+        }
     }
-    else
-    {
-        CCLog("don't launch tutorial for level: %i", GameLevel::getInstance()->getNumLevel());
-        GameLevel::getInstance()->playLevel();
-    }
+    GameLevel::getInstance()->playLevel();
     CCLOG("DONE GAME LEVEL");
     pthread_mutex_unlock(&gameLevelMutex);
 }
@@ -1516,8 +1548,16 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
 void UIGameplayMap::update(float delta)
 {
     if (GameLevel::getInstance()->getFinishedGame() == Running) {
-        if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false) {
+        if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false)
+        {
             play = false;
+
+            if(_tutorial && _tutorial->checkNextMessage())
+            {
+                setMessage(_tutorial->getCurrentMessage());
+            }
+
+
             //clock_t beforeTime = clock();
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
@@ -1531,6 +1571,8 @@ void UIGameplayMap::update(float delta)
             if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
                 //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
+
+            // TODO everything stopped if _message?
             play = true;
             //CCLOG("Pintat: %f", ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC));
         }
@@ -1566,3 +1608,12 @@ void UIGameplayMap::update(float delta)
         endGameWindowPainted = true;
     }
 }
+
+void UIGameplayMap::setMessage( const Message * message )
+{
+    _message = message;
+    Label * label = (Label*)(this->getChildByName("tutorial"));
+    label->setString(_message->text());
+    label->setVisible(true);
+}
+
