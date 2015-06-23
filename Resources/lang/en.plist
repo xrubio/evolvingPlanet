@@ -152,5 +152,15 @@ In our History we have evidences of similar situations. For example, Neanderthal
 	<key>CONTEXT_LEVEL_5_DEPLOYMENT</key>
 	<string>Cassandra, please send bots with different characteristics to the surface and repeat the Mission 4. We want to see how they manage the encounter with a different group and how both groups expand. 
 Please transmits my orders. </string>
+
+    <!-- tutorial messages -->
+    <key>LEVEL1M1</key>
+    <string>Commander, welcome to the Console. Cool interface, isn't it?
+I hope you like it because you'll spend the next weeks looking at it! Allow me to give you a quick reminder on how does it work.</string>
+    <key>LEVEL1M2</key>
+    <string>The satellites we deployed around the planet are tracking real-time information about the environment and our agents.
+The Console shows you an aggregated of these data, making your life much easier</string>
+    <key>LEVEL1M3</key>
+    <string>These zones define mountains and arid areas. These are regions where resources are scarce, so the agents living there will die faster than usual</string>
 </dict>
 </plist>

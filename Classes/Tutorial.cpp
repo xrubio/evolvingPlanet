@@ -4,6 +4,7 @@
 #include "../libs/pugixml/pugixml.hpp"
 #include <string>
 #include "Message.h"
+#include "LocalizedString.h"
 
 Tutorial::Tutorial() : _current(0)
 {
@@ -24,24 +25,38 @@ Tutorial::~Tutorial()
     }
 }
 
-void Tutorial::dummyLoad()
-{
-    std::string messageStr1("Welcome to the Console. I hope you like it because you'll spend the next weeks looking at it! The satellites we deployed around the planet is giving you real-time updates on the position and state of your simulated species.");
-    Message * message1 = new MessageTime(messageStr1, 0);
-    std::string messageStr2("The Console shows you a map of the area where the agents have been deployed.");
-    Message * message2 = new MessageNext(messageStr2);
-    std::string messageStr3("These zones define mountains and arid areas. These regions are difficult to live, so your agents will die faster here.");
-    // TODO ZoneAreaLevel a una zona del mapa
-    Message * message3 = new MessageNext(messageStr3);
-
-    _messages.push_back(message1);
-    _messages.push_back(message2);
-    _messages.push_back(message3);
-}
-
 void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
 {
-    dummyLoad();
+    int numMessages = node.attribute("numMessages").as_int();
+
+    for(int i=0; i<numMessages; i++)
+    {
+        pugi::xml_node message = node.child("message");
+        while(message!= nullptr)
+        {
+            int id = message.attribute("id").as_int();
+            if(id!=i)
+            {
+                message = message.next_sibling("message");
+                continue;
+            }
+            std::string trigger = message.attribute("trigger").value();
+            float xPos = message.attribute("x").as_float();
+            float yPos = message.attribute("y").as_float();
+            int lineBreak = message.attribute("lineWidth").as_int();
+            std::string text = LocalizedString::create(message.attribute("text").value())->getCString();
+            if(trigger=="next")
+            { 
+                _messages.push_back(new MessageNext(text, xPos, yPos, lineBreak));
+            }
+            else if(trigger=="time")
+            {
+                int step = message.attribute("step").as_int();
+                _messages.push_back(new MessageTime(text, xPos, yPos, lineBreak, step));
+            }
+            message = message.next_sibling("message");
+        }
+    }
 }
 
 bool Tutorial::loadTutorial()
@@ -58,6 +73,7 @@ bool Tutorial::loadTutorial()
 
     int numLevel = GameLevel::getInstance()->getNumLevel();
     pugi::xml_node level = doc.child("level");
+    CCLOG("checking level %i", numLevel);
     while(level!= nullptr)
     {
         int num = stoi(level.attribute("num").value());

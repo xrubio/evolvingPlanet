@@ -99,6 +99,17 @@ Les primeres evidències d&apos;éssers humans s&apos;han documentat a l&apos;es
 
 Em pregunto com subsistien en aquest entorn; el més probable és que fossin una barreja de caçadors, recolectors y carronyaires, més o meyns com els nostres ancestres.</string>
 	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
-	<string>En qualsevol cas, anem a començar pel principi; els bots seran desplegats en aquesta primera zona amb evidències de XXX. Volem examinar com es van dispersar des d&apos;aquesta península a la resta del continent.</string>
+	<string>En qualsevol cas, anem a començar pel principi; els bots seran desplegats en aquesta primera zona amb evidències de XXX. Volem examinar com es van dispersar des d&apos;aquesta península a la resta del continent.</string>   
+    
+    <!-- tutorial messages -->
+    <key>LEVEL1M1</key>
+    <string>Comandant, benvingut a la Consola. La interfície mola eh?
+Espero que t'agradi, perquè de fet gastaràs la major part de les properes setmanes mirant-la! Deixa'm fer-te un ràpid resum de com funciona.
+</string>
+    <key>LEVEL1M2</key>
+    <string>Els satèl·lits que hem desplegat al voltant del planete rastregen informació en temps real de l'entorn i els nostres agents.
+La consola mostra un agregat de totes aquestes dades, fent-te la vida més fàcil</string>
+    <key>LEVEL1M3</key>
+    <string>Aquestes zones són muntanyes i àrees àrides. Són regions a on és més difícil trobar recursos, per la qual cosa els agents que estiguin aquí moriran més ràpid del normal</string>
 </dict>
 </plist>

@@ -2,7 +2,7 @@
 #include "Message.h"
 #include "GameLevel.h"
 
-Message::Message( const std::string & text ) : _text(text)
+Message::Message( const std::string & text, const float & xPos, const float & yPos, const int & lineWidth ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth)
 {
 }
 
@@ -10,7 +10,7 @@ Message::~Message()
 {
 }
 
-MessageTime::MessageTime( const std::string & text, const unsigned int & step) : Message(text), _step(step)
+MessageTime::MessageTime( const std::string & text, const float & xPos, const float & yPos, const int & lineWidth, const unsigned int & step) : Message(text, xPos, yPos, lineWidth), _step(step)
 {
 }
 
@@ -27,7 +27,7 @@ bool MessageTime::meetConditions() const
     return false;
 }
 
-MessageNext::MessageNext( const std::string & text) : Message(text)
+MessageNext::MessageNext( const std::string & text, const float & xPos, const float & yPos, const int & lineWidth ) : Message(text, xPos, yPos, lineWidth)
 {
 }
 

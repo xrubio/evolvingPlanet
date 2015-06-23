@@ -18,9 +18,6 @@ class Tutorial
     std::list<Message*> _messages;
     Message * _current;
 
-    /** fake level loaded for testing purposes **/
-    void dummyLoad();
-
     // create _messages from the level located at node 
     void loadMessagesForLevel(const pugi::xml_node & node);
 public:

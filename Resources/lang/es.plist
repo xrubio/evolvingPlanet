@@ -99,5 +99,15 @@ Las primeras evidencias de seres humanos se han documentado en el este de Africa
 Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran una mezcla de cazadores, recolectores y carroñeros, más o menos como nuestros antecesores.</string>
 	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
 	<string>En todo caso, vamos a empezar por el principio; los bots van a ser desplegados en esta primera zona con evidencias de XXX. Queremos examinar cómo se dispersaron desde esta península al resto del continente.</string>
+
+   <!-- tutorial messages -->
+    <key>LEVEL1M1</key>
+    <string>Comandante, bienvenido a la Consola. La interfaz mola eh?
+Bueno espero que te guste, porque de hecho vas a gastar la mayor parte de las siguientes semanas con ella. Déjame hacerte un rápido resumen de como funciona.</string>
+    <key>LEVEL1M2</key>
+    <string>Los satélites que hemos desplegado alrededor del planeta rastrean información en tiempo real del entorno y nuestros agentes.
+La Consola muestra un agregado de todas estos datos, haciéndote la vida más fácil</string>
+    <key>LEVEL1M3</key>
+    <string>Estas zonas son montañas y áreas áridas. Son regiones donde es más difícil encontrar recursos, por lo que los agentes que estén ahi morirán más rápido de lo normal</string>
 </dict>
 </plist>
