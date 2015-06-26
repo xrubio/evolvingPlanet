@@ -33,6 +33,8 @@ bool UIGoals::init()
     }
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
+    Director::getInstance()->setAnimationInterval(1.0 / 60);
+
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
     }
@@ -265,6 +267,12 @@ void UIGoals::minusAttCallback(Ref* pSender)
         blankAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
         layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+        MenuItem* plusButton = (MenuItem*)pMenuItem->getParent()->getChildByTag(i + 50);
+        plusButton->setEnabled(true);
+    }
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0 or
+        GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints()) {
+        pMenuItem->setEnabled(false);
     }
 }
 
@@ -288,6 +296,12 @@ void UIGoals::plusAttCallback(Ref* pSender)
         filledAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
         layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+        MenuItem* minusButton = (MenuItem*)pMenuItem->getParent()->getChildByTag(i + 10);
+        minusButton->setEnabled(true);
+    }
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >= 5 or
+        GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints()) {
+        pMenuItem->setEnabled(false);
     }
 }
 
@@ -489,14 +503,17 @@ void UIGoals::createUIAgent(Layout* layout)
         layout->addChild(attNumLabel, 1, (i + 1) * 1100);
 
         auto minusAttButton = MenuItemImage::create(
-            "MinusButton.png", "MinusButtonPressed.png", CC_CALLBACK_1(UIGoals::minusAttCallback, this));
+            "MinusButton.png", "MinusButtonPressed.png", "MinusButtonPressed.png", CC_CALLBACK_1(UIGoals::minusAttCallback, this));
         minusAttButton->setPosition(Vec2(24 * visibleSize.width / 42, attLabel->getPosition().y));
         minusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         minusAttButton->setTag(i + 10);
+        if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0) {
+            minusAttButton->setEnabled(false);
+        }
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create(
-            "PlusButton.png", "PlusButtonPressed.png", CC_CALLBACK_1(UIGoals::plusAttCallback, this));
+            "PlusButton.png", "PlusButtonPressed.png", "PlusButtonPressed.png", CC_CALLBACK_1(UIGoals::plusAttCallback, this));
         plusAttButton->setPosition(Vec2(33 * visibleSize.width / 42, attLabel->getPosition().y));
         plusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         plusAttButton->setTag(i + 50);
@@ -565,6 +582,21 @@ void UIGoals::update(float delta)
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(false);
         hexagonButtonLevel2->setEnabled(true);
+
+        Layout* layout = pages->getPage(2);
+        Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+        for (int i = 0; i < keys.size(); i++) {
+            MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
+                GameLevel::getInstance()->getEvolutionPoints())
+            {
+                plus->setEnabled(false);
+            }
+            else
+            {
+                plus->setEnabled(true);
+            }
+        }
     }
     
     if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {

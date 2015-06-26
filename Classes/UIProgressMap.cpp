@@ -33,6 +33,8 @@ bool UIProgressMap::init()
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
     }
+    
+    Director::getInstance()->setAnimationInterval(1.0 / 60);
 
     //Alliberar memòria
     //SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();

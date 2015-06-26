@@ -33,6 +33,8 @@ bool UIGameplayMap::init()
         return false;
     }
 
+    Director::getInstance()->setAnimationInterval(1.0 / 30);
+    
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
     //Director::getInstance()->getTextureCache()->addImage("Agent.png");
@@ -418,7 +420,7 @@ bool UIGameplayMap::init()
             auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
             auto ease = EaseBackInOut::create(move);
             attBackground->runAction(ease);
-            this->addChild(attBackground, 5);
+            this->addChild(attBackground, 5, 1000001);
             auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png",
                 CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
             arrowRetract->setAnchorPoint(Vec2(1, 0));
@@ -502,18 +504,22 @@ bool UIGameplayMap::init()
                 attBackground->addChild(attNumLabel, 1, (j + 1) * 1100);
 
                 auto minusAttButton = MenuItemImage::create(
-                    "MinusButtonSmall.png", "MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
+                    "MinusButtonSmall.png", "MinusButtonSmallPressed.png", "MinusButtonSmallPressed.png",
+                                                            CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
                 minusAttButton->setAnchorPoint(Vec2(0, 0.5));
                 minusAttButton->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
                     (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
                 minusAttButton->setTag(j + 10);
+                minusAttButton->setEnabled(false);
                 attributesButtons.pushBack(minusAttButton);
 
                 auto plusAttButton = MenuItemImage::create(
-                    "PlusButtonSmall.png", "PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
+                    "PlusButtonSmall.png", "PlusButtonSmallPressed.png", "PlusButtonSmallPressed.png",
+                                                           CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
                 plusAttButton->setPosition(Vec2(10 * attBackground->getContentSize().width / 12,
                     (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
                 plusAttButton->setTag(j + 50);
+                plusAttButton->setEnabled(false);
                 attributesButtons.pushBack(plusAttButton);
 
                 float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
@@ -1527,7 +1533,28 @@ void UIGameplayMap::update(float delta)
             powerButtons[i]->update(delta);
         }
 
-        evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
+        if (std::atoi(evolutionPointsLabel->getString().c_str()) != GameLevel::getInstance()->getEvolutionPoints())
+        {
+            evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
+
+            Layout* layout = (Layout*)this->getChildByTag(1000001);
+            Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+            for (int i = 0; i < keys.size(); i++) {
+                MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
+                MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+                if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
+                    GameLevel::getInstance()->getEvolutionPoints())
+                {
+                    plus->setEnabled(false);
+                    minus->setEnabled(false);
+                }
+                else
+                {
+                    plus->setEnabled(true);
+                    minus->setEnabled(true);
+                }
+            }
+        }
     }
     else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false) {
         //DARRER PINTAT
