@@ -406,11 +406,11 @@ bool UIGameplayMap::init()
         }
         if (i == 0) {
             agentTypeButton->setEnabled(false);
-            auto attColorsBackground = Sprite::create("AttributeColorsBackground.png");
+            /*auto attColorsBackground = Sprite::create("AttributeColorsBackground.png");
             attColorsBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             attColorsBackground->setAnchorPoint(Vec2(0, 0));
             attColorsBackground->setPosition(Vec2((48.9 * visibleSize.width / 204), (9.5 * visibleSize.height / 155)));
-            this->addChild(attColorsBackground, 5);
+            this->addChild(attColorsBackground, 5);*/
 
             auto attBackground = Sprite::create("AgentAttributesBackground.png");
             attBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -429,7 +429,7 @@ bool UIGameplayMap::init()
             arrowMenu->setPosition(0, 0);
             attBackground->addChild(arrowMenu);
 
-            Vector<MenuItem*> agentLabelsSelectorVec;
+            /*Vector<MenuItem*> agentLabelsSelectorVec;
             auto labelLife = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create("LIFE")),
                                                        "fonts/BebasNeue.otf", 40),
                 CC_CALLBACK_1(UIGameplayMap::attributeSelectionCallback, this));
@@ -457,13 +457,13 @@ bool UIGameplayMap::init()
                 break;
             }
             attColorSel->setColor(color);
-            attColorsBackground->addChild(attColorSel, 5);
+            attColorsBackground->addChild(attColorSel, 5);*/
 
             int k = 1;
             int tag = 0;
             Vector<MenuItem*> attributesButtons;
             for (int j = 0; j < keys.size(); j++) {
-                auto labelAtt = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
+                /*auto labelAtt = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
                                                           "fonts/BebasNeue.otf", 40),
                     CC_CALLBACK_1(UIGameplayMap::attributeSelectionCallback, this));
                 labelAtt->setPosition((3.5 + (k * 5.8)) * attColorsBackground->getContentSize().width / 24,
@@ -487,7 +487,7 @@ bool UIGameplayMap::init()
                     break;
                 }
                 attColorSelector->setColor(color2);
-                attColorsBackground->addChild(attColorSelector, 5);
+                attColorsBackground->addChild(attColorSelector, 5);*/
 
                 auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())) + " - ",
                     "fonts/BebasNeue.otf", 35);
@@ -543,9 +543,9 @@ bool UIGameplayMap::init()
 
                 k++;
             }
-            Menu* agentLabelsSelectorMenu = Menu::createWithArray(agentLabelsSelectorVec);
+            /*Menu* agentLabelsSelectorMenu = Menu::createWithArray(agentLabelsSelectorVec);
             agentLabelsSelectorMenu->setPosition(0, 0);
-            attColorsBackground->addChild(agentLabelsSelectorMenu, 5);
+            attColorsBackground->addChild(agentLabelsSelectorMenu, 5);*/
 
             Menu* attributesMenu = cocos2d::Menu::createWithArray(attributesButtons);
             attributesMenu->setPosition(Vec2(0, 0));

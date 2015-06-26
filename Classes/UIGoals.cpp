@@ -31,6 +31,14 @@ bool UIGoals::init()
     if (!Layer::init()) {
         return false;
     }
+    
+    //A UIPROGRESSMAP
+    /*string mapString = GameLevel::getInstance()->getMapFilename();
+    string backgroundImg = "Background";
+    string hotSpotsBase = "HotSpotsBase";
+    Director::getInstance()->getTextureCache()->addImage(mapString + backgroundImg + ".jpg");
+    Director::getInstance()->getTextureCache()->addImage(mapString + hotSpotsBase + ".png");*/
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     Director::getInstance()->setAnimationInterval(1.0 / 60);
@@ -206,6 +214,37 @@ bool UIGoals::init()
     this->addChild(pages);
 
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Director::getInstance()->getTextureCache()->addImage("FingerSpot.png");
+    Director::getInstance()->getTextureCache()->addImage("FrameTop.png");
+    Director::getInstance()->getTextureCache()->addImage("FrameBottom.png");
+    Director::getInstance()->getTextureCache()->addImage("Quit.png");
+    Director::getInstance()->getTextureCache()->addImage("Repeat.png");
+    Director::getInstance()->getTextureCache()->addImage("RepeatPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("FastForwardButton.png");
+    Director::getInstance()->getTextureCache()->addImage("FastForwardButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PlayButton.png");
+    Director::getInstance()->getTextureCache()->addImage("PlayButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PauseButton.png");
+    Director::getInstance()->getTextureCache()->addImage("PauseButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("EndedGameBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("CheckpointArea.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressBarBorder.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressBarContent.png");
+    Director::getInstance()->getTextureCache()->addImage("GoalMark.png");
+    Director::getInstance()->getTextureCache()->addImage("GoalNum.png");
+    Director::getInstance()->getTextureCache()->addImage("AgentTypeButton.png");
+    Director::getInstance()->getTextureCache()->addImage("AgentTypeButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("AgentAttributesBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowRetract.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowRetractPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButtonSmallPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButtonSmallPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("BlankAttributePointButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("EndedGameBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("EndedGameWindow.png");
 
     this->scheduleUpdate();
 
@@ -400,12 +439,12 @@ void UIGoals::createContextLayout(Layout* layoutContext)
     contextMenu->setPosition(0, 0);
     layoutContext->addChild(contextMenu);
 
-    contextImage = Sprite::create("Level1Background.jpg");
+    /*contextImage = Sprite::create("Level1Background.jpg");
     contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion(), 0.4 * GameData::getInstance()->getRaHConversion());
     contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
     contextImage->setVisible(false);
 
-    layoutContext->addChild(contextImage);
+    layoutContext->addChild(contextImage);*/
 }
 
 void UIGoals::setLevelGoals(Layout* layout)

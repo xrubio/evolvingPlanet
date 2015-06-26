@@ -33,19 +33,6 @@ bool UIMainMenu::init()
     }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
-    Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
-    Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
-    Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
-    Director::getInstance()->getTextureCache()->addImage("StarFullMini.png");
-    Director::getInstance()->getTextureCache()->addImage("StarEmptyMini.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapDarkBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("StarFull.png");
-    Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
     
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
@@ -189,6 +176,20 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
+    Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
+    Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
+    Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
+    Director::getInstance()->getTextureCache()->addImage("StarFullMini.png");
+    Director::getInstance()->getTextureCache()->addImage("StarEmptyMini.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelPopupBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapDarkBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("StarFull.png");
+    Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
+    
     return true;
 }
 

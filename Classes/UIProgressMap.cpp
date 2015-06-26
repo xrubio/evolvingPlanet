@@ -29,7 +29,7 @@ bool UIProgressMap::init()
     if (!Layer::init()) {
         return false;
     }
-
+    
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
     }
@@ -226,6 +226,28 @@ bool UIProgressMap::init()
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
 
     this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOn.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowBack.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowBackPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowNext.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowNextPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PageBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("BlankAttributePointButton.png");
+    Director::getInstance()->getTextureCache()->addImage("FilledAttributePointButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ContextPageButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ContextPageButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapPlayButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapPlayButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButton.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButton.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButtonPressed.png");
 
     return true;
 }
@@ -276,6 +298,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(80 * progressMap0->getContentSize().width / 204,
                 (32 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level1Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level1HotSpotsBase.png");
             break;
         }
         case 2: {
@@ -292,6 +316,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(76 * progressMap0->getContentSize().width / 204,
                 (54 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level2Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level2HotSpotsBase.png");
             break;
         }
         case 3: {
@@ -308,6 +334,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(55 * progressMap0->getContentSize().width / 204,
                 (71 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
             break;
         }
         case 4: {
@@ -324,6 +352,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(55 * progressMap0->getContentSize().width / 204,
                 (71 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
             break;
         }
         case 5: {
@@ -340,6 +370,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(52 * progressMap0->getContentSize().width / 204,
                 (103 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level5Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level5HotSpotsBase.png");
             break;
         }
 
