@@ -301,7 +301,8 @@ void UIMainMenu::endActions(void)
 
 bool UIMainMenu::allActionsFinished(void)
 {
-    if (this->getChildByTag(0)->numberOfRunningActions() == 0 and this->getChildByTag(1)->numberOfRunningActions() == 0 and this->getChildByTag(2)->numberOfRunningActions() == 0 and this->getChildByTag(3)->numberOfRunningActions() == 0 and this->getChildByTag(4)->numberOfRunningActions() == 0) {
+    if (this->getChildByTag(0)->getNumberOfRunningActions() == 0 and this->getChildByTag(1)->getNumberOfRunningActions() == 0 and this->getChildByTag(2)->getNumberOfRunningActions() == 0 and this->getChildByTag(3)->getNumberOfRunningActions() == 0 and
+        this->getChildByTag(4)->getNumberOfRunningActions() == 0) {
         return true;
     }
     return false;

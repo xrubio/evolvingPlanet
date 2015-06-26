@@ -666,7 +666,7 @@ void GameLevel::act(void)
                 }
             }
             //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
-            int sizeBefore = agents[k].size();
+            int sizeBefore = (int)agents[k].size();
             list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
             if (sizeBefore > agents[k].size()) {
                 end = rit;
