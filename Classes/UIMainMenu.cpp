@@ -107,7 +107,7 @@ bool UIMainMenu::init()
     particlesSpaceship->setGravity(Vec2(0, 0));
     //16,12
     particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
-    spaceship->addChild(particlesSpaceship, -1);
+    spaceship->addChild(particlesSpaceship, -1, 1);
 
     Vector<cocos2d::MenuItem*> menuButtons;
 
@@ -278,6 +278,9 @@ void UIMainMenu::menuExitCallback(Ref* pSender)
 
 void UIMainMenu::endActions(void)
 {
+    ParticleSun *p = (ParticleSun*)(this->getChildByTag(3)->getChildByTag(1));
+    p->stopSystem();
+    
     stoppedAnimation = true;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -291,6 +294,7 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(3)->stopAllActions();
     this->getChildByTag(3)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(3)->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    p->resetSystem();
     this->getChildByTag(4)->stopAllActions();
     this->getChildByTag(4)->setOpacity(255);
 }
