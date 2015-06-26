@@ -12,13 +12,13 @@
 
 using namespace std;
 
-CCString* LocalizedString::create(const char* key)
+string LocalizedString::create(const char* key)
 {
     const char* fileName = GameData::getInstance()->getLanguage().c_str();
     if (strlen(fileName) == 0) {
         fileName = getSystemLang();
     }
-    CCString* str;
+    string str = "";
 
     string fname = fileName;
     string dir = "lang/";
@@ -29,13 +29,18 @@ CCString* LocalizedString::create(const char* key)
 
     fname = dir + fname + ".plist";
 
-    CCDictionary* language = CCDictionary::createWithContentsOfFile(fname.c_str());
+    //CCDictionary* language = CCDictionary::createWithContentsOfFile(fname.c_str());
+    cocos2d::ValueMap language = FileUtils::getInstance()->getValueMapFromFile(fname.c_str());
 
-    str = (CCString*)language->objectForKey(key);
-
-    if (str == nullptr) {
-        str = CCString::create(key);
+    if (language.find(key) != language.end())
+    {
+        str = language.at(key).asString();
     }
+    else
+    {
+        str = key;
+    }
+    
     return str;
 }
 

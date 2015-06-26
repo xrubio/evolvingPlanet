@@ -80,7 +80,7 @@ bool UIGameplayMap::init()
     this->addChild(bottomFrame, 1);
 
     string space = " ";
-    string lvl = LocalizedString::create("LEVEL")->getCString() + space + to_string(GameLevel::getInstance()->getNumLevel());
+    string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
     auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 136);
     levelLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     levelLabel->setColor(Color3B(139, 146, 154));
@@ -173,7 +173,7 @@ bool UIGameplayMap::init()
     agentsSprite->setCascadeOpacityEnabled(true);
 
     //EVOLUTION POINTS
-    //string(LocalizedString::create("EVOLUTION_POINTS")->getCString())
+    //string(LocalizedString::create("EVOLUTION_POINTS"))
     auto evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(159 * visibleSize.width / 204, 11 * visibleSize.height / 155);
@@ -184,7 +184,7 @@ bool UIGameplayMap::init()
     evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
     this->addChild(evolutionPointsIcon, 1);
 
-    auto evolutionPointsStringLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")->getCString()),
+    auto evolutionPointsStringLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")),
         "fonts/BebasNeue.otf", 40);
     evolutionPointsStringLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsStringLabel->setColor(Color3B(216, 229, 235));
@@ -225,7 +225,7 @@ bool UIGameplayMap::init()
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pauseDarkBackground->setOpacity(180);
-    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("PAUSE")->getCString()), "fonts/BebasNeue.otf", 170);
+    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("PAUSE")), "fonts/BebasNeue.otf", 170);
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
     pauseDarkBackground->addChild(pauseDarkLabel);
@@ -331,7 +331,7 @@ bool UIGameplayMap::init()
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(0, 0);
     timeBorderBar->addChild(timeBar, 3);
-    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")->getCString()), "fonts/BebasNeue.otf", 48);
+    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")), "fonts/BebasNeue.otf", 48);
     labelGoals->setColor(Color3B(139, 146, 154));
     labelGoals->setAnchorPoint(Vec2(0, 0.5));
     labelGoals->setPosition(0, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
@@ -430,7 +430,7 @@ bool UIGameplayMap::init()
             attBackground->addChild(arrowMenu);
 
             Vector<MenuItem*> agentLabelsSelectorVec;
-            auto labelLife = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create("LIFE")->getCString()),
+            auto labelLife = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create("LIFE")),
                                                        "fonts/BebasNeue.otf", 40),
                 CC_CALLBACK_1(UIGameplayMap::attributeSelectionCallback, this));
             labelLife->setPosition(3.4 * attColorsBackground->getContentSize().width / 24, attColorsBackground->getContentSize().height / 2);
@@ -463,7 +463,7 @@ bool UIGameplayMap::init()
             int tag = 0;
             Vector<MenuItem*> attributesButtons;
             for (int j = 0; j < keys.size(); j++) {
-                auto labelAtt = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())->getCString()),
+                auto labelAtt = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
                                                           "fonts/BebasNeue.otf", 40),
                     CC_CALLBACK_1(UIGameplayMap::attributeSelectionCallback, this));
                 labelAtt->setPosition((3.5 + (k * 5.8)) * attColorsBackground->getContentSize().width / 24,
@@ -489,7 +489,7 @@ bool UIGameplayMap::init()
                 attColorSelector->setColor(color2);
                 attColorsBackground->addChild(attColorSelector, 5);
 
-                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())->getCString()) + " - ",
+                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())) + " - ",
                     "fonts/BebasNeue.otf", 35);
                 labelAttRight->setColor(Color3B(216, 229, 236));
                 labelAttRight->setAnchorPoint(Vec2(0, 0.5));
@@ -846,7 +846,7 @@ void UIGameplayMap::quitCallback(Ref* pSender)
     confirmVec.pushBack(confirmNo);
     Menu* confirmMenu = Menu::createWithArray(confirmVec);
     confirmMenu->setPosition(0, 0);
-    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("QUIT_QUESTION")->getCString()), "fonts/BebasNeue.otf", 50);
+    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("QUIT_QUESTION")), "fonts/BebasNeue.otf", 50);
     labelConfirm->setPosition(Vec2(confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmBackground->addChild(separator);
     confirmBackground->addChild(confirmMenu);
@@ -875,7 +875,7 @@ void UIGameplayMap::retryCallback(Ref* pSender)
     confirmVec.pushBack(confirmNo);
     Menu* confirmMenu = Menu::createWithArray(confirmVec);
     confirmMenu->setPosition(0, 0);
-    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("RETRY_QUESTION")->getCString()), "fonts/BebasNeue.otf", 40);
+    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("RETRY_QUESTION")), "fonts/BebasNeue.otf", 40);
     labelConfirm->setPosition(Vec2(confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmBackground->addChild(separator);
     confirmBackground->addChild(confirmMenu);
@@ -1292,8 +1292,8 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 
     if (mode == Success) {
         //success
-        title = LocalizedString::create("LEVEL_COMPLETED")->getCString();
-        text = LocalizedString::create("CONGRATULATIONS")->getCString();
+        title = LocalizedString::create("LEVEL_COMPLETED");
+        text = LocalizedString::create("CONGRATULATIONS");
         int starCount = 0;
         int score = GameData::getInstance()->getLevelScore(GameLevel::getInstance()->getNumLevel());
         while (starCount < 3) {
@@ -1318,13 +1318,13 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     }
     else {
         //game over
-        title = LocalizedString::create("GAME_OVER")->getCString();
+        title = LocalizedString::create("GAME_OVER");
 
         if (mode == GoalFail) {
-            text = LocalizedString::create("GOAL_NO_COMPLETED")->getCString();
+            text = LocalizedString::create("GOAL_NO_COMPLETED");
         }
         else if (mode == NoAgentsLeft) {
-            text = LocalizedString::create("ALL_AGENTS_DIED")->getCString();
+            text = LocalizedString::create("ALL_AGENTS_DIED");
         }
 
         auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 120);
@@ -1338,7 +1338,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     }
 
     string space = " ";
-    string lvl = LocalizedString::create("LEVEL")->getCString() + space + to_string(GameLevel::getInstance()->getNumLevel());
+    string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
     auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 100);
     levelLabel->setColor(Color3B(85, 108, 117));
     levelLabel->setPosition(Vec2(4 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
@@ -1347,7 +1347,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     auto continueButton = MenuItemImage::create(
         "ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
     continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
-    auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 50);
     continueLabel->setColor(Color3B(205, 202, 207));
     continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
     continueButton->addChild(continueLabel);
@@ -1358,7 +1358,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     auto retryButton = MenuItemImage::create(
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
     retryButton->setPosition(4 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
-    auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY"), "fonts/BebasNeue.otf", 50);
     retryLabel->setColor(Color3B(205, 202, 207));
     retryLabel->setPosition(retryButton->getContentSize().width / 2, retryButton->getContentSize().height / 2);
     retryButton->addChild(retryLabel);

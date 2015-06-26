@@ -60,7 +60,7 @@ bool UIAchievements::init()
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIAchievements::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -70,7 +70,7 @@ bool UIAchievements::init()
     menu->setPosition(0, 0);
     popupBackground->addChild(menu, 1, 20);
 
-    auto configLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS")->getCString(), "fonts/BebasNeue.otf", 100);
+    auto configLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 100);
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(1, 0.5));
     configLabel->setPosition(Vec2(8 * popupBackground->getContentSize().width / 28, 13.5 * popupBackground->getContentSize().height / 16));

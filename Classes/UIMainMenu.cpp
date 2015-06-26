@@ -116,7 +116,7 @@ bool UIMainMenu::init()
     startButton->setAnchorPoint(Vec2(0, 0.5));
     startButton->setPosition(Vec2((2 * visibleSize.width / 25),
         (10 * visibleSize.height / 18)));
-    auto startLabel = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto startLabel = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
@@ -128,7 +128,7 @@ bool UIMainMenu::init()
     achievementsButton->setAnchorPoint(Vec2(1, 0.5));
     achievementsButton->setPosition(Vec2(startButton->getPositionX() + startButton->getBoundingBox().size.width,
         (8.5 * visibleSize.height / 18)));
-    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS")->getCString(), "fonts/BebasNeue.otf", 40);
+    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 40);
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
     achievementsButton->addChild(achLabel);
@@ -140,7 +140,7 @@ bool UIMainMenu::init()
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
     //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
     configurationButton->setPosition(Vec2((2 * visibleSize.width / 25), (2 * visibleSize.height / 18)));
-    auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 30);
+    auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 30);
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
@@ -152,7 +152,7 @@ bool UIMainMenu::init()
     creditsButton->setAnchorPoint(Vec2(0, 0.5));
     creditsButton->setPosition(Vec2((2 * visibleSize.width / 25),
         (2 * visibleSize.height / 18)));
-    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS")->getCString(), "fonts/BebasNeue.otf", 30);
+    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 30);
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
@@ -164,7 +164,7 @@ bool UIMainMenu::init()
         "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
     exitButton->setAnchorPoint(Vec2(0, 0.5));
     exitButton->setPosition(Vec2((2 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
-    auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT")->getCString(), "fonts/BebasNeue.otf", 30);
+    auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 30);
     exitLabel->setColor(Color3B(73, 109, 118));
     exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
     exitButton->addChild(exitLabel);
