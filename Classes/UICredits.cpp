@@ -26,7 +26,7 @@ bool UICredits::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    auto title = Label::createWithSystemFont(LocalizedString::create("CREDITS")->getCString(), "Arial Rounded MT Bold", 180);
+    auto title = Label::createWithSystemFont(LocalizedString::create("CREDITS"), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
         origin.y + visibleSize.height - ((visibleSize.height / 8))));
     this->addChild(title, 1);

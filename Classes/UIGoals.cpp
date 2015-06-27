@@ -31,7 +31,17 @@ bool UIGoals::init()
     if (!Layer::init()) {
         return false;
     }
+    
+    //A UIPROGRESSMAP
+    /*string mapString = GameLevel::getInstance()->getMapFilename();
+    string backgroundImg = "Background";
+    string hotSpotsBase = "HotSpotsBase";
+    Director::getInstance()->getTextureCache()->addImage(mapString + backgroundImg + ".jpg");
+    Director::getInstance()->getTextureCache()->addImage(mapString + hotSpotsBase + ".png");*/
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
+
+    Director::getInstance()->setAnimationInterval(1.0 / 60);
 
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
@@ -66,7 +76,7 @@ bool UIGoals::init()
     hexagonButtonLevel2->setEnabled(false);
     this->addChild(hexagonButtonLevel2, 1);
 
-    auto title = Label::createWithSystemFont(LocalizedString::create("GOALS")->getCString(), "Arial Rounded MT Bold", 180);
+    auto title = Label::createWithSystemFont(LocalizedString::create("GOALS"), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height - ((visibleSize.height / 8))));
     //this->addChild(title, 1);
@@ -77,7 +87,7 @@ bool UIGoals::init()
     backButton->setPosition(Vec2((4 * visibleSize.width / 42),
         (34 * visibleSize.height / 36)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(207, 203, 208));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -204,6 +214,37 @@ bool UIGoals::init()
     this->addChild(pages);
 
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Director::getInstance()->getTextureCache()->addImage("FingerSpot.png");
+    Director::getInstance()->getTextureCache()->addImage("FrameTop.png");
+    Director::getInstance()->getTextureCache()->addImage("FrameBottom.png");
+    Director::getInstance()->getTextureCache()->addImage("Quit.png");
+    Director::getInstance()->getTextureCache()->addImage("Repeat.png");
+    Director::getInstance()->getTextureCache()->addImage("RepeatPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("FastForwardButton.png");
+    Director::getInstance()->getTextureCache()->addImage("FastForwardButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PlayButton.png");
+    Director::getInstance()->getTextureCache()->addImage("PlayButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PauseButton.png");
+    Director::getInstance()->getTextureCache()->addImage("PauseButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("EndedGameBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("CheckpointArea.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressBarBorder.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressBarContent.png");
+    Director::getInstance()->getTextureCache()->addImage("GoalMark.png");
+    Director::getInstance()->getTextureCache()->addImage("GoalNum.png");
+    Director::getInstance()->getTextureCache()->addImage("AgentTypeButton.png");
+    Director::getInstance()->getTextureCache()->addImage("AgentTypeButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("AgentAttributesBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowRetract.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowRetractPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButtonSmallPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButtonSmallPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("BlankAttributePointButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("EndedGameBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("EndedGameWindow.png");
 
     this->scheduleUpdate();
 
@@ -265,6 +306,12 @@ void UIGoals::minusAttCallback(Ref* pSender)
         blankAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
         layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+        MenuItem* plusButton = (MenuItem*)pMenuItem->getParent()->getChildByTag(i + 50);
+        plusButton->setEnabled(true);
+    }
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0 or
+        GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints()) {
+        pMenuItem->setEnabled(false);
     }
 }
 
@@ -288,6 +335,12 @@ void UIGoals::plusAttCallback(Ref* pSender)
         filledAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
         layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+        MenuItem* minusButton = (MenuItem*)pMenuItem->getParent()->getChildByTag(i + 10);
+        minusButton->setEnabled(true);
+    }
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >= 5 or
+        GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints()) {
+        pMenuItem->setEnabled(false);
     }
 }
 
@@ -313,8 +366,8 @@ void UIGoals::contextPageIntroCallback(Ref* pSender)
     Menu* menu = (Menu*)(pMenuItem->getParent());
     MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(1);
     pMenuItemInvers->setEnabled(true);
-    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString());
-    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str())->getCString());
+    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_INTRO"));
+    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str()));
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     contextImage->setVisible(false);
 }
@@ -327,8 +380,8 @@ void UIGoals::contextPageDeploymentCallback(Ref* pSender)
     Menu* menu = (Menu*)(pMenuItem->getParent());
     MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(0);
     pMenuItemInvers->setEnabled(true);
-    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT")->getCString());
-    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str())->getCString());
+    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT"));
+    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str()));
     context->setPosition(Vec2(visibleSize.width / 2, (3.5 * visibleSize.height / 12)));
     contextImage->setVisible(true);
 }
@@ -340,12 +393,12 @@ void UIGoals::createContextLayout(Layout* layoutContext)
     //auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
     //goalMap->setScale(0.4);
     //goalMap->setPosition(Vec2(visibleSize.width / 4, visibleSize.height / 2));
-    /*auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1")->getCString(),
+    /*auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1"),
                                                           Size(visibleSize.width / 2, visibleSize.height),
                                                           TextHAlignment::LEFT, "Arial", 50);
     context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
     context->setTextColor(Color4B(216, 229, 235, 255));*/
-    context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str())->getCString(), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str()), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
     context->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     //context->addChild(goalMap);
@@ -353,7 +406,7 @@ void UIGoals::createContextLayout(Layout* layoutContext)
     context->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContext->addChild(context);
 
-    contextLabel = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO")->getCString(),
+    contextLabel = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"),
         "fonts/BebasNeue.otf", 100);
     contextLabel->setPosition(Vec2(7 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     contextLabel->setColor(Color3B(211, 230, 236));
@@ -386,12 +439,12 @@ void UIGoals::createContextLayout(Layout* layoutContext)
     contextMenu->setPosition(0, 0);
     layoutContext->addChild(contextMenu);
 
-    contextImage = Sprite::create("Level1Background.jpg");
+    /*contextImage = Sprite::create("Level1Background.jpg");
     contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion(), 0.4 * GameData::getInstance()->getRaHConversion());
     contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
     contextImage->setVisible(false);
 
-    layoutContext->addChild(contextImage);
+    layoutContext->addChild(contextImage);*/
 }
 
 void UIGoals::setLevelGoals(Layout* layout)
@@ -404,13 +457,13 @@ void UIGoals::setLevelGoals(Layout* layout)
     goalMap->setPosition(Vec2((visibleSize.width / 4) + 130, origin.y + visibleSize.height / 2));
     layout->addChild(goalMap, 1);
 
-    auto goal1 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_1")->getCString(),
+    auto goal1 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_1"),
         Size(visibleSize.width / 3, visibleSize.height / 4),
         TextHAlignment::CENTER, "Arial", 40);
-    auto goal2 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_2")->getCString(),
+    auto goal2 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_2"),
         Size(visibleSize.width / 3, visibleSize.height / 4),
         TextHAlignment::CENTER, "Arial", 40);
-    auto goal3 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_3")->getCString(),
+    auto goal3 = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("GOAL_TEXT_LVL1_3"),
         Size(visibleSize.width / 3, visibleSize.height / 4),
         TextHAlignment::CENTER, "Arial", 40);
 
@@ -432,7 +485,7 @@ void UIGoals::createUIAgent(Layout* layout)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    auto title = Label::createWithSystemFont(LocalizedString::create("AGENTS")->getCString() + to_string(GameLevel::getInstance()->getCurrentAgentType()), "Arial Rounded MT Bold", 180);
+    auto title = Label::createWithSystemFont(LocalizedString::create("AGENTS") + to_string(GameLevel::getInstance()->getCurrentAgentType()), "Arial Rounded MT Bold", 180);
     title->setPosition(Vec2(origin.x + visibleSize.width / 2,
         origin.y + visibleSize.height - ((visibleSize.height / 8))));
     //layout->addChild(title, 1);
@@ -443,7 +496,7 @@ void UIGoals::createUIAgent(Layout* layout)
         "ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGoals::menuStartCallback, this));
     playButton->setPosition(Vec2(34 * visibleSize.width / 42, 5 * visibleSize.height / 31));
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto startPlay = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto startPlay = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
     startPlay->setPosition(playButton->getContentSize().width / 2, playButton->getContentSize().height / 2);
     startPlay->setColor(Color3B(207, 203, 208));
     playButton->addChild(startPlay);
@@ -473,7 +526,7 @@ void UIGoals::createUIAgent(Layout* layout)
     }
 
     for (int i = 0; i < keys.size(); i++) {
-        auto attLabel = Label::createWithTTF(string(LocalizedString::create(keys[i].c_str())->getCString()) + " - ",
+        auto attLabel = Label::createWithTTF(string(LocalizedString::create(keys[i].c_str())) + " - ",
             "fonts/BebasNeue.otf", 60);
         attLabel->setColor(Color3B(207, 203, 208));
         attLabel->setAnchorPoint(Vec2(1, 0.5));
@@ -489,14 +542,17 @@ void UIGoals::createUIAgent(Layout* layout)
         layout->addChild(attNumLabel, 1, (i + 1) * 1100);
 
         auto minusAttButton = MenuItemImage::create(
-            "MinusButton.png", "MinusButtonPressed.png", CC_CALLBACK_1(UIGoals::minusAttCallback, this));
+            "MinusButton.png", "MinusButtonPressed.png", "MinusButtonPressed.png", CC_CALLBACK_1(UIGoals::minusAttCallback, this));
         minusAttButton->setPosition(Vec2(24 * visibleSize.width / 42, attLabel->getPosition().y));
         minusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         minusAttButton->setTag(i + 10);
+        if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0) {
+            minusAttButton->setEnabled(false);
+        }
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create(
-            "PlusButton.png", "PlusButtonPressed.png", CC_CALLBACK_1(UIGoals::plusAttCallback, this));
+            "PlusButton.png", "PlusButtonPressed.png", "PlusButtonPressed.png", CC_CALLBACK_1(UIGoals::plusAttCallback, this));
         plusAttButton->setPosition(Vec2(33 * visibleSize.width / 42, attLabel->getPosition().y));
         plusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         plusAttButton->setTag(i + 50);
@@ -537,7 +593,7 @@ void UIGoals::createUIAgent(Layout* layout)
     evolutionPointsIcon->setPosition(Vec2(7 * visibleSize.width / 42, 24 * visibleSize.height / 31));
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(evolutionPointsIcon, 10);
-    auto evolutionPointsLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")->getCString()),
+    auto evolutionPointsLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")),
         "fonts/BebasNeue.otf", 100);
     evolutionPointsLabel->setPosition(Vec2(15 * visibleSize.width / 42, 24 * visibleSize.height / 31));
     evolutionPointsLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -565,6 +621,21 @@ void UIGoals::update(float delta)
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(false);
         hexagonButtonLevel2->setEnabled(true);
+
+        Layout* layout = pages->getPage(2);
+        Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+        for (int i = 0; i < keys.size(); i++) {
+            MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
+                GameLevel::getInstance()->getEvolutionPoints())
+            {
+                plus->setEnabled(false);
+            }
+            else
+            {
+                plus->setEnabled(true);
+            }
+        }
     }
     
     if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {

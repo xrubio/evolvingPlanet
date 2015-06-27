@@ -33,19 +33,6 @@ bool UIMainMenu::init()
     }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
-    Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
-    Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
-    Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
-    Director::getInstance()->getTextureCache()->addImage("StarFullMini.png");
-    Director::getInstance()->getTextureCache()->addImage("StarEmptyMini.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapDarkBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("StarFull.png");
-    Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
     
     auto background = Sprite::create("MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
@@ -107,7 +94,7 @@ bool UIMainMenu::init()
     particlesSpaceship->setGravity(Vec2(0, 0));
     //16,12
     particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
-    spaceship->addChild(particlesSpaceship, -1);
+    spaceship->addChild(particlesSpaceship, -1, 1);
 
     Vector<cocos2d::MenuItem*> menuButtons;
 
@@ -116,7 +103,7 @@ bool UIMainMenu::init()
     startButton->setAnchorPoint(Vec2(0, 0.5));
     startButton->setPosition(Vec2((2 * visibleSize.width / 25),
         (10 * visibleSize.height / 18)));
-    auto startLabel = Label::createWithTTF(LocalizedString::create("START")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto startLabel = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
@@ -128,7 +115,7 @@ bool UIMainMenu::init()
     achievementsButton->setAnchorPoint(Vec2(1, 0.5));
     achievementsButton->setPosition(Vec2(startButton->getPositionX() + startButton->getBoundingBox().size.width,
         (8.5 * visibleSize.height / 18)));
-    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS")->getCString(), "fonts/BebasNeue.otf", 40);
+    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 40);
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
     achievementsButton->addChild(achLabel);
@@ -140,7 +127,7 @@ bool UIMainMenu::init()
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
     //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
     configurationButton->setPosition(Vec2((2 * visibleSize.width / 25), (2 * visibleSize.height / 18)));
-    auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 30);
+    auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 30);
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
@@ -152,7 +139,7 @@ bool UIMainMenu::init()
     creditsButton->setAnchorPoint(Vec2(0, 0.5));
     creditsButton->setPosition(Vec2((2 * visibleSize.width / 25),
         (2 * visibleSize.height / 18)));
-    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS")->getCString(), "fonts/BebasNeue.otf", 30);
+    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 30);
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
@@ -164,7 +151,7 @@ bool UIMainMenu::init()
         "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
     exitButton->setAnchorPoint(Vec2(0, 0.5));
     exitButton->setPosition(Vec2((2 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
-    auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT")->getCString(), "fonts/BebasNeue.otf", 30);
+    auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 30);
     exitLabel->setColor(Color3B(73, 109, 118));
     exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
     exitButton->addChild(exitLabel);
@@ -189,6 +176,20 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
+    Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
+    Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
+    Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
+    Director::getInstance()->getTextureCache()->addImage("StarFullMini.png");
+    Director::getInstance()->getTextureCache()->addImage("StarEmptyMini.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelPopupBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapDarkBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("StarFull.png");
+    Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
+    
     return true;
 }
 
@@ -278,6 +279,9 @@ void UIMainMenu::menuExitCallback(Ref* pSender)
 
 void UIMainMenu::endActions(void)
 {
+    ParticleSun *p = (ParticleSun*)(this->getChildByTag(3)->getChildByTag(1));
+    p->stopSystem();
+    
     stoppedAnimation = true;
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -291,13 +295,15 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(3)->stopAllActions();
     this->getChildByTag(3)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(3)->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    p->resetSystem();
     this->getChildByTag(4)->stopAllActions();
     this->getChildByTag(4)->setOpacity(255);
 }
 
 bool UIMainMenu::allActionsFinished(void)
 {
-    if (this->getChildByTag(0)->numberOfRunningActions() == 0 and this->getChildByTag(1)->numberOfRunningActions() == 0 and this->getChildByTag(2)->numberOfRunningActions() == 0 and this->getChildByTag(3)->numberOfRunningActions() == 0 and this->getChildByTag(4)->numberOfRunningActions() == 0) {
+    if (this->getChildByTag(0)->getNumberOfRunningActions() == 0 and this->getChildByTag(1)->getNumberOfRunningActions() == 0 and this->getChildByTag(2)->getNumberOfRunningActions() == 0 and this->getChildByTag(3)->getNumberOfRunningActions() == 0 and
+        this->getChildByTag(4)->getNumberOfRunningActions() == 0) {
         return true;
     }
     return false;

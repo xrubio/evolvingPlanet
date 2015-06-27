@@ -29,10 +29,12 @@ bool UIProgressMap::init()
     if (!Layer::init()) {
         return false;
     }
-
+    
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
     }
+    
+    Director::getInstance()->setAnimationInterval(1.0 / 60);
 
     //Alliberar memòria
     //SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
@@ -55,7 +57,7 @@ bool UIProgressMap::init()
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
     backButton->setPosition(Vec2((3 * progressMap0->getBoundingBox().size.width / 34),
         (2 * progressMap0->getBoundingBox().size.height / 25)));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -69,7 +71,7 @@ bool UIProgressMap::init()
     auto popupLevelBorderTop = Sprite::create("ProgressMapLevelPopupBorderTop.png");
     popupLevelBorderTop->setAnchorPoint(Vec2(0, 0));
     //popupLevelBorderTop->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height));
-    auto labelBorderTop = Label::createWithTTF(LocalizedString::create("FIRST_ERA")->getCString(), "fonts/BebasNeue.otf", 60);
+    auto labelBorderTop = Label::createWithTTF(LocalizedString::create("FIRST_ERA").c_str(), "fonts/BebasNeue.otf", 60);
     labelBorderTop->setColor(Color3B(Color3B::WHITE));
     labelBorderTop->setPosition(Vec2(popupLevelBorderTop->getBoundingBox().size.width / 2,
         popupLevelBorderTop->getBoundingBox().size.height / 2));
@@ -104,7 +106,7 @@ bool UIProgressMap::init()
         buttonLevel->setContentSize(Size(popupLevelBackground->getBoundingBox().size.width,
             popupLevelBackground->getBoundingBox().size.height / 22));
         string space = " ";
-        auto labelButtonLevel = Label::createWithTTF(LocalizedString::create("LEVEL")->getCString() + space + to_string(i + 1),
+        auto labelButtonLevel = Label::createWithTTF(LocalizedString::create("LEVEL") + space + to_string(i + 1),
             "fonts/BebasNeue.otf", 45);
         labelButtonLevel->setColor(Color3B::WHITE);
         labelButtonLevel->setPosition(Vec2(2 * buttonLevel->getBoundingBox().size.width / 4, buttonLevel->getBoundingBox().size.height / 2));
@@ -224,6 +226,28 @@ bool UIProgressMap::init()
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
 
     this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOn.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowBack.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowBackPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowNext.png");
+    Director::getInstance()->getTextureCache()->addImage("ArrowNextPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PageBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("BlankAttributePointButton.png");
+    Director::getInstance()->getTextureCache()->addImage("FilledAttributePointButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ContextPageButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ContextPageButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapPlayButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapPlayButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButton.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButton.png");
+    Director::getInstance()->getTextureCache()->addImage("MinusButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButton.png");
+    Director::getInstance()->getTextureCache()->addImage("PlusButtonPressed.png");
 
     return true;
 }
@@ -274,6 +298,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(80 * progressMap0->getContentSize().width / 204,
                 (32 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level1Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level1HotSpotsBase.png");
             break;
         }
         case 2: {
@@ -290,6 +316,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(76 * progressMap0->getContentSize().width / 204,
                 (54 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level2Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level2HotSpotsBase.png");
             break;
         }
         case 3: {
@@ -306,6 +334,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(55 * progressMap0->getContentSize().width / 204,
                 (71 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
             break;
         }
         case 4: {
@@ -322,6 +352,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(55 * progressMap0->getContentSize().width / 204,
                 (71 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
             break;
         }
         case 5: {
@@ -338,6 +370,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(52 * progressMap0->getContentSize().width / 204,
                 (103 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
+            Director::getInstance()->getTextureCache()->addImage("Level5Background.jpg");
+            Director::getInstance()->getTextureCache()->addImage("Level5HotSpotsBase.png");
             break;
         }
 
@@ -423,7 +457,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     this->addChild(popupBackground, 20, 101);
 
     string space = " ";
-    string lvl = LocalizedString::create("LEVEL")->getCString() + space + to_string(tag);
+    string lvl = (LocalizedString::create("LEVEL")) + space + to_string(tag);
     auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 100);
     levelLabel->setColor(Color3B(85, 108, 117));
     levelLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -452,7 +486,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         popupBackground->addChild(iconLevel);
     }
 
-    auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str())->getCString(),
+    auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str()),
         Size(13 * (popupBackground->getContentSize().width / 25), 6 * (popupBackground->getContentSize().height / 14)),
         TextHAlignment::LEFT, "Corbel", 28);
     briefText->setColorSpaceHolder(Color3B(216, 229, 235));
@@ -462,7 +496,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     auto playButton = MenuItemImage::create("ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIProgressMap::proceedLevelCallback, this));
     playButton->setPosition(Vec2(21 * (popupBackground->getContentSize().width / 25), 2 * (popupBackground->getContentSize().height / 14)));
     playButton->setTag(tag);
-    auto labelPlay = Label::createWithTTF(LocalizedString::create("PLAY")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto labelPlay = Label::createWithTTF(LocalizedString::create("PLAY"), "fonts/BebasNeue.otf", 50);
     labelPlay->setPosition(playButton->getContentSize().width / 2, playButton->getContentSize().height / 2);
     labelPlay->setColor(Color3B(205, 202, 207));
     playButton->addChild(labelPlay);
@@ -499,7 +533,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     menu->setOpacity(0);
     menu->runAction(darkFadeIn);
 
-    auto delayPopup = DelayTime::create(0.4);
+    //auto delayPopup = DelayTime::create(0.4);
     auto popupMoveTo = MoveTo::create(1, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto popupEase = EaseBackOut::create(popupMoveTo);
     auto seqShowPopup = Sequence::create(popupEase, NULL);

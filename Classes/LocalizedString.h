@@ -15,7 +15,7 @@ using namespace cocos2d;
 
 class LocalizedString {
 public:
-    static CCString* create(const char* key);
+    static std::string create(const char* key);
 
     static const char* getSystemLang();
 

@@ -58,7 +58,7 @@ bool UIConfiguration::init()
         "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -68,7 +68,7 @@ bool UIConfiguration::init()
         "ConfigurationResetGame.png", "ConfigurationResetGamePressed.png", "ConfigurationResetGamePressed.png",
         CC_CALLBACK_1(UIConfiguration::menuResetCallback, this));
     resetButton->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto resetLabel = Label::createWithTTF(LocalizedString::create("RESET")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto resetLabel = Label::createWithTTF(LocalizedString::create("RESET"), "fonts/BebasNeue.otf", 50);
     resetLabel->setColor(Color3B(205, 202, 207));
     resetLabel->setPosition(resetButton->getContentSize().width / 2, resetButton->getContentSize().height / 2);
     resetButton->addChild(resetLabel);
@@ -83,14 +83,14 @@ bool UIConfiguration::init()
         resetButton->setEnabled(false);
     }
 
-    auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION")->getCString(), "fonts/BebasNeue.otf", 100);
+    auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 100);
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(1, 0.5));
     configLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 13.5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(configLabel);
 
     Vector<MenuItem*> languageItems;
-    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE")->getCString(), "fonts/BebasNeue.otf", 80);
+    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE"), "fonts/BebasNeue.otf", 80);
     languageLabel->setColor(Color3B(72, 108, 118));
     languageLabel->setAnchorPoint(Vec2(1, 0.5));
     languageLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
@@ -128,7 +128,7 @@ bool UIConfiguration::init()
 
     Vector<MenuItem*> soundItems;
 
-    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC")->getCString(), "fonts/BebasNeue.otf", 80);
+    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC"), "fonts/BebasNeue.otf", 80);
     musicLabel->setColor(Color3B(72, 108, 118));
     musicLabel->setAnchorPoint(Vec2(1, 0.5));
     musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
@@ -151,7 +151,7 @@ bool UIConfiguration::init()
         8 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOffLabel);
 
-    auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS")->getCString(), "fonts/BebasNeue.otf", 80);
+    auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS"), "fonts/BebasNeue.otf", 80);
     sfxLabel->setColor(Color3B(72, 108, 118));
     sfxLabel->setAnchorPoint(Vec2(1, 0.5));
     sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
@@ -337,19 +337,19 @@ void UIConfiguration::createWarningWindow(Sprite* popupBackground)
     auto alertBackground = Sprite::create("ConfigurationAlert.png");
     alertBackground->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
 
-    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING")->getCString(), "fonts/BebasNeue.otf", 80);
+    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 80);
     alertLabel->setColor(Color3B(255, 255, 255));
     alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertLabel);
 
-    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT")->getCString(), "fonts/BebasNeue.otf", 50);
+    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 50);
     alertTextLabel->setColor(Color3B(255, 255, 255));
     alertTextLabel->setMaxLineWidth(325);
     alertTextLabel->setAlignment(TextHAlignment::CENTER);
     alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertTextLabel);
 
-    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("RESET")->getCString() + string(" ?"), "fonts/BebasNeue.otf", 50);
+    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("RESET") + string(" ?"), "fonts/BebasNeue.otf", 50);
     alertConfirmationLabel->setColor(Color3B(255, 255, 255));
     alertConfirmationLabel->setPosition(Vec2(1.2 * alertBackground->getBoundingBox().size.width / 4,
         alertBackground->getBoundingBox().size.height / 6));

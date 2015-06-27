@@ -11,7 +11,6 @@
 
 #include <pthread.h>
 #include "UIProgressMap.h"
-#include "DrawPoint.h"
 #include "GameLevel.h"
 #include "UIPower.h"
 
