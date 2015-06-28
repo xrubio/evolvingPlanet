@@ -95,8 +95,8 @@ public:
     void setIdCounter(int count);
     const LevelState & getFinishedGame() const;
     void setFinishedGame(const LevelState & f);
-    int getTimeSteps(void);
-    void setTimeSteps(int steps);
+    unsigned int getTimeSteps(void);
+    void setTimeSteps(unsigned int steps);
     float getTimeSpeed(void);
     void setTimeSpeed(float speed);
     float getTimeSpeedBeforePause(void);
@@ -119,9 +119,9 @@ public:
     vector<cocos2d::Point> getAgentDirections(void);
     void setAgentDirections(vector<cocos2d::Point> ad);
     void setAgentDirection(int agentType, cocos2d::Point p);
-    vector<vector<pair<int, cocos2d::Point> > > getAgentFutureDirections(void);
-    void setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd);
-    void setAgentFutureDirection(int type, int step, cocos2d::Point p);
+    vector<vector<pair<unsigned int, cocos2d::Point> > > getAgentFutureDirections(void);
+    void setAgentFutureDirections(vector<vector<pair<unsigned int, cocos2d::Point> > > afd);
+    void setAgentFutureDirection(int type, unsigned int step, cocos2d::Point p);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -170,7 +170,7 @@ private:
     vector<cocos2d::Point> deletedAgents;
     int idCounter = 0;
 
-    int timeSteps = 0;
+    unsigned int timeSteps = 0;
     float timeSpeed = 0;
     float timeSpeedBeforePause = 2.5;
 
@@ -181,7 +181,7 @@ private:
     int currentAgentType = 0;
 
     vector<cocos2d::Point> agentDirections;
-    vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
+    vector<vector<pair<unsigned int, cocos2d::Point> > > agentFutureDirections;
 
     GameLevel(){};
 

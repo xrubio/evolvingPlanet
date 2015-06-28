@@ -55,7 +55,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     }
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     Power* p = nullptr;
-    for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
+    for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
         if (GameLevel::getInstance()->getPowers()[i]->getId() != ResistanceBoost)
         {

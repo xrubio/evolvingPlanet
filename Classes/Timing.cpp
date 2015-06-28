@@ -53,7 +53,7 @@ void Timing::start(void)
             if ((currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (powerTime.tv_sec + (powerTime.tv_usec / 1000000.0)) >= 0.07) {
                 //powerTime = clock();
                 gettimeofday(&powerTime, nullptr);
-                for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
+                for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
                     Power* p = GameLevel::getInstance()->getPowers()[i];
                     if (p->getDurationLeft() == p->getDuration()) {
                         p->setCooldownLeft(p->getCooldown());

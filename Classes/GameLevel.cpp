@@ -328,12 +328,12 @@ void GameLevel::setFinishedGame(const LevelState & f)
     finishedGame = f;
 }
 
-int GameLevel::getTimeSteps(void)
+unsigned int GameLevel::getTimeSteps(void)
 {
     return timeSteps;
 }
 
-void GameLevel::setTimeSteps(int steps)
+void GameLevel::setTimeSteps(unsigned int steps)
 {
     timeSteps = steps;
 }
@@ -448,21 +448,21 @@ void GameLevel::setAgentDirection(int agentType, cocos2d::Point p)
     agentDirections[agentType] = p;
 }
 
-vector<vector<pair<int, cocos2d::Point> > > GameLevel::getAgentFutureDirections(void)
+vector<vector<pair<unsigned int, cocos2d::Point> > > GameLevel::getAgentFutureDirections(void)
 {
     return agentFutureDirections;
 }
 
-void GameLevel::setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd)
+void GameLevel::setAgentFutureDirections(vector<vector<pair<unsigned int, cocos2d::Point> > > afd)
 {
     agentFutureDirections = afd;
 }
 
-void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
+void GameLevel::setAgentFutureDirection(int type, unsigned int step, cocos2d::Point p)
 {
-    pair<int, cocos2d::Point> par(step, p);
+    pair<unsigned int, cocos2d::Point> par(step, p);
     while (agentFutureDirections.size() <= type) {
-        vector<pair<int, cocos2d::Point> > v;
+        vector<pair<unsigned int, cocos2d::Point> > v;
         agentFutureDirections.push_back(v);
     }
     agentFutureDirections[type].push_back(par);
@@ -642,7 +642,7 @@ void GameLevel::act(void)
     //CCLOG("Num agents: %i", agents[0].size());
     //CCLOG("Pool: %i", agentsPool[0].size());
     //CCLOG("Num agents + Pool: %i", agents[0].size() + agentsPool[0].size());
-    for (int k = 0; k < agents.size() and finishedGame == Running; k++) {
+    for (size_t k = 0; k < agents.size() and finishedGame == Running; k++) {
         //CHECK DIRECTION
         if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
             CCLOG("check direction %i", agentFutureDirections[k][0].first);
@@ -678,7 +678,7 @@ void GameLevel::act(void)
             //ALL GOALS COMPLETED ??
             bool failed = false;
             int finalScore = 0;
-            for (int j = 0; j < goals.size() and failed == false; j++) {
+            for (size_t j = 0; j < goals.size() and failed == false; j++) {
                 if (goals[j]->getCompleted() == false) {
                     if (prevGoal != j) {
                         gameplayMap->moveGoalPopup(j);

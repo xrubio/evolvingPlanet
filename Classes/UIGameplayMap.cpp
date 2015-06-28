@@ -118,16 +118,6 @@ bool UIGameplayMap::init()
     quitRetryMenu->setPosition(0, 0);
     this->addChild(quitRetryMenu, 10);
 
-
-    // TUTORIAL MESSAGES
-    auto messageLabel = Label::createWithTTF("no message", "fonts/BebasNeue.otf", 24);
-    messageLabel->setName("tutorial");
-    messageLabel->setColor(Color3B(230, 230, 230));
-    messageLabel->setPosition(Vec2(visibleSize.width*2/3, visibleSize.height*2/3));
-    this->addChild(messageLabel);
-    messageLabel->setMaxLineWidth(300);
-    messageLabel->setVisible(false);
-
     //HOTSPOT
     gameplayMapHotSpot = new Image();
     gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
@@ -244,6 +234,7 @@ bool UIGameplayMap::init()
         playButton->getPosition().y));
     pauseButton->setEnabled(false);
     pauseDarkBackground = Sprite::create("EndedGameBackground.png");
+    pauseDarkBackground->setName("pauseDarkBackground");
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pauseDarkBackground->setOpacity(180);
@@ -251,7 +242,7 @@ bool UIGameplayMap::init()
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
     pauseDarkBackground->addChild(pauseDarkLabel);
-    this->addChild(pauseDarkBackground, 0);
+    addChild(pauseDarkBackground, 0);
     timeButtons.pushBack(pauseButton);
 
     Menu* timeMenu = Menu::createWithArray(timeButtons);
@@ -578,6 +569,20 @@ bool UIGameplayMap::init()
     menuAgentTypeSelector->setPosition(0, 0);
     this->addChild(menuAgentTypeSelector, 5);
 
+    // TUTORIAL MESSAGES
+    auto messageLabel = Label::createWithTTF("no message", "fonts/BebasNeue.otf", 24);
+    messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->setMaxLineWidth(300);
+    messageLabel->setVisible(false);
+    auto labelBorder = DrawNode::create();
+    labelBorder->setName("tutorialBorder");
+    labelBorder->setVisible(false);
+
+    // add first the border to draw it first
+    addChild(labelBorder);
+    addChild(messageLabel);
+
     _message = 0;
 
     createTimingThread();
@@ -611,9 +616,13 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
     // TODO if you touch the bounding box
     if(_tutorial && _tutorial->getCurrentMessage())
-    {
+    {  
+        auto pauseDarkBackground = this->getChildByName("pauseDarkBackground");
+        pauseDarkBackground->setVisible(true);
+
         _tutorial->removeCurrentMessage();
         this->getChildByName("tutorial")->setVisible(false);
+        this->getChildByName("tutorialBorder")->setVisible(false);
         
     }
     if (endGameWindowPainted == false) {
@@ -1562,6 +1571,7 @@ void UIGameplayMap::update(float delta)
             {
                 setMessage(_tutorial->getCurrentMessage());
             }
+            
 
 
             //clock_t beforeTime = clock();
@@ -1641,6 +1651,20 @@ void UIGameplayMap::setMessage( const Message * message )
     _message = message;
     Label * label = (Label*)(this->getChildByName("tutorial"));
     label->setString(_message->text());
-    label->setVisible(true);
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    label->setMaxLineWidth(_message->lineWidth()*visibleSize.width);
+    Vec2 position = Vec2(visibleSize.width*_message->pos().x, visibleSize.height*_message->pos().y);
+    label->setPosition(position);
+    label->setVisible(true);    
+    auto labelBorder = (DrawNode*)(this->getChildByName("tutorialBorder"));
+    labelBorder->clear();
+    labelBorder->setVisible(true);
+    Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
+    Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + Vec2(5.0f, 5.0f));
+    labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));
+    labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));   
+
+    auto pauseDarkBackground = this->getChildByName("pauseDarkBackground");
+    pauseDarkBackground->setVisible(false);
 }
 

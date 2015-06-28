@@ -59,7 +59,7 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
 
     Power* p = nullptr;
     Power* pRest = nullptr;
-    for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
+    for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
         PowerId powerId = GameLevel::getInstance()->getPowers()[i]->getId();
         if (powerId == RecollectionBoost)

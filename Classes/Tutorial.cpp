@@ -43,7 +43,7 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             std::string trigger = message.attribute("trigger").value();
             float xPos = message.attribute("x").as_float();
             float yPos = message.attribute("y").as_float();
-            int lineBreak = message.attribute("lineWidth").as_int();
+            float lineBreak = message.attribute("lineWidth").as_float();
             std::string text = LocalizedString::create(message.attribute("text").value());
             if(trigger=="next")
             { 

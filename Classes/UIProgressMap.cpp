@@ -472,7 +472,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(mapPopup);
 
     vector<string> goalTypes = loader.getGoalTypes("level" + to_string(tag));
-    for (int i = 0; i < goalTypes.size(); i++) {
+    for (size_t i = 0; i < goalTypes.size(); i++) {
         Sprite* iconLevel;
         if (goalTypes[i] == "Expansion") {
             iconLevel = Sprite::create("ExpansionGoalIcon.png");
@@ -505,7 +505,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(playMenu);
 
     int score = 0;
-    if (GameData::getInstance()->getLevelsCompleted().size() > tag) {
+    if (GameData::getInstance()->getLevelsCompleted().size() > size_t(tag)) {
         score = GameData::getInstance()->getLevelScore(tag);
     }
     CCLOG("SCORE: %i", score);
