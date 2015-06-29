@@ -100,11 +100,13 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setLanguage(LocalizedString::getSystemLang());
         GameData::getInstance()->setMusic(true);
         GameData::getInstance()->setSFX(true);
+        UserDefault::getInstance()->setBoolForKey("firsttimeplaying", true);
     }
     else {
         GameData::getInstance()->setLanguage(lang);
         GameData::getInstance()->setMusic(UserDefault::getInstance()->getBoolForKey("music"));
         GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
+        UserDefault::getInstance()->setBoolForKey("firsttimeplaying", false);
     }
 
     //RA CONVERSION - PRECALCS
