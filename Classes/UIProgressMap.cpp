@@ -93,15 +93,20 @@ bool UIProgressMap::init()
     popupLevelBackground->addChild(popupLevelBorderTop);
     popupLevelBackground->addChild(popupLevelBorderBottom);
     popupLevelBackground->setAnchorPoint(Vec2(0, 0.5));
-    popupLevelBackground->setPosition(Vec2(0, progressMap0->getBoundingBox().size.height / 2));
+    popupLevelBackground->setPosition(Vec2(0, 1.15 * progressMap0->getBoundingBox().size.height / 2));
     
     popupLevelBorderTop->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height / 2));
     popupLevelBorderBottom->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height / 2));
+    
+    selectedBackground = Sprite::create("ProgressMapLevelSelected.png");
+    selectedBackground->setVisible(false);
+    popupLevelBackground->addChild(selectedBackground);
 
     Vector<MenuItem*> levelButtons;
 
     for (int i = 0; i < 10; i++) {
         auto buttonLevel = MenuItem::create(CC_CALLBACK_1(UIProgressMap::menuLevelZoneCallback, this));
+        buttonLevel->setContentSize(selectedBackground->getContentSize());
         buttonLevel->setTag(i + 1);
         buttonLevel->setContentSize(Size(popupLevelBackground->getBoundingBox().size.width,
             popupLevelBackground->getBoundingBox().size.height / 22));
@@ -109,12 +114,12 @@ bool UIProgressMap::init()
         auto labelButtonLevel = Label::createWithTTF(LocalizedString::create("LEVEL") + space + to_string(i + 1),
             "fonts/BebasNeue.otf", 45);
         labelButtonLevel->setColor(Color3B::WHITE);
-        labelButtonLevel->setPosition(Vec2(2 * buttonLevel->getBoundingBox().size.width / 4, buttonLevel->getBoundingBox().size.height / 2));
+        labelButtonLevel->setPosition(Vec2(2 * buttonLevel->getBoundingBox().size.width / 5, buttonLevel->getBoundingBox().size.height / 2));
         labelButtonLevel->setOpacity(0);
         labelButtonLevel->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
         buttonLevel->addChild(labelButtonLevel);
         auto hexagonButtonLevel = Sprite::create("ProgressMapHexagonLevelOff.png");
-        hexagonButtonLevel->setPosition(Vec2(buttonLevel->getBoundingBox().size.width / 4, buttonLevel->getBoundingBox().size.height / 2));
+        hexagonButtonLevel->setPosition(Vec2(buttonLevel->getBoundingBox().size.width / 6, buttonLevel->getBoundingBox().size.height / 2));
         hexagonButtonLevel->setOpacity(0);
         hexagonButtonLevel->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
         buttonLevel->addChild(hexagonButtonLevel);
@@ -137,19 +142,19 @@ bool UIProgressMap::init()
                 starFile = "StarEmptyMini.png";
             }
             auto star = Sprite::create(starFile);
-            star->setPosition(Vec2((4.65 * buttonLevel->getBoundingBox().size.width / 7) + (i * (star->getContentSize().width + star->getContentSize().width / 4)),
+            star->setPosition(Vec2((4.15 * buttonLevel->getBoundingBox().size.width / 7) + (i * (star->getContentSize().width + star->getContentSize().width / 4)),
                 buttonLevel->getBoundingBox().size.height / 2));
             star->setOpacity(0);
             star->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
             buttonLevel->addChild(star);
         }
-        buttonLevel->setPosition(Vec2(2 * popupLevelBackground->getBoundingBox().size.width / 5,
-            (20 - (i * 2)) * popupLevelBackground->getBoundingBox().size.height / 22));
+        buttonLevel->setPosition(Vec2(popupLevelBackground->getBoundingBox().size.width / 2,
+            (popupLevelBackground->getContentSize().height + popupLevelBackground->getContentSize().height / 20) - ((i + 1) * (popupLevelBackground->getContentSize().height / 10))));
         levelButtons.pushBack(buttonLevel);
     }
     auto menuLevelButtons = Menu::createWithArray(levelButtons);
     menuLevelButtons->setPosition(Vec2(0, 0));
-    popupLevelBackground->addChild(menuLevelButtons);
+    popupLevelBackground->addChild(menuLevelButtons, 1);
     
     ProgressFromTo* horitzontalTimer = ProgressFromTo::create(0.6, 0, 100);
     popupLevelBackground->setType(ProgressTimer::Type::BAR);
@@ -163,7 +168,7 @@ bool UIProgressMap::init()
     auto moveDown = MoveTo::create(0.6, Vec2(0, 0));
     popupLevelBorderBottom->runAction(Sequence::create(DelayTime::create(0.6), moveDown, NULL));
     
-    progressMap0->addChild(popupLevelBackground, 8);
+    progressMap0->addChild(popupLevelBackground, 8, 103);
 
     this->addChild(progressMap0);
 
@@ -228,7 +233,6 @@ bool UIProgressMap::init()
     this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOn.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
     Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButton.png");
     Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("ArrowBack.png");
@@ -242,8 +246,6 @@ bool UIProgressMap::init()
     Director::getInstance()->getTextureCache()->addImage("ContextPageButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("ProgressMapPlayButton.png");
     Director::getInstance()->getTextureCache()->addImage("ProgressMapPlayButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButton.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapBackButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("MinusButton.png");
     Director::getInstance()->getTextureCache()->addImage("MinusButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("PlusButton.png");
@@ -264,13 +266,14 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 
 void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
 {
-
     auto pMenuItem = (MenuItem*)(pSender);
     bool doNothing = false;
     int tag = pMenuItem->getTag();
     MenuItemImage* levelButton;
     Sprite* shadow;
     if (progressMap0->getChildByTag(tag) == nullptr and tag != tagLevelSelected) {
+        selectedBackground->setPosition(pMenuItem->getPosition());
+        selectedBackground->setVisible(true);
         tagLevelSelected = tag;
         //Flags
         for (int i = 0; i < 11; i++) {
@@ -298,8 +301,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(80 * progressMap0->getContentSize().width / 204,
                 (32 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
-            Director::getInstance()->getTextureCache()->addImage("Level1Background.jpg");
-            Director::getInstance()->getTextureCache()->addImage("Level1HotSpotsBase.png");
+            //Director::getInstance()->getTextureCache()->addImage("Level1Background.jpg");
+            //Director::getInstance()->getTextureCache()->addImage("Level1HotSpotsBase.png");
             break;
         }
         case 2: {
@@ -316,8 +319,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(76 * progressMap0->getContentSize().width / 204,
                 (54 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
-            Director::getInstance()->getTextureCache()->addImage("Level2Background.jpg");
-            Director::getInstance()->getTextureCache()->addImage("Level2HotSpotsBase.png");
+            //Director::getInstance()->getTextureCache()->addImage("Level2Background.jpg");
+            //Director::getInstance()->getTextureCache()->addImage("Level2HotSpotsBase.png");
             break;
         }
         case 3: {
@@ -334,8 +337,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(55 * progressMap0->getContentSize().width / 204,
                 (71 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
-            Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
-            Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
+            //Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
+            //Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
             break;
         }
         case 4: {
@@ -352,8 +355,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(55 * progressMap0->getContentSize().width / 204,
                 (71 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
-            Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
-            Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
+            //Director::getInstance()->getTextureCache()->addImage("Level3Background.jpg");
+            //Director::getInstance()->getTextureCache()->addImage("Level3HotSpotsBase.png");
             break;
         }
         case 5: {
@@ -370,8 +373,8 @@ void UIProgressMap::menuLevelZoneCallback(Ref* pSender)
             shadow->setPosition(Vec2(52 * progressMap0->getContentSize().width / 204,
                 (103 * progressMap0->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
             progressMap0->addChild(shadow, 1, tag);
-            Director::getInstance()->getTextureCache()->addImage("Level5Background.jpg");
-            Director::getInstance()->getTextureCache()->addImage("Level5HotSpotsBase.png");
+            //Director::getInstance()->getTextureCache()->addImage("Level5Background.jpg");
+            //Director::getInstance()->getTextureCache()->addImage("Level5HotSpotsBase.png");
             break;
         }
 

@@ -31,6 +31,8 @@ bool UIMainMenu::init()
     if (!Layer::init()) {
         return false;
     }
+    
+    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
@@ -176,7 +178,6 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
     Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
     Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
     Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
@@ -189,6 +190,11 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
     Director::getInstance()->getTextureCache()->addImage("StarFull.png");
     Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
+    Director::getInstance()->getTextureCache()->addImage("LevelPointerButton.png");
+    Director::getInstance()->getTextureCache()->addImage("LevelPointerButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("LevelPointerButtonShadow.png");
+    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelSelected.png");
     
     return true;
 }
