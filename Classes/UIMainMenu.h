@@ -21,11 +21,14 @@ public:
 
     void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
 
+    void menuContinueCallback(Ref* pSender);
     void menuStartCallback(Ref* pSender);
     void menuAchievementsCallback(Ref* pSender);
     void menuConfigurationCallback(Ref* pSender);
     void menuCreditsCallback(Ref* pSender);
     void menuExitCallback(Ref* pSender);
+    void menuResetNoCallback(Ref* pSender);
+    void menuResetYesCallback(Ref* pSender);
 
     CREATE_FUNC(UIMainMenu);
 
@@ -34,6 +37,7 @@ private:
 
     void endActions(void);
     bool allActionsFinished(void);
+    void createWarningWindow(void);
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

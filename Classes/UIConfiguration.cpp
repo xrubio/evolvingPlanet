@@ -63,25 +63,10 @@ bool UIConfiguration::init()
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
     menuButtons.pushBack(backButton);
-
-    auto resetButton = MenuItemImage::create(
-        "ConfigurationResetGame.png", "ConfigurationResetGamePressed.png", "ConfigurationResetGamePressed.png",
-        CC_CALLBACK_1(UIConfiguration::menuResetCallback, this));
-    resetButton->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto resetLabel = Label::createWithTTF(LocalizedString::create("RESET"), "fonts/BebasNeue.otf", 50);
-    resetLabel->setColor(Color3B(205, 202, 207));
-    resetLabel->setPosition(resetButton->getContentSize().width / 2, resetButton->getContentSize().height / 2);
-    resetButton->addChild(resetLabel);
-    menuButtons.pushBack(resetButton);
-
+    
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
     popupBackground->addChild(menu, 1, 20);
-
-    if (GameData::getInstance()->getResetGameClicked()) {
-        createWarningWindow(popupBackground);
-        resetButton->setEnabled(false);
-    }
 
     auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 100);
     configLabel->setColor(Color3B(255, 255, 255));
@@ -204,41 +189,10 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
     UserDefault::getInstance()->flush();
-    GameData::getInstance()->setResetGameClicked(false);
 
     auto scene = UIMainMenu::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
-}
-
-void UIConfiguration::menuResetCallback(Ref* pSender)
-{
-    MenuItemImage* pMenuItem = (MenuItemImage*)(pSender);
-    pMenuItem->setEnabled(false);
-    Sprite* popupBackground = (Sprite*)(pMenuItem->getParent()->getParent());
-    createWarningWindow(popupBackground);
-    GameData::getInstance()->setResetGameClicked(true);
-}
-
-void UIConfiguration::menuResetNoCallback(Ref* pSender)
-{
-    MenuItemImage* pMenuItem = (MenuItemImage*)(pSender);
-    auto popupBackground = (Sprite*)(pMenuItem->getParent()->getParent()->getParent());
-    popupBackground->removeChildByTag(30);
-    auto menuButtons = (Menu*)(popupBackground->getChildByTag(20));
-    ((MenuItemImage*)(menuButtons->getChildren().at(1)))->setEnabled(true);
-    GameData::getInstance()->setResetGameClicked(false);
-}
-
-void UIConfiguration::menuResetYesCallback(Ref* pSender)
-{
-    MenuItemImage* pMenuItem = (MenuItemImage*)(pSender);
-    auto popupBackground = (Sprite*)(pMenuItem->getParent()->getParent()->getParent());
-    popupBackground->removeChildByTag(30);
-    auto menuButtons = (Menu*)(popupBackground->getChildByTag(20));
-    ((MenuItemImage*)(menuButtons->getChildren().at(1)))->setEnabled(true);
-    GameData::getInstance()->setResetGameClicked(false);
-    GameData::getInstance()->resetGameProgress();
 }
 
 void UIConfiguration::catFlagCallback(Ref* pSender)
@@ -330,50 +284,4 @@ void UIConfiguration::sfxOffCallback(Ref* pSender)
     sfxOnLabel->setEnabled(true);
 
     GameData::getInstance()->setSFX(false);
-}
-
-void UIConfiguration::createWarningWindow(Sprite* popupBackground)
-{
-    auto alertBackground = Sprite::create("ConfigurationAlert.png");
-    alertBackground->setPosition(Vec2(24 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
-
-    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 80);
-    alertLabel->setColor(Color3B(255, 255, 255));
-    alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
-    alertBackground->addChild(alertLabel);
-
-    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 50);
-    alertTextLabel->setColor(Color3B(255, 255, 255));
-    alertTextLabel->setMaxLineWidth(325);
-    alertTextLabel->setAlignment(TextHAlignment::CENTER);
-    alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
-    alertBackground->addChild(alertTextLabel);
-
-    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("RESET") + string(" ?"), "fonts/BebasNeue.otf", 50);
-    alertConfirmationLabel->setColor(Color3B(255, 255, 255));
-    alertConfirmationLabel->setPosition(Vec2(1.2 * alertBackground->getBoundingBox().size.width / 4,
-        alertBackground->getBoundingBox().size.height / 6));
-    alertBackground->addChild(alertConfirmationLabel);
-
-    Vector<MenuItem*> confirmReset;
-    auto confirmResetYes = MenuItemImage::create("ConfigurationResetYes.png", "ConfigurationResetYesPressed.png",
-        CC_CALLBACK_1(UIConfiguration::menuResetYesCallback, this));
-    confirmResetYes->setPosition(Vec2(Vec2(4 * alertBackground->getBoundingBox().size.width / 6,
-        alertBackground->getBoundingBox().size.height / 6)));
-    confirmReset.pushBack(confirmResetYes);
-    auto confirmSeparator = Sprite::create("ConfigurationResetSeparator.png");
-    confirmSeparator->setPosition(Vec2(Vec2(4.65 * alertBackground->getBoundingBox().size.width / 6,
-        alertBackground->getBoundingBox().size.height / 6)));
-    alertBackground->addChild(confirmSeparator);
-    auto confirmResetNo = MenuItemImage::create("ConfigurationResetNo.png", "ConfigurationResetNoPressed.png",
-        CC_CALLBACK_1(UIConfiguration::menuResetNoCallback, this));
-    confirmResetNo->setPosition(Vec2(Vec2(5.3 * alertBackground->getBoundingBox().size.width / 6,
-        alertBackground->getBoundingBox().size.height / 6)));
-    confirmReset.pushBack(confirmResetNo);
-
-    auto menuConfirmReset = Menu::createWithArray(confirmReset);
-    menuConfirmReset->setPosition(0, 0);
-    alertBackground->addChild(menuConfirmReset, 10);
-
-    popupBackground->addChild(alertBackground, 1, 30);
 }

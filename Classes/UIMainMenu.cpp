@@ -31,6 +31,8 @@ bool UIMainMenu::init()
     if (!Layer::init()) {
         return false;
     }
+    
+    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
@@ -98,12 +100,33 @@ bool UIMainMenu::init()
 
     Vector<cocos2d::MenuItem*> menuButtons;
 
+    if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false or UserDefault::getInstance()->getIntegerForKey("maxLevel") > 0)
+    {
+        auto continueButton = MenuItemImage::create(
+                                                "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuContinueCallback, this));
+        continueButton->setAnchorPoint(Vec2(0, 0.5));
+        continueButton->setPosition(Vec2((2 * visibleSize.width / 25),
+                                     (10 * visibleSize.height / 18)));
+        auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 50);
+        continueLabel->setColor(Color3B(219, 234, 241));
+        continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
+        continueButton->addChild(continueLabel);
+        continueButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+        menuButtons.pushBack(continueButton);
+    }
+    
     auto startButton = MenuItemImage::create(
         "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
     startButton->setAnchorPoint(Vec2(0, 0.5));
-    startButton->setPosition(Vec2((2 * visibleSize.width / 25),
-        (10 * visibleSize.height / 18)));
-    auto startLabel = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
+    if (menuButtons.size() > 0)
+    {
+        startButton->setPosition(Vec2((2 * visibleSize.width / 25), (8.5 * visibleSize.height / 18)));
+    }
+    else
+    {
+        startButton->setPosition(Vec2((2 * visibleSize.width / 25), (10 * visibleSize.height / 18)));
+    }
+    auto startLabel = Label::createWithTTF(LocalizedString::create("NEW_CAMPAIGN"), "fonts/BebasNeue.otf", 45);
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
@@ -114,7 +137,7 @@ bool UIMainMenu::init()
         "MainMenuAchButton.png", "MainMenuAchButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuAchievementsCallback, this));
     achievementsButton->setAnchorPoint(Vec2(1, 0.5));
     achievementsButton->setPosition(Vec2(startButton->getPositionX() + startButton->getBoundingBox().size.width,
-        (8.5 * visibleSize.height / 18)));
+        startButton->getPositionY() - (1.5 * visibleSize.height / 18)));
     auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 40);
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
@@ -176,7 +199,6 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
     Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
     Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
     Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
@@ -189,6 +211,11 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
     Director::getInstance()->getTextureCache()->addImage("StarFull.png");
     Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
+    Director::getInstance()->getTextureCache()->addImage("LevelPointerButton.png");
+    Director::getInstance()->getTextureCache()->addImage("LevelPointerButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("LevelPointerButtonShadow.png");
+    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelSelected.png");
     
     return true;
 }
@@ -200,7 +227,7 @@ void UIMainMenu::onTouchesBegan(const vector<Touch*>& touches, Event* event)
     }
 }
 
-void UIMainMenu::menuStartCallback(Ref* pSender)
+void UIMainMenu::menuContinueCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
         auto scene = UIProgressMap::createScene();
@@ -208,6 +235,32 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        }
+    }
+    else {
+        endActions();
+    }
+}
+
+void UIMainMenu::menuStartCallback(Ref* pSender)
+{
+    if (stoppedAnimation or allActionsFinished()) {
+        if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false or
+            UserDefault::getInstance()->getIntegerForKey("maxLevel") > 0 )
+        {
+            //WARNING ERASING GAME DATA
+            createWarningWindow();
+        }
+        else
+        {
+            auto scene = UIProgressMap::createScene();
+            auto transition = TransitionFade::create(1.0f, scene);
+            Director::getInstance()->replaceScene(transition);
+            if (GameData::getInstance()->getSFX() == true) {
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+            }
+            GameData::getInstance()->resetGameProgress();
+            //ANIMACIO
         }
     }
     else {
@@ -277,6 +330,23 @@ void UIMainMenu::menuExitCallback(Ref* pSender)
     }
 }
 
+void UIMainMenu::menuResetNoCallback(Ref* pSender)
+{
+    this->removeChildByTag(30);
+}
+
+void UIMainMenu::menuResetYesCallback(Ref* pSender)
+{
+    GameData::getInstance()->resetGameProgress();
+    auto scene = UIProgressMap::createScene();
+    auto transition = TransitionFade::create(1.0f, scene);
+    Director::getInstance()->replaceScene(transition);
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+    }
+    //ANIMACIO
+}
+
 void UIMainMenu::endActions(void)
 {
     ParticleSun *p = (ParticleSun*)(this->getChildByTag(3)->getChildByTag(1));
@@ -307,4 +377,50 @@ bool UIMainMenu::allActionsFinished(void)
         return true;
     }
     return false;
+}
+
+void UIMainMenu::createWarningWindow(void)
+{
+    auto alertBackground = Sprite::create("ConfigurationAlert.png");
+    alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2,
+                                      Director::getInstance()->getVisibleSize().height / 2));
+    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 80);
+    alertLabel->setColor(Color3B(255, 255, 255));
+    alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
+    alertBackground->addChild(alertLabel);
+    
+    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 50);
+    alertTextLabel->setColor(Color3B(255, 255, 255));
+    alertTextLabel->setMaxLineWidth(325);
+    alertTextLabel->setAlignment(TextHAlignment::CENTER);
+    alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
+    alertBackground->addChild(alertTextLabel);
+    
+    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("START") + string(" ?"), "fonts/BebasNeue.otf", 50);
+    alertConfirmationLabel->setColor(Color3B(255, 255, 255));
+    alertConfirmationLabel->setPosition(Vec2(1.2 * alertBackground->getBoundingBox().size.width / 4,
+                                             alertBackground->getBoundingBox().size.height / 6));
+    alertBackground->addChild(alertConfirmationLabel);
+    
+    Vector<MenuItem*> confirmReset;
+    auto confirmResetYes = MenuItemImage::create("ConfigurationResetYes.png", "ConfigurationResetYesPressed.png",
+                                                 CC_CALLBACK_1(UIMainMenu::menuResetYesCallback, this));
+    confirmResetYes->setPosition(Vec2(Vec2(4 * alertBackground->getBoundingBox().size.width / 6,
+                                           alertBackground->getBoundingBox().size.height / 6)));
+    confirmReset.pushBack(confirmResetYes);
+    auto confirmSeparator = Sprite::create("ConfigurationResetSeparator.png");
+    confirmSeparator->setPosition(Vec2(Vec2(4.65 * alertBackground->getBoundingBox().size.width / 6,
+                                            alertBackground->getBoundingBox().size.height / 6)));
+    alertBackground->addChild(confirmSeparator);
+    auto confirmResetNo = MenuItemImage::create("ConfigurationResetNo.png", "ConfigurationResetNoPressed.png",
+                                                CC_CALLBACK_1(UIMainMenu::menuResetNoCallback, this));
+    confirmResetNo->setPosition(Vec2(Vec2(5.3 * alertBackground->getBoundingBox().size.width / 6,
+                                          alertBackground->getBoundingBox().size.height / 6)));
+    confirmReset.pushBack(confirmResetNo);
+    
+    auto menuConfirmReset = Menu::createWithArray(confirmReset);
+    menuConfirmReset->setPosition(0, 0);
+    alertBackground->addChild(menuConfirmReset, 10);
+    
+    this->addChild(alertBackground, 30, 30);
 }

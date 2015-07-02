@@ -29,6 +29,7 @@ public:
 private:
     cocos2d::ui::ScrollView* scrollView;
     Sprite* progressMap0;
+    Sprite* selectedBackground;
     int tagLevelSelected = 0;
 };
 
