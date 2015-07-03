@@ -82,6 +82,7 @@ private:
     bool moveBackgroundUp = false;
     bool moveBackgroundDown = false;
     float zoomScale = 1;
+    Point centerZoom = Point(1024, 768);
 
     pthread_t timingThread;
     pthread_t gameLevelThread;

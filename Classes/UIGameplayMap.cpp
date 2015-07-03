@@ -612,6 +612,41 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                 if (checkPowersClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation)) {
                     moveBackground = true;
                 }
+                
+                if (touches.size() == 2)
+                {
+                    Point touchLocation = gameplayMap->convertTouchToNodeSpace(touches[0]);
+                    Point oldTouchLocation = gameplayMap->convertTouchToNodeSpace(touches[1]);
+                    
+                    //Point translation = touchLocation - oldTouchLocation;
+                    Point midPoint = touchLocation.getMidpoint(oldTouchLocation);
+                    Point translation = midPoint;
+                    translation = this->convertToNodeSpace(translation);
+                    
+                    translation.x = abs(translation.x);
+                    if (translation.x > Director::getInstance()->getVisibleSize().width / 2)
+                    {
+                        translation.x -= ((translation.x - (Director::getInstance()->getVisibleSize().width / 2)) * 2);
+                    }
+                    else if (translation.x < Director::getInstance()->getVisibleSize().width / 2)
+                    {
+                        translation.x += (((Director::getInstance()->getVisibleSize().width / 2) - translation.x) * 2);
+                        
+                    }
+                    translation.y = abs(translation.y);
+                    if (translation.y > Director::getInstance()->getVisibleSize().height / 2)
+                    {
+                        translation.y -= ((translation.y - (Director::getInstance()->getVisibleSize().height / 2)) * 2);
+                    }
+                    else if (translation.y < Director::getInstance()->getVisibleSize().height / 2)
+                    {
+                        translation.y += (((Director::getInstance()->getVisibleSize().height / 2) - translation.y) * 2);
+                        
+                    }
+                    CCLOG("%f %f", translation.x, translation.y);
+                    centerZoom = translation;
+                    
+                }
             }
         }
     }
@@ -628,8 +663,12 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
                 }
                 gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
                     zoomScale * GameData::getInstance()->getRaHConversion());
+                gameplayMap->setPosition(centerZoom);
+                
+                CCLOG("%f %f", centerZoom.x, centerZoom.y);
 
                 Point reLocate = gameplayMap->getPosition();
+
                 checkBackgroundLimitsInTheScreen(reLocate);
                 while (!moveBackgroundLeft) {
                     reLocate.x -= 2.0;
@@ -680,7 +719,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
                 if (moveBackgroundDown and translation.y > 0) {
                     destPos.y = newPos.y;
                 }
-                gameplayMap->Node::setPosition(destPos);
+                gameplayMap->setPosition(destPos);
             }
         }
     }
@@ -1136,7 +1175,7 @@ float UIGameplayMap::sqrOfDistanceBetweenPoints(Point p1, Point p2)
 
 void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
 {
-    Size winSize = Director::getInstance()->getWinSize();
+    Size winSize = Director::getInstance()->getVisibleSize();
     float gameplayMapBoundingBoxWidth = gameplayMap->getBoundingBox().size.width;
     float gameplayMapBoundingBoxHeight = gameplayMap->getBoundingBox().size.height;
 
