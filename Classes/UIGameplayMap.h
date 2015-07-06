@@ -99,6 +99,8 @@ private:
     Sprite* pauseDarkBackground;
     Sprite* goalPopup;
     float timeProgressBar = 0.0;
+    
+    Vector<Sprite*> lifeBars;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
