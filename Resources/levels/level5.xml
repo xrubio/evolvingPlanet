@@ -48,15 +48,15 @@
             </DIRECTION>
             <DIRECTION>
                 <STEP>70</STEP>
-                <POSITION X="338" Y="175"/>
+                <POSITION X="338" Y="232"/>
             </DIRECTION>
             <DIRECTION>
                 <STEP>75</STEP>
-                <POSITION X="366" Y="123"/>
+                <POSITION X="366" Y="232"/>
             </DIRECTION>
             <DIRECTION>
                 <STEP>80</STEP>
-                <POSITION X="397" Y="67"/>
+                <POSITION X="397" Y="188"/>
             </DIRECTION>
         </DIRECTIONS>
     </AGENT>

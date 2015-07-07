@@ -84,6 +84,7 @@ private:
     bool moveBackgroundUp = false;
     bool moveBackgroundDown = false;
     float zoomScale = 1;
+    Point centerZoom = Point(1024, 768);
 
     pthread_t timingThread;
     pthread_t gameLevelThread;
@@ -100,6 +101,8 @@ private:
     Sprite* pauseDarkBackground;
     Sprite* goalPopup;
     float timeProgressBar = 0.0;
+    
+    Vector<Sprite*> lifeBars;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;

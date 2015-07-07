@@ -4,6 +4,8 @@
 <dict>
 	<key>START</key>
 	<string>START</string>
+	<key>NEW_CAMPAIGN</key>
+	<string>NEW CAMPAIGN</string>
 	<key>BACK</key>
 	<string>BACK</string>
 	<key>RESET</key>
@@ -13,7 +15,7 @@
 	<key>WARNING</key>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>
-	<string>RETURNING TO INITIAL VALUES WILL ERASE ALL YOUR PROGRESS</string>
+	<string>STARTING A NEW CAMPAIGN WILL ERASE ALL YOUR PROGRESS</string>
 	<key>LEVEL</key>
 	<string>LEVEL</string>
 	<key>CONFIGURATION</key>

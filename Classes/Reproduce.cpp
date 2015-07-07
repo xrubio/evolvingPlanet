@@ -159,7 +159,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
         if (random(0, 100) < probReproduction) {
-            int maxIterations = 10;
+            int maxIterations = 50;
             Point fingerSpot = GameLevel::getInstance()->getAgentDirections()[typeAgent];
             /*if (agent->getType() != 0) {
                 fingerSpot.x = -1;

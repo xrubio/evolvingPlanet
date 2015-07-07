@@ -402,28 +402,35 @@ bool UIGameplayMap::init()
     }
 
     //AGENT TYPE BUTTONS
-    Vector<MenuItem*> agentTypeSelectorVec;
     for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-        MenuItemImage* agentTypeButton;
+        Sprite* agentTypeButton;
         //NOMES UN TIPUS DAGENT (PROVISIONAL)
         if (i == 0) {
-            agentTypeButton = MenuItemImage::create("AgentTypeButton.png", "AgentTypeButtonPressed.png",
-                "AgentTypeButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::agentTypeCallback, this));
+            agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
             agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i),
                 5 * visibleSize.height / 155));
             auto agentTypeButtonLabel = Label::createWithTTF("A-BOTS", "fonts/BebasNeue.otf", 30);
             agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
             agentTypeButton->addChild(agentTypeButtonLabel);
-            agentTypeSelectorVec.pushBack(agentTypeButton);
+            this->addChild(agentTypeButton, 5);
+        }
+        else if (i == 1)
+        {
+            agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
+            agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+            agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i) + (agentTypeButton->getContentSize().width / 9), 5 * visibleSize.height / 155));
+            auto agentTypeButtonLabel = Label::createWithTTF("B-BOTS", "fonts/BebasNeue.otf", 30);
+            agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
+            agentTypeButton->addChild(agentTypeButtonLabel);
+            this->addChild(agentTypeButton, 5);
         }
         if (i == 0) {
-            agentTypeButton->setEnabled(false);
-            /*auto attColorsBackground = Sprite::create("AttributeColorsBackground.png");
+            auto attColorsBackground = Sprite::create("AttributeColorsBackground.png");
             attColorsBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             attColorsBackground->setAnchorPoint(Vec2(0, 0));
             attColorsBackground->setPosition(Vec2((48.9 * visibleSize.width / 204), (9.5 * visibleSize.height / 155)));
-            this->addChild(attColorsBackground, 5);*/
+            this->addChild(attColorsBackground, 5);
 
             auto attBackground = Sprite::create("AgentAttributesBackground.png");
             attBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -442,66 +449,44 @@ bool UIGameplayMap::init()
             arrowMenu->setPosition(0, 0);
             attBackground->addChild(arrowMenu);
 
-            /*Vector<MenuItem*> agentLabelsSelectorVec;
-            auto labelLife = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create("LIFE")),
-                                                       "fonts/BebasNeue.otf", 40),
-                CC_CALLBACK_1(UIGameplayMap::attributeSelectionCallback, this));
-            labelLife->setPosition(3.4 * attColorsBackground->getContentSize().width / 24, attColorsBackground->getContentSize().height / 2);
-            labelLife->setEnabled(false);
-            labelLife->setTag(0);
-            agentLabelsSelectorVec.pushBack(labelLife);
-
-            auto attColorSel = Sprite::create("AttributeColorIndicator.png");
-            attColorSel->setAnchorPoint(Vec2(0.5, 0));
-            attColorSel->setPosition(labelLife->getPositionX(), 0);
-            Color3B color;
-            switch (i) {
-            case 1:
-                color = Color3B(0, 248, 251);
-                break;
-            case 2:
-                color = Color3B(237, 184, 0);
-                break;
-            case 3:
-                color = Color3B(246, 9, 255);
-                break;
-            default:
-                color = Color3B(255, 4, 4);
-                break;
+            for (int j = 0; j < GameLevel::getInstance()->getAgents().size(); j++) {
+                auto lifeBorderBar = Sprite::create("LifeBarBorder.png");
+                lifeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+                lifeBorderBar->setPosition((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
+                                         attColorsBackground->getContentSize().height / 2);
+                auto barContent = Sprite::create("LifeBarContent.png");
+                ProgressTimer* lifeBar = ProgressTimer::create(barContent);
+                lifeBar->setType(ProgressTimer::Type::BAR);
+                lifeBar->setAnchorPoint(Vec2(0, 0));
+                lifeBar->setMidpoint(Vec2(0, 0));
+                lifeBar->setBarChangeRate(Vec2(1, 0));
+                lifeBar->setPosition(0, 0);
+                lifeBorderBar->addChild(lifeBar, 3, 1);
+                
+                Color3B color;
+                switch (j) {
+                    case 1:
+                        color = Color3B(0, 248, 251);
+                        break;
+                    case 2:
+                        color = Color3B(237, 184, 0);
+                        break;
+                    case 3:
+                        color = Color3B(246, 9, 255);
+                        break;
+                    default:
+                        color = Color3B(255, 4, 4);
+                        break;
+                }
+                lifeBar->setColor(color);
+                lifeBars.pushBack(lifeBorderBar);
+                attColorsBackground->addChild(lifeBorderBar, 5);
             }
-            attColorSel->setColor(color);
-            attColorsBackground->addChild(attColorSel, 5);*/
 
             int k = 1;
             int tag = 0;
             Vector<MenuItem*> attributesButtons;
             for (int j = 0; j < keys.size(); j++) {
-                /*auto labelAtt = MenuItemLabel::create(Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
-                                                          "fonts/BebasNeue.otf", 40),
-                    CC_CALLBACK_1(UIGameplayMap::attributeSelectionCallback, this));
-                labelAtt->setPosition((3.5 + (k * 5.8)) * attColorsBackground->getContentSize().width / 24,
-                    attColorsBackground->getContentSize().height / 2);
-                labelAtt->setTag(j + 1);
-                agentLabelsSelectorVec.pushBack(labelAtt);
-
-                auto attColorSelector = Sprite::create("AttributeColorIndicator.png");
-                attColorSelector->setAnchorPoint(Vec2(0.5, 0));
-                attColorSelector->setPosition(labelAtt->getPositionX(), 0);
-                Color3B color2;
-                switch (j + 1) {
-                case 1:
-                    color2 = Color3B(212, 105, 11);
-                    break;
-                case 2:
-                    color2 = Color3B(5, 5, 117);
-                    break;
-                case 3:
-                    color2 = Color3B(115, 8, 214);
-                    break;
-                }
-                attColorSelector->setColor(color2);
-                attColorsBackground->addChild(attColorSelector, 5);*/
-
                 auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())) + " - ",
                     "fonts/BebasNeue.otf", 35);
                 labelAttRight->setColor(Color3B(216, 229, 236));
@@ -556,15 +541,13 @@ bool UIGameplayMap::init()
 
                 k++;
             }
-            /*Menu* agentLabelsSelectorMenu = Menu::createWithArray(agentLabelsSelectorVec);
-            agentLabelsSelectorMenu->setPosition(0, 0);
-            attColorsBackground->addChild(agentLabelsSelectorMenu, 5);*/
 
             Menu* attributesMenu = cocos2d::Menu::createWithArray(attributesButtons);
             attributesMenu->setPosition(Vec2(0, 0));
             attBackground->addChild(attributesMenu, 1, 100000);
         }
     }
+<<<<<<< HEAD
     Menu* menuAgentTypeSelector = Menu::createWithArray(agentTypeSelectorVec);
     menuAgentTypeSelector->setPosition(0, 0);
     this->addChild(menuAgentTypeSelector, 5);
@@ -652,6 +635,41 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                 if (checkPowersClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation)) {
                     moveBackground = true;
                 }
+                
+                if (touches.size() == 2)
+                {
+                    Point touchLocation = gameplayMap->convertTouchToNodeSpace(touches[0]);
+                    Point oldTouchLocation = gameplayMap->convertTouchToNodeSpace(touches[1]);
+                    
+                    //Point translation = touchLocation - oldTouchLocation;
+                    Point midPoint = touchLocation.getMidpoint(oldTouchLocation);
+                    Point translation = midPoint;
+                    translation = this->convertToNodeSpace(translation);
+                    
+                    translation.x = abs(translation.x);
+                    if (translation.x > Director::getInstance()->getVisibleSize().width / 2)
+                    {
+                        translation.x -= ((translation.x - (Director::getInstance()->getVisibleSize().width / 2)) * 2);
+                    }
+                    else if (translation.x < Director::getInstance()->getVisibleSize().width / 2)
+                    {
+                        translation.x += (((Director::getInstance()->getVisibleSize().width / 2) - translation.x) * 2);
+                        
+                    }
+                    translation.y = abs(translation.y);
+                    if (translation.y > Director::getInstance()->getVisibleSize().height / 2)
+                    {
+                        translation.y -= ((translation.y - (Director::getInstance()->getVisibleSize().height / 2)) * 2);
+                    }
+                    else if (translation.y < Director::getInstance()->getVisibleSize().height / 2)
+                    {
+                        translation.y += (((Director::getInstance()->getVisibleSize().height / 2) - translation.y) * 2);
+                        
+                    }
+                    CCLOG("%f %f", translation.x, translation.y);
+                    centerZoom = translation;
+                    
+                }
             }
         }
     }
@@ -668,8 +686,12 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
                 }
                 gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
                     zoomScale * GameData::getInstance()->getRaHConversion());
+                gameplayMap->setPosition(centerZoom);
+                
+                CCLOG("%f %f", centerZoom.x, centerZoom.y);
 
                 Point reLocate = gameplayMap->getPosition();
+
                 checkBackgroundLimitsInTheScreen(reLocate);
                 while (!moveBackgroundLeft) {
                     reLocate.x -= 2.0;
@@ -720,7 +742,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
                 if (moveBackgroundDown and translation.y > 0) {
                     destPos.y = newPos.y;
                 }
-                gameplayMap->Node::setPosition(destPos);
+                gameplayMap->setPosition(destPos);
             }
         }
     }
@@ -1189,7 +1211,7 @@ float UIGameplayMap::sqrOfDistanceBetweenPoints(Point p1, Point p2)
 
 void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
 {
-    Size winSize = Director::getInstance()->getWinSize();
+    Size winSize = Director::getInstance()->getVisibleSize();
     float gameplayMapBoundingBoxWidth = gameplayMap->getBoundingBox().size.width;
     float gameplayMapBoundingBoxHeight = gameplayMap->getBoundingBox().size.height;
 
@@ -1590,11 +1612,16 @@ void UIGameplayMap::update(float delta)
 
             // TODO everything stopped if _message?
             play = true;
+            for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
+            {
+                ((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);
+            }
             //CCLOG("Pintat: %f", ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC));
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
         }
+
         for (int i = 0; i < powerButtons.size(); i++) {
             powerButtons[i]->update(delta);
         }
