@@ -547,7 +547,7 @@ bool UIGameplayMap::init()
             attBackground->addChild(attributesMenu, 1, 100000);
         }
     }
-<<<<<<< HEAD
+    
     Menu* menuAgentTypeSelector = Menu::createWithArray(agentTypeSelectorVec);
     menuAgentTypeSelector->setPosition(0, 0);
     this->addChild(menuAgentTypeSelector, 5);
