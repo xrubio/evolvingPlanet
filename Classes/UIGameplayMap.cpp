@@ -545,8 +545,27 @@ bool UIGameplayMap::init()
 	auto mouseListener  = EventListenerMouse::create();
 	mouseListener->onMouseScroll = CC_CALLBACK_1(UIGameplayMap::onMouseScroll, this);
 	this->getEventDispatcher()->addEventListenerWithFixedPriority(mouseListener, 1);
+        
+        Layout* layout = (Layout*)this->getChildByTag(1000001);
+        Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+        for (int i = 0; i < keys.size(); i++) {
+            MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
+            MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
+                GameLevel::getInstance()->getEvolutionPoints())
+            {
+                plus->setEnabled(false);
+                minus->setEnabled(false);
+            }
+            else
+            {
+                plus->setEnabled(true);
+                minus->setEnabled(true);
+            }
+        }
 
     this->scheduleUpdate();
+    
     //this->schedule(schedule_selector(UIGameplayMap::update), 1.3);
 
     return true;

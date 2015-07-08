@@ -130,17 +130,62 @@ bool UIGoals::init()
     pages->setPosition(Point(0, 0));
     //pages->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
 
-    auto layoutContext = Layout::create();
+    //INTRODUCTION
+    auto layoutContextIntroduction = Layout::create();
     //TRIAR ESTIL SEGONS EL LVL
-    createContextLayout(layoutContext);
-    //layoutContext->setBackGroundImage("PageBackground.png");
-    auto pageBackground = Sprite::create("PageBackground.png");
-    pageBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    pageBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    layoutContext->addChild(pageBackground, -1);
-    layoutContext->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
-    //layoutContext->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    pages->addPage(layoutContext);
+    auto pageBackgroundIntroduction = Sprite::create("PageBackground.png");
+    pageBackgroundIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    pageBackgroundIntroduction->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
+    layoutContextIntroduction->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    
+    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str()), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
+    contextIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    contextIntroduction->setScaleX(GameData::getInstance()->getRaWConversion());
+    contextIntroduction->setScaleY(GameData::getInstance()->getRaHConversion());
+    layoutContextIntroduction->addChild(contextIntroduction);
+    
+    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"),
+                                                         "fonts/BebasNeue.otf", 100);
+    contextLabelIntroduction->setPosition(Vec2(7 * visibleSize.width / 42, 25 * visibleSize.height / 31));
+    contextLabelIntroduction->setColor(Color3B(211, 230, 236));
+    contextLabelIntroduction->setAnchorPoint(Vec2(0, 0.5));
+    contextLabelIntroduction->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layoutContextIntroduction->addChild(contextLabelIntroduction);
+    
+    pages->addPage(layoutContextIntroduction);
+    
+    
+    //DEPLOYMENT
+    auto layoutContextDeployment = Layout::create();
+    //TRIAR ESTIL SEGONS EL LVL
+    auto pageBackgroundDeployment = Sprite::create("PageBackground.png");
+    pageBackgroundDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    pageBackgroundDeployment->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layoutContextDeployment->addChild(pageBackgroundDeployment, -1);
+    layoutContextDeployment->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    auto contextLabelDeployment = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT"),
+                                        "fonts/BebasNeue.otf", 100);
+    contextLabelDeployment->setPosition(Vec2(7 * visibleSize.width / 42, 25 * visibleSize.height / 31));
+    contextLabelDeployment->setColor(Color3B(211, 230, 236));
+    contextLabelDeployment->setAnchorPoint(Vec2(0, 0.5));
+    contextLabelDeployment->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layoutContextDeployment->addChild(contextLabelDeployment);
+    
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str()), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
+    contextDeployment->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 12));
+    contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
+    contextDeployment->setScaleY(GameData::getInstance()->getRaHConversion());
+    layoutContextDeployment->addChild(contextDeployment);
+    
+    auto contextImage = Sprite::create("Level1Background.jpg");
+    contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion(), 0.4 * GameData::getInstance()->getRaHConversion());
+    contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
+    layoutContextDeployment->addChild(contextImage);
+    
+    pages->addPage(layoutContextDeployment);
 
     auto layout = Layout::create();
     auto pageBackground2 = Sprite::create("PageBackground.png");
@@ -149,23 +194,32 @@ bool UIGoals::init()
     layout->addChild(pageBackground2, -1);
     layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
 
-    //layout->addChild(title);
-    //layout->addChild(menu);
     setLevelGoals(layout);
+    
+    Vector<cocos2d::MenuItem*> menuButtonsStart;
+    auto playButton = MenuItemImage::create("ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png",
+                                            CC_CALLBACK_1(UIGoals::menuStartCallback, this));
+    playButton->setPosition(Vec2(34 * visibleSize.width / 42, 5 * visibleSize.height / 31));
+    playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    auto startPlay = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
+    startPlay->setPosition(playButton->getContentSize().width / 2, playButton->getContentSize().height / 2);
+    startPlay->setColor(Color3B(207, 203, 208));
+    playButton->addChild(startPlay);
+    menuButtonsStart.pushBack(playButton);
+    
+    Menu* menuStart = cocos2d::Menu::createWithArray(menuButtonsStart);
+    menuStart->setPosition(Vec2(0, 0));
+    layout->addChild(menuStart, 10);
     pages->addPage(layout);
 
-    //for (int i = 0; i < GameLevel::getInstance()->getNumInitialAgents().size(); i++) {
-    for (int i = 0; i < 1; i++) {
-        GameLevel::getInstance()->setCurrentAgentType(i);
-        auto layout2 = Layout::create();
-        auto pageBackground3 = Sprite::create("PageBackground.png");
-        pageBackground3->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-        pageBackground3->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        layout2->addChild(pageBackground3, -1);
-        //layout2->setSize(Size((34 * visibleSize.width / 42)  , (25 * visibleSize.height / 31)  ));
-        pages->addPage(layout2);
-        createUIAgent(layout2);
-    }
+    GameLevel::getInstance()->setCurrentAgentType(0);
+    /*auto layout2 = Layout::create();
+    auto pageBackground3 = Sprite::create("PageBackground.png");
+    pageBackground3->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    pageBackground3->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layout2->addChild(pageBackground3, -1);
+    pages->addPage(layout2);
+    createUIAgent(layout2);*/
 
     //temporal
     /*for (int index = 0; index < GameLevel::getInstance()->getNumInitialAgents().size(); index++) {
@@ -358,95 +412,6 @@ void UIGoals::menuArrowNextCallback(Ref* pSender)
     }
 }
 
-void UIGoals::contextPageIntroCallback(Ref* pSender)
-{
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    MenuItem* pMenuItem = (MenuItem*)(pSender);
-    pMenuItem->setEnabled(false);
-    Menu* menu = (Menu*)(pMenuItem->getParent());
-    MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(1);
-    pMenuItemInvers->setEnabled(true);
-    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_INTRO"));
-    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str()));
-    context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    contextImage->setVisible(false);
-}
-
-void UIGoals::contextPageDeploymentCallback(Ref* pSender)
-{
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    MenuItem* pMenuItem = (MenuItem*)(pSender);
-    pMenuItem->setEnabled(false);
-    Menu* menu = (Menu*)(pMenuItem->getParent());
-    MenuItem* pMenuItemInvers = (MenuItem*)menu->getChildren().at(0);
-    pMenuItemInvers->setEnabled(true);
-    contextLabel->setString(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT"));
-    context->setString(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str()));
-    context->setPosition(Vec2(visibleSize.width / 2, (3.5 * visibleSize.height / 12)));
-    contextImage->setVisible(true);
-}
-
-void UIGoals::createContextLayout(Layout* layoutContext)
-{
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    layoutContext->setSize(Size(visibleSize.width / 2, visibleSize.height / 2));
-    //auto goalMap = Sprite::create(GameLevel::getInstance()->getMapFilename() + "Background" + ".png");
-    //goalMap->setScale(0.4);
-    //goalMap->setPosition(Vec2(visibleSize.width / 4, visibleSize.height / 2));
-    /*auto context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("CONTEXT_LEVEL_1"),
-                                                          Size(visibleSize.width / 2, visibleSize.height),
-                                                          TextHAlignment::LEFT, "Arial", 50);
-    context->setPosition(visibleSize.width / 2, visibleSize.height / 2);
-    context->setTextColor(Color4B(216, 229, 235, 255));*/
-    context = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str()), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
-    context->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-    context->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    //context->addChild(goalMap);
-    context->setScaleX(GameData::getInstance()->getRaWConversion());
-    context->setScaleY(GameData::getInstance()->getRaHConversion());
-    layoutContext->addChild(context);
-
-    contextLabel = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"),
-        "fonts/BebasNeue.otf", 100);
-    contextLabel->setPosition(Vec2(7 * visibleSize.width / 42, 25 * visibleSize.height / 31));
-    contextLabel->setColor(Color3B(211, 230, 236));
-    contextLabel->setAnchorPoint(Vec2(0, 0.5));
-    contextLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    layoutContext->addChild(contextLabel);
-
-    Vector<MenuItem*> contextVec;
-    auto contextPageIntro = MenuItemImage::create("ContextPageButton.png", "ContextPageButtonPressed.png", "ContextPageButtonPressed.png",
-        CC_CALLBACK_1(UIGoals::contextPageIntroCallback, this));
-    contextPageIntro->setPosition(Vec2(20 * visibleSize.width / 42, 5 * visibleSize.height / 31));
-    contextPageIntro->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto labelContextPageIntro = Label::createWithTTF("1", "fonts/BebasNeue.otf", 50);
-    labelContextPageIntro->setPosition(contextPageIntro->getContentSize().width / 2, contextPageIntro->getContentSize().height / 2.2);
-    contextPageIntro->addChild(labelContextPageIntro);
-    contextPageIntro->setEnabled(false);
-    contextVec.pushBack(contextPageIntro);
-
-    auto contextPageDeployment = MenuItemImage::create("ContextPageButton.png", "ContextPageButtonPressed.png", "ContextPageButtonPressed.png",
-        CC_CALLBACK_1(UIGoals::contextPageDeploymentCallback, this));
-    contextPageDeployment->setPosition(Vec2(23 * visibleSize.width / 42, 5 * visibleSize.height / 31));
-    contextPageDeployment->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto labelContextPageDeployment = Label::createWithTTF("2", "fonts/BebasNeue.otf", 50);
-    labelContextPageDeployment->setPosition(contextPageDeployment->getContentSize().width / 2,
-        contextPageDeployment->getContentSize().height / 2.2);
-    contextPageDeployment->addChild(labelContextPageDeployment);
-    contextVec.pushBack(contextPageDeployment);
-
-    auto contextMenu = Menu::createWithArray(contextVec);
-    contextMenu->setPosition(0, 0);
-    layoutContext->addChild(contextMenu);
-
-    /*contextImage = Sprite::create("Level1Background.jpg");
-    contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion(), 0.4 * GameData::getInstance()->getRaHConversion());
-    contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
-    contextImage->setVisible(false);
-
-    layoutContext->addChild(contextImage);*/
-}
-
 void UIGoals::setLevelGoals(Layout* layout)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -622,7 +587,7 @@ void UIGoals::update(float delta)
         hexagonButtonLevel1->setEnabled(false);
         hexagonButtonLevel2->setEnabled(true);
 
-        Layout* layout = pages->getPage(2);
+        /*Layout* layout = pages->getPage(2);
         Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
         for (int i = 0; i < keys.size(); i++) {
             MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
@@ -635,7 +600,7 @@ void UIGoals::update(float delta)
             {
                 plus->setEnabled(true);
             }
-        }
+        }*/
     }
     
     if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {
@@ -653,5 +618,5 @@ void UIGoals::update(float delta)
         }
     }
 
-    evolutionPointsNumberIcon->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
+    //evolutionPointsNumberIcon->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
 }
