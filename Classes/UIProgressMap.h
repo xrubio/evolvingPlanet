@@ -23,6 +23,7 @@ public:
     void menuLevelCallback(Ref* pSender);
     void proceedLevelCallback(Ref* pSender);
     void restoreProgressMap(Ref* pSender);
+    void movePopupLevelCallback(Ref* pSender);
 
     CREATE_FUNC(UIProgressMap);
 

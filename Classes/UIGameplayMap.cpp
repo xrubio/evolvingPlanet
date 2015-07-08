@@ -426,7 +426,7 @@ bool UIGameplayMap::init()
                 (18.5 * visibleSize.height / 155)));
             auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
             auto ease = EaseBackInOut::create(move);
-            attBackground->runAction(ease);
+            //attBackground->runAction(ease);
             this->addChild(attBackground, 5, 1000001);
             auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png",
                 CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
@@ -827,6 +827,11 @@ void UIGameplayMap::pauseCallback(Ref* pSender)
 
 void UIGameplayMap::playCallback(Ref* pSender)
 {
+    if (firstPlayFF == true)
+    {
+        setAttributesToInitialAgents();
+        firstPlayFF = false;
+    }
     MenuItem* playButton = (MenuItem*)pSender;
     playButton->setEnabled(false);
     Menu* timeMenu = (Menu*)playButton->getParent();
@@ -841,6 +846,11 @@ void UIGameplayMap::playCallback(Ref* pSender)
 
 void UIGameplayMap::fastForwardCallback(Ref* pSender)
 {
+    if (firstPlayFF == true)
+    {
+        setAttributesToInitialAgents();
+        firstPlayFF = false;
+    }
     MenuItem* fastForwardButton = (MenuItem*)pSender;
     fastForwardButton->setEnabled(false);
     Menu* timeMenu = (Menu*)fastForwardButton->getParent();
@@ -1311,6 +1321,11 @@ void UIGameplayMap::initializeAgents(void)
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
     play = true;
+}
+
+void UIGameplayMap::setAttributesToInitialAgents(void)
+{
+    
 }
 
 void UIGameplayMap::createEndGameWindow(const LevelState & mode)

@@ -124,6 +124,8 @@ private:
 
     bool resourcesMap = false;
 
+    bool firstPlayFF = true;
+    
     void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
@@ -136,6 +138,7 @@ private:
     static void* createLevel(void* arg);
     void playLevel(void);
     void initializeAgents(void);
+    void setAttributesToInitialAgents(void);
 
     void createEndGameWindow(const LevelState & mode);
     bool checkPowersClicked(void);
