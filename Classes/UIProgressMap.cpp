@@ -89,7 +89,7 @@ bool UIProgressMap::init()
     popupLevelBackground->addChild(labelBorderTop);
     
     popupLevelBackground->setAnchorPoint(Vec2(0, 0.5));
-    popupLevelBackground->setPosition(Vec2(visibleSize.width, progressMap0->getBoundingBox().size.height / 2));
+    popupLevelBackground->setPosition(Vec2(progressMap0->getBoundingBox().size.width, progressMap0->getBoundingBox().size.height / 2));
     
     //popupLevelBorderTop->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height / 2));
     //popupLevelBorderBottom->setPosition(Vec2(0, popupLevelBackground->getBoundingBox().size.height / 2));
@@ -157,7 +157,7 @@ bool UIProgressMap::init()
     arrowMenu->setName("menuArrow");
     popupLevelBackground->addChild(arrowMenu);
     
-    popupLevelBackground->runAction(EaseBackInOut::create(MoveTo::create(1.0, Vec2(visibleSize.width - popupLevelBackground->getBoundingBox().size.width, popupLevelBackground->getPositionY()))));
+    popupLevelBackground->runAction(EaseBackInOut::create(MoveTo::create(1.0, Vec2(progressMap0->getBoundingBox().size.width - popupLevelBackground->getBoundingBox().size.width, popupLevelBackground->getPositionY()))));
     
     progressMap0->addChild(popupLevelBackground, 8, 103);
 
@@ -610,12 +610,11 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
 
 void UIProgressMap::movePopupLevelCallback(Ref* pSender)
 {
-    Size visibleSize = Director::getInstance()->getVisibleSize();
     MenuItem* p = (MenuItem*)pSender;
     Sprite* background = (Sprite*)p->getParent()->getParent();
-    if (p->getParent()->getParent()->getPositionX() < visibleSize.width) {
+    if (p->getParent()->getParent()->getPositionX() < progressMap0->getBoundingBox().size.width) {
         //VISIBLE
-        auto move = MoveTo::create(0.5, Vec2(visibleSize.width, background->getPositionY()));
+        auto move = MoveTo::create(0.5, Vec2(progressMap0->getBoundingBox().size.width, background->getPositionY()));
         auto ease = EaseBackInOut::create(move);
         background->runAction(ease);
         background->removeChildByName("menuArrow");
@@ -631,7 +630,7 @@ void UIProgressMap::movePopupLevelCallback(Ref* pSender)
     }
     else {
         //INVISIBLE
-        auto move = MoveTo::create(0.5, Vec2(visibleSize.width - background->getBoundingBox().size.width, background->getPositionY()));
+        auto move = MoveTo::create(0.5, Vec2(progressMap0->getBoundingBox().size.width - background->getBoundingBox().size.width, background->getPositionY()));
         auto ease = EaseBackInOut::create(move);
         background->runAction(ease);
         background->removeChildByName("menuArrow");

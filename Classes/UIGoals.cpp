@@ -58,6 +58,7 @@ bool UIGoals::init()
     hexagonButtonLevel0->setColor(Color3B(120, 120, 120));
     hexagonButtonLevel0->setPosition(Vec2((visibleSize.width / 2) - (hexagonButtonLevel0->getBoundingBox().size.width * 3),
                                           visibleSize.height / 20));
+    hexagonButtonLevel0->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     hexagonButtonLevel0->setEnabled(false);
     this->addChild(hexagonButtonLevel0, 1);
     
@@ -65,6 +66,7 @@ bool UIGoals::init()
                                                      "ProgressMapHexagonLevelOff.png");
     hexagonButtonLevel1->setColor(Color3B(120, 120, 120));
     hexagonButtonLevel1->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 20));
+    hexagonButtonLevel1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     hexagonButtonLevel1->setEnabled(false);
     this->addChild(hexagonButtonLevel1, 1);
     
@@ -73,6 +75,7 @@ bool UIGoals::init()
     hexagonButtonLevel2->setColor(Color3B(120, 120, 120));
     hexagonButtonLevel2->setPosition(Vec2((visibleSize.width / 2) + (hexagonButtonLevel2->getBoundingBox().size.width * 3),
                                           visibleSize.height / 20));
+    hexagonButtonLevel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     hexagonButtonLevel2->setEnabled(false);
     this->addChild(hexagonButtonLevel2, 1);
 

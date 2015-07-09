@@ -583,6 +583,7 @@ bool UIGameplayMap::checkPowersClicked(void)
 
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     if (endGameWindowPainted == false) {
         if (checkPowersClicked() == false) {
             for (auto touch : touches) {
@@ -591,8 +592,15 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
             if (touches.size() == 1) {
                 if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.2 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
                     //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
-                    GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
-                                                                       (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
+                    /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
+                                                                       (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));*/
+                    float verticalMargin = visibleSize.width / 1.5;
+                    if (verticalMargin > visibleSize.height)
+                    {
+                        verticalMargin = visibleSize.height;
+                    }
+                    GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(visibleSize.width / 480.0),
+                                                                         (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0)));
                     firstTouchLocation = touches[0]->getLocation();
                     auto fadeFinger = FadeIn::create(1);
                     fadeFinger->setTag(1);
