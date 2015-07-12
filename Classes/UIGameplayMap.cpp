@@ -439,7 +439,7 @@ bool UIGameplayMap::init()
                 (18.5 * visibleSize.height / 155)));
             auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
             auto ease = EaseBackInOut::create(move);
-            attBackground->runAction(ease);
+            //attBackground->runAction(ease);
             this->addChild(attBackground, 5, 1000001);
             auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png",
                 CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
@@ -574,8 +574,27 @@ bool UIGameplayMap::init()
 	auto mouseListener  = EventListenerMouse::create();
 	mouseListener->onMouseScroll = CC_CALLBACK_1(UIGameplayMap::onMouseScroll, this);
 	this->getEventDispatcher()->addEventListenerWithFixedPriority(mouseListener, 1);
+        
+        Layout* layout = (Layout*)this->getChildByTag(1000001);
+        Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+        for (int i = 0; i < keys.size(); i++) {
+            MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
+            MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
+                GameLevel::getInstance()->getEvolutionPoints())
+            {
+                plus->setEnabled(false);
+                minus->setEnabled(false);
+            }
+            else
+            {
+                plus->setEnabled(true);
+                minus->setEnabled(true);
+            }
+        }
 
     this->scheduleUpdate();
+    
     //this->schedule(schedule_selector(UIGameplayMap::update), 1.3);
 
     return true;
@@ -604,6 +623,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
         this->getChildByName("tutorialBorder")->setVisible(false);
         
     }
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     if (endGameWindowPainted == false) {
         if (checkPowersClicked() == false) {
             for (auto touch : touches) {
@@ -612,8 +632,15 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
             if (touches.size() == 1) {
                 if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.2 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
                     //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
-                    GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
-                                                                       (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
+                    /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
+                                                                       (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));*/
+                    float verticalMargin = visibleSize.width / 1.5;
+                    if (verticalMargin > visibleSize.height)
+                    {
+                        verticalMargin = visibleSize.height;
+                    }
+                    GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(visibleSize.width / 480.0),
+                                                                         (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0)));
                     firstTouchLocation = touches[0]->getLocation();
                     auto fadeFinger = FadeIn::create(1);
                     fadeFinger->setTag(1);
@@ -848,6 +875,11 @@ void UIGameplayMap::pauseCallback(Ref* pSender)
 
 void UIGameplayMap::playCallback(Ref* pSender)
 {
+    if (firstPlayFF == true)
+    {
+        setAttributesToInitialAgents();
+        firstPlayFF = false;
+    }
     MenuItem* playButton = (MenuItem*)pSender;
     playButton->setEnabled(false);
     Menu* timeMenu = (Menu*)playButton->getParent();
@@ -862,6 +894,11 @@ void UIGameplayMap::playCallback(Ref* pSender)
 
 void UIGameplayMap::fastForwardCallback(Ref* pSender)
 {
+    if (firstPlayFF == true)
+    {
+        setAttributesToInitialAgents();
+        firstPlayFF = false;
+    }
     MenuItem* fastForwardButton = (MenuItem*)pSender;
     fastForwardButton->setEnabled(false);
     Menu* timeMenu = (Menu*)fastForwardButton->getParent();
@@ -1345,6 +1382,11 @@ void UIGameplayMap::initializeAgents(void)
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
     play = true;
+}
+
+void UIGameplayMap::setAttributesToInitialAgents(void)
+{
+    
 }
 
 void UIGameplayMap::createEndGameWindow(const LevelState & mode)
