@@ -10,6 +10,13 @@ Message::~Message()
 {
 }
 
+void Message::addSpot( const float & centerX, const float & centerY, const float & radius)
+{
+    Spot spot(centerX, centerY, radius);
+    _spots.push_back(spot);
+
+}
+
 MessageTime::MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step) : Message(text, xPos, yPos, lineWidth), _step(step)
 {
 }

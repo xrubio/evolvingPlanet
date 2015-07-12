@@ -2,7 +2,10 @@
 <level num="1" numMessages="3">
     <message id="0" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL1M1"/>
     <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M2"/>
-    <message id="2" x="0.4" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL1M3"/>
+    <message id="2" x="0.4" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL1M3">
+        <spot centerX="0.5" centerY="0.5" radius="0.05"/>
+        <spot centerX="0.2" centerY="0.6" radius="0.05"/>
+    </message>
 </level>
 
 <level num="2" numMessages="1">

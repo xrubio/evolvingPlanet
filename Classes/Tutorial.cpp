@@ -45,15 +45,29 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             float yPos = message.attribute("y").as_float();
             float lineBreak = message.attribute("lineWidth").as_float();
             std::string text = LocalizedString::create(message.attribute("text").value());
+            Message * newMessage = 0;
             if(trigger=="next")
             { 
-                _messages.push_back(new MessageNext(text, xPos, yPos, lineBreak));
+                newMessage = new MessageNext(text, xPos, yPos, lineBreak);
             }
             else if(trigger=="time")
             {
                 int step = message.attribute("step").as_int();
-                _messages.push_back(new MessageTime(text, xPos, yPos, lineBreak, step));
+                newMessage = new MessageTime(text, xPos, yPos, lineBreak, step);
             }
+            // add spots (if any)
+            pugi::xml_node spot = message.child("spot");
+            while(spot!= nullptr)
+            {
+                float centerX = spot.attribute("centerX").as_float();
+                float centerY = spot.attribute("centerY").as_float();
+                float radius = spot.attribute("radius").as_float();
+                newMessage->addSpot(centerX, centerY, radius);
+                spot = spot.next_sibling("spot");
+            }
+
+            _messages.push_back(newMessage);
+
             message = message.next_sibling("message");
         }
     }

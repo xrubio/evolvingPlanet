@@ -557,10 +557,14 @@ bool UIGameplayMap::init()
     auto labelBorder = DrawNode::create();
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
+    auto spots = DrawNode::create();
+    spots->setName("tutorialSpots");
+    spots->setVisible(false);
 
     // add first the border to draw it first
     addChild(labelBorder);
     addChild(messageLabel);
+    addChild(spots);
 
     _message = 0;
 
@@ -621,6 +625,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
         _tutorial->removeCurrentMessage();
         this->getChildByName("tutorial")->setVisible(false);
         this->getChildByName("tutorialBorder")->setVisible(false);
+        this->getChildByName("tutorialSpots")->setVisible(false);
         
     }
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -1727,9 +1732,24 @@ void UIGameplayMap::setMessage( const Message * message )
     Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
     Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + Vec2(5.0f, 5.0f));
     labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));
-    labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));   
+    labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
 
     auto pauseDarkBackground = this->getChildByName("pauseDarkBackground");
     pauseDarkBackground->setVisible(false);
+
+    // spots
+    Message::SpotVector::const_iterator spotIt = _message->beginSpots();
+    auto spotsLayer = (DrawNode*)(this->getChildByName("tutorialSpots"));
+    spotsLayer->clear();
+    spotsLayer->setVisible(true);
+
+    while(spotIt!=_message->endSpots())
+    {
+        const Spot & spot = *spotIt;
+        Vec2 posCircle = Vec2(visibleSize.width*spot._centerX, visibleSize.height*spot._centerY);
+        spotsLayer->drawCircle( posCircle, spot._radius*visibleSize.width, 0.0f, 6, false, Color4F(1.0f, 1.0f, 1.0f, 0.75f));
+        spotsLayer->drawCircle( posCircle, spot._radius*visibleSize.width*0.95f, 0.0f, 6, false, Color4F(1.0f, 1.0f, 1.0f, 0.5f));
+        spotIt++;
+    }
 }
 

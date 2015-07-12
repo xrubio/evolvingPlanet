@@ -7,15 +7,29 @@
 
 using namespace cocos2d;
 
+class Spot
+{
+public:    
+    float _centerX;
+    float _centerY;
+    float _radius;
+
+    Spot( const float & centerX, const float & centerY, const float & radius ) : _centerX(centerX), _centerY(centerY), _radius(radius){}
+};
+
 /** Popup note for the tutorial **/
 class Message
 {
+public:
+    typedef std::vector<Spot> SpotVector;
+private:    
     /** text so show on screen **/
     std::string _text;
     /** position of message (from 0 to 1 of screen) **/
     Vec2 _pos;
     /** percentage of visible size used for width of line of text **/
     float _lineWidth;
+    std::vector<Spot> _spots;
 public:
     Message( const std::string & text = "no text", const float & xPos = 0.5, const float & yPos = 0.5, const float & lineWidth = 0.5);
     virtual ~Message();
@@ -23,9 +37,12 @@ public:
     const std::string & text() const {return _text;} 
     const float & lineWidth() const {return _lineWidth;}
     const Vec2 & pos() const {return _pos;}
+    void addSpot( const float & centerX, const float & centerY, const float & radius);
     /** \returns true if conditions to show Message are all green **/
     virtual bool meetConditions() const = 0;
 
+    SpotVector::const_iterator beginSpots() const { return _spots.begin(); }
+    SpotVector::const_iterator endSpots() const { return _spots.end(); }
 };
 
 /** Message pops up when a given time step has been reached **/
