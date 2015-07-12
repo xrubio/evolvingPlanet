@@ -548,10 +548,6 @@ bool UIGameplayMap::init()
         }
     }
     
-    Menu* menuAgentTypeSelector = Menu::createWithArray(agentTypeSelectorVec);
-    menuAgentTypeSelector->setPosition(0, 0);
-    this->addChild(menuAgentTypeSelector, 5);
-
     // TUTORIAL MESSAGES
     auto messageLabel = Label::createWithTTF("no message", "fonts/BebasNeue.otf", 24);
     messageLabel->setName("tutorial");
