@@ -78,8 +78,7 @@ bool UIMainMenu::init()
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 2);
     auto spaceshipDelay = DelayTime::create(2.0);
     auto spaceshipSeq = Sequence::create(spaceshipDelay, moveEaseSpaceship, NULL);*/
-    spaceship->setPosition(Vec2((visibleSize.width / 3),
-        (visibleSize.height / 2)));
+    spaceship->setPosition(Vec2((visibleSize.width / 3), (visibleSize.height / 2)));
     spaceship->setScale(0);
     auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     auto moveSpaceship = MoveTo::create(3.0, Vec2((visibleSize.width / 2),

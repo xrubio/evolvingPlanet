@@ -81,12 +81,20 @@ bool UIGameplayMap::init()
 
     string space = " ";
     string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 136);
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 114);
     levelLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     levelLabel->setColor(Color3B(139, 146, 154));
     levelLabel->setAnchorPoint(Vec2(0, 0.5));
-    levelLabel->setPosition(Vec2(13 * visibleSize.width / 204, 145 * visibleSize.height / 155));
+    levelLabel->setPosition(Vec2(13 * visibleSize.width / 204, 149 * visibleSize.height / 155));
     this->addChild(levelLabel, 5);
+    
+    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")), "fonts/BebasNeue.otf", 48);
+    labelGoals->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    labelGoals->setColor(Color3B(139, 146, 154));
+    labelGoals->setAnchorPoint(Vec2(1, 0.5));
+    labelGoals->setPosition(levelLabel->getPositionX() + levelLabel->getBoundingBox().size.width,
+                            levelLabel->getPositionY() - (levelLabel->getBoundingBox().size.height / 2));
+    this->addChild(labelGoals, 5);
 
     //QUIT / RETRY
     Vector<MenuItem*> quitRetryVec;
@@ -321,8 +329,8 @@ bool UIGameplayMap::init()
     //TIME PROGRESS BAR
     timeBorderBar = Sprite::create("ProgressBarBorder.png");
     timeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeBorderBar->setPosition(102 * visibleSize.width / 204, 145 * visibleSize.height / 155);
-    this->addChild(timeBorderBar);
+    timeBorderBar->setPosition(102 * visibleSize.width / 204, 150 * visibleSize.height / 155);
+    this->addChild(timeBorderBar, 3);
     auto barContent = Sprite::create("ProgressBarContent.png");
     timeBar = ProgressTimer::create(barContent);
     timeBar->setType(ProgressTimer::Type::BAR);
@@ -331,11 +339,6 @@ bool UIGameplayMap::init()
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(0, 0);
     timeBorderBar->addChild(timeBar, 3);
-    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")), "fonts/BebasNeue.otf", 48);
-    labelGoals->setColor(Color3B(139, 146, 154));
-    labelGoals->setAnchorPoint(Vec2(0, 0.5));
-    labelGoals->setPosition(0, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
-    timeBorderBar->addChild(labelGoals, 2);
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
@@ -349,7 +352,7 @@ bool UIGameplayMap::init()
         goalMark->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
         timeBorderBar->addChild(goalMark, 1);
         auto goalNum = Sprite::create("GoalNum.png");
-        goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
+        goalNum->setPosition(posXaverage, - timeBorderBar->getContentSize().height / 2);
         auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
         labelGoalNum->setPosition(goalNum->getContentSize().width / 2, goalNum->getContentSize().height / 2);
         labelGoalNum->setColor(Color3B(216, 229, 235));
