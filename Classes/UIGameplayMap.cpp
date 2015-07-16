@@ -1319,7 +1319,7 @@ void UIGameplayMap::initializeAgents(void)
 
 void UIGameplayMap::setAttributesToInitialAgents(void)
 {
-    
+    GameLevel::getInstance()->setAttributesToInitialAgents();
 }
 
 void UIGameplayMap::createEndGameWindow(const LevelState & mode)

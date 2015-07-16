@@ -582,6 +582,15 @@ void GameLevel::initializeAttributesCost(void)
     }
 }
 
+void GameLevel::setAttributesToInitialAgents(void)
+{
+    list<Agent*>::iterator it = agents[0].begin();
+    while (it != agents[0].end()) {
+        (*it)->setAttributes(agentAttributes[0]);
+        it++;
+    }
+}
+
 void GameLevel::initializeAgentsPool(void)
 {
     for (int i = 0; i < maxAgents.size(); i++) {
