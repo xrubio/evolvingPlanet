@@ -81,8 +81,6 @@ private:
     bool moveBackgroundRight = false;
     bool moveBackgroundUp = false;
     bool moveBackgroundDown = false;
-    float zoomScale = 1;
-    Point centerZoom = Point(1024, 768);
 
     pthread_t timingThread;
     pthread_t gameLevelThread;
@@ -101,6 +99,10 @@ private:
     float timeProgressBar = 0.0;
     
     Vector<Sprite*> lifeBars;
+    std::vector<Vec2*> *numAgentsEvolutionPoints;
+    PointArray *numAgentsEvolution;
+    int indexAgentsEvolution = 0;
+    DrawNode *agentsEvolution;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
@@ -126,7 +128,6 @@ private:
 
     bool firstPlayFF = true;
     
-    void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
     int getValueAtGameplayMap(int rgb, Point pt, int map);

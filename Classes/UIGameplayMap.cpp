@@ -444,7 +444,7 @@ bool UIGameplayMap::init()
                 lifeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
                 lifeBorderBar->setPosition((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
                                          attColorsBackground->getContentSize().height / 2);
-                auto barContent = Sprite::create("LifeBarContent.png");
+                /*auto barContent = Sprite::create("LifeBarContent.png");
                 ProgressTimer* lifeBar = ProgressTimer::create(barContent);
                 lifeBar->setType(ProgressTimer::Type::BAR);
                 lifeBar->setAnchorPoint(Vec2(0, 0));
@@ -468,8 +468,20 @@ bool UIGameplayMap::init()
                         color = Color3B(255, 4, 4);
                         break;
                 }
-                lifeBar->setColor(color);
+                lifeBar->setColor(color);*/
+                /*auto drawNode = DrawNode::create();
+                drawNode->setAnchorPoint(Vec2(0, 0.5));
+                float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) *
+                lifeBorderBar->getContentSize().height;
+                drawNode->drawSegment(Vec2(1, height), Vec2(4, height), 2, Color4F::RED);
+                lifeBorderBar->addChild(drawNode, 5);*/
                 lifeBars.pushBack(lifeBorderBar);
+                /*float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * lifeBorderBar->getContentSize().height;
+                Vec2 c(GameLevel::getInstance()->getTimeSteps(), height);
+                numAgentsEvolutionPoints->push_back(&c);
+                numAgentsEvolution->setControlPoints(numAgentsEvolutionPoints);*/
+                agentsEvolution = DrawNode::create();
+                lifeBorderBar->addChild(agentsEvolution);
                 attColorsBackground->addChild(lifeBorderBar, 5);
             }
 
@@ -621,41 +633,6 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                 if (checkPowersClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation)) {
                     moveBackground = true;
                 }
-                
-                if (touches.size() == 2)
-                {
-                    Point touchLocation = gameplayMap->convertTouchToNodeSpace(touches[0]);
-                    Point oldTouchLocation = gameplayMap->convertTouchToNodeSpace(touches[1]);
-                    
-                    //Point translation = touchLocation - oldTouchLocation;
-                    Point midPoint = touchLocation.getMidpoint(oldTouchLocation);
-                    Point translation = midPoint;
-                    translation = this->convertToNodeSpace(translation);
-                    
-                    translation.x = abs(translation.x);
-                    if (translation.x > Director::getInstance()->getVisibleSize().width / 2)
-                    {
-                        translation.x -= ((translation.x - (Director::getInstance()->getVisibleSize().width / 2)) * 2);
-                    }
-                    else if (translation.x < Director::getInstance()->getVisibleSize().width / 2)
-                    {
-                        translation.x += (((Director::getInstance()->getVisibleSize().width / 2) - translation.x) * 2);
-                        
-                    }
-                    translation.y = abs(translation.y);
-                    if (translation.y > Director::getInstance()->getVisibleSize().height / 2)
-                    {
-                        translation.y -= ((translation.y - (Director::getInstance()->getVisibleSize().height / 2)) * 2);
-                    }
-                    else if (translation.y < Director::getInstance()->getVisibleSize().height / 2)
-                    {
-                        translation.y += (((Director::getInstance()->getVisibleSize().height / 2) - translation.y) * 2);
-                        
-                    }
-                    CCLOG("%f %f", translation.x, translation.y);
-                    centerZoom = translation;
-                    
-                }
             }
         }
     }
@@ -665,17 +642,44 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 {
     if (endGameWindowPainted == false) {
         // ZOOM
-        if (touches.size() == 2) {
+        if (_touches.size() >= 2) {
             if (checkPowersClicked() == false) {
-                for (auto touch : touches) {
-                    pinchZoomWithMovedTouch(touch);
-                }
-                gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
-                    zoomScale * GameData::getInstance()->getRaHConversion());
-                gameplayMap->setPosition(centerZoom);
+                // Get the two first touches
+                Touch *touch1 = (Touch*)_touches.at(0);
+                Touch *touch2 = (Touch*)_touches.at(1);
                 
-                CCLOG("%f %f", centerZoom.x, centerZoom.y);
-
+                // Get current and previous positions of the touches
+                Point curPosTouch1 = Director::getInstance()->convertToGL(touch1->getLocationInView());
+                Point curPosTouch2 = Director::getInstance()->convertToGL(touch2->getLocationInView());
+                Point prevPosTouch1 = Director::getInstance()->convertToGL(touch1->getPreviousLocationInView());
+                Point prevPosTouch2 = Director::getInstance()->convertToGL(touch2->getPreviousLocationInView());
+                
+                // Calculate current and previous positions of the layer relative the anchor point
+                Point curPosLayer = curPosTouch1.getMidpoint(curPosTouch2);
+                Point prevPosLayer = prevPosTouch1.getMidpoint(prevPosTouch2);
+                
+                // Calculate new scale
+                float prevScale = gameplayMap->getScale();
+                float curScale = gameplayMap->getScale() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2);
+                
+                gameplayMap->setScale( MIN( MAX( curScale, 1.0 ), 3.0 ) );
+                
+                if( this->getScale() != prevScale )
+                {
+                    Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosLayer);
+                    float deltaX = (realCurPosLayer.x) * (gameplayMap->getScale() - prevScale);
+                    float deltaY = (realCurPosLayer.y) * (gameplayMap->getScale() - prevScale);
+                    
+                    gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
+                }
+                
+                // If current and previous position of the multitouch's center aren't equal -> change position of the layer
+                if (!prevPosLayer.equals(curPosLayer))
+                {
+                    gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x + curPosLayer.x - prevPosLayer.x,
+                                          gameplayMap->getPosition().y + curPosLayer.y - prevPosLayer.y));
+                }
+                
                 Point reLocate = gameplayMap->getPosition();
 
                 checkBackgroundLimitsInTheScreen(reLocate);
@@ -762,15 +766,24 @@ void UIGameplayMap::onMouseScroll(Event* event)
         // ZOOM
         EventMouse* e = (EventMouse*)event;
         if (checkPowersClicked() == false) {
-			zoomScale -= e->getScrollY() / 5;
-		    if (zoomScale < 1) {
-		        zoomScale = 1;
-		    }
-		    if (zoomScale > 3) {
-		        zoomScale = 3;
-		    }
-            gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
-                                  zoomScale * GameData::getInstance()->getRaHConversion());
+            // Get current and previous positions of the touches
+            Point curPosTouch1 = Director::getInstance()->convertToGL(e->getLocationInView());
+            Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
+            
+            // Calculate new scale
+            float prevScale = gameplayMap->getScale();
+            float curScale = gameplayMap->getScale() * curPosTouch1.getDistance(prevPosTouch1);
+            
+            gameplayMap->setScale( MIN( MAX( curScale, 1.0 ), 3.0 ) );
+            
+            if( this->getScale() != prevScale )
+            {
+                Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosTouch1);
+                float deltaX = (e->getScrollX()) * (gameplayMap->getScale() - prevScale);
+                float deltaY = (e->getScrollY()) * (gameplayMap->getScale() - prevScale);
+                
+                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
+            }
             
             Point reLocate = gameplayMap->getPosition();
 
@@ -1111,36 +1124,6 @@ void UIGameplayMap::playLevel(void)
     GameLevel::getInstance()->playLevel();
     CCLOG("DONE GAME LEVEL");
     pthread_mutex_unlock(&gameLevelMutex);
-}
-
-void UIGameplayMap::pinchZoomWithMovedTouch(Touch* movedTouch)
-{
-    float minDistSqr = FLT_MAX;
-    Touch* nearestTouch = nullptr;
-    Point newLocation = movedTouch->getLocationInView();
-    for (auto touch : _touches) {
-        if (touch != movedTouch) {
-            float distSqr = sqrOfDistanceBetweenPoints(touch->getLocationInView(), newLocation);
-            if (distSqr < minDistSqr) {
-                minDistSqr = distSqr;
-                nearestTouch = touch;
-            }
-        }
-    }
-    if (nearestTouch) {
-        float prevDistSqr = sqrOfDistanceBetweenPoints(nearestTouch->getLocationInView(),
-            movedTouch->getPreviousLocationInView());
-        float pinchDiff = sqrtf(minDistSqr) - sqrtf(prevDistSqr);
-        zoomScale += pinchDiff * 0.005; // kPinchZoomCoeff is constant = 1.0 /
-        // 200.0f Adjust it for your needs
-        if (zoomScale < 1) {
-            zoomScale = 1;
-        }
-        if (zoomScale > 3) {
-            zoomScale = 3;
-        }
-        CCLOG("zoom %f", zoomScale);
-    }
 }
 
 bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
@@ -1589,7 +1572,16 @@ void UIGameplayMap::update(float delta)
             play = true;
             for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
             {
-                ((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);
+                /*((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);*/
+                //drawNode->setAnchorPoint(Vec2(0, 0.5));
+                /*float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) *
+                                lifeBars.at(i)->getContentSize().height;
+                Vec2 c(GameLevel::getInstance()->getTimeSteps(), height);
+                numAgentsEvolutionPoints->push_back(&c);
+                numAgentsEvolution->setControlPoints(numAgentsEvolutionPoints);
+                if (GameLevel::getInstance()->getTimeSteps() > 0) {
+                    agentsEvolution->drawCardinalSpline(numAgentsEvolution, 1.0, GameLevel::getInstance()->getTimeSteps(), Color4F::RED);
+                }*/
             }
             //CCLOG("Pintat: %f", ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC));
         }
