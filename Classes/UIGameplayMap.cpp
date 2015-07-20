@@ -771,18 +771,24 @@ void UIGameplayMap::onMouseScroll(Event* event)
             Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
             
             // Calculate new scale
-            float prevScale = gameplayMap->getScale();
-            float curScale = gameplayMap->getScale() * curPosTouch1.getDistance(prevPosTouch1);
-            
-            gameplayMap->setScale( MIN( MAX( curScale, 1.0 ), 3.0 ) );
-            
-            if( this->getScale() != prevScale )
+            float prevScaleX = gameplayMap->getScaleX();
+            float curScaleX = gameplayMap->getScaleX() + (e->getScrollY() / 10) * GameData::getInstance()->getRaWConversion();
+
+            float prevScaleY = gameplayMap->getScaleY();
+            float curScaleY = gameplayMap->getScaleY() + (e->getScrollY() / 10) * GameData::getInstance()->getRaHConversion();
+
+            gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
+                                       3.0 * GameData::getInstance()->getRaWConversion()),
+                                  MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
+                                       3.0 * GameData::getInstance()->getRaHConversion()));
+
+            if( this->getScaleX() != prevScaleX )
             {
                 Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosTouch1);
-                float deltaX = (e->getScrollX()) * (gameplayMap->getScale() - prevScale);
-                float deltaY = (e->getScrollY()) * (gameplayMap->getScale() - prevScale);
+                float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
+                float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
                 
-                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
+                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y + deltaY));
             }
             
             Point reLocate = gameplayMap->getPosition();
