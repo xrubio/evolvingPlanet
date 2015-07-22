@@ -13,6 +13,7 @@
 #include "UIProgressMap.h"
 #include "GameLevel.h"
 #include "UIPower.h"
+#include "WaveNode.h"
 
 class UIGameplayMap : public Layer {
 public:
@@ -103,6 +104,7 @@ private:
     PointArray *numAgentsEvolution;
     int indexAgentsEvolution = 0;
     DrawNode *agentsEvolution;
+    WaveNode *waveNode;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
@@ -147,6 +149,8 @@ private:
     // 0 = square, 1 = triangle
     inline void drawAgent(Point pos, Color4B colour, int geometry = 0);
     inline void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
+    
+    void updateWave(int indexAgent);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */
