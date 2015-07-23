@@ -654,7 +654,7 @@ void GameLevel::act(void)
     for (int k = 0; k < agents.size() and finishedGame == Running; k++) {
         //CHECK DIRECTION
         if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
-            CCLOG("check direction %i", agentFutureDirections[k][0].first);
+            //CCLOG("check direction %i", agentFutureDirections[k][0].first);
             if (timeSteps == agentFutureDirections[k][0].first) {
                 agentDirections[k] = agentFutureDirections[k][0].second;
                 agentFutureDirections[k].erase(agentFutureDirections[k].begin());
