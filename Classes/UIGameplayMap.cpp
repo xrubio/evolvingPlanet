@@ -696,16 +696,24 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
                 Point prevPosLayer = prevPosTouch1.getMidpoint(prevPosTouch2);
                 
                 // Calculate new scale
-                float prevScale = gameplayMap->getScale();
-                float curScale = gameplayMap->getScale() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2);
+                float prevScaleX = gameplayMap->getScaleX();
+                float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
+                                GameData::getInstance()->getRaWConversion();
                 
-                gameplayMap->setScale( MIN( MAX( curScale, 1.0 ), 3.0 ) );
+                float prevScaleY = gameplayMap->getScaleY();
+                float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
+                                    GameData::getInstance()->getRaHConversion();
                 
-                if( this->getScale() != prevScale )
+                gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
+                                          3.0 * GameData::getInstance()->getRaWConversion()),
+                                      MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
+                                          3.0 * GameData::getInstance()->getRaHConversion()));
+                
+                if( this->getScaleX() != prevScaleX )
                 {
                     Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosLayer);
-                    float deltaX = (realCurPosLayer.x) * (gameplayMap->getScale() - prevScale);
-                    float deltaY = (realCurPosLayer.y) * (gameplayMap->getScale() - prevScale);
+                    float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
+                    float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
                     
                     gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
                 }
