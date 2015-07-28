@@ -182,7 +182,7 @@ bool UIGameplayMap::init()
 
     //EVOLUTION POINTS
     //string(LocalizedString::create("EVOLUTION_POINTS"))
-    auto evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
+    evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(159 * visibleSize.width / 204, 11 * visibleSize.height / 155);
     evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()),
@@ -190,7 +190,12 @@ bool UIGameplayMap::init()
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
     evolutionPointsLabel->setColor(Color3B(216, 229, 235));
     evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
+    restaEvolutionPointsLabel = Label::createWithTTF("- ", "fonts/BebasNeue.otf", 80);
+    restaEvolutionPointsLabel->setColor(Color3B(211, 197, 0));
+    restaEvolutionPointsLabel->setOpacity(0);
+    evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
     this->addChild(evolutionPointsIcon, 1);
+    
 
     auto evolutionPointsStringLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")),
         "fonts/BebasNeue.otf", 40);
@@ -304,10 +309,9 @@ bool UIGameplayMap::init()
             int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
             auto area = Sprite::create("CheckpointArea.png");
             if (i == 0) {
-                area->setColor(Color3B::BLUE);
                 auto blink = Blink::create(2, 2);
                 auto repeatBlink = RepeatForever::create(blink);
-                area->setColor(Color3B::BLUE);
+                area->setColor(Color3B::WHITE);
                 area->runAction(repeatBlink);
 
                 //GOAL EXPANSION DISTANCE
@@ -522,30 +526,48 @@ bool UIGameplayMap::init()
             
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40);
+            attBackgroundTitle->setColor(Color3B(216, 229, 236));
+            attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
+            attBackgroundTitle->setPosition(Vec2(0.75 * attBackground->getContentSize().width / 12,
+                                                 13 * attBackground->getContentSize().height / 14));
+            attBackground->addChild(attBackgroundTitle);
+            
+            auto attBackgroundTitleCost = Label::createWithTTF("[ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 35);
+            attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
+            attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
+            attBackgroundTitleCost->setPosition(Vec2(9 * attBackground->getContentSize().width / 12,
+                                                 13 * attBackground->getContentSize().height / 14));
+            attBackground->addChild(attBackgroundTitleCost);
+
             int k = 1;
             int tag = 0;
             Vector<MenuItem*> attributesButtons;
             for (int j = 0; j < keys.size(); j++) {
-                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())) + " - ",
-                    "fonts/BebasNeue.otf", 35);
+                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
+                    "fonts/BebasNeue.otf", 30);
                 labelAttRight->setColor(Color3B(216, 229, 236));
                 labelAttRight->setAnchorPoint(Vec2(0, 0.5));
                 labelAttRight->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
-                    (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
+                    (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 attBackground->addChild(labelAttRight, 1, (j + 1) * 1000);
 
-                auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[j])), "fonts/BebasNeue.otf", 40);
-                attNumLabel->setColor(Color3B(216, 229, 236));
-                attNumLabel->setAnchorPoint(Vec2(1, 0.5));
-                attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2, labelAttRight->getPositionY());
+                auto attNumLabel = Label::createWithTTF("-" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[j])), "fonts/BebasNeue.otf", 30);
+                attNumLabel->setColor(Color3B::BLACK);
+                attNumLabel->setAnchorPoint(Vec2(0.75, 0.5));
+                attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2.5, labelAttRight->getPositionY());
                 attBackground->addChild(attNumLabel, 1, (j + 1) * 1100);
-
+                
+                auto costBackground = Sprite::create("EvolutionPointsCost.png");
+                costBackground->setPosition(attNumLabel->getPositionX(), attNumLabel->getPositionY());
+                attBackground->addChild(costBackground);
+                
                 auto minusAttButton = MenuItemImage::create(
                     "MinusButtonSmall.png", "MinusButtonSmallPressed.png", "MinusButtonSmallPressed.png",
                                                             CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
                 minusAttButton->setAnchorPoint(Vec2(0, 0.5));
                 minusAttButton->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
-                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
+                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 minusAttButton->setTag(j + 10);
                 minusAttButton->setEnabled(false);
                 attributesButtons.pushBack(minusAttButton);
@@ -554,14 +576,14 @@ bool UIGameplayMap::init()
                     "PlusButtonSmall.png", "PlusButtonSmallPressed.png", "PlusButtonSmallPressed.png",
                                                            CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
                 plusAttButton->setPosition(Vec2(10 * attBackground->getContentSize().width / 12,
-                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
+                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 plusAttButton->setTag(j + 50);
                 plusAttButton->setEnabled(false);
                 attributesButtons.pushBack(plusAttButton);
 
                 float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
                 float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-                int posY = (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14;
+                int posY = (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15;
 
                 for (int m = 0; m < 5; m++) {
                     posX = posX + incX;
@@ -1093,16 +1115,23 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
 
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
-        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() + GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+        int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+        l->setString("-" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
         auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
         auto blankAttribute = Sprite::create("BlankAttributePointButtonSmall.png");
         blankAttribute->setPosition(filledAttribute->getPosition());
         layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
         layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+        
+        //ANIMATION
+        restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+        restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
+        auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+        restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
     }
 }
 
@@ -1116,15 +1145,22 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= GameLevel::getInstance()->getEvolutionPoints()) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+        int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+        l->setString("-" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
         auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
         auto filledAttribute = Sprite::create("FilledAttributePointButtonSmall.png");
         filledAttribute->setPosition(blankAttribute->getPosition());
         layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
         layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+        
+        //ANIMATION
+        restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+        restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
+        auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+        restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
     }
 }
 
@@ -1196,7 +1232,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         auto area = gameplayMap->getChildByTag(400 + index - 1);
         area->stopAllActions();
         area->setVisible(true);
-        area->setColor(Color3B::GREEN);
+        area->setColor(Color3B(223, 211, 39));
         auto fadeOut = FadeOut::create(2.5);
         area->runAction(fadeOut);
     }
@@ -1204,7 +1240,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         auto nextArea = gameplayMap->getChildByTag(400 + index);
         auto blink = Blink::create(2, 2);
         auto repeatBlink = RepeatForever::create(blink);
-        nextArea->setColor(Color3B::BLUE);
+        nextArea->setColor(Color3B::WHITE);
         nextArea->runAction(repeatBlink);
         nextArea->setOpacity(255);
     }

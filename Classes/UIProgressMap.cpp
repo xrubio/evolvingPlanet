@@ -638,7 +638,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->runAction(seqShowPopup);
 
     //PAINT TROPHY
-    if (score > 0) {
+    if (score == 3) {
         auto trophy = Sprite::create("TrophyIcon.png");
         trophy->setPosition(Vec2(22 * (popupBackground->getContentSize().width / 25), 12 * (popupBackground->getContentSize().height / 14)));
         popupBackground->addChild(trophy);
@@ -648,7 +648,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         auto trophyFade = FadeIn::create(0.1);
         auto trophyRotate = RotateBy::create(0.3, 360);
         auto trophySpawn = Spawn::create(trophyScale, trophyFade, Repeat::create(trophyRotate, 2), NULL);
-        trophy->runAction(Sequence::create(DelayTime::create(1.6), trophySpawn, NULL));
+        trophy->runAction(Sequence::create(DelayTime::create(0.5), trophySpawn, NULL));
     }
 }
 

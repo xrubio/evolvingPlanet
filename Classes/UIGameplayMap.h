@@ -108,6 +108,8 @@ private:
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
+    Label* restaEvolutionPointsLabel;
+    Sprite* evolutionPointsIcon;
     Label* collect1PointsLabel;
     Label* distanceLabel;
 
