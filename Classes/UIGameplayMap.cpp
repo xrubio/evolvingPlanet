@@ -552,9 +552,9 @@ bool UIGameplayMap::init()
                     (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 attBackground->addChild(labelAttRight, 1, (j + 1) * 1000);
 
-                auto attNumLabel = Label::createWithTTF("-" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[j])), "fonts/BebasNeue.otf", 30);
+                auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[j])), "fonts/BebasNeue.otf", 30);
                 attNumLabel->setColor(Color3B::BLACK);
-                attNumLabel->setAnchorPoint(Vec2(0.75, 0.5));
+                attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
                 attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2.5, labelAttRight->getPositionY());
                 attBackground->addChild(attNumLabel, 1, (j + 1) * 1100);
                 
@@ -1119,7 +1119,7 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
         int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString("-" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
         auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
         auto blankAttribute = Sprite::create("BlankAttributePointButtonSmall.png");
@@ -1148,7 +1148,7 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
         int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString("-" + to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
         auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
         auto filledAttribute = Sprite::create("FilledAttributePointButtonSmall.png");
