@@ -104,7 +104,7 @@ private:
     PointArray *numAgentsEvolution;
     int indexAgentsEvolution = 0;
     DrawNode *agentsEvolution;
-    WaveNode *waveNode;
+    vector<WaveNode*> waveNodes;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;

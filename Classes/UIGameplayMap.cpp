@@ -492,7 +492,7 @@ bool UIGameplayMap::init()
                 
                 ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
                //[[[HeyaldaGLDrawNode alloc] init] autorelease];
-                waveNode = new WaveNode();
+                auto waveNode = new WaveNode();
                 waveNode->init();
                 
                 lifeBorderBar->addChild(waveNode, 10);
@@ -522,6 +522,7 @@ bool UIGameplayMap::init()
                 //    glWaveNode.glDrawMode = kDrawPoints; 
                 waveNode->glDrawMode = kDrawLines;
                 waveNode->setReadyToDrawDynamicVerts(true);
+                waveNodes.push_back(waveNode);
             }
             
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1670,7 +1671,7 @@ void UIGameplayMap::update(float delta)
                 }*/
                 
                 updateWave(i);
-                waveNode->draw(Director::getInstance()->getRenderer(), kmMat4::ZERO, false);
+                waveNodes[i]->draw(Director::getInstance()->getRenderer(), kmMat4::ZERO, false);
             }
             
             play = true;
@@ -1736,7 +1737,6 @@ void UIGameplayMap::updateWave(int indexAgent)
 {
     float height = float(GameLevel::getInstance()->getAgents()[indexAgent].size())/float(GameLevel::getInstance()->getMaxAgents()[indexAgent]) * lifeBars.at(indexAgent)->getContentSize().height;
        
-    waveNode->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() +
-                                                                        lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
-    waveNode->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;
+    waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
+    waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;
 }
