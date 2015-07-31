@@ -41,55 +41,66 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     int mobility = (agent->getValOfAttribute("MOBILITY") * 4) + 1 * tech;
     if (probCulture > -1) {
         probCulture = probCulture * tech;
-        //CONTAR AGENTS ALREDEDOR SEGONS TIPUS
-        vector<int> numAgentsPerType;
-        for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-            numAgentsPerType.push_back(0);
-        }
-        for (int i = -mobility / 2; i < mobility / 2; i++) {
-            for (int j = -mobility / 2; j < mobility / 2; j++) {
-                int posx = agent->getPosition()->getX() + i;
-                int posy = agent->getPosition()->getY() + j;
-                if (posx >= 0 and posy >= 0 and posx < 480 and posy < 320) {
-                    if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr) {
-                        numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] = numAgentsPerType[GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()] + 1;
-                    }
-                }
-            }
-        }
+        //CERCAR AGENT EN RADI
+        int radi = 3;
+        int maxIterations = 9;
 
-        //CALCULAR PROBABILITATS EN FUNCIO DEL NUMERO DAGENTS DE CADA TIPUS
-        vector<float> probPerType;
-        float probMid = 0.0;
-        float probTotal = 0.0;
-        for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-            probPerType.push_back(float(GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"]));
-            probMid += float(GameLevel::getInstance()->getAgentAttributes(i)["CULTURAL_INFLUENCE"]);
+        int minRandomX = agent->getPosition()->getX() - radi;
+        int maxRandomX = agent->getPosition()->getX() + radi;
+        int minRandomY = agent->getPosition()->getY() - radi;
+        int maxRandomY = agent->getPosition()->getY() + radi;
+        
+        int posx = random(minRandomX, maxRandomX);
+        int posy = random(minRandomY, maxRandomY);
+        bool validTypeAgent = false;
+        if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and
+            GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
+        {
+            validTypeAgent = true;
         }
-        for (int i = 0; i < probPerType.size(); i++) {
-            probPerType[i] = (probPerType[i] / probMid) * float(numAgentsPerType[i]);
-            probTotal += probPerType[i];
+        while (maxIterations > 0 and validTypeAgent == false) {
+            posx = random(minRandomX, maxRandomX);
+            posy = random(minRandomY, maxRandomY);
+            if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and
+                GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
+            {
+                validTypeAgent = true;
+            }
+            maxIterations--;
         }
-        for (int i = 0; i < probPerType.size(); i++) {
-            if (i == 0) {
-                probPerType[i] = (probPerType[i] / probTotal) * 100.0;
+        
+        //SI S'HA TROBAT AGENT I INFLUEIX
+        if (maxIterations > 0)
+        {
+            switch (GameLevel::getInstance()->getAgentAtMap(posx, posy)->getValOfAttribute("CULTURAL_INFLUENCE")) {
+                case 1:
+                    probCulture = 20;
+                    break;
+                case 2:
+                    probCulture = 30;
+                    break;
+                case 3:
+                    probCulture = 40;
+                    break;
+                case 4:
+                    probCulture = 50;
+                    break;
+                case 5:
+                    probCulture = 60;
+                    break;
+                case -1:
+                    probCulture = -1;
+                    break;
+                default:
+                    probCulture = 10;
+                    break;
             }
-            else {
-                probPerType[i] = ((probPerType[i] / probTotal) * 100.0) + probPerType[i - 1];
+            probCulture = probCulture * tech;
+            if (random(0, 100) < probCulture){
+                type = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType();
             }
         }
-        int p = rand() % 100;
-        bool exit = false;
-        for (int i = 0; i < probPerType.size() and exit == false; i++) {
-            if (i == 0 and p < probPerType[i]) {
-                type = i;
-                exit = true;
-            }
-            else if (p < probPerType[i] and p >= probPerType[i - 1]) {
-                type = i;
-                exit = true;
-            }
-        }
+ 
     }
 
     //REPRODUIR-SE NORMAL (SI HI HA INLFUENCIA CULTURAL I EL TIPUS ES EL MATEIX TAMBE)
@@ -159,7 +170,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
         if (random(0, 100) < probReproduction) {
-            int maxIterations = 50;
+            int maxIterations = 30;
             Point fingerSpot = GameLevel::getInstance()->getAgentDirections()[typeAgent];
             /*if (agent->getType() != 0) {
                 fingerSpot.x = -1;
