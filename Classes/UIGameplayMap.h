@@ -13,6 +13,7 @@
 #include "UIProgressMap.h"
 #include "GameLevel.h"
 #include "UIPower.h"
+#include "WaveNode.h"
 
 class Message;
 class Tutorial;
@@ -83,8 +84,6 @@ private:
     bool moveBackgroundRight = false;
     bool moveBackgroundUp = false;
     bool moveBackgroundDown = false;
-    float zoomScale = 1;
-    Point centerZoom = Point(1024, 768);
 
     pthread_t timingThread;
     pthread_t gameLevelThread;
@@ -103,9 +102,16 @@ private:
     float timeProgressBar = 0.0;
     
     Vector<Sprite*> lifeBars;
+    std::vector<Vec2*> *numAgentsEvolutionPoints;
+    PointArray *numAgentsEvolution;
+    int indexAgentsEvolution = 0;
+    DrawNode *agentsEvolution;
+    vector<WaveNode*> waveNodes;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
+    Label* restaEvolutionPointsLabel;
+    Sprite* evolutionPointsIcon;
     Label* collect1PointsLabel;
     Label* distanceLabel;
 
@@ -128,7 +134,6 @@ private:
 
     bool firstPlayFF = true;
     
-    void pinchZoomWithMovedTouch(Touch* movedTouch);
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
     int getValueAtGameplayMap(int rgb, Point pt, int map);
@@ -155,6 +160,7 @@ private:
 public:
     // tutorial related methods
     void setMessage(const Message * message);
+    void updateWave(int indexAgent);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */

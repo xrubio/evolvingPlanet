@@ -93,12 +93,20 @@ bool UIGameplayMap::init()
 
     string space = " ";
     string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 136);
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 114);
     levelLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     levelLabel->setColor(Color3B(139, 146, 154));
     levelLabel->setAnchorPoint(Vec2(0, 0.5));
-    levelLabel->setPosition(Vec2(13 * visibleSize.width / 204, 145 * visibleSize.height / 155));
+    levelLabel->setPosition(Vec2(13 * visibleSize.width / 204, 149 * visibleSize.height / 155));
     this->addChild(levelLabel, 5);
+    
+    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")), "fonts/BebasNeue.otf", 48);
+    labelGoals->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    labelGoals->setColor(Color3B(139, 146, 154));
+    labelGoals->setAnchorPoint(Vec2(1, 0.5));
+    labelGoals->setPosition(levelLabel->getPositionX() + levelLabel->getBoundingBox().size.width,
+                            levelLabel->getPositionY() - (levelLabel->getBoundingBox().size.height / 2));
+    this->addChild(labelGoals, 5);
 
     //QUIT / RETRY
     Vector<MenuItem*> quitRetryVec;
@@ -186,7 +194,7 @@ bool UIGameplayMap::init()
 
     //EVOLUTION POINTS
     //string(LocalizedString::create("EVOLUTION_POINTS"))
-    auto evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
+    evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(159 * visibleSize.width / 204, 11 * visibleSize.height / 155);
     evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()),
@@ -194,7 +202,12 @@ bool UIGameplayMap::init()
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
     evolutionPointsLabel->setColor(Color3B(216, 229, 235));
     evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
+    restaEvolutionPointsLabel = Label::createWithTTF("- ", "fonts/BebasNeue.otf", 80);
+    restaEvolutionPointsLabel->setColor(Color3B(211, 197, 0));
+    restaEvolutionPointsLabel->setOpacity(0);
+    evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
     this->addChild(evolutionPointsIcon, 1);
+    
 
     auto evolutionPointsStringLabel = Label::createWithTTF(string(LocalizedString::create("EVOLUTION_POINTS")),
         "fonts/BebasNeue.otf", 40);
@@ -309,10 +322,9 @@ bool UIGameplayMap::init()
             int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
             auto area = Sprite::create("CheckpointArea.png");
             if (i == 0) {
-                area->setColor(Color3B::BLUE);
                 auto blink = Blink::create(2, 2);
                 auto repeatBlink = RepeatForever::create(blink);
-                area->setColor(Color3B::BLUE);
+                area->setColor(Color3B::WHITE);
                 area->runAction(repeatBlink);
 
                 //GOAL EXPANSION DISTANCE
@@ -334,8 +346,8 @@ bool UIGameplayMap::init()
     //TIME PROGRESS BAR
     timeBorderBar = Sprite::create("ProgressBarBorder.png");
     timeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeBorderBar->setPosition(102 * visibleSize.width / 204, 145 * visibleSize.height / 155);
-    this->addChild(timeBorderBar);
+    timeBorderBar->setPosition(102 * visibleSize.width / 204, 150 * visibleSize.height / 155);
+    this->addChild(timeBorderBar, 3);
     auto barContent = Sprite::create("ProgressBarContent.png");
     timeBar = ProgressTimer::create(barContent);
     timeBar->setType(ProgressTimer::Type::BAR);
@@ -344,11 +356,6 @@ bool UIGameplayMap::init()
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(0, 0);
     timeBorderBar->addChild(timeBar, 3);
-    auto labelGoals = Label::createWithTTF(string(LocalizedString::create("GOALS")), "fonts/BebasNeue.otf", 48);
-    labelGoals->setColor(Color3B(139, 146, 154));
-    labelGoals->setAnchorPoint(Vec2(0, 0.5));
-    labelGoals->setPosition(0, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
-    timeBorderBar->addChild(labelGoals, 2);
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
@@ -362,7 +369,7 @@ bool UIGameplayMap::init()
         goalMark->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
         timeBorderBar->addChild(goalMark, 1);
         auto goalNum = Sprite::create("GoalNum.png");
-        goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height + (3 * visibleSize.height / 155));
+        goalNum->setPosition(posXaverage, - timeBorderBar->getContentSize().height / 2);
         auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
         labelGoalNum->setPosition(goalNum->getContentSize().width / 2, goalNum->getContentSize().height / 2);
         labelGoalNum->setColor(Color3B(216, 229, 235));
@@ -454,7 +461,7 @@ bool UIGameplayMap::init()
                 lifeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
                 lifeBorderBar->setPosition((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
                                          attColorsBackground->getContentSize().height / 2);
-                auto barContent = Sprite::create("LifeBarContent.png");
+                /*auto barContent = Sprite::create("LifeBarContent.png");
                 ProgressTimer* lifeBar = ProgressTimer::create(barContent);
                 lifeBar->setType(ProgressTimer::Type::BAR);
                 lifeBar->setAnchorPoint(Vec2(0, 0));
@@ -478,35 +485,103 @@ bool UIGameplayMap::init()
                         color = Color3B(255, 4, 4);
                         break;
                 }
-                lifeBar->setColor(color);
+                lifeBar->setColor(color);*/
+                /*auto drawNode = DrawNode::create();
+                drawNode->setAnchorPoint(Vec2(0, 0.5));
+                float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) *
+                lifeBorderBar->getContentSize().height;
+                drawNode->drawSegment(Vec2(1, height), Vec2(4, height), 2, Color4F::RED);
+                lifeBorderBar->addChild(drawNode, 5);*/
                 lifeBars.pushBack(lifeBorderBar);
+                /*float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * lifeBorderBar->getContentSize().height;
+                Vec2 c(GameLevel::getInstance()->getTimeSteps(), height);
+                numAgentsEvolutionPoints->push_back(&c);
+                numAgentsEvolution->setControlPoints(numAgentsEvolutionPoints);*/
+                agentsEvolution = DrawNode::create();
+                lifeBorderBar->addChild(agentsEvolution);
+                attColorsBackground->setName("attColorsBackground");
                 attColorsBackground->addChild(lifeBorderBar, 5);
+                
+                
+                ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
+               //[[[HeyaldaGLDrawNode alloc] init] autorelease];
+                auto waveNode = new WaveNode();
+                waveNode->init();
+                
+                lifeBorderBar->addChild(waveNode, 10);
+                
+                // Space the verticies out evenly across the screen for the wave.
+                float vertexHorizontalSpacing = lifeBorderBar->getContentSize().width / (float)50;
+                
+                // Used to increment to the next vertexX position.
+                float currentWaveVertX = attColorsBackground->getPositionX() + lifeBorderBar->getPositionX() -
+                                        (lifeBorderBar->getContentSize().width / 2);
+                
+                for (int i = 0; i < 50; i++) {
+                    /*float waveX = currentWaveVertX;
+                    
+                    float waveY = float(GameLevel::getInstance()->getAgents()[0].size())/float(GameLevel::getInstance()->getMaxAgents()[0]) * lifeBars.at(0)->getContentSize().height;*/
+                    float waveX = currentWaveVertX;
+                    float waveY = lifeBorderBar->getPositionY() + attColorsBackground->getPositionY();
+                    
+                    //NSLog(@"time:%.2f waveAmplitude:%.2f Wave:%. 2f,%2.f wavefrequency:%.2f",time, waveAmplitude, waveX, waveY, wavefrequency);
+                    waveNode->addToDynamicVerts2D(Point(waveX, waveY), Color4B(255, 255, 255, 255));
+                    
+                    currentWaveVertX += vertexHorizontalSpacing;
+                }
+                
+                
+                // Try experimenting with different draw modes to see the effect.
+                //    glWaveNode.glDrawMode = kDrawPoints; 
+                waveNode->glDrawMode = kDrawLines;
+                waveNode->setReadyToDrawDynamicVerts(true);
+                waveNodes.push_back(waveNode);
             }
+            
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40);
+            attBackgroundTitle->setColor(Color3B(216, 229, 236));
+            attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
+            attBackgroundTitle->setPosition(Vec2(0.75 * attBackground->getContentSize().width / 12,
+                                                 13 * attBackground->getContentSize().height / 14));
+            attBackground->addChild(attBackgroundTitle);
+            
+            auto attBackgroundTitleCost = Label::createWithTTF("[ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 35);
+            attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
+            attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
+            attBackgroundTitleCost->setPosition(Vec2(9 * attBackground->getContentSize().width / 12,
+                                                 13 * attBackground->getContentSize().height / 14));
+            attBackground->addChild(attBackgroundTitleCost);
 
             int k = 1;
             int tag = 0;
             Vector<MenuItem*> attributesButtons;
             for (int j = 0; j < keys.size(); j++) {
-                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())) + " - ",
-                    "fonts/BebasNeue.otf", 35);
+                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
+                    "fonts/BebasNeue.otf", 30);
                 labelAttRight->setColor(Color3B(216, 229, 236));
                 labelAttRight->setAnchorPoint(Vec2(0, 0.5));
                 labelAttRight->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
-                    (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
+                    (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 attBackground->addChild(labelAttRight, 1, (j + 1) * 1000);
 
-                auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[j])), "fonts/BebasNeue.otf", 40);
-                attNumLabel->setColor(Color3B(216, 229, 236));
-                attNumLabel->setAnchorPoint(Vec2(1, 0.5));
-                attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2, labelAttRight->getPositionY());
+                auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[j])), "fonts/BebasNeue.otf", 30);
+                attNumLabel->setColor(Color3B::BLACK);
+                attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
+                attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2.5, labelAttRight->getPositionY());
                 attBackground->addChild(attNumLabel, 1, (j + 1) * 1100);
-
+                
+                auto costBackground = Sprite::create("EvolutionPointsCost.png");
+                costBackground->setPosition(attNumLabel->getPositionX(), attNumLabel->getPositionY());
+                attBackground->addChild(costBackground);
+                
                 auto minusAttButton = MenuItemImage::create(
                     "MinusButtonSmall.png", "MinusButtonSmallPressed.png", "MinusButtonSmallPressed.png",
                                                             CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
                 minusAttButton->setAnchorPoint(Vec2(0, 0.5));
                 minusAttButton->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
-                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
+                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 minusAttButton->setTag(j + 10);
                 minusAttButton->setEnabled(false);
                 attributesButtons.pushBack(minusAttButton);
@@ -515,14 +590,14 @@ bool UIGameplayMap::init()
                     "PlusButtonSmall.png", "PlusButtonSmallPressed.png", "PlusButtonSmallPressed.png",
                                                            CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
                 plusAttButton->setPosition(Vec2(10 * attBackground->getContentSize().width / 12,
-                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14));
+                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 plusAttButton->setTag(j + 50);
                 plusAttButton->setEnabled(false);
                 attributesButtons.pushBack(plusAttButton);
 
                 float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
                 float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-                int posY = (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 14;
+                int posY = (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15;
 
                 for (int m = 0; m < 5; m++) {
                     posX = posX + incX;
@@ -663,41 +738,6 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                 if (checkPowersClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation)) {
                     moveBackground = true;
                 }
-                
-                if (touches.size() == 2)
-                {
-                    Point touchLocation = gameplayMap->convertTouchToNodeSpace(touches[0]);
-                    Point oldTouchLocation = gameplayMap->convertTouchToNodeSpace(touches[1]);
-                    
-                    //Point translation = touchLocation - oldTouchLocation;
-                    Point midPoint = touchLocation.getMidpoint(oldTouchLocation);
-                    Point translation = midPoint;
-                    translation = this->convertToNodeSpace(translation);
-                    
-                    translation.x = abs(translation.x);
-                    if (translation.x > Director::getInstance()->getVisibleSize().width / 2)
-                    {
-                        translation.x -= ((translation.x - (Director::getInstance()->getVisibleSize().width / 2)) * 2);
-                    }
-                    else if (translation.x < Director::getInstance()->getVisibleSize().width / 2)
-                    {
-                        translation.x += (((Director::getInstance()->getVisibleSize().width / 2) - translation.x) * 2);
-                        
-                    }
-                    translation.y = abs(translation.y);
-                    if (translation.y > Director::getInstance()->getVisibleSize().height / 2)
-                    {
-                        translation.y -= ((translation.y - (Director::getInstance()->getVisibleSize().height / 2)) * 2);
-                    }
-                    else if (translation.y < Director::getInstance()->getVisibleSize().height / 2)
-                    {
-                        translation.y += (((Director::getInstance()->getVisibleSize().height / 2) - translation.y) * 2);
-                        
-                    }
-                    CCLOG("%f %f", translation.x, translation.y);
-                    centerZoom = translation;
-                    
-                }
             }
         }
     }
@@ -707,17 +747,52 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 {
     if (endGameWindowPainted == false) {
         // ZOOM
-        if (touches.size() == 2) {
+        if (_touches.size() >= 2) {
             if (checkPowersClicked() == false) {
-                for (auto touch : touches) {
-                    pinchZoomWithMovedTouch(touch);
-                }
-                gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
-                    zoomScale * GameData::getInstance()->getRaHConversion());
-                gameplayMap->setPosition(centerZoom);
+                // Get the two first touches
+                Touch *touch1 = (Touch*)_touches.at(0);
+                Touch *touch2 = (Touch*)_touches.at(1);
                 
-                CCLOG("%f %f", centerZoom.x, centerZoom.y);
-
+                // Get current and previous positions of the touches
+                Point curPosTouch1 = Director::getInstance()->convertToGL(touch1->getLocationInView());
+                Point curPosTouch2 = Director::getInstance()->convertToGL(touch2->getLocationInView());
+                Point prevPosTouch1 = Director::getInstance()->convertToGL(touch1->getPreviousLocationInView());
+                Point prevPosTouch2 = Director::getInstance()->convertToGL(touch2->getPreviousLocationInView());
+                
+                // Calculate current and previous positions of the layer relative the anchor point
+                Point curPosLayer = curPosTouch1.getMidpoint(curPosTouch2);
+                Point prevPosLayer = prevPosTouch1.getMidpoint(prevPosTouch2);
+                
+                // Calculate new scale
+                float prevScaleX = gameplayMap->getScaleX();
+                float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
+                                GameData::getInstance()->getRaWConversion();
+                
+                float prevScaleY = gameplayMap->getScaleY();
+                float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
+                                    GameData::getInstance()->getRaHConversion();
+                
+                gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
+                                          3.0 * GameData::getInstance()->getRaWConversion()),
+                                      MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
+                                          3.0 * GameData::getInstance()->getRaHConversion()));
+                
+                if( this->getScaleX() != prevScaleX )
+                {
+                    Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosLayer);
+                    float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
+                    float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
+                    
+                    gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
+                }
+                
+                // If current and previous position of the multitouch's center aren't equal -> change position of the layer
+                if (!prevPosLayer.equals(curPosLayer))
+                {
+                    gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x + curPosLayer.x - prevPosLayer.x,
+                                          gameplayMap->getPosition().y + curPosLayer.y - prevPosLayer.y));
+                }
+                
                 Point reLocate = gameplayMap->getPosition();
 
                 checkBackgroundLimitsInTheScreen(reLocate);
@@ -804,15 +879,30 @@ void UIGameplayMap::onMouseScroll(Event* event)
         // ZOOM
         EventMouse* e = (EventMouse*)event;
         if (checkPowersClicked() == false) {
-			zoomScale -= e->getScrollY() / 5;
-		    if (zoomScale < 1) {
-		        zoomScale = 1;
-		    }
-		    if (zoomScale > 3) {
-		        zoomScale = 3;
-		    }
-            gameplayMap->setScale(zoomScale * GameData::getInstance()->getRaWConversion(),
-                                  zoomScale * GameData::getInstance()->getRaHConversion());
+            // Get current and previous positions of the touches
+            Point curPosTouch1 = Director::getInstance()->convertToGL(e->getLocationInView());
+            Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
+            
+            // Calculate new scale
+            float prevScaleX = gameplayMap->getScaleX();
+            float curScaleX = gameplayMap->getScaleX() + (e->getScrollY() / 10) * GameData::getInstance()->getRaWConversion();
+            
+            float prevScaleY = gameplayMap->getScaleY();
+            float curScaleY = gameplayMap->getScaleY() + (e->getScrollY() / 10) * GameData::getInstance()->getRaHConversion();
+            
+            gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
+                                      3.0 * GameData::getInstance()->getRaWConversion()),
+                                  MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
+                                      3.0 * GameData::getInstance()->getRaHConversion()));
+            
+            if( this->getScaleX() != prevScaleX )
+            {
+                Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosTouch1);
+                float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
+                float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
+                
+                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y + deltaY));
+            }
             
             Point reLocate = gameplayMap->getPosition();
 
@@ -1072,7 +1162,8 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
 
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
-        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() + GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+        int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
@@ -1082,6 +1173,12 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
         blankAttribute->setPosition(filledAttribute->getPosition());
         layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
         layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+        
+        //ANIMATION
+        restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+        restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
+        auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+        restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
     }
 }
 
@@ -1095,6 +1192,7 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= GameLevel::getInstance()->getEvolutionPoints()) {
         GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+        int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
         GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
@@ -1104,6 +1202,12 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
         filledAttribute->setPosition(blankAttribute->getPosition());
         layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
         layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+        
+        //ANIMATION
+        restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+        restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
+        auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+        restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
     }
 }
 
@@ -1168,36 +1272,6 @@ void UIGameplayMap::playLevel(void)
     pthread_mutex_unlock(&gameLevelMutex);
 }
 
-void UIGameplayMap::pinchZoomWithMovedTouch(Touch* movedTouch)
-{
-    float minDistSqr = FLT_MAX;
-    Touch* nearestTouch = nullptr;
-    Point newLocation = movedTouch->getLocationInView();
-    for (auto touch : _touches) {
-        if (touch != movedTouch) {
-            float distSqr = sqrOfDistanceBetweenPoints(touch->getLocationInView(), newLocation);
-            if (distSqr < minDistSqr) {
-                minDistSqr = distSqr;
-                nearestTouch = touch;
-            }
-        }
-    }
-    if (nearestTouch) {
-        float prevDistSqr = sqrOfDistanceBetweenPoints(nearestTouch->getLocationInView(),
-            movedTouch->getPreviousLocationInView());
-        float pinchDiff = sqrtf(minDistSqr) - sqrtf(prevDistSqr);
-        zoomScale += pinchDiff * 0.005; // kPinchZoomCoeff is constant = 1.0 /
-        // 200.0f Adjust it for your needs
-        if (zoomScale < 1) {
-            zoomScale = 1;
-        }
-        if (zoomScale > 3) {
-            zoomScale = 3;
-        }
-        CCLOG("zoom %f", zoomScale);
-    }
-}
-
 bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
 {
     if (sprite->getBoundingBox().containsPoint(touchLocation)) {
@@ -1217,7 +1291,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         auto area = gameplayMap->getChildByTag(400 + index - 1);
         area->stopAllActions();
         area->setVisible(true);
-        area->setColor(Color3B::GREEN);
+        area->setColor(Color3B(223, 211, 39));
         auto fadeOut = FadeOut::create(2.5);
         area->runAction(fadeOut);
     }
@@ -1225,7 +1299,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         auto nextArea = gameplayMap->getChildByTag(400 + index);
         auto blink = Blink::create(2, 2);
         auto repeatBlink = RepeatForever::create(blink);
-        nextArea->setColor(Color3B::BLUE);
+        nextArea->setColor(Color3B::WHITE);
         nextArea->runAction(repeatBlink);
         nextArea->setOpacity(255);
     }
@@ -1391,7 +1465,7 @@ void UIGameplayMap::initializeAgents(void)
 
 void UIGameplayMap::setAttributesToInitialAgents(void)
 {
-    
+    GameLevel::getInstance()->setAttributesToInitialAgents();
 }
 
 void UIGameplayMap::createEndGameWindow(const LevelState & mode)
@@ -1652,13 +1726,31 @@ void UIGameplayMap::update(float delta)
             if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
                 //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
+<<<<<<< HEAD
 
             // TODO everything stopped if _message?
             play = true;
+=======
+>>>>>>> master
             for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
             {
-                ((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);
+                /*((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);*/
+                //drawNode->setAnchorPoint(Vec2(0, 0.5));
+                /*float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) *
+                                lifeBars.at(i)->getContentSize().height;
+                Vec2 c(GameLevel::getInstance()->getTimeSteps(), height);
+                numAgentsEvolutionPoints->push_back(&c);
+                numAgentsEvolution->setControlPoints(numAgentsEvolutionPoints);
+                if (GameLevel::getInstance()->getTimeSteps() > 0) {
+                    agentsEvolution->drawCardinalSpline(numAgentsEvolution, 1.0, GameLevel::getInstance()->getTimeSteps(), Color4F::RED);
+                }*/
+                
+                updateWave(i);
+                waveNodes[i]->draw(Director::getInstance()->getRenderer(), kmMat4::ZERO, false);
             }
+            
+            play = true;
+
             //CCLOG("Pintat: %f", ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC));
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
@@ -1751,5 +1843,13 @@ void UIGameplayMap::setMessage( const Message * message )
         spotsLayer->drawCircle( posCircle, spot._radius*visibleSize.width*0.95f, 0.0f, 6, false, Color4F(1.0f, 1.0f, 1.0f, 0.5f));
         spotIt++;
     }
+}
+
+void UIGameplayMap::updateWave(int indexAgent)
+{
+    float height = float(GameLevel::getInstance()->getAgents()[indexAgent].size())/float(GameLevel::getInstance()->getMaxAgents()[indexAgent]) * lifeBars.at(indexAgent)->getContentSize().height;
+       
+    waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
+    waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;
 }
 

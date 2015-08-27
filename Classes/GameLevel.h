@@ -125,6 +125,8 @@ public:
 
     void createLevel(void);
     void initializeAttributesCost(void);
+    void setAttributesToInitialAgents(void);
+
     /** start the level and run it until some condition ends it **/
     void playLevel(void);
     void resetLevel(void);
