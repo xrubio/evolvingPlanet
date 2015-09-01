@@ -40,6 +40,8 @@ void LevelLoader::loadXmlFile(string filename)
     //NAME_LEVEL
     //FILE_MAP
     GameLevel::getInstance()->setMapFilename(doc.child_value("FILE_MAP"));
+    //AGENTS_PIXEL_SIZE
+    GameLevel::getInstance()->setAgentPixelSize(atoi(doc.child_value("AGENTS_PIXEL_SIZE")));
     //AGENTS
     xml_node ags = doc.child("AGENTS").child("AGENT");
     int maxAllAgents = 0;

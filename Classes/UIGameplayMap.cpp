@@ -1609,9 +1609,9 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
         break;
     }
     default:
-        int k = -2048 * GameLevel::getInstance()->agentPixelSize;
-        while (k <= 2048 * GameLevel::getInstance()->agentPixelSize) {
-            for (int j = -GameLevel::getInstance()->agentPixelSize; j < GameLevel::getInstance()->agentPixelSize + 1; j++) {
+        int k = -2048 * GameLevel::getInstance()->getAgentPixelSize();
+        while (k <= 2048 * GameLevel::getInstance()->getAgentPixelSize()) {
+            for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
                 agentsTextureData[position + j + k] = colour;
             }
             k += 2048;

@@ -121,6 +121,8 @@ public:
     vector<vector<pair<int, cocos2d::Point> > > getAgentFutureDirections(void);
     void setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd);
     void setAgentFutureDirection(int type, int step, cocos2d::Point p);
+    void setAgentPixelSize(int i);
+    int getAgentPixelSize(void);
 
     void createLevel(void);
     void initializeAttributesCost(void);
@@ -134,7 +136,6 @@ public:
     bool ended = false;
     float calcTime = 0;
     int prevGoal = 0;
-    int agentPixelSize = 1;
 
 private:
     static GameLevel* gamelevelInstance;
@@ -145,6 +146,7 @@ private:
     vector<int> maxAgents;
     vector<int> numInitialAgents;
     int maxAllAgents = 0;
+    int agentPixelSize = 1;
 
     clock_t currentTime = 0;
     int numLevel;
