@@ -58,6 +58,14 @@
 	<string>HOSTILIDAD</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTOS DE EVOLUCIÓN</string>
+	<key>LEVEL_FEATURES</key>
+	<string>CARACTERÍSTICAS DEL NIVEL</string>
+	<key>ATTRIBUTES</key>
+	<string>ATRIBUTOS</string>
+	<key>POWERS</key>
+	<string>PODERES</string>
+	<key>NOT_AVAILABLE</key>
+	<string>NO DISPONIBLES EN ESTE NIVEL</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- Se debe llegar al punto de control 1 entre 30 y 50 pasos de tiempo</string>
 	<key>GOAL_TEXT_LVL1_2</key>

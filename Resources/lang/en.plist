@@ -58,6 +58,14 @@
 	<string>HOSTILITY</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
+	<key>LEVEL_FEATURES</key>
+	<string>LEVEL FEATURES</string>
+	<key>ATTRIBUTES</key>
+	<string>ATTRIBUTES</string>
+	<key>POWERS</key>
+	<string>POWERS</string>
+	<key>NOT_AVAILABLE</key>
+	<string>NOT AVAILABLE IN THIS LEVEL</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- Reach checkpoint 1 between 30 and 50 timesteps</string>
 	<key>GOAL_TEXT_LVL1_2</key>

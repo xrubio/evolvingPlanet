@@ -28,8 +28,8 @@ public:
     void plusAttCallback(Ref* pSender);
     void menuArrowBackCallback(Ref* pSender);
     void menuArrowNextCallback(Ref* pSender);
-    void contextPageIntroCallback(Ref* pSender);
-    void contextPageDeploymentCallback(Ref* pSender);
+    void zoomImageInCallback(Ref* pSender);
+    void zoomImageOutCallback(Ref* pSender);
 
     virtual void update(float delta);
 
