@@ -115,8 +115,10 @@ bool UIMainMenu::init()
     }
     
     auto startButton = MenuItemImage::create(
-        "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
+        "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", "MainMenuStartButtonPressed.png",
+                                             CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
     startButton->setAnchorPoint(Vec2(0, 0.5));
+    startButton->setName("newCampaign");
     if (menuButtons.size() > 0)
     {
         startButton->setPosition(Vec2((2 * visibleSize.width / 25), (8.5 * visibleSize.height / 18)));
@@ -249,6 +251,7 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         {
             //WARNING ERASING GAME DATA
             createWarningWindow();
+            ((MenuItemImage*) pSender)->setEnabled(false);
         }
         else
         {
@@ -332,6 +335,7 @@ void UIMainMenu::menuExitCallback(Ref* pSender)
 void UIMainMenu::menuResetNoCallback(Ref* pSender)
 {
     this->removeChildByTag(30);
+    ((MenuItemImage*)(this->getChildByTag(4)->getChildByName("newCampaign")))->setEnabled(true);
 }
 
 void UIMainMenu::menuResetYesCallback(Ref* pSender)
@@ -420,6 +424,7 @@ void UIMainMenu::createWarningWindow(void)
     auto menuConfirmReset = Menu::createWithArray(confirmReset);
     menuConfirmReset->setPosition(0, 0);
     alertBackground->addChild(menuConfirmReset, 10);
+    alertBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     this->addChild(alertBackground, 30, 30);
 }
