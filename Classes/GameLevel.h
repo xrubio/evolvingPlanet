@@ -186,7 +186,7 @@ private:
     int currentAgentType = 0;
 
     vector<cocos2d::Point> agentDirections;
-    vector<vector<pair<unsigned int, cocos2d::Point> > > agentFutureDirections;
+    vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
 
     GameLevel(){};
 

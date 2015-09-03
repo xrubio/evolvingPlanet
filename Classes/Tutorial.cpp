@@ -29,7 +29,7 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
 {
     int numMessages = node.attribute("numMessages").as_int();
 
-    for(int i=0; i<numMessages; i++)
+    for(int i=1; i<=numMessages; i++)
     {
         pugi::xml_node message = node.child("message");
         while(message!= nullptr)

@@ -448,21 +448,21 @@ void GameLevel::setAgentDirection(int agentType, cocos2d::Point p)
     agentDirections[agentType] = p;
 }
 
-vector<vector<pair<unsigned int, cocos2d::Point> > > GameLevel::getAgentFutureDirections(void)
+vector<vector<pair<int, cocos2d::Point> > > GameLevel::getAgentFutureDirections(void)
 {
     return agentFutureDirections;
 }
 
-void GameLevel::setAgentFutureDirections(vector<vector<pair<unsigned int, cocos2d::Point> > > afd)
+void GameLevel::setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd)
 {
     agentFutureDirections = afd;
 }
 
-void GameLevel::setAgentFutureDirection(int type, unsigned int step, cocos2d::Point p)
+void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
 {
     pair<unsigned int, cocos2d::Point> par(step, p);
     while (agentFutureDirections.size() <= type) {
-        vector<pair<unsigned int, cocos2d::Point> > v;
+        vector<pair<int, cocos2d::Point> > v;
         agentFutureDirections.push_back(v);
     }
     agentFutureDirections[type].push_back(par);

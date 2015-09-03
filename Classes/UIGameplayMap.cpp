@@ -246,6 +246,8 @@ bool UIGameplayMap::init()
     pauseButton->setPosition(Vec2(playButton->getPosition().x - (14 * visibleSize.width / 204),
         playButton->getPosition().y));
     pauseButton->setEnabled(false);
+    pauseButton->setName("pauseButton");
+
     pauseDarkBackground = Sprite::create("EndedGameBackground.png");
     pauseDarkBackground->setName("pauseDarkBackground");
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -259,6 +261,7 @@ bool UIGameplayMap::init()
     timeButtons.pushBack(pauseButton);
 
     Menu* timeMenu = Menu::createWithArray(timeButtons);
+    timeMenu->setName("timeMenu");
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
 
@@ -1726,12 +1729,9 @@ void UIGameplayMap::update(float delta)
             if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
                 //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
             }
-<<<<<<< HEAD
 
             // TODO everything stopped if _message?
             play = true;
-=======
->>>>>>> master
             for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
             {
                 /*((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);*/
@@ -1810,6 +1810,9 @@ void UIGameplayMap::update(float delta)
 
 void UIGameplayMap::setMessage( const Message * message )
 {
+    auto pauseButton = this->getChildByName("timeMenu")->getChildByName("pauseButton");
+    pauseCallback(pauseButton);
+
     _message = message;
     Label * label = (Label*)(this->getChildByName("tutorial"));
     label->setString(_message->text());
