@@ -840,10 +840,10 @@ void UIGameplayMap::onMouseScroll(Event* event)
             
             // Calculate new scale
             float prevScaleX = gameplayMap->getScaleX();
-            float curScaleX = gameplayMap->getScaleX() + (e->getScrollY() / 10) * GameData::getInstance()->getRaWConversion();
+            float curScaleX = gameplayMap->getScaleX() - (e->getScrollY() / 10) * GameData::getInstance()->getRaWConversion();
             
             float prevScaleY = gameplayMap->getScaleY();
-            float curScaleY = gameplayMap->getScaleY() + (e->getScrollY() / 10) * GameData::getInstance()->getRaHConversion();
+            float curScaleY = gameplayMap->getScaleY() - (e->getScrollY() / 10) * GameData::getInstance()->getRaHConversion();
             
             gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
                                       3.0 * GameData::getInstance()->getRaWConversion()),
