@@ -723,6 +723,8 @@ void UIProgressMap::movePopupLevelCallback(Ref* pSender)
 {
     MenuItem* p = (MenuItem*)pSender;
     Sprite* background = (Sprite*)p->getParent()->getParent();
+    if (background->getNumberOfRunningActions() == 0)
+    {
     if (p->getParent()->getParent()->getPositionX() < progressMap0->getBoundingBox().size.width) {
         //VISIBLE
         auto move = MoveTo::create(0.5, Vec2(progressMap0->getBoundingBox().size.width, background->getPositionY()));
@@ -754,6 +756,7 @@ void UIProgressMap::movePopupLevelCallback(Ref* pSender)
                                     (11.5 * (background->getContentSize().height / 12.15))));
         arrowMenu->setName("menuArrow");
         background->addChild(arrowMenu);
+    }
     }
 }
 

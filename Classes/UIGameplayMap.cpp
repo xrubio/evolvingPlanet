@@ -396,10 +396,8 @@ bool UIGameplayMap::init()
     }
 
     //AGENT TYPE BUTTONS
-    for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-        Sprite* agentTypeButton;
         //NOMES UN TIPUS DAGENT (PROVISIONAL)
-        if (i == 0) {
+        /*if (i == 0) {
             agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
             agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i),
@@ -418,8 +416,7 @@ bool UIGameplayMap::init()
             agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
             agentTypeButton->addChild(agentTypeButtonLabel);
             this->addChild(agentTypeButton, 5);
-        }
-        if (i == 0) {
+        }*/
             auto attColorsBackground = Sprite::create("AttributeColorsBackground.png");
             attColorsBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             attColorsBackground->setAnchorPoint(Vec2(0, 0));
@@ -444,8 +441,17 @@ bool UIGameplayMap::init()
             attBackground->addChild(arrowMenu);
 
             for (int j = 0; j < GameLevel::getInstance()->getAgents().size(); j++) {
+                auto agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
+                agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+                agentTypeButton->setPosition(Vec2((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
+                                                  - attColorsBackground->getContentSize().height / 2));
+                auto agentTypeButtonLabel = Label::createWithTTF(to_string(j)+"-BOTS", "fonts/BebasNeue.otf", 30);
+                agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
+                agentTypeButton->addChild(agentTypeButtonLabel);
+                attColorsBackground->addChild(agentTypeButton, 5);
+                
                 auto lifeBorderBar = Sprite::create("LifeBarBorder.png");
-                lifeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+                //lifeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
                 lifeBorderBar->setPosition((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
                                          attColorsBackground->getContentSize().height / 2);
                 /*auto barContent = Sprite::create("LifeBarContent.png");
@@ -604,11 +610,9 @@ bool UIGameplayMap::init()
                 k++;
             }
 
-            Menu* attributesMenu = cocos2d::Menu::createWithArray(attributesButtons);
-            attributesMenu->setPosition(Vec2(0, 0));
-            attBackground->addChild(attributesMenu, 1, 100000);
-        }
-    }
+            Menu* attrMenu = cocos2d::Menu::createWithArray(attributesButtons);
+            attrMenu->setPosition(Vec2(0, 0));
+            attBackground->addChild(attrMenu, 1, 100000);
     
     createTimingThread();
     wait = clock();
@@ -1077,6 +1081,8 @@ void UIGameplayMap::moveAttCallback(Ref* pSender)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     MenuItem* p = (MenuItem*)pSender;
     Sprite* background = (Sprite*)p->getParent()->getParent();
+    if (background->getNumberOfRunningActions() == 0)
+    {
     if (p->getParent()->getParent()->getPositionX() < visibleSize.width) {
         //VISIBLE
         auto move = MoveTo::create(0.5, Vec2(visibleSize.width, background->getPositionY()));
@@ -1104,6 +1110,7 @@ void UIGameplayMap::moveAttCallback(Ref* pSender)
         Menu* arrowMenu = Menu::createWithItem(arrowRetract);
         arrowMenu->setPosition(0, 0);
         background->addChild(arrowMenu);
+    }
     }
 }
 
