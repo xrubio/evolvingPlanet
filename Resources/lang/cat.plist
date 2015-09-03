@@ -58,6 +58,14 @@
 	<string>HOSTILITAT</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTS D&apos;EVOLUCIÓ</string>
+	<key>LEVEL_FEATURES</key>
+	<string>CARACTERÍSTIQUES DEL NIVELL</string>
+	<key>ATTRIBUTES</key>
+	<string>ATRIBUTS</string>
+	<key>POWERS</key>
+	<string>PODERS</string>
+	<key>NOT_AVAILABLE</key>
+	<string>NO DISPONIBLES EN AQUEST NIVELL</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- S&apos;ha d&apos;arribar al punt de control 1 entre 30 i 50 passos de temps</string>
 	<key>GOAL_TEXT_LVL1_2</key>

@@ -93,7 +93,7 @@ void WaveNode::onDrawPrimitives(const Mat4 &transform, bool transformUpdated)
 {
     // Only draw if this class has the verticies and colors to be drawn setup and ready to be drawn.
     if (shouldDrawDynamicVerts == true) {
-        glLineWidth(5);
+        glLineWidth(4);
         
         //ccGLEnableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
         glEnableVertexAttribArray(GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR);

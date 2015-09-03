@@ -667,43 +667,33 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
         break;
     case 1:
         filename = "level1";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 2:
         filename = "level2";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 3:
         filename = "level3";
-        GameLevel::getInstance()->agentPixelSize = 1;
         break;
     case 4:
         filename = "level4";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 5:
         filename = "level5";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 6:
         filename = "level6";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 7:
         filename = "level7";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 8:
         filename = "level8";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 9:
         filename = "level9";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     case 10:
         filename = "level10";
-        GameLevel::getInstance()->agentPixelSize = 2;
         break;
     default:
         filename = "level1";

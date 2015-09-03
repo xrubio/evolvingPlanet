@@ -468,6 +468,16 @@ void GameLevel::setAgentFutureDirection(int type, unsigned int step, cocos2d::Po
     agentFutureDirections[type].push_back(par);
 }
 
+void GameLevel::setAgentPixelSize(int i)
+{
+    agentPixelSize = i;
+}
+
+int GameLevel::getAgentPixelSize(void)
+{
+    return agentPixelSize;
+}
+
 void GameLevel::playLevel(void)
 {
     while (finishedGame == Running)
@@ -520,6 +530,7 @@ void GameLevel::resetLevel(void)
     addedAgents = 0;
     deletedAgents.clear();
     idCounter = 0;
+    agentPixelSize = 1;
 
     maxAgents.clear();
     numInitialAgents.clear();

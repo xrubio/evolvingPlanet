@@ -167,7 +167,7 @@ bool UIMainMenu::init()
     creditsButton->addChild(credLabel);
     //menuButtons.pushBack(creditsButton);
 
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_WP8 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
     {
     auto exitButton = MenuItemImage::create(
         "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
