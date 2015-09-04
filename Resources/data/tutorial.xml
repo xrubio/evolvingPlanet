@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level num="1" numMessages="9">
-    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL1M1"/>
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL1M1" closesWhen="tapButton" button="timeMenu/playButton"/>
     <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M2"/>
     <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M3"/>
     <message id="4" x="0.4" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL1M4">
@@ -21,7 +21,7 @@
     </message>        
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M9"/>
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M10"/>
-    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11"/>
+    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11" closesWhen="tapButton" button="timeMenu/playButton"/>
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL1M12"/>
 </level>
 

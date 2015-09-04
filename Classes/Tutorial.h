@@ -31,7 +31,7 @@ public:
     /** check if next message on list can be shown. \returns true if it's possible **/
     bool checkNextMessage();
     void removeCurrentMessage();
-    const Message * getCurrentMessage() const{return _current;}
+    Message * getCurrentMessage() {return _current;}
 };
 
 #endif // __Tutorial_h__

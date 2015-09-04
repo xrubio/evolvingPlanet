@@ -238,6 +238,7 @@ bool UIGameplayMap::init()
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     playButton->setPosition(Vec2(fastForwardButton->getPosition().x - (14 * visibleSize.width / 204),
         fastForwardButton->getPosition().y));
+    playButton->setName("playButton");
     timeButtons.pushBack(playButton);
 
     MenuItem* pauseButton = MenuItemImage::create(
@@ -381,10 +382,16 @@ bool UIGameplayMap::init()
     }
 
     auto listener = EventListenerTouchAllAtOnce::create();
+
+    auto listenerTutorial = EventListenerTouchOneByOne::create();
+    listenerTutorial->setSwallowTouches(true);
+    listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
+
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
     listener->onTouchesMoved = CC_CALLBACK_2(UIGameplayMap::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(UIGameplayMap::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listenerTutorial, this);
 
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
@@ -700,23 +707,26 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
     // TODO if you touch the bounding box
     if(_tutorial && _tutorial->getCurrentMessage())
-    {  
-        auto pauseDarkBackground = this->getChildByName("pauseDarkBackground");
-        pauseDarkBackground->setVisible(true);
-
-        _tutorial->removeCurrentMessage();
-        this->getChildByName("tutorial")->setVisible(false);
-        this->getChildByName("tutorialBorder")->setVisible(false);
-        this->getChildByName("tutorialSpots")->setVisible(false);
-        
+    {
+        if(_tutorial->getCurrentMessage()->meetsPostCondition())
+        {
+            _tutorial->removeCurrentMessage();
+            this->getChildByName("tutorial")->setVisible(false);
+            this->getChildByName("tutorialBorder")->setVisible(false);
+            this->getChildByName("tutorialSpots")->setVisible(false);
+        }
     }
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    if (endGameWindowPainted == false) {
-        if (checkPowersClicked() == false) {
-            for (auto touch : touches) {
+    if (endGameWindowPainted == false)
+    {
+        if (checkPowersClicked() == false)
+        {
+            for (auto touch : touches)
+            {
                 _touches.pushBack(touch);
             }
-            if (touches.size() == 1) {
+            if (touches.size() == 1)
+            {
                 if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.2 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
                     //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
                     /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
@@ -857,6 +867,43 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
         }
     }
 }
+
+bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
+{
+    CCLOG("oeoe");
+    if(!_tutorial || !_tutorial->getCurrentMessage() || _tutorial->getCurrentMessage()->getPostCondition()!="tapButton")
+    {
+        return true;
+    }
+    auto target = event->getCurrentTarget();
+    CCLOG("touches tutorial: %s",target->getName().c_str());
+    return true;
+}
+/*
+void UIGameplayMap::checkMessagePostCondition()
+{
+    if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="tapButton")
+    {
+        std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
+        Node * parent = this;
+        std::size_t pos;
+        std::string delimiter = "/";
+        std::string token;
+        while ((pos = buttonName.find(delimiter)) != std::string::npos)
+        {
+            token = buttonName.substr(0, pos);
+            parent = parent->getChildByName(token);
+            buttonName.erase(0, pos + delimiter.length());
+        }
+        token = buttonName.substr(0, pos);
+        MenuItem * button = (MenuItem*)(parent->getChildByName(token));
+        if(touches.size()==1 && button->rect().containsPoint(touches[0]->getLocation()))
+        {
+            _tutorial->getCurrentMessage()->postConditionAchieved();
+        }
+    }
+}
+*/
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
 {
@@ -1721,8 +1768,6 @@ void UIGameplayMap::update(float delta)
                 setMessage(_tutorial->getCurrentMessage());
             }
             
-
-
             //clock_t beforeTime = clock();
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));

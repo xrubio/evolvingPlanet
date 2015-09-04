@@ -55,6 +55,19 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
                 int step = message.attribute("step").as_int();
                 newMessage = new MessageTime(text, xPos, yPos, lineBreak, step);
             }
+            // post condition to close message (basic behavior is close it if tap
+
+            if(!message.attribute("closesWhen").empty())
+            {
+                std::string condition = message.attribute("closesWhen").value();
+                newMessage->setPostCondition(condition);
+                if(condition=="tapButton")
+                {
+                    std::string button = message.attribute("button").value();
+                    newMessage->setPostConditionButtonTap(button);
+                }
+            }
+
             // add spots (if any)
             pugi::xml_node spot = message.child("spot");
             while(spot!= nullptr)
@@ -111,7 +124,7 @@ bool Tutorial::checkNextMessage()
         return false;
     }
     Message * nextMessage = *(_messages.begin());
-    if(nextMessage->meetConditions())
+    if(nextMessage->meetsPreCondition())
     {
         _current = nextMessage;
         _messages.pop_front();

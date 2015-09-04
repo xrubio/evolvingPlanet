@@ -187,7 +187,7 @@ The Console shows you an aggregated of these data, making your life much easier<
     <key>LEVEL1M10</key>
     <string>Your task is to supervise that this population arrives at this goal within a temporal span similar to what the archaeological evidence suggests. The closer you get, the better you understand what happened.</string>
     <key>LEVEL1M11</key>
-    <string>The experiment is currently in pause so we can review the tools you can use to achieve this goal. At the moment let's see what the population is doing; tap the Play button and let it evolve during some time steps.</string>
+    <string>Let's see what the population is doing; tap the Play button and let it evolve during some time steps.</string>
     <key>LEVEL1M12</key>
     <string>I paused the agents for the moment (you can do it yourself tapping the Pause button). As you can see the agents are independent. They move, reproduce and die without your intervention. We don't want to modify each one individually, but we do want to guide them in order to reproduce what we see in the archaeological data. To achieve this goal I have some cool tools to show you</string>
     <key>LEVEL1M13</key>
