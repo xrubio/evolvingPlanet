@@ -46,6 +46,8 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             float lineBreak = message.attribute("lineWidth").as_float();
             std::string text = LocalizedString::create(message.attribute("text").value());
             Message * newMessage = 0;
+            // add a dummy message if spot due to double tap (2 taps are added so we need to "swallow" a dummy one to prevent closing the next message.)
+            bool addDummy = false;
             if(trigger=="next")
             { 
                 newMessage = new MessageNext(text, xPos, yPos, lineBreak);
@@ -55,8 +57,7 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
                 int step = message.attribute("step").as_int();
                 newMessage = new MessageTime(text, xPos, yPos, lineBreak, step);
             }
-            // post condition to close message (basic behavior is close it if tap
-
+            // post condition to close message (basic behavior is close it if tap)
             if(!message.attribute("closesWhen").empty())
             {
                 std::string condition = message.attribute("closesWhen").value();
@@ -65,6 +66,10 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
                 {
                     std::string button = message.attribute("button").value();
                     newMessage->setPostConditionButtonTap(button);
+                }
+                else if(condition=="spot")
+                {
+                    addDummy = true;
                 }
             }
 
@@ -80,7 +85,11 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             }
 
             _messages.push_back(newMessage);
-
+            if(addDummy)
+            {
+                Message * dummy = new MessageNext("", xPos, yPos, lineBreak);
+                _messages.push_back(dummy);
+            }
             message = message.next_sibling("message");
         }
     }

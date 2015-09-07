@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<level num="1" numMessages="9">
-    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL1M1" closesWhen="tapButton" button="timeMenu/playButton"/>
+<level num="1" numMessages="24">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL1M1"/>
     <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M2"/>
     <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M3"/>
     <message id="4" x="0.4" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL1M4">
@@ -20,9 +20,39 @@
         <spot centerX="0.14" centerY="0.7" radius="0.03"/>
     </message>        
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M9"/>
-    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M10"/>
-    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11" closesWhen="tapButton" button="timeMenu/playButton"/>
-    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL1M12"/>
+    <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M10"/>
+    <message id="11" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11" closesWhen="tapButton" button="timeMenu/playButton">
+        <spot centerX="0.88" centerY="0.94" radius="0.03"/>
+    </message>
+    <message id="12" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="2" text="LEVEL1M12"/>
+    <message id="13" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M13" closesWhen="spot"/>
+    <message id="14" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M14"/>
+    <message id="15" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M15" closesWhen="tapButton" button="attBackground/attrMenu/plusMOBILITY">
+        <spot centerX="0.97" centerY="0.32" radius="0.02"/>
+    </message>
+    <message id="17" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M16" closesWhen="tapButton" button="attBackground/attrMenu/plusREPRODUCTION">
+        <spot centerX="0.97" centerY="0.24" radius="0.02"/>
+    </message>
+    <message id="18" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M17" closesWhen="tapButton" button="attBackground/attrMenu/plusREPRODUCTION">   
+        <spot centerX="0.97" centerY="0.24" radius="0.02"/>
+    </message>
+    <message id="19" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M18" closesWhen="tapButton" button="attBackground/attrMenu/plusREPRODUCTION">
+        <spot centerX="0.97" centerY="0.24" radius="0.02"/>
+    </message>
+    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M19" closesWhen="tapButton" button="attBackground/attrMenu/plusRESISTANCE">
+        <spot centerX="0.97" centerY="0.16" radius="0.02"/>
+    </message>
+    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M20" closesWhen="tapButton" button="attBackground/attrMenu/plusRESISTANCE">
+        <spot centerX="0.97" centerY="0.16" radius="0.02"/>
+    </message>
+    <message id="21" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M21" closesWhen="tapButton" button="timeMenu/fastForwardButton">
+        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
+    </message>
+    <message id="22" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="10" text="LEVEL1M22" closesWhen="spot"/>
+    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23" closesWhen="tapButton" button="timeMenu/fastForwardButton">
+        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
+    </message>
+    <message id="24" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M24"/>
 </level>
 
 <level num="2" numMessages="1">

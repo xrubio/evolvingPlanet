@@ -205,6 +205,7 @@ void GameData::resetGameProgress(void)
 {
     for (int i = 0; i < levelsCompleted.size(); i++) {
         cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
+        setTutorial(i+1, true);
     }
     cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", 1);
     cocos2d::UserDefault::getInstance()->flush();
@@ -214,15 +215,17 @@ void GameData::resetGameProgress(void)
 
 bool GameData::launchTutorial(int level) const
 {
-    std::string key("tutorial_"+std::to_string(level));
-    CCLOG("launch: %s", key.c_str());
-    return cocos2d::UserDefault::getInstance()->getBoolForKey(key.c_str(), true);
+    std::stringstream key;
+    key << "tutorial_"+std::to_string(level);
+    CCLOG("launch tutorial: %s", key.str().c_str());
+    return cocos2d::UserDefault::getInstance()->getBoolForKey(key.str().c_str(), true);
 }
 
 void GameData::setTutorial(int level, bool launch)
 {
-    std::string key("tutorial_"+std::to_string(level));
-    CCLOG("set tutorial: %s to %i", key.c_str(), launch);
-    cocos2d::UserDefault::getInstance()->setBoolForKey(key.c_str(),launch);
+    std::stringstream key;
+    key << "tutorial_"+std::to_string(level);
+    CCLOG("set tutorial: %s", key.str().c_str());
+    cocos2d::UserDefault::getInstance()->setBoolForKey(key.str().c_str(),launch);
 }
 

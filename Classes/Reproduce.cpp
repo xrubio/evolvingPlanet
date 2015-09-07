@@ -37,8 +37,9 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         default:
             tech = 1;
             break;
-    }
-    int mobility = (agent->getValOfAttribute("MOBILITY") * 4) + 1 * tech;
+    } 
+    int mobility = int(float((1.0f + agent->getValOfAttribute("MOBILITY")) * GameLevel::getInstance()->getAgentPixelSize()) * tech);
+    mobility *= 2;
     if (probCulture > -1) {
         probCulture = probCulture * tech;
         //CERCAR AGENT EN RADI
@@ -116,45 +117,31 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
     if (type == agent->getType() and maxReached == false) {
-        /*int probReproduction = GameLevel::getInstance()->getAttributesValues(typeAgent, "REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));*/
-        int probReproduction = agent->getValOfAttribute("REPRODUCTION");
+        int probReproductionVal = agent->getValOfAttribute("REPRODUCTION");
+        float probReproduction = 0.1f;
         //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
-        switch (probReproduction) {
+        switch (probReproductionVal) {
         case 1:
-            probReproduction = 20;
+            probReproduction = 0.4f;
             break;
         case 2:
-            probReproduction = 25;
+            probReproduction = 0.5f;
             break;
         case 3:
-            probReproduction = 30;
+            probReproduction = 0.6f;
             break;
         case 4:
-            probReproduction = 40;
+            probReproduction = 0.7f;
             break;
         case 5:
-            probReproduction = 50;
-            break;
-        case 6:
-            probReproduction = 45;
-            break;
-        case 7:
-            probReproduction = 55;
-            break;
-        case 8:
-            probReproduction = 65;
-            break;
-        case 9:
-            probReproduction = 80;
-            break;
-        case 10:
-            probReproduction = 100;
-            break;
+            probReproduction = 0.8f;
         default:
-            probReproduction = 10;
+            probReproduction = 0.3f;
             break;
         }
-        probReproduction = probReproduction * tech;
+        probReproduction *= tech;
+
+        CCLOG("repr %f mobility %d", probReproduction, mobility);
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
         {
@@ -165,11 +152,11 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             p = GameLevel::getInstance()->getPowers()[i];
         }
         if (p != nullptr and p->getDurationLeft() > 0) {
-            probReproduction += 30;
+            probReproduction *= 1.5f;
         }
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
-        if (random(0, 100) < probReproduction) {
+        if (random(0, 100) < 100*probReproduction) {
             int maxIterations = 30;
             Point fingerSpot = GameLevel::getInstance()->getAgentDirections()[typeAgent];
             /*if (agent->getType() != 0) {

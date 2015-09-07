@@ -68,6 +68,7 @@ bool UIGameplayMap::init()
     //Set background gameplay map and all its functionalities
     gameplayMap = Sprite::create(map + background + ".jpg");
     gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    gameplayMap->setName("gameplayMap");
     this->addChild(gameplayMap, 0);
 
     //FINGER SPOT
@@ -76,6 +77,7 @@ bool UIGameplayMap::init()
     fingerSpot->setAnchorPoint(Vec2(0.5, 0));
     Menu* mFinger = Menu::createWithItem(fingerSpot);
     mFinger->setPosition(0, 0);
+    mFinger->setName("finger");
     gameplayMap->addChild(mFinger, 3);
     /*fingerSpotArea = Sprite::create("FingerSpotArea.png");
     fingerSpotArea->setVisible(false);
@@ -227,14 +229,13 @@ bool UIGameplayMap::init()
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
-    MenuItem* fastForwardButton = MenuItemImage::create(
-        "FastForwardButton.png", "FastForwardButtonPressed.png", "FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
+    MenuItem* fastForwardButton = MenuItemImage::create("FastForwardButton.png", "FastForwardButtonPressed.png", "FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
     fastForwardButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     fastForwardButton->setPosition(Vec2(193 * visibleSize.width / 204, 145 * visibleSize.height / 155));
+    fastForwardButton->setName("fastForwardButton");
     timeButtons.pushBack(fastForwardButton);
 
-    MenuItem* playButton = MenuItemImage::create(
-        "PlayButton.png", "PlayButtonPressed.png", "PlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::playCallback, this));
+    MenuItem* playButton = MenuItemImage::create("PlayButton.png", "PlayButtonPressed.png", "PlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::playCallback, this));
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     playButton->setPosition(Vec2(fastForwardButton->getPosition().x - (14 * visibleSize.width / 204),
         fastForwardButton->getPosition().y));
@@ -391,7 +392,7 @@ bool UIGameplayMap::init()
     listener->onTouchesMoved = CC_CALLBACK_2(UIGameplayMap::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(UIGameplayMap::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listenerTutorial, this);
+    _eventDispatcher->addEventListenerWithFixedPriority(listenerTutorial, -1);
 
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
@@ -449,14 +450,13 @@ bool UIGameplayMap::init()
             auto attBackground = Sprite::create("AgentAttributesBackground.png");
             attBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             attBackground->setAnchorPoint(Vec2(0, 0));
-            attBackground->setPosition(Vec2(visibleSize.width - attBackground->getBoundingBox().size.width,
-                (18.5 * visibleSize.height / 155)));
+            attBackground->setPosition(Vec2(visibleSize.width - attBackground->getBoundingBox().size.width, (18.5 * visibleSize.height / 155)));
+            attBackground->setName("attBackground");
             auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
             auto ease = EaseBackInOut::create(move);
             //attBackground->runAction(ease);
             this->addChild(attBackground, 5, 1000001);
-            auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png",
-                CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
+            auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png", CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
             arrowRetract->setAnchorPoint(Vec2(1, 0));
             arrowRetract->setPosition(0, 0);
             Menu* arrowMenu = Menu::createWithItem(arrowRetract);
@@ -592,23 +592,21 @@ bool UIGameplayMap::init()
                 costBackground->setPosition(attNumLabel->getPositionX(), attNumLabel->getPositionY());
                 attBackground->addChild(costBackground);
                 
-                auto minusAttButton = MenuItemImage::create(
-                    "MinusButtonSmall.png", "MinusButtonSmallPressed.png", "MinusButtonSmallPressed.png",
-                                                            CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
+                auto minusAttButton = MenuItemImage::create("MinusButtonSmall.png", "MinusButtonSmallPressed.png", "MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
                 minusAttButton->setAnchorPoint(Vec2(0, 0.5));
                 minusAttButton->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
                     (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 minusAttButton->setTag(j + 10);
                 minusAttButton->setEnabled(false);
+                minusAttButton->setName("minus"+labelAttRight->getString());
                 attributesButtons.pushBack(minusAttButton);
 
-                auto plusAttButton = MenuItemImage::create(
-                    "PlusButtonSmall.png", "PlusButtonSmallPressed.png", "PlusButtonSmallPressed.png",
-                                                           CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
+                auto plusAttButton = MenuItemImage::create("PlusButtonSmall.png", "PlusButtonSmallPressed.png", "PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
                 plusAttButton->setPosition(Vec2(10 * attBackground->getContentSize().width / 12,
                     (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
                 plusAttButton->setTag(j + 50);
                 plusAttButton->setEnabled(false);
+                plusAttButton->setName("plus"+labelAttRight->getString());
                 attributesButtons.pushBack(plusAttButton);
 
                 float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
@@ -635,6 +633,7 @@ bool UIGameplayMap::init()
 
             Menu* attrMenu = cocos2d::Menu::createWithArray(attributesButtons);
             attrMenu->setPosition(Vec2(0, 0));
+            attrMenu->setName("attrMenu");
             attBackground->addChild(attrMenu, 1, 100000);
     
     // TUTORIAL MESSAGES
@@ -673,8 +672,7 @@ bool UIGameplayMap::init()
         for (int i = 0; i < keys.size(); i++) {
             MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
             MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
-            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
-                GameLevel::getInstance()->getEvolutionPoints())
+            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints())
             {
                 plus->setEnabled(false);
                 minus->setEnabled(false);
@@ -705,17 +703,6 @@ bool UIGameplayMap::checkPowersClicked(void)
 
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
-    // TODO if you touch the bounding box
-    if(_tutorial && _tutorial->getCurrentMessage())
-    {
-        if(_tutorial->getCurrentMessage()->meetsPostCondition())
-        {
-            _tutorial->removeCurrentMessage();
-            this->getChildByName("tutorial")->setVisible(false);
-            this->getChildByName("tutorialBorder")->setVisible(false);
-            this->getChildByName("tutorialSpots")->setVisible(false);
-        }
-    }
     Size visibleSize = Director::getInstance()->getVisibleSize();
     if (endGameWindowPainted == false)
     {
@@ -741,8 +728,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                     firstTouchLocation = touches[0]->getLocation();
                     auto fadeFinger = FadeIn::create(1);
                     fadeFinger->setTag(1);
-                    fingerSpot->setPosition(Vec2(gameplayMap->convertToNodeSpace(firstTouchLocation)));
-                    fingerSpot->setVisible(true);
+                    changeSpotPosition();
                 }
             }
 
@@ -757,6 +743,16 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
                 }
             }
         }
+    }
+}
+
+void UIGameplayMap::changeSpotPosition()
+{
+    fingerSpot->setPosition(Vec2(gameplayMap->convertToNodeSpace(firstTouchLocation)));
+    fingerSpot->setVisible(true);
+    if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="spot")
+    {
+        _tutorial->getCurrentMessage()->postConditionAchieved();
     }
 }
 
@@ -870,40 +866,31 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 
 bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
 {
-    CCLOG("oeoe");
     if(!_tutorial || !_tutorial->getCurrentMessage() || _tutorial->getCurrentMessage()->getPostCondition()!="tapButton")
     {
-        return true;
+        return false;
     }
-    auto target = event->getCurrentTarget();
-    CCLOG("touches tutorial: %s",target->getName().c_str());
-    return true;
-}
-/*
-void UIGameplayMap::checkMessagePostCondition()
-{
-    if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="tapButton")
+
+    std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
+    Node * parent = this;
+    std::size_t pos;
+    std::string delimiter = "/";
+    std::string token;
+    while ((pos = buttonName.find(delimiter)) != std::string::npos)
     {
-        std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
-        Node * parent = this;
-        std::size_t pos;
-        std::string delimiter = "/";
-        std::string token;
-        while ((pos = buttonName.find(delimiter)) != std::string::npos)
-        {
-            token = buttonName.substr(0, pos);
-            parent = parent->getChildByName(token);
-            buttonName.erase(0, pos + delimiter.length());
-        }
         token = buttonName.substr(0, pos);
-        MenuItem * button = (MenuItem*)(parent->getChildByName(token));
-        if(touches.size()==1 && button->rect().containsPoint(touches[0]->getLocation()))
-        {
-            _tutorial->getCurrentMessage()->postConditionAchieved();
-        }
+        parent = parent->getChildByName(token);
+        buttonName.erase(0, pos + delimiter.length());
     }
+    token = buttonName.substr(0, pos);
+    Node * button = parent->getChildByName(token);    
+    Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    if(button->getBoundingBox().containsPoint(touchLocation))
+    {
+        _tutorial->getCurrentMessage()->postConditionAchieved();
+    }
+    return false;
 }
-*/
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
 {
@@ -924,6 +911,11 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
         }*/
         firstTouchLocation = touches[0]->getLocation();
         timeFingerSpot = clock();
+
+        if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="tap")
+        {
+            _tutorial->getCurrentMessage()->postConditionAchieved();
+        }
     }
 }
 
@@ -1185,8 +1177,7 @@ void UIGameplayMap::moveAttCallback(Ref* pSender)
         auto ease = EaseBackInOut::create(move);
         background->runAction(ease);
         background->removeChild(p, true);
-        auto arrowExpand = MenuItemImage::create("ArrowExpand.png", "ArrowExpandPressed.png",
-            CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
+        auto arrowExpand = MenuItemImage::create("ArrowExpand.png", "ArrowExpandPressed.png", CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
         arrowExpand->setAnchorPoint(Vec2(1, 0));
         arrowExpand->setPosition(0, 0);
         Menu* arrowMenu = Menu::createWithItem(arrowExpand);
@@ -1199,8 +1190,7 @@ void UIGameplayMap::moveAttCallback(Ref* pSender)
         auto ease = EaseBackInOut::create(move);
         background->runAction(ease);
         background->removeChild(p, true);
-        auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png",
-            CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
+        auto arrowRetract = MenuItemImage::create("ArrowRetract.png", "ArrowRetractPressed.png", CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
         arrowRetract->setAnchorPoint(Vec2(1, 0));
         arrowRetract->setPosition(0, 0);
         Menu* arrowMenu = Menu::createWithItem(arrowRetract);
@@ -1595,8 +1585,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     levelLabel->setPosition(Vec2(4 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
     window->addChild(levelLabel);
 
-    auto continueButton = MenuItemImage::create(
-        "ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
+    auto continueButton = MenuItemImage::create("ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
     continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 50);
     continueLabel->setColor(Color3B(205, 202, 207));
@@ -1606,8 +1595,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     continueMenu->setPosition(0, 0);
     window->addChild(continueMenu);
 
-    auto retryButton = MenuItemImage::create(
-        "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
+    auto retryButton = MenuItemImage::create("ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
     retryButton->setPosition(4 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY"), "fonts/BebasNeue.otf", 50);
     retryLabel->setColor(Color3B(205, 202, 207));
@@ -1762,12 +1750,23 @@ void UIGameplayMap::update(float delta)
         if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false)
         {
             play = false;
-
+            
             if(_tutorial && _tutorial->checkNextMessage())
             {
                 setMessage(_tutorial->getCurrentMessage());
             }
-            
+            else if(_tutorial && _tutorial->getCurrentMessage())
+            {
+                if(_tutorial->getCurrentMessage()->meetsPostCondition())
+                {
+                    _tutorial->removeCurrentMessage();
+                    this->getChildByName("tutorial")->setVisible(false);
+                    this->getChildByName("tutorialBorder")->setVisible(false);
+                    this->getChildByName("tutorialSpots")->setVisible(false);
+                }
+            }
+
+       
             //clock_t beforeTime = clock();
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
@@ -1866,16 +1865,21 @@ void UIGameplayMap::setMessage( const Message * message )
     pauseCallback(pauseButton);
 
     _message = message;
+
     Label * label = (Label*)(this->getChildByName("tutorial"));
     label->setString(_message->text());
     Size visibleSize = Director::getInstance()->getVisibleSize();
     label->setMaxLineWidth(_message->lineWidth()*visibleSize.width);
     Vec2 position = Vec2(visibleSize.width*_message->pos().x, visibleSize.height*_message->pos().y);
     label->setPosition(position);
-    label->setVisible(true);    
     auto labelBorder = (DrawNode*)(this->getChildByName("tutorialBorder"));
     labelBorder->clear();
-    labelBorder->setVisible(true);
+    if(_message->text()!="")
+    {
+        label->setVisible(true);    
+        labelBorder->setVisible(true);
+    }
+
     Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
     Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + Vec2(5.0f, 5.0f));
     labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));

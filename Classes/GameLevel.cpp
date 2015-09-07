@@ -491,7 +491,7 @@ void GameLevel::playLevel(void)
             act();
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
-            if (timeSteps % 2 == 0) {
+            if (timeSteps % 3 == 0) {
                 evolutionPoints++;
             }
             paint = true;

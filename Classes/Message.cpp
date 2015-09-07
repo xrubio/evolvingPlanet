@@ -2,7 +2,7 @@
 #include "Message.h"
 #include "GameLevel.h"
 
-Message::Message( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth), _postCondition(""), _meetsPostCondition(true)
+Message::Message( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth), _postCondition("tap"), _meetsPostCondition(false)
 {
 }
 
