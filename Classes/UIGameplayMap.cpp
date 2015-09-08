@@ -314,12 +314,14 @@ bool UIGameplayMap::init()
         {
             powerButtons.push_back(new UIMultiplierPower(pws[i]));
             powerButtons[i]->setPosition(pos.x, pos.y);
+            powerButtons[i]->getIcon()->setName("power"+std::to_string(i));
             this->addChild(powerButtons[i]->getIcon(), 3);
         }
         else if (pws[i]->getType() == "Area")
         {
             powerButtons.push_back(new UIAreaPower(pws[i]));
             powerButtons[i]->setPosition(pos.x, pos.y);
+            powerButtons[i]->getIcon()->setName("power"+std::to_string(i));
             this->addChild(powerButtons[i]->getIcon(), 3);
             gameplayMap->addChild(((UIAreaPower*)powerButtons[i])->getArea(), 3);
         }

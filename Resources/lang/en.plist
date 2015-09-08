@@ -223,9 +223,25 @@ The Console shows you an aggregated of these data, making your life much easier<
     <key>LEVEL2M4</key>
     <string>A final note: some zones of the planet, like the huge mountain range in the middle of the map are too hostile to your agents, so they cannot live there. Good luck commander!</string>    
     <key>LEVEL3M1</key>
-    <string>Third mission</string>
+    <string>Welcome commander! This mission is more difficult so you have a new tool in your console: the T.A.P.A.T.B.C.T.</string>
     <key>LEVEL3M2</key>
-    <string>Third mission 2</string>
+    <string>This is the acronym for Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits. Beautiful, isn't it?</string>
+    <key>LEVEL3M3</key>
+    <string>So...to avoid any strokes the team simply called them Bursts.</string>
+    <key>LEVEL3M4</key>
+    <string>They basically allow you temporaly increase one attribute of your population. You spend Evolution Points with this Burst. After you use them they need a cooldown period because we don't want the population to rely on this external factor to achieve its goals.</string>
+    <key>LEVEL3M5</key>
+    <string>You got two Bursts for this mission. The first one affects your entire population, and increases its rate of reproduction. Press it now and please</string>
+     <key>LEVEL3M6</key>
+    <string>Please don't ask how did we achieve this baby boom...</string>
+    <key>LEVEL3M7</key>
+    <string>Distribute your initial EvoPoints and tap Play to see your system evolve with Fast Forward.</string>
+    <key>LEVEL3M8</key>
+    <string>This second Burst increases the Resistance of the agents in a particular area. Press it and without raising the finger move it over your population. </string>
+    <key>LEVEL3M9</key>
+    <string>It will be extremely handy if you need to cross an arid region such as the western part of this map</string>
+    <key>LEVEL3M10</key>
+    <string>Good luck commander!</string>
 </dict>
 </plist>
 
