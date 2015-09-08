@@ -38,6 +38,7 @@ UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
     auto actionTimer = ProgressTimer::create(Sprite::create(p->getName() + "ActionButton" + ".png"));
     actionTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     actionTimer->setType(ProgressTimer::Type::RADIAL);
+    actionTimer->setPercentage(100.0);
     icon->addChild(actionTimer, 1, 1);
     auto cooldownTimer = ProgressTimer::create(Sprite::create("PowerCooldownButton.png"));
     cooldownTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
@@ -62,7 +63,11 @@ Sprite* UIAreaPower::getArea(void)
 
 void UIAreaPower::onTouchesBegan(Point touchLocation)
 {
-    if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+    if (((ProgressTimer*)icon->getChildByTag(2))->getPercentage() == 100.0)
+    {
+        //DO NOTHING
+    }
+    else if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
         area->setPosition(area->getParent()->convertToNodeSpace(icon->getPosition()));
         area->setVisible(true);
@@ -93,6 +98,9 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
         button->setColor(Color3B::WHITE);
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
             power->setDurationLeft(power->getDuration());
+            ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
+            cooldownTimer->setVisible(true);
+            cooldownTimer->setPercentage(100.0);
             //cooldown->setVisible(true);
         }
     }
@@ -117,8 +125,10 @@ void UIAreaPower::update(float delta)
     }
     else {
         //cooldown->setVisible(false);
-        cooldownTimer->setVisible(false);
         actionTime = 0.0;
         actionTimer->setPercentage(100.0);
+        if (GameLevel::getInstance()->getTimeSpeed() > 0){
+            cooldownTimer->setVisible(false);
+        }
     }
 }
