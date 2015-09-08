@@ -30,7 +30,7 @@ typedef enum tDrawMode {
 class WaveNode : public Node {
 public:
     
-    virtual bool init();
+    virtual bool init(int size);
     
     WaveNode(){};
     WavePoint h3px(float x, float y, float z);
@@ -38,7 +38,7 @@ public:
     void addToDynamicVerts3D(WavePoint vert, Color4B color);
     void setReadyToDrawDynamicVerts(bool isReadyToDraw);
     void clearDynamicDrawArray();
-    virtual void draw(Renderer *renderer, const Mat4& transform, bool transformUpdated);
+    virtual void draw(Renderer *renderer, const Mat4& transform, uint32_t flags);
     void onDrawPrimitives(const Mat4 &transform, bool transformUpdated);
     
 //private:
@@ -49,7 +49,7 @@ public:
     WavePoint* dynamicVerts;
     
     // Color of each vert
-    Color4B* dynamicVertColors = new Color4B[50];
+    Color4B* dynamicVertColors;
     
     int dynamicVertCount;
     int dynamicVertIndex;
