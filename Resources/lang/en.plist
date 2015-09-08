@@ -164,6 +164,12 @@ In our History we have evidences of similar situations. For example, Neanderthal
 Please transmits my orders. </string>
 
     <!-- tutorial messages -->
+    <key>NEXT_MESSAGE_BUTTON</key>
+    <string>Tap the highlighted button</string>
+    <key>NEXT_MESSAGE_SPOT</key>
+    <string>Tap twice to set the marker</string>
+    <key>NEXT_MESSAGE_TAP</key>
+    <string>Tap to continue</string>
     <key>LEVEL1M1</key>
     <string>Commander, welcome to the Console. Cool interface, isn't it?
 I hope you like it because you'll spend the next weeks looking at it! Allow me to give you a quick reminder on how does it work.</string>

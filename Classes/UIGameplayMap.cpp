@@ -669,6 +669,13 @@ bool UIGameplayMap::init()
     messageLabel->setColor(Color3B(230, 230, 230));
     messageLabel->setMaxLineWidth(300);
     messageLabel->setVisible(false);
+    
+    auto messageNextLabel = Label::createWithSystemFont("", "Arial Rounded MT Bold", 18);
+    messageNextLabel->setName("tutorialNext");
+    messageNextLabel->setColor(Color3B(210, 210, 210));
+    messageNextLabel->setMaxLineWidth(300);
+    messageNextLabel->setVisible(false);
+
     auto labelBorder = DrawNode::create();
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
@@ -679,6 +686,7 @@ bool UIGameplayMap::init()
     // add first the border to draw it first
     addChild(labelBorder);
     addChild(messageLabel);
+    addChild(messageNextLabel);
     addChild(spots);
 
     _message = 0;
@@ -1826,6 +1834,7 @@ void UIGameplayMap::update(float delta)
                 {
                     _tutorial->removeCurrentMessage();
                     this->getChildByName("tutorial")->setVisible(false);
+                    this->getChildByName("tutorialNext")->setVisible(false);
                     this->getChildByName("tutorialBorder")->setVisible(false);
                     this->getChildByName("tutorialSpots")->setVisible(false);
 
@@ -1936,18 +1945,40 @@ void UIGameplayMap::setMessage( const Message * message )
 
     _message = message;
 
-    Label * label = (Label*)(this->getChildByName("tutorial"));
+    Label * label = (Label*)(this->getChildByName("tutorial"));   
+    Label * nextLabel = (Label*)(this->getChildByName("tutorialNext"));
+
     label->setString(_message->text());
     Size visibleSize = Director::getInstance()->getVisibleSize();
     label->setMaxLineWidth(_message->lineWidth()*visibleSize.width);
+    nextLabel->setMaxLineWidth(_message->lineWidth()*visibleSize.width);
     Vec2 position = Vec2(visibleSize.width*_message->pos().x, visibleSize.height*_message->pos().y);
     label->setPosition(position);
+
+    const Rect & contents = label->getBoundingBox();
+    const Rect & ownContents = nextLabel->getBoundingBox();
+    nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height/2)));
     auto labelBorder = (DrawNode*)(this->getChildByName("tutorialBorder"));
     labelBorder->clear();
     if(_message->text()!="")
     {
         label->setVisible(true);    
-        labelBorder->setVisible(true);
+        labelBorder->setVisible(true);   
+        nextLabel->setVisible(true);
+        
+        // condition to close the message
+        if(message->getPostCondition()=="tapButton")
+        {
+            nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_BUTTON"));
+        }
+        else if(message->getPostCondition()=="spot")
+        {
+            nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_SPOT"));
+        }
+        else
+        {
+            nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_TAP"));
+        }
     }
 
     Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
