@@ -213,7 +213,19 @@ The Console shows you an aggregated of these data, making your life much easier<
     <key>LEVEL1M23</key>
     <string>As you can see you get new Evolution Points with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need. Continue tapping Fast Forward again.</string>
     <key>LEVEL1M24</key>
-    <string>I suggest to start increasing Reproduction and Resistance until they reach Level 4 and then focus on Mobility; your population needs to move a large amount of space if you want them to reach the goal before the time is over. Good luck commander!</string>
+    <string>I suggest to start increasing Resistance and then focus on Mobility; your population needs to move a large amount of space if you want them to reach the goal before the time is over. Good luck commander!</string>
+    <key>LEVEL2M1</key>
+    <string>Some missions have more than one goal. As you can see in the Goal bar in the top your population needs to achieve 3 objectives</string>
+    <key>LEVEL2M2</key>
+    <string>You have to reach to each one in the time span defined by the darker interval (in this case between 30 and 50). If you arrive before or after this interval the mission will fail.</string>
+    <key>LEVEL2M3</key>
+    <string>The best arrival time is marked by the number; your evaluation will be based on how close you get to this evidence.</string>
+    <key>LEVEL2M4</key>
+    <string>A final note: some zones of the planet, like the huge mountain range in the middle of the map are too hostile to your agents, so they cannot live there. Good luck commander!</string>    
+    <key>LEVEL3M1</key>
+    <string>Third mission</string>
+    <key>LEVEL3M2</key>
+    <string>Third mission 2</string>
 </dict>
 </plist>
 

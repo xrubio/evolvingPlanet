@@ -55,7 +55,15 @@
     <message id="24" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M24"/>
 </level>
 
-<level num="2" numMessages="1">
-    <message x="20" y="10" trigger="time" step="0" text="LEVEL2M1"/>
+<level num="2" numMessages="4">
+    <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0" text="LEVEL2M1"/>
+    <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M2"/>
+    <message id="3" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M3"/>
+    <message id="4" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M4"/>
+</level>
+
+<level num="3" numMessages="2">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL3M1"/>
+    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M2"/>
 </level>
 
