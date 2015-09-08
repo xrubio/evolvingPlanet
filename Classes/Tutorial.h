@@ -27,6 +27,8 @@ public:
       \returns true if the level has an available tutorial, false otherwise
       */
     bool loadTutorial();
+    // return true if no more messages need to be shown
+    bool isFinished() const;
 
     /** check if next message on list can be shown. \returns true if it's possible **/
     bool checkNextMessage();

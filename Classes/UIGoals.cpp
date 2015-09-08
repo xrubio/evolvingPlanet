@@ -427,37 +427,43 @@ void UIGoals::plusAttCallback(Ref* pSender)
 
 void UIGoals::menuArrowBackCallback(Ref* pSender)
 {
-    if (pages->getCurPageIndex() > 0) {
-        if (pages->getCurPageIndex() == 1)
-        {
-            if (pages->getPage(1)->getChildByTag(100) != nullptr)
-            {
-                zoomImageOutCallback(nullptr);
-            }
-        }
-        pages->scrollToPage(pages->getCurPageIndex() - 1);
+    if (pages->getCurPageIndex() <= 0)
+    {
+        return;
     }
+    if (pages->getCurPageIndex() == 1)
+    {
+        if (pages->getPage(1)->getChildByTag(100) != nullptr)
+        {
+            zoomImageOutCallback(nullptr);
+        }
+    }
+    pages->scrollToPage(pages->getCurPageIndex() - 1);
 }
 
 void UIGoals::menuArrowNextCallback(Ref* pSender)
 {
-    if (pages->getCurPageIndex() < pages->getPages().size() - 1) {
-        if (pages->getCurPageIndex() == 1)
-        {
-            if (pages->getPage(1)->getChildByTag(100) != nullptr)
-            {
-                zoomImageOutCallback(nullptr);
-            }
-        }
-        pages->scrollToPage(pages->getCurPageIndex() + 1);
+    if (pages->getCurPageIndex() >= pages->getPages().size() - 1)
+    {
+        return;
     }
+    if (pages->getCurPageIndex() == 1)
+    {
+        if (pages->getPage(1)->getChildByTag(100) != nullptr)
+        {
+            zoomImageOutCallback(nullptr);
+        }
+    }
+    pages->scrollToPage(pages->getCurPageIndex() + 1);
 }
 
 void UIGoals::zoomImageInCallback(Ref* pSender)
 {
     auto image = (MenuItemImage*)pSender;
-    if (image->getNumberOfRunningActions() == 0)
+    if (image->getNumberOfRunningActions() != 0)
     {
+        return;
+    }
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     Vector<MenuItem*> menuButtons;
@@ -475,22 +481,21 @@ void UIGoals::zoomImageInCallback(Ref* pSender)
     image->runAction(Spawn::create(ScaleTo::create(0.5, 0.8 * GameData::getInstance()->getRaWConversion()),
                                    MoveTo::create(0.5, Vec2(visibleSize.width / 2, 6 * visibleSize.height / 12)), NULL));
     image->setCallback(CC_CALLBACK_1(UIGoals::zoomImageOutCallback, this));
-    }
-    
 }
 
 void UIGoals::zoomImageOutCallback(Ref* pSender)
 {
     auto image = (MenuItemImage*)pages->getPage(1)->getChildByName("menuContext")->getChildren().at(0);
-    if (image->getNumberOfRunningActions() == 0)
+    if (image->getNumberOfRunningActions() != 0)
     {
+        return;
+    }
     auto visibleSize = Director::getInstance()->getVisibleSize();
     image->runAction(Spawn::create(ScaleTo::create(0.5, 0.4 * GameData::getInstance()->getRaWConversion()),
                                    MoveTo::create(0.5, Vec2(visibleSize.width / 2, 6.8 * visibleSize.height / 12)), NULL));
     image->setCallback(CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
     pages->getPage(1)->getChildByTag(100)->runAction(FadeOut::create(0.5));
     pages->getPage(1)->removeChildByTag(100);
-    }
 }
 
 void UIGoals::setLevelGoals(Layout* layout)
@@ -512,18 +517,18 @@ void UIGoals::setLevelGoals(Layout* layout)
     layout->addChild(attributesLabel);
     
     map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
-    int i = 0;
+    int posIndex = 0;
     for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
         //ATRIBUT MODIFICABLE
         if (GameLevel::getInstance()->getAttributeCost(0, it->first) != 0) {
             auto attLabel = Label::createWithTTF(LocalizedString::create(it->first.c_str()) + ":    Explicació de l'atribut",
                                              "fonts/BebasNeue.otf", 60);
-            attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (i * 2)) * visibleSize.height / 31));
+            attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (posIndex * 2)) * visibleSize.height / 31));
             attLabel->setColor(Color3B(211, 230, 236));
             attLabel->setAnchorPoint(Vec2(0, 0.5));
             attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             layout->addChild(attLabel);
-            i++;
+            posIndex++;
         }
     }
     
@@ -535,7 +540,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     layout->addChild(powersLabel);
     
     
-    for (i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
+    for(size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
         if (GameLevel::getInstance()->getPowers()[i]->getType() == "Multiplier") {
             auto power = new UIMultiplierPower(GameLevel::getInstance()->getPowers()[i]);
@@ -557,7 +562,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         layout->addChild(powerLabel);
     }
     //POWERS NOT AVAILABLE
-    if (i == 0)
+    if( GameLevel::getInstance()->getPowers().size() == 0)
     {
         auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/BebasNeue.otf", 80);
         powersNotAvailableLabel->setPosition(Vec2(7 * visibleSize.width / 42, 10 * visibleSize.height / 31));
@@ -600,7 +605,8 @@ void UIGoals::createUIAgent(Layout* layout)
     if (GameLevel::getInstance()->getAgentAttributesInitialConfig().empty() == false) {
         GameLevel::getInstance()->setAgentAttributes(GameLevel::getInstance()->getAgentAttributesInitialConfig());
         int initialEvolutionPoints = 10;
-        for (int i = 0; i < 3; i++) {
+        for (size_t i = 0; i < 3; i++)
+        {
             GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i],
                 GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
             int n = GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
@@ -613,7 +619,7 @@ void UIGoals::createUIAgent(Layout* layout)
         pages->scrollToPage(2);
     }
 
-    for (int i = 0; i < keys.size(); i++) {
+    for (size_t i = 0; i < keys.size(); i++) {
         auto attLabel = Label::createWithTTF(string(LocalizedString::create(keys[i].c_str())) + " - ",
             "fonts/BebasNeue.otf", 60);
         attLabel->setColor(Color3B(207, 203, 208));

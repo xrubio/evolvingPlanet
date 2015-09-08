@@ -1355,6 +1355,12 @@ void UIGameplayMap::playLevel(void)
     pthread_mutex_lock(&gameLevelMutex);
 
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
+    if(_tutorial)
+    {
+        delete _tutorial;
+        _tutorial = 0;
+    }
+
     if(launchTutorial)
     {
         _tutorial = new Tutorial();
@@ -1822,6 +1828,12 @@ void UIGameplayMap::update(float delta)
                     this->getChildByName("tutorial")->setVisible(false);
                     this->getChildByName("tutorialBorder")->setVisible(false);
                     this->getChildByName("tutorialSpots")->setVisible(false);
+
+                    if(_tutorial->isFinished())
+                    {
+                        auto pauseButton = getChildByName("timeMenu")->getChildByName("pauseButton");
+                        pauseCallback(pauseButton);
+                    }
                 }
             }
 

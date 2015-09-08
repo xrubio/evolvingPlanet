@@ -161,6 +161,15 @@ bool Tutorial::checkNextMessage()
     return false;
 }
 
+bool Tutorial::isFinished() const
+{
+    if(_messages.size()==0)
+    {
+        return true;
+    }
+    return false;
+}
+
 void Tutorial::removeCurrentMessage()
 {
     if(!_current)
