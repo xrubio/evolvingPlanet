@@ -546,18 +546,18 @@ bool UIGameplayMap::init()
                 ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
                //[[[HeyaldaGLDrawNode alloc] init] autorelease];
                 auto waveNode = new WaveNode();
-                waveNode->init();
+                waveNode->init(float(GameLevel::getInstance()->getGoals().back()->getMaxTime()));
                 
                 lifeBorderBar->addChild(waveNode, 10);
                 
                 // Space the verticies out evenly across the screen for the wave.
-                float vertexHorizontalSpacing = lifeBorderBar->getContentSize().width / (float)50;
+                float vertexHorizontalSpacing = lifeBorderBar->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
                 
                 // Used to increment to the next vertexX position.
                 float currentWaveVertX = attColorsBackground->getPositionX() + lifeBorderBar->getPositionX() -
                                         (lifeBorderBar->getContentSize().width / 2);
                 
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < float(GameLevel::getInstance()->getGoals().back()->getMaxTime()); i++) {
                     /*float waveX = currentWaveVertX;
                     
                     float waveY = float(GameLevel::getInstance()->getAgents()[0].size())/float(GameLevel::getInstance()->getMaxAgents()[0]) * lifeBars.at(0)->getContentSize().height;*/
@@ -1839,7 +1839,6 @@ void UIGameplayMap::update(float delta)
             }
 
             // TODO everything stopped if _message?
-            play = true;
             for(size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
             {
                 /*((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);*/
@@ -1853,8 +1852,7 @@ void UIGameplayMap::update(float delta)
                     agentsEvolution->drawCardinalSpline(numAgentsEvolution, 1.0, GameLevel::getInstance()->getTimeSteps(), Color4F::RED);
                 }*/
                 
-                updateWave(i);
-                waveNodes[i]->draw(Director::getInstance()->getRenderer(), kmMat4::ZERO, false);
+                updateWave(int(i));
             }
             
             play = true;
@@ -1877,8 +1875,8 @@ void UIGameplayMap::update(float delta)
             Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
             for (size_t i = 0; i < keys.size(); i++)
             {
-                MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
-                MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+                MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 10);
+                MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 50);
                 if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
                     GameLevel::getInstance()->getEvolutionPoints())
                 {

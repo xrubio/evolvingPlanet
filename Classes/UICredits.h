@@ -10,7 +10,6 @@
 #define __simulplay__UICredits__
 
 #include "UIMainMenu.h"
-#include "WaveNode.h"
 
 class UICredits : public Layer {
 public:
@@ -18,13 +17,10 @@ public:
 
     virtual bool init();
     
-    virtual void update(float delta);
-
     void menuBackCallback(Ref* pSender);
 
     CREATE_FUNC(UICredits);
     
-    WaveNode *waveNode;
 };
 
 #endif /* defined(__simulplay__UICredits__) */

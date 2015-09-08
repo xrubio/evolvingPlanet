@@ -30,7 +30,7 @@
 
 #define kVertCreationBlockSize 100
 
-bool WaveNode::init(){
+bool WaveNode::init(int size){
     
     if (!Node::init()) {
         return false;
@@ -47,6 +47,7 @@ bool WaveNode::init(){
     //self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
     CCLOG("SET");
     glDrawMode = kDrawTriangleStrip; // Default draw mode for this class.
+    dynamicVertColors = new Color4B[size];
     
     return true;
 }
@@ -101,10 +102,10 @@ void WaveNode::addToDynamicVerts3D(WavePoint vert, Color4B vertexColor) {
     dynamicVertCount = dynamicVertIndex;
 }
 
-void WaveNode::draw(Renderer* renderer, const Mat4& transform, bool transformUpdated) {
+void WaveNode::draw(Renderer* renderer, const Mat4& transform, uint32_t flags) {
     
     _customCommand.init(1);
-    _customCommand.func = CC_CALLBACK_0(WaveNode::onDrawPrimitives, this, transform, transformUpdated);
+    _customCommand.func = CC_CALLBACK_0(WaveNode::onDrawPrimitives, this, transform, false);
     renderer->addCommand(&_customCommand);
 }
 
