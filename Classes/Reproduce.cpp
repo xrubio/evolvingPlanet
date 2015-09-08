@@ -127,7 +127,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     bool maxReached = false;
     if (GameLevel::getInstance()->getMaxAllAgents() > 0) {
         int numAgents = 0;
-        for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
+        for (size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
             numAgents += GameLevel::getInstance()->getAgents()[i].size();
         }
         maxReached = numAgents >= GameLevel::getInstance()->getMaxAllAgents();
@@ -160,7 +160,6 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         }
         probReproduction *= tech;
 
-        CCLOG("repr %f mobility %d", probReproduction, mobility);
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
         {

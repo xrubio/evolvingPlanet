@@ -499,6 +499,7 @@ int GameLevel::getAgentPixelSize(void)
 
 void GameLevel::playLevel(void)
 {
+    CCLOG("step;pop;time");
     while (finishedGame == Running)
     {
         if (Timing::getInstance()->act == true) {
@@ -506,7 +507,7 @@ void GameLevel::playLevel(void)
                 ;
             paint = false;
             clock_t stepTime = clock();
-            CCLOG("Start calc");
+//            CCLOG("Start calc");
             act();
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
@@ -514,8 +515,16 @@ void GameLevel::playLevel(void)
                 evolutionPoints++;
             }
             paint = true;
-            Timing::getInstance()->act = false;
-            CCLOG("Calculs: %f", float(clock() - stepTime) / CLOCKS_PER_SEC);
+            Timing::getInstance()->act = false;  
+            
+            // number of agents
+            size_t numAgents = 0;
+            for (size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
+            {
+                numAgents += GameLevel::getInstance()->getAgents()[i].size();
+            }
+
+            CCLOG("%d;%d;%f", timeSteps, numAgents, float(clock() - stepTime) / CLOCKS_PER_SEC);
             calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
             /*try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
@@ -694,11 +703,11 @@ void GameLevel::act(void)
         list<Agent*>::reverse_iterator end = agents[k].rbegin();
         while (end != agents[k].rend() and finishedGame == Running) {
             if ((*end)->getLife() > 0) {
-                for (int j = 0; j < actions.size() - 1; j++) {
+                for (size_t j = 0; j < actions.size() - 1; j++) {
                     actions[j]->execute(k, *end);
                 }
                 //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
-                for (int j = 0; j < goals.size(); j++) {
+                for (size_t  j = 0; j < goals.size(); j++) {
                     if (goals[j]->getCompleted() == false) {
                         goals[j]->checkGoal(k, *end);
                     }

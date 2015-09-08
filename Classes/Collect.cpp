@@ -101,7 +101,7 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
         pRest->setCooldownLeft(pRest->getCooldown() + 1);
     }
 
-    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+    for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         if (GameLevel::getInstance()->getGoals()[i]->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getGoalAmount() > 0) {
             int mapSelector = 0;
             if (GameLevel::getInstance()->getDepleted(agent->getPosition()->getX(), agent->getPosition()->getY())) {

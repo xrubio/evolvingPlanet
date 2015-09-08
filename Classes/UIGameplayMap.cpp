@@ -158,8 +158,10 @@ bool UIGameplayMap::init()
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
 
     //RESOURCES MAP (IF ANY)
-    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
-        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == Collection) {
+    for(size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
+    {
+        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == Collection)
+        {
             resourcesMap = true;
         }
     }
@@ -294,23 +296,28 @@ bool UIGameplayMap::init()
 
     //Powers
     vector<Power*> pws = GameLevel::getInstance()->getPowers();
-    for (int i = 0; i < pws.size(); i++) {
+    for (size_t i = 0; i < pws.size(); i++)
+    {
         Vec2 pos;
-        if (i == 0) {
+        if (i == 0)
+        {
             pos.x = 14 * visibleSize.width / 204;
             pos.y = 11 * visibleSize.height / 155;
         }
-        else {
+        else
+        {
             pos.x = powerButtons[i - 1]->getIcon()->getPosition().x + (4 * visibleSize.width / 204) + powerButtons[i - 1]->getIcon()->getBoundingBox().size.width;
             pos.y = powerButtons[i - 1]->getIcon()->getPosition().y;
         }
 
-        if (pws[i]->getType() == "Multiplier") {
+        if (pws[i]->getType() == "Multiplier")
+        {
             powerButtons.push_back(new UIMultiplierPower(pws[i]));
             powerButtons[i]->setPosition(pos.x, pos.y);
             this->addChild(powerButtons[i]->getIcon(), 3);
         }
-        else if (pws[i]->getType() == "Area") {
+        else if (pws[i]->getType() == "Area")
+        {
             powerButtons.push_back(new UIAreaPower(pws[i]));
             powerButtons[i]->setPosition(pos.x, pos.y);
             this->addChild(powerButtons[i]->getIcon(), 3);
@@ -319,7 +326,7 @@ bool UIGameplayMap::init()
     }
 
     //SET GOALS ON MAP
-    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+    for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         //Set Checkpoint Area
         if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
             //FIND AREA
@@ -384,7 +391,8 @@ bool UIGameplayMap::init()
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
         / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime();
-    for (int i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+    for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
+    {
         float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
         auto goalMark = Sprite::create("GoalMark.png");
         float posXcentered = (float)(GameLevel::getInstance()->getGoals()[i]->getMinTime() + ((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) / 2)) / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
@@ -403,15 +411,11 @@ bool UIGameplayMap::init()
 
     auto listener = EventListenerTouchAllAtOnce::create();
 
-    auto listenerTutorial = EventListenerTouchOneByOne::create();
-    listenerTutorial->setSwallowTouches(true);
-    listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
 
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
     listener->onTouchesMoved = CC_CALLBACK_2(UIGameplayMap::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(UIGameplayMap::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    _eventDispatcher->addEventListenerWithFixedPriority(listenerTutorial, -1);
 
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
@@ -482,7 +486,8 @@ bool UIGameplayMap::init()
             arrowMenu->setPosition(0, 0);
             attBackground->addChild(arrowMenu);
 
-            for (int j = 0; j < GameLevel::getInstance()->getAgents().size(); j++) {
+            for (size_t j = 0; j < GameLevel::getInstance()->getAgents().size(); j++)
+            {
                 auto agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
                 agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
                 agentTypeButton->setPosition(Vec2((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
@@ -592,7 +597,8 @@ bool UIGameplayMap::init()
             int k = 1;
             int tag = 0;
             Vector<MenuItem*> attributesButtons;
-            for (int j = 0; j < keys.size(); j++) {
+            for (size_t j = 0; j < keys.size(); j++)
+            {
                 auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
                     "fonts/BebasNeue.otf", 30);
                 labelAttRight->setColor(Color3B(216, 229, 236));
@@ -686,22 +692,23 @@ bool UIGameplayMap::init()
 	mouseListener->onMouseScroll = CC_CALLBACK_1(UIGameplayMap::onMouseScroll, this);
 	this->getEventDispatcher()->addEventListenerWithFixedPriority(mouseListener, 1);
         
-        Layout* layout = (Layout*)this->getChildByTag(1000001);
-        Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-        for (int i = 0; i < keys.size(); i++) {
-            MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
-            MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
-            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints())
-            {
-                plus->setEnabled(false);
-                minus->setEnabled(false);
-            }
-            else
-            {
-                plus->setEnabled(true);
-                minus->setEnabled(true);
-            }
+    Layout* layout = (Layout*)this->getChildByTag(1000001);
+    Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+    for (size_t i = 0; i < keys.size(); i++)
+    {
+        MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
+        MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
+        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints())
+        {
+            plus->setEnabled(false);
+            minus->setEnabled(false);
         }
+        else
+        {
+            plus->setEnabled(true);
+            minus->setEnabled(true);
+        }
+    }
 
     this->scheduleUpdate();
     
@@ -712,7 +719,8 @@ bool UIGameplayMap::init()
 
 bool UIGameplayMap::checkPowersClicked(void)
 {
-    for (int i = 0; i < powerButtons.size(); i++) {
+    for (size_t i = 0; i < powerButtons.size(); i++)
+    {
         if (powerButtons[i]->getClicked() == true) {
             return true;
         }
@@ -723,44 +731,45 @@ bool UIGameplayMap::checkPowersClicked(void)
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    if (endGameWindowPainted == false)
+    if (endGameWindowPainted || checkPowersClicked())
     {
-        if (checkPowersClicked() == false)
-        {
-            for (auto touch : touches)
+        return;
+    }
+    for (auto touch : touches)
+    {
+        _touches.pushBack(touch);
+    }
+    if (touches.size() == 1)
+    {
+        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.2 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
+            //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
+            /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
+                                                               (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));*/
+            float verticalMargin = visibleSize.width / 1.5;
+            if (verticalMargin > visibleSize.height)
             {
-                _touches.pushBack(touch);
+                verticalMargin = visibleSize.height;
             }
-            if (touches.size() == 1)
-            {
-                if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.2 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
-                    //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
-                    /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
-                                                                       (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));*/
-                    float verticalMargin = visibleSize.width / 1.5;
-                    if (verticalMargin > visibleSize.height)
-                    {
-                        verticalMargin = visibleSize.height;
-                    }
-                    GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(visibleSize.width / 480.0),
-                                                                         (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0)));
-                    firstTouchLocation = touches[0]->getLocation();
-                    auto fadeFinger = FadeIn::create(1);
-                    fadeFinger->setTag(1);
-                    changeSpotPosition();
-                }
-            }
+            GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(visibleSize.width / 480.0),
+                                                                 (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0)));
+            firstTouchLocation = touches[0]->getLocation();
+            auto fadeFinger = FadeIn::create(1);
+            fadeFinger->setTag(1);
+            changeSpotPosition();
+        }
+    }
 
-            for (auto touch : touches) {
-                Point touchLocation = this->convertTouchToNodeSpace(touch);
-                moveBackground = false;
-                for (int i = 0; i < powerButtons.size(); i++) {
-                    powerButtons[i]->onTouchesBegan(touchLocation);
-                }
-                if (checkPowersClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation)) {
-                    moveBackground = true;
-                }
-            }
+    for (auto touch : touches)
+    {
+        Point touchLocation = this->convertTouchToNodeSpace(touch);
+        moveBackground = false;
+        for (size_t i = 0; i < powerButtons.size(); i++)
+        {
+            powerButtons[i]->onTouchesBegan(touchLocation);
+        }
+        if (checkPowersClicked() == false and selectSpriteForTouch(gameplayMap, touchLocation))
+        {
+            moveBackground = true;
         }
     }
 }
@@ -777,108 +786,114 @@ void UIGameplayMap::changeSpotPosition()
 
 void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 {
-    if (endGameWindowPainted == false) {
-        // ZOOM
-        if (_touches.size() >= 2) {
-            if (checkPowersClicked() == false) {
-                // Get the two first touches
-                Touch *touch1 = (Touch*)_touches.at(0);
-                Touch *touch2 = (Touch*)_touches.at(1);
+    if (endGameWindowPainted)
+    {
+        return;
+    }
+    // ZOOM
+    if (_touches.size() >= 2)
+    {
+        if (checkPowersClicked() == false)
+        {
+            // Get the two first touches
+            Touch *touch1 = (Touch*)_touches.at(0);
+            Touch *touch2 = (Touch*)_touches.at(1);
+            
+            // Get current and previous positions of the touches
+            Point curPosTouch1 = Director::getInstance()->convertToGL(touch1->getLocationInView());
+            Point curPosTouch2 = Director::getInstance()->convertToGL(touch2->getLocationInView());
+            Point prevPosTouch1 = Director::getInstance()->convertToGL(touch1->getPreviousLocationInView());
+            Point prevPosTouch2 = Director::getInstance()->convertToGL(touch2->getPreviousLocationInView());
+            
+            // Calculate current and previous positions of the layer relative the anchor point
+            Point curPosLayer = curPosTouch1.getMidpoint(curPosTouch2);
+            Point prevPosLayer = prevPosTouch1.getMidpoint(prevPosTouch2);
+            
+            // Calculate new scale
+            float prevScaleX = gameplayMap->getScaleX();
+            float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
+                            GameData::getInstance()->getRaWConversion();
+            
+            float prevScaleY = gameplayMap->getScaleY();
+            float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
+                                GameData::getInstance()->getRaHConversion();
+            
+            gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
+                                      3.0 * GameData::getInstance()->getRaWConversion()),
+                                  MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
+                                      3.0 * GameData::getInstance()->getRaHConversion()));
+            
+            if( this->getScaleX() != prevScaleX )
+            {
+                Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosLayer);
+                float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
+                float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
                 
-                // Get current and previous positions of the touches
-                Point curPosTouch1 = Director::getInstance()->convertToGL(touch1->getLocationInView());
-                Point curPosTouch2 = Director::getInstance()->convertToGL(touch2->getLocationInView());
-                Point prevPosTouch1 = Director::getInstance()->convertToGL(touch1->getPreviousLocationInView());
-                Point prevPosTouch2 = Director::getInstance()->convertToGL(touch2->getPreviousLocationInView());
-                
-                // Calculate current and previous positions of the layer relative the anchor point
-                Point curPosLayer = curPosTouch1.getMidpoint(curPosTouch2);
-                Point prevPosLayer = prevPosTouch1.getMidpoint(prevPosTouch2);
-                
-                // Calculate new scale
-                float prevScaleX = gameplayMap->getScaleX();
-                float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
-                                GameData::getInstance()->getRaWConversion();
-                
-                float prevScaleY = gameplayMap->getScaleY();
-                float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
-                                    GameData::getInstance()->getRaHConversion();
-                
-                gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
-                                          3.0 * GameData::getInstance()->getRaWConversion()),
-                                      MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
-                                          3.0 * GameData::getInstance()->getRaHConversion()));
-                
-                if( this->getScaleX() != prevScaleX )
-                {
-                    Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosLayer);
-                    float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
-                    float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
-                    
-                    gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
-                }
-                
-                // If current and previous position of the multitouch's center aren't equal -> change position of the layer
-                if (!prevPosLayer.equals(curPosLayer))
-                {
-                    gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x + curPosLayer.x - prevPosLayer.x,
-                                          gameplayMap->getPosition().y + curPosLayer.y - prevPosLayer.y));
-                }
-                
-                Point reLocate = gameplayMap->getPosition();
+                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y - deltaY));
+            }
+            
+            // If current and previous position of the multitouch's center aren't equal -> change position of the layer
+            if (!prevPosLayer.equals(curPosLayer))
+            {
+                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x + curPosLayer.x - prevPosLayer.x,
+                                      gameplayMap->getPosition().y + curPosLayer.y - prevPosLayer.y));
+            }
+            
+            Point reLocate = gameplayMap->getPosition();
 
+            checkBackgroundLimitsInTheScreen(reLocate);
+            while (!moveBackgroundLeft) {
+                reLocate.x -= 2.0;
                 checkBackgroundLimitsInTheScreen(reLocate);
-                while (!moveBackgroundLeft) {
-                    reLocate.x -= 2.0;
-                    checkBackgroundLimitsInTheScreen(reLocate);
-                }
-                while (!moveBackgroundRight) {
-                    reLocate.x += 2.0;
-                    checkBackgroundLimitsInTheScreen(reLocate);
-                }
-                while (!moveBackgroundUp) {
-                    reLocate.y += 2.0;
-                    checkBackgroundLimitsInTheScreen(reLocate);
-                }
-                while (!moveBackgroundDown) {
-                    reLocate.y -= 2.0;
-                    checkBackgroundLimitsInTheScreen(reLocate);
-                }
-                gameplayMap->setPosition(reLocate);
             }
+            while (!moveBackgroundRight) {
+                reLocate.x += 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            while (!moveBackgroundUp) {
+                reLocate.y += 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            while (!moveBackgroundDown) {
+                reLocate.y -= 2.0;
+                checkBackgroundLimitsInTheScreen(reLocate);
+            }
+            gameplayMap->setPosition(reLocate);
         }
-        // PAN
-        else if (touches.size() == 1) {
-            for (int i = 0; i < powerButtons.size(); i++) {
-                powerButtons[i]->onTouchesMoved(touches[0]);
+    }
+    // PAN
+    else if (touches.size() == 1)
+    {
+        for (size_t i = 0; i < powerButtons.size(); i++)
+        {
+            powerButtons[i]->onTouchesMoved(touches[0]);
+        }
+        if (moveBackground) {
+            Point touchLocation = this->convertTouchToNodeSpace(touches[0]);
+
+            Point oldTouchLocation = touches[0]->getPreviousLocationInView();
+            oldTouchLocation = Director::getInstance()->convertToGL(oldTouchLocation);
+            oldTouchLocation = convertToNodeSpace(oldTouchLocation);
+
+            Point translation = touchLocation - oldTouchLocation;
+            Point newPos = gameplayMap->getPosition() + translation;
+
+            checkBackgroundLimitsInTheScreen(newPos);
+
+            Point destPos = gameplayMap->getPosition();
+            if (moveBackgroundLeft and translation.x > 0) {
+                destPos.x = newPos.x;
             }
-            if (moveBackground) {
-                Point touchLocation = this->convertTouchToNodeSpace(touches[0]);
-
-                Point oldTouchLocation = touches[0]->getPreviousLocationInView();
-                oldTouchLocation = Director::getInstance()->convertToGL(oldTouchLocation);
-                oldTouchLocation = convertToNodeSpace(oldTouchLocation);
-
-                Point translation = touchLocation - oldTouchLocation;
-                Point newPos = gameplayMap->getPosition() + translation;
-
-                checkBackgroundLimitsInTheScreen(newPos);
-
-                Point destPos = gameplayMap->getPosition();
-                if (moveBackgroundLeft and translation.x > 0) {
-                    destPos.x = newPos.x;
-                }
-                if (moveBackgroundRight and translation.x < 0) {
-                    destPos.x = newPos.x;
-                }
-                if (moveBackgroundUp and translation.y < 0) {
-                    destPos.y = newPos.y;
-                }
-                if (moveBackgroundDown and translation.y > 0) {
-                    destPos.y = newPos.y;
-                }
-                gameplayMap->setPosition(destPos);
+            if (moveBackgroundRight and translation.x < 0) {
+                destPos.x = newPos.x;
             }
+            if (moveBackgroundUp and translation.y < 0) {
+                destPos.y = newPos.y;
+            }
+            if (moveBackgroundDown and translation.y > 0) {
+                destPos.y = newPos.y;
+            }
+            gameplayMap->setPosition(destPos);
         }
     }
 }
@@ -913,84 +928,90 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
 {
-    if (endGameWindowPainted == false) {
-        Point touchLocation = this->convertTouchToNodeSpace(touches[0]);
-        for (int i = 0; i < powerButtons.size(); i++) {
-            powerButtons[i]->onTouchesEnded(touchLocation);
-        }
-        moveBackground = false;
-        _touches.clear();
-        //CCLOG("%f %i %i, (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC, touches[0]->getLocation().x, firstTouchLocation.x)
-        /*if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC > 1 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 20) {
-            GameLevel::getInstance()->setFingerSpot(Point(firstTouchLocation.x / float(2048.0 / 480.0),
-                                                          (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
-        } else if (GameLevel::getInstance()->getFingerSpot().x == -1) {
-            fingerSpot->stopAllActionsByTag(1);
-            fingerSpot->setVisible(false);
-        }*/
-        firstTouchLocation = touches[0]->getLocation();
-        timeFingerSpot = clock();
+    if (endGameWindowPainted)
+    {
+        return;
+    }
+    Point touchLocation = this->convertTouchToNodeSpace(touches[0]);
+    for(size_t i = 0; i < powerButtons.size(); i++)
+    {
+        powerButtons[i]->onTouchesEnded(touchLocation);
+    }
+    moveBackground = false;
+    _touches.clear();
+    //CCLOG("%f %i %i, (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC, touches[0]->getLocation().x, firstTouchLocation.x)
+    /*if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC > 1 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 20) {
+        GameLevel::getInstance()->setFingerSpot(Point(firstTouchLocation.x / float(2048.0 / 480.0),
+                                                      (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
+    } else if (GameLevel::getInstance()->getFingerSpot().x == -1) {
+        fingerSpot->stopAllActionsByTag(1);
+        fingerSpot->setVisible(false);
+    }*/
+    firstTouchLocation = touches[0]->getLocation();
+    timeFingerSpot = clock();
 
-        if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="tap")
-        {
-            _tutorial->getCurrentMessage()->postConditionAchieved();
-        }
+    if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="tap")
+    {
+        _tutorial->getCurrentMessage()->postConditionAchieved();
     }
 }
 
 void UIGameplayMap::onMouseScroll(Event* event)
 {
-    if (endGameWindowPainted == false) {
-        // ZOOM
-        EventMouse* e = (EventMouse*)event;
-        if (checkPowersClicked() == false) {
-            // Get current and previous positions of the touches
-            Point curPosTouch1 = Director::getInstance()->convertToGL(e->getLocationInView());
-            Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
-            
-            // Calculate new scale
-            float prevScaleX = gameplayMap->getScaleX();
-            float curScaleX = gameplayMap->getScaleX() - (e->getScrollY() / 10) * GameData::getInstance()->getRaWConversion();
-            
-            float prevScaleY = gameplayMap->getScaleY();
-            float curScaleY = gameplayMap->getScaleY() - (e->getScrollY() / 10) * GameData::getInstance()->getRaHConversion();
-            
-            gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
-                                      3.0 * GameData::getInstance()->getRaWConversion()),
-                                  MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
-                                      3.0 * GameData::getInstance()->getRaHConversion()));
-            
-            if( this->getScaleX() != prevScaleX )
-            {
-                Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosTouch1);
-                float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
-                float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
-                
-                gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y + deltaY));
-            }
-            
-            Point reLocate = gameplayMap->getPosition();
+    if (endGameWindowPainted)
+    {
+        return;
+    }
 
-            checkBackgroundLimitsInTheScreen(reLocate);
-            while (!moveBackgroundLeft) {
-                reLocate.x -= 2.0;
-                checkBackgroundLimitsInTheScreen(reLocate);
-            }
-            while (!moveBackgroundRight) {
-                reLocate.x += 2.0;
-                checkBackgroundLimitsInTheScreen(reLocate);
-            }
-            while (!moveBackgroundUp) {
-                reLocate.y += 2.0;
-                checkBackgroundLimitsInTheScreen(reLocate);
-            }
-            while (!moveBackgroundDown) {
-                reLocate.y -= 2.0;
-                checkBackgroundLimitsInTheScreen(reLocate);
-            }
-
-            gameplayMap->setPosition(reLocate);
+    // ZOOM
+    EventMouse* e = (EventMouse*)event;
+    if (checkPowersClicked() == false) {
+        // Get current and previous positions of the touches
+        Point curPosTouch1 = Director::getInstance()->convertToGL(e->getLocationInView());
+        Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
+        
+        // Calculate new scale
+        float prevScaleX = gameplayMap->getScaleX();
+        float curScaleX = gameplayMap->getScaleX() - (e->getScrollY() / 10) * GameData::getInstance()->getRaWConversion();
+        
+        float prevScaleY = gameplayMap->getScaleY();
+        float curScaleY = gameplayMap->getScaleY() - (e->getScrollY() / 10) * GameData::getInstance()->getRaHConversion();
+        
+        gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
+                                  3.0 * GameData::getInstance()->getRaWConversion()),
+                              MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
+                                  3.0 * GameData::getInstance()->getRaHConversion()));
+        
+        if( this->getScaleX() != prevScaleX )
+        {
+            Point realCurPosLayer = gameplayMap->convertToNodeSpaceAR(curPosTouch1);
+            float deltaX = (realCurPosLayer.x) * (gameplayMap->getScaleX() - prevScaleX);
+            float deltaY = (realCurPosLayer.y) * (gameplayMap->getScaleY() - prevScaleY);
+            
+            gameplayMap->setPosition(Vec2(gameplayMap->getPosition().x - deltaX, gameplayMap->getPosition().y + deltaY));
         }
+        
+        Point reLocate = gameplayMap->getPosition();
+
+        checkBackgroundLimitsInTheScreen(reLocate);
+        while (!moveBackgroundLeft) {
+            reLocate.x -= 2.0;
+            checkBackgroundLimitsInTheScreen(reLocate);
+        }
+        while (!moveBackgroundRight) {
+            reLocate.x += 2.0;
+            checkBackgroundLimitsInTheScreen(reLocate);
+        }
+        while (!moveBackgroundUp) {
+            reLocate.y += 2.0;
+            checkBackgroundLimitsInTheScreen(reLocate);
+        }
+        while (!moveBackgroundDown) {
+            reLocate.y -= 2.0;
+            checkBackgroundLimitsInTheScreen(reLocate);
+        }
+
+        gameplayMap->setPosition(reLocate);
     }
 }
 
@@ -1077,8 +1098,10 @@ void UIGameplayMap::attributeSelectionCallback(Ref* pSender)
     lifeButton->setEnabled(false);
     agentColor = lifeButton->getTag();
     Menu* attributesMenu = (Menu*)lifeButton->getParent();
-    for (int i = 0; i < attributesMenu->getChildren().size(); i++) {
-        if (((MenuItem*)attributesMenu->getChildren().at(i))->getTag() != agentColor) {
+    for(int i = 0; i < attributesMenu->getChildren().size(); i++)
+    {
+        if (((MenuItem*)attributesMenu->getChildren().at(i))->getTag() != agentColor)
+        {
             auto item = ((MenuItem*)attributesMenu->getChildren().at(i));
             item->setEnabled(true);
         }
@@ -1188,8 +1211,11 @@ void UIGameplayMap::moveAttCallback(Ref* pSender)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     MenuItem* p = (MenuItem*)pSender;
     Sprite* background = (Sprite*)p->getParent()->getParent();
-    if (background->getNumberOfRunningActions() == 0)
+    if (background->getNumberOfRunningActions() != 0)
     {
+        return;
+    }
+
     if (p->getParent()->getParent()->getPositionX() < visibleSize.width) {
         //VISIBLE
         auto move = MoveTo::create(0.5, Vec2(visibleSize.width, background->getPositionY()));
@@ -1216,7 +1242,6 @@ void UIGameplayMap::moveAttCallback(Ref* pSender)
         arrowMenu->setPosition(0, 0);
         background->addChild(arrowMenu);
     }
-    }
 }
 
 void UIGameplayMap::minusAttCallback(Ref* pSender)
@@ -1226,26 +1251,28 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
     int i = tag - 10;
     Layout* layout = (Layout*)(pMenuItem->getParent()->getParent());
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
-        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
-        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
-        int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
-        Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
-
-        auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
-        auto blankAttribute = Sprite::create("BlankAttributePointButtonSmall.png");
-        blankAttribute->setPosition(filledAttribute->getPosition());
-        layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
-        layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
-        
-        //ANIMATION
-        restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
-        restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
-        auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
-        restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0)
+    {
+        return;
     }
+    GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
+    GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+    int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
+    GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+    Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
+    l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+
+    auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+    auto blankAttribute = Sprite::create("BlankAttributePointButtonSmall.png");
+    blankAttribute->setPosition(filledAttribute->getPosition());
+    layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+    layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+    
+    //ANIMATION
+    restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+    restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
+    auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+    restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
 }
 
 void UIGameplayMap::plusAttCallback(Ref* pSender)
@@ -1255,26 +1282,29 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     int i = tag - 50;
     Sprite* layout = (Sprite*)(pMenuItem->getParent()->getParent());
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= GameLevel::getInstance()->getEvolutionPoints()) {
-        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
-        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
-        int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
-        Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
-
-        auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
-        auto filledAttribute = Sprite::create("FilledAttributePointButtonSmall.png");
-        filledAttribute->setPosition(blankAttribute->getPosition());
-        layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
-        layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
-        
-        //ANIMATION
-        restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
-        restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
-        auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
-        restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >= 5 or GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints())    
+    {
+        return;
     }
+
+    GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+    GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
+    int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
+    GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+    Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
+    l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+
+    auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+    auto filledAttribute = Sprite::create("FilledAttributePointButtonSmall.png");
+    filledAttribute->setPosition(blankAttribute->getPosition());
+    layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+    layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+    
+    //ANIMATION
+    restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+    restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
+    auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+    restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
 }
 
 void UIGameplayMap::removeFingerSpot(Ref* pSender)
@@ -1332,6 +1362,14 @@ void UIGameplayMap::playLevel(void)
             delete _tutorial;
             _tutorial = 0;
         }
+        else
+        {
+            // set listener for events
+            auto listenerTutorial = EventListenerTouchOneByOne::create();
+            listenerTutorial->setSwallowTouches(true);
+            listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
+            _eventDispatcher->addEventListenerWithFixedPriority(listenerTutorial, -1);
+        }
     }
     GameLevel::getInstance()->playLevel();
     CCLOG("DONE GAME LEVEL");
@@ -1340,12 +1378,7 @@ void UIGameplayMap::playLevel(void)
 
 bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
 {
-    if (sprite->getBoundingBox().containsPoint(touchLocation)) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return sprite->getBoundingBox().containsPoint(touchLocation);
 }
 
 void UIGameplayMap::moveGoalPopup(int index)
@@ -1518,8 +1551,10 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt, int map)
 void UIGameplayMap::initializeAgents(void)
 {
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
-    for (int i = 0; i < agentsDomain.size(); i++) {
-        for (list<Agent*>::iterator it = agentsDomain[i].begin(); it != agentsDomain[i].end(); ++it) {
+    for (size_t i = 0; i < agentsDomain.size(); i++)
+    {
+        for (list<Agent*>::iterator it = agentsDomain[i].begin(); it != agentsDomain[i].end(); ++it)
+        {
             Color4B color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 100));
             drawAgent(Point((*it)->getPosition()->getX(), (*it)->getPosition()->getY()),
                 color, 0);
@@ -1644,12 +1679,15 @@ void UIGameplayMap::updateAgents(void)
         agentsTextureData[i] = white;
     }*/
 
-    for (int i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++) {
+    for (size_t i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++)
+    {
         drawAgent(GameLevel::getInstance()->getDeletedAgents()[i], white);
     }
 
-    for (int i = 0; i < agentsDomain.size(); i++) {
-        for (list<Agent*>::iterator it = agentsDomain[i].begin(); it != agentsDomain[i].end(); ++it) {
+    for (size_t i = 0; i < agentsDomain.size(); i++)
+    {
+        for (list<Agent*>::iterator it = agentsDomain[i].begin(); it != agentsDomain[i].end(); ++it)
+        {
             Color4B color;
             switch (agentColor) {
             case 1:
@@ -1792,7 +1830,7 @@ void UIGameplayMap::update(float delta)
             /*if (GameLevel::getInstance()->getNumLevel() == 2) {
                 collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
             }*/
-            int i = 0;
+            size_t i = 0;
             while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
                 i++;
             }
@@ -1802,7 +1840,7 @@ void UIGameplayMap::update(float delta)
 
             // TODO everything stopped if _message?
             play = true;
-            for (int i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
+            for(size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
             {
                 /*((ProgressTimer*)(lifeBars.at(i)->getChildByTag(1)))->setPercentage(float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * 100.0);*/
                 //drawNode->setAnchorPoint(Vec2(0, 0.5));
@@ -1827,7 +1865,7 @@ void UIGameplayMap::update(float delta)
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
         }
 
-        for (int i = 0; i < powerButtons.size(); i++) {
+        for (size_t i = 0; i < powerButtons.size(); i++) {
             powerButtons[i]->update(delta);
         }
 
@@ -1837,7 +1875,8 @@ void UIGameplayMap::update(float delta)
 
             Layout* layout = (Layout*)this->getChildByTag(1000001);
             Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-            for (int i = 0; i < keys.size(); i++) {
+            for (size_t i = 0; i < keys.size(); i++)
+            {
                 MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
                 MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
                 if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
@@ -1867,7 +1906,7 @@ void UIGameplayMap::update(float delta)
         }*/
         play = true;
 
-        for (int i = 0; i < powerButtons.size(); i++) {
+        for (size_t i = 0; i < powerButtons.size(); i++) {
             powerButtons[i]->update(delta);
         }
 
