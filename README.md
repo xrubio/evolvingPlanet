@@ -1,4 +1,6 @@
-simulplay
+Evolving Planet
 =========
 
-Code for the simulplay project
+Code for the Evolving Planet, the first project of Murphy's Toast Studios.
+
+
