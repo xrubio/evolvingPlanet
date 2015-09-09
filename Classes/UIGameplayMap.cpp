@@ -419,6 +419,12 @@ bool UIGameplayMap::init()
     listener->onTouchesEnded = CC_CALLBACK_2(UIGameplayMap::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+    // set listener for tutorial
+    _listenerTutorial = EventListenerTouchOneByOne::create();
+    _listenerTutorial->setSwallowTouches(true);
+    _listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
+    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial, -1);
+
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
     }
@@ -1378,14 +1384,6 @@ void UIGameplayMap::playLevel(void)
             delete _tutorial;
             _tutorial = 0;
         }
-        else
-        {
-            // set listener for events
-            auto listenerTutorial = EventListenerTouchOneByOne::create();
-            listenerTutorial->setSwallowTouches(true);
-            listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
-            _eventDispatcher->addEventListenerWithFixedPriority(listenerTutorial, -1);
-        }
     }
     GameLevel::getInstance()->playLevel();
     CCLOG("DONE GAME LEVEL");
@@ -1955,9 +1953,6 @@ void UIGameplayMap::setMessage( const Message * message )
     Vec2 position = Vec2(visibleSize.width*_message->pos().x, visibleSize.height*_message->pos().y);
     label->setPosition(position);
 
-    const Rect & contents = label->getBoundingBox();
-    const Rect & ownContents = nextLabel->getBoundingBox();
-    nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height/2)));
     auto labelBorder = (DrawNode*)(this->getChildByName("tutorialBorder"));
     labelBorder->clear();
     if(_message->text()!="")
@@ -1966,6 +1961,9 @@ void UIGameplayMap::setMessage( const Message * message )
         labelBorder->setVisible(true);   
         nextLabel->setVisible(true);
         
+        const Rect & contents = label->getBoundingBox();
+        const Rect & ownContents = nextLabel->getBoundingBox();
+        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height/2)));
         // condition to close the message
         if(message->getPostCondition()=="tapButton")
         {

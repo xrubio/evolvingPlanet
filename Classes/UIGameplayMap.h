@@ -161,6 +161,10 @@ private:
     const Message * _message;
     // change spot location and check if there is a message about it
     void changeSpotPosition();
+
+    // listener tutorial is removed/added based on need when a mission starts
+    EventListenerTouchOneByOne * _listenerTutorial;
+
 public:
     // tutorial related methods
     void setMessage(const Message * message);
