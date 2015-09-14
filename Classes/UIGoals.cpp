@@ -170,7 +170,7 @@ bool UIGoals::init()
     contextIntroduction->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(contextIntroduction);
     
-    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO", "text"),
+    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"),
                                                          "fonts/BebasNeue.otf", 100);
     contextLabelIntroduction->setPosition(Vec2(6 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     contextLabelIntroduction->setColor(Color3B(211, 230, 236));
@@ -197,7 +197,7 @@ bool UIGoals::init()
     contextLabelDeployment->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContextDeployment->addChild(contextLabelDeployment);
     
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str()), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextDeployment->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 12));
     contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());

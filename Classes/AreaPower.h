@@ -33,7 +33,7 @@
 class AreaPower : public Power {
 
 public:
-    AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float rad);
+    AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float cost, float rad);
 
     float getRadius(void);
     void setRadius(float r);

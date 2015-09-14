@@ -33,7 +33,7 @@
 class MultiplierPower : public Power {
 
 public:
-    MultiplierPower(const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float mult);
+    MultiplierPower(const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float cost, float mult);
     
     float getMultiplier(void);
     void setMultiplier(float m);

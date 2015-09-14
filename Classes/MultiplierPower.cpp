@@ -27,7 +27,7 @@
 
 #include "MultiplierPower.h"
 
-MultiplierPower::MultiplierPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float mult) : Power(name, id, c, dur, cl, dl, attr, t)
+MultiplierPower::MultiplierPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float cost, float mult) : Power(name, id, c, dur, cl, dl, attr, t, cost)
 {
     multiplier = mult;
 }

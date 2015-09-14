@@ -56,7 +56,7 @@ UIMultiplierPower::UIMultiplierPower(Power* p) : UIPower(p)
 
 void UIMultiplierPower::onTouchesBegan(Point touchLocation)
 {
-    if (((ProgressTimer*)icon->getChildByTag(2))->getPercentage() == 100.0)
+    if (((ProgressTimer*)icon->getChildByTag(2))->getPercentage() == 100.0 or disabled == true)
     {
         //DO NOTHING
     }
@@ -79,6 +79,7 @@ void UIMultiplierPower::onTouchesEnded(Point touchLocation)
         //Activar boost reproduction un cop s'ha tocat i soltat a sobre la imatge que toca
         //icon->setColor(Color3B::GRAY);
         power->setDurationLeft(power->getDuration());
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - power->getCost());
         ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
         //cooldownTimer->setVisible(true);
         ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
@@ -86,7 +87,6 @@ void UIMultiplierPower::onTouchesEnded(Point touchLocation)
         //cooldown->setVisible(true);
     }
     actionTime = 0.0;
-    clicked = false;
 }
 
 void UIMultiplierPower::update(float delta)
@@ -100,7 +100,7 @@ void UIMultiplierPower::update(float delta)
             actionTime = 0.0;
         }
     }*/
-
+    
     actionTimer->setPercentage((power->getDurationLeft() / power->getDuration()) * 100.0);
 
     //actionTimer->setPercentage((float(power->getDurationLeft())) / float(power->getDuration()) * 100.0);
@@ -109,7 +109,7 @@ void UIMultiplierPower::update(float delta)
         if (actionTimer->getPercentage() == 0) {
             //cooldown->setVisible(true);
             //cooldown->setString(to_string(power->getCooldownLeft()));
-            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
             cooldownTimer->setVisible(true);
             cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
             clicked = false;
@@ -121,6 +121,19 @@ void UIMultiplierPower::update(float delta)
         //cooldown->setVisible(false);
         if (GameLevel::getInstance()->getTimeSpeed() > 0){
             cooldownTimer->setVisible(false);
+        }
+        if (((Sprite *)icon->getChildByTag(0))->getColor() != Color3B::GREEN) {
+            if (GameLevel::getInstance()->getEvolutionPoints() >= power->getCost())
+            {
+                disabled = false;
+                actionTimer->setColor(Color3B::WHITE);
+                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            }
+            else {
+                disabled = true;
+                actionTimer->setColor(Color3B::GRAY);
+                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
+            }
         }
     }
 }

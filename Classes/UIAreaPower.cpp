@@ -30,7 +30,7 @@
 
 UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
 {
-    icon = Sprite::create("PowerBackgroundButton.png");
+    icon = Sprite::create("gui/PowerBackgroundButton.png");
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto button = Sprite::create("gui/" + p->getName() + "Button" + ".png");
     button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
@@ -63,7 +63,7 @@ Sprite* UIAreaPower::getArea(void)
 
 void UIAreaPower::onTouchesBegan(Point touchLocation)
 {
-    if (((ProgressTimer*)icon->getChildByTag(2))->getPercentage() == 100.0)
+    if (((ProgressTimer*)icon->getChildByTag(2))->getPercentage() == 100.0 or disabled == true)
     {
         //DO NOTHING
     }
@@ -99,13 +99,13 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
             power->setDurationLeft(power->getDuration());
             ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
+            GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - power->getCost());
             //cooldownTimer->setVisible(true);
             ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
             cooldownTimer->setPercentage(100.0);
             //cooldown->setVisible(true);
         }
     }
-    clicked = false;
 }
 
 void UIAreaPower::update(float delta)
@@ -114,7 +114,7 @@ void UIAreaPower::update(float delta)
     ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
 
     actionTimer->setPercentage((power->getDurationLeft() / power->getDuration()) * 100.0);
-
+    
     if (clicked == false and power->getDurationLeft() <= 0) {
         area->setVisible(false);
     }
@@ -122,7 +122,7 @@ void UIAreaPower::update(float delta)
         if (actionTimer->getPercentage() == 0) {
             //cooldown->setVisible(true);
             //cooldown->setString(to_string(power->getCooldownLeft()));
-            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
             cooldownTimer->setVisible(true);
             cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
         }
@@ -133,6 +133,19 @@ void UIAreaPower::update(float delta)
         actionTimer->setPercentage(100.0);
         if (GameLevel::getInstance()->getTimeSpeed() > 0){
             cooldownTimer->setVisible(false);
+        }
+        if (((Sprite *)icon->getChildByTag(0))->getColor() != Color3B::GREEN) {
+            if (GameLevel::getInstance()->getEvolutionPoints() >= power->getCost())
+            {
+                disabled = false;
+                actionTimer->setColor(Color3B::WHITE);
+                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            }
+            else {
+                disabled = true;
+                actionTimer->setColor(Color3B::GRAY);
+                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
+            }
         }
     }
 }

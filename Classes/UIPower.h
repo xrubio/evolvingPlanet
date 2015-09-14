@@ -59,6 +59,7 @@ protected:
     //Label* cooldown;
 
     bool clicked = false;
+    bool disabled = false;
 };
 
 #endif /* defined(__simulplay__UIPower__) */

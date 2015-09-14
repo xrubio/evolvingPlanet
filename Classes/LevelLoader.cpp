@@ -124,6 +124,7 @@ void LevelLoader::loadXmlFile(string filename)
         {
             id = RestoreLand;
         }
+        float cost = atoi(pws.child("COST").child_value());
         int cooldown = atoi(pws.child("COOLDOWN").child_value());
         int duration = atoi(pws.child("DURATION").child_value());
         int durationLeft = 0;
@@ -132,11 +133,11 @@ void LevelLoader::loadXmlFile(string filename)
         string type = pws.child("TYPE").attribute("TYPE_NAME").value();
         if (type == "Multiplier") {
             float multiplier = atof(pws.child("TYPE").child("MULTIPLIER").child_value());
-            GameLevel::getInstance()->addPower(new MultiplierPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, multiplier));
+            GameLevel::getInstance()->addPower(new MultiplierPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost, multiplier));
         }
         else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
-            GameLevel::getInstance()->addPower(new AreaPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, radius));
+            GameLevel::getInstance()->addPower(new AreaPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost, radius));
         }
         pws = pws.next_sibling("POWER");
     }

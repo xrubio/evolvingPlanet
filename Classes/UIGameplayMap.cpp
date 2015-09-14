@@ -952,6 +952,15 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     for(size_t i = 0; i < powerButtons.size(); i++)
     {
         powerButtons[i]->onTouchesEnded(touchLocation);
+        //ANIMACIO RESTA PUNTS
+        if (powerButtons[i]->getClicked() == true)
+        {
+            restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+            restaEvolutionPointsLabel->setString("-" + to_string(powerButtons[i]->getPower()->getCost()));
+            auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+            restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
+            powerButtons[i]->setClicked(false);
+        }
     }
     moveBackground = false;
     _touches.clear();

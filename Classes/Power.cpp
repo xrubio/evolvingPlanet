@@ -27,7 +27,7 @@
 
 #include "Power.h"
 
-Power::Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t ) : name(name), id(id), cooldown(c), duration(dur), cooldownLeft(cl), durationLeft(dl), attribute(attr), type(t)
+Power::Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float _cost) : name(name), id(id), cooldown(c), duration(dur), cooldownLeft(cl), durationLeft(dl), attribute(attr), type(t), cost(_cost)
 {
 }
 
@@ -100,5 +100,15 @@ string Power::getType(void)
 void Power::setType(string t)
 {
     type = t;
+}
+
+float Power::getCost(void)
+{
+    return cost;
+}
+
+void Power::setCost(float c)
+{
+    cost = c;
 }
 

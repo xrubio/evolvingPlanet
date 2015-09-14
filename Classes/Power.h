@@ -47,7 +47,7 @@ class Power
     PowerId id;
 
 public:
-    Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t );
+    Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float _cost);
     virtual ~Power(){}
 
     const string & getName() const;
@@ -64,6 +64,8 @@ public:
     void setAttribute(string attr);
     string getType(void);
     void setType(string t);
+    float getCost(void);
+    void setCost(float c);
 
 protected:
     float cooldown;
@@ -72,6 +74,8 @@ protected:
     float durationLeft;
     string attribute;
     string type;
+    float cost;
+    
 };
 
 #endif /* defined(__simulplay__Power__) */
