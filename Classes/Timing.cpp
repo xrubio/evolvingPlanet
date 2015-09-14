@@ -80,7 +80,7 @@ void Timing::start(void)
                     if (p->getDurationLeft() > 0) {
                         p->setDurationLeft(p->getDurationLeft() - ((1.0 / GameLevel::getInstance()->getTimeSpeed()) / 10.0));
                     }
-                    if (p->getCooldownLeft() > 0) {
+                    if (p->getCooldownLeft() > 0 and p->getDurationLeft() < 0.1) {
                         p->setCooldownLeft(p->getCooldownLeft() - ((1.0 / GameLevel::getInstance()->getTimeSpeed()) / 10.0));
                     }
                 }

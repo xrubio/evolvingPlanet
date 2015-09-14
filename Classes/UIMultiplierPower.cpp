@@ -63,8 +63,8 @@ void UIMultiplierPower::onTouchesBegan(Point touchLocation)
     else if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         clicked = true;
         icon->setScale(0.8 * GameData::getInstance()->getRaWConversion(), 0.8 * GameData::getInstance()->getRaHConversion());
-        auto button = (Sprite*)icon->getChildByTag(0);
-        button->setColor(Color3B::GRAY);
+        //auto button = (Sprite*)icon->getChildByTag(0);
+        //button->setColor(Color3B::GRAY);
     }
 }
 
@@ -80,12 +80,11 @@ void UIMultiplierPower::onTouchesEnded(Point touchLocation)
         //icon->setColor(Color3B::GRAY);
         power->setDurationLeft(power->getDuration());
         ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
-        cooldownTimer->setVisible(true);
+        //cooldownTimer->setVisible(true);
+        ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
         cooldownTimer->setPercentage(100.0);
         //cooldown->setVisible(true);
     }
-    auto button = (Sprite*)icon->getChildByTag(0);
-    button->setColor(Color3B::WHITE);
     actionTime = 0.0;
     clicked = false;
 }
@@ -107,11 +106,14 @@ void UIMultiplierPower::update(float delta)
     //actionTimer->setPercentage((float(power->getDurationLeft())) / float(power->getDuration()) * 100.0);
 
     if (power->getCooldownLeft() > 0) {
-        //cooldown->setVisible(true);
-        //cooldown->setString(to_string(power->getCooldownLeft()));
-        cooldownTimer->setVisible(true);
-        cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
-        clicked = false;
+        if (actionTimer->getPercentage() == 0) {
+            //cooldown->setVisible(true);
+            //cooldown->setString(to_string(power->getCooldownLeft()));
+            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            cooldownTimer->setVisible(true);
+            cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
+            clicked = false;
+        }
     }
     else {
         actionTimer->setPercentage(100.0);

@@ -99,7 +99,8 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
             power->setDurationLeft(power->getDuration());
             ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
-            cooldownTimer->setVisible(true);
+            //cooldownTimer->setVisible(true);
+            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
             cooldownTimer->setPercentage(100.0);
             //cooldown->setVisible(true);
         }
@@ -118,10 +119,13 @@ void UIAreaPower::update(float delta)
         area->setVisible(false);
     }
     if (power->getCooldownLeft() > 0) {
-        //cooldown->setVisible(true);
-        //cooldown->setString(to_string(power->getCooldownLeft()));
-        cooldownTimer->setVisible(true);
-        cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
+        if (actionTimer->getPercentage() == 0) {
+            //cooldown->setVisible(true);
+            //cooldown->setString(to_string(power->getCooldownLeft()));
+            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            cooldownTimer->setVisible(true);
+            cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
+        }
     }
     else {
         //cooldown->setVisible(false);
