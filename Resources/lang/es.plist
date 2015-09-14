@@ -98,26 +98,5 @@
 	<string>INTRODUCCIÓN</string>
 	<key>CONTEXT_TITLE_DEPLOYMENT</key>
 	<string>DESARROLLO</string>
-	<key>BRIEF_LEVEL_1</key>
-	<string>Bienvenido, Comandante. Ya hemos acabado los tests iniciales del sistema y todo está a punto. Podremos desplegar los bots en la superfície del planeta en unas pocas horas.
-Hemos detectado las primeras trazas de esta especie alienígena en una pequeña península, desde la que parece que se expandieron al resto del continente, Sigyn. El equipo espera tus órdenes para empezar la misión!</string>
-	<key>CONTEXT_LEVEL_1</key>
-	<string>Este inicio me recuerda a nuestros propios orígenes... 
-
-Las primeras evidencias de seres humanos se han documentado en el este de Africa, hace unos 4 millones de años. Allí, los arqueólogos encontraros una especie llamada Homo Erectus. La informació recogida por nuestras sondas en Hnoss sugiere que Sigyn tenía unas condiciones bastante similares a estos primeros asentamientos... 
-
-Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran una mezcla de cazadores, recolectores y carroñeros, más o menos como nuestros antecesores.</string>
-	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
-	<string>En todo caso, vamos a empezar por el principio; los bots van a ser desplegados en esta primera zona con evidencias de XXX. Queremos examinar cómo se dispersaron desde esta península al resto del continente.</string>
-
-   <!-- tutorial messages -->
-    <key>LEVEL1M1</key>
-    <string>Comandante, bienvenido a la Consola. La interfaz mola eh?
-Bueno espero que te guste, porque de hecho vas a gastar la mayor parte de las siguientes semanas con ella. Déjame hacerte un rápido resumen de como funciona.</string>
-    <key>LEVEL1M2</key>
-    <string>Los satélites que hemos desplegado alrededor del planeta rastrean información en tiempo real del entorno y nuestros agentes.
-La Consola muestra un agregado de todas estos datos, haciéndote la vida más fácil</string>
-    <key>LEVEL1M3</key>
-    <string>Estas zonas son montañas y áreas áridas. Son regiones donde es más difícil encontrar recursos, por lo que los agentes que estén ahi morirán más rápido de lo normal</string>
 </dict>
 </plist>

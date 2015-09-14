@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 
 using namespace std;
 
-string LocalizedString::create(const char* key)
+string LocalizedString::create(const char* key, string dir)
 {
     const char* fileName = GameData::getInstance()->getLanguage().c_str();
     if (strlen(fileName) == 0) {
@@ -40,14 +40,18 @@ string LocalizedString::create(const char* key)
     string str = "";
 
     string fname = fileName;
-    string dir = "lang/";
+    string directory = "lang/";
+    if (dir != "")
+    {
+        fname = dir + "_" + fname;
+    }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    dir = "";
+    directory = "";
 #endif
 
-    fname = dir + fname + ".plist";
-
+    fname = directory + fname + ".plist";
+    
     //CCDictionary* language = CCDictionary::createWithContentsOfFile(fname.c_str());
     cocos2d::ValueMap language = FileUtils::getInstance()->getValueMapFromFile(fname.c_str());
 

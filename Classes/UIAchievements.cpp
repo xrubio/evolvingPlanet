@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -49,34 +49,34 @@ bool UIAchievements::init()
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
-    auto background = Sprite::create("MainMenuBackground.png");
+    auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 
-    auto title = Sprite::create("MainMenuTitle.png");
+    auto title = Sprite::create("gui/MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
     title->setPosition(Vec2((2 * visibleSize.width / 25),
         (15 * visibleSize.height / 18)));
     title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(title, 5, 0);
 
-    auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
+    auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
     planet2->setScale(1.3);
     planet2->setPosition(Vec2((18 * visibleSize.width / 40),
         (10 * visibleSize.height / 31)));
     planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(planet2, 1, 2);
 
-    auto popupBackground = Sprite::create("AchievementsBackground.png");
+    auto popupBackground = Sprite::create("gui/AchievementsBackground.png");
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     this->addChild(popupBackground, 6);
 
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
-        "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIAchievements::menuBackCallback, this));
+        "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIAchievements::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
@@ -99,7 +99,7 @@ bool UIAchievements::init()
     list->setDirection(ui::ListView::Direction::VERTICAL);
     list->setTouchEnabled(true);
     auto modelAux = ui::Button::create();
-    modelAux->loadTextures("AchievementBackground.png", "AchievementBackgroundPressed.png");
+    modelAux->loadTextures("gui/AchievementBackground.png", "gui/AchievementBackgroundPressed.png");
     list->setContentSize(Size(modelAux->getContentSize().width, modelAux->getContentSize().height * 7.75));
     list->setItemsMargin(5);
 
@@ -107,13 +107,13 @@ bool UIAchievements::init()
         auto model = ui::Button::create();
         model->addTouchEventListener(CC_CALLBACK_2(UIAchievements::showAchievement, this));
         if (i % 2 == 0) {
-            model->loadTextures("AchievementBackground.png", "AchievementBackgroundPressed.png");
+            model->loadTextures("gui/AchievementBackground.png", "gui/AchievementBackgroundPressed.png");
         }
         else {
-            model->loadTextures("AchievementBackground2.png", "AchievementBackgroundPressed.png");
+            model->loadTextures("gui/AchievementBackground2.png", "gui/AchievementBackgroundPressed.png");
         }
         list->pushBackCustomItem(model);
-        auto icon = Sprite::create("AchievementIconOff.png");
+        auto icon = Sprite::create("gui/AchievementIconOff.png");
         icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
         model->addChild(icon);
         auto title = Label::createWithTTF("ACHIEVEMENT TITLE", "fonts/BebasNeue.otf", 47);
@@ -152,7 +152,7 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
 
     if (aType == ui::Widget::TouchEventType::ENDED) {
         Vector<MenuItem*> menuButtons;
-        auto darkBackground = MenuItemImage::create("ProgressMapDarkBackground.png", "ProgressMapDarkBackground.png",
+        auto darkBackground = MenuItemImage::create("gui/ProgressMapDarkBackground.png", "gui/ProgressMapDarkBackground.png",
             CC_CALLBACK_1(UIAchievements::restoreAchievementsWindow, this));
         darkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
@@ -161,7 +161,7 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         menu->setPosition(0, 0);
         this->addChild(menu, 10, 100);
 
-        auto popupBackground = Sprite::create("ProgressMapPopupBackground.png");
+        auto popupBackground = Sprite::create("gui/ProgressMapPopupBackground.png");
         popupBackground->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 7));
         popupBackground->setScale(GameData::getInstance()->getRaWConversion() * 1.3, GameData::getInstance()->getRaHConversion() * 1.4);
         //popupBackground->setScale(1.3, 1.4);

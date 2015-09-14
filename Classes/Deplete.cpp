@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify

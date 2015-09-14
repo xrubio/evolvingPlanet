@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -51,17 +51,17 @@ bool UIMainMenu::init()
         return false;
     }
     
-    Director::getInstance()->getTextureCache()->addImage("ProgressMap0Background.jpg");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMap0Background.jpg");
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    auto background = Sprite::create("MainMenuBackground.png");
+    auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     this->addChild(background, 0);
 
-    auto title = Sprite::create("MainMenuTitle.png");
+    auto title = Sprite::create("gui/MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
     title->setPosition(Vec2((2 * visibleSize.width / 25),
         (12 * visibleSize.height / 18)));
@@ -73,7 +73,7 @@ bool UIMainMenu::init()
     title->runAction(titleSeq);
     this->addChild(title, 5, 0);
 
-    auto planet1 = Sprite::create("MainMenuBackgroundPlanet1.png");
+    auto planet1 = Sprite::create("gui/MainMenuBackgroundPlanet1.png");
     planet1->setPosition(Vec2((3 * visibleSize.width / 25),
         (7 * visibleSize.height / 18)));
     planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
@@ -82,7 +82,7 @@ bool UIMainMenu::init()
     planet1->runAction(moveEasePlanet1);
     this->addChild(planet1, 2, 1);
 
-    auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
+    auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
     planet2->setPosition(Vec2((15 * visibleSize.width / 25),
         (13 * visibleSize.height / 18)));
     planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
@@ -91,7 +91,7 @@ bool UIMainMenu::init()
     planet2->runAction(moveEasePlanet2);
     this->addChild(planet2, 1, 2);
 
-    auto spaceship = Sprite::create("MainMenuBackgroundSpaceship.png");
+    auto spaceship = Sprite::create("gui/MainMenuBackgroundSpaceship.png");
     /*spaceship->setPosition(Vec2(visibleSize.width, 0));
     auto moveSpaceship = MoveTo::create(3.0, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 2);
@@ -121,7 +121,7 @@ bool UIMainMenu::init()
     if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false or UserDefault::getInstance()->getIntegerForKey("maxLevel") > 0)
     {
         auto continueButton = MenuItemImage::create(
-                                                "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuContinueCallback, this));
+                                                "gui/MainMenuStartButton.png", "gui/MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuContinueCallback, this));
         continueButton->setAnchorPoint(Vec2(0, 0.5));
         continueButton->setPosition(Vec2((2 * visibleSize.width / 25),
                                      (10 * visibleSize.height / 18)));
@@ -134,7 +134,7 @@ bool UIMainMenu::init()
     }
     
     auto startButton = MenuItemImage::create(
-        "MainMenuStartButton.png", "MainMenuStartButtonPressed.png", "MainMenuStartButtonPressed.png",
+        "gui/MainMenuStartButton.png", "gui/MainMenuStartButtonPressed.png", "gui/MainMenuStartButtonPressed.png",
                                              CC_CALLBACK_1(UIMainMenu::menuStartCallback, this));
     startButton->setAnchorPoint(Vec2(0, 0.5));
     startButton->setName("newCampaign");
@@ -154,7 +154,7 @@ bool UIMainMenu::init()
     menuButtons.pushBack(startButton);
 
     auto achievementsButton = MenuItemImage::create(
-        "MainMenuAchButton.png", "MainMenuAchButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuAchievementsCallback, this));
+        "gui/MainMenuAchButton.png", "gui/MainMenuAchButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuAchievementsCallback, this));
     achievementsButton->setAnchorPoint(Vec2(1, 0.5));
     achievementsButton->setPosition(Vec2(startButton->getPositionX() + startButton->getBoundingBox().size.width,
         startButton->getPositionY() - (1.5 * visibleSize.height / 18)));
@@ -166,7 +166,7 @@ bool UIMainMenu::init()
     menuButtons.pushBack(achievementsButton);
 
     auto configurationButton = MenuItemImage::create(
-        "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
+        "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
     //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
     configurationButton->setPosition(Vec2((2 * visibleSize.width / 25), (2 * visibleSize.height / 18)));
@@ -178,7 +178,7 @@ bool UIMainMenu::init()
     menuButtons.pushBack(configurationButton);
 
     auto creditsButton = MenuItemImage::create(
-        "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
+        "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
     creditsButton->setAnchorPoint(Vec2(0, 0.5));
     creditsButton->setPosition(Vec2((2 * visibleSize.width / 25),
         (2 * visibleSize.height / 18)));
@@ -191,7 +191,7 @@ bool UIMainMenu::init()
     if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
     {
     auto exitButton = MenuItemImage::create(
-        "MainMenuSmallButton.png", "MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
+        "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
     exitButton->setAnchorPoint(Vec2(0, 0.5));
     exitButton->setPosition(Vec2((2 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
     auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 30);
@@ -219,23 +219,23 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    Director::getInstance()->getTextureCache()->addImage("Clouds3.png");
-    Director::getInstance()->getTextureCache()->addImage("Clouds2.png");
-    Director::getInstance()->getTextureCache()->addImage("Clouds1.png");
-    Director::getInstance()->getTextureCache()->addImage("StarFullMini.png");
-    Director::getInstance()->getTextureCache()->addImage("StarEmptyMini.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapHexagonLevelOff.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapDarkBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("StarFull.png");
-    Director::getInstance()->getTextureCache()->addImage("StarEmpty.png");
-    Director::getInstance()->getTextureCache()->addImage("LevelPointerButton.png");
-    Director::getInstance()->getTextureCache()->addImage("LevelPointerButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("LevelPointerButtonShadow.png");
-    Director::getInstance()->getTextureCache()->addImage("ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressMapLevelSelected.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/Clouds3.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/Clouds2.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/Clouds1.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/StarFullMini.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/StarEmptyMini.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapHexagonLevelOff.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapLevelPopupBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapDarkBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapPopupBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/StarFull.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/StarEmpty.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButton.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonShadow.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapLevelSelected.png");
     
     return true;
 }
@@ -403,7 +403,7 @@ bool UIMainMenu::allActionsFinished(void)
 
 void UIMainMenu::createWarningWindow(void)
 {
-    auto alertBackground = Sprite::create("ConfigurationAlert.png");
+    auto alertBackground = Sprite::create("gui/ConfigurationAlert.png");
     alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2,
                                       Director::getInstance()->getVisibleSize().height / 2));
     auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 80);
@@ -425,16 +425,16 @@ void UIMainMenu::createWarningWindow(void)
     alertBackground->addChild(alertConfirmationLabel);
     
     Vector<MenuItem*> confirmReset;
-    auto confirmResetYes = MenuItemImage::create("ConfigurationResetYes.png", "ConfigurationResetYesPressed.png",
+    auto confirmResetYes = MenuItemImage::create("gui/ConfigurationResetYes.png", "gui/ConfigurationResetYesPressed.png",
                                                  CC_CALLBACK_1(UIMainMenu::menuResetYesCallback, this));
     confirmResetYes->setPosition(Vec2(Vec2(4 * alertBackground->getBoundingBox().size.width / 6,
                                            alertBackground->getBoundingBox().size.height / 6)));
     confirmReset.pushBack(confirmResetYes);
-    auto confirmSeparator = Sprite::create("ConfigurationResetSeparator.png");
+    auto confirmSeparator = Sprite::create("gui/ConfigurationResetSeparator.png");
     confirmSeparator->setPosition(Vec2(Vec2(4.65 * alertBackground->getBoundingBox().size.width / 6,
                                             alertBackground->getBoundingBox().size.height / 6)));
     alertBackground->addChild(confirmSeparator);
-    auto confirmResetNo = MenuItemImage::create("ConfigurationResetNo.png", "ConfigurationResetNoPressed.png",
+    auto confirmResetNo = MenuItemImage::create("gui/ConfigurationResetNo.png", "gui/ConfigurationResetNoPressed.png",
                                                 CC_CALLBACK_1(UIMainMenu::menuResetNoCallback, this));
     confirmResetNo->setPosition(Vec2(Vec2(5.3 * alertBackground->getBoundingBox().size.width / 6,
                                           alertBackground->getBoundingBox().size.height / 6)));

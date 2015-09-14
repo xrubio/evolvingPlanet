@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -47,34 +47,34 @@ bool UIConfiguration::init()
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
-    auto background = Sprite::create("MainMenuBackground.png");
+    auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 
-    auto title = Sprite::create("MainMenuTitle.png");
+    auto title = Sprite::create("gui/MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
     title->setPosition(Vec2((2 * visibleSize.width / 25),
         (15 * visibleSize.height / 18)));
     title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(title, 5, 0);
 
-    auto planet2 = Sprite::create("MainMenuBackgroundPlanet2.png");
+    auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
     planet2->setScale(1.3);
     planet2->setPosition(Vec2((18 * visibleSize.width / 40),
         (10 * visibleSize.height / 31)));
     planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(planet2, 1, 2);
 
-    auto popupBackground = Sprite::create("ConfigurationBackground.png");
+    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     this->addChild(popupBackground, 6);
 
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
-        "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
+        "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
@@ -101,17 +101,17 @@ bool UIConfiguration::init()
     popupBackground->addChild(languageLabel);
 
     auto catButton = MenuItemImage::create(
-        "catFlag.png", "catFlagPressed.png", "catFlagPressed.png", CC_CALLBACK_1(UIConfiguration::catFlagCallback, this));
+        "gui/catFlag.png", "gui/catFlagPressed.png", "gui/catFlagPressed.png", CC_CALLBACK_1(UIConfiguration::catFlagCallback, this));
     catButton->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(catButton);
 
     auto esButton = MenuItemImage::create(
-        "esFlag.png", "esFlagPressed.png", "esFlagPressed.png", CC_CALLBACK_1(UIConfiguration::esFlagCallback, this));
+        "gui/esFlag.png", "gui/esFlagPressed.png", "gui/esFlagPressed.png", CC_CALLBACK_1(UIConfiguration::esFlagCallback, this));
     esButton->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(esButton);
 
     auto enButton = MenuItemImage::create(
-        "enFlag.png", "enFlagPressed.png", "enFlagPressed.png", CC_CALLBACK_1(UIConfiguration::enFlagCallback, this));
+        "gui/enFlag.png", "gui/enFlagPressed.png", "gui/enFlagPressed.png", CC_CALLBACK_1(UIConfiguration::enFlagCallback, this));
     enButton->setPosition(Vec2(19 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
     languageItems.pushBack(enButton);
 
@@ -138,18 +138,18 @@ bool UIConfiguration::init()
     musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(musicLabel);
 
-    auto musicOnLabel = MenuItemImage::create("ActiveOff.png", "ActiveOff.png", "ActiveOn.png",
+    auto musicOnLabel = MenuItemImage::create("gui/ActiveOff.png", "gui/ActiveOff.png", "gui/ActiveOn.png",
         CC_CALLBACK_1(UIConfiguration::musicOnCallback, this));
     musicOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
         8 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOnLabel);
 
-    auto musicSeparator = Sprite::create("ConfigurationSeparator.png");
+    auto musicSeparator = Sprite::create("gui/ConfigurationSeparator.png");
     musicSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
         8 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(musicSeparator, 10);
 
-    auto musicOffLabel = MenuItemImage::create("InactiveOff.png", "InactiveOff.png", "InactiveOn.png",
+    auto musicOffLabel = MenuItemImage::create("gui/InactiveOff.png", "gui/InactiveOff.png", "gui/InactiveOn.png",
         CC_CALLBACK_1(UIConfiguration::musicOffCallback, this));
     musicOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
         8 * popupBackground->getContentSize().height / 16)));
@@ -161,18 +161,18 @@ bool UIConfiguration::init()
     sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(sfxLabel);
 
-    auto sfxOnLabel = MenuItemImage::create("ActiveOff.png", "ActiveOff.png", "ActiveOn.png",
+    auto sfxOnLabel = MenuItemImage::create("gui/ActiveOff.png", "gui/ActiveOff.png", "gui/ActiveOn.png",
         CC_CALLBACK_1(UIConfiguration::sfxOnCallback, this));
     sfxOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
         5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOnLabel);
 
-    auto sfxSeparator = Sprite::create("ConfigurationSeparator.png");
+    auto sfxSeparator = Sprite::create("gui/ConfigurationSeparator.png");
     sfxSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
         5 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(sfxSeparator, 10);
 
-    auto sfxOffLabel = MenuItemImage::create("InactiveOff.png", "InactiveOff.png", "InactiveOn.png",
+    auto sfxOffLabel = MenuItemImage::create("gui/InactiveOff.png", "gui/InactiveOff.png", "gui/InactiveOn.png",
         CC_CALLBACK_1(UIConfiguration::sfxOffCallback, this));
     sfxOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
         5 * popupBackground->getContentSize().height / 16)));

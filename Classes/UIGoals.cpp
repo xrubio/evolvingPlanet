@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -68,14 +68,14 @@ bool UIGoals::init()
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
     }
 
-    auto background = Sprite::create("MainMenuBackground.png");
+    auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     //this->addChild(background, 0);
 
-    hexagonButtonLevel0 = MenuItemImage::create("ProgressMapHexagonLevelOn.png", "ProgressMapHexagonLevelOff.png",
-                                                        "ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel0 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                        "gui/ProgressMapHexagonLevelOff.png");
     hexagonButtonLevel0->setColor(Color3B(120, 120, 120));
     hexagonButtonLevel0->setPosition(Vec2((visibleSize.width / 2) - (hexagonButtonLevel0->getBoundingBox().size.width * 3),
                                           visibleSize.height / 20));
@@ -83,16 +83,16 @@ bool UIGoals::init()
     hexagonButtonLevel0->setEnabled(false);
     this->addChild(hexagonButtonLevel0, 1);
     
-    hexagonButtonLevel1 = MenuItemImage::create("ProgressMapHexagonLevelOn.png", "ProgressMapHexagonLevelOff.png",
-                                                     "ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel1 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                     "gui/ProgressMapHexagonLevelOff.png");
     hexagonButtonLevel1->setColor(Color3B(120, 120, 120));
     hexagonButtonLevel1->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 20));
     hexagonButtonLevel1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     hexagonButtonLevel1->setEnabled(false);
     this->addChild(hexagonButtonLevel1, 1);
     
-    hexagonButtonLevel2 = MenuItemImage::create("ProgressMapHexagonLevelOn.png", "ProgressMapHexagonLevelOff.png",
-                                                     "ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel2 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                     "gui/ProgressMapHexagonLevelOff.png");
     hexagonButtonLevel2->setColor(Color3B(120, 120, 120));
     hexagonButtonLevel2->setPosition(Vec2((visibleSize.width / 2) + (hexagonButtonLevel2->getBoundingBox().size.width * 3),
                                           visibleSize.height / 20));
@@ -107,7 +107,7 @@ bool UIGoals::init()
 
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
-        "ProgressMapBackButton.png", "ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGoals::menuBackCallback, this));
+        "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGoals::menuBackCallback, this));
     backButton->setPosition(Vec2((4 * visibleSize.width / 42),
         (34 * visibleSize.height / 36)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -117,12 +117,12 @@ bool UIGoals::init()
     backButton->addChild(backLabel);
     menuButtons.pushBack(backButton);
 
-    arrowBack = MenuItemImage::create("ArrowBack.png", "ArrowBackPressed.png", CC_CALLBACK_1(UIGoals::menuArrowBackCallback, this));
+    arrowBack = MenuItemImage::create("gui/ArrowBack.png", "gui/ArrowBackPressed.png", CC_CALLBACK_1(UIGoals::menuArrowBackCallback, this));
     arrowBack->setPosition(Vec2((2 * visibleSize.width / 42), visibleSize.height / 2));
     arrowBack->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(arrowBack);
 
-    arrowNext = MenuItemImage::create("ArrowNext.png", "ArrowNextPressed.png", CC_CALLBACK_1(UIGoals::menuArrowNextCallback, this));
+    arrowNext = MenuItemImage::create("gui/ArrowNext.png", "gui/ArrowNextPressed.png", CC_CALLBACK_1(UIGoals::menuArrowNextCallback, this));
     arrowNext->setPosition(Vec2((40 * visibleSize.width / 42), visibleSize.height / 2));
     arrowNext->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(arrowNext);
@@ -157,20 +157,20 @@ bool UIGoals::init()
     //INTRODUCTION
     auto layoutContextIntroduction = Layout::create();
     //TRIAR ESTIL SEGONS EL LVL
-    auto pageBackgroundIntroduction = Sprite::create("PageBackground.png");
+    auto pageBackgroundIntroduction = Sprite::create("gui/PageBackground.png");
     pageBackgroundIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pageBackgroundIntroduction->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
     layoutContextIntroduction->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
-    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str()), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
     contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     contextIntroduction->setScaleX(GameData::getInstance()->getRaWConversion());
     contextIntroduction->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(contextIntroduction);
     
-    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"),
+    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO", "text"),
                                                          "fonts/BebasNeue.otf", 100);
     contextLabelIntroduction->setPosition(Vec2(6 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     contextLabelIntroduction->setColor(Color3B(211, 230, 236));
@@ -184,7 +184,7 @@ bool UIGoals::init()
     //DEPLOYMENT
     auto layoutContextDeployment = Layout::create();
     //TRIAR ESTIL SEGONS EL LVL
-    auto pageBackgroundDeployment = Sprite::create("PageBackground.png");
+    auto pageBackgroundDeployment = Sprite::create("gui/PageBackground.png");
     pageBackgroundDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pageBackgroundDeployment->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContextDeployment->addChild(pageBackgroundDeployment, -1);
@@ -204,7 +204,8 @@ bool UIGoals::init()
     contextDeployment->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContextDeployment->addChild(contextDeployment);
     
-    auto contextImage = MenuItemImage::create("Level1Background.jpg", "Level1Background.jpg", CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
+    auto nameArt = ("art/Escenari" + to_string(GameLevel::getInstance()->getNumLevel()) + ".jpg").c_str();
+    auto contextImage = MenuItemImage::create(nameArt, nameArt, CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
     contextImage->setScale(0.4 * GameData::getInstance()->getRaWConversion());
     contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
     auto menuContext = Menu::create(contextImage, NULL);
@@ -215,7 +216,7 @@ bool UIGoals::init()
     pages->addPage(layoutContextDeployment);
 
     auto layout = Layout::create();
-    auto pageBackground2 = Sprite::create("PageBackground.png");
+    auto pageBackground2 = Sprite::create("gui/PageBackground.png");
     pageBackground2->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pageBackground2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(pageBackground2, -1);
@@ -224,7 +225,7 @@ bool UIGoals::init()
     setLevelGoals(layout);
     
     Vector<cocos2d::MenuItem*> menuButtonsStart;
-    auto playButton = MenuItemImage::create("ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png",
+    auto playButton = MenuItemImage::create("gui/ProgressMapPlayButton.png", "gui/ProgressMapPlayButtonPressed.png",
                                             CC_CALLBACK_1(UIGoals::menuStartCallback, this));
     playButton->setPosition(Vec2(34 * visibleSize.width / 42, 5 * visibleSize.height / 31));
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -296,36 +297,36 @@ bool UIGoals::init()
 
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
-    Director::getInstance()->getTextureCache()->addImage("FingerSpot.png");
-    Director::getInstance()->getTextureCache()->addImage("FrameTop.png");
-    Director::getInstance()->getTextureCache()->addImage("FrameBottom.png");
-    Director::getInstance()->getTextureCache()->addImage("Quit.png");
-    Director::getInstance()->getTextureCache()->addImage("Repeat.png");
-    Director::getInstance()->getTextureCache()->addImage("RepeatPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("FastForwardButton.png");
-    Director::getInstance()->getTextureCache()->addImage("FastForwardButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("PlayButton.png");
-    Director::getInstance()->getTextureCache()->addImage("PlayButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("PauseButton.png");
-    Director::getInstance()->getTextureCache()->addImage("PauseButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("EndedGameBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("CheckpointArea.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressBarBorder.png");
-    Director::getInstance()->getTextureCache()->addImage("ProgressBarContent.png");
-    Director::getInstance()->getTextureCache()->addImage("GoalMark.png");
-    Director::getInstance()->getTextureCache()->addImage("GoalNum.png");
-    Director::getInstance()->getTextureCache()->addImage("AgentTypeButton.png");
-    Director::getInstance()->getTextureCache()->addImage("AgentTypeButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("AgentAttributesBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("ArrowRetract.png");
-    Director::getInstance()->getTextureCache()->addImage("ArrowRetractPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("MinusButtonSmall.png");
-    Director::getInstance()->getTextureCache()->addImage("MinusButtonSmallPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("PlusButtonSmall.png");
-    Director::getInstance()->getTextureCache()->addImage("PlusButtonSmallPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("BlankAttributePointButtonSmall.png");
-    Director::getInstance()->getTextureCache()->addImage("EndedGameBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("EndedGameWindow.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/FingerSpot.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/FrameTop.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/FrameBottom.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/Quit.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/Repeat.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/RepeatPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/FastForwardButton.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/FastForwardButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PlayButton.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PlayButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PauseButton.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PauseButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/EndedGameBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/CheckpointArea.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarBorder.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarContent.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/GoalMark.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/GoalNum.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/AgentTypeButton.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/AgentTypeButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/AgentAttributesBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ArrowRetract.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/ArrowRetractPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmallPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonSmallPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/BlankAttributePointButtonSmall.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/EndedGameBackground.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/EndedGameWindow.png");
 
     this->scheduleUpdate();
 
@@ -382,7 +383,7 @@ void UIGoals::minusAttCallback(Ref* pSender)
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
         auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
-        auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
+        auto blankAttribute = Sprite::create("gui/BlankAttributePointButton.png");
         blankAttribute->setPosition(filledAttribute->getPosition());
         blankAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
@@ -411,7 +412,7 @@ void UIGoals::plusAttCallback(Ref* pSender)
         l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
 
         auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
-        auto filledAttribute = Sprite::create("FilledAttributePointButton.png");
+        auto filledAttribute = Sprite::create("gui/FilledAttributePointButton.png");
         filledAttribute->setPosition(blankAttribute->getPosition());
         filledAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
@@ -467,7 +468,7 @@ void UIGoals::zoomImageInCallback(Ref* pSender)
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     Vector<MenuItem*> menuButtons;
-    auto darkBackground = MenuItemImage::create("ProgressMapDarkBackground.png", "ProgressMapDarkBackground.png",
+    auto darkBackground = MenuItemImage::create("gui/ProgressMapDarkBackground.png", "gui/ProgressMapDarkBackground.png",
                                                     CC_CALLBACK_1(UIGoals::zoomImageOutCallback, this));
     darkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
@@ -586,7 +587,7 @@ void UIGoals::createUIAgent(Layout* layout)
     Vector<cocos2d::MenuItem*> menuButtons;
 
     auto playButton = MenuItemImage::create(
-        "ProgressMapPlayButton.png", "ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGoals::menuStartCallback, this));
+        "gui/ProgressMapPlayButton.png", "gui/ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGoals::menuStartCallback, this));
     playButton->setPosition(Vec2(34 * visibleSize.width / 42, 5 * visibleSize.height / 31));
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto startPlay = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
@@ -636,7 +637,7 @@ void UIGoals::createUIAgent(Layout* layout)
         layout->addChild(attNumLabel, 1, (i + 1) * 1100);
 
         auto minusAttButton = MenuItemImage::create(
-            "MinusButton.png", "MinusButtonPressed.png", "MinusButtonPressed.png", CC_CALLBACK_1(UIGoals::minusAttCallback, this));
+            "gui/MinusButton.png", "gui/MinusButtonPressed.png", "gui/MinusButtonPressed.png", CC_CALLBACK_1(UIGoals::minusAttCallback, this));
         minusAttButton->setPosition(Vec2(24 * visibleSize.width / 42, attLabel->getPosition().y));
         minusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         minusAttButton->setTag(i + 10);
@@ -646,7 +647,7 @@ void UIGoals::createUIAgent(Layout* layout)
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create(
-            "PlusButton.png", "PlusButtonPressed.png", "PlusButtonPressed.png", CC_CALLBACK_1(UIGoals::plusAttCallback, this));
+            "gui/PlusButton.png", "gui/PlusButtonPressed.png", "gui/PlusButtonPressed.png", CC_CALLBACK_1(UIGoals::plusAttCallback, this));
         plusAttButton->setPosition(Vec2(33 * visibleSize.width / 42, attLabel->getPosition().y));
         plusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         plusAttButton->setTag(i + 50);
@@ -658,8 +659,8 @@ void UIGoals::createUIAgent(Layout* layout)
 
         for (int j = 0; j < 5; j++) {
             posX = posX + incX;
-            auto blankAttribute = Sprite::create("BlankAttributePointButton.png");
-            auto filledAttribute = Sprite::create("FilledAttributePointButton.png");
+            auto blankAttribute = Sprite::create("gui/BlankAttributePointButton.png");
+            auto filledAttribute = Sprite::create("gui/FilledAttributePointButton.png");
             if (j >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) {
                 blankAttribute->setPosition(Vec2(posX, posY));
                 blankAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -678,7 +679,7 @@ void UIGoals::createUIAgent(Layout* layout)
     attributesMenu->setPosition(Vec2(0, 0));
     layout->addChild(attributesMenu, 1, 100000);
 
-    auto evolutionPointsIcon = Sprite::create("EvolutionPoints.png");
+    auto evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
     evolutionPointsNumberIcon = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80);
     evolutionPointsNumberIcon->setColor(Color3B(211, 230, 236));
     evolutionPointsNumberIcon->setPosition(Vec2(evolutionPointsIcon->getContentSize().width / 2,

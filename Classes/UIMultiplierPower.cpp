@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -30,17 +30,17 @@
 
 UIMultiplierPower::UIMultiplierPower(Power* p) : UIPower(p)
 {
-    icon = Sprite::create("PowerBackgroundButton.png");
+    icon = Sprite::create("gui/PowerBackgroundButton.png");
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto button = Sprite::create(p->getName() + "Button" + ".png");
+    auto button = Sprite::create("gui/" + p->getName() + "Button" + ".png");
     button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     icon->addChild(button, 2, 0);
-    auto actionTimer = ProgressTimer::create(Sprite::create(p->getName() + "ActionButton" + ".png"));
+    auto actionTimer = ProgressTimer::create(Sprite::create("gui/" + p->getName() + "ActionButton" + ".png"));
     actionTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     actionTimer->setType(ProgressTimer::Type::RADIAL);
     actionTimer->setPercentage(100.0);
     icon->addChild(actionTimer, 1, 1);
-    auto cooldownTimer = ProgressTimer::create(Sprite::create("PowerCooldownButton.png"));
+    auto cooldownTimer = ProgressTimer::create(Sprite::create("gui/PowerCooldownButton.png"));
     cooldownTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     cooldownTimer->setType(ProgressTimer::Type::BAR);
     cooldownTimer->setBarChangeRate(Vec2(0, 1));

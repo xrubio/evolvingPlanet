@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015
- * MURPHY'S TOAST STUDIOS
+ * MURPHY'S TOAST GAMES
  * 
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             float xPos = message.attribute("x").as_float();
             float yPos = message.attribute("y").as_float();
             float lineBreak = message.attribute("lineWidth").as_float();
-            std::string text = LocalizedString::create(message.attribute("text").value());
+            std::string text = LocalizedString::create(message.attribute("text").value(), "tutorial");
             Message * newMessage = 0;
             // add a dummy message if spot due to double tap (2 taps are added so we need to "swallow" a dummy one to prevent closing the next message.)
             bool addDummy = false;
