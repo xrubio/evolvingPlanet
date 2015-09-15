@@ -250,24 +250,23 @@ bool UIGameplayMap::init()
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
-    MenuItem* fastForwardButton = MenuItemImage::create("gui/FastForwardButton.png", "gui/FastForwardButtonPressed.png", "gui/FastForwardButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
+    MenuItem* fastForwardButton = MenuItemImage::create("gui/FastForwardButtonPressed.png", "gui/FastForwardButton.png");//, CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this));
     fastForwardButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    fastForwardButton->setPosition(Vec2(193 * visibleSize.width / 204, 145 * visibleSize.height / 155));
+    //fastForwardButton->setPosition(Vec2(193 * visibleSize.width / 204, 145 * visibleSize.height / 155));
     fastForwardButton->setName("fastForwardButton");
-    timeButtons.pushBack(fastForwardButton);
+    //timeButtons.pushBack(fastForwardButton);
 
     MenuItem* playButton = MenuItemImage::create("gui/PlayButton.png", "gui/PlayButtonPressed.png", "gui/PlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::playCallback, this));
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     playButton->setPosition(Vec2(fastForwardButton->getPosition().x - (14 * visibleSize.width / 204),
         fastForwardButton->getPosition().y));
     playButton->setName("playButton");
-    timeButtons.pushBack(playButton);
+    //timeButtons.pushBack(playButton);
 
     MenuItem* pauseButton = MenuItemImage::create(
-        "gui/PauseButton.png", "gui/PauseButtonPressed.png", "gui/PauseButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::pauseCallback, this));
+                                                  "gui/PauseButtonPressed.png", "gui/PauseButton.png");//, CC_CALLBACK_1(UIGameplayMap::pauseCallback, this));
     pauseButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    pauseButton->setPosition(Vec2(playButton->getPosition().x - (14 * visibleSize.width / 204),
-        playButton->getPosition().y));
+    //pauseButton->setPosition(Vec2(playButton->getPosition().x - (14 * visibleSize.width / 204), playButton->getPosition().y));
     pauseButton->setEnabled(false);
     pauseButton->setName("pauseButton");
 
@@ -281,9 +280,12 @@ bool UIGameplayMap::init()
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
     pauseDarkBackground->addChild(pauseDarkLabel);
     addChild(pauseDarkBackground, 0);
-    timeButtons.pushBack(pauseButton);
+    //timeButtons.pushBack(pauseButton);
 
-    Menu* timeMenu = Menu::createWithArray(timeButtons);
+    MenuItemToggle *toggle = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::fastForwardCallback, this), pauseButton, fastForwardButton, NULL);
+    toggle->setPosition(Vec2(193 * visibleSize.width / 204, 145 * visibleSize.height / 155));
+
+    Menu* timeMenu = Menu::create(toggle, NULL);
     timeMenu->setName("timeMenu");
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
@@ -1105,16 +1107,22 @@ void UIGameplayMap::fastForwardCallback(Ref* pSender)
         setAttributesToInitialAgents();
         firstPlayFF = false;
     }
-    MenuItem* fastForwardButton = (MenuItem*)pSender;
-    fastForwardButton->setEnabled(false);
-    Menu* timeMenu = (Menu*)fastForwardButton->getParent();
-    MenuItem* playButton = (MenuItem*)timeMenu->getChildren().at(1);
-    MenuItem* pauseButton = (MenuItem*)timeMenu->getChildren().at(2);
-    playButton->setEnabled(true);
-    pauseButton->setEnabled(true);
-    pauseDarkBackground->setVisible(false);
-    
-    GameLevel::getInstance()->setTimeSpeed(1.265);
+    //MenuItem* fastForwardButton = (MenuItem*)pSender;
+    //fastForwardButton->setEnabled(false);
+    //Menu* timeMenu = (Menu*)fastForwardButton->getParent();
+    //MenuItem* playButton = (MenuItem*)timeMenu->getChildren().at(1);
+    //MenuItem* pauseButton = (MenuItem*)timeMenu->getChildren().at(2);
+    //playButton->setEnabled(true);
+    //pauseButton->setEnabled(true);
+    if (GameLevel::getInstance()->getTimeSpeed() == 0)
+    {
+        pauseDarkBackground->setVisible(false);
+        GameLevel::getInstance()->setTimeSpeed(1.265);
+    }
+    else {
+        pauseDarkBackground->setVisible(true);
+        GameLevel::getInstance()->setTimeSpeed(0);
+    }
 }
 
 void UIGameplayMap::attributeSelectionCallback(Ref* pSender)
