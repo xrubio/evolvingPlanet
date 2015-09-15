@@ -1113,7 +1113,7 @@ void UIGameplayMap::fastForwardCallback(Ref* pSender)
     playButton->setEnabled(true);
     pauseButton->setEnabled(true);
     pauseDarkBackground->setVisible(false);
-
+    
     GameLevel::getInstance()->setTimeSpeed(1.265);
 }
 
@@ -2018,5 +2018,14 @@ void UIGameplayMap::updateWave(int indexAgent)
        
     waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
     waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;
+}
+
+void UIGameplayMap::restoreGameplayMap(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    gameplayMap->runAction(Spawn::create(ScaleTo::create(0.3, GameData::getInstance()->getRaWConversion(),
+                                                         GameData::getInstance()->getRaHConversion()),
+                                         MoveTo::create(0.3, Vec2(visibleSize.width / 2, visibleSize.height / 2)),
+                                         NULL));
 }
 
