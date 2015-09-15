@@ -550,36 +550,16 @@ bool UIGameplayMap::init()
                 agentsEvolution = DrawNode::create();
                 lifeBorderBar->addChild(agentsEvolution);
                 attColorsBackground->setName("attColorsBackground");
-                attColorsBackground->addChild(lifeBorderBar, 5);
+                attColorsBackground->addChild(lifeBorderBar, 1);
                 
                 
                 ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
                //[[[HeyaldaGLDrawNode alloc] init] autorelease];
                 auto waveNode = new WaveNode();
-                waveNode->init(float(GameLevel::getInstance()->getGoals().back()->getMaxTime()));
-                
-                lifeBorderBar->addChild(waveNode, 10);
-                
-                // Space the verticies out evenly across the screen for the wave.
-                float vertexHorizontalSpacing = lifeBorderBar->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
-                
-                // Used to increment to the next vertexX position.
-                float currentWaveVertX = attColorsBackground->getPositionX() + lifeBorderBar->getPositionX() -
-                                        (lifeBorderBar->getContentSize().width / 2);
-                
-                for (int i = 0; i < float(GameLevel::getInstance()->getGoals().back()->getMaxTime()); i++) {
-                    /*float waveX = currentWaveVertX;
-                    
-                    float waveY = float(GameLevel::getInstance()->getAgents()[0].size())/float(GameLevel::getInstance()->getMaxAgents()[0]) * lifeBars.at(0)->getContentSize().height;*/
-                    float waveX = currentWaveVertX;
-                    float waveY = lifeBorderBar->getPositionY() + attColorsBackground->getPositionY();
-                    
-                    //NSLog(@"time:%.2f waveAmplitude:%.2f Wave:%. 2f,%2.f wavefrequency:%.2f",time, waveAmplitude, waveX, waveY, wavefrequency);
-                    waveNode->addToDynamicVerts2D(Point(waveX, waveY), Color4B(255, 255, 255, 255));
-                    
-                    currentWaveVertX += vertexHorizontalSpacing;
-                }
-                
+                //waveNode->init(float(GameLevel::getInstance()->getGoals().back()->getMaxTime()));
+                waveNode->init();
+
+                lifeBorderBar->addChild(waveNode, 1);
                 
                 // Try experimenting with different draw modes to see the effect.
                 //    glWaveNode.glDrawMode = kDrawPoints; 
@@ -958,7 +938,7 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
         if (powerButtons[i]->getClicked() == true)
         {
             restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
-            restaEvolutionPointsLabel->setString("-" + to_string(powerButtons[i]->getPower()->getCost()));
+            restaEvolutionPointsLabel->setString("-" + to_string(int(powerButtons[i]->getPower()->getCost())));
             auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
             restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
             powerButtons[i]->setClicked(false);
@@ -2024,8 +2004,20 @@ void UIGameplayMap::updateWave(int indexAgent)
 {
     float height = float(GameLevel::getInstance()->getAgents()[indexAgent].size())/float(GameLevel::getInstance()->getMaxAgents()[indexAgent]) * lifeBars.at(indexAgent)->getContentSize().height;
        
-    waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
-    waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;
+    /*waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
+    waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;*/
+    // Space the verticies out evenly across the screen for the wave.
+    float vertexHorizontalSpacing = lifeBars.at(indexAgent)->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+    
+    // Used to increment to the next vertexX position.
+    float currentWaveVertX = this->getChildByName("attColorsBackground")->getPositionX() + lifeBars.at(indexAgent)->getPositionX() -
+    (lifeBars.at(indexAgent)->getContentSize().width / 2);
+
+    WavePoint w;
+    w.x = currentWaveVertX + vertexHorizontalSpacing * GameLevel::getInstance()->getTimeSteps();
+    w.y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
+    w.z = 0;
+    waveNodes[indexAgent]->addToDynamicVerts3D(w, Color4B(179, 205, 221, 255));
 }
 
 void UIGameplayMap::restoreGameplayMap(void)

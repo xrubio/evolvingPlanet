@@ -49,7 +49,7 @@ typedef enum tDrawMode {
 class WaveNode : public Node {
 public:
     
-    virtual bool init(int size);
+    virtual bool init();
     
     WaveNode(){};
     WavePoint h3px(float x, float y, float z);

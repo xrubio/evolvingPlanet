@@ -30,7 +30,7 @@
 
 #define kVertCreationBlockSize 100
 
-bool WaveNode::init(int size){
+bool WaveNode::init(){
     
     if (!Node::init()) {
         return false;
@@ -40,14 +40,12 @@ bool WaveNode::init(int size){
     dynamicVertIndex = 0;
     
     dynamicVerts = nullptr;
+    dynamicVertColors = nullptr;
     
     // Must define what shader program OpenGL ES 2.0 should use.
     // The instance variable shaderProgram exists in the CCNode class in Cocos2d 2.0.
     this->setGLProgram(GLProgramCache::getInstance()->getGLProgram(GLProgram::SHADER_NAME_POSITION_COLOR));
-    //self.shaderProgram = [[CCShaderCache sharedShaderCache] programForKey:kCCShader_PositionColor];
-    CCLOG("SET");
     glDrawMode = kDrawTriangleStrip; // Default draw mode for this class.
-    dynamicVertColors = new Color4B[size];
     
     return true;
 }
@@ -89,7 +87,7 @@ void WaveNode::addToDynamicVerts3D(WavePoint vert, Color4B vertexColor) {
     int vertBlockCount = dynamicVertCount / kVertCreationBlockSize + 1;
     if (remainder == 0) {
         dynamicVerts = (WavePoint*)realloc(dynamicVerts, sizeof(WavePoint) * kVertCreationBlockSize * vertBlockCount);
-        //dynamicVertColors = (Color4B*)realloc(dynamicVertColors, sizeof(Color4B) * kVertCreationBlockSize * vertBlockCount);
+        dynamicVertColors = (Color4B*)realloc(dynamicVertColors, sizeof(Color4B) * kVertCreationBlockSize * vertBlockCount);
     }
     
     // Increment so that the index always points to what will be the next added vert/color pair.
@@ -113,7 +111,7 @@ void WaveNode::onDrawPrimitives(const Mat4 &transform, bool transformUpdated)
 {
     // Only draw if this class has the verticies and colors to be drawn setup and ready to be drawn.
     if (shouldDrawDynamicVerts == true) {
-        glLineWidth(4);
+        glLineWidth(3);
         
         //ccGLEnableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
         glEnableVertexAttribArray(GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR);
