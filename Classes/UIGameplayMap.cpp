@@ -1626,8 +1626,11 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
         //game over
         title = LocalizedString::create("GAME_OVER");
 
-        if (mode == GoalFail) {
-            text = LocalizedString::create("GOAL_NO_COMPLETED");
+        if (mode == GoalFailBefore) {
+            text = LocalizedString::create("GOAL_FAIL_BEFORE");
+        }
+        else if (mode == GoalFailAfter) {
+            text = LocalizedString::create("GOAL_FAIL_AFTER");
         }
         else if (mode == NoAgentsLeft) {
             text = LocalizedString::create("ALL_AGENTS_DIED");
@@ -1640,6 +1643,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 
         auto textLabel = Label::createWithSystemFont(text, "Corbel", 30);
         textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
+        textLabel->setAlignment(TextHAlignment::CENTER);
         window->addChild(textLabel);
     }
 

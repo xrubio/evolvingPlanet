@@ -17,7 +17,7 @@
 	<key>WARNING_TEXT</key>
 	<string>EMPEZAR UNA NUEVA CAMPAÑA BORRARÁ TODO TU PROGRESO</string>
 	<key>LEVEL</key>
-	<string>NIVEL</string>
+	<string>MISIÓN</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURACIÓN</string>
 	<key>ACHIEVEMENTS</key>
@@ -59,13 +59,13 @@
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTOS DE EVOLUCIÓN</string>
 	<key>LEVEL_FEATURES</key>
-	<string>CARACTERÍSTICAS DEL NIVEL</string>
+	<string>CARACTERÍSTICAS DE LA MISIÓN</string>
 	<key>ATTRIBUTES</key>
 	<string>ATRIBUTOS</string>
 	<key>POWERS</key>
 	<string>PODERES</string>
 	<key>NOT_AVAILABLE</key>
-	<string>NO DISPONIBLES EN ESTE NIVEL</string>
+	<string>NO DISPONIBLES EN ESTA MISIÓN</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- Se debe llegar al punto de control 1 entre 30 y 50 pasos de tiempo</string>
 	<key>GOAL_TEXT_LVL1_2</key>
@@ -86,8 +86,11 @@
 	<string>FALLADO</string>
 	<key>CONGRATULATIONS</key>
 	<string>¡Enhorabuena!</string>
-	<key>GOAL_NO_COMPLETED</key>
-	<string>No has cumplido con el objetivo</string>
+	<key>GOAL_FAIL_BEFORE</key>
+	<string>Misión fallida: Tu población ha alcanzado el objetivo antes 
+de lo que sugieren los datos arqueológicos</string>
+	<key>GOAL_NO_AFTER</key>
+	<string>Misión fallida: No has alcanzado el objetivo a tiempo</string>
 	<key>ALL_AGENTS_DIED</key>
 	<string>Han muerto todos los agentes</string>
 	<key>CONTINUE</key>

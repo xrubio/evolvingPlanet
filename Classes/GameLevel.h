@@ -46,9 +46,10 @@ enum LevelState
 {
     Running = 0,
     Success = 1,
-    GoalFail = 2,
-    NoAgentsLeft = 3,
-    UserCancel = 4
+    GoalFailBefore = 2,
+    GoalFailAfter = 3,
+    NoAgentsLeft = 4,
+    UserCancel = 5
 };
 
 class GameLevel

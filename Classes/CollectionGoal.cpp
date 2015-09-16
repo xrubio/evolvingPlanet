@@ -56,12 +56,12 @@ void CollectionGoal::checkGoal(int type, Agent* agent)
 {
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
     if (timeSteps > maxTime) {
-        GameLevel::getInstance()->setFinishedGame(GoalFail);
+        GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
     }
     else {
         if (currentAmount >= goalAmount) {
             if (minTime > timeSteps) {
-                GameLevel::getInstance()->setFinishedGame(GoalFail);
+                GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
             }
             else {
                 completed = true;

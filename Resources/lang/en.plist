@@ -17,7 +17,7 @@
 	<key>WARNING_TEXT</key>
 	<string>STARTING A NEW CAMPAIGN WILL ERASE ALL YOUR PROGRESS</string>
 	<key>LEVEL</key>
-	<string>LEVEL</string>
+	<string>MISSION</string>
 	<key>CONFIGURATION</key>
 	<string>CONFIGURATION</string>
 	<key>ACHIEVEMENTS</key>
@@ -59,13 +59,13 @@
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
 	<key>LEVEL_FEATURES</key>
-	<string>LEVEL FEATURES</string>
+	<string>MISSION FEATURES</string>
 	<key>ATTRIBUTES</key>
 	<string>ATTRIBUTES</string>
 	<key>POWERS</key>
 	<string>POWERS</string>
 	<key>NOT_AVAILABLE</key>
-	<string>NOT AVAILABLE IN THIS LEVEL</string>
+	<string>NOT AVAILABLE IN THIS MISSION</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- Reach checkpoint 1 between 30 and 50 timesteps</string>
 	<key>GOAL_TEXT_LVL1_2</key>
@@ -86,8 +86,11 @@
 	<string>FAILED</string>
 	<key>CONGRATULATIONS</key>
 	<string>Congratulations!</string>
-	<key>GOAL_NO_COMPLETED</key>
-	<string>You have not reached the goal</string>
+	<key>GOAL_FAIL_BEFORE</key>
+	<string>Mission failed: Your population reached its goals before 
+archaeological data suggests</string>
+	<key>GOAL_FAIL_AFTER</key>
+	<string>Mission failed: You have not reached the goal on time</string>
 	<key>ALL_AGENTS_DIED</key>
 	<string>All agents died</string>
 	<key>CONTINUE</key>
