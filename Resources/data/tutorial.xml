@@ -21,8 +21,8 @@
     </message>        
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M9"/>
     <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M10"/>
-    <message id="11" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11" closesWhen="tapButton" button="timeMenu/playButton">
-        <spot centerX="0.88" centerY="0.94" radius="0.03"/>
+    <message id="11" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11" closesWhen="tapButton" button="timeMenu/playToggle">
+        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
     </message>
     <message id="12" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="2" text="LEVEL1M12"/>
     <message id="13" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M13" closesWhen="spot"/>
@@ -45,11 +45,11 @@
     <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M20" closesWhen="tapButton" button="attBackground/attrMenu/plusRESISTANCE">
         <spot centerX="0.97" centerY="0.16" radius="0.02"/>
     </message>
-    <message id="21" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M21" closesWhen="tapButton" button="timeMenu/fastForwardButton">
+    <message id="21" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M21" closesWhen="tapButton" button="timeMenu/playToggle">
         <spot centerX="0.95" centerY="0.94" radius="0.03"/>
     </message>
     <message id="22" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="10" text="LEVEL1M22" closesWhen="spot"/>
-    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23" closesWhen="tapButton" button="timeMenu/fastForwardButton">
+    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23" closesWhen="tapButton" button="timeMenu/playToggle">
         <spot centerX="0.95" centerY="0.94" radius="0.03"/>
     </message>
     <message id="24" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M24"/>
@@ -74,7 +74,7 @@
         <spot centerX="0.95" centerY="0.94" radius="0.03"/>
     </message>        
     <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M6"/>
-    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M7" closesWhen="tapButton" button="timeMenu/fastForwardButton"/>
+    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M7" closesWhen="tapButton" button="timeMenu/playToggle"/>
     <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL3M8" closesWhen="tapButton" button="power1">
         <spot centerX="0.95" centerY="0.94" radius="0.03"/>
     </message>        

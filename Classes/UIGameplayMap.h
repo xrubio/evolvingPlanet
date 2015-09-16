@@ -59,9 +59,12 @@ public:
     void menuBackCallback(Ref* pSender);
     void menuGoalsCallback(Ref* pSender);
     void menuAgentsCallback(Ref* pSender);
-    void pauseCallback(Ref* pSender);
-    void playCallback(Ref* pSender);
-    void fastForwardCallback(Ref* pSender);
+
+    // toggle between pause and play
+    void togglePlay(Ref* pSender);
+    // pause completely the game
+    void pauseGame();
+
     void attributeSelectionCallback(Ref* pSender);
     void quitCallback(Ref* pSender);
     void retryCallback(Ref* pSender);
