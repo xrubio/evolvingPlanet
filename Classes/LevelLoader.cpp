@@ -61,6 +61,8 @@ void LevelLoader::loadXmlFile(string filename)
     GameLevel::getInstance()->setMapFilename(doc.child_value("FILE_MAP"));
     //AGENTS_PIXEL_SIZE
     GameLevel::getInstance()->setAgentPixelSize(atoi(doc.child_value("AGENTS_PIXEL_SIZE")));
+    //EVPOINTS_FREQ
+    GameLevel::getInstance()->setEvolutionPointsFreq(atoi(doc.child_value("EVPOINTS_FREQ")));
     //ATTRIBUTES_CONFIG
     xml_node attsConfig = doc.child("ATTRIBUTES_CONFIG").child("ATTRIBUTE");
     while (attsConfig != nullptr)

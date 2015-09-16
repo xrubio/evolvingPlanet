@@ -494,6 +494,16 @@ int GameLevel::getAgentPixelSize(void)
     return agentPixelSize;
 }
 
+void GameLevel::setEvolutionPointsFreq(int i)
+{
+    evolutionPointsFreq = i;
+}
+
+int GameLevel::getEvolutionPointsFreq(void)
+{
+    return evolutionPointsFreq;
+}
+
 void GameLevel::playLevel(void)
 {
     CCLOG("step;pop;time");
@@ -508,7 +518,7 @@ void GameLevel::playLevel(void)
             act();
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
-            if (timeSteps % 3 == 0) {
+            if (timeSteps % evolutionPointsFreq == 0) {
                 evolutionPoints++;
             }
             paint = true;

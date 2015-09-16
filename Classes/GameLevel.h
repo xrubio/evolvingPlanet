@@ -144,7 +144,10 @@ public:
     void setAgentFutureDirection(int type, int step, cocos2d::Point p);
     void setAgentPixelSize(int i);
     int getAgentPixelSize(void);
-
+    void setEvolutionPointsFreq(int i);
+    int getEvolutionPointsFreq(void);
+    
+    
     void createLevel(void);
     void initializeAttributesCost(void);
     void setAttributesToInitialAgents(void);
@@ -197,8 +200,9 @@ private:
     unsigned int timeSteps = 0;
     float timeSpeed = 0;
     float timeSpeedBeforePause = 1.265;
-
+    
     int evolutionPoints = 10;
+    int evolutionPointsFreq = 2;
     
     LevelState finishedGame = Running;
 
