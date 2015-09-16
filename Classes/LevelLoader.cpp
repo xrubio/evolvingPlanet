@@ -61,6 +61,25 @@ void LevelLoader::loadXmlFile(string filename)
     GameLevel::getInstance()->setMapFilename(doc.child_value("FILE_MAP"));
     //AGENTS_PIXEL_SIZE
     GameLevel::getInstance()->setAgentPixelSize(atoi(doc.child_value("AGENTS_PIXEL_SIZE")));
+    //ATTRIBUTES_CONFIG
+    xml_node attsConfig = doc.child("ATTRIBUTES_CONFIG").child("ATTRIBUTE");
+    while (attsConfig != nullptr)
+    {
+        string k = attsConfig.attribute("NAME").value();
+        GameLevel::getInstance()->setAttributesValues(k);
+        
+        std::stringstream test(attsConfig.child_value("VALUES"));
+        std::string segment;
+        
+        int i = 0;
+        while(std::getline(test, segment, ','))
+        {
+            GameLevel::getInstance()->setAttributesValues(k, i, atof(segment.c_str()));
+            i++;
+        }
+        
+        attsConfig = attsConfig.next_sibling("ATTRIBUTE");
+    }
     //AGENTS
     xml_node ags = doc.child("AGENTS").child("AGENT");
     int maxAllAgents = 0;
@@ -83,9 +102,9 @@ void LevelLoader::loadXmlFile(string filename)
         while (atts != nullptr) {
             GameLevel::getInstance()->setAgentAttribute(type, atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
             //temporal
-            if (type == 0) {
+            /*if (type == 0) {
                 GameLevel::getInstance()->setAttributesValues(type, atts.attribute("NAME").value());
-            }
+            }*/
 
             atts = atts.next_sibling("ATTRIBUTE");
         }

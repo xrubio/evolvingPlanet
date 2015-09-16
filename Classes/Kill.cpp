@@ -31,28 +31,7 @@
 list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
-    int techVal = agent->getValOfAttribute("TECHNOLOGY");
-    float tech = 1;
-    switch (techVal) {
-        case 1:
-            tech = 1.1;
-            break;
-        case 2:
-            tech = 1.3;
-            break;
-        case 3:
-            tech = 1.5;
-            break;
-        case 4:
-            tech = 2;
-            break;
-        case 5:
-            tech = 2.5;
-            break;
-        default:
-            tech = 1;
-            break;
-    }
+    float tech =  GameLevel::getInstance()->getAttributesValues("TECHNOLOGY", max(1, agent->getValOfAttribute("TECHNOLOGY")));
     int probKill = agent->getValOfAttribute("HOSTILITY") * tech;
     int mobility = (agent->getValOfAttribute("MOBILITY") * 4) + 1 * tech;
     if ((rand() % 100) < probKill * 10) {

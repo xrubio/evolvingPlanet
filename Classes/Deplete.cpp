@@ -32,7 +32,7 @@ list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
-    int sustainability = GameLevel::getInstance()->getAttributesValues(type, "SUSTAINABILITY", agent->getValOfAttribute("SUSTAINABILITY"));
+    int sustainability;// = GameLevel::getInstance()->getAttributesValues(type, "SUSTAINABILITY", agent->getValOfAttribute("SUSTAINABILITY"));
     /*switch (sustainability) {
     case 1:
         sustainability = 70;

@@ -81,10 +81,10 @@ public:
     void setAgentAttributesInitialConfig(vector<map<string, int> > atts);
     void resetAgentAttributesInitialConfig(void);
     //temporal
-    int getAttributesValues(int type, string k, int v);
-    vector<map<string, vector<int> > > getAttributesValues(void);
-    void setAttributesValues(int type, string k);
-    void setAttributesValues(int type, string k, int i, int v);
+    float getAttributesValues(string k, int i);
+    map<string, vector<float> > getAttributesValues(void);
+    void setAttributesValues(string k);
+    void setAttributesValues(string k, int i, float v);
 
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
@@ -177,7 +177,7 @@ private:
     vector<map<string, int> > agentAttributesInitialConfig;
     vector<map<string, int> > attributesCost;
     //temporal
-    vector<map<string, vector<int> > > attributesValues;
+    map<string, vector<float> > attributesValues;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
     vector<list<Agent*> > agentsPool;
@@ -196,7 +196,7 @@ private:
 
     unsigned int timeSteps = 0;
     float timeSpeed = 0;
-    float timeSpeedBeforePause = 2.5;
+    float timeSpeedBeforePause = 1.265;
 
     int evolutionPoints = 10;
     
