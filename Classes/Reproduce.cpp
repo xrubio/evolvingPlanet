@@ -26,6 +26,7 @@
 //
 
 #include "Reproduce.h"
+#include "MultiplierPower.h"
 #include "UIGameplayMap.h"
 
 list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
@@ -35,28 +36,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     //INFLUENCIA CULTURAL - CALCULAR TIPUS
     int type = agent->getType();
     int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
-    int techVal = agent->getValOfAttribute("TECHNOLOGY");
-    float tech = 1;
-    switch (techVal) {
-        case 1:
-            tech = 1.1;
-            break;
-        case 2:
-            tech = 1.3;
-            break;
-        case 3:
-            tech = 1.5;
-            break;
-        case 4:
-            tech = 2;
-            break;
-        case 5:
-            tech = 2.5;
-            break;
-        default:
-            tech = 1;
-            break;
-    } 
+    float tech = GameLevel::getInstance()->getAttributesValues("TECHNOLOGY", max(1,agent->getValOfAttribute("TECHNOLOGY")));
     int mobility = int(float((1.0f + agent->getValOfAttribute("MOBILITY")) * GameLevel::getInstance()->getAgentPixelSize()) * tech);
     mobility *= 2;
     if (probCulture > -1) {
@@ -136,28 +116,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
     if (type == agent->getType() and maxReached == false) {
-        int probReproductionVal = agent->getValOfAttribute("REPRODUCTION");
-        float probReproduction = 0.1f;
-        //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
-        switch (probReproductionVal) {
-        case 1:
-            probReproduction = 0.4f;
-            break;
-        case 2:
-            probReproduction = 0.5f;
-            break;
-        case 3:
-            probReproduction = 0.6f;
-            break;
-        case 4:
-            probReproduction = 0.7f;
-            break;
-        case 5:
-            probReproduction = 0.8f;
-        default:
-            probReproduction = 0.3f;
-            break;
-        }
+        float probReproduction = GameLevel::getInstance()->getAttributesValues("REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));
+
         probReproduction *= tech;
 
         Power* p = nullptr;
@@ -170,7 +130,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             p = GameLevel::getInstance()->getPowers()[i];
         }
         if (p != nullptr and p->getDurationLeft() > 0) {
-            probReproduction *= 1.5f;
+            probReproduction *= ((MultiplierPower*)p)->getMultiplier();
         }
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {

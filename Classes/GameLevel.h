@@ -46,9 +46,10 @@ enum LevelState
 {
     Running = 0,
     Success = 1,
-    GoalFail = 2,
-    NoAgentsLeft = 3,
-    UserCancel = 4
+    GoalFailBefore = 2,
+    GoalFailAfter = 3,
+    NoAgentsLeft = 4,
+    UserCancel = 5
 };
 
 class GameLevel
@@ -81,10 +82,10 @@ public:
     void setAgentAttributesInitialConfig(vector<map<string, int> > atts);
     void resetAgentAttributesInitialConfig(void);
     //temporal
-    int getAttributesValues(int type, string k, int v);
-    vector<map<string, vector<int> > > getAttributesValues(void);
-    void setAttributesValues(int type, string k);
-    void setAttributesValues(int type, string k, int i, int v);
+    float getAttributesValues(string k, int i);
+    map<string, vector<float> > getAttributesValues(void);
+    void setAttributesValues(string k);
+    void setAttributesValues(string k, int i, float v);
 
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
@@ -144,7 +145,10 @@ public:
     void setAgentFutureDirection(int type, int step, cocos2d::Point p);
     void setAgentPixelSize(int i);
     int getAgentPixelSize(void);
-
+    void setEvolutionPointsFreq(int i);
+    int getEvolutionPointsFreq(void);
+    
+    
     void createLevel(void);
     void initializeAttributesCost(void);
     void setAttributesToInitialAgents(void);
@@ -177,7 +181,7 @@ private:
     vector<map<string, int> > agentAttributesInitialConfig;
     vector<map<string, int> > attributesCost;
     //temporal
-    vector<map<string, vector<int> > > attributesValues;
+    map<string, vector<float> > attributesValues;
     vector<Power*> powers;
     vector<list<Agent*> > agents;
     vector<list<Agent*> > agentsPool;
@@ -196,9 +200,10 @@ private:
 
     unsigned int timeSteps = 0;
     float timeSpeed = 0;
-    float timeSpeedBeforePause = 2.5;
-
+    float timeSpeedBeforePause = 1.265;
+    
     int evolutionPoints = 10;
+    int evolutionPointsFreq = 2;
     
     LevelState finishedGame = Running;
 

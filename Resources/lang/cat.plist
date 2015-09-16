@@ -59,13 +59,13 @@
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTS D&apos;EVOLUCIÓ</string>
 	<key>LEVEL_FEATURES</key>
-	<string>CARACTERÍSTIQUES DEL NIVELL</string>
+	<string>CARACTERÍSTIQUES DE LA MISSIÓ</string>
 	<key>ATTRIBUTES</key>
 	<string>ATRIBUTS</string>
 	<key>POWERS</key>
 	<string>PODERS</string>
 	<key>NOT_AVAILABLE</key>
-	<string>NO DISPONIBLES EN AQUEST NIVELL</string>
+	<string>NO DISPONIBLES EN AQUESTA MISSIÓ</string>
 	<key>GOAL_TEXT_LVL1_1</key>
 	<string>- S&apos;ha d&apos;arribar al punt de control 1 entre 30 i 50 passos de temps</string>
 	<key>GOAL_TEXT_LVL1_2</key>
@@ -86,8 +86,11 @@
 	<string>FALLIT</string>
 	<key>CONGRATULATIONS</key>
 	<string>Enhorabona!</string>
-	<key>GOAL_NO_COMPLETED</key>
-	<string>No has aconseguit l&apos;objectiu</string>
+	<key>GOAL_FAIL_BEFORE</key>
+	<string>Missió fallida: La teva població ha assolit l&apos;objectiu abans 
+del que suggereixen les dades arqueològiques</string>
+	<key>GOAL_FAIL_AFTER</key>
+	<string>Missió fallida: No has aconseguit l&apos;objectiu a temps</string>
 	<key>ALL_AGENTS_DIED</key>
 	<string>Han mort tots els agents</string>
 	<key>CONTINUE</key>

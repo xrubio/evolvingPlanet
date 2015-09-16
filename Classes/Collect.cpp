@@ -38,7 +38,7 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
         GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(),
             agent->getPosition()->getY()) + 1);
 
-    float efficiency = GameLevel::getInstance()->getAttributesValues(type, "RECOLLECTION", agent->getValOfAttribute("RECOLLECTION")) / 100;
+    float efficiency;// = GameLevel::getInstance()->getAttributesValues(type, "RECOLLECTION", agent->getValOfAttribute("RECOLLECTION")) / 100;
     /*float efficiency;
     switch (recollection) {
     case 1:

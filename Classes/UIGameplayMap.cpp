@@ -283,8 +283,8 @@ bool UIGameplayMap::init()
 
     timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getBoundingBox().size.width * 1.5,
-        pauseButton->getPosition().y));
+    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width * 1.5,
+        toggle->getPosition().y));
     this->addChild(timeSteps, 2);
 
     //Powers
@@ -1584,8 +1584,11 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
         //game over
         title = LocalizedString::create("GAME_OVER");
 
-        if (mode == GoalFail) {
-            text = LocalizedString::create("GOAL_NO_COMPLETED");
+        if (mode == GoalFailBefore) {
+            text = LocalizedString::create("GOAL_FAIL_BEFORE");
+        }
+        else if (mode == GoalFailAfter) {
+            text = LocalizedString::create("GOAL_FAIL_AFTER");
         }
         else if (mode == NoAgentsLeft) {
             text = LocalizedString::create("ALL_AGENTS_DIED");
@@ -1598,6 +1601,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 
         auto textLabel = Label::createWithSystemFont(text, "Corbel", 30);
         textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
+        textLabel->setAlignment(TextHAlignment::CENTER);
         window->addChild(textLabel);
     }
 

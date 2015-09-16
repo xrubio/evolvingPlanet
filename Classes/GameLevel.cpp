@@ -168,28 +168,25 @@ void GameLevel::resetAgentAttributesInitialConfig(void)
     agentAttributesInitialConfig.clear();
 }
 
-int GameLevel::getAttributesValues(int type, string k, int i)
+float GameLevel::getAttributesValues(string k, int i)
 {
-    return attributesValues[type][k][i];
+    return attributesValues[k][i];
 }
 
-vector<map<string, vector<int> > > GameLevel::getAttributesValues(void)
+map<string, vector<float> > GameLevel::getAttributesValues(void)
 {
     return attributesValues;
 }
 
-void GameLevel::setAttributesValues(int type, string k)
+void GameLevel::setAttributesValues(string k)
 {
-    vector<int> r(6, 0);
-    while (attributesValues.size() <= type) {
-        attributesValues.push_back(map<string, vector<int> >());
-    }
-    attributesValues[type][k] = r;
+    vector<float> r(6, 0);
+    attributesValues[k] = r;
 }
 
-void GameLevel::setAttributesValues(int type, string k, int i, int v)
+void GameLevel::setAttributesValues(string k, int i, float v)
 {
-    attributesValues[type][k][i] = v;
+    attributesValues[k][i] = v;
 }
 
 vector<Power*> GameLevel::getPowers(void)
@@ -497,6 +494,16 @@ int GameLevel::getAgentPixelSize(void)
     return agentPixelSize;
 }
 
+void GameLevel::setEvolutionPointsFreq(int i)
+{
+    evolutionPointsFreq = i;
+}
+
+int GameLevel::getEvolutionPointsFreq(void)
+{
+    return evolutionPointsFreq;
+}
+
 void GameLevel::playLevel(void)
 {
     CCLOG("step;pop;time");
@@ -511,7 +518,7 @@ void GameLevel::playLevel(void)
             act();
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
-            if (timeSteps % 3 == 0) {
+            if (timeSteps % evolutionPointsFreq == 0) {
                 evolutionPoints++;
             }
             paint = true;
