@@ -292,8 +292,8 @@ bool UIGameplayMap::init()
 
     timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeSteps->setPosition(Vec2(pauseButton->getPosition().x - pauseButton->getBoundingBox().size.width * 1.5,
-        pauseButton->getPosition().y));
+    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width * 1.5,
+        toggle->getPosition().y));
     this->addChild(timeSteps, 2);
 
     //Powers
