@@ -35,7 +35,7 @@
         <DURATION>5</DURATION>
         <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
         <TYPE TYPE_NAME="Multiplier">
-            <MULTIPLIER>3</MULTIPLIER>
+            <MULTIPLIER>1.5</MULTIPLIER>
         </TYPE>
     </POWER>
     <POWER NAME="ResistanceBoost">

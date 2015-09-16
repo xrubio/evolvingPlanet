@@ -26,6 +26,7 @@
 //
 
 #include "Reproduce.h"
+#include "MultiplierPower.h"
 #include "UIGameplayMap.h"
 
 list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
@@ -129,7 +130,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             p = GameLevel::getInstance()->getPowers()[i];
         }
         if (p != nullptr and p->getDurationLeft() > 0) {
-            probReproduction *= 1.5f;
+            probReproduction *= ((MultiplierPower*)p)->getMultiplier();
         }
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
