@@ -37,6 +37,8 @@ using namespace std;
 class Agent {
 
 public:
+    typedef std::map<std::string, float> AttributesMap;
+
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent(){};
 
@@ -48,17 +50,18 @@ public:
     void setType(int t);
     Position* getPosition(void);
     void setPosition(int posx, int posy);
-    map<string, int> getAttributes(void);
-    void setAttributes(map<string, int> map);
-    int getValOfAttribute(string att);
-    void setValOfAttribute(string att, int val);
+    float getValue(const string & att) const;
+    void setValue(const string & att, float val);
+    // copy attribute values at current levels to agent of type
+    void copyValues(int type);
 
 private:
     int id;
     int life;
     int type;
     Position* position;
-    map<string, int> attributes;
+    AttributesMap _attributes;
 };
 
 #endif /* defined(__simulplay__Agent__) */
+

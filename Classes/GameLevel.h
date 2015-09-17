@@ -55,6 +55,11 @@ enum LevelState
 class GameLevel
 {  
 public:
+    // float values for each level for the set of attributes
+    typedef std::map<std::string, std::vector<float> > AttributesLevelsMap;
+    typedef std::map<std::string, int > LevelsMap;
+    typedef std::vector<LevelsMap> LevelsMapVector;
+    
     static GameLevel* getInstance();
 
     UIGameplayMap* getUIGameplayMap(void);
@@ -73,26 +78,36 @@ public:
     void setCurrentTime(double time);
     int getNumLevel(void);
     void setNumLevel(int lvl);
-    int getAgentAttribute(int type, string key);
-    void setAgentAttribute(int type, string key, int value);
-    map<string, int> getAgentAttributes(int type);
-    void setAgentAttributes(vector<map<string, int> > atts);
-    vector<map<string, int> > getAgentAllAttributes(void);
-    vector<map<string, int> > getAgentAttributesInitialConfig(void);
-    void setAgentAttributesInitialConfig(vector<map<string, int> > atts);
+
+    // attributes management
+    int getAgentAttribute(int type, const string & key);
+    void setAgentAttribute(int type, const string & key, int value);
+
+    // returns the current list of attribute levels of an agent type
+    const LevelsMap & getAgentAttributes(int type) const;
+
+    // set the list of attribute levels for all the agents to init
+    void setAgentAttributesToInit();
+    // set the initial list of attribute levels for all the agents to current
+    void setAgentAttributesInitToCurrent();
+    bool initAttributesEmpty() const;
+
+    // clears the list of attributes for all agents
     void resetAgentAttributesInitialConfig(void);
-    //temporal
-    float getAttributesValues(string k, int i);
-    map<string, vector<float> > getAttributesValues(void);
-    void setAttributesValues(string k);
-    void setAttributesValues(string k, int i, float v);
+
+    // returns value of attribute attr (0 if not present)
+    float getValueAtLevel(const string & attr, int level) const;
+    // creates the attribute and set all values to 0
+    void createAttributeLevels(const string & attr);
+    // sets the attribute value at k to v for level i
+    void setValueAtLevel(const string & attr, int level, float value);
 
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
     void addPower(Power* p);
     void deletePower(int i);
     vector<list<Agent*> > getAgents(void);
-    void setAgents(vector<list<Agent*> > ags);
+    void setAgents(vector<list<Agent*> > agents);
     void addAgent(Agent* ag);
     list<Agent*>::reverse_iterator deleteAgent(int type, Agent* agent);
     vector<list<Agent*> > getAgentsPool(void);
@@ -177,17 +192,17 @@ private:
 
     clock_t currentTime = 0;
     int numLevel;
-    vector<map<string, int> > agentAttributes;
-    vector<map<string, int> > agentAttributesInitialConfig;
-    vector<map<string, int> > attributesCost;
+    LevelsMapVector _agentAttributes;
+    LevelsMapVector _agentAttributesInitialConfig;
+    LevelsMapVector attributesCost;
     //temporal
-    map<string, vector<float> > attributesValues;
+    AttributesLevelsMap _attributesLevels;
     vector<Power*> powers;
-    vector<list<Agent*> > agents;
-    vector<list<Agent*> > agentsPool;
+    vector<list<Agent*> > _agents;
+    vector<list<Agent*> > _agentsPool;
     vector<Act*> actions;
     vector<Goal*> goals;
-    Agent* agentsMap[480][320];
+    Agent* _agentsMap[480][320];
 
     //Resources exploitment
     int timeExploitedMap[480][320] = { { 0 } };

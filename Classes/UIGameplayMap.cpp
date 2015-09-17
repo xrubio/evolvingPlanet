@@ -433,7 +433,7 @@ bool UIGameplayMap::init()
 
     initializeAgents();
 
-    std::map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
+    const GameLevel::LevelsMap & atts = GameLevel::getInstance()->getAgentAttributes(0);
     int i = 0;
     for (std::map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
         //si el cost de l'atribut es diferent de 0, es modificable
@@ -1662,15 +1662,16 @@ void UIGameplayMap::updateAgents(void)
         for (list<Agent*>::iterator it = agentsDomain[i].begin(); it != agentsDomain[i].end(); ++it)
         {
             Color4B color;
+            // TODO XRC not sure if it works ok with value instead of level
             switch (agentColor) {
             case 1:
-                color = Color4B(212, 105, 11, (*it)->getValOfAttribute(keys[0]) * (255 / 5));
+                color = Color4B(212, 105, 11, (*it)->getValue(keys[0]) * (255 / 5));
                 break;
             case 2:
-                color = Color4B(5, 5, 117, (*it)->getValOfAttribute(keys[1]) * (255 / 5));
+                color = Color4B(5, 5, 117, (*it)->getValue(keys[1]) * (255 / 5));
                 break;
             case 3:
-                color = Color4B(115, 8, 214, (*it)->getValOfAttribute(keys[2]) * (255 / 5));
+                color = Color4B(115, 8, 214, (*it)->getValue(keys[2]) * (255 / 5));
                 break;
             default:
                 switch ((*it)->getType()) {
@@ -1896,6 +1897,7 @@ void UIGameplayMap::update(float delta)
 
 void UIGameplayMap::setMessage( const Message * message )
 {
+    restoreGameplayMap();
     pauseGame();
 
     _message = message;
@@ -1914,13 +1916,6 @@ void UIGameplayMap::setMessage( const Message * message )
     labelBorder->clear();
     if(_message->text()!="")
     {
-        label->setVisible(true);    
-        labelBorder->setVisible(true);   
-        nextLabel->setVisible(true);
-        
-        const Rect & contents = label->getBoundingBox();
-        const Rect & ownContents = nextLabel->getBoundingBox();
-        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height/2)));
         // condition to close the message
         if(message->getPostCondition()=="tapButton")
         {
@@ -1933,7 +1928,16 @@ void UIGameplayMap::setMessage( const Message * message )
         else
         {
             nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_TAP", "tutorial"));
-        }
+        } 
+        
+        const Rect & contents = label->getBoundingBox();
+        const Rect & ownContents = nextLabel->getBoundingBox();
+        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height/2)));
+        
+        label->setVisible(true);    
+        labelBorder->setVisible(true);   
+        nextLabel->setVisible(true);
+
     }
 
     Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));

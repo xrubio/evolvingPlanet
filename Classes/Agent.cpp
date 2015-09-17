@@ -26,6 +26,7 @@
 //
 
 #include "Agent.h"
+#include "GameLevel.h"
 
 Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0)
 {
@@ -72,27 +73,40 @@ void Agent::setPosition(int posx, int posy)
     position->setPosition(posx, posy);
 }
 
-map<string, int> Agent::getAttributes(void)
+float Agent::getValue(const string & att) const
 {
-    return attributes;
-}
-
-void Agent::setAttributes(map<string, int> map)
-{
-    attributes = map;
-}
-
-int Agent::getValOfAttribute(string att)
-{
-    if (attributes.count(att) != 1) {
-        return -1;
+    AttributesMap::const_iterator it = _attributes.find(att);
+    if(it==_attributes.end())
+    {
+        return 0.0f;
     }
-    else {
-        return attributes[att];
+    float value = it->second;
+
+    // TODO XRC increase efficiency storing the value in a different attribute?
+    // if technology multiply result
+    it = _attributes.find("TECHNOLOGY");
+    if(att=="TECHNOLOGY" or it==_attributes.end())
+    {
+        return value;
+    }
+    else
+    {
+        return value*it->second;
     }
 }
 
-void Agent::setValOfAttribute(string att, int val)
+void Agent::setValue(const string & att, float val)
 {
-    attributes[att] = val;
+    _attributes[att] = val;
 }
+
+void Agent::copyValues( int type )
+{
+    const GameLevel::LevelsMap & currentValues = GameLevel::getInstance()->getAgentAttributes(type);
+    for(GameLevel::LevelsMap::const_iterator it=currentValues.begin(); it!=currentValues.end(); it++)
+    {
+        float value = GameLevel::getInstance()->getValueAtLevel(it->first, it->second);
+        setValue(it->first, value);
+    }
+}
+

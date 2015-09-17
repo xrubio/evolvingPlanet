@@ -30,8 +30,8 @@
 
 #include "Act.h"
 
-class Reproduce : public Act {
-
+class Reproduce : public Act
+{
 public:
     Reproduce(){};
 

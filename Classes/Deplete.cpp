@@ -30,6 +30,7 @@
 
 list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
 {
+    CCLOG("Deplete is an Act with temporal implementation");
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
     int sustainability;// = GameLevel::getInstance()->getAttributesValues(type, "SUSTAINABILITY", agent->getValOfAttribute("SUSTAINABILITY"));

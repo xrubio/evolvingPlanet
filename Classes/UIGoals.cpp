@@ -362,7 +362,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
             j++;
         }
     }*/
-    GameLevel::getInstance()->setAgentAttributesInitialConfig(GameLevel::getInstance()->getAgentAllAttributes());
+    GameLevel::getInstance()->setAgentAttributesInitToCurrent();
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
@@ -603,8 +603,9 @@ void UIGoals::createUIAgent(Layout* layout)
     Vector<cocos2d::MenuItem*> attributesButtons;
     int tag = 0;
 
-    if (GameLevel::getInstance()->getAgentAttributesInitialConfig().empty() == false) {
-        GameLevel::getInstance()->setAgentAttributes(GameLevel::getInstance()->getAgentAttributesInitialConfig());
+    if(!GameLevel::getInstance()->initAttributesEmpty())
+    {
+        GameLevel::getInstance()->setAgentAttributesToInit();
         int initialEvolutionPoints = 10;
         for (size_t i = 0; i < 3; i++)
         {

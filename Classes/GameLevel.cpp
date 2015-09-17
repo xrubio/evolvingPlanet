@@ -125,68 +125,70 @@ void GameLevel::setNumLevel(int lvl)
     numLevel = lvl;
 }
 
-int GameLevel::getAgentAttribute(int type, string key)
+int GameLevel::getAgentAttribute(int type, const string & key)
 {
-    return agentAttributes[type][key];
+    return _agentAttributes.at(type)[key];
 }
 
-void GameLevel::setAgentAttribute(int type, string key, int value)
+void GameLevel::setAgentAttribute(int type, const string & key, int level)
 {
-    if (agentAttributes.size() <= type) {
-        agentAttributes.push_back(map<string, int>());
+    if(_agentAttributes.size() <= type)
+    {
+        _agentAttributes.push_back(LevelsMap());
     }
-    agentAttributes[type][key] = value;
+    _agentAttributes.at(type)[key] = level;
 }
 
-map<string, int> GameLevel::getAgentAttributes(int type)
+const GameLevel::LevelsMap & GameLevel::getAgentAttributes(int type) const
 {
-    return agentAttributes[type];
+    return _agentAttributes.at(type);
 }
 
-vector<map<string, int> > GameLevel::getAgentAllAttributes(void)
+bool GameLevel::initAttributesEmpty() const
 {
-    return agentAttributes;
+    return _agentAttributesInitialConfig.empty();
 }
 
-void GameLevel::setAgentAttributes(vector<map<string, int> > atts)
+void GameLevel::setAgentAttributesToInit()
 {
-    agentAttributes.swap(atts);
+    _agentAttributes.clear();
+    _agentAttributes.resize(_agentAttributesInitialConfig.size());
+    std::copy(_agentAttributesInitialConfig.begin(), _agentAttributesInitialConfig.end(), _agentAttributes.begin());
 }
 
-vector<map<string, int> > GameLevel::getAgentAttributesInitialConfig(void)
+void GameLevel::setAgentAttributesInitToCurrent()
 {
-    return agentAttributesInitialConfig;
-}
-
-void GameLevel::setAgentAttributesInitialConfig(vector<map<string, int> > atts)
-{
-    agentAttributesInitialConfig.swap(atts);
+    _agentAttributesInitialConfig.clear();
+    _agentAttributesInitialConfig.resize(_agentAttributes.size());
+    std::copy(_agentAttributes.begin(), _agentAttributes.end(), _agentAttributesInitialConfig.begin());
 }
 
 void GameLevel::resetAgentAttributesInitialConfig(void)
 {
-    agentAttributesInitialConfig.clear();
+    _agentAttributesInitialConfig.clear();
 }
 
-float GameLevel::getAttributesValues(string k, int i)
+float GameLevel::getValueAtLevel(const string  & attr, int level) const
 {
-    return attributesValues[k][i];
+    AttributesLevelsMap::const_iterator it = _attributesLevels.find(attr);
+    // not found, return 0
+    if(it==_attributesLevels.end())
+    {
+        return 0.0f;
+    }
+    return it->second.at(level);
 }
 
-map<string, vector<float> > GameLevel::getAttributesValues(void)
+void GameLevel::createAttributeLevels(const string & attr)
 {
-    return attributesValues;
-}
-
-void GameLevel::setAttributesValues(string k)
-{
+    // all attributes have 6 levels (0 to 5). All of them are set to 0
     vector<float> r(6, 0);
-    attributesValues[k] = r;
+    _attributesLevels[attr] = r;
 }
 
-void GameLevel::setAttributesValues(string k, int i, float v)
+void GameLevel::setValueAtLevel(const string & attr, int level, float value)
 {
-    attributesValues[k][i] = v;
+    _attributesLevels[attr][level] = value;
 }
 
 vector<Power*> GameLevel::getPowers(void)
@@ -211,47 +213,47 @@ void GameLevel::deletePower(int i)
 
 vector<list<Agent*> > GameLevel::getAgents(void)
 {
-    return agents;
+    return _agents;
 }
 
-void GameLevel::setAgents(vector<list<Agent*> > ags)
+void GameLevel::setAgents(vector<list<Agent*> > agents)
 {
-    agents = ags;
+    _agents = agents;
 }
 
 void GameLevel::addAgent(Agent* ag)
 {
-    while (agents.size() <= ag->getType()) {
+    while (_agents.size() <= ag->getType()) {
         list<Agent*> v;
-        agents.push_back(v);
+        _agents.push_back(v);
     }
-    agents[ag->getType()].push_back(ag);
-    agentsMap[ag->getPosition()->getX()][ag->getPosition()->getY()] = ag;
+    _agents[ag->getType()].push_back(ag);
+    _agentsMap[ag->getPosition()->getX()][ag->getPosition()->getY()] = ag;
 }
 
 list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
 {
     int posx = agent->getPosition()->getX();
     int posy = agent->getPosition()->getY();
-    //delete agentsMap[posx][posy]; // = nullptr;
-    agentsMap[posx][posy] = nullptr;
-    //agents.at(type).erase(agents.at(type).begin() + i);
-    list<Agent*>::reverse_iterator it = find(agents[type].rbegin(), agents[type].rend(), agent);
+    //delete _agentsMap[posx][posy]; // = nullptr;
+    _agentsMap[posx][posy] = nullptr;
+    //_agents.at(type).erase(_agents.at(type).begin() + i);
+    list<Agent*>::reverse_iterator it = find(_agents[type].rbegin(), _agents[type].rend(), agent);
     //advance(it, 1);
-    agents[type].erase(--(it.base()));
-    agentsPool[type].push_back(agent);
+    _agents[type].erase(--(it.base()));
+    _agentsPool[type].push_back(agent);
     //delete agent;
     return it;
 }
 
 vector<list<Agent*> > GameLevel::getAgentsPool(void)
 {
-    return agentsPool;
+    return _agentsPool;
 }
 
 void GameLevel::popFrontAgentsPool(int type)
 {
-    agentsPool[type].pop_front();
+    _agentsPool[type].pop_front();
 }
 
 vector<Act*> GameLevel::getActions(void)
@@ -436,7 +438,7 @@ void GameLevel::setCurrentAgentType(int i)
 
 Agent* GameLevel::getAgentAtMap(int i, int j)
 {
-    return agentsMap[i][j];
+    return _agentsMap[i][j];
 }
 
 int GameLevel::getMaxAllAgents(void)
@@ -524,7 +526,7 @@ void GameLevel::playLevel(void)
             paint = true;
             Timing::getInstance()->act = false;  
             
-            // number of agents
+            // number of _agents
             size_t numAgents = 0;
             for (size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
             {
@@ -553,15 +555,15 @@ void GameLevel::resetLevel(void)
 
     currentTime = 0;
     numLevel = 0;
-    agentAttributes.clear();
+    _agentAttributes.clear();
     powers.clear();
-    /*for (int i = 0; i < agents.size(); i++) {
-        for (int j = 0; j < agents.at(i).size(); j++) {
-            delete agents.at(i).at(j);
+    /*for (int i = 0; i < _agents.size(); i++) {
+        for (int j = 0; j < _agents.at(i).size(); j++) {
+            delete _agents.at(i).at(j);
         }
     }*/
-    agents.clear();
-    agentsPool.clear();
+    _agents.clear();
+    _agentsPool.clear();
     addedAgents = 0;
     deletedAgents.clear();
     idCounter = 0;
@@ -574,7 +576,7 @@ void GameLevel::resetLevel(void)
     goals.clear();
     for (int i = 0; i < 480; i++) {
         for (int j = 0; j < 320; j++) {
-            agentsMap[i][j] = nullptr;
+            _agentsMap[i][j] = nullptr;
             timeExploitedMap[i][j] = 0;
             depletedMap[i][j] = false;
             adaptedMap[i][j] = false;
@@ -598,13 +600,14 @@ void GameLevel::resetLevel(void)
 
     agentDirections.clear();
     agentFutureDirections.clear();
-    attributesValues.clear();
+    _attributesLevels.clear();
 }
 
 void GameLevel::createLevel(void)
 {
     initializeAgentsPool();
-    for (int i = 0; i < numInitialAgents.size(); i++) {
+    for(size_t i = 0; i < numInitialAgents.size(); i++)
+    {
         generateInitialAgents(i);
         agentDirections.push_back(Point(-1, -1));
     }
@@ -614,14 +617,18 @@ void GameLevel::createLevel(void)
 
 void GameLevel::initializeAttributesCost(void)
 {
-    for (int i = 0; i < agentAttributes.size(); i++) {
-        attributesCost.push_back(map<string, int>());
-        for (map<string, int>::const_iterator it = agentAttributes[i].begin(); it != agentAttributes[i].end(); it++) {
+    for(size_t i = 0; i < _agentAttributes.size(); i++)
+    {
+        attributesCost.push_back(LevelsMap());
+        for(LevelsMap::const_iterator it=_agentAttributes.at(i).begin(); it!=_agentAttributes.at(i).end(); it++)
+        {
             //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
-            if (agentAttributes[i][it->first] != 0) {
+            if (_agentAttributes.at(i)[it->first] != 0)
+            {
                 attributesCost[i][it->first] = 0;
             }
-            else {
+            else
+            {
                 attributesCost[i][it->first] = 1;
             }
         }
@@ -630,10 +637,10 @@ void GameLevel::initializeAttributesCost(void)
 
 void GameLevel::setAttributesToInitialAgents(void)
 {
-    list<Agent*>::iterator it = agents[0].begin();
-    while (it != agents[0].end()) {
-        (*it)->setAttributes(agentAttributes[0]);
-        it++;
+    std::list<Agent*> agents = _agents[0];
+    for(std::list<Agent*>::iterator it=agents.begin(); it!=agents.end(); it++)
+    {
+        (*it)->copyValues(0);
     }
 }
 
@@ -644,7 +651,7 @@ void GameLevel::initializeAgentsPool(void)
         for (int j = 0; j < maxAgents[i]; j++) {
             l_agent.push_back(new Agent());
         }
-        agentsPool.push_back(l_agent);
+        _agentsPool.push_back(l_agent);
     }
 }
 
@@ -676,13 +683,13 @@ void GameLevel::generateInitialAgents(int type)
         int posy = random(minY, maxY); //rand() % maxY + minY;
         if (GameLevel::getInstance()->validatePosition(posx, posy) and gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type) {
             //auto a =new Agent(idCounter, 100, type, posx, posy);
-            Agent* a = agentsPool[type].front();
-            agentsPool[type].pop_front();
+            Agent* a = _agentsPool[type].front();
+            _agentsPool[type].pop_front();
             a->setId(idCounter);
             a->setLife(100);
             a->setType(type);
             a->setPosition(posx, posy);
-            a->setAttributes(agentAttributes[type]);
+            a->copyValues(type);
             addAgent(a);
             idCounter++;
             i++;
@@ -694,10 +701,10 @@ void GameLevel::act(void)
 {
     deletedAgents.clear();
     addedAgents = 0;
-    //CCLOG("Num agents: %i", agents[0].size());
-    //CCLOG("Pool: %i", agentsPool[0].size());
-    //CCLOG("Num agents + Pool: %i", agents[0].size() + agentsPool[0].size());
-    for (size_t k = 0; k < agents.size() and finishedGame == Running; k++) {
+    //CCLOG("Num agents: %i", _agents[0].size());
+    //CCLOG("Pool: %i", _agentsPool[0].size());
+    //CCLOG("Num agents + Pool: %i", _agents[0].size() + _agentsPool[0].size());
+    for (size_t k = 0; k < _agents.size() and finishedGame == Running; k++) {
         //CHECK DIRECTION
         if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
             //CCLOG("check direction %i", agentFutureDirections[k][0].first);
@@ -707,8 +714,8 @@ void GameLevel::act(void)
             }
         }
 
-        list<Agent*>::reverse_iterator end = agents[k].rbegin();
-        while (end != agents[k].rend() and finishedGame == Running) {
+        list<Agent*>::reverse_iterator end = _agents[k].rbegin();
+        while (end != _agents[k].rend() and finishedGame == Running) {
             if ((*end)->getLife() > 0) {
                 for (size_t j = 0; j < actions.size() - 1; j++) {
                     actions[j]->execute(k, *end);
@@ -721,9 +728,9 @@ void GameLevel::act(void)
                 }
             }
             //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
-            int sizeBefore = (int)agents[k].size();
+            int sizeBefore = (int)_agents[k].size();
             list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
-            if (sizeBefore > agents[k].size()) {
+            if (sizeBefore > _agents[k].size()) {
                 end = rit;
             }
             else {
@@ -753,7 +760,7 @@ void GameLevel::act(void)
         }
     }
 
-    bool noAgentsLeft = agents[0].empty();
+    bool noAgentsLeft = _agents[0].empty();
     if(finishedGame==Running and noAgentsLeft)
     {
         finishedGame = NoAgentsLeft;
@@ -771,7 +778,7 @@ bool GameLevel::validatePosition(int posx, int posy)
         return false;
     }
     //Hi ha un agent
-    if (agentsMap[posx][posy] != nullptr) {
+    if (_agentsMap[posx][posy] != nullptr) {
         return false;
     }
     return true;

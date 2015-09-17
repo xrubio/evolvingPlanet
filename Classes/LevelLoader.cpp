@@ -68,7 +68,7 @@ void LevelLoader::loadXmlFile(string filename)
     while (attsConfig != nullptr)
     {
         string k = attsConfig.attribute("NAME").value();
-        GameLevel::getInstance()->setAttributesValues(k);
+        GameLevel::getInstance()->createAttributeLevels(k);
         
         std::stringstream test(attsConfig.child_value("VALUES"));
         std::string segment;
@@ -76,7 +76,7 @@ void LevelLoader::loadXmlFile(string filename)
         int i = 0;
         while(std::getline(test, segment, ','))
         {
-            GameLevel::getInstance()->setAttributesValues(k, i, atof(segment.c_str()));
+            GameLevel::getInstance()->setValueAtLevel(k, i, atof(segment.c_str()));
             i++;
         }
         

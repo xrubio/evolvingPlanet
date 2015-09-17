@@ -28,19 +28,19 @@
 #include "Reproduce.h"
 #include "MultiplierPower.h"
 #include "UIGameplayMap.h"
+#include "GameLevel.h"
 
 list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
 
-    //INFLUENCIA CULTURAL - CALCULAR TIPUS
     int type = agent->getType();
-    int probCulture = agent->getValOfAttribute("CULTURAL_INFLUENCE");
-    float tech = GameLevel::getInstance()->getAttributesValues("TECHNOLOGY", max(1,agent->getValOfAttribute("TECHNOLOGY")));
-    int mobility = int(float((1.0f + agent->getValOfAttribute("MOBILITY")) * GameLevel::getInstance()->getAgentPixelSize()) * tech);
-    mobility *= 2;
-    if (probCulture > -1) {
-        probCulture = probCulture * tech;
+    int mobility = agent->getValue("MOBILITY");
+    // TODO XRC move this to method
+    //INFLUENCIA CULTURAL - CALCULAR TIPUS
+    float probCulture = agent->getValue("CULTURAL_INFLUENCE");
+    if (probCulture > 0.0f)
+    {
         //CERCAR AGENT EN RADI
         int radi = 3;
         int maxIterations = 9;
@@ -50,8 +50,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         int minRandomY = agent->getPosition()->getY() - radi;
         int maxRandomY = agent->getPosition()->getY() + radi;
         
-        int posx = random(minRandomX, maxRandomX);
-        int posy = random(minRandomY, maxRandomY);
+        int posx = RandomHelper::random_int(minRandomX, maxRandomX);
+        int posy = RandomHelper::random_int(minRandomY, maxRandomY);
         bool validTypeAgent = false;
         if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and
             GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
@@ -59,8 +59,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             validTypeAgent = true;
         }
         while (maxIterations > 0 and validTypeAgent == false) {
-            posx = random(minRandomX, maxRandomX);
-            posy = random(minRandomY, maxRandomY);
+            posx = RandomHelper::random_int(minRandomX, maxRandomX);
+            posy = RandomHelper::random_int(minRandomY, maxRandomY);
             if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and
                 GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
             {
@@ -72,31 +72,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         //SI S'HA TROBAT AGENT I INFLUEIX
         if (maxIterations > 0)
         {
-            switch (GameLevel::getInstance()->getAgentAtMap(posx, posy)->getValOfAttribute("CULTURAL_INFLUENCE")) {
-                case 1:
-                    probCulture = 20;
-                    break;
-                case 2:
-                    probCulture = 30;
-                    break;
-                case 3:
-                    probCulture = 40;
-                    break;
-                case 4:
-                    probCulture = 50;
-                    break;
-                case 5:
-                    probCulture = 60;
-                    break;
-                case -1:
-                    probCulture = -1;
-                    break;
-                default:
-                    probCulture = 10;
-                    break;
-            }
-            probCulture = probCulture * tech;
-            if (random(0, 100) < probCulture){
+            float targetCulture = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getValue("CULTURAL_INFLUENCE");
+            // if a random value between 0 and targetCulture is lower than 0 and ownCulture influence the agent
+            if(RandomHelper::random_real(0.0f, targetCulture)<RandomHelper::random_real(0.0f, probCulture))
+            {
                 type = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType();
             }
         }
@@ -115,10 +94,9 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     else {
         maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
     }
-    if (type == agent->getType() and maxReached == false) {
-        float probReproduction = GameLevel::getInstance()->getAttributesValues("REPRODUCTION", agent->getValOfAttribute("REPRODUCTION"));
-
-        probReproduction *= tech;
+    if (type == agent->getType() and maxReached == false)
+    {
+        float probReproduction = agent->getValue("REPRODUCTION");
 
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
@@ -134,7 +112,8 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         }
         //srand(time(NULL));
         //if ((rand() % 100) < probReproduction) {
-        if (random(0, 100) < 100*probReproduction) {
+        if (RandomHelper::random_real(0.0f, 1.0f)<probReproduction)
+        {
             int maxIterations = 30;
             Point fingerSpot = GameLevel::getInstance()->getAgentDirections()[typeAgent];
             /*if (agent->getType() != 0) {
@@ -167,13 +146,13 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
 
             /*int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
             int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
-            int posx = random(minRandomX, maxRandomX);
-            int posy = random(minRandomY, maxRandomY);
+            int posx = RandomHelper::random_int(minRandomX, maxRandomX);
+            int posy = RandomHelper::random_int(minRandomY, maxRandomY);
             while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false) {
                 /*posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
                 posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
-                posx = random(minRandomX, maxRandomX);
-                posy = random(minRandomY, maxRandomY);
+                posx = RandomHelper::random_int(minRandomX, maxRandomX);
+                posy = RandomHelper::random_int(minRandomY, maxRandomY);
                 maxIterations--;
             }
             if (maxIterations > 0) {
@@ -184,7 +163,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
                 ag->setLife(100);
                 ag->setType(type);
                 ag->setPosition(posx, posy);
-                ag->setAttributes(GameLevel::getInstance()->getAgentAttributes(type));
+                ag->copyValues(type);
                 GameLevel::getInstance()->addAgent(ag);
                 GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
                 GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
@@ -194,10 +173,11 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
     else if (type != agent->getType()) {
         auto ag = new Agent(agent->getId(), agent->getLife(), type, agent->getPosition()->getX(), agent->getPosition()->getY());
-        ag->setAttributes(GameLevel::getInstance()->getAgentAttributes(type));
+        ag->copyValues(type);
         GameLevel::getInstance()->addAgent(ag);
         agent->setLife(0);
         //GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
         //GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
     }
 }
+

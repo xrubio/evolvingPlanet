@@ -31,6 +31,7 @@
 
 list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
 {
+    CCLOG("Collect is an Act with temporal implementation");
     //UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
