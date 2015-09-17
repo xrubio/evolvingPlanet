@@ -35,10 +35,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
 
     int type = agent->getType();
-    int mobility = agent->getValue("MOBILITY");
+    int mobility = agent->getValue(Mobility);
     // TODO XRC move this to method
     //INFLUENCIA CULTURAL - CALCULAR TIPUS
-    float probCulture = agent->getValue("CULTURAL_INFLUENCE");
+    float probCulture = agent->getValue(CulturalInfluence);
     if (probCulture > 0.0f)
     {
         //CERCAR AGENT EN RADI
@@ -72,7 +72,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         //SI S'HA TROBAT AGENT I INFLUEIX
         if (maxIterations > 0)
         {
-            float targetCulture = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getValue("CULTURAL_INFLUENCE");
+            float targetCulture = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getValue(CulturalInfluence);
             // if a random value between 0 and targetCulture is lower than 0 and ownCulture influence the agent
             if(RandomHelper::random_real(0.0f, targetCulture)<RandomHelper::random_real(0.0f, probCulture))
             {
@@ -96,7 +96,7 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
     }
     if (type == agent->getType() and maxReached == false)
     {
-        float probReproduction = agent->getValue("REPRODUCTION");
+        float probReproduction = agent->getValue(Reproduction);
 
         Power* p = nullptr;
         for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)

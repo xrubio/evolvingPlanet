@@ -68,7 +68,7 @@ void LevelLoader::loadXmlFile(string filename)
     while (attsConfig != nullptr)
     {
         string k = attsConfig.attribute("NAME").value();
-        GameLevel::getInstance()->createAttributeLevels(k);
+        GameLevel::getInstance()->createAttributeLevels(GameLevel::getInstance()->convertAttStringToInt(k));
         
         std::stringstream test(attsConfig.child_value("VALUES"));
         std::string segment;
@@ -76,7 +76,7 @@ void LevelLoader::loadXmlFile(string filename)
         int i = 0;
         while(std::getline(test, segment, ','))
         {
-            GameLevel::getInstance()->setValueAtLevel(k, i, atof(segment.c_str()));
+            GameLevel::getInstance()->setValueAtLevel(GameLevel::getInstance()->convertAttStringToInt(k), i, atof(segment.c_str()));
             i++;
         }
         
@@ -102,7 +102,8 @@ void LevelLoader::loadXmlFile(string filename)
         xml_node atts = ags.child("ATTRIBUTES").child("ATTRIBUTE");
 
         while (atts != nullptr) {
-            GameLevel::getInstance()->setAgentAttribute(type, atts.attribute("NAME").value(), atoi(atts.child("INITIAL_VALUE").child_value()));
+            GameLevel::getInstance()->setAgentAttribute(type, GameLevel::getInstance()->convertAttStringToInt(atts.attribute("NAME").value()),
+                                                        atoi(atts.child("INITIAL_VALUE").child_value()));
             //temporal
             /*if (type == 0) {
                 GameLevel::getInstance()->setAttributesValues(type, atts.attribute("NAME").value());

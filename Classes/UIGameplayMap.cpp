@@ -435,7 +435,7 @@ bool UIGameplayMap::init()
 
     const GameLevel::LevelsMap & atts = GameLevel::getInstance()->getAgentAttributes(0);
     int i = 0;
-    for (std::map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+    for (std::map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
         //si el cost de l'atribut es diferent de 0, es modificable
         if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), it->first) != 0) {
             keys.push_back(it->first);
@@ -580,7 +580,7 @@ bool UIGameplayMap::init()
             Vector<MenuItem*> attributesButtons;
             for (size_t j = 0; j < keys.size(); j++)
             {
-                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(keys[j].c_str())),
+                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(keys[j]).c_str())),
                     "fonts/BebasNeue.otf", 30);
                 labelAttRight->setColor(Color3B(216, 229, 236));
                 labelAttRight->setAnchorPoint(Vec2(0, 0.5));
@@ -1638,10 +1638,10 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 void UIGameplayMap::updateAgents(void)
 {
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
-    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
-    vector<string> keys;
+    map<int, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
+    vector<int> keys;
     int i = 0;
-    for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+    for (map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
         keys.push_back(it->first);
         i++;
     }

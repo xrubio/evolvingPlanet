@@ -73,7 +73,7 @@ void Agent::setPosition(int posx, int posy)
     position->setPosition(posx, posy);
 }
 
-float Agent::getValue(const string & att) const
+float Agent::getValue(int att) const
 {
     AttributesMap::const_iterator it = _attributes.find(att);
     if(it==_attributes.end())
@@ -84,8 +84,8 @@ float Agent::getValue(const string & att) const
 
     // TODO XRC increase efficiency storing the value in a different attribute?
     // if technology multiply result
-    it = _attributes.find("TECHNOLOGY");
-    if(att=="TECHNOLOGY" or it==_attributes.end())
+    it = _attributes.find(Technology);
+    if(att == Technology or it == _attributes.end())
     {
         return value;
     }
@@ -95,7 +95,7 @@ float Agent::getValue(const string & att) const
     }
 }
 
-void Agent::setValue(const string & att, float val)
+void Agent::setValue(int att, float val)
 {
     _attributes[att] = val;
 }

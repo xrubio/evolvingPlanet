@@ -36,7 +36,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition()->getX(), agent->getPosition()->getY(), 0);
 //    harm /= 4.0f;
 
-    float resistance = agent->getValue("RESISTANCE");
+    float resistance = agent->getValue(Resistance);
 
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     Power* p = nullptr;

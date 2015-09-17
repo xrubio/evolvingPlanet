@@ -125,12 +125,12 @@ void GameLevel::setNumLevel(int lvl)
     numLevel = lvl;
 }
 
-int GameLevel::getAgentAttribute(int type, const string & key)
+int GameLevel::getAgentAttribute(int type, int key)
 {
     return _agentAttributes.at(type)[key];
 }
 
-void GameLevel::setAgentAttribute(int type, const string & key, int level)
+void GameLevel::setAgentAttribute(int type, int key, int level)
 {
     if(_agentAttributes.size() <= type)
     {
@@ -168,25 +168,25 @@ void GameLevel::resetAgentAttributesInitialConfig(void)
     _agentAttributesInitialConfig.clear();
 }
 
-float GameLevel::getValueAtLevel(const string  & attr, int level) const
+float GameLevel::getValueAtLevel(int attr, int level) const
 {
     AttributesLevelsMap::const_iterator it = _attributesLevels.find(attr);
     // not found, return 0
-    if(it==_attributesLevels.end())
+    if(it == _attributesLevels.end())
     {
         return 0.0f;
     }
     return it->second.at(level);
 }
 
-void GameLevel::createAttributeLevels(const string & attr)
+void GameLevel::createAttributeLevels(int attr)
 {
     // all attributes have 6 levels (0 to 5). All of them are set to 0
     vector<float> r(6, 0);
     _attributesLevels[attr] = r;
 }
 
-void GameLevel::setValueAtLevel(const string & attr, int level, float value)
+void GameLevel::setValueAtLevel(int attr, int level, float value)
 {
     _attributesLevels[attr][level] = value;
 }
@@ -386,12 +386,12 @@ void GameLevel::setEvolutionPoints(int points)
     evolutionPoints = points;
 }
 
-int GameLevel::getAttributeCost(int type, string key)
+int GameLevel::getAttributeCost(int type, int key)
 {
     return attributesCost[type][key];
 }
 
-void GameLevel::setAttributeCost(int type, string key, int val)
+void GameLevel::setAttributeCost(int type, int key, int val)
 {
     attributesCost[type][key] = val;
 }
@@ -784,4 +784,73 @@ bool GameLevel::validatePosition(int posx, int posy)
     return true;
 }
 
+int GameLevel::convertAttStringToInt(const string & s)
+{
+    int ret = -1;
+
+    if (s == "MOBILITY")
+    {
+        ret = Mobility;
+    }
+    else if (s == "REPRODUCTION")
+    {
+        ret = Reproduction;
+    }
+    else if (s == "RESISTANCE")
+    {
+        ret = Resistance;
+    }
+    else if (s == "TECHNOLOGY")
+    {
+        ret = Technology;
+    }
+    else if (s == "HOSTILITY")
+    {
+        ret = Hostility;
+    }
+    else if (s == "CULTURAL_INFLUENCE")
+    {
+        ret = CulturalInfluence;
+    }
+    else if (s == "ADAPTATION")
+    {
+        ret = Adaptation;
+    }
+    
+    return ret;
+}
+
+string GameLevel::convertAttIntToString(int i)
+{
+    string ret = "";
+    
+    switch (i) {
+        case Mobility:
+            ret = "MOBILITY";
+            break;
+        case Reproduction:
+            ret = "REPRODUCTION";
+            break;
+        case Resistance:
+            ret = "RESISTANCE";
+            break;
+        case Technology:
+            ret = "TECHNOLOGY";
+            break;
+        case Hostility:
+            ret = "HOSTILITY";
+            break;
+        case CulturalInfluence:
+            ret = "CULTURAL_INFLUENCE";
+            break;
+        case Adaptation:
+            ret = "ADAPTATION";
+            break;
+        default:
+            ret = "";
+            break;
+    }
+    
+    return ret;
+}
 

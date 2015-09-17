@@ -52,12 +52,23 @@ enum LevelState
     UserCancel = 5
 };
 
+enum Attributes
+{
+    Mobility = 0,
+    Reproduction = 1,
+    Resistance = 2,
+    Technology = 3,
+    Hostility = 4,
+    CulturalInfluence = 5,
+    Adaptation = 6
+};
+
 class GameLevel
 {  
 public:
     // float values for each level for the set of attributes
-    typedef std::map<std::string, std::vector<float> > AttributesLevelsMap;
-    typedef std::map<std::string, int > LevelsMap;
+    typedef std::map<int, std::vector<float> > AttributesLevelsMap;
+    typedef std::map<int, int > LevelsMap;
     typedef std::vector<LevelsMap> LevelsMapVector;
     
     static GameLevel* getInstance();
@@ -80,8 +91,8 @@ public:
     void setNumLevel(int lvl);
 
     // attributes management
-    int getAgentAttribute(int type, const string & key);
-    void setAgentAttribute(int type, const string & key, int value);
+    int getAgentAttribute(int type, int key);
+    void setAgentAttribute(int type, int key, int value);
 
     // returns the current list of attribute levels of an agent type
     const LevelsMap & getAgentAttributes(int type) const;
@@ -96,11 +107,11 @@ public:
     void resetAgentAttributesInitialConfig(void);
 
     // returns value of attribute attr (0 if not present)
-    float getValueAtLevel(const string & attr, int level) const;
+    float getValueAtLevel(int attr, int level) const;
     // creates the attribute and set all values to 0
-    void createAttributeLevels(const string & attr);
+    void createAttributeLevels(int attr);
     // sets the attribute value at k to v for level i
-    void setValueAtLevel(const string & attr, int level, float value);
+    void setValueAtLevel(int attr, int level, float value);
 
     vector<Power*> getPowers(void);
     void setPowers(vector<Power*> p);
@@ -138,8 +149,8 @@ public:
     void setTimeSpeedBeforePause(float speed);
     int getEvolutionPoints(void);
     void setEvolutionPoints(int points);
-    int getAttributeCost(int type, string key);
-    void setAttributeCost(int type, string key, int val);
+    int getAttributeCost(int type, int key);
+    void setAttributeCost(int type, int key, int val);
     int getTimeExploited(int x, int y);
     void setTimeExploited(int x, int y, int val);
     bool getDepleted(int x, int y);
@@ -173,6 +184,9 @@ public:
     void resetLevel(void);
 
     bool validatePosition(int posx, int posy);
+    
+    int convertAttStringToInt(const string & s);
+    string convertAttIntToString(int i);
 
     bool paint = false;
     bool ended = false;
@@ -232,7 +246,6 @@ private:
     void initializeAgentsPool(void);
     void generateInitialAgents(int type);
     inline void act(void);
-
 
 };
 

@@ -152,7 +152,7 @@ private:
     Texture2D* exploitedMapTexture;
     Sprite* exploitedMapSprite;
 
-    vector<string> keys;
+    vector<int> keys;
 
     bool resourcesMap = false;
 

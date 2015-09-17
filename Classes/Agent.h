@@ -37,7 +37,7 @@ using namespace std;
 class Agent {
 
 public:
-    typedef std::map<std::string, float> AttributesMap;
+    typedef std::map<int, float> AttributesMap;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent(){};
@@ -50,8 +50,8 @@ public:
     void setType(int t);
     Position* getPosition(void);
     void setPosition(int posx, int posy);
-    float getValue(const string & att) const;
-    void setValue(const string & att, float val);
+    float getValue(int att) const;
+    void setValue(int att, float val);
     // copy attribute values at current levels to agent of type
     void copyValues(int type);
 

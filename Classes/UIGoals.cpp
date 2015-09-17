@@ -135,9 +135,9 @@ bool UIGoals::init()
         GameLevel::getInstance()->initializeAttributesCost();
     }
     GameLevel::getInstance()->setCurrentAgentType(0);
-    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(GameLevel::getInstance()->getCurrentAgentType());
+    map<int, int> atts = GameLevel::getInstance()->getAgentAttributes(GameLevel::getInstance()->getCurrentAgentType());
     int i = 0;
-    for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+    for (map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
         //si el cost de l'atribut es diferent de 0, es modificable
         if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), it->first) != 0) {
             keys.push_back(it->first);
@@ -517,12 +517,12 @@ void UIGoals::setLevelGoals(Layout* layout)
     attributesLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(attributesLabel);
     
-    map<string, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
+    map<int, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
     int posIndex = 0;
-    for (map<string, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+    for (map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
         //ATRIBUT MODIFICABLE
         if (GameLevel::getInstance()->getAttributeCost(0, it->first) != 0) {
-            auto attLabel = Label::createWithTTF(LocalizedString::create(it->first.c_str()) + ":    Explicació de l'atribut",
+            auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(it->first).c_str()) + ":    Explicació de l'atribut",
                                              "fonts/BebasNeue.otf", 60);
             attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (posIndex * 2)) * visibleSize.height / 31));
             attLabel->setColor(Color3B(211, 230, 236));
@@ -622,8 +622,7 @@ void UIGoals::createUIAgent(Layout* layout)
     }
 
     for (size_t i = 0; i < keys.size(); i++) {
-        auto attLabel = Label::createWithTTF(string(LocalizedString::create(keys[i].c_str())) + " - ",
-            "fonts/BebasNeue.otf", 60);
+        auto attLabel = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(keys[i]).c_str())) + " - ", "fonts/BebasNeue.otf", 60);
         attLabel->setColor(Color3B(207, 203, 208));
         attLabel->setAnchorPoint(Vec2(1, 0.5));
         attLabel->setPosition(18 * visibleSize.width / 42, (25 - ((i + 1) * 5)) * visibleSize.height / 31);
