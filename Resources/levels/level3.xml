@@ -34,14 +34,14 @@
 </AGENTS>
 <POWERS>
     <POWER NAME="ReproductionBoost">
-        <COST>3</COST>
+        <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
         <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
         <TYPE TYPE_NAME="Global"/>
     </POWER>
     <POWER NAME="ResistanceBoost">
-        <COST>3</COST>
+        <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
         <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
