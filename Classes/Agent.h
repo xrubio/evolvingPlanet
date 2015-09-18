@@ -61,6 +61,9 @@ private:
     int type;
     Position* position;
     AttributesMap _attributes;
+
+    // shortcut to attribute value for efficiency
+    float _technology;
 };
 
 #endif /* defined(__simulplay__Agent__) */

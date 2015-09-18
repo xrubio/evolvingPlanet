@@ -28,7 +28,7 @@
 #include "Agent.h"
 #include "GameLevel.h"
 
-Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0)
+Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _technology(0.0f)
 {
     position = new Position(posx, posy);
 }
@@ -82,21 +82,23 @@ float Agent::getValue(int att) const
     }
     float value = it->second;
 
-    // TODO XRC increase efficiency storing the value in a different attribute?
     // if technology multiply result
-    it = _attributes.find(Technology);
-    if(att == Technology or it == _attributes.end())
+    if(att == Technology or _technology==0.0f)
     {
         return value;
     }
     else
     {
-        return value*it->second;
+        return value*_technology;
     }
 }
 
 void Agent::setValue(int att, float val)
 {
+    if(att == Technology)
+    {
+        _technology = val;
+    }
     _attributes[att] = val;
 }
 
