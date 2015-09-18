@@ -71,12 +71,12 @@
     <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M3"/>
     <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M4"/>
     <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M5" closesWhen="tapButton" button="power0">
-        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
+        <spot centerX="0.05" centerY="0.08" radius="0.05"/>
     </message>        
     <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M6"/>
     <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M7" closesWhen="tapButton" button="timeMenu/playToggle"/>
-    <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL3M8" closesWhen="tapButton" button="power1">
-        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
+    <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL3M8" button="power1">
+        <spot centerX="0.15" centerY="0.07" radius="0.05"/>
     </message>        
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M9"/>
     <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M10"/>

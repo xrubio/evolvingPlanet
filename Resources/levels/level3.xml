@@ -12,7 +12,7 @@
         <VALUES>1,1.25,1.5,1.75,2,2.25</VALUES>
     </ATTRIBUTE>  
     <ATTRIBUTE NAME="MOBILITY">
-        <VALUES>5,7,8,10,12,15</VALUES>
+        <VALUES>8,10,12,14,16,18</VALUES>
     </ATTRIBUTE>
 </ATTRIBUTES_CONFIG>
 <AGENTS MAX_ALL="NO" >
@@ -34,7 +34,7 @@
 </AGENTS>
 <POWERS>
     <POWER NAME="ReproductionBoost">
-        <COST>5</COST>
+        <COST>3</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
         <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
@@ -43,7 +43,7 @@
         </TYPE>
     </POWER>
     <POWER NAME="ResistanceBoost">
-        <COST>5</COST>
+        <COST>3</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
         <ATTRIBUTE>RESISTANCE</ATTRIBUTE>

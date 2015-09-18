@@ -81,9 +81,9 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL3M7</key>
 	<string>Distribute your initial EvoPoints and tap Play to see your system evolve.</string>
 	<key>LEVEL3M8</key>
-	<string>This second Boost increases the Resistance of the agents in a particular area. Press it and without raising the finger move it over your population. </string>
+	<string>This second Boost increases the Resistance of the agents in a particular area. Tap and drag the area of effect to your population when you have the needede EvoPoints (3).</string>
 	<key>LEVEL3M9</key>
-	<string>It will be extremely handy if you need to cross an arid region such as the western part of this map</string>
+	<string>It will be extremely handy if you need to cross an arid region such as the western part of this map.</string>
 	<key>LEVEL3M10</key>
 	<string>Good luck commander!</string>
 </dict>
