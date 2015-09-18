@@ -81,10 +81,21 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL3M7</key>
 	<string>Distribute your initial EvoPoints and tap Play to see your system evolve.</string>
 	<key>LEVEL3M8</key>
-	<string>This second Boost increases the Resistance of the agents in a particular area. Tap and drag the area of effect to your population when you have the needede EvoPoints (3).</string>
+	<string>This second Boost increases the Resistance of the agents in a particular area. Tap and drag the area of effect to your population when you have the needed EvoPoints (3).</string>
 	<key>LEVEL3M9</key>
 	<string>It will be extremely handy if you need to cross an arid region such as the western part of this map.</string>
 	<key>LEVEL3M10</key>
+	<string>Good luck commander!</string>
+
+	<key>LEVEL4M1</key>
+	<string>It seems that the archaeologists have new clues so let's repeat the last experiment with this new evidence.</string>
+	<key>LEVEL4M2</key>
+	<string>Technological development was quite relevant here so you have control over this attribute instead of Reproduction. On the other hand the available time to reach your goals is considerable shorter</string>
+	<key>LEVEL4M3</key>
+	<string>It is a peculiar attribute; it is not aparticular behavior of your population, but all of them. When you increase your Technology all the other attributes increase their efficiency</string>
+	<key>LEVEL4M4</key>
+	<string>Try dispersing your population towards the arid zones increasing their technological skills.</string>
+	<key>LEVEL4M5</key>
 	<string>Good luck commander!</string>
 </dict>
 </plist>

@@ -74,11 +74,18 @@
         <spot centerX="0.05" centerY="0.08" radius="0.05"/>
     </message>        
     <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M6"/>
-    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M7" closesWhen="tapButton" button="timeMenu/playToggle"/>
-    <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL3M8" button="power1">
+    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M7"/>
+    <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="5" text="LEVEL3M8">
         <spot centerX="0.15" centerY="0.07" radius="0.05"/>
     </message>        
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M9"/>
     <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M10"/>
+</level>
+<level num="4" numMessages="5">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL4M1"/>
+    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M2"/>
+    <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M3"/>
+    <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M4"/>
+    <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M5"/>
 </level>
 

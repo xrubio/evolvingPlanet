@@ -49,9 +49,9 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
         p = GameLevel::getInstance()->getPowers()[i];
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
-        if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048.0 / 480.0),
-                ((1536 - 1365) / 2) + (agent->getPosition()->getY() * float(1365.0 / 320.0)))) {
-            harm /= 2.0f;
+        if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048.0 / 480.0), ((1536 - 1365) / 2) + (agent->getPosition()->getY() * float(1365.0 / 320.0))))
+        {
+            resistance = GameLevel::getInstance()->getValueAtLevel(Resistance, 5);
         }
     }
     harm /= resistance;

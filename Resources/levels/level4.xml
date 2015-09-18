@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NUM_LEVEL>4</NUM_LEVEL>
-<NAME_LEVEL>Cultural Influence</NAME_LEVEL>
+<NAME_LEVEL>Technology</NAME_LEVEL>
 <FILE_MAP>Level3</FILE_MAP>
 <AGENTS_PIXEL_SIZE>2</AGENTS_PIXEL_SIZE>
 <EVPOINTS_FREQ>3</EVPOINTS_FREQ>
@@ -9,13 +9,13 @@
         <VALUES>0.2,0.25,0.3,0.35,0.4,0.45</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="TECHNOLOGY">
-        <VALUES>1,1.1,1.3,1.5,2,2.5</VALUES>
+        <VALUES>1,1.1,1.3,1.5,1.8,2</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="RESISTANCE">
         <VALUES>1,1.25,1.5,1.75,2,2.25</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="MOBILITY">
-        <VALUES>5,7,8,10,12,15</VALUES>
+        <VALUES>8,10,12,14,16,18</VALUES>
     </ATTRIBUTE>
 </ATTRIBUTES_CONFIG>
 <AGENTS MAX_ALL="NO" >
@@ -40,16 +40,14 @@
 </AGENTS>
 <POWERS>
     <POWER NAME="ReproductionBoost">
-        <COST>5</COST>
+        <COST>3</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
         <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
-        <TYPE TYPE_NAME="Multiplier">
-            <MULTIPLIER>1.5</MULTIPLIER>
-        </TYPE>
+        <TYPE TYPE_NAME="Global"/>
     </POWER>
     <POWER NAME="ResistanceBoost">
-        <COST>5</COST>
+        <COST>3</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
         <ATTRIBUTE>RESISTANCE</ATTRIBUTE>

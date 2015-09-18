@@ -30,7 +30,7 @@
 #include "UIGoals.h"
 #include "GameData.h"
 #include "LocalizedString.h"
-#include "UIMultiplierPower.h"
+#include "UIGlobalPower.h"
 #include "UIAreaPower.h"
 
 #include <audio/include/SimpleAudioEngine.h>
@@ -543,8 +543,8 @@ void UIGoals::setLevelGoals(Layout* layout)
     
     for(size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
-        if (GameLevel::getInstance()->getPowers()[i]->getType() == "Multiplier") {
-            auto power = new UIMultiplierPower(GameLevel::getInstance()->getPowers()[i]);
+        if (GameLevel::getInstance()->getPowers()[i]->getType() == "Global") {
+            auto power = new UIGlobalPower(GameLevel::getInstance()->getPowers()[i]);
             power->setPosition(9 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31);
             layout->addChild(power->getIcon());
         }

@@ -29,7 +29,7 @@
 #include "UIGoals.h"
 #include "GameData.h"
 #include "LocalizedString.h"
-#include "UIMultiplierPower.h"
+#include "UIGlobalPower.h"
 #include "UIAreaPower.h"
 #include "CollectionGoal.h"
 #include "ExpansionGoal.h"
@@ -303,9 +303,9 @@ bool UIGameplayMap::init()
             pos.y = powerButtons[i - 1]->getIcon()->getPosition().y;
         }
 
-        if (pws[i]->getType() == "Multiplier")
+        if (pws[i]->getType() == "Global")
         {
-            powerButtons.push_back(new UIMultiplierPower(pws[i]));
+            powerButtons.push_back(new UIGlobalPower(pws[i]));
             powerButtons[i]->setPosition(pos.x, pos.y);
             powerButtons[i]->getIcon()->setName("power"+std::to_string(i));
             this->addChild(powerButtons[i]->getIcon(), 3);

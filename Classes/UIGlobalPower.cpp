@@ -18,17 +18,17 @@
  */
 
 //
-//  UIMultiplierPower.cpp
+//  UIGlobalPower.cpp
 //  simulplay
 //
 //  Created by Guillem Laborda on 12/09/14.
 //
 //
 
-#include "UIMultiplierPower.h"
+#include "UIGlobalPower.h"
 #include "UIGameplayMap.h"
 
-UIMultiplierPower::UIMultiplierPower(Power* p) : UIPower(p)
+UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
 {
     icon = Sprite::create("gui/PowerBackgroundButton.png");
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -54,7 +54,7 @@ UIMultiplierPower::UIMultiplierPower(Power* p) : UIPower(p)
     //icon->addChild(cooldown, 3);
 }
 
-void UIMultiplierPower::onTouchesBegan(Point touchLocation)
+void UIGlobalPower::onTouchesBegan(Point touchLocation)
 {
     if (((ProgressTimer*)icon->getChildByTag(2))->getPercentage() == 100.0 or disabled == true)
     {
@@ -68,11 +68,11 @@ void UIMultiplierPower::onTouchesBegan(Point touchLocation)
     }
 }
 
-void UIMultiplierPower::onTouchesMoved(Touch* touchLocation)
+void UIGlobalPower::onTouchesMoved(Touch* touchLocation)
 {
 }
 
-void UIMultiplierPower::onTouchesEnded(Point touchLocation)
+void UIGlobalPower::onTouchesEnded(Point touchLocation)
 {
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked) {
@@ -89,7 +89,7 @@ void UIMultiplierPower::onTouchesEnded(Point touchLocation)
     actionTime = 0.0;
 }
 
-void UIMultiplierPower::update(float delta)
+void UIGlobalPower::update(float delta)
 {
     ProgressTimer* actionTimer = (ProgressTimer*)icon->getChildByTag(1);
     ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);

@@ -89,6 +89,7 @@ float Agent::getValue(int att) const
     }
     else
     {
+        CCLOG("oeoe: %f val %f", _technology, value*_technology);
         return value*_technology;
     }
 }

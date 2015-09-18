@@ -18,28 +18,28 @@
  */
 
 //
-//  MultiplierPower.h
+//  UIGlobalPower.h
 //  simulplay
 //
-//  Created by Guillem Laborda on 18/09/14.
+//  Created by Guillem Laborda on 12/09/14.
 //
 //
 
-#ifndef __simulplay__MultiplierPower__
-#define __simulplay__MultiplierPower__
+#ifndef __simulplay__UIGlobalPower__
+#define __simulplay__UIGlobalPower__
 
-#include "Power.h"
+#include "UIPower.h"
 
-class MultiplierPower : public Power {
-
+class UIGlobalPower : public UIPower {
 public:
-    MultiplierPower(const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float cost, float mult);
+    UIGlobalPower(Power* p = 0);
     
-    float getMultiplier(void);
-    void setMultiplier(float m);
+    void onTouchesBegan(Point touchLocation);
+    void onTouchesMoved(Touch* touchLocation);
+    void onTouchesEnded(Point touchLocation);
+    void update(float delta);
 
 private:
-    float multiplier;
+    float actionTime = 0.0;
 };
-
-#endif /* defined(__simulplay__MultiplierPower__) */
+#endif /* defined(__simulplay__UIGlobalPower__) */

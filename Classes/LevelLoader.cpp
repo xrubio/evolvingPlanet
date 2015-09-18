@@ -33,7 +33,6 @@
 #include "EnvironmentAdaptation.h"
 #include "Kill.h"
 #include "Die.h"
-#include "MultiplierPower.h"
 #include "AreaPower.h"
 #include "UIGameplayMap.h"
 #include "ExpansionGoal.h"
@@ -153,9 +152,8 @@ void LevelLoader::loadXmlFile(string filename)
         int cooldownLeft = 0;
         string attribute = pws.child("ATTRIBUTE").child_value();
         string type = pws.child("TYPE").attribute("TYPE_NAME").value();
-        if (type == "Multiplier") {
-            float multiplier = atof(pws.child("TYPE").child("MULTIPLIER").child_value());
-            GameLevel::getInstance()->addPower(new MultiplierPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost, multiplier));
+        if (type == "Global") {
+            GameLevel::getInstance()->addPower(new Power(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost));
         }
         else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());

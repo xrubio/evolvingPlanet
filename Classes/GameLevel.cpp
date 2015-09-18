@@ -29,7 +29,7 @@
 #include "UIGameplayMap.h"
 #include "Die.h"
 #include "Reproduce.h"
-#include "MultiplierPower.h"
+#include "Power.h"
 #include "AreaPower.h"
 #include "GameData.h"
 #include "ExpansionGoal.h"
