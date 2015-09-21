@@ -28,7 +28,7 @@
 #include "Agent.h"
 #include "GameLevel.h"
 
-Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _technology(0.0f)
+Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _attributes(GameLevel::_numAttributes, 0.0f)
 {
     position = new Position(posx, posy);
 }
@@ -75,40 +75,31 @@ void Agent::setPosition(int posx, int posy)
 
 float Agent::getValue(int att) const
 {
-    AttributesMap::const_iterator it = _attributes.find(att);
-    if(it==_attributes.end())
-    {
-        return 0.0f;
-    }
-    float value = it->second;
-
+    float value = _attributes.at(att);
     // if technology multiply result
-    if(att == Technology or _technology==0.0f)
+    if(att==Technology or _attributes.at(Technology)==0.0f)
     {
         return value;
     }
     else
     {
-        return value*_technology;
+        return value*_attributes.at(Technology);
     }
 }
 
 void Agent::setValue(int att, float val)
 {
-    if(att == Technology)
-    {
-        _technology = val;
-    }
-    _attributes[att] = val;
+    _attributes.at(att) = val;
 }
 
 void Agent::copyValues( int type )
 {
-    const GameLevel::LevelsMap & currentValues = GameLevel::getInstance()->getAgentAttributes(type);
-    for(GameLevel::LevelsMap::const_iterator it=currentValues.begin(); it!=currentValues.end(); it++)
+    const GameLevel::Levels & currentValues = GameLevel::getInstance()->getAgentAttributes(type);
+    for(size_t i=0; i<currentValues.size(); i++)
     {
-        float value = GameLevel::getInstance()->getValueAtLevel(it->first, it->second);
-        setValue(it->first, value);
+        float value = GameLevel::getInstance()->getValueAtLevel(i, currentValues.at(i));
+        setValue(i, value);
+
     }
 }
 

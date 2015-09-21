@@ -135,14 +135,15 @@ bool UIGoals::init()
         GameLevel::getInstance()->initializeAttributesCost();
     }
     GameLevel::getInstance()->setCurrentAgentType(0);
-    map<int, int> atts = GameLevel::getInstance()->getAgentAttributes(GameLevel::getInstance()->getCurrentAgentType());
-    int i = 0;
-    for (map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+    const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(GameLevel::getInstance()->getCurrentAgentType());
+    for(size_t i=0; i<atts.size(); i++)
+    {
         //si el cost de l'atribut es diferent de 0, es modificable
-        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), it->first) != 0) {
-            keys.push_back(it->first);
+        if(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), i) == 0)
+        {
+            continue;
         }
-        i++;
+        keys.push_back(i);
     }
 
     pages = PageView::create();
@@ -517,20 +518,23 @@ void UIGoals::setLevelGoals(Layout* layout)
     attributesLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(attributesLabel);
     
-    map<int, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
+    const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
     int posIndex = 0;
-    for (map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
-        //ATRIBUT MODIFICABLE
-        if (GameLevel::getInstance()->getAttributeCost(0, it->first) != 0) {
-            auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(it->first).c_str()) + ":    Explicació de l'atribut",
-                                             "fonts/BebasNeue.otf", 60);
-            attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (posIndex * 2)) * visibleSize.height / 31));
-            attLabel->setColor(Color3B(211, 230, 236));
-            attLabel->setAnchorPoint(Vec2(0, 0.5));
-            attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-            layout->addChild(attLabel);
-            posIndex++;
+    for(size_t i=0; i<atts.size(); i++)
+    {
+        if (GameLevel::getInstance()->getAttributeCost(0, i) == 0)
+        {
+            continue;
         }
+        //ATRIBUT MODIFICABLE
+        auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(i).c_str()) + ":    Explicació de l'atribut",
+                                         "fonts/BebasNeue.otf", 60);
+        attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (posIndex * 2)) * visibleSize.height / 31));
+        attLabel->setColor(Color3B(211, 230, 236));
+        attLabel->setAnchorPoint(Vec2(0, 0.5));
+        attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        layout->addChild(attLabel);
+        posIndex++;
     }
     
     auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/BebasNeue.otf", 80);
@@ -539,7 +543,6 @@ void UIGoals::setLevelGoals(Layout* layout)
     powersLabel->setAnchorPoint(Vec2(0, 0.5));
     powersLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(powersLabel);
-    
     
     for(size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {

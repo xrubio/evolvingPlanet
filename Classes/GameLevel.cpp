@@ -36,6 +36,8 @@
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
+size_t GameLevel::_numAttributes= 7;
+
 GameLevel* GameLevel::getInstance()
 {
     if (!gamelevelInstance) // Only allow one instance of class to be generated.
@@ -43,6 +45,10 @@ GameLevel* GameLevel::getInstance()
         gamelevelInstance = new GameLevel;
     }
     return gamelevelInstance;
+}
+
+GameLevel::GameLevel()
+{
 }
 
 UIGameplayMap* GameLevel::getUIGameplayMap(void)
@@ -134,12 +140,12 @@ void GameLevel::setAgentAttribute(int type, int key, int level)
 {
     if(_agentAttributes.size() <= type)
     {
-        _agentAttributes.push_back(LevelsMap());
+        _agentAttributes.push_back(Levels(_numAttributes,-1));
     }
-    _agentAttributes.at(type)[key] = level;
+    _agentAttributes.at(type).at(key) = level;
 }
 
-const GameLevel::LevelsMap & GameLevel::getAgentAttributes(int type) const
+const GameLevel::Levels & GameLevel::getAgentAttributes(int type) const
 {
     return _agentAttributes.at(type);
 }
@@ -170,25 +176,12 @@ void GameLevel::resetAgentAttributesInitialConfig(void)
 
 float GameLevel::getValueAtLevel(int attr, int level) const
 {
-    AttributesLevelsMap::const_iterator it = _attributesLevels.find(attr);
-    // not found, return 0
-    if(it == _attributesLevels.end())
-    {
-        return 0.0f;
-    }
-    return it->second.at(level);
-}
-
-void GameLevel::createAttributeLevels(int attr)
-{
-    // all attributes have 6 levels (0 to 5). All of them are set to 0
-    vector<float> r(6, 0);
-    _attributesLevels[attr] = r;
+    return _attributesLevels.at(attr).at(level);
 }
 
 void GameLevel::setValueAtLevel(int attr, int level, float value)
 {
-    _attributesLevels[attr][level] = value;
+    _attributesLevels.at(attr).at(level) = value;
 }
 
 vector<Power*> GameLevel::getPowers(void)
@@ -388,12 +381,12 @@ void GameLevel::setEvolutionPoints(int points)
 
 int GameLevel::getAttributeCost(int type, int key)
 {
-    return attributesCost[type][key];
+    return _attributesCost.at(type).at(key);
 }
 
 void GameLevel::setAttributeCost(int type, int key, int val)
 {
-    attributesCost[type][key] = val;
+    _attributesCost.at(type).at(key) = val;
 }
 
 int GameLevel::getTimeExploited(int x, int y)
@@ -600,7 +593,14 @@ void GameLevel::resetLevel(void)
 
     agentDirections.clear();
     agentFutureDirections.clear();
+
     _attributesLevels.clear();
+    // all attributes have 6 levels (0 to 5). All of them are set to 0
+    for(size_t i=0; i<_numAttributes; i++)
+    {
+        std::vector<float> r(6, 0);
+        _attributesLevels.push_back(r);
+    }
 }
 
 void GameLevel::createLevel(void)
@@ -619,17 +619,19 @@ void GameLevel::initializeAttributesCost(void)
 {
     for(size_t i = 0; i < _agentAttributes.size(); i++)
     {
-        attributesCost.push_back(LevelsMap());
-        for(LevelsMap::const_iterator it=_agentAttributes.at(i).begin(); it!=_agentAttributes.at(i).end(); it++)
+        _attributesCost.push_back(Levels(_numAttributes,-1));
+        for(size_t j=0; j<_agentAttributes.at(i).size(); j++)
         {
             //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
-            if (_agentAttributes.at(i)[it->first] != 0)
+            if (_agentAttributes.at(i).at(j) != 0)
             {
-                attributesCost[i][it->first] = 0;
+                CCLOG("cost for i: %d j= %d is 0", i, j);
+                _attributesCost.at(i).at(j) = 0;
             }
             else
             {
-                attributesCost[i][it->first] = 1;
+                CCLOG("cost for i: %d j= %d is 1", i, j);
+                _attributesCost.at(i).at(j) = 1;
             }
         }
     }
