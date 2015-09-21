@@ -25,22 +25,22 @@
 #include "Message.h"
 #include "LocalizedString.h"
 
-Tutorial::Tutorial() : _current(0)
+Tutorial::Tutorial() : _current(nullptr)
 {
 }
 
 Tutorial::~Tutorial()
 {
-    if(_current)
-    {
-        delete _current;
-    }
+    delete _current;
+    _current = nullptr;
+    
     MessageList::iterator it = _messages.begin();
     while(it!=_messages.end())
     {
         Message * message = *it;
         it = _messages.erase(it);
         delete message;
+        message = nullptr;
     }
 }
 

@@ -63,7 +63,7 @@ bool UIGameplayMap::init()
         return false;
     }
 
-    _tutorial = 0;
+    _tutorial = nullptr;
     Director::getInstance()->setAnimationInterval(1.0 / 30);
     
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -1324,11 +1324,8 @@ void UIGameplayMap::playLevel(void)
     pthread_mutex_lock(&gameLevelMutex);
 
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
-    if(_tutorial)
-    {
-        delete _tutorial;
-        _tutorial = 0;
-    }
+    delete _tutorial;
+    _tutorial = nullptr;
 
     if(launchTutorial)
     {
@@ -1337,7 +1334,7 @@ void UIGameplayMap::playLevel(void)
         if(!_tutorial->loadTutorial())
         {
             delete _tutorial;
-            _tutorial = 0;
+            _tutorial = nullptr;
         }
     }
     GameLevel::getInstance()->playLevel();
@@ -1782,13 +1779,13 @@ void UIGameplayMap::update(float delta)
         {
             play = false;
             
-            if(_tutorial && _tutorial->checkNextMessage())
+            if(_tutorial)
             {
-                setMessage(_tutorial->getCurrentMessage());
-            }
-            else if(_tutorial && _tutorial->getCurrentMessage())
-            {
-                if(_tutorial->getCurrentMessage()->meetsPostCondition())
+                if(_tutorial->checkNextMessage())
+                {
+                    setMessage(_tutorial->getCurrentMessage());
+                }
+                else if(_tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->meetsPostCondition())
                 {
                     _tutorial->removeCurrentMessage();
                     this->getChildByName("tutorial")->setVisible(false);
@@ -1802,7 +1799,6 @@ void UIGameplayMap::update(float delta)
                     }
                 }
             }
-
        
             //clock_t beforeTime = clock();
             updateAgents();
