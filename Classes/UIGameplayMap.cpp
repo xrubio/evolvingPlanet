@@ -265,7 +265,7 @@ bool UIGameplayMap::init()
     pauseDarkBackground->setName("pauseDarkBackground");
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    pauseDarkBackground->setOpacity(180);
+    pauseDarkBackground->setOpacity(150);
     auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("PAUSE")), "fonts/BebasNeue.otf", 170);
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
@@ -1628,7 +1628,10 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     auto retryMenu = Menu::createWithItem(retryButton);
     retryMenu->setPosition(0, 0);
     window->addChild(retryMenu);
-
+    
+    //delete wave nodes
+    this->getChildByName("attColorsBackground")->removeAllChildren();
+    
     this->addChild(window, 10);
 }
 
@@ -1962,20 +1965,19 @@ void UIGameplayMap::setMessage( const Message * message )
 
 void UIGameplayMap::updateWave(int indexAgent)
 {
-    float height = float(GameLevel::getInstance()->getAgents()[indexAgent].size())/float(GameLevel::getInstance()->getMaxAgents()[indexAgent]) * lifeBars.at(indexAgent)->getContentSize().height;
+    float height = float(GameLevel::getInstance()->getAgents()[indexAgent].size())/float(GameLevel::getInstance()->getMaxAgents()[indexAgent]) * lifeBars.at(indexAgent)->getContentSize().height * GameData::getInstance()->getRaHConversion();
        
     /*waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
     waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;*/
     // Space the verticies out evenly across the screen for the wave.
-    float vertexHorizontalSpacing = lifeBars.at(indexAgent)->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+    float vertexHorizontalSpacing = lifeBars.at(indexAgent)->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
     
     // Used to increment to the next vertexX position.
-    float currentWaveVertX = this->getChildByName("attColorsBackground")->getPositionX() + lifeBars.at(indexAgent)->getPositionX() -
-    (lifeBars.at(indexAgent)->getContentSize().width / 2);
+    float currentWaveVertX = this->getChildByName("attColorsBackground")->convertToWorldSpace(lifeBars.at(indexAgent)->getPosition()).x - (lifeBars.at(indexAgent)->getContentSize().width * GameData::getInstance()->getRaWConversion() / 2);
 
     WavePoint w;
     w.x = currentWaveVertX + vertexHorizontalSpacing * GameLevel::getInstance()->getTimeSteps();
-    w.y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
+    w.y = height + this->getChildByName("attColorsBackground")->convertToWorldSpace(lifeBars.at(indexAgent)->getPosition()).y - (lifeBars.at(indexAgent)->getContentSize().height * GameData::getInstance()->getRaHConversion() / 2);
     w.z = 0;
     waveNodes[indexAgent]->addToDynamicVerts3D(w, Color4B(179, 205, 221, 255));
 }
