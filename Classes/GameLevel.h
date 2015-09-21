@@ -66,10 +66,14 @@ enum Attributes
 class GameLevel
 {  
 public:
+    // number of attributes for each agent
+    static size_t _numAttributes;
     // float values for each level for the set of attributes
-    typedef std::map<int, std::vector<float> > AttributesLevelsMap;
-    typedef std::map<int, int > LevelsMap;
-    typedef std::vector<LevelsMap> LevelsMapVector;
+    typedef std::vector< std::vector<float> > AttributesLevels;
+    // current level for each attribute
+    typedef std::vector<int> Levels;
+    // current level for each agent type and attribute
+    typedef std::vector<Levels> LevelsVector;
     
     static GameLevel* getInstance();
 
@@ -95,7 +99,7 @@ public:
     void setAgentAttribute(int type, int key, int value);
 
     // returns the current list of attribute levels of an agent type
-    const LevelsMap & getAgentAttributes(int type) const;
+    const Levels & getAgentAttributes(int type) const;
 
     // set the list of attribute levels for all the agents to init
     void setAgentAttributesToInit();
@@ -108,8 +112,6 @@ public:
 
     // returns value of attribute attr (0 if not present)
     float getValueAtLevel(int attr, int level) const;
-    // creates the attribute and set all values to 0
-    void createAttributeLevels(int attr);
     // sets the attribute value at k to v for level i
     void setValueAtLevel(int attr, int level, float value);
 
@@ -206,11 +208,11 @@ private:
 
     clock_t currentTime = 0;
     int numLevel;
-    LevelsMapVector _agentAttributes;
-    LevelsMapVector _agentAttributesInitialConfig;
-    LevelsMapVector attributesCost;
+    LevelsVector _agentAttributes;
+    LevelsVector _agentAttributesInitialConfig;
+    LevelsVector _attributesCost;
     //temporal
-    AttributesLevelsMap _attributesLevels;
+    AttributesLevels _attributesLevels;
     vector<Power*> powers;
     vector<list<Agent*> > _agents;
     vector<list<Agent*> > _agentsPool;
@@ -241,7 +243,7 @@ private:
     vector<cocos2d::Point> agentDirections;
     vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
 
-    GameLevel(){};
+    GameLevel();
 
     void initializeAgentsPool(void);
     void generateInitialAgents(int type);

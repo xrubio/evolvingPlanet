@@ -29,7 +29,7 @@
 #define __simulplay__Agent__
 
 #include "Position.h"
-#include <map>
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -37,7 +37,7 @@ using namespace std;
 class Agent {
 
 public:
-    typedef std::map<int, float> AttributesMap;
+    typedef std::vector<float> Attributes;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent(){};
@@ -60,10 +60,7 @@ private:
     int life;
     int type;
     Position* position;
-    AttributesMap _attributes;
-
-    // shortcut to attribute value for efficiency
-    float _technology;
+    Attributes _attributes;
 };
 
 #endif /* defined(__simulplay__Agent__) */

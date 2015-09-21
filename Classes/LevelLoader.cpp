@@ -67,8 +67,6 @@ void LevelLoader::loadXmlFile(string filename)
     while (attsConfig != nullptr)
     {
         string k = attsConfig.attribute("NAME").value();
-        GameLevel::getInstance()->createAttributeLevels(GameLevel::getInstance()->convertAttStringToInt(k));
-        
         std::stringstream test(attsConfig.child_value("VALUES"));
         std::string segment;
         

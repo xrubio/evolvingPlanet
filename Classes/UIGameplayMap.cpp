@@ -433,14 +433,15 @@ bool UIGameplayMap::init()
 
     initializeAgents();
 
-    const GameLevel::LevelsMap & atts = GameLevel::getInstance()->getAgentAttributes(0);
-    int i = 0;
-    for (std::map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
+    const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
+    for(size_t i=0; i<atts.size(); i++)
+    {
         //si el cost de l'atribut es diferent de 0, es modificable
-        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), it->first) != 0) {
-            keys.push_back(it->first);
+        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), i) == 0)
+        {
+            continue;
         }
-        i++;
+        keys.push_back(i);
     }
 
     //AGENT TYPE BUTTONS
@@ -1638,12 +1639,16 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 void UIGameplayMap::updateAgents(void)
 {
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
-    map<int, int> atts = GameLevel::getInstance()->getAgentAttributes(0);
+    const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
     vector<int> keys;
-    int i = 0;
-    for (map<int, int>::const_iterator it = atts.begin(); it != atts.end(); it++) {
-        keys.push_back(it->first);
-        i++;
+    for(size_t i=0; i<atts.size(); i++)
+    {
+        //si el cost de l'atribut es diferent de 0, es modificable
+        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), i) == 0)
+        {
+            continue;
+        }
+        keys.push_back(i);
     }
 
     Color4B white = Color4B::WHITE;
