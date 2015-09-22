@@ -759,7 +759,8 @@ void GameLevel::act(void)
 
         int newAgents = int((float)numAgents*probReproduction);
         // check diff between current agents and max agents, and see if it's lower than newAgents
-        Agent::_numOffspring = min(newAgents, int(getMaxAgent(k)-_agents.at(k).size()));
+        int value = min(newAgents, int(getMaxAgent(k)-_agents.at(k).size()));
+        Agent::_numOffspring = RandomHelper::random_int(int(value*0.5f), value);
 
         if(finishedGame == Running)
         {
