@@ -1455,8 +1455,7 @@ void UIGameplayMap::initializeAgents(void)
         for (list<Agent*>::iterator it = agentsDomain[i].begin(); it != agentsDomain[i].end(); ++it)
         {
             Color4B color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 100));
-            drawAgent(Point((*it)->getPosition()->getX(), (*it)->getPosition()->getY()),
-                color, 0);
+            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
@@ -1617,13 +1616,13 @@ void UIGameplayMap::updateAgents(void)
                 break;
             }
 
-            drawAgent(Point((*it)->getPosition()->getX(), (*it)->getPosition()->getY()), color, 0);
-            if (GameLevel::getInstance()->getDepleted((*it)->getPosition()->getX(), (*it)->getPosition()->getY()) == true) {
-                drawExploitedMap(Point((*it)->getPosition()->getX(), (*it)->getPosition()->getY()),
+            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
+            if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
+                drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()),
                     Color4B(100, 100, 100, 100));
             }
-            if (GameLevel::getInstance()->getEnvironmentAdaptation((*it)->getPosition()->getX(), (*it)->getPosition()->getY()) == true) {
-                drawExploitedMap(Point((*it)->getPosition()->getX(), (*it)->getPosition()->getY()),
+            if (GameLevel::getInstance()->getEnvironmentAdaptation((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
+                drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()),
                     Color4B(0, 0, 0, 50));
             }
         }

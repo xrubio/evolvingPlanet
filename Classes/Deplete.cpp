@@ -71,8 +71,8 @@ list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
     }*/
 
     //JUGAR AMB EL TEMPS QUE HA ESTAT OCUPAT L'ESPAI I LA PROBBILITAT
-    if (GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY()) > 2
+    if (GameLevel::getInstance()->getTimeExploited(agent->getPosition().getX(), agent->getPosition().getY()) > 2
         and (rand() % 100) < sustainability) {
-        GameLevel::getInstance()->setDepleted(agent->getPosition()->getX(), agent->getPosition()->getY(), true);
+        GameLevel::getInstance()->setDepleted(agent->getPosition().getX(), agent->getPosition().getY(), true);
     }
 }

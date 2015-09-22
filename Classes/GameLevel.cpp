@@ -71,12 +71,12 @@ void GameLevel::setMapFilename(string filename)
     mapFilename = filename;
 }
 
-vector<int> GameLevel::getMaxAgents(void)
+std::vector<int> GameLevel::getMaxAgents(void)
 {
     return maxAgents;
 }
 
-void GameLevel::setMaxAgents(vector<int> max)
+void GameLevel::setMaxAgents(std::vector<int> max)
 {
     maxAgents.swap(max);
 }
@@ -91,12 +91,12 @@ void GameLevel::setMaxAgent(int type, int max)
     maxAgents.insert(maxAgents.begin() + type, max);
 }
 
-vector<int> GameLevel::getNumInitialAgents(void)
+std::vector<int> GameLevel::getNumInitialAgents(void)
 {
     return numInitialAgents;
 }
 
-void GameLevel::setNumInitialAgents(vector<int> ini)
+void GameLevel::setNumInitialAgents(std::vector<int> ini)
 {
     numInitialAgents.swap(ini);
 }
@@ -180,12 +180,12 @@ void GameLevel::setValueAtLevel(int attr, int level, float value)
     _attributesLevels.at(attr).at(level) = value;
 }
 
-vector<Power*> GameLevel::getPowers(void)
+std::vector<Power*> GameLevel::getPowers(void)
 {
     return powers;
 }
 
-void GameLevel::setPowers(vector<Power*> p)
+void GameLevel::setPowers(std::vector<Power*> p)
 {
     powers.swap(p);
 }
@@ -200,34 +200,29 @@ void GameLevel::deletePower(int i)
     powers.erase(powers.begin() + i);
 }
 
-vector<list<Agent*> > GameLevel::getAgents(void)
+std::vector<std::list<Agent*> > GameLevel::getAgents(void)
 {
     return _agents;
-}
-
-void GameLevel::setAgents(vector<list<Agent*> > agents)
-{
-    _agents = agents;
 }
 
 void GameLevel::addAgent(Agent* ag)
 {
     while (_agents.size() <= ag->getType()) {
-        list<Agent*> v;
+        std::list<Agent*> v;
         _agents.push_back(v);
     }
     _agents[ag->getType()].push_back(ag);
-    _agentsMap[ag->getPosition()->getX()][ag->getPosition()->getY()] = ag;
+    _agentsMap[ag->getPosition().getX()][ag->getPosition().getY()] = ag;
 }
 
-list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
+std::list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
 {
-    int posx = agent->getPosition()->getX();
-    int posy = agent->getPosition()->getY();
+    int posx = agent->getPosition().getX();
+    int posy = agent->getPosition().getY();
     //delete _agentsMap[posx][posy]; // = nullptr;
     _agentsMap[posx][posy] = nullptr;
     //_agents.at(type).erase(_agents.at(type).begin() + i);
-    list<Agent*>::reverse_iterator it = find(_agents[type].rbegin(), _agents[type].rend(), agent);
+    std::list<Agent*>::reverse_iterator it = find(_agents[type].rbegin(), _agents[type].rend(), agent);
     //advance(it, 1);
     _agents[type].erase(--(it.base()));
     _agentsPool[type].push_back(agent);
@@ -235,7 +230,7 @@ list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
     return it;
 }
 
-vector<list<Agent*> > GameLevel::getAgentsPool(void)
+std::vector<std::list<Agent*> > GameLevel::getAgentsPool(void)
 {
     return _agentsPool;
 }
@@ -243,16 +238,6 @@ vector<list<Agent*> > GameLevel::getAgentsPool(void)
 void GameLevel::popFrontAgentsPool(int type)
 {
     _agentsPool[type].pop_front();
-}
-
-vector<Act*> GameLevel::getActions(void)
-{
-    return actions;
-}
-
-void GameLevel::setActions(vector<Act*> a)
-{
-    actions.swap(a);
 }
 
 void GameLevel::addAction(Act* act)
@@ -265,12 +250,12 @@ void GameLevel::deleteAction(int i)
     actions.erase(actions.begin() + i);
 }
 
-vector<Goal*> GameLevel::getGoals(void)
+std::vector<Goal*> GameLevel::getGoals(void)
 {
     return goals;
 }
 
-void GameLevel::setGoals(vector<Goal*> g)
+void GameLevel::setGoals(std::vector<Goal*> g)
 {
     goals.swap(g);
 }
@@ -295,12 +280,12 @@ void GameLevel::setAddedAgents(int i)
     addedAgents = i;
 }
 
-vector<Point> GameLevel::getDeletedAgents(void)
+std::vector<Point> GameLevel::getDeletedAgents(void)
 {
     return deletedAgents;
 }
 
-void GameLevel::setDeletedAgents(vector<Point> v)
+void GameLevel::setDeletedAgents(std::vector<Point> v)
 {
     deletedAgents.swap(v);
 }
@@ -440,39 +425,19 @@ void GameLevel::setMaxAllAgents(int m)
     maxAllAgents = m;
 }
 
-vector<cocos2d::Point> GameLevel::getAgentDirections(void)
-{
-    return agentDirections;
-}
-
-void GameLevel::setAgentDirections(vector<cocos2d::Point> ad)
-{
-    agentDirections = ad;
-}
-
 void GameLevel::setAgentDirection(int agentType, cocos2d::Point p)
 {
-    agentDirections[agentType] = p;
-}
-
-vector<vector<pair<int, cocos2d::Point> > > GameLevel::getAgentFutureDirections(void)
-{
-    return agentFutureDirections;
-}
-
-void GameLevel::setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd)
-{
-    agentFutureDirections = afd;
+    _agentDirections[agentType] = p;
 }
 
 void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
 {
     pair<unsigned int, cocos2d::Point> par(step, p);
-    while (agentFutureDirections.size() <= type) {
-        vector<pair<int, cocos2d::Point> > v;
-        agentFutureDirections.push_back(v);
+    while (_agentFutureDirections.size() <= type) {
+        std::vector<pair<int, cocos2d::Point> > v;
+        _agentFutureDirections.push_back(v);
     }
-    agentFutureDirections[type].push_back(par);
+    _agentFutureDirections[type].push_back(par);
 }
 
 void GameLevel::setAgentPixelSize(int i)
@@ -517,9 +482,9 @@ void GameLevel::playLevel(void)
             
             // number of _agents
             size_t numAgents = 0;
-            for (size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++)
+            for (size_t i = 0; i < _agents.size(); i++)
             {
-                numAgents += GameLevel::getInstance()->getAgents()[i].size();
+                numAgents += _agents[i].size();
             }
 
             CCLOG("%d;%d;%f", timeSteps, numAgents, float(clock() - stepTime) / CLOCKS_PER_SEC);
@@ -590,8 +555,8 @@ void GameLevel::resetLevel(void)
     prevGoal = 0;
     calcTime = 0;
 
-    agentDirections.clear();
-    agentFutureDirections.clear();
+    _agentDirections.clear();
+    _agentFutureDirections.clear();
 
     _attributesLevels.clear();
     // all attributes have 6 levels (0 to 5). All of them are set to 0
@@ -608,7 +573,7 @@ void GameLevel::createLevel(void)
     for(size_t i = 0; i < numInitialAgents.size(); i++)
     {
         generateInitialAgents(i);
-        agentDirections.push_back(Point(-1, -1));
+        _agentDirections.push_back(Point(-1, -1));
     }
 
     paint = true;
@@ -626,7 +591,7 @@ void GameLevel::setAttributesToInitialAgents(void)
 void GameLevel::initializeAgentsPool(void)
 {
     for (int i = 0; i < maxAgents.size(); i++) {
-        list<Agent*> l_agent;
+        std::list<Agent*> l_agent;
         for (int j = 0; j < maxAgents[i]; j++) {
             l_agent.push_back(new Agent());
         }
@@ -676,6 +641,25 @@ void GameLevel::generateInitialAgents(int type)
     }
 }
 
+bool compareDists(const Agent * L, const Agent * R, const Point & spot)
+{       
+   // compute chebyshev distance
+   float Ldist = max(abs(L->getPosition().getX()-spot.x), abs(L->getPosition().getY()-spot.y));
+   float Rdist = max(abs(R->getPosition().getX()-spot.x), abs(R->getPosition().getY()-spot.y));
+   return Ldist>Rdist;
+};
+
+class DistSorter
+{
+    const Point & _spot;
+public:
+    DistSorter(const Point & spot) : _spot(spot){}
+    bool operator()(const Agent * a1, const Agent * a2)
+    {
+        return compareDists(a1, a2, _spot);
+    }
+};
+
 void GameLevel::act(void)
 {
     deletedAgents.clear();
@@ -683,58 +667,111 @@ void GameLevel::act(void)
     //CCLOG("Num agents: %i", _agents[0].size());
     //CCLOG("Pool: %i", _agentsPool[0].size());
     //CCLOG("Num agents + Pool: %i", _agents[0].size() + _agentsPool[0].size());
-    for (size_t k = 0; k < _agents.size() and finishedGame == Running; k++) {
+    for (size_t k = 0; k < _agents.size() and finishedGame == Running; k++)
+    {
+
         //CHECK DIRECTION
-        if (agentFutureDirections.empty() == false and agentFutureDirections[k].empty() == false) {
-            //CCLOG("check direction %i", agentFutureDirections[k][0].first);
-            if (timeSteps == agentFutureDirections[k][0].first) {
-                agentDirections[k] = agentFutureDirections[k][0].second;
-                agentFutureDirections[k].erase(agentFutureDirections[k].begin());
+        if (_agentFutureDirections.empty() == false and _agentFutureDirections[k].empty() == false)
+        {
+            //CCLOG("check direction %i", _agentFutureDirections[k][0].first);
+            if (timeSteps != _agentFutureDirections[k][0].first)
+            {
+                continue;
             }
+            _agentDirections[k] = _agentFutureDirections[k][0].second;
+            _agentFutureDirections[k].erase(_agentFutureDirections[k].begin());
         }
 
-        list<Agent*>::reverse_iterator end = _agents[k].rbegin();
-        while (end != _agents[k].rend() and finishedGame == Running) {
-            if ((*end)->getLife() > 0) {
-                for (size_t j = 0; j < actions.size() - 1; j++) {
-                    actions[j]->execute(k, *end);
-                }
-                //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
-                for (size_t  j = 0; j < goals.size(); j++) {
-                    if (goals[j]->getCompleted() == false) {
-                        goals[j]->checkGoal(k, *end);
-                    }
+        // TODO if finger spot exists
+        // reorder based on distance to fingerSpot
+        const Point & fingerSpot = _agentDirections.at(k);    
+        std::list<Agent*> & agents = _agents.at(k);
+        agents.sort(DistSorter(fingerSpot));
+
+        std::list<Agent*>::reverse_iterator end = _agents[k].rbegin();
+        // primera passada per comprovar goals i matar agents iaios
+        while(end != _agents[k].rend() and finishedGame == Running)
+        {     
+            //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
+            for (size_t  j = 0; j < goals.size(); j++)
+            {
+                if (goals[j]->getCompleted() == false)
+                {
+                    goals[j]->checkGoal(k, *end);
                 }
             }
-            //MORIR, SEMPRE ULTIMA ACCIO, DESPRES DE COMPROVAR GOALS
+            
             int sizeBefore = (int)_agents[k].size();
-            list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
-            if (sizeBefore > _agents[k].size()) {
+            std::list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
+            if (sizeBefore > _agents[k].size())
+            {
                 end = rit;
             }
-            else {
+            else
+            {
                 end++;
             }
 
             //ALL GOALS COMPLETED ??
             bool failed = false;
             int finalScore = 0;
-            for (size_t j = 0; j < goals.size() and failed == false; j++) {
-                if (goals[j]->getCompleted() == false) {
-                    if (prevGoal != j) {
+            for (size_t j = 0; j < goals.size() and failed == false; j++)
+            {
+                if (goals[j]->getCompleted() == false)
+                {
+                    if (prevGoal != j)
+                    {
                         gameplayMap->moveGoalPopup(j);
                         prevGoal = j;
                     }
                     failed = true;
                 }
-                else {
+                else
+                {
                     finalScore += goals[j]->getScore();
                 }
             }
-            if (failed == false and goals.empty() == false) {
+            if(failed == false and goals.empty() == false)
+            {
                 CCLOG("FINAL SCORE: %i", (finalScore/int(goals.size())));
                 GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
                 finishedGame = Success;
+            }
+        }
+
+        // definir número d'agents que han de crear-se
+        size_t numAgents = _agents.at(k).size();
+        float probReproduction = getValueAtLevel(Reproduction, _agentAttributes.at(k).at(Reproduction));
+
+        Power* p = nullptr;
+        for (int i = 0; i < getPowers().size(); i++)
+        {
+            if (getPowers()[i]->getId() != ReproductionBoost)
+            {
+                continue;
+            }
+            p = getPowers()[i];
+        }
+        if (p != nullptr and p->getDurationLeft() > 0)
+        {
+            probReproduction = GameLevel::getInstance()->getValueAtLevel(Reproduction, 5);
+        }
+
+        int newAgents = int((float)numAgents*probReproduction);
+        // check diff between current agents and max agents, and see if it's lower than newAgents
+        Agent::_numOffspring = min(newAgents, int(getMaxAgent(k)-_agents.at(k).size()));
+
+        if(finishedGame == Running)
+        {
+            // segona passada per resta d'accions
+            end = _agents[k].rbegin();
+            while (end != _agents[k].rend() and finishedGame == Running)
+            {
+                for (size_t j = 0; j < actions.size()-1; j++)
+                {
+                    actions[j]->execute(k, *end);
+                }
+                end++;
             }
         }
     }
@@ -833,7 +870,7 @@ string GameLevel::convertAttIntToString(int i)
     return ret;
 }
     
-void GameLevel::setNumAgentTypes(int numAgents)
+void GameLevel::setNumAgentTypes(size_t numAgents)
 {
     _agentAttributes.clear();
     _attributesCost.clear();

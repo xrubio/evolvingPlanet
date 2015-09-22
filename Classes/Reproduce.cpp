@@ -45,10 +45,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
         int radi = 3;
         int maxIterations = 9;
 
-        int minRandomX = agent->getPosition()->getX() - radi;
-        int maxRandomX = agent->getPosition()->getX() + radi;
-        int minRandomY = agent->getPosition()->getY() - radi;
-        int maxRandomY = agent->getPosition()->getY() + radi;
+        int minRandomX = agent->getPosition().getX() - radi;
+        int maxRandomX = agent->getPosition().getX() + radi;
+        int minRandomY = agent->getPosition().getY() - radi;
+        int maxRandomY = agent->getPosition().getY() + radi;
         
         int posx = RandomHelper::random_int(minRandomX, maxRandomX);
         int posy = RandomHelper::random_int(minRandomY, maxRandomY);
@@ -82,86 +82,41 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
  
     }
 
-    //REPRODUIR-SE NORMAL (SI HI HA INLFUENCIA CULTURAL I EL TIPUS ES EL MATEIX TAMBE)
-    bool maxReached = false;
-    if (GameLevel::getInstance()->getMaxAllAgents() > 0) {
-        int numAgents = 0;
-        for (size_t i = 0; i < GameLevel::getInstance()->getAgents().size(); i++) {
-            numAgents += GameLevel::getInstance()->getAgents()[i].size();
-        }
-        maxReached = numAgents >= GameLevel::getInstance()->getMaxAllAgents();
-    }
-    else {
-        maxReached = GameLevel::getInstance()->getAgents()[typeAgent].size() >= GameLevel::getInstance()->getMaxAgent(agent->getType());
-    }
-    if (type == agent->getType() and maxReached == false)
+    if(Agent::_numOffspring>0)
     {
-        float probReproduction = agent->getValue(Reproduction);
+        if (type == agent->getType())
+        {
+            Agent::_numOffspring--;
 
-        Power* p = nullptr;
-        for (int i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
-        {
-            if (GameLevel::getInstance()->getPowers()[i]->getId() != ReproductionBoost)
-            {
-                continue;
-            }
-            p = GameLevel::getInstance()->getPowers()[i];
-        }
-        if (p != nullptr and p->getDurationLeft() > 0)
-        {
-            probReproduction = GameLevel::getInstance()->getValueAtLevel(Reproduction, 5);
-        }
-        //srand(time(NULL));
-        //if ((rand() % 100) < probReproduction) {
-        if (RandomHelper::random_real(0.0f, 1.0f)<probReproduction)
-        {
             int maxIterations = 30;
-            Point fingerSpot = GameLevel::getInstance()->getAgentDirections()[typeAgent];
             /*if (agent->getType() != 0) {
                 fingerSpot.x = -1;
                 fingerSpot.y = -1;
             }*/
-            int minRandomX = agent->getPosition()->getX() - mobility;
-            int maxRandomX = agent->getPosition()->getX() + mobility;
-            int minRandomY = agent->getPosition()->getY() - mobility;
-            int maxRandomY = agent->getPosition()->getY() + mobility;
-            //INDICACIO DE DIRECCIO AMB EL DIT
-            if (fingerSpot.x > -1 and fingerSpot.y > -1) {
-                if (fingerSpot.x < agent->getPosition()->getX()) {
-                    //A L'ESQUERRA
-                    maxRandomX = agent->getPosition()->getX();
-                }
-                else if (fingerSpot.x > agent->getPosition()->getX()) {
-                    //A LA DRETA
-                    minRandomX = agent->getPosition()->getX();
-                }
-                if (fingerSpot.y < agent->getPosition()->getY()) {
-                    //A BAIX
-                    maxRandomY = agent->getPosition()->getY();
-                }
-                else if (fingerSpot.y > agent->getPosition()->getY()) {
-                    //A DALT
-                    minRandomY = agent->getPosition()->getY();
-                }
-            }
+            int minRandomX = agent->getPosition().getX() - mobility;
+            int maxRandomX = agent->getPosition().getX() + mobility;
+            int minRandomY = agent->getPosition().getY() - mobility;
+            int maxRandomY = agent->getPosition().getY() + mobility;
 
-            /*int posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
-            int posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
+            /*int posx = rand() % (2 * mobility) + (agent->getPosition().getX() - mobility);
+            int posy = rand() % (2 * mobility) + (agent->getPosition().getY() - mobility);*/
             int posx = RandomHelper::random_int(minRandomX, maxRandomX);
             int posy = RandomHelper::random_int(minRandomY, maxRandomY);
-            while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false) {
-                /*posx = rand() % (2 * mobility) + (agent->getPosition()->getX() - mobility);
-                posy = rand() % (2 * mobility) + (agent->getPosition()->getY() - mobility);*/
+            while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false)
+            {
+                /*posx = rand() % (2 * mobility) + (agent->getPosition().getX() - mobility);
+                posy = rand() % (2 * mobility) + (agent->getPosition().getY() - mobility);*/
                 posx = RandomHelper::random_int(minRandomX, maxRandomX);
                 posy = RandomHelper::random_int(minRandomY, maxRandomY);
                 maxIterations--;
             }
-            if (maxIterations > 0) {
+            if (maxIterations > 0)
+            {
                 //auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);
                 Agent* ag = GameLevel::getInstance()->getAgentsPool()[type].front();
                 GameLevel::getInstance()->popFrontAgentsPool(type);
                 ag->setId(GameLevel::getInstance()->getIdCounter());
-                ag->setLife(100);
+                ag->setLife(200);
                 ag->setType(type);
                 ag->setPosition(posx, posy);
                 ag->copyValues(type);
@@ -170,15 +125,17 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
                 GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
             }
         }
-    }
-    //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
-    else if (type != agent->getType()) {
-        auto ag = new Agent(agent->getId(), agent->getLife(), type, agent->getPosition()->getX(), agent->getPosition()->getY());
-        ag->copyValues(type);
-        GameLevel::getInstance()->addAgent(ag);
-        agent->setLife(0);
-        //GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
-        //GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
+        //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
+        else
+        {
+            Agent::_numOffspring--;
+            auto ag = new Agent(agent->getId(), agent->getLife(), type, agent->getPosition().getX(), agent->getPosition().getY());
+            ag->copyValues(type);
+            GameLevel::getInstance()->addAgent(ag);
+            agent->setLife(0);
+            //GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
+            //GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
+        }
     }
 }
 

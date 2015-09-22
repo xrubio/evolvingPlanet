@@ -37,8 +37,8 @@ list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
     {
         int maxIterations = 100;
         bool kill = false;
-        int posx = RandomHelper::random_int(0, mobility) + (agent->getPosition()->getX() - mobility);
-        int posy = RandomHelper::random_int(0, mobility) + (agent->getPosition()->getY() - mobility);
+        int posx = RandomHelper::random_int(0, mobility) + (agent->getPosition().getX() - mobility);
+        int posy = RandomHelper::random_int(0, mobility) + (agent->getPosition().getY() - mobility);
         while (maxIterations > 0 and kill == false) {
             if (posx >= 0 and posx < 480 and posy >= 0 and posy < 320) {
                 if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != type) {
@@ -46,8 +46,8 @@ list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
                     kill = true;
                 }
             }
-            posx = RandomHelper::random_int(0, mobility) + (agent->getPosition()->getX() - mobility);
-            posy = RandomHelper::random_int(0, mobility) + (agent->getPosition()->getY() - mobility);
+            posx = RandomHelper::random_int(0, mobility) + (agent->getPosition().getX() - mobility);
+            posy = RandomHelper::random_int(0, mobility) + (agent->getPosition().getY() - mobility);
             maxIterations--;
         }
     }

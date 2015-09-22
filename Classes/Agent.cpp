@@ -28,6 +28,8 @@
 #include "Agent.h"
 #include "GameLevel.h"
 
+int Agent::_numOffspring = 0;
+
 Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _attributes(GameLevel::_numAttributes, 0.0f)
 {
     position = new Position(posx, posy);
@@ -63,9 +65,9 @@ void Agent::setType(int t)
     type = t;
 }
 
-Position* Agent::getPosition(void)
+const Position & Agent::getPosition(void) const
 {
-    return position;
+    return *position;
 }
 
 void Agent::setPosition(int posx, int posy)

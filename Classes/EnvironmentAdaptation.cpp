@@ -33,9 +33,9 @@ list<Agent*>::reverse_iterator EnvironmentAdaptation::execute(int type, Agent* a
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     float adaptation = agent->getValue(Adaptation);
     //JUGAR AMB EL TEMPS QUE HA ESTAT OCUPAT L'ESPAI I LA PROBBILITAT
-    if (GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY()) > 2 and RandomHelper::random_real(0.0f,1.0f)< adaptation)
+    if (GameLevel::getInstance()->getTimeExploited(agent->getPosition().getX(), agent->getPosition().getY()) > 2 and RandomHelper::random_real(0.0f,1.0f)< adaptation)
     {
-        GameLevel::getInstance()->setEnvironmentAdaptation(agent->getPosition()->getX(), agent->getPosition()->getY(), true);
+        GameLevel::getInstance()->setEnvironmentAdaptation(agent->getPosition().getX(), agent->getPosition().getY(), true);
     }
 }
 

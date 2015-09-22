@@ -38,6 +38,8 @@ class Agent {
 
 public:
     typedef std::vector<float> Attributes;
+    // number of children to create on a given time step
+    static int _numOffspring;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent(){};
@@ -48,13 +50,12 @@ public:
     void setLife(int lf);
     int getType(void);
     void setType(int t);
-    Position* getPosition(void);
+    const Position & getPosition(void) const;
     void setPosition(int posx, int posy);
     float getValue(int att) const;
     void setValue(int att, float val);
     // copy attribute values at current levels to agent of type
     void copyValues(int type);
-
 private:
     int id;
     int life;

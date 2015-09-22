@@ -35,9 +35,9 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
     //UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
-    GameLevel::getInstance()->setTimeExploited(agent->getPosition()->getX(), agent->getPosition()->getY(),
-        GameLevel::getInstance()->getTimeExploited(agent->getPosition()->getX(),
-            agent->getPosition()->getY()) + 1);
+    GameLevel::getInstance()->setTimeExploited(agent->getPosition().getX(), agent->getPosition().getY(),
+        GameLevel::getInstance()->getTimeExploited(agent->getPosition().getX(),
+            agent->getPosition().getY()) + 1);
 
     float efficiency;// = GameLevel::getInstance()->getAttributesValues(type, "RECOLLECTION", agent->getValOfAttribute("RECOLLECTION")) / 100;
     /*float efficiency;
@@ -105,14 +105,14 @@ list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
         if (GameLevel::getInstance()->getGoals()[i]->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getGoalAmount() > 0) {
             int mapSelector = 0;
-            if (GameLevel::getInstance()->getDepleted(agent->getPosition()->getX(), agent->getPosition()->getY())) {
+            if (GameLevel::getInstance()->getDepleted(agent->getPosition().getX(), agent->getPosition().getY())) {
                 mapSelector = 1;
             }
-            else if (GameLevel::getInstance()->getEnvironmentAdaptation(agent->getPosition()->getX(), agent->getPosition()->getY())) {
+            else if (GameLevel::getInstance()->getEnvironmentAdaptation(agent->getPosition().getX(), agent->getPosition().getY())) {
                 mapSelector = 2;
             }
 
-            ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition()->getX(), agent->getPosition()->getY(), 1) * efficiency));
+            ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition().getX(), agent->getPosition().getY(), 1) * efficiency));
         }
     }
 }

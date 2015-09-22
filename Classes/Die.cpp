@@ -33,7 +33,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
-    float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition()->getX(), agent->getPosition()->getY(), 0);
+    float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition().getX(), agent->getPosition().getY(), 0);
 //    harm /= 4.0f;
 
     float resistance = agent->getValue(Resistance);
@@ -49,7 +49,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
         p = GameLevel::getInstance()->getPowers()[i];
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
-        if (gameplayMap->isInBoostResistanceArea(agent->getPosition()->getX() * float(2048.0 / 480.0), ((1536 - 1365) / 2) + (agent->getPosition()->getY() * float(1365.0 / 320.0))))
+        if (gameplayMap->isInBoostResistanceArea(agent->getPosition().getX() * float(2048.0 / 480.0), ((1536 - 1365) / 2) + (agent->getPosition().getY() * float(1365.0 / 320.0))))
         {
             resistance = GameLevel::getInstance()->getValueAtLevel(Resistance, 5);
         }
@@ -61,7 +61,7 @@ list<Agent*>::reverse_iterator Die::execute(int type, Agent* agent)
     agent->setLife(agent->getLife() - int(harm));
 
     if (agent->getLife() <= 0) {
-        GameLevel::getInstance()->addDeletedAgent(Point(agent->getPosition()->getX(), agent->getPosition()->getY()));
+        GameLevel::getInstance()->addDeletedAgent(Point(agent->getPosition().getX(), agent->getPosition().getY()));
         return GameLevel::getInstance()->deleteAgent(agent->getType(), agent);
     }
 }

@@ -30,13 +30,13 @@
 
 #include <map>
 #include <string>
-#include <vector>
 #include "Agent.h"
 #include "Act.h"
 #include "Power.h"
 #include "Goal.h"
 #include "cocos2d.h"
 #include "Timing.h"
+#include <vector>
 
 class UIGameplayMap;
 
@@ -81,12 +81,12 @@ public:
     void setUIGameplayMap(UIGameplayMap* gmplmap);
     string getMapFilename(void);
     void setMapFilename(string filename);
-    vector<int> getMaxAgents(void);
-    void setMaxAgents(vector<int> max);
+    std::vector<int> getMaxAgents(void);
+    void setMaxAgents(std::vector<int> max);
     int getMaxAgent(int type);
     void setMaxAgent(int type, int max);
-    vector<int> getNumInitialAgents(void);
-    void setNumInitialAgents(vector<int> ini);
+    std::vector<int> getNumInitialAgents(void);
+    void setNumInitialAgents(std::vector<int> ini);
     int getNumInitialAgent(int type);
     void setNumInitialAgent(int type, int ini);
     double getCurrentTime(void);
@@ -115,28 +115,25 @@ public:
     // sets the attribute value at k to v for level i
     void setValueAtLevel(int attr, int level, float value);
 
-    vector<Power*> getPowers(void);
-    void setPowers(vector<Power*> p);
+    std::vector<Power*> getPowers(void);
+    void setPowers(std::vector<Power*> p);
     void addPower(Power* p);
     void deletePower(int i);
-    vector<list<Agent*> > getAgents(void);
-    void setAgents(vector<list<Agent*> > agents);
+    std::vector<std::list<Agent*> > getAgents(void);
     void addAgent(Agent* ag);
-    list<Agent*>::reverse_iterator deleteAgent(int type, Agent* agent);
-    vector<list<Agent*> > getAgentsPool(void);
+    std::list<Agent*>::reverse_iterator deleteAgent(int type, Agent* agent);
+    std::vector<std::list<Agent*> > getAgentsPool(void);
     void popFrontAgentsPool(int type);
-    vector<Act*> getActions(void);
-    void setActions(vector<Act*> a);
     void addAction(Act* act);
     void deleteAction(int i);
-    vector<Goal*> getGoals(void);
-    void setGoals(vector<Goal*> g);
+    std::vector<Goal*> getGoals(void);
+    void setGoals(std::vector<Goal*> g);
     void addGoal(Goal* g);
     void deleteGoal(int i);
     int getAddedAgents(void);
     void setAddedAgents(int i);
-    vector<cocos2d::Point> getDeletedAgents(void);
-    void setDeletedAgents(vector<cocos2d::Point> v);
+    std::vector<cocos2d::Point> getDeletedAgents(void);
+    void setDeletedAgents(std::vector<cocos2d::Point> v);
     void addDeletedAgent(cocos2d::Point p);
     void deleteDeletedAgent(int i);
     int getIdCounter(void);
@@ -164,12 +161,9 @@ public:
     Agent* getAgentAtMap(int i, int j);
     int getMaxAllAgents(void);
     void setMaxAllAgents(int m);
-    vector<cocos2d::Point> getAgentDirections(void);
-    void setAgentDirections(vector<cocos2d::Point> ad);
     void setAgentDirection(int agentType, cocos2d::Point p);
     
-    vector<vector<pair<int, cocos2d::Point> > > getAgentFutureDirections(void);
-    void setAgentFutureDirections(vector<vector<pair<int, cocos2d::Point> > > afd);
+    void setAgentFutureDirections(std::vector<std::vector<pair<int, cocos2d::Point> > > afd);
     void setAgentFutureDirection(int type, int step, cocos2d::Point p);
     void setAgentPixelSize(int i);
     int getAgentPixelSize(void);
@@ -179,7 +173,7 @@ public:
     
     void createLevel(void);
     void setAttributesToInitialAgents(void);
-    void setNumAgentTypes(int numAgents);
+    void setNumAgentTypes(size_t numAgents);
 
     /** start the level and run it until some condition ends it **/
     void playLevel(void);
@@ -204,8 +198,8 @@ private:
 
     string mapFilename;
     //VECTOR POSITION = TYPE
-    vector<int> maxAgents;
-    vector<int> numInitialAgents;
+    std::vector<int> maxAgents;
+    std::vector<int> numInitialAgents;
     int maxAllAgents = 0;
     int agentPixelSize = 1;
 
@@ -218,11 +212,11 @@ private:
     Levels _modifiableAtt;
     //temporal
     AttributesLevels _attributesLevels;
-    vector<Power*> powers;
-    vector<list<Agent*> > _agents;
-    vector<list<Agent*> > _agentsPool;
-    vector<Act*> actions;
-    vector<Goal*> goals;
+    std::vector<Power*> powers;
+    std::vector<std::list<Agent*> > _agents;
+    std::vector<std::list<Agent*> > _agentsPool;
+    std::vector<Act*> actions;
+    std::vector<Goal*> goals;
     Agent* _agentsMap[480][320];
 
     //Resources exploitment
@@ -231,7 +225,7 @@ private:
     bool adaptedMap[480][320] = { { false } };
 
     int addedAgents = 0;
-    vector<cocos2d::Point> deletedAgents;
+    std::vector<cocos2d::Point> deletedAgents;
     int idCounter = 0;
 
     unsigned int timeSteps = 0;
@@ -245,8 +239,8 @@ private:
 
     int currentAgentType = 0;
 
-    vector<cocos2d::Point> agentDirections;
-    vector<vector<pair<int, cocos2d::Point> > > agentFutureDirections;
+    std::vector<cocos2d::Point> _agentDirections;
+    std::vector<std::vector<pair<int, cocos2d::Point> > > _agentFutureDirections;
 
     GameLevel();
 

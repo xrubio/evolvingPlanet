@@ -119,12 +119,7 @@ void LevelLoader::loadXmlFile(string filename)
             xml_attribute guiOrder= atts.attribute("GUI");
             if(guiOrder)
             {
-                CCLOG("attr: %s in order: %d", atts.attribute("NAME").value(), guiOrder.as_int());
                 GameLevel::getInstance()->setModifiableAttr(guiOrder.as_int(), attrType);
-            }
-            else
-            {
-                CCLOG("attr: %d not in gui", attrType);
             }
             atts = atts.next_sibling("ATTRIBUTE");
         }

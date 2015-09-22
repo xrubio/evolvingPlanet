@@ -64,7 +64,7 @@ void ExpansionGoal::setCenterArea(int x, int y)
 
 void ExpansionGoal::checkGoal(int type, Agent* agent)
 {
-    /*int dist = Point(agent->getPosition()->getX(), agent->getPosition()->getY()).getDistance(Vec2(centerArea.getX(), centerArea.getY()));
+    /*int dist = Point(agent->getPosition().getX(), agent->getPosition().getY()).getDistance(Vec2(centerArea.getX(), centerArea.getY()));
     if (dist < minDistanceToGoal) {
         minDistanceToGoal = dist;
     }*/
@@ -75,8 +75,8 @@ void ExpansionGoal::checkGoal(int type, Agent* agent)
         }
         else {
             //Check agent at goal zone
-            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition()->getX(),
-                    agent->getPosition()->getY(), 0) == colorZone) {
+            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(),
+                    agent->getPosition().getY(), 0) == colorZone) {
                 if (minTime > timeSteps) {
                     GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
                 }
