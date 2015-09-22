@@ -178,8 +178,8 @@ public:
     
     
     void createLevel(void);
-    void initializeAttributesCost(void);
     void setAttributesToInitialAgents(void);
+    void setNumAgentTypes(int numAgents);
 
     /** start the level and run it until some condition ends it **/
     void playLevel(void);
@@ -194,6 +194,9 @@ public:
     bool ended = false;
     float calcTime = 0;
     int prevGoal = 0;
+
+    void setModifiableAttr(int order, int attr) { _modifiableAtt.at(order) = attr; }
+    const Levels & getModifiableAttr() const { return _modifiableAtt; }
 
 private:
     static GameLevel* gamelevelInstance;
@@ -211,6 +214,8 @@ private:
     LevelsVector _agentAttributes;
     LevelsVector _agentAttributesInitialConfig;
     LevelsVector _attributesCost;
+    // list of attributes that can be modified by user
+    Levels _modifiableAtt;
     //temporal
     AttributesLevels _attributesLevels;
     vector<Power*> powers;
@@ -248,7 +253,6 @@ private:
     void initializeAgentsPool(void);
     void generateInitialAgents(int type);
     inline void act(void);
-
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

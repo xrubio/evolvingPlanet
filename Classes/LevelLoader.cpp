@@ -71,48 +71,68 @@ void LevelLoader::loadXmlFile(string filename)
         std::string segment;
         
         int i = 0;
+        int attrKey = GameLevel::getInstance()->convertAttStringToInt(k);
         while(std::getline(test, segment, ','))
         {
-            GameLevel::getInstance()->setValueAtLevel(GameLevel::getInstance()->convertAttStringToInt(k), i, atof(segment.c_str()));
+            GameLevel::getInstance()->setValueAtLevel(attrKey, i, atof(segment.c_str()));
             i++;
         }
-        
-        attsConfig = attsConfig.next_sibling("ATTRIBUTE");
+
+       attsConfig = attsConfig.next_sibling("ATTRIBUTE");
     }
     //AGENTS
-    xml_node ags = doc.child("AGENTS").child("AGENT");
+    int numAgents = doc.child("AGENTS").attribute("NUMTYPES").as_int();
+
     int maxAllAgents = 0;
     if (strncmp(doc.child("AGENTS").attribute("MAX_ALL").value(), "YES", 3) == 0) {
         maxAllAgents = atoi(doc.child("AGENTS").attribute("MAX_AGENTS").value());
         GameLevel::getInstance()->setMaxAllAgents(maxAllAgents);
     }
-    while (ags != nullptr) {
-        //TYPE
-        int type = atoi(ags.attribute("TYPE").value());
+
+    GameLevel::getInstance()->setNumAgentTypes(numAgents);
+    for(int i=0; i<numAgents; i++)
+    {
+        std::stringstream strType;
+        strType << i;
+        xml_node ags = doc.child("AGENTS").find_child_by_attribute("AGENT", "TYPE", strType.str().c_str());
+        if(!ags)
+        {
+            CCLOG("type: %s not found!!!", strType.str().c_str());
+        }
         //NUM_INITIAL_AGENTS
-        GameLevel::getInstance()->setNumInitialAgent(type, atoi(ags.child("NUM_INITIAL_AGENTS").child_value()));
+        GameLevel::getInstance()->setNumInitialAgent(i, atoi(ags.child("NUM_INITIAL_AGENTS").child_value()));
         //MAX_AGENTS
         if (maxAllAgents == 0) {
-            GameLevel::getInstance()->setMaxAgent(type, atoi(ags.child("MAX_AGENTS").child_value()));
+            GameLevel::getInstance()->setMaxAgent(i, atoi(ags.child("MAX_AGENTS").child_value()));
         }
         //ATTRIBUTES
         xml_node atts = ags.child("ATTRIBUTES").child("ATTRIBUTE");
 
-        while (atts != nullptr) {
-            GameLevel::getInstance()->setAgentAttribute(type, GameLevel::getInstance()->convertAttStringToInt(atts.attribute("NAME").value()),
-                                                        atoi(atts.child("INITIAL_VALUE").child_value()));
+        while (atts != nullptr)
+        {
+            int attrType = GameLevel::getInstance()->convertAttStringToInt(atts.attribute("NAME").value());
+            GameLevel::getInstance()->setAgentAttribute(i, attrType, atoi(atts.child("INITIAL_VALUE").child_value()));
             //temporal
             /*if (type == 0) {
                 GameLevel::getInstance()->setAttributesValues(type, atts.attribute("NAME").value());
             }*/
-
+            xml_attribute guiOrder= atts.attribute("GUI");
+            if(guiOrder)
+            {
+                CCLOG("attr: %s in order: %d", atts.attribute("NAME").value(), guiOrder.as_int());
+                GameLevel::getInstance()->setModifiableAttr(guiOrder.as_int(), attrType);
+            }
+            else
+            {
+                CCLOG("attr: %d not in gui", attrType);
+            }
             atts = atts.next_sibling("ATTRIBUTE");
         }
         //DIRECTIONS
         xml_node drs = ags.child("DIRECTIONS").child("DIRECTION");
 
         while (drs != nullptr) {
-            GameLevel::getInstance()->setAgentFutureDirection(type, atoi(drs.child("STEP").child_value()),
+            GameLevel::getInstance()->setAgentFutureDirection(i, atoi(drs.child("STEP").child_value()),
                 cocos2d::Point(atoi(drs.child("POSITION").attribute("X").value()),
                                                                   atoi(drs.child("POSITION").attribute("Y").value())));
 

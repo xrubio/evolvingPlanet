@@ -99,7 +99,6 @@ void Agent::copyValues( int type )
     {
         float value = GameLevel::getInstance()->getValueAtLevel(i, currentValues.at(i));
         setValue(i, value);
-
     }
 }
 

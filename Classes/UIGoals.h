@@ -55,7 +55,6 @@ public:
     CREATE_FUNC(UIGoals);
 
 private:
-    vector<int> keys;
     bool gameStarted = true;
     PageView* pages;
     MenuItemImage* arrowNext;

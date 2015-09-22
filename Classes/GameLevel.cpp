@@ -138,10 +138,6 @@ int GameLevel::getAgentAttribute(int type, int key)
 
 void GameLevel::setAgentAttribute(int type, int key, int level)
 {
-    if(_agentAttributes.size() <= type)
-    {
-        _agentAttributes.push_back(Levels(_numAttributes,-1));
-    }
     _agentAttributes.at(type).at(key) = level;
 }
 
@@ -549,6 +545,9 @@ void GameLevel::resetLevel(void)
     currentTime = 0;
     numLevel = 0;
     _agentAttributes.clear();
+    _modifiableAtt.clear();
+    _modifiableAtt.resize(3);
+    std::fill(_modifiableAtt.begin(), _modifiableAtt.end(), -1);
     powers.clear();
     /*for (int i = 0; i < _agents.size(); i++) {
         for (int j = 0; j < _agents.at(i).size(); j++) {
@@ -613,28 +612,6 @@ void GameLevel::createLevel(void)
     }
 
     paint = true;
-}
-
-void GameLevel::initializeAttributesCost(void)
-{
-    for(size_t i = 0; i < _agentAttributes.size(); i++)
-    {
-        _attributesCost.push_back(Levels(_numAttributes,-1));
-        for(size_t j=0; j<_agentAttributes.at(i).size(); j++)
-        {
-            //si el valor inicial es diferent de 0, es valor que no modificarà l'usuari
-            if (_agentAttributes.at(i).at(j) != 0)
-            {
-                CCLOG("cost for i: %d j= %d is 0", i, j);
-                _attributesCost.at(i).at(j) = 0;
-            }
-            else
-            {
-                CCLOG("cost for i: %d j= %d is 1", i, j);
-                _attributesCost.at(i).at(j) = 1;
-            }
-        }
-    }
 }
 
 void GameLevel::setAttributesToInitialAgents(void)
@@ -854,5 +831,16 @@ string GameLevel::convertAttIntToString(int i)
     }
     
     return ret;
+}
+    
+void GameLevel::setNumAgentTypes(int numAgents)
+{
+    _agentAttributes.clear();
+    _attributesCost.clear();
+    for(size_t i=0; i<numAgents; i++)
+    {
+        _agentAttributes.push_back(Levels(_numAttributes, 0));
+        _attributesCost.push_back(Levels(_numAttributes, 0));
+    }
 }
 

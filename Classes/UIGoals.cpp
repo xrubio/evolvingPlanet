@@ -131,20 +131,7 @@ bool UIGoals::init()
     menu->setPosition(0, 0);
     this->addChild(menu, 1);
 
-    if (GameData::getInstance()->getGameStarted() == false) {
-        GameLevel::getInstance()->initializeAttributesCost();
-    }
     GameLevel::getInstance()->setCurrentAgentType(0);
-    const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(GameLevel::getInstance()->getCurrentAgentType());
-    for(size_t i=0; i<atts.size(); i++)
-    {
-        //si el cost de l'atribut es diferent de 0, es modificable
-        if(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), i) == 0)
-        {
-            continue;
-        }
-        keys.push_back(i);
-    }
 
     pages = PageView::create();
     pages->setCustomScrollThreshold(visibleSize.width / 6);
@@ -376,24 +363,26 @@ void UIGoals::minusAttCallback(Ref* pSender)
     int i = tag - 10;
     Layout* layout = (Layout*)(pMenuItem->getParent()->getParent());
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > 0) {
-        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
-        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() + GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1);
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+    // TODO XRC fix this
+    if(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > 0)
+    {
+        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) - 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() + GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) - 1);
+        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i])));
 
-        auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+        auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + (i * 5));
         auto blankAttribute = Sprite::create("gui/BlankAttributePointButton.png");
         blankAttribute->setPosition(filledAttribute->getPosition());
         blankAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
-        layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + (i * 5));
+        layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + (i * 5));
+        layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + (i * 5));
         MenuItem* plusButton = (MenuItem*)pMenuItem->getParent()->getChildByTag(i + 50);
         plusButton->setEnabled(true);
     }
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0 or
-        GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints()) {
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) <= 0 or GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())
+    {
         pMenuItem->setEnabled(false);
     }
 }
@@ -405,24 +394,26 @@ void UIGoals::plusAttCallback(Ref* pSender)
     int i = tag - 50;
     Layout* layout = (Layout*)(pMenuItem->getParent()->getParent());
 
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= GameLevel::getInstance()->getEvolutionPoints()) {
-        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
-        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]));
-        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
+    // TODO XRC fix this using 
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) < 5 and GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) <= GameLevel::getInstance()->getEvolutionPoints())
+    {
+        GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + 1);
+        GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]));
+        GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + 1);
         Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])));
+        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i])));
 
-        auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+        auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) - 1) + (i * 5));
         auto filledAttribute = Sprite::create("gui/FilledAttributePointButton.png");
         filledAttribute->setPosition(blankAttribute->getPosition());
         filledAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
-        layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) - 1) + (i * 5));
+        layout->removeChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) - 1) + (i * 5));
+        layout->addChild(filledAttribute, 1, (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) - 1) + (i * 5));
         MenuItem* minusButton = (MenuItem*)pMenuItem->getParent()->getChildByTag(i + 10);
         minusButton->setEnabled(true);
     }
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >= 5 or
-        GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) > GameLevel::getInstance()->getEvolutionPoints()) {
+    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) >= 5 or GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())
+    {
         pMenuItem->setEnabled(false);
     }
 }
@@ -519,22 +510,16 @@ void UIGoals::setLevelGoals(Layout* layout)
     layout->addChild(attributesLabel);
     
     const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
-    int posIndex = 0;
-    for(size_t i=0; i<atts.size(); i++)
+    for(size_t i=0; i<GameLevel::getInstance()->getModifiableAttr().size(); i++)
     {
-        if (GameLevel::getInstance()->getAttributeCost(0, i) == 0)
-        {
-            continue;
-        }
         //ATRIBUT MODIFICABLE
-        auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(i).c_str()) + ":    Explicació de l'atribut",
+        auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr()[i]).c_str()) + ":    Explicació de l'atribut",
                                          "fonts/BebasNeue.otf", 60);
-        attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (posIndex * 2)) * visibleSize.height / 31));
+        attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (i * 2)) * visibleSize.height / 31));
         attLabel->setColor(Color3B(211, 230, 236));
         attLabel->setAnchorPoint(Vec2(0, 0.5));
         attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         layout->addChild(attLabel);
-        posIndex++;
     }
     
     auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/BebasNeue.otf", 80);
@@ -606,16 +591,21 @@ void UIGoals::createUIAgent(Layout* layout)
     Vector<cocos2d::MenuItem*> attributesButtons;
     int tag = 0;
 
+    const GameLevel::Levels & modifAttr = GameLevel::getInstance()->getModifiableAttr();
     if(!GameLevel::getInstance()->initAttributesEmpty())
     {
         GameLevel::getInstance()->setAgentAttributesToInit();
         int initialEvolutionPoints = 10;
-        for (size_t i = 0; i < 3; i++)
+        for (size_t i=0; i<modifAttr.size(); i++)
         {
-            GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i],
-                GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) + 1);
-            int n = GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]);
-            while (n > 0) {
+            if(modifAttr.at(i)==-1)
+            {
+                continue;
+            }
+            GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i]) + 1);
+            int n = GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i]);
+            while (n > 0)
+            {
                 initialEvolutionPoints -= n;
                 n--;
             }
@@ -624,15 +614,20 @@ void UIGoals::createUIAgent(Layout* layout)
         pages->scrollToPage(2);
     }
 
-    for (size_t i = 0; i < keys.size(); i++) {
-        auto attLabel = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(keys[i]).c_str())) + " - ", "fonts/BebasNeue.otf", 60);
+    for (size_t i = 0; i < modifAttr.size(); i++)
+    {
+        if(modifAttr.at(i)==-1)
+        {
+            continue;
+        }
+
+        auto attLabel = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr[i]).c_str())) + " - ", "fonts/BebasNeue.otf", 60);
         attLabel->setColor(Color3B(207, 203, 208));
         attLabel->setAnchorPoint(Vec2(1, 0.5));
         attLabel->setPosition(18 * visibleSize.width / 42, (25 - ((i + 1) * 5)) * visibleSize.height / 31);
         attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        //attLabel->setPosition(16 * visibleSize.width / 42, origin.y + (keys.size() - i) * (visibleSize.height / (keys.size() + 1)));
         layout->addChild(attLabel, 1, (i + 1) * 1000);
-        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i])), "fonts/BebasNeue.otf", 80);
+        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i])), "fonts/BebasNeue.otf", 80);
         attNumLabel->setColor(Color3B(207, 203, 208));
         attNumLabel->setAnchorPoint(Vec2(1, 0.5));
         attNumLabel->setPosition(attLabel->getPositionX() + attNumLabel->getContentSize().width, attLabel->getPositionY());
@@ -644,7 +639,7 @@ void UIGoals::createUIAgent(Layout* layout)
         minusAttButton->setPosition(Vec2(24 * visibleSize.width / 42, attLabel->getPosition().y));
         minusAttButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         minusAttButton->setTag(i + 10);
-        if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) <= 0) {
+        if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i]) <= 0) {
             minusAttButton->setEnabled(false);
         }
         attributesButtons.pushBack(minusAttButton);
@@ -664,12 +659,12 @@ void UIGoals::createUIAgent(Layout* layout)
             posX = posX + incX;
             auto blankAttribute = Sprite::create("gui/BlankAttributePointButton.png");
             auto filledAttribute = Sprite::create("gui/FilledAttributePointButton.png");
-            if (j >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) {
+            if (j >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i])) {
                 blankAttribute->setPosition(Vec2(posX, posY));
                 blankAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
                 layout->addChild(blankAttribute, 1, tag);
             }
-            else if (j < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), keys[i])) {
+            else if (j < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i])) {
                 filledAttribute->setPosition(Vec2(posX, posY));
                 filledAttribute->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
                 layout->addChild(filledAttribute, 1, tag);
@@ -722,9 +717,9 @@ void UIGoals::update(float delta)
 
         /*Layout* layout = pages->getPage(2);
         Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-        for (int i = 0; i < keys.size(); i++) {
+        for (int i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++) {
             MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
-            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), keys[i]) >
+            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) >
                 GameLevel::getInstance()->getEvolutionPoints())
             {
                 plus->setEnabled(false);
