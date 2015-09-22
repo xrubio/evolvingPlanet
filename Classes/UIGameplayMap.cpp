@@ -433,205 +433,145 @@ bool UIGameplayMap::init()
 
     initializeAgents();
 
-    //AGENT TYPE BUTTONS
-        //NOMES UN TIPUS DAGENT (PROVISIONAL)
-        /*if (i == 0) {
-            agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
-            agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-            agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i),
-                5 * visibleSize.height / 155));
-            auto agentTypeButtonLabel = Label::createWithTTF("A-BOTS", "fonts/BebasNeue.otf", 30);
-            agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
-            agentTypeButton->addChild(agentTypeButtonLabel);
-            this->addChild(agentTypeButton, 5);
-        }
-        else if (i == 1)
-        {
-            agentTypeButton = Sprite::create("AgentTypeButtonPressed.png");
-            agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-            agentTypeButton->setPosition(Vec2((61 * visibleSize.width / 204) + (agentTypeButton->getContentSize().width * i) + (agentTypeButton->getContentSize().width / 9), 5 * visibleSize.height / 155));
-            auto agentTypeButtonLabel = Label::createWithTTF("B-BOTS", "fonts/BebasNeue.otf", 30);
-            agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
-            agentTypeButton->addChild(agentTypeButtonLabel);
-            this->addChild(agentTypeButton, 5);
-        }*/
-            auto attColorsBackground = Sprite::create("gui/AttributeColorsBackground.png");
-            attColorsBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-            attColorsBackground->setAnchorPoint(Vec2(0, 0));
-            attColorsBackground->setPosition(Vec2((48.9 * visibleSize.width / 204), (9.5 * visibleSize.height / 155)));
-            this->addChild(attColorsBackground, 5);
+    const GameLevel::Levels & modifAttr = GameLevel::getInstance()->getModifiableAttr();
+    auto attColorsBackground = Sprite::create("gui/AttributeColorsBackground.png");
+    attColorsBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    attColorsBackground->setAnchorPoint(Vec2(0, 0));
+    attColorsBackground->setPosition(Vec2((48.9 * visibleSize.width / 204), (9.5 * visibleSize.height / 155)));
+    this->addChild(attColorsBackground, 5);
 
-            auto attBackground = Sprite::create("gui/AgentAttributesBackground.png");
-            attBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-            attBackground->setAnchorPoint(Vec2(0, 0));
-            attBackground->setPosition(Vec2(visibleSize.width - attBackground->getBoundingBox().size.width, (18.5 * visibleSize.height / 155)));
-            attBackground->setName("attBackground");
-            auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
-            auto ease = EaseBackInOut::create(move);
-            //attBackground->runAction(ease);
-            this->addChild(attBackground, 5, 1000001);
-            auto arrowRetract = MenuItemImage::create("gui/ArrowRetract.png", "gui/ArrowRetractPressed.png", CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
-            arrowRetract->setAnchorPoint(Vec2(1, 0));
-            arrowRetract->setPosition(0, 0);
-            Menu* arrowMenu = Menu::createWithItem(arrowRetract);
-            arrowMenu->setPosition(0, 0);
-            attBackground->addChild(arrowMenu);
+    auto attBackground = Sprite::create("gui/AgentAttributesBackground.png");
+    attBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    attBackground->setAnchorPoint(Vec2(0, 0));
+    attBackground->setPosition(Vec2(visibleSize.width - attBackground->getBoundingBox().size.width, (18.5 * visibleSize.height / 155)));
+    attBackground->setName("attBackground");
+    auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
+    auto ease = EaseBackInOut::create(move);
+    this->addChild(attBackground, 5, 1000001);
+    auto arrowRetract = MenuItemImage::create("gui/ArrowRetract.png", "gui/ArrowRetractPressed.png", CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
+    arrowRetract->setAnchorPoint(Vec2(1, 0));
+    arrowRetract->setPosition(0, 0);
+    Menu* arrowMenu = Menu::createWithItem(arrowRetract);
+    arrowMenu->setPosition(0, 0);
+    attBackground->addChild(arrowMenu);
 
-            for (size_t j = 0; j < GameLevel::getInstance()->getAgents().size(); j++)
-            {
-                auto agentTypeButton = Sprite::create("gui/AgentTypeButtonPressed.png");
-                agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-                agentTypeButton->setPosition(Vec2((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
-                                                  - attColorsBackground->getContentSize().height / 2));
-                auto agentTypeButtonLabel = Label::createWithTTF(to_string(j)+"-BOTS", "fonts/BebasNeue.otf", 30);
-                agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
-                agentTypeButton->addChild(agentTypeButtonLabel);
-                attColorsBackground->addChild(agentTypeButton, 5);
-                
-                auto lifeBorderBar = Sprite::create("gui/LifeBarBorder.png");
-                //lifeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-                lifeBorderBar->setPosition((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
-                                         attColorsBackground->getContentSize().height / 2);
-                /*auto barContent = Sprite::create("LifeBarContent.png");
-                ProgressTimer* lifeBar = ProgressTimer::create(barContent);
-                lifeBar->setType(ProgressTimer::Type::BAR);
-                lifeBar->setAnchorPoint(Vec2(0, 0));
-                lifeBar->setMidpoint(Vec2(0, 0));
-                lifeBar->setBarChangeRate(Vec2(1, 0));
-                lifeBar->setPosition(0, 0);
-                lifeBorderBar->addChild(lifeBar, 3, 1);
-                
-                Color3B color;
-                switch (j) {
-                    case 1:
-                        color = Color3B(0, 248, 251);
-                        break;
-                    case 2:
-                        color = Color3B(237, 184, 0);
-                        break;
-                    case 3:
-                        color = Color3B(246, 9, 255);
-                        break;
-                    default:
-                        color = Color3B(255, 4, 4);
-                        break;
-                }
-                lifeBar->setColor(color);*/
-                /*auto drawNode = DrawNode::create();
-                drawNode->setAnchorPoint(Vec2(0, 0.5));
-                float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) *
-                lifeBorderBar->getContentSize().height;
-                drawNode->drawSegment(Vec2(1, height), Vec2(4, height), 2, Color4F::RED);
-                lifeBorderBar->addChild(drawNode, 5);*/
-                lifeBars.pushBack(lifeBorderBar);
-                /*float height = float(GameLevel::getInstance()->getAgents()[i].size())/float(GameLevel::getInstance()->getMaxAgents()[i]) * lifeBorderBar->getContentSize().height;
-                Vec2 c(GameLevel::getInstance()->getTimeSteps(), height);
-                numAgentsEvolutionPoints->push_back(&c);
-                numAgentsEvolution->setControlPoints(numAgentsEvolutionPoints);*/
-                agentsEvolution = DrawNode::create();
-                lifeBorderBar->addChild(agentsEvolution);
-                attColorsBackground->setName("attColorsBackground");
-                attColorsBackground->addChild(lifeBorderBar, 1);
-                
-                
-                ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
-               //[[[HeyaldaGLDrawNode alloc] init] autorelease];
-                auto waveNode = new WaveNode();
-                //waveNode->init(float(GameLevel::getInstance()->getGoals().back()->getMaxTime()));
-                waveNode->init();
-
-                lifeBorderBar->addChild(waveNode, 1);
-                
-                // Try experimenting with different draw modes to see the effect.
-                //    glWaveNode.glDrawMode = kDrawPoints; 
-                waveNode->glDrawMode = kDrawLines;
-                waveNode->setReadyToDrawDynamicVerts(true);
-                waveNodes.push_back(waveNode);
-            }
-            
-            //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40);
-            attBackgroundTitle->setColor(Color3B(216, 229, 236));
-            attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
-            attBackgroundTitle->setPosition(Vec2(0.75 * attBackground->getContentSize().width / 12,
-                                                 13 * attBackground->getContentSize().height / 14));
-            attBackground->addChild(attBackgroundTitle);
-            
-            auto attBackgroundTitleCost = Label::createWithTTF("[ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 35);
-            attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
-            attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
-            attBackgroundTitleCost->setPosition(Vec2(9 * attBackground->getContentSize().width / 12,
-                                                 13 * attBackground->getContentSize().height / 14));
-            attBackground->addChild(attBackgroundTitleCost);
-
-            int k = 1;
-            int tag = 0;
-            Vector<MenuItem*> attributesButtons;
-            for (size_t j = 0; j < GameLevel::getInstance()->getModifiableAttr().size(); j++)
-            {
-                auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr()[j]).c_str())),
-                    "fonts/BebasNeue.otf", 30);
-                labelAttRight->setColor(Color3B(216, 229, 236));
-                labelAttRight->setAnchorPoint(Vec2(0, 0.5));
-                labelAttRight->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
-                    (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
-                attBackground->addChild(labelAttRight, 1, (j + 1) * 1000);
-
-                auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[j])), "fonts/BebasNeue.otf", 30);
-                attNumLabel->setColor(Color3B::BLACK);
-                attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
-                attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2.5, labelAttRight->getPositionY());
-                attBackground->addChild(attNumLabel, 1, (j + 1) * 1100);
-                
-                auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
-                costBackground->setPosition(attNumLabel->getPositionX(), attNumLabel->getPositionY());
-                attBackground->addChild(costBackground);
-                
-                auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
-                minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-                minusAttButton->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
-                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
-                minusAttButton->setTag(j + 10);
-                minusAttButton->setEnabled(false);
-                minusAttButton->setName("minus"+labelAttRight->getString());
-                attributesButtons.pushBack(minusAttButton);
-
-                auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-                plusAttButton->setPosition(Vec2(10 * attBackground->getContentSize().width / 12,
-                    (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
-                plusAttButton->setTag(j + 50);
-                plusAttButton->setEnabled(false);
-                plusAttButton->setName("plus"+labelAttRight->getString());
-                attributesButtons.pushBack(plusAttButton);
-
-                float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
-                float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-                int posY = (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15;
-
-                for (int m = 0; m < 5; m++) {
-                    posX = posX + incX;
-                    auto blankAttribute = Sprite::create("gui/BlankAttributePointButtonSmall.png");
-                    auto filledAttribute = Sprite::create("gui/FilledAttributePointButtonSmall.png");
-                    if (m >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[j])) {
-                        blankAttribute->setPosition(Vec2(posX, posY));
-                        attBackground->addChild(blankAttribute, 1, tag);
-                    }
-                    else if (m < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[j])) {
-                        filledAttribute->setPosition(Vec2(posX, posY));
-                        attBackground->addChild(filledAttribute, 1, tag);
-                    }
-                    tag++;
-                }
-
-                k++;
-            }
-
-            Menu* attrMenu = cocos2d::Menu::createWithArray(attributesButtons);
-            attrMenu->setPosition(Vec2(0, 0));
-            attrMenu->setName("attrMenu");
-            attBackground->addChild(attrMenu, 1, 100000);
+    for (size_t j = 0; j < GameLevel::getInstance()->getAgents().size(); j++)
+    {
+        auto agentTypeButton = Sprite::create("gui/AgentTypeButtonPressed.png");
+        agentTypeButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        agentTypeButton->setPosition(Vec2((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
+                                          - attColorsBackground->getContentSize().height / 2));
+        auto agentTypeButtonLabel = Label::createWithTTF(to_string(j)+"-BOTS", "fonts/BebasNeue.otf", 30);
+        agentTypeButtonLabel->setPosition(agentTypeButton->getContentSize().width / 2, agentTypeButton->getContentSize().height / 2);
+        agentTypeButton->addChild(agentTypeButtonLabel);
+        attColorsBackground->addChild(agentTypeButton, 5);
+        
+        auto lifeBorderBar = Sprite::create("gui/LifeBarBorder.png");
+        lifeBorderBar->setPosition((3.5 + (j * 5.65)) * attColorsBackground->getContentSize().width / 24,
+                                 attColorsBackground->getContentSize().height / 2);
+          lifeBars.pushBack(lifeBorderBar);
+        agentsEvolution = DrawNode::create();
+        lifeBorderBar->addChild(agentsEvolution);
+        attColorsBackground->setName("attColorsBackground");
+        attColorsBackground->addChild(lifeBorderBar, 1);
+        
+        
+        ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
+        auto waveNode = new WaveNode();
+        waveNode->init();
+        lifeBorderBar->addChild(waveNode, 1);
+        // Try experimenting with different draw modes to see the effect.
+        waveNode->glDrawMode = kDrawLines;
+        waveNode->setReadyToDrawDynamicVerts(true);
+        waveNodes.push_back(waveNode);
+    }
     
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40);
+    attBackgroundTitle->setColor(Color3B(216, 229, 236));
+    attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
+    attBackgroundTitle->setPosition(Vec2(0.75 * attBackground->getContentSize().width / 12,
+                                         13 * attBackground->getContentSize().height / 14));
+    attBackground->addChild(attBackgroundTitle);
+    
+    auto attBackgroundTitleCost = Label::createWithTTF("[ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 35);
+    attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
+    attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
+    attBackgroundTitleCost->setPosition(Vec2(9 * attBackground->getContentSize().width / 12,
+                                         13 * attBackground->getContentSize().height / 14));
+    attBackground->addChild(attBackgroundTitleCost);
+
+    int k = 1;
+    int tag = 0;
+    Vector<MenuItem*> attributesButtons;
+    for (size_t j = 0; j < modifAttr.size(); j++)
+    {   
+        if(modifAttr.at(j)==-1)
+        {
+            continue;
+        }
+        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr[j]).c_str())), "fonts/BebasNeue.otf", 30);
+        labelAttRight->setColor(Color3B(216, 229, 236));
+        labelAttRight->setAnchorPoint(Vec2(0, 0.5));
+        labelAttRight->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
+            (12 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
+        attBackground->addChild(labelAttRight, 1, (j + 1) * 1000);
+
+        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[j])), "fonts/BebasNeue.otf", 30);
+        attNumLabel->setColor(Color3B::BLACK);
+        attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
+        attNumLabel->setPosition(labelAttRight->getPositionX() + labelAttRight->getContentSize().width + attNumLabel->getContentSize().width * 2.5, labelAttRight->getPositionY());
+        attBackground->addChild(attNumLabel, 1, (j + 1) * 1100);
+        
+        auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
+        costBackground->setPosition(attNumLabel->getPositionX(), attNumLabel->getPositionY());
+        attBackground->addChild(costBackground);
+        
+        auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
+        minusAttButton->setAnchorPoint(Vec2(0, 0.5));
+        minusAttButton->setPosition(Vec2(2 * attBackground->getContentSize().width / 12,
+            (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
+        minusAttButton->setTag(j + 10);
+        minusAttButton->setEnabled(false);
+        minusAttButton->setName("minus"+labelAttRight->getString());
+        attributesButtons.pushBack(minusAttButton);
+
+        auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
+        plusAttButton->setPosition(Vec2(10 * attBackground->getContentSize().width / 12,
+            (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15));
+        plusAttButton->setTag(j + 50);
+        plusAttButton->setEnabled(false);
+        plusAttButton->setName("plus"+labelAttRight->getString());
+        attributesButtons.pushBack(plusAttButton);
+
+        float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
+        float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
+        int posY = (10 - (4 * (k - 1))) * attBackground->getContentSize().height / 15;
+
+        for (int m = 0; m < 5; m++) {
+            posX = posX + incX;
+            auto blankAttribute = Sprite::create("gui/BlankAttributePointButtonSmall.png");
+            auto filledAttribute = Sprite::create("gui/FilledAttributePointButtonSmall.png");
+            if (m >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[j])) {
+                blankAttribute->setPosition(Vec2(posX, posY));
+                attBackground->addChild(blankAttribute, 1, tag);
+            }
+            else if (m < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[j])) {
+                filledAttribute->setPosition(Vec2(posX, posY));
+                attBackground->addChild(filledAttribute, 1, tag);
+            }
+            tag++;
+        }
+
+        k++;
+    }
+
+    Menu* attrMenu = cocos2d::Menu::createWithArray(attributesButtons);
+    attrMenu->setPosition(Vec2(0, 0));
+    attrMenu->setName("attrMenu");
+    attBackground->addChild(attrMenu, 1, 100000);
+
     // TUTORIAL MESSAGES
     auto messageLabel = Label::createWithTTF("no message", "fonts/BebasNeue.otf", 24);
     messageLabel->setName("tutorial");
@@ -673,11 +613,15 @@ bool UIGameplayMap::init()
         
     Layout* layout = (Layout*)this->getChildByTag(1000001);
     Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-    for (size_t i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++)
+    for (size_t i = 0; i < modifAttr.size(); i++)
     {
+        if(modifAttr.at(i)==-1)
+        {
+            continue;
+        }
         MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
         MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
-        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())
+        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i]) > GameLevel::getInstance()->getEvolutionPoints())
         {
             plus->setEnabled(false);
             minus->setEnabled(false);
@@ -690,9 +634,6 @@ bool UIGameplayMap::init()
     }
 
     this->scheduleUpdate();
-    
-    //this->schedule(schedule_selector(UIGameplayMap::update), 1.3);
-
     return true;
 }
 
@@ -1212,6 +1153,7 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
     int i = tag - 10;
     Layout* layout = (Layout*)(pMenuItem->getParent()->getParent());
 
+    // XRC TODO fix this
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) <= 0)
     {
         return;
@@ -1243,6 +1185,7 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     int i = tag - 50;
     Sprite* layout = (Sprite*)(pMenuItem->getParent()->getParent());
 
+    // XRC TODO fix this
     if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) >= 5 or GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())    
     {
         return;
@@ -1837,10 +1780,13 @@ void UIGameplayMap::update(float delta)
             Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
             for (size_t i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++)
             {
+                if(GameLevel::getInstance()->getModifiableAttr().at(i)==-1)
+                {
+                    continue;
+                }
                 MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 10);
                 MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 50);
-                if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) >
-                    GameLevel::getInstance()->getEvolutionPoints())
+                if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())
                 {
                     plus->setEnabled(false);
                     minus->setEnabled(false);

@@ -43,8 +43,6 @@ public:
 
     void menuBackCallback(Ref* pSender);
     void menuStartCallback(Ref* pSender);
-    void minusAttCallback(Ref* pSender);
-    void plusAttCallback(Ref* pSender);
     void menuArrowBackCallback(Ref* pSender);
     void menuArrowNextCallback(Ref* pSender);
     void zoomImageInCallback(Ref* pSender);

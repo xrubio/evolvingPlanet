@@ -26,13 +26,13 @@
             <ATTRIBUTE NAME="REPRODUCTION">
                 <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="MOBILITY">
+            <ATTRIBUTE NAME="MOBILITY" GUI="0">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="RESISTANCE">
+            <ATTRIBUTE NAME="RESISTANCE" GUI="2">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="TECHNOLOGY">
+            <ATTRIBUTE NAME="TECHNOLOGY" GUI="1">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>

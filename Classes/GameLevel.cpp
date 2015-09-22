@@ -840,7 +840,7 @@ void GameLevel::setNumAgentTypes(int numAgents)
     for(size_t i=0; i<numAgents; i++)
     {
         _agentAttributes.push_back(Levels(_numAttributes, 0));
-        _attributesCost.push_back(Levels(_numAttributes, 0));
+        _attributesCost.push_back(Levels(_numAttributes, 1));
     }
 }
 

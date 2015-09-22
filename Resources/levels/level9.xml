@@ -29,16 +29,16 @@
             <ATTRIBUTE NAME="MOBILITY">
                 <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="TECHNOLOGY">
+            <ATTRIBUTE NAME="TECHNOLOGY" GUI="2">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="HOSTILITY">
+            <ATTRIBUTE NAME="HOSTILITY" GUI="1">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="CULTURAL_INFLUENCE">
+            <ATTRIBUTE NAME="CULTURAL_INFLUENCE" GUI="0">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
