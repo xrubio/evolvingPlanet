@@ -685,6 +685,7 @@ void GameLevel::computeOffspring( int type )
     // check diff between current agents and max agents, and see if it's lower than newAgents
     int value = min(newAgents, int(getMaxAgent(type)-_agents.at(type).size()));
     Agent::_numOffspring.at(type) = RandomHelper::random_int(int(value*0.5f), value);
+    CCLOG("offspring for type %d is with current %d probRepr %f and maxAgents %d", Agent::_numOffspring.at(type), numAgents, probReproduction, getMaxAgent(type));
 }
 
 void GameLevel::checkGoals()
@@ -755,7 +756,7 @@ void GameLevel::updateDirections(int type)
     _agentFutureDirections[type].erase(_agentFutureDirections[type].begin());
 }
 
-std::list<Agent*>::iterator GameLevel::checkDeath( std::list<Agent*>::iterator & it)
+void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
 {   
     Agent * agent = *it;
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
@@ -792,11 +793,12 @@ std::list<Agent*>::iterator GameLevel::checkDeath( std::list<Agent*>::iterator &
         addDeletedAgent(Point(agent->getPosition().getX(), agent->getPosition().getY()));
         GameLevel::getInstance()->deleteAgent(agent);
         it = _agents.at(agent->getType()).erase(it);
-        return it;
+        CCLOG("killed agent with life: %d harm: %d", agent->getLife(), int(harm));
     }
     else
     {
-        return it++;
+        CCLOG("continue agent with life: %d harm: %d", agent->getLife(), int(harm));
+        it++;
     }
 }
 
@@ -808,7 +810,7 @@ void GameLevel::consumeAndRemove(int type)
 
     while(it!=agents.end())
     {
-        it = checkDeath(it);
+        checkDeath(it);
         /*
         Agent * agent = *it;
         if(agent->getLife()<=0)
@@ -840,7 +842,7 @@ void GameLevel::act(void)
 {
     checkGoals();
 
-    if(_finishedGame!=Success)
+    if(_finishedGame!=Running)
     {
         return;
     }

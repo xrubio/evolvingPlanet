@@ -259,7 +259,7 @@ private:
     // executes all actions for all agents of type
     void executeActions(int type);
     // XRC TODO temporary (move to Agent)
-    std::list<Agent*>::iterator checkDeath( std::list<Agent*>::iterator & it);
+    void checkDeath( std::list<Agent*>::iterator & it);
     void deleteAgent(Agent* agent);
 };
 
