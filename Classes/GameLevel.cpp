@@ -837,8 +837,6 @@ void GameLevel::executeActions(int type)
 
 void GameLevel::act(void)
 {
-    checkGoals();
-
     if(_finishedGame!=Running)
     {
         return;
@@ -861,6 +859,8 @@ void GameLevel::act(void)
         }
         executeActions(k);
     }
+    
+    checkGoals();
 }
 
 bool GameLevel::validatePosition(int posx, int posy)

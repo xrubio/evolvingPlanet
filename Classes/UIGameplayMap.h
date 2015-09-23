@@ -34,6 +34,8 @@
 #include "UIPower.h"
 #include "WaveNode.h"
 
+#define SECONS_PER_STEP 0.5
+
 class Message;
 class Tutorial;
 

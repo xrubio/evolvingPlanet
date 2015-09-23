@@ -986,7 +986,7 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     if (GameLevel::getInstance()->getTimeSpeed() == 0)
     {
         pauseDarkBackground->setVisible(false);
-        GameLevel::getInstance()->setTimeSpeed(1.265);
+        GameLevel::getInstance()->setTimeSpeed(SECONS_PER_STEP);
     }
     else
     {
