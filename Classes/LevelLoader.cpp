@@ -32,7 +32,6 @@
 #include "Deplete.h"
 #include "EnvironmentAdaptation.h"
 #include "Kill.h"
-#include "Die.h"
 #include "AreaPower.h"
 #include "UIGameplayMap.h"
 #include "ExpansionGoal.h"
@@ -193,9 +192,6 @@ void LevelLoader::loadXmlFile(string filename)
         }
         else if (action == "Kill") {
             GameLevel::getInstance()->addAction(new Kill());
-        }
-        else if (action == "Die") {
-            GameLevel::getInstance()->addAction(new Die());
         }
         acts = acts.next_sibling("ACTION");
     }

@@ -28,7 +28,7 @@
 #include "Kill.h"
 #include "UIGameplayMap.h"
 
-list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
+void Kill::execute(Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     float probKill = agent->getValue(Hostility);
@@ -41,7 +41,8 @@ list<Agent*>::reverse_iterator Kill::execute(int type, Agent* agent)
         int posy = RandomHelper::random_int(0, mobility) + (agent->getPosition().getY() - mobility);
         while (maxIterations > 0 and kill == false) {
             if (posx >= 0 and posx < 480 and posy >= 0 and posy < 320) {
-                if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != type) {
+                if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
+                {
                     GameLevel::getInstance()->getAgentAtMap(posx, posy)->setLife(0);
                     kill = true;
                 }

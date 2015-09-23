@@ -28,11 +28,12 @@
 #include "Deplete.h"
 #include "UIGameplayMap.h"
 
-list<Agent*>::reverse_iterator Deplete::execute(int type, Agent* agent)
+void Deplete::execute(Agent* agent)
 {
     CCLOG("Deplete is an Act with temporal implementation");
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
+    int type = agent->getType();
     int sustainability;// = GameLevel::getInstance()->getAttributesValues(type, "SUSTAINABILITY", agent->getValOfAttribute("SUSTAINABILITY"));
     /*switch (sustainability) {
     case 1:

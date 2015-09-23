@@ -29,9 +29,10 @@
 #include "UIGameplayMap.h"
 #include "CollectionGoal.h"
 
-list<Agent*>::reverse_iterator Collect::execute(int type, Agent* agent)
+void Collect::execute(Agent* agent)
 {
     CCLOG("Collect is an Act with temporal implementation");
+    int type = agent->getType();
     //UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 

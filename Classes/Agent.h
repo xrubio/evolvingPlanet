@@ -39,7 +39,7 @@ class Agent {
 public:
     typedef std::vector<float> Attributes;
     // number of children to create on a given time step
-    static int _numOffspring;
+    static std::vector<int> _numOffspring;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent(){};
@@ -47,6 +47,7 @@ public:
     int getId(void);
     void setId(int i);
     int getLife(void);
+    // maybe we could set init life as default and then only implement decreaseLife(int amount)
     void setLife(int lf);
     int getType(void);
     void setType(int t);
