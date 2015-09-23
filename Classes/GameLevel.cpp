@@ -746,18 +746,22 @@ void GameLevel::act(void)
         size_t numAgents = _agents.at(k).size();
         float probReproduction = getValueAtLevel(Reproduction, _agentAttributes.at(k).at(Reproduction));
 
-        Power* p = nullptr;
-        for (int i = 0; i < getPowers().size(); i++)
+        // mirar poders nomes de la poblacio del jugador
+        if (k == 0)
         {
-            if (getPowers()[i]->getId() != ReproductionBoost)
+            Power* p = nullptr;
+            for (int i = 0; i < getPowers().size(); i++)
             {
-                continue;
+                if (getPowers()[i]->getId() != ReproductionBoost)
+                {
+                    continue;
+                }
+                p = getPowers()[i];
             }
-            p = getPowers()[i];
-        }
-        if (p != nullptr and p->getDurationLeft() > 0)
-        {
-            probReproduction = getValueAtLevel(Reproduction, 5);
+            if (p != nullptr and p->getDurationLeft() > 0)
+            {
+                probReproduction = getValueAtLevel(Reproduction, 5);
+            }
         }
 
         int newAgents = int((float)numAgents*probReproduction);
