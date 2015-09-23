@@ -947,6 +947,7 @@ void UIGameplayMap::onMouseScroll(Event* event)
 void UIGameplayMap::menuBackCallback(Ref* pSender)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    _eventDispatcher->removeEventListener(_listenerTutorial);
     GameLevel::getInstance()->setFinishedGame(UserCancel);
     while (GameLevel::getInstance()->ended == false)
         ;
@@ -1088,6 +1089,7 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);*/
     
+    _eventDispatcher->removeEventListener(_listenerTutorial);
     GameLevel::getInstance()->setAgentAttributesInitToCurrent();
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
