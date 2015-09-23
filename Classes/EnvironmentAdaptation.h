@@ -35,7 +35,7 @@ class EnvironmentAdaptation : public Act {
 public:
     EnvironmentAdaptation(){};
 
-    list<Agent*>::reverse_iterator execute(int type, Agent* agent);
+    void execute(Agent* agent);
 };
 
 #endif /* defined(__simulplay__EnvironmentAdaptation__) */

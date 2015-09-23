@@ -35,7 +35,7 @@ class Reproduce : public Act
 public:
     Reproduce(){};
 
-    list<Agent*>::reverse_iterator execute(int type, Agent* agent);
+    void execute(Agent* agent);
 };
 
 #endif /* defined(__simulplay__Reproduce__) */

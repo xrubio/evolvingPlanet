@@ -30,7 +30,7 @@
 #include "UIGameplayMap.h"
 #include "GameLevel.h"
 
-list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
+void Reproduce::execute(Agent* agent)
 {
     //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
 
@@ -76,17 +76,18 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             // if a random value between 0 and targetCulture is lower than 0 and ownCulture influence the agent
             if(RandomHelper::random_real(0.0f, targetCulture)<RandomHelper::random_real(0.0f, probCulture))
             {
+                // XRC TODO això és correcte?
                 type = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType();
             }
         }
  
     }
 
-    if(Agent::_numOffspring>0)
+    if(Agent::_numOffspring.at(type)>0)
     {
         if (type == agent->getType())
         {
-            Agent::_numOffspring--;
+            Agent::_numOffspring.at(type)--;
 
             int maxIterations = 30;
             /*if (agent->getType() != 0) {
@@ -126,9 +127,10 @@ list<Agent*>::reverse_iterator Reproduce::execute(int typeAgent, Agent* agent)
             }
         }
         //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
+        // XRC TODO mirar si offspring és correcte
         else
         {
-            Agent::_numOffspring--;
+            Agent::_numOffspring.at(type)--;
             auto ag = new Agent(agent->getId(), agent->getLife(), type, agent->getPosition().getX(), agent->getPosition().getY());
             ag->copyValues(type);
             GameLevel::getInstance()->addAgent(ag);

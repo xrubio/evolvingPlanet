@@ -121,7 +121,6 @@ public:
     void deletePower(int i);
     std::vector<std::list<Agent*> > getAgents(void);
     void addAgent(Agent* ag);
-    std::list<Agent*>::reverse_iterator deleteAgent(int type, Agent* agent);
     std::vector<std::list<Agent*> > getAgentsPool(void);
     void popFrontAgentsPool(int type);
     void addAction(Act* act);
@@ -234,8 +233,9 @@ private:
     
     int evolutionPoints = 10;
     int evolutionPointsFreq = 2;
-    
-    LevelState finishedGame = Running;
+   
+    // state of the game
+    LevelState _finishedGame = Running;
 
     int currentAgentType = 0;
 
@@ -247,6 +247,20 @@ private:
     void initializeAgentsPool(void);
     void generateInitialAgents(int type);
     inline void act(void);
+
+    // updates mission goals and _finishedGame state
+    void checkGoals();
+    // computes the offspring that type population can have based on Reproduction attribute, ReproductionBoost and maxAgents
+    void computeOffspring( int type );
+    // sets directions from _agentFutureDirections to _agentDirections if timeSteps has arrived
+    void updateDirections(int type);
+    // consumes resistance and removes agents from simulation if life <= 0
+    void consumeAndRemove(int type);
+    // executes all actions for all agents of type
+    void executeActions(int type);
+    // XRC TODO temporary (move to Agent)
+    std::list<Agent*>::iterator checkDeath( std::list<Agent*>::iterator & it);
+    void deleteAgent(Agent* agent);
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

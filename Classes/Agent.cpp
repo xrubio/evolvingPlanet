@@ -28,7 +28,7 @@
 #include "Agent.h"
 #include "GameLevel.h"
 
-int Agent::_numOffspring = 0;
+std::vector<int> Agent::_numOffspring = std::vector<int>();
 
 Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _attributes(GameLevel::_numAttributes, 0.0f)
 {

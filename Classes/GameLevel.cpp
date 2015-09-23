@@ -27,7 +27,6 @@
 
 #include "GameLevel.h"
 #include "UIGameplayMap.h"
-#include "Die.h"
 #include "Reproduce.h"
 #include "Power.h"
 #include "AreaPower.h"
@@ -215,19 +214,13 @@ void GameLevel::addAgent(Agent* ag)
     _agentsMap[ag->getPosition().getX()][ag->getPosition().getY()] = ag;
 }
 
-std::list<Agent*>::reverse_iterator GameLevel::deleteAgent(int type, Agent* agent)
+void GameLevel::deleteAgent(Agent* agent)
 {
+    int type = agent->getType();
     int posx = agent->getPosition().getX();
     int posy = agent->getPosition().getY();
-    //delete _agentsMap[posx][posy]; // = nullptr;
     _agentsMap[posx][posy] = nullptr;
-    //_agents.at(type).erase(_agents.at(type).begin() + i);
-    std::list<Agent*>::reverse_iterator it = find(_agents[type].rbegin(), _agents[type].rend(), agent);
-    //advance(it, 1);
-    _agents[type].erase(--(it.base()));
     _agentsPool[type].push_back(agent);
-    //delete agent;
-    return it;
 }
 
 std::vector<std::list<Agent*> > GameLevel::getAgentsPool(void)
@@ -312,12 +305,12 @@ void GameLevel::setIdCounter(int count)
 
 const LevelState & GameLevel::getFinishedGame() const
 {
-    return finishedGame;
+    return _finishedGame;
 }
 
 void GameLevel::setFinishedGame(const LevelState & f)
 {
-    finishedGame = f;
+    _finishedGame = f;
 }
 
 unsigned int GameLevel::getTimeSteps(void)
@@ -463,7 +456,7 @@ int GameLevel::getEvolutionPointsFreq(void)
 void GameLevel::playLevel(void)
 {
     CCLOG("step;pop;time");
-    while (finishedGame == Running)
+    while (_finishedGame == Running)
     {
         if (Timing::getInstance()->act == true) {
             while (gameplayMap->play == false)
@@ -500,7 +493,7 @@ void GameLevel::playLevel(void)
         }
     }
     ended = true;
-    CCLOG("End of game: %i", finishedGame);
+    CCLOG("End of game: %i", _finishedGame);
 }
 
 void GameLevel::resetLevel(void)
@@ -545,7 +538,7 @@ void GameLevel::resetLevel(void)
 
     evolutionPoints = 10;
 
-    finishedGame = Running;
+    _finishedGame = Running;
 
     currentAgentType = 0;
     maxAllAgents = 0;
@@ -649,7 +642,7 @@ bool compareDists(const Agent * L, const Agent * R, const Point & spot)
    // compute chebyshev distance
    float Ldist = max(abs(L->getPosition().getX()-spot.x), abs(L->getPosition().getY()-spot.y));
    float Rdist = max(abs(R->getPosition().getX()-spot.x), abs(R->getPosition().getY()-spot.y));
-   return Ldist>Rdist;
+   return Ldist<Rdist;
 };
 
 class DistSorter
@@ -663,91 +656,18 @@ public:
     }
 };
 
-void GameLevel::act(void)
+
+void GameLevel::computeOffspring( int type )
 {
-    deletedAgents.clear();
-    addedAgents = 0;
-    //CCLOG("Num agents: %i", _agents[0].size());
-    //CCLOG("Pool: %i", _agentsPool[0].size());
-    //CCLOG("Num agents + Pool: %i", _agents[0].size() + _agentsPool[0].size());
-    for (size_t k = 0; k < _agents.size() and finishedGame == Running; k++)
+    // definir número d'agents que han de crear-se
+    size_t numAgents = _agents.at(type).size();
+    float probReproduction = getValueAtLevel(Reproduction, _agentAttributes.at(type).at(Reproduction));
+
+    // ReproductionBoost only affects user's population
+    if(type==0)
     {
-
-        //CHECK DIRECTION
-        if (_agentFutureDirections.empty() == false and _agentFutureDirections[k].empty() == false)
-        {
-            //CCLOG("check direction %i", _agentFutureDirections[k][0].first);
-            if (timeSteps != _agentFutureDirections[k][0].first)
-            {
-                continue;
-            }
-            _agentDirections[k] = _agentFutureDirections[k][0].second;
-            _agentFutureDirections[k].erase(_agentFutureDirections[k].begin());
-        }
-
-        // TODO if finger spot exists
-        // reorder based on distance to fingerSpot
-        const Point & fingerSpot = _agentDirections.at(k);    
-        std::list<Agent*> & agents = _agents.at(k);
-        agents.sort(DistSorter(fingerSpot));
-
-        std::list<Agent*>::reverse_iterator end = _agents[k].rbegin();
-        // primera passada per comprovar goals i matar agents iaios
-        while(end != _agents[k].rend() and finishedGame == Running)
-        {     
-            //Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
-            for (size_t  j = 0; j < goals.size(); j++)
-            {
-                if (goals[j]->getCompleted() == false)
-                {
-                    goals[j]->checkGoal(k, *end);
-                }
-            }
-            
-            int sizeBefore = (int)_agents[k].size();
-            std::list<Agent*>::reverse_iterator rit = actions[actions.size() - 1]->execute(k, *end);
-            if (sizeBefore > _agents[k].size())
-            {
-                end = rit;
-            }
-            else
-            {
-                end++;
-            }
-
-            //ALL GOALS COMPLETED ??
-            bool failed = false;
-            int finalScore = 0;
-            for (size_t j = 0; j < goals.size() and failed == false; j++)
-            {
-                if (goals[j]->getCompleted() == false)
-                {
-                    if (prevGoal != j)
-                    {
-                        gameplayMap->moveGoalPopup(j);
-                        prevGoal = j;
-                    }
-                    failed = true;
-                }
-                else
-                {
-                    finalScore += goals[j]->getScore();
-                }
-            }
-            if(failed == false and goals.empty() == false)
-            {
-                CCLOG("FINAL SCORE: %i", (finalScore/int(goals.size())));
-                GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
-                finishedGame = Success;
-            }
-        }
-
-        // definir número d'agents que han de crear-se
-        size_t numAgents = _agents.at(k).size();
-        float probReproduction = getValueAtLevel(Reproduction, _agentAttributes.at(k).at(Reproduction));
-
         Power* p = nullptr;
-        for (int i = 0; i < getPowers().size(); i++)
+        for (size_t i = 0; i < getPowers().size(); i++)
         {
             if (getPowers()[i]->getId() != ReproductionBoost)
             {
@@ -759,31 +679,188 @@ void GameLevel::act(void)
         {
             probReproduction = getValueAtLevel(Reproduction, 5);
         }
+    }
 
-        int newAgents = int((float)numAgents*probReproduction);
-        // check diff between current agents and max agents, and see if it's lower than newAgents
-        int value = min(newAgents, int(getMaxAgent(k)-_agents.at(k).size()));
-        Agent::_numOffspring = RandomHelper::random_int(int(value*0.5f), value);
+    int newAgents = int((float)numAgents*probReproduction);
+    // check diff between current agents and max agents, and see if it's lower than newAgents
+    int value = min(newAgents, int(getMaxAgent(type)-_agents.at(type).size()));
+    Agent::_numOffspring.at(type) = RandomHelper::random_int(int(value*0.5f), value);
+}
 
-        if(finishedGame == Running)
+void GameLevel::checkGoals()
+{    
+    for (size_t k = 0; k < _agents.size(); k++)
+    {
+        // TODO XRC cal que sigui per tots els tipus d'agents?
+        // TODO GLC Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
+
+        for(std::list<Agent*>::iterator it=_agents.at(k).begin(); it!=_agents.at(k).end(); it++)
         {
-            // segona passada per resta d'accions
-            end = _agents[k].rbegin();
-            while (end != _agents[k].rend() and finishedGame == Running)
+            for (size_t  j = 0; j < goals.size(); j++)
             {
-                for (size_t j = 0; j < actions.size()-1; j++)
+                if (goals[j]->getCompleted() == false)
                 {
-                    actions[j]->execute(k, *end);
+                    goals[j]->checkGoal(k, *it);
                 }
-                end++;
+            }
+        }
+    }
+            
+    //ALL GOALS COMPLETED ??
+    bool failed = false;
+    int finalScore = 0;
+    for (size_t j = 0; j < goals.size() and failed == false; j++)
+    {
+        if (goals[j]->getCompleted() == false)
+        {
+            if (prevGoal != j)
+            {
+                gameplayMap->moveGoalPopup(j);
+                prevGoal = j;
+            }
+            failed = true;
+        }
+        else
+        {
+            finalScore += goals[j]->getScore();
+        }
+    }
+    if(!failed and !goals.empty())
+    {
+        CCLOG("FINAL SCORE: %i", (finalScore/int(goals.size())));
+        GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
+        _finishedGame = Success;
+        return;
+    }
+    
+    bool noAgentsLeft = _agents.at(0).empty();
+    if(_finishedGame==Running and noAgentsLeft)
+    {
+        _finishedGame = NoAgentsLeft;
+    }
+}
+
+void GameLevel::updateDirections(int type)
+{        
+    //CHECK DIRECTION
+    if(_agentFutureDirections.empty() or _agentFutureDirections[type].empty())
+    {
+        return;
+    }
+    if(timeSteps != _agentFutureDirections[type][0].first)
+    {
+        return;
+    }
+    _agentDirections[type] = _agentFutureDirections[type][0].second;
+    _agentFutureDirections[type].erase(_agentFutureDirections[type].begin());
+}
+
+std::list<Agent*>::iterator GameLevel::checkDeath( std::list<Agent*>::iterator & it)
+{   
+    Agent * agent = *it;
+    UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
+
+    float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition().getX(), agent->getPosition().getY(), 0);
+    float resistance = agent->getValue(Resistance);
+
+    //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
+    if(agent->getType()==0)
+    {
+        Power* p = nullptr;
+        for (size_t i = 0; i < getPowers().size(); i++)
+        {
+            if(getPowers()[i]->getId() != ResistanceBoost)
+            {
+                continue;
+            }
+            p = getPowers()[i];
+        }
+        if(p != nullptr and p->getDurationLeft() > 0)
+        {
+            if (gameplayMap->isInBoostResistanceArea(agent->getPosition().getX() * float(2048.0 / 480.0), ((1536 - 1365) / 2) + (agent->getPosition().getY() * float(1365.0 / 320.0))))
+            {
+                resistance = getValueAtLevel(Resistance, 5);
             }
         }
     }
 
-    bool noAgentsLeft = _agents[0].empty();
-    if(finishedGame==Running and noAgentsLeft)
+    harm = max(0.0f, harm/resistance);
+    agent->setLife(agent->getLife() - int(harm));
+
+    if (agent->getLife() <= 0)
     {
-        finishedGame = NoAgentsLeft;
+        addDeletedAgent(Point(agent->getPosition().getX(), agent->getPosition().getY()));
+        GameLevel::getInstance()->deleteAgent(agent);
+        it = _agents.at(agent->getType()).erase(it);
+        return it;
+    }
+    else
+    {
+        return it++;
+    }
+}
+
+void GameLevel::consumeAndRemove(int type)
+{
+    // primera passada per comprovar goals i matar agents iaios
+    std::list<Agent*> & agents = _agents.at(type);
+    std::list<Agent*>::iterator it = agents.begin();
+
+    while(it!=agents.end())
+    {
+        it = checkDeath(it);
+        /*
+        Agent * agent = *it;
+        if(agent->getLife()<=0)
+        {
+            it = agents.erase(it);
+            delete agent;
+        }
+        else
+        {
+            it++;
+        }
+        */
+    }
+}
+
+void GameLevel::executeActions(int type)
+{
+    std::list<Agent*> & agents = _agents.at(type);
+    for(std::list<Agent*>::iterator it=agents.begin(); it!=agents.end(); it++)
+    {
+        for(size_t j=0; j<actions.size(); j++)
+        {
+            actions[j]->execute(*it);
+        }
+    }
+}
+
+void GameLevel::act(void)
+{
+    checkGoals();
+
+    if(_finishedGame!=Success)
+    {
+        return;
+    }
+
+    deletedAgents.clear();
+    addedAgents = 0;
+
+    for(size_t k = 0; k < _agents.size(); k++)
+    {
+        updateDirections(k);
+        consumeAndRemove(k);
+        computeOffspring(k);
+
+        // reorder based on distance to fingerSpot (closest first)
+        const Point & fingerSpot = _agentDirections.at(k);
+        if(fingerSpot.x != -1)
+        {
+            _agents.at(k).sort(DistSorter(fingerSpot));
+        }
+        executeActions(k);
     }
 }
 
@@ -876,12 +953,14 @@ string GameLevel::convertAttIntToString(int i)
     
 void GameLevel::setNumAgentTypes(size_t numAgents)
 {
+    Agent::_numOffspring.clear();
     _agentAttributes.clear();
     _attributesCost.clear();
     for(size_t i=0; i<numAgents; i++)
     {
         _agentAttributes.push_back(Levels(_numAttributes, 0));
         _attributesCost.push_back(Levels(_numAttributes, 1));
+        Agent::_numOffspring.push_back(0);
     }
 }
 

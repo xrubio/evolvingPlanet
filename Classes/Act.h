@@ -40,7 +40,7 @@ class Act
 public:
     Act(){};
 
-    virtual list<Agent*>::reverse_iterator execute(int type = 0, Agent* agent = nullptr) = 0;
+    virtual void execute(Agent* agent = nullptr) = 0;
 };
 
 #endif /* defined(__simulplay__Act__) */

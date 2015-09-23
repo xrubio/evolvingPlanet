@@ -35,7 +35,7 @@ class Deplete : public Act {
 public:
     Deplete(){};
 
-    list<Agent*>::reverse_iterator execute(int type, Agent* agent);
+    void execute(Agent* agent);
 };
 
 #endif /* defined(__simulplay__Deplete__) */
