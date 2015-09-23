@@ -99,7 +99,13 @@ void Agent::copyValues( int type )
     const GameLevel::Levels & currentValues = GameLevel::getInstance()->getAgentAttributes(type);
     for(size_t i=0; i<currentValues.size(); i++)
     {
-        float value = GameLevel::getInstance()->getValueAtLevel(i, currentValues.at(i));
+        int currentValue = currentValues.at(i);
+        // if value not set skip the attribute (and leave value at 0)
+        if(currentValue==-1)
+        {
+            continue;
+        }
+        float value = GameLevel::getInstance()->getValueAtLevel(i, currentValue);
         setValue(i, value);
     }
 }

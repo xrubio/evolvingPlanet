@@ -622,22 +622,25 @@ void GameLevel::generateInitialAgents(int type)
     }
 
     int i = 0;
-    while (i < numInitialAgents[type]) {
+    while (i < numInitialAgents[type])
+    {
         int posx = random(minX, maxX); //rand() % maxX + minX;
         int posy = random(minY, maxY); //rand() % maxY + minY;
-        if (GameLevel::getInstance()->validatePosition(posx, posy) and gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type) {
-            //auto a =new Agent(idCounter, 100, type, posx, posy);
-            Agent* a = _agentsPool[type].front();
-            _agentsPool[type].pop_front();
-            a->setId(idCounter);
-            a->setLife(100);
-            a->setType(type);
-            a->setPosition(posx, posy);
-            a->copyValues(type);
-            addAgent(a);
-            idCounter++;
-            i++;
+        if(!validatePosition(posx, posy) or !gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type)
+        {
+            continue;
         }
+        //auto a =new Agent(idCounter, 100, type, posx, posy);
+        Agent* a = _agentsPool[type].front();
+        _agentsPool[type].pop_front();
+        a->setId(idCounter);
+        a->setLife(100);
+        a->setType(type);
+        a->setPosition(posx, posy);
+        a->copyValues(type);
+        addAgent(a);
+        idCounter++;
+        i++;
     }
 }
 
@@ -754,7 +757,7 @@ void GameLevel::act(void)
         }
         if (p != nullptr and p->getDurationLeft() > 0)
         {
-            probReproduction = GameLevel::getInstance()->getValueAtLevel(Reproduction, 5);
+            probReproduction = getValueAtLevel(Reproduction, 5);
         }
 
         int newAgents = int((float)numAgents*probReproduction);
