@@ -1084,7 +1084,12 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
     LevelLoader loader;
     loader.loadXmlFile(filename);
 
-    auto scene = UIGoals::createScene();
+    /*auto scene = UIGoals::createScene();
+    auto transition = TransitionFade::create(1.0f, scene);
+    Director::getInstance()->replaceScene(transition);*/
+    
+    GameLevel::getInstance()->setAgentAttributesInitToCurrent();
+    auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
 }
