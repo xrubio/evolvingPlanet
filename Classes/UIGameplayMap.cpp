@@ -135,16 +135,19 @@ bool UIGameplayMap::init()
     quitButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     quitButton->setPosition(Vec2(quitButton->getBoundingBox().size.width / 2,
         visibleSize.height - (quitButton->getBoundingBox().size.height / 2)));
+    quitButton->setName("quitButton");
     quitRetryVec.pushBack(quitButton);
 
     MenuItem* retryButton = MenuItemImage::create("gui/Repeat.png", "gui/RepeatPressed.png", CC_CALLBACK_1(UIGameplayMap::retryCallback, this));
     retryButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     retryButton->setPosition(Vec2(retryButton->getBoundingBox().size.width / 2,
         quitButton->getPositionY() - quitButton->getBoundingBox().size.height));
+    retryButton->setName("retryButton");
     quitRetryVec.pushBack(retryButton);
 
     Menu* quitRetryMenu = Menu::createWithArray(quitRetryVec);
     quitRetryMenu->setPosition(0, 0);
+    quitRetryMenu->setName("quitRetryMenu");
     this->addChild(quitRetryMenu, 10);
 
     //HOTSPOT
@@ -416,7 +419,7 @@ bool UIGameplayMap::init()
     _listenerTutorial = EventListenerTouchOneByOne::create();
     _listenerTutorial->setSwallowTouches(true);
     _listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
-    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial, -1);
+    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial,-1);
 
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("driver2.mp3", true);
@@ -445,8 +448,8 @@ bool UIGameplayMap::init()
     attBackground->setAnchorPoint(Vec2(0, 0));
     attBackground->setPosition(Vec2(visibleSize.width - attBackground->getBoundingBox().size.width, (18.5 * visibleSize.height / 155)));
     attBackground->setName("attBackground");
-    auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
-    auto ease = EaseBackInOut::create(move);
+    //auto move = MoveTo::create(1.5, Vec2(visibleSize.width, attBackground->getPositionY()));
+    //auto ease = EaseBackInOut::create(move);
     this->addChild(attBackground, 5, 1000001);
     auto arrowRetract = MenuItemImage::create("gui/ArrowRetract.png", "gui/ArrowRetractPressed.png", CC_CALLBACK_1(UIGameplayMap::moveAttCallback, this));
     arrowRetract->setAnchorPoint(Vec2(1, 0));
@@ -633,6 +636,8 @@ bool UIGameplayMap::init()
         }
     }
 
+    disableButtons("");
+    
     this->scheduleUpdate();
     return true;
 }
@@ -820,13 +825,57 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 
 bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
 {
-    if(!_tutorial || !_tutorial->getCurrentMessage() || _tutorial->getCurrentMessage()->getPostCondition()!="tapButton")
+    if(!_tutorial || !_tutorial->getCurrentMessage())// || _tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
+    {
+        return false;
+    }
+    
+    Node * parent = this;
+    Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    //QUIT OR RETRY
+    Node * quitRetry = parent->getChildByName("quitRetryMenu");
+    if(quitRetry->getChildByName("quitButton")->getBoundingBox().containsPoint(touchLocation) or
+       quitRetry->getChildByName("retryButton")->getBoundingBox().containsPoint(touchLocation))
+    {
+        CCLOG("QUIT MENU");
+        return false;
+    }
+    
+    string qrButton = "";
+    if (quitRetry->getChildByName("quitButton")->getChildByName("confirmBackground") != nullptr)
+    {
+        qrButton = "quitButton";
+    }
+    else if (quitRetry->getChildByName("retryButton")->getChildByName("confirmBackground") != nullptr)
+    {
+        qrButton = "retryButton";
+    }
+    
+    if (qrButton != "")
+    {
+        Node * n = quitRetry->getChildByName(qrButton)->getChildByName("confirmBackground")->getChildByName("confirmMenu");
+        
+        Rect rNo(n->getParent()->getParent()->getPositionX() + n->getChildByName("confirmNo")->getPositionX(), n->getParent()->getParent()->getPositionY() - n->getChildByName("confirmNo")->getPositionY() / 2, n->getChildByName("confirmNo")->getBoundingBox().size.width, n->getChildByName("confirmNo")->getBoundingBox().size.height);
+        
+        Rect rOk(n->getParent()->getParent()->getPositionX() + n->getChildByName("confirmOk")->getPositionX(), n->getParent()->getParent()->getPositionY() - n->getChildByName("confirmOk")->getPositionY() / 2, n->getChildByName("confirmOk")->getBoundingBox().size.width, n->getChildByName("confirmOk")->getBoundingBox().size.height);
+        
+        if (rNo.containsPoint(touchLocation) or rOk.containsPoint(touchLocation))
+        {
+            return false;
+        }
+    }
+    
+    if(_tutorial->getCurrentMessage()->getPostCondition() == "tap")
+    {
+        _tutorial->getCurrentMessage()->postConditionAchieved();
+        return true;
+    }
+    else if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
     {
         return false;
     }
 
     std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
-    Node * parent = this;
     std::size_t pos;
     std::string delimiter = "/";
     std::string token;
@@ -837,12 +886,13 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
         buttonName.erase(0, pos + delimiter.length());
     }
     token = buttonName.substr(0, pos);
-    Node * button = parent->getChildByName(token);    
-    Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    Node * button = parent->getChildByName(token);
     if(button->getBoundingBox().containsPoint(touchLocation))
     {
         _tutorial->getCurrentMessage()->postConditionAchieved();
     }
+    else return true;
+    
     return false;
 }
 
@@ -878,11 +928,6 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     }*/
     firstTouchLocation = touches[0]->getLocation();
     timeFingerSpot = clock();
-
-    if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="tap")
-    {
-        _tutorial->getCurrentMessage()->postConditionAchieved();
-    }
 }
 
 void UIGameplayMap::onMouseScroll(Event* event)
@@ -1016,9 +1061,12 @@ void UIGameplayMap::quitCallback(Ref* pSender)
     MenuItem* p = (MenuItem*)pSender;
     p->setEnabled(false);
     auto confirmBackground = Sprite::create("gui/ConfirmBackground.png");
+    confirmBackground->setName("confirmBackground");
     Vector<MenuItem*> confirmVec;
-    auto confirmOk = MenuItemImage::create("gui/ConfirmOk.png", "gui/ConfirmOkPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
-    auto confirmNo = MenuItemImage::create("gui/ConfirmNo.png", "gui/ConfirmNoPressed.png", CC_CALLBACK_1(UIGameplayMap::NoCallback, this));
+    MenuItem* confirmOk = MenuItemImage::create("gui/ConfirmOk.png", "gui/ConfirmOkPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
+    confirmOk->setName("confirmOk");
+    MenuItem* confirmNo = MenuItemImage::create("gui/ConfirmNo.png", "gui/ConfirmNoPressed.png", CC_CALLBACK_1(UIGameplayMap::NoCallback, this));
+    confirmNo->setName("confirmNo");
     auto separator = Sprite::create("gui/ConfirmSeparator.png");
     separator->setPosition(Vec2(3 * confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmOk->setPosition(Vec2(5 * confirmBackground->getContentSize().width / 8, confirmBackground->getContentSize().height / 2));
@@ -1026,11 +1074,12 @@ void UIGameplayMap::quitCallback(Ref* pSender)
     confirmVec.pushBack(confirmOk);
     confirmVec.pushBack(confirmNo);
     Menu* confirmMenu = Menu::createWithArray(confirmVec);
+    confirmMenu->setName("confirmMenu");
     confirmMenu->setPosition(0, 0);
     auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("QUIT_QUESTION")), "fonts/BebasNeue.otf", 50);
     labelConfirm->setPosition(Vec2(confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmBackground->addChild(separator);
-    confirmBackground->addChild(confirmMenu);
+    confirmBackground->addChild(confirmMenu, 10);
     confirmBackground->addChild(labelConfirm);
     confirmBackground->setAnchorPoint(Vec2(0, 0.5));
     confirmBackground->setPosition(Vec2(p->getContentSize().width - confirmBackground->getContentSize().width, p->getContentSize().height / 2));
@@ -1045,9 +1094,12 @@ void UIGameplayMap::retryCallback(Ref* pSender)
     MenuItem* p = (MenuItem*)pSender;
     p->setEnabled(false);
     auto confirmBackground = Sprite::create("gui/ConfirmBackground.png");
+    confirmBackground->setName("confirmBackground");
     Vector<MenuItem*> confirmVec;
     auto confirmOk = MenuItemImage::create("gui/ConfirmOk.png", "gui/ConfirmOkPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
+    confirmOk->setName("confirmOk");
     auto confirmNo = MenuItemImage::create("gui/ConfirmNo.png", "gui/ConfirmNoPressed.png", CC_CALLBACK_1(UIGameplayMap::NoCallback, this));
+    confirmNo->setName("confirmNo");
     auto separator = Sprite::create("gui/ConfirmSeparator.png");
     separator->setPosition(Vec2(3 * confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmOk->setPosition(Vec2(5 * confirmBackground->getContentSize().width / 8, confirmBackground->getContentSize().height / 2));
@@ -1055,6 +1107,7 @@ void UIGameplayMap::retryCallback(Ref* pSender)
     confirmVec.pushBack(confirmOk);
     confirmVec.pushBack(confirmNo);
     Menu* confirmMenu = Menu::createWithArray(confirmVec);
+    confirmMenu->setName("confirmMenu");
     confirmMenu->setPosition(0, 0);
     auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("RETRY_QUESTION")), "fonts/BebasNeue.otf", 40);
     labelConfirm->setPosition(Vec2(confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
@@ -1925,4 +1978,10 @@ void UIGameplayMap::restoreGameplayMap(void)
                                          MoveTo::create(0.3, Vec2(visibleSize.width / 2, visibleSize.height / 2)),
                                          NULL));
 }
+
+void UIGameplayMap::disableButtons(const string &s)
+{
+    this->getChildByName("pauseDarkBackground")->setLocalZOrder(10);
+}
+
 
