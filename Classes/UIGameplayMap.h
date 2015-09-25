@@ -190,7 +190,6 @@ private:
     EventListenerTouchOneByOne * _listenerTutorial;
     
     void restoreGameplayMap(void);
-    void disableButtons(const string &s);
 
 public:
     // tutorial related methods

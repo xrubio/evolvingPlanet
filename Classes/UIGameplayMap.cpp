@@ -1978,10 +1978,3 @@ void UIGameplayMap::restoreGameplayMap(void)
                                          MoveTo::create(0.3, Vec2(visibleSize.width / 2, visibleSize.height / 2)),
                                          NULL));
 }
-
-void UIGameplayMap::disableButtons(const string &s)
-{
-    this->getChildByName("pauseDarkBackground")->setLocalZOrder(10);
-}
-
-
