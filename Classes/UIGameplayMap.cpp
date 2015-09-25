@@ -635,8 +635,6 @@ bool UIGameplayMap::init()
             minus->setEnabled(true);
         }
     }
-
-    disableButtons("");
     
     this->scheduleUpdate();
     return true;
