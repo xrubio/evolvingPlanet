@@ -190,6 +190,7 @@ private:
     EventListenerTouchOneByOne * _listenerTutorial;
     
     void restoreGameplayMap(void);
+    void updateAttributesButtons(void);
 
 public:
     // tutorial related methods

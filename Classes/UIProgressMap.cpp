@@ -651,7 +651,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     menu->runAction(darkFadeIn);
 
     //auto delayPopup = DelayTime::create(0.4);
-    auto popupMoveTo = MoveTo::create(1, Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    auto popupMoveTo = MoveTo::create(0.7, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto popupEase = EaseBackOut::create(popupMoveTo);
     auto seqShowPopup = Sequence::create(popupEase, NULL);
     popupBackground->runAction(seqShowPopup);

@@ -73,8 +73,8 @@ void UIAreaPower::onTouchesBegan(Point touchLocation)
         area->setVisible(true);
         icon->setScale(1.25 * GameData::getInstance()->getRaWConversion(), 1.25 * GameData::getInstance()->getRaHConversion());
         icon->setColor(Color3B::GRAY);
-        auto button = (Sprite*)icon->getChildByTag(0);
-        button->setColor(Color3B::GRAY);
+        //auto button = (Sprite*)icon->getChildByTag(0);
+        //button->setColor(Color3B::GRAY);
     }
 }
 
@@ -122,7 +122,7 @@ void UIAreaPower::update(float delta)
         if (actionTimer->getPercentage() == 0) {
             //cooldown->setVisible(true);
             //cooldown->setString(to_string(power->getCooldownLeft()));
-            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
+            //((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
             cooldownTimer->setVisible(true);
             cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
         }
@@ -138,13 +138,17 @@ void UIAreaPower::update(float delta)
             if (GameLevel::getInstance()->getEvolutionPoints() >= power->getCost())
             {
                 disabled = false;
-                actionTimer->setColor(Color3B::WHITE);
-                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+                /*actionTimer->setColor(Color3B::WHITE);
+                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);*/
+                cooldownTimer->setVisible(false);
+                cooldownTimer->setPercentage(0);
             }
             else {
                 disabled = true;
-                actionTimer->setColor(Color3B::GRAY);
-                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
+                /*actionTimer->setColor(Color3B::GRAY);
+                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);*/
+                cooldownTimer->setVisible(true);
+                cooldownTimer->setPercentage(100);
             }
         }
     }

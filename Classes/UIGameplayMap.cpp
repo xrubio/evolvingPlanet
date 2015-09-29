@@ -614,27 +614,7 @@ bool UIGameplayMap::init()
 	mouseListener->onMouseScroll = CC_CALLBACK_1(UIGameplayMap::onMouseScroll, this);
 	this->getEventDispatcher()->addEventListenerWithFixedPriority(mouseListener, 1);
         
-    Layout* layout = (Layout*)this->getChildByTag(1000001);
-    Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-    for (size_t i = 0; i < modifAttr.size(); i++)
-    {
-        if(modifAttr.at(i)==-1)
-        {
-            continue;
-        }
-        MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(i + 10);
-        MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
-        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[i]) > GameLevel::getInstance()->getEvolutionPoints())
-        {
-            plus->setEnabled(false);
-            minus->setEnabled(false);
-        }
-        else
-        {
-            plus->setEnabled(true);
-            minus->setEnabled(true);
-        }
-    }
+    updateAttributesButtons();
     
     this->scheduleUpdate();
     return true;
@@ -1832,28 +1812,7 @@ void UIGameplayMap::update(float delta)
         if (std::atoi(evolutionPointsLabel->getString().c_str()) != GameLevel::getInstance()->getEvolutionPoints())
         {
             evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
-
-            Layout* layout = (Layout*)this->getChildByTag(1000001);
-            Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-            for (size_t i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++)
-            {
-                if(GameLevel::getInstance()->getModifiableAttr().at(i)==-1)
-                {
-                    continue;
-                }
-                MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 10);
-                MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 50);
-                if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())
-                {
-                    plus->setEnabled(false);
-                    minus->setEnabled(false);
-                }
-                else
-                {
-                    plus->setEnabled(true);
-                    minus->setEnabled(true);
-                }
-            }
+            updateAttributesButtons();
         }
     }
     else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false) {
@@ -1976,3 +1935,37 @@ void UIGameplayMap::restoreGameplayMap(void)
                                          MoveTo::create(0.3, Vec2(visibleSize.width / 2, visibleSize.height / 2)),
                                          NULL));
 }
+
+void UIGameplayMap::updateAttributesButtons(void)
+{
+    Layout* layout = (Layout*)this->getChildByTag(1000001);
+    Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
+    for (size_t i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++)
+    {
+        if(GameLevel::getInstance()->getModifiableAttr().at(i)==-1)
+        {
+            continue;
+        }
+        MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 10);
+        MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 50);
+        if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) > GameLevel::getInstance()->getEvolutionPoints())
+        {
+            plus->setEnabled(false);
+            minus->setEnabled(false);
+        }
+        else
+        {
+            plus->setEnabled(true);
+            minus->setEnabled(true);
+        }
+        if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) >= 5)
+        {
+            plus->setEnabled(false);
+        }
+        else if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) <= 0)
+        {
+            minus->setEnabled(false);
+        }
+    }
+}
+
