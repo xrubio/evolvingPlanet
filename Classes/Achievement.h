@@ -28,17 +28,31 @@
 #ifndef __simulplay__Achievement__
 #define __simulplay__Achievement__
 
+using namespace std;
+
 class Achievement
 {
-    bool completed;
-    bool occult;
+    
 public:
-    Achievement( bool c=false, bool o=false);
-    virtual ~Achievement(){}
+    Achievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
+    
+    string getIcon() const;
+    string getResource() const;
+    string getGoalType() const;
+    int getLevel() const;
     bool getCompleted() const;
     bool getOccult() const;
 
     virtual void checkAchievements(int n, int level = -1) = 0;
+    
+private:
+    string _icon;
+    string _resource;
+    string _goalType;
+    int _level;
+    bool _completed;
+    bool _occult;
+
 };
 
 #endif /* defined(__simulplay__Achievement__) */

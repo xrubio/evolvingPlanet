@@ -26,10 +26,13 @@
 //
 
 #include "GameData.h"
+#include "LevelAchievement.h"
+#include "ProgressAchievement.h"
 #include <cocos2d.h>
 #include "../libs/pugixml/pugixml.hpp"
 
 using namespace pugi;
+using namespace cocos2d;
 
 // Global static pointer used to ensure a single instance of the class.
 GameData* GameData::gamedataInstance = NULL;
@@ -212,10 +215,28 @@ void GameData::loadAchievements(void)
     //ACHIEVEMENTS
     xml_node achs = doc.child("ACHIEVEMENT");
     while (achs != nullptr) {
+        xml_node logic = achs.child("COMPLETION_LOGIC");
+        xml_node signifier = achs.child("SIGNIFIER");
+        string key;
+        
+        //LEVEL ACHIEVEMENT
         if (strncmp(achs.attribute("TYPE").value(), "LEVEL", 5) == 0) {
+            int level = atoi(logic.child_value("LEVEL"));
+            string goalType = logic.child("GOAL").attribute("TYPE").value();
+            //TYPE
+            //SIGNIFIER
+            string icon = signifier.child_value("ICON");
+            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
+         
+            key = "LVL" + to_string(level) + goalType;
+            
+            auto ach = new LevelAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
+            achievements.push_back(ach);
         }
+        //PROGRESS ACHIEVEMENT
         else if (strncmp(achs.attribute("TYPE").value(), "PROGRESS", 8) == 0) {
         }
+        
         achs = achs.next_sibling("ACHIEVEMENT");
     }
 }

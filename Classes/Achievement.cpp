@@ -27,16 +27,36 @@
 
 #include "Achievement.h"
 
-Achievement::Achievement( bool c, bool o) : completed(c), occult(o)
+Achievement::Achievement(string icon, string resource, string goalType, int level, bool completed, bool occult) : _icon(icon), _resource(resource), _goalType(goalType), _level(level), _completed(completed), _occult(occult)
 {
+}
+
+string Achievement::getIcon() const
+{
+    return _icon;
+}
+
+string Achievement::getResource() const
+{
+    return _resource;
+}
+
+string Achievement::getGoalType() const
+{
+    return _goalType;
+}
+
+int Achievement::getLevel() const
+{
+    return _level;
 }
 
 bool Achievement::getCompleted() const
 {
-    return completed;
+    return _completed;
 }
 
 bool Achievement::getOccult() const
 {
-    return occult;
+    return _occult;
 }

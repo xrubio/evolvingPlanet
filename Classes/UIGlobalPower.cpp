@@ -109,7 +109,7 @@ void UIGlobalPower::update(float delta)
         if (actionTimer->getPercentage() == 0) {
             //cooldown->setVisible(true);
             //cooldown->setString(to_string(power->getCooldownLeft()));
-            //((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);
+            ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
             cooldownTimer->setVisible(true);
             cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
             clicked = false;

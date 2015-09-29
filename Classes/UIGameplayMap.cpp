@@ -995,6 +995,7 @@ void UIGameplayMap::menuGoalsCallback(Ref* pSender)
 
 void UIGameplayMap::pauseGame()
 {
+    ((MenuItemToggle*)this->getChildByName("timeMenu")->getChildByName("playToggle"))->setSelectedIndex(0);
     pauseDarkBackground->setVisible(true);
     GameLevel::getInstance()->setTimeSpeed(0);
 }
@@ -1614,9 +1615,19 @@ void UIGameplayMap::updateAgents(void)
     /*for (int i = 0; i < (int)Director::getInstance()->getVisibleSize().width * (int)Director::getInstance()->getVisibleSize().height; i++) {
         agentsTextureData[i] = white;
     }*/
-
     for (size_t i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++)
     {
+        /*int x = (int)(GameLevel::getInstance()->getDeletedAgents()[i].x * GameData::getInstance()->getRowDrawAgentPrecalc());
+        int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((GameLevel::getInstance()->getDeletedAgents()[i].y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
+        
+        auto p = ParticleSmoke::create();
+        p->setPosition(Vec2(x, y));
+        p->setAutoRemoveOnFinish(true);
+        p->setDuration(0.01);
+        p->setLife(0.05);
+        p->setScale(0.07);
+        gameplayMap->addChild(p);*/
+        
         drawAgent(GameLevel::getInstance()->getDeletedAgents()[i], white);
     }
 

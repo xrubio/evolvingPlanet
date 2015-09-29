@@ -33,7 +33,7 @@
 class ProgressAchievement : public Achievement
 {
 public:
-    ProgressAchievement(bool c = false, bool o = false);
+    ProgressAchievement(string icon, string resource, bool completed = false, bool occult = false);
     
     // TODO implement this method
     void checkAchievements(int n, int level)

@@ -102,8 +102,16 @@ bool UIAchievements::init()
     modelAux->loadTextures("gui/AchievementBackground.png", "gui/AchievementBackgroundPressed.png");
     list->setContentSize(Size(modelAux->getContentSize().width, modelAux->getContentSize().height * 7.75));
     list->setItemsMargin(5);
+    
+    //LOAD ACHIEVEMENTS FROM XML
+    if ( GameData::getInstance()->getAchievements().size() <= 0)
+    {
+        GameData::getInstance()->loadAchievements();
+    }
 
-    for (int i = 0; i < 15; i++) {
+    vector<Achievement*> achs = GameData::getInstance()->getAchievements();
+    
+    for (int i = 0; i < achs.size(); i++) {
         auto model = ui::Button::create();
         model->addTouchEventListener(CC_CALLBACK_2(UIAchievements::showAchievement, this));
         if (i % 2 == 0) {
@@ -116,16 +124,19 @@ bool UIAchievements::init()
         auto icon = Sprite::create("gui/AchievementIconOff.png");
         icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
         model->addChild(icon);
-        auto title = Label::createWithTTF("ACHIEVEMENT TITLE", "fonts/BebasNeue.otf", 47);
+        string key = to_string(achs[i]->getLevel()) + "_" + achs[i]->getGoalType();
+        auto title = Label::createWithTTF(LocalizedString::create(string("TITLE_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 47);
         title->setColor(Color3B(190, 221, 226));
         title->setAnchorPoint(Vec2(0, 0.5));
         title->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 5 * model->getBoundingBox().size.height / 7));
         model->addChild(title);
-        auto text = Label::createWithSystemFont("Explanation on how to unlock the achievement", "Corbel", 30);
+        auto text = Label::createWithSystemFont(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "Corbel", 30);
         text->setColor(Color3B(190, 221, 226));
         text->setAnchorPoint(Vec2(0, 0.5));
         text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));
         model->addChild(text);
+        model->setTag(i);
+        //model->setEnabled(achs[i]->getCompleted());
     }
 
     list->setPosition(Vec2(9 * popupBackground->getContentSize().width / 28, 1 * popupBackground->getContentSize().height / 16));
@@ -146,6 +157,43 @@ void UIAchievements::menuBackCallback(Ref* pSender)
     Director::getInstance()->replaceScene(transition);
 }
 
+
+void UIAchievements::zoomImageInCallback(Ref* pSender)
+{
+    auto image = (MenuItemImage*)pSender;
+    if (image->getNumberOfRunningActions() != 0)
+    {
+        return;
+    }
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    Vector<MenuItem*> menuButtons;
+    auto darkBackground = MenuItemImage::create("gui/ProgressMapDarkBackground.png", "gui/ProgressMapDarkBackground.png",
+                                                CC_CALLBACK_1(UIAchievements::zoomImageOutCallback, this));
+    darkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    darkBackground->setOpacity(0);
+    darkBackground->runAction(FadeIn::create(0.5));
+    menuButtons.pushBack(darkBackground);
+    auto menu = Menu::createWithArray(menuButtons);
+    menu->setPosition(0, 0);
+    
+    image->runAction(ScaleTo::create(0.5, 0.6 * GameData::getInstance()->getRaWConversion()));
+    image->setCallback(CC_CALLBACK_1(UIAchievements::zoomImageOutCallback, this));
+}
+
+void UIAchievements::zoomImageOutCallback(Ref* pSender)
+{
+    auto image = (MenuItemImage*)(pSender);
+    if (image->getNumberOfRunningActions() != 0)
+    {
+        return;
+    }
+    image->runAction(ScaleTo::create(0.5, 0.5 * GameData::getInstance()->getRaWConversion()));
+    image->setCallback(CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
+}
+
+
 void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aType)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -162,12 +210,32 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         this->addChild(menu, 10, 100);
 
         auto popupBackground = Sprite::create("gui/ProgressMapPopupBackground.png");
-        popupBackground->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 7));
+        popupBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
         popupBackground->setScale(GameData::getInstance()->getRaWConversion() * 1.3, GameData::getInstance()->getRaHConversion() * 1.4);
         //popupBackground->setScale(1.3, 1.4);
         this->addChild(popupBackground, 20, 101);
         selectedAchievement = ((ui::Button*)(pSender));
         selectedAchievement->setHighlighted(true);
+        
+        auto ach = GameData::getInstance()->getAchievements()[selectedAchievement->getTag()];
+        size_t pos = ach->getResource().find("/");
+        string resourceType = ach->getResource().substr(0, pos);
+        string resource = ach->getResource().substr(pos);
+        
+        if (resourceType == "IMG")
+        {
+            auto nameArt = ("art" + resource + ".jpg").c_str();
+            auto contextImage = MenuItemImage::create(nameArt, nameArt, CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
+            contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion());
+            contextImage->setPosition(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2);
+            auto menuContext = Menu::create(contextImage, NULL);
+            menuContext->setPosition(0, 0);
+            popupBackground->addChild(menuContext, 2);
+        }
+        else if (resourceType == "TXT")
+        {
+            
+        }
     }
 }
 

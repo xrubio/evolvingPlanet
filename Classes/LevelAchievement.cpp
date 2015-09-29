@@ -27,7 +27,7 @@
 
 #include "LevelAchievement.h"
 
-LevelAchievement::LevelAchievement(bool c, bool o) : Achievement(c,o)
+LevelAchievement::LevelAchievement(string icon, string resource, string goalType, int level, bool completed, bool occult) : Achievement(icon, resource, goalType, level, completed, occult)
 {
 }
 

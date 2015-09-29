@@ -26,8 +26,8 @@
 //
 
 #include "ProgressAchievement.h"
-
-ProgressAchievement::ProgressAchievement(bool c, bool o) : Achievement(c,o)
+/*
+ProgressAchievement::ProgressAchievement(string title, string description, string icon, string resource, bool completed, bool occult) : Achievement(title, description, icon, resource, completed, occult)
 {
-}
+}*/
 

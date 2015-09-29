@@ -38,6 +38,9 @@ public:
     virtual bool init();
 
     void menuBackCallback(Ref* pSender);
+    void zoomImageInCallback(Ref* pSender);
+    void zoomImageOutCallback(Ref* pSender);
+    
     void showAchievement(Ref* pSender, ui::Widget::TouchEventType aType);
     void restoreAchievementsWindow(Ref* pSender);
 
