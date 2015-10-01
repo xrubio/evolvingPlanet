@@ -254,9 +254,7 @@ void GameData::loadAchievements(void)
             //SIGNIFIER
             string icon = signifier.child_value("ICON");
             string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
-            
-            CCLOG("%s", resource.c_str());
-            
+                        
             key = "LVL" + to_string(level) + goalType;
                         
             auto ach = new ProgressAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
@@ -277,6 +275,7 @@ void GameData::resetGameProgress(void)
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
     levelsCompleted.push_back(0);
+    achievements.clear();
 }
 
 bool GameData::launchTutorial(int level) const

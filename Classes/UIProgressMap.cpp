@@ -54,6 +54,12 @@ bool UIProgressMap::init()
     }
     
     Director::getInstance()->setAnimationInterval(1.0 / 60);
+    
+    //LOAD ACHIEVEMENTS FROM XML
+    if ( GameData::getInstance()->getAchievements().size() <= 0)
+    {
+        GameData::getInstance()->loadAchievements();
+    }
 
     //Alliberar memòria
     //SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();

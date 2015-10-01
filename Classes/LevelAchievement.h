@@ -29,6 +29,7 @@
 #define __simulplay__LevelAchievement__
 
 #include "Achievement.h"
+#include "GameData.h"
 
 class LevelAchievement : public Achievement {
 
@@ -36,8 +37,23 @@ public:
     LevelAchievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
     
     // TODO implement this method
-    void checkAchievements(int n, int level)
+    bool checkAchievement(string typeAch, int level)
     {
+        if (typeAch == "COMPLETED")
+        {
+            _completed = true;
+            return true;
+        }
+        else if (typeAch == "PERFECT")
+        {
+            if (GameData::getInstance()->getLevelScore(level) == 3)
+            {
+                _completed = true;
+                return true;
+            }
+        }
+        
+        return false;
     }
 };
 

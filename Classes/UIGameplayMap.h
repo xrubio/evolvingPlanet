@@ -76,6 +76,7 @@ public:
     void moveAttCallback(Ref* pSender);
     void minusAttCallback(Ref* pSender);
     void plusAttCallback(Ref* pSender);
+    void hideAchievementWindowCallback(Ref* pSender);
     void removeFingerSpot(Ref* pSender);
 
     int getValueAtGameplayMap(int rgb, int posx, int posy, int map);
@@ -174,6 +175,8 @@ private:
     void setAttributesToInitialAgents(void);
 
     void createEndGameWindow(const LevelState & mode);
+    void createAchievementWindow(void);
+
     bool checkPowersClicked(void);
 
     // 0 = square, 1 = triangle

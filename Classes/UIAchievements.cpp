@@ -140,7 +140,7 @@ bool UIAchievements::init()
             text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));
             model->addChild(text);
             model->setName(to_string(i) + "-" + to_string(j));
-            //model->setEnabled(achs[i]->getCompleted());
+            model->setEnabled(achs[i][j]->getCompleted());
             k++;
         }
     }

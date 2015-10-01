@@ -43,9 +43,9 @@ public:
     bool getCompleted() const;
     bool getOccult() const;
 
-    virtual void checkAchievements(int n, int level = -1) = 0;
+    virtual bool checkAchievement(string typeAch, int level = -1) = 0;
     
-private:
+protected:
     string _icon;
     string _resource;
     string _goalType;

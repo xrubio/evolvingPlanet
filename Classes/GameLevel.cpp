@@ -32,6 +32,8 @@
 #include "AreaPower.h"
 #include "GameData.h"
 #include "ExpansionGoal.h"
+#include "ProgressAchievement.h"
+#include "LevelAchievement.h"
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
@@ -453,6 +455,11 @@ int GameLevel::getEvolutionPointsFreq(void)
     return evolutionPointsFreq;
 }
 
+vector<string> GameLevel::getCompletedAchievements(void)
+{
+    return completedAchievements;
+}
+
 void GameLevel::playLevel(void)
 {
     CCLOG("step;pop;time");
@@ -492,6 +499,9 @@ void GameLevel::playLevel(void)
             }*/
         }
     }
+    
+    checkAchievements();
+
     ended = true;
     CCLOG("End of game: %i", _finishedGame);
 }
@@ -558,6 +568,8 @@ void GameLevel::resetLevel(void)
         std::vector<float> r(6, 0);
         _attributesLevels.push_back(r);
     }
+    
+    completedAchievements.clear();
 }
 
 void GameLevel::createLevel(void)
@@ -960,6 +972,38 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
         _agentAttributes.push_back(Levels(_numAttributes, 0));
         _attributesCost.push_back(Levels(_numAttributes, 1));
         Agent::_numOffspring.push_back(0);
+    }
+}
+
+void GameLevel::checkAchievements(void)
+{
+    vector<Achievement*> progressAchs = GameData::getInstance()->getAchievements(0);
+    vector<Achievement*> levelAchs = GameData::getInstance()->getAchievements(numLevel);
+    
+    for (int i = 0; i < progressAchs.size(); i++)
+    {
+        if (progressAchs[i]->getCompleted() == false)
+        {
+            if (((ProgressAchievement*)progressAchs[i])->checkAchievement(progressAchs[i]->getGoalType(), 0) == true)
+            {
+                string key = to_string(0) + "_" + progressAchs[i]->getGoalType();
+                completedAchievements.push_back(key);
+                UserDefault::getInstance()->setBoolForKey(key.c_str(), true);
+            }
+        }
+    }
+
+    for (int i = 0; i < levelAchs.size(); i++)
+    {
+        if (levelAchs[i]->getCompleted() == false)
+        {
+            if (((LevelAchievement*)levelAchs[i])->checkAchievement(levelAchs[i]->getGoalType(), numLevel) == true)
+            {
+                string key = to_string(numLevel) + "_" + levelAchs[i]->getGoalType();
+                completedAchievements.push_back(key);
+                UserDefault::getInstance()->setBoolForKey(key.c_str(), true);
+            }
+        }
     }
 }
 

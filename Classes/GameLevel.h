@@ -37,6 +37,7 @@
 #include "cocos2d.h"
 #include "Timing.h"
 #include <vector>
+#include "Achievement.h"
 
 class UIGameplayMap;
 
@@ -169,6 +170,7 @@ public:
     void setEvolutionPointsFreq(int i);
     int getEvolutionPointsFreq(void);
     
+    vector<string> getCompletedAchievements(void);
     
     void createLevel(void);
     void setAttributesToInitialAgents(void);
@@ -217,6 +219,9 @@ private:
     std::vector<Act*> actions;
     std::vector<Goal*> goals;
     Agent* _agentsMap[480][320];
+    
+    //completed achievements to show (key words corresponding to title in achievement_lang)
+    vector<string> completedAchievements;
 
     //Resources exploitment
     int timeExploitedMap[480][320] = { { 0 } };
@@ -261,6 +266,9 @@ private:
     // XRC TODO temporary (move to Agent)
     void checkDeath( std::list<Agent*>::iterator & it);
     void deleteAgent(Agent* agent);
+    //check achievements
+    void checkAchievements(void);
+
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

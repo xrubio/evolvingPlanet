@@ -36,8 +36,9 @@ public:
     ProgressAchievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
     
     // TODO implement this method
-    void checkAchievements(int n, int level)
+    bool checkAchievement(string typeAch, int level)
     {
+        return false;
     }
 
 private:

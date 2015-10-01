@@ -802,7 +802,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 }
 
 bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
-{
+{    
     if(!_tutorial || !_tutorial->getCurrentMessage())// || _tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
     {
         return false;
@@ -848,12 +848,13 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
         _tutorial->getCurrentMessage()->postConditionAchieved();
         return true;
     }
-    else if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
+    if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
     {
         return false;
     }
-
+    
     std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
+    parent = this;
     std::size_t pos;
     std::string delimiter = "/";
     std::string token;
@@ -865,12 +866,13 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     }
     token = buttonName.substr(0, pos);
     Node * button = parent->getChildByName(token);
+    touchLocation = parent->convertToNodeSpace(touch->getLocation());
     if(button->getBoundingBox().containsPoint(touchLocation))
     {
         _tutorial->getCurrentMessage()->postConditionAchieved();
     }
     else return true;
-    
+
     return false;
 }
 
@@ -1250,6 +1252,13 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
 }
 
+void UIGameplayMap::hideAchievementWindowCallback(Ref* pSender)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto window = (MenuItemImage*)pSender;
+    window->runAction(EaseBackIn::create(MoveTo::create(0.4, Vec2(visibleSize.width / 2, visibleSize.height + window->getContentSize().height))));
+}
+
 void UIGameplayMap::removeFingerSpot(Ref* pSender)
 {
     GameLevel::getInstance()->setAgentDirection(0, Point(-1, -1));
@@ -1606,6 +1615,46 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     this->addChild(window, 10);
 }
 
+void UIGameplayMap::createAchievementWindow(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    int numCompletedAchievements = (int)GameLevel::getInstance()->getCompletedAchievements().size();
+    auto window = MenuItemImage::create("gui/AchievementsBackground.png", "gui/AchievementsBackground.png",
+                                        CC_CALLBACK_1(UIGameplayMap::hideAchievementWindowCallback, this));
+    window->setPosition(Vec2(visibleSize.width /2, visibleSize.height + window->getContentSize().height));
+    window->setScale(GameData::getInstance()->getRaWConversion() * 0.6,
+                     GameData::getInstance()->getRaHConversion() * (0.3 + (0.1 * numCompletedAchievements)));
+    window->setName("achievementWindow");
+    
+    string s = "";
+    if (numCompletedAchievements > 1)
+    {
+        s = "S";
+    }
+    auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED " + to_string(numCompletedAchievements) + " ACHIEVEMENT" + s,
+                                           "fonts/BebasNeue.otf", 120);
+    titleLabel->setColor(Color3B(255, 255, 255));
+    titleLabel->setAnchorPoint(Vec2(0.5, 0));
+    titleLabel->setPosition(Vec2(window->getContentSize().width / 2, window->getContentSize().height / 2 - titleLabel->getContentSize().height * 1.1));
+    window->addChild(titleLabel);
+    
+    for (int i = 0; i < numCompletedAchievements; i++)
+    {
+        string titleAch = LocalizedString::create(("TITLE_LVL" + GameLevel::getInstance()->getCompletedAchievements()[i]).c_str(), "achievements");
+        string descrAch = LocalizedString::create(("DESCR_LVL" + GameLevel::getInstance()->getCompletedAchievements()[i]).c_str(), "achievements");
+        auto labelAch = Label::createWithTTF(titleAch + ": " + descrAch, "fonts/BebasNeue.otf", 60);
+        labelAch->setColor(Color3B(85, 108, 117));
+        labelAch->setPosition(Vec2(window->getContentSize().width / 2,
+                                   (titleLabel->getPositionY() - titleLabel->getContentSize().height) - (labelAch->getContentSize().height * 1.5 * i)));
+        window->addChild(labelAch);
+    }
+    
+    auto menuWindow = Menu::create(window, NULL);
+    menuWindow->setPosition(Vec2(0, 0));
+    this->addChild(menuWindow, 10);
+    window->runAction(EaseBackOut::create(MoveTo::create(1, Vec2(visibleSize.width /2, visibleSize.height))));
+}
+
 void UIGameplayMap::updateAgents(void)
 {
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
@@ -1826,7 +1875,7 @@ void UIGameplayMap::update(float delta)
             updateAttributesButtons();
         }
     }
-    else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false) {
+    else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false and GameLevel::getInstance()->ended == true) {
         //DARRER PINTAT
         play = false;
         updateAgents();
@@ -1846,6 +1895,13 @@ void UIGameplayMap::update(float delta)
         evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
 
         createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
+        
+        //HAS COMPLETED ANY ACHIEVEMENT
+        if (GameLevel::getInstance()->getCompletedAchievements().size() > 0)
+        {
+            createAchievementWindow();
+        }
+        
         endGameWindowPainted = true;
     }
 }
