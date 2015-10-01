@@ -60,14 +60,19 @@ void GameData::setLevelsCompleted(vector<int> lvlsCompleted)
     levelsCompleted.swap(lvlsCompleted);
 }
 
-vector<Achievement*> GameData::getAchievements(void)
+vector< vector<Achievement*> > GameData::getAchievements(void)
 {
     return achievements;
 }
 
-void GameData::setAchievements(vector<Achievement*> ach)
+vector<Achievement*> GameData::getAchievements(int i)
 {
-    achievements.swap(ach);
+    return achievements[i];
+}
+
+void GameData::setAchievements(int i, vector<Achievement*> ach)
+{
+    achievements[i].swap(ach);
 }
 
 int GameData::getLevelScore(int level)
@@ -211,6 +216,16 @@ void GameData::loadAchievements(void)
     xml_parse_result result;
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("achievements.xml");
     result = doc.load_file((fullPath).c_str());
+    
+    //initialize achievements vec of vecs
+    if (achievements.size() == 0)
+    {
+        for (int i = 0; i < NUM_LEVELS + 1; i++)
+        {
+            vector<Achievement*> achs;
+            achievements.push_back(achs);
+        }
+    }
 
     //ACHIEVEMENTS
     xml_node achs = doc.child("ACHIEVEMENT");
@@ -223,7 +238,6 @@ void GameData::loadAchievements(void)
         if (strncmp(achs.attribute("TYPE").value(), "LEVEL", 5) == 0) {
             int level = atoi(logic.child_value("LEVEL"));
             string goalType = logic.child("GOAL").attribute("TYPE").value();
-            //TYPE
             //SIGNIFIER
             string icon = signifier.child_value("ICON");
             string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
@@ -231,10 +245,22 @@ void GameData::loadAchievements(void)
             key = "LVL" + to_string(level) + goalType;
             
             auto ach = new LevelAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
-            achievements.push_back(ach);
+            achievements[level].push_back(ach);
         }
         //PROGRESS ACHIEVEMENT
         else if (strncmp(achs.attribute("TYPE").value(), "PROGRESS", 8) == 0) {
+            int level = 0;
+            string goalType = logic.child("GOAL").attribute("TYPE").value();
+            //SIGNIFIER
+            string icon = signifier.child_value("ICON");
+            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
+            
+            CCLOG("%s", resource.c_str());
+            
+            key = "LVL" + to_string(level) + goalType;
+                        
+            auto ach = new ProgressAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
+            achievements[0].push_back(ach);
         }
         
         achs = achs.next_sibling("ACHIEVEMENT");

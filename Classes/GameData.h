@@ -34,14 +34,17 @@
 
 using namespace std;
 
+#define NUM_LEVELS 10
+
 class GameData {
 public:
     static GameData* getInstance();
 
     vector<int> getLevelsCompleted(void);
     void setLevelsCompleted(vector<int> lvlsCompleted);
-    vector<Achievement*> getAchievements(void);
-    void setAchievements(vector<Achievement*> ach);
+    vector< vector<Achievement*> > getAchievements(void);
+    vector<Achievement*> getAchievements(int i);
+    void setAchievements(int i, vector<Achievement*> ach);
     int getLevelScore(int level);
     void setLevelScore(int level, int score);
     bool getGameStarted(void);
@@ -75,11 +78,12 @@ public:
     void setTutorial(int level, bool launch);
 
 private:
-    GameData(){}; // Private so that it can  not be called
+    GameData(){}; // Private so that it can not be called
 
     static GameData* gamedataInstance;
     vector<int> levelsCompleted;
-    vector<Achievement*> achievements;
+    //0 = progress achievements, 1-X = level achievements
+    vector< vector<Achievement*> > achievements;
     bool gameStarted = false;
     string language;
     bool music = true;

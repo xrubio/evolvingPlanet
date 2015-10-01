@@ -109,34 +109,40 @@ bool UIAchievements::init()
         GameData::getInstance()->loadAchievements();
     }
 
-    vector<Achievement*> achs = GameData::getInstance()->getAchievements();
+    vector< vector<Achievement*> > achs = GameData::getInstance()->getAchievements();
     
+    int k = 0;
     for (int i = 0; i < achs.size(); i++) {
-        auto model = ui::Button::create();
-        model->addTouchEventListener(CC_CALLBACK_2(UIAchievements::showAchievement, this));
-        if (i % 2 == 0) {
-            model->loadTextures("gui/AchievementBackground.png", "gui/AchievementBackgroundPressed.png");
+        for (int j = 0; j < achs[i].size(); j++)
+        {
+            auto model = ui::Button::create();
+            model->addTouchEventListener(CC_CALLBACK_2(UIAchievements::showAchievement, this));
+            if (k % 2 == 0) {
+                model->loadTextures("gui/AchievementBackground.png", "gui/AchievementBackgroundPressed.png");
+            }
+            else {
+                model->loadTextures("gui/AchievementBackground2.png", "gui/AchievementBackgroundPressed.png");
+            }
+            list->pushBackCustomItem(model);
+            auto icon = Sprite::create("gui/AchievementIconOff.png");
+            icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
+            model->addChild(icon);
+            string key = to_string(i) + "_" + achs[i][j]->getGoalType();
+            auto title = Label::createWithTTF(LocalizedString::create(string("TITLE_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 47);
+            title->setColor(Color3B(190, 221, 226));
+            title->setAnchorPoint(Vec2(0, 0.5));
+            title->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width),
+                                    5 * model->getBoundingBox().size.height / 7));
+            model->addChild(title);
+            auto text = Label::createWithSystemFont(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "Corbel", 30);
+            text->setColor(Color3B(190, 221, 226));
+            text->setAnchorPoint(Vec2(0, 0.5));
+            text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));
+            model->addChild(text);
+            model->setName(to_string(i) + "-" + to_string(j));
+            //model->setEnabled(achs[i]->getCompleted());
+            k++;
         }
-        else {
-            model->loadTextures("gui/AchievementBackground2.png", "gui/AchievementBackgroundPressed.png");
-        }
-        list->pushBackCustomItem(model);
-        auto icon = Sprite::create("gui/AchievementIconOff.png");
-        icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
-        model->addChild(icon);
-        string key = to_string(achs[i]->getLevel()) + "_" + achs[i]->getGoalType();
-        auto title = Label::createWithTTF(LocalizedString::create(string("TITLE_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 47);
-        title->setColor(Color3B(190, 221, 226));
-        title->setAnchorPoint(Vec2(0, 0.5));
-        title->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 5 * model->getBoundingBox().size.height / 7));
-        model->addChild(title);
-        auto text = Label::createWithSystemFont(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "Corbel", 30);
-        text->setColor(Color3B(190, 221, 226));
-        text->setAnchorPoint(Vec2(0, 0.5));
-        text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));
-        model->addChild(text);
-        model->setTag(i);
-        //model->setEnabled(achs[i]->getCompleted());
     }
 
     list->setPosition(Vec2(9 * popupBackground->getContentSize().width / 28, 1 * popupBackground->getContentSize().height / 16));
@@ -217,7 +223,10 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         selectedAchievement = ((ui::Button*)(pSender));
         selectedAchievement->setHighlighted(true);
         
-        auto ach = GameData::getInstance()->getAchievements()[selectedAchievement->getTag()];
+        size_t dash = selectedAchievement->getName().find("-");
+        int i = atoi(selectedAchievement->getName().substr(0, dash).c_str());
+        int j = atoi(selectedAchievement->getName().substr(dash + 1).c_str());
+        auto ach = GameData::getInstance()->getAchievements()[i][j];
         size_t pos = ach->getResource().find("/");
         string resourceType = ach->getResource().substr(0, pos);
         string resource = ach->getResource().substr(pos);
