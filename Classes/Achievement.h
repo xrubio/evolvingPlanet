@@ -28,6 +28,8 @@
 #ifndef __simulplay__Achievement__
 #define __simulplay__Achievement__
 
+#include <string>
+
 using namespace std;
 
 class Achievement
