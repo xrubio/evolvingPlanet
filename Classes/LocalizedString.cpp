@@ -73,6 +73,9 @@ const char* LocalizedString::getSystemLang()
     LanguageType curLanguage = Application::getInstance()->getCurrentLanguage();
 
     switch (curLanguage) {
+    case LanguageType::CATALAN:
+        return "cat";
+        break;
     case LanguageType::ENGLISH:
         return "en";
         break;
