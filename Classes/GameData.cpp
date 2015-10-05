@@ -242,7 +242,7 @@ void GameData::loadAchievements(void)
             string icon = signifier.child_value("ICON");
             string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
          
-            key = "LVL" + to_string(level) + goalType;
+            key = to_string(level) + "_" + goalType;
             
             auto ach = new LevelAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
             achievements[level].push_back(ach);
@@ -255,7 +255,7 @@ void GameData::loadAchievements(void)
             string icon = signifier.child_value("ICON");
             string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
                         
-            key = "LVL" + to_string(level) + goalType;
+            key = to_string(level) + "_" + goalType;
                         
             auto ach = new ProgressAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
             achievements[0].push_back(ach);

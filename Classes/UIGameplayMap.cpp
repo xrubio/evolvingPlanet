@@ -1645,7 +1645,7 @@ void UIGameplayMap::createAchievementWindow(void)
         auto labelAch = Label::createWithTTF(titleAch + ": " + descrAch, "fonts/BebasNeue.otf", 60);
         labelAch->setColor(Color3B(85, 108, 117));
         labelAch->setPosition(Vec2(window->getContentSize().width / 2,
-                                   (titleLabel->getPositionY() - titleLabel->getContentSize().height) - (labelAch->getContentSize().height * 1.5 * i)));
+                                   (titleLabel->getPositionY() - titleLabel->getContentSize().height) - (labelAch->getContentSize().height * 1.2 * i)));
         window->addChild(labelAch);
     }
     
