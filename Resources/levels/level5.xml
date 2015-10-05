@@ -45,13 +45,13 @@
         <MAX_AGENTS>400</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>5</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
                 <INITIAL_VALUE>1</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+                <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="HOSTILITY">
                 <INITIAL_VALUE>4</INITIAL_VALUE>
@@ -59,20 +59,12 @@
         </ATTRIBUTES>
         <DIRECTIONS>
             <DIRECTION>
-                <STEP>65</STEP>
-                <POSITION X="319" Y="232"/>
+                <STEP>10</STEP>
+                <POSITION X="200" Y="50"/>
             </DIRECTION>
             <DIRECTION>
-                <STEP>70</STEP>
-                <POSITION X="338" Y="232"/>
-            </DIRECTION>
-            <DIRECTION>
-                <STEP>75</STEP>
-                <POSITION X="366" Y="232"/>
-            </DIRECTION>
-            <DIRECTION>
-                <STEP>80</STEP>
-                <POSITION X="397" Y="188"/>
+                <STEP>60</STEP>
+                <POSITION X="300" Y="90"/>
             </DIRECTION>
         </DIRECTIONS>
     </AGENT>
@@ -103,20 +95,20 @@
 <GOALS>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>31</MIN>
-        <MAX>39</MAX>
+        <MIN>25</MIN>
+        <MAX>45</MAX>
         <AVERAGE>35</AVERAGE>
-        <DESVIATION_2_STAR>2</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>5</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>60</MIN>
-        <MAX>80</MAX>
-        <AVERAGE>70</AVERAGE>
-        <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <MIN>65</MIN>
+        <MAX>95</MAX>
+        <AVERAGE>80</AVERAGE>
+        <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
+        <DESVIATION_3_STAR>5</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
     <GOAL TYPE_GOAL="Expansion">
