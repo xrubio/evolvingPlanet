@@ -22,6 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+/* COPY THIS FILE TO proj.ios_mac/ios if compiling for ios */
+
 #import "AppController.h"
 #import "platform/ios/CCEAGLView-ios.h"
 #import "cocos2d.h"
