@@ -23,6 +23,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+/* COPY THIS FILE TO cocos2d/cocos/platform/ios if compiling for ios */
+
 #import "CCApplication.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS

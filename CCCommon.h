@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+/* COPY THIS FILE TO cocos2d/cocos/platform */
+
 #ifndef __CC_COMMON_H__
 #define __CC_COMMON_H__
 /// @cond DO_NOT_SHOW
