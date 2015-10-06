@@ -864,7 +864,19 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
         parent = parent->getChildByName(token);
         buttonName.erase(0, pos + delimiter.length());
     }
+    
     token = buttonName.substr(0, pos);
+    
+    //attribute translation
+    if (token.substr(0, 4) == "plus")
+    {
+        token = "plus" + LocalizedString::create(token.substr(4).c_str());
+    }
+    else if (token.substr(0, 5) == "minus")
+    {
+        token = "minus" + LocalizedString::create(token.substr(5).c_str());
+    }
+    
     Node * button = parent->getChildByName(token);
     touchLocation = parent->convertToNodeSpace(touch->getLocation());
     if(button->getBoundingBox().containsPoint(touchLocation))
