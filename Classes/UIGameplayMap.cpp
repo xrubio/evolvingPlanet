@@ -595,11 +595,18 @@ bool UIGameplayMap::init()
     spots->setName("tutorialSpots");
     spots->setVisible(false);
 
+    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 50);
+    tutorialTitle->setName("tutorialTitle");
+    tutorialTitle->setColor(Color3B(210, 210, 210));
+    tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
+    tutorialTitle->setVisible(false);
+    
     // add first the border to draw it first
-    addChild(labelBorder);
-    addChild(messageLabel);
-    addChild(messageNextLabel);
-    addChild(spots);
+    gameplayMap->addChild(labelBorder);
+    gameplayMap->addChild(messageLabel);
+    gameplayMap->addChild(messageNextLabel);
+    gameplayMap->addChild(spots);
+    gameplayMap->addChild(tutorialTitle);
 
     _message = 0;
 
@@ -644,7 +651,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
     }
     if (touches.size() == 1)
     {
-        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.2 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
+        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.3 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
             //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
             /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
                                                                (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));*/
@@ -803,9 +810,13 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 
 bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
 {    
-    if(!_tutorial || !_tutorial->getCurrentMessage())// || _tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
+    if(!_tutorial)// || !_tutorial->getCurrentMessage())// || _tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
     {
         return false;
+    }
+    if (!_tutorial->getCurrentMessage())
+    {
+        return true;
     }
     
     Node * parent = this;
@@ -815,7 +826,6 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     if(quitRetry->getChildByName("quitButton")->getBoundingBox().containsPoint(touchLocation) or
        quitRetry->getChildByName("retryButton")->getBoundingBox().containsPoint(touchLocation))
     {
-        CCLOG("QUIT MENU");
         return false;
     }
     
@@ -846,6 +856,16 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     if(_tutorial->getCurrentMessage()->getPostCondition() == "tap")
     {
         _tutorial->getCurrentMessage()->postConditionAchieved();
+        return true;
+    }
+    if(_tutorial->getCurrentMessage()->getPostCondition() == "spot")
+    {
+        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.3)
+        {
+            firstTouchLocation = touchLocation;
+            changeSpotPosition();
+        }
+        timeFingerSpot = clock();
         return true;
     }
     if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
@@ -882,10 +902,10 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     if(button->getBoundingBox().containsPoint(touchLocation))
     {
         _tutorial->getCurrentMessage()->postConditionAchieved();
+        return false;
     }
-    else return true;
 
-    return false;
+    return true;
 }
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
@@ -1826,13 +1846,15 @@ void UIGameplayMap::update(float delta)
                 else if(_tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->meetsPostCondition())
                 {
                     _tutorial->removeCurrentMessage();
-                    this->getChildByName("tutorial")->setVisible(false);
-                    this->getChildByName("tutorialNext")->setVisible(false);
-                    this->getChildByName("tutorialBorder")->setVisible(false);
-                    this->getChildByName("tutorialSpots")->setVisible(false);
+                    gameplayMap->getChildByName("tutorial")->setVisible(false);
+                    gameplayMap->getChildByName("tutorialNext")->setVisible(false);
+                    gameplayMap->getChildByName("tutorialBorder")->setVisible(false);
+                    gameplayMap->getChildByName("tutorialSpots")->setVisible(false);
 
                     if(_tutorial->isFinished())
                     {
+                        _eventDispatcher->removeEventListener(_listenerTutorial);
+                        gameplayMap->removeChildByName("tutorialTitle");
                         pauseGame();
                     }
                 }
@@ -1925,8 +1947,8 @@ void UIGameplayMap::setMessage( const Message * message )
 
     _message = message;
 
-    Label * label = (Label*)(this->getChildByName("tutorial"));   
-    Label * nextLabel = (Label*)(this->getChildByName("tutorialNext"));
+    Label * label = (Label*)(gameplayMap->getChildByName("tutorial"));
+    Label * nextLabel = (Label*)(gameplayMap->getChildByName("tutorialNext"));
 
     label->setString(_message->text());
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -1935,7 +1957,7 @@ void UIGameplayMap::setMessage( const Message * message )
     Vec2 position = Vec2(visibleSize.width*_message->pos().x, visibleSize.height*_message->pos().y);
     label->setPosition(position);
 
-    auto labelBorder = (DrawNode*)(this->getChildByName("tutorialBorder"));
+    auto labelBorder = (DrawNode*)(gameplayMap->getChildByName("tutorialBorder"));
     labelBorder->clear();
     if(_message->text()!="")
     {
@@ -1960,7 +1982,7 @@ void UIGameplayMap::setMessage( const Message * message )
         label->setVisible(true);    
         labelBorder->setVisible(true);   
         nextLabel->setVisible(true);
-
+        gameplayMap->getChildByName("tutorialTitle")->setVisible(true);
     }
 
     Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
@@ -1973,7 +1995,7 @@ void UIGameplayMap::setMessage( const Message * message )
 
     // spots
     Message::SpotVector::const_iterator spotIt = _message->beginSpots();
-    auto spotsLayer = (DrawNode*)(this->getChildByName("tutorialSpots"));
+    auto spotsLayer = (DrawNode*)(gameplayMap->getChildByName("tutorialSpots"));
     spotsLayer->clear();
     spotsLayer->setVisible(true);
 
