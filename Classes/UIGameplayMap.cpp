@@ -159,6 +159,7 @@ bool UIGameplayMap::init()
     }
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
+    CCLOG("%lu : %zu : %zu", sizeof(dataGameplayMapHotSpot), strlen((char*)dataGameplayMapHotSpot), gameplayMapHotSpot->getDataLen());
 
     //RESOURCES MAP (IF ANY)
     for(size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
