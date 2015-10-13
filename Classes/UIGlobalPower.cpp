@@ -44,7 +44,7 @@ UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
     cooldownTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     cooldownTimer->setType(ProgressTimer::Type::BAR);
     cooldownTimer->setBarChangeRate(Vec2(0, 1));
-    cooldownTimer->setMidpoint(Vec2(0, 0));
+    cooldownTimer->setMidpoint(Vec2(0, 1));
     cooldownTimer->setVisible(false);
     icon->addChild(cooldownTimer, 3, 2);
     //cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);

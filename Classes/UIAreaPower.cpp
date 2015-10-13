@@ -42,7 +42,9 @@ UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
     icon->addChild(actionTimer, 1, 1);
     auto cooldownTimer = ProgressTimer::create(Sprite::create("gui/PowerCooldownButton.png"));
     cooldownTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
-    cooldownTimer->setType(ProgressTimer::Type::RADIAL);
+    cooldownTimer->setType(ProgressTimer::Type::BAR);
+    cooldownTimer->setBarChangeRate(Vec2(0, 1));
+    cooldownTimer->setMidpoint(Vec2(0, 1));
     cooldownTimer->setVisible(false);
     icon->addChild(cooldownTimer, 3, 2);
     //cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);

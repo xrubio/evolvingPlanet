@@ -88,7 +88,16 @@ void GameData::setLevelScore(int level, int score)
     if (level == levelsCompleted.size()) {
         levelsCompleted.push_back(score);
     }
-    else {
+    else if (level > levelsCompleted.size())
+    {
+        while (level > levelsCompleted.size())
+        {
+            levelsCompleted.push_back(0);
+        }
+        levelsCompleted.push_back(score);
+    }
+    else
+    {
         if (score > levelsCompleted[level]) {
             levelsCompleted.insert(levelsCompleted.begin() + level, score);
             levelsCompleted.erase(levelsCompleted.begin() + level + 1);
@@ -275,6 +284,13 @@ void GameData::resetGameProgress(void)
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
     levelsCompleted.push_back(0);
+    for (int i = 0; i < achievements.size(); i++)
+    {
+        for (int j = 0; j < achievements.size(); j++)
+        {
+            cocos2d::UserDefault::getInstance()->setBoolForKey((to_string(achievements[i][j]->getLevel())+"-"+achievements[i][j]->getGoalType()).c_str(), 0);
+        }
+    }
     achievements.clear();
 }
 
