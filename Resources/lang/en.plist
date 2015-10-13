@@ -12,6 +12,8 @@
 	<string>RESET</string>
 	<key>PAUSE</key>
 	<string>PAUSE</string>
+	<key>SET_ATTRIBUTES</key>
+	<string>CONFIGURE THE AGENTS BEFORE YOU START</string>
 	<key>WARNING</key>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>
@@ -66,12 +68,6 @@
 	<string>POWERS</string>
 	<key>NOT_AVAILABLE</key>
 	<string>NOT AVAILABLE IN THIS MISSION</string>
-	<key>GOAL_TEXT_LVL1_1</key>
-	<string>- Reach checkpoint 1 between 30 and 50 timesteps</string>
-	<key>GOAL_TEXT_LVL1_2</key>
-	<string>- Reach checkpoint 2 between 70 and 90 timesteps</string>
-	<key>GOAL_TEXT_LVL1_3</key>
-	<string>- Reach checkpoint 3 between 90 and 110 timesteps</string>
 	<key>MUSIC</key>
 	<string>MUSIC</string>
 	<key>SPECIAL_EFFECTS</key>

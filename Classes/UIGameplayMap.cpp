@@ -154,9 +154,9 @@ bool UIGameplayMap::init()
     gameplayMapHotSpot = new Image();
     gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
     int x = 3;
-    if (gameplayMapHotSpot->hasAlpha()) {
+    /*if (gameplayMapHotSpot->hasAlpha()) {
         x = 4;
-    }
+    }*/
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
     CCLOG("%lu : %zu : %zu", sizeof(dataGameplayMapHotSpot), strlen((char*)dataGameplayMapHotSpot), gameplayMapHotSpot->getDataLen());
@@ -270,9 +270,10 @@ bool UIGameplayMap::init()
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pauseDarkBackground->setOpacity(150);
-    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("PAUSE")), "fonts/BebasNeue.otf", 170);
+    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("SET_ATTRIBUTES")), "fonts/BebasNeue.otf", 100);
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
+    pauseDarkLabel->setName("pauseDarkLabel");
     pauseDarkBackground->addChild(pauseDarkLabel);
     addChild(pauseDarkBackground, 0);
 
@@ -1040,6 +1041,9 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     if (firstPlayFF == true)
     {
         setAttributesToInitialAgents();
+        auto l = ((Label*)pauseDarkBackground->getChildByName("pauseDarkLabel"));
+        l->setTTFConfig(_ttfConfig("fonts/BebasNeue.otf", 170));
+        l->setString(string(LocalizedString::create("PAUSE")));
         firstPlayFF = false;
     }
 

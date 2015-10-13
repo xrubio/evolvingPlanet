@@ -12,6 +12,8 @@
 	<string>RESETEAR</string>
 	<key>PAUSE</key>
 	<string>PAUSA</string>
+	<key>SET_ATTRIBUTES</key>
+	<string>CONFIGURA LOS AGENTES ANTES DE EMPEZAR</string>
 	<key>WARNING</key>
 	<string>ALERTA</string>
 	<key>WARNING_TEXT</key>
@@ -66,12 +68,6 @@
 	<string>PODERES</string>
 	<key>NOT_AVAILABLE</key>
 	<string>NO DISPONIBLES EN ESTA MISIÓN</string>
-	<key>GOAL_TEXT_LVL1_1</key>
-	<string>- Se debe llegar al punto de control 1 entre 30 y 50 pasos de tiempo</string>
-	<key>GOAL_TEXT_LVL1_2</key>
-	<string>- Se debe llegar al punto de control 2 entre 70 y 90 pasos de tiempo</string>
-	<key>GOAL_TEXT_LVL1_3</key>
-	<string>- Se debe llegar al punto de control 3 entre 90 y 110 pasos de tiempo</string>
 	<key>MUSIC</key>
 	<string>MÚSICA</string>
 	<key>SPECIAL_EFFECTS</key>
