@@ -43,14 +43,19 @@ public:
     void proceedLevelCallback(Ref* pSender);
     void restoreProgressMap(Ref* pSender);
     void movePopupLevelCallback(Ref* pSender);
+    void menuEraCallback(Ref* pSender);
 
     CREATE_FUNC(UIProgressMap);
 
 private:
     cocos2d::ui::ScrollView* scrollView;
-    Sprite* progressMap0;
+    Sprite* progressMap;
     Sprite* selectedBackground;
     int tagLevelSelected = 0;
+    
+    void setEpisode1(void);
+    void setEpisode2(void);
+
 };
 
 #endif /* defined(__simulplay__UIProgressMap__) */

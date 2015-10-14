@@ -51,7 +51,7 @@ bool UIMainMenu::init()
         return false;
     }
     
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMap0Background.jpg");
+    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMap1Background.jpg");
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
