@@ -27,22 +27,22 @@
     <message id="12" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="2" text="LEVEL1M12"/>
     <message id="13" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M13" closesWhen="spot"/>
     <message id="14" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M14"/>
-    <message id="15" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M15" closesWhen="tapButton" button="attBackground/attrMenu/plusMOBILITY">
+    <message id="15" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M15" closesWhen="tapButton" button="bottomFrame/attrMenu/plusMOBILITY">
         <spot centerX="0.97" centerY="0.32" radius="0.02"/>
     </message>
-    <message id="17" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M16" closesWhen="tapButton" button="attBackground/attrMenu/plusREPRODUCTION">
+    <message id="17" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M16" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
         <spot centerX="0.97" centerY="0.24" radius="0.02"/>
     </message>
-    <message id="18" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M17" closesWhen="tapButton" button="attBackground/attrMenu/plusREPRODUCTION">   
+    <message id="18" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M17" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">   
         <spot centerX="0.97" centerY="0.24" radius="0.02"/>
     </message>
-    <message id="19" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M18" closesWhen="tapButton" button="attBackground/attrMenu/plusREPRODUCTION">
+    <message id="19" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M18" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
         <spot centerX="0.97" centerY="0.24" radius="0.02"/>
     </message>
-    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M19" closesWhen="tapButton" button="attBackground/attrMenu/plusRESISTANCE">
+    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M19" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
         <spot centerX="0.97" centerY="0.16" radius="0.02"/>
     </message>
-    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M20" closesWhen="tapButton" button="attBackground/attrMenu/plusRESISTANCE">
+    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M20" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
         <spot centerX="0.97" centerY="0.16" radius="0.02"/>
     </message>
     <message id="21" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M21" closesWhen="tapButton" button="timeMenu/playToggle">
