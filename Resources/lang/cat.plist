@@ -30,8 +30,12 @@
 	<string>CRÈDITS</string>
 	<key>GOALS</key>
 	<string>OBJECTIUS</string>
-	<key>FIRST_ERA</key>
-	<string>PRIMERA ERA</string>
+	<key>ERA</key>
+	<string>ERA</string>
+	<key>FIRST</key>
+	<string>PRIMERA</string>
+	<key>SECOND</key>
+	<string>SEGONA</string>
 	<key>QUIT_QUESTION</key>
 	<string>SORTIR ?</string>
 	<key>RETRY_QUESTION</key>

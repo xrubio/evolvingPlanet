@@ -31,6 +31,8 @@
 #include "UIMainMenu.h"
 #include <ui/CocosGUI.h>
 
+#define NUM_ERAS 2
+
 class UIProgressMap : public Layer {
 public:
     static Scene* createScene();
