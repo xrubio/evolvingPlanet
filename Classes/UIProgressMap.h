@@ -44,7 +44,6 @@ public:
     void menuLevelCallback(Ref* pSender);
     void proceedLevelCallback(Ref* pSender);
     void restoreProgressMap(Ref* pSender);
-    void movePopupLevelCallback(Ref* pSender);
     void menuEraCallback(Ref* pSender);
 
     CREATE_FUNC(UIProgressMap);
@@ -57,6 +56,7 @@ private:
     
     void setEpisode1(void);
     void setEpisode2(void);
+    void setStars(int i, Vec2 pos);
 
 };
 

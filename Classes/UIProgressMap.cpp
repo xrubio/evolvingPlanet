@@ -487,47 +487,6 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
     }
 }
 
-void UIProgressMap::movePopupLevelCallback(Ref* pSender)
-{
-    MenuItem* p = (MenuItem*)pSender;
-    Sprite* background = (Sprite*)p->getParent()->getParent();
-    if (background->getNumberOfRunningActions() == 0)
-    {
-    if (p->getParent()->getParent()->getPositionX() < progressMap->getBoundingBox().size.width) {
-        //VISIBLE
-        auto move = MoveTo::create(0.5, Vec2(progressMap->getBoundingBox().size.width, background->getPositionY()));
-        auto ease = EaseBackInOut::create(move);
-        background->runAction(ease);
-        background->removeChildByName("menuArrow");
-        auto arrowExpand = MenuItemImage::create("gui/ArrowExpand.png", "gui/ArrowExpandPressed.png",
-                                                 CC_CALLBACK_1(UIProgressMap::movePopupLevelCallback, this));
-        arrowExpand->setAnchorPoint(Vec2(1, 0));
-        arrowExpand->setPosition(0, 0);
-        Menu* arrowMenu = Menu::createWithItem(arrowExpand);
-        arrowMenu->setPosition(Vec2(0, (background->getContentSize().height + background->getContentSize().height / 24.3) -
-                                    (11.5 * (background->getContentSize().height / 12.15))));
-        arrowMenu->setName("menuArrow");
-        background->addChild(arrowMenu);
-    }
-    else {
-        //INVISIBLE
-        auto move = MoveTo::create(0.5, Vec2(progressMap->getBoundingBox().size.width - background->getBoundingBox().size.width, background->getPositionY()));
-        auto ease = EaseBackInOut::create(move);
-        background->runAction(ease);
-        background->removeChildByName("menuArrow");
-        auto arrowRetract = MenuItemImage::create("gui/ArrowRetract.png", "gui/ArrowRetractPressed.png",
-                                                  CC_CALLBACK_1(UIProgressMap::movePopupLevelCallback, this));
-        arrowRetract->setAnchorPoint(Vec2(1, 0));
-        arrowRetract->setPosition(0, 0);
-        Menu* arrowMenu = Menu::createWithItem(arrowRetract);
-        arrowMenu->setPosition(Vec2(0, (background->getContentSize().height + background->getContentSize().height / 24.3) -
-                                    (11.5 * (background->getContentSize().height / 12.15))));
-        arrowMenu->setName("menuArrow");
-        background->addChild(arrowMenu);
-    }
-    }
-}
-
 void UIProgressMap::menuEraCallback(Ref* pSender)
 {
     auto arrowPrev = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowPrev");
@@ -632,16 +591,16 @@ void UIProgressMap::setEpisode1(void)
                 break;
             }
             case 3: {
-                levelButton->setPosition(53 * progressMap->getContentSize().width / 204, 71 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(55 * progressMap->getContentSize().width / 204, 71 * progressMap->getContentSize().height / 155);
 
-                shadow->setPosition(Vec2(53 * progressMap->getContentSize().width / 204,
+                shadow->setPosition(Vec2(55 * progressMap->getContentSize().width / 204,
                              (71 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 4: {
-                levelButton->setPosition(43 * progressMap->getContentSize().width / 204, 71 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(41 * progressMap->getContentSize().width / 204, 71 * progressMap->getContentSize().height / 155);
 
-                shadow->setPosition(Vec2(43 * progressMap->getContentSize().width / 204,
+                shadow->setPosition(Vec2(41 * progressMap->getContentSize().width / 204,
                              (71 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
@@ -692,6 +651,7 @@ void UIProgressMap::setEpisode1(void)
             default:
                 break;
         }
+        setStars(i, levelButton->getPosition());
         levelButtonVec.pushBack(levelButton);
     }
 
@@ -818,4 +778,25 @@ void UIProgressMap::setEpisode2(void)
 
 }
 
+void UIProgressMap::setStars(int i, Vec2 pos)
+{
+    if (GameData::getInstance()->getLevelsCompleted().size() >= i )
+    {
+        int score = GameData::getInstance()->getLevelScore(i);
+        for (int i = 1; i < 4; i++) {
+            string starFile;
+            //Estrella plena
+            if (score >= i) {
+                starFile = "gui/StarFullMini.png";
+            }
+            //Estrella buida
+            else {
+                starFile = "gui/StarEmptyMini.png";
+            }
+            auto star = Sprite::create(starFile);
+            star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)), pos.y + star->getContentSize().height * 1.8));
+            progressMap->addChild(star);
+        }
+    }
+}
 

@@ -73,7 +73,6 @@ public:
     void retryOkCallback(Ref* pSender);
     void NoCallback(Ref* pSender);
     void agentTypeCallback(Ref* pSender);
-    void moveAttCallback(Ref* pSender);
     void minusAttCallback(Ref* pSender);
     void plusAttCallback(Ref* pSender);
     void hideAchievementWindowCallback(Ref* pSender);

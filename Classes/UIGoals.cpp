@@ -245,12 +245,9 @@ bool UIGoals::init()
     Director::getInstance()->getTextureCache()->addImage("gui/Quit.png");
     Director::getInstance()->getTextureCache()->addImage("gui/Repeat.png");
     Director::getInstance()->getTextureCache()->addImage("gui/RepeatPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/FastForwardButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/FastForwardButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/PlayButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/PlayButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/PauseButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/PauseButtonPressed.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/PlayButton.jpg");
+    Director::getInstance()->getTextureCache()->addImage("gui/PlayButtonPressed.jpg");
+    Director::getInstance()->getTextureCache()->addImage("gui/PauseButton.jpg");
     Director::getInstance()->getTextureCache()->addImage("gui/EndedGameBackground.png");
     Director::getInstance()->getTextureCache()->addImage("gui/CheckpointArea.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarBorder.png");
@@ -260,8 +257,6 @@ bool UIGoals::init()
     Director::getInstance()->getTextureCache()->addImage("gui/AgentTypeButton.png");
     Director::getInstance()->getTextureCache()->addImage("gui/AgentTypeButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/AgentAttributesBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ArrowRetract.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ArrowRetractPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmall.png");
     Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmallPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonSmall.png");

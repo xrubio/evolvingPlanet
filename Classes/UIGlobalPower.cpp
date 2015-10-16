@@ -47,6 +47,11 @@ UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
     cooldownTimer->setMidpoint(Vec2(0, 1));
     cooldownTimer->setVisible(false);
     icon->addChild(cooldownTimer, 3, 2);
+    active = Sprite::create("gui/PowerActive.png");
+    active->setPosition(Vec2(icon->getContentSize().width / 2, icon->getContentSize().height / 2));
+    active->setVisible(false);
+    active->setOpacity(50);
+    icon->addChild(active, 100);
     //cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
     //cooldown->setColor(Color3B::MAGENTA);
     //cooldown->setVisible(false);
@@ -82,7 +87,8 @@ void UIGlobalPower::onTouchesEnded(Point touchLocation)
         GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - power->getCost());
         ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
         //cooldownTimer->setVisible(true);
-        ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
+        //((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
+        active->setVisible(true);
         cooldownTimer->setPercentage(100.0);
         //cooldown->setVisible(true);
     }
@@ -110,6 +116,7 @@ void UIGlobalPower::update(float delta)
             //cooldown->setVisible(true);
             //cooldown->setString(to_string(power->getCooldownLeft()));
             ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
+            active->setVisible(false);
             cooldownTimer->setVisible(true);
             cooldownTimer->setPercentage(float(power->getCooldownLeft()) / float(power->getCooldown()) * 100);
             clicked = false;
@@ -122,7 +129,7 @@ void UIGlobalPower::update(float delta)
         if (GameLevel::getInstance()->getTimeSpeed() > 0){
             cooldownTimer->setVisible(false);
         }
-        if (((Sprite *)icon->getChildByTag(0))->getColor() != Color3B::GREEN) {
+        if (active->isVisible() == false) {
             if (GameLevel::getInstance()->getEvolutionPoints() >= power->getCost())
             {
                 disabled = false;
