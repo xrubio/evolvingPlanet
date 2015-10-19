@@ -219,6 +219,7 @@ bool UIGameplayMap::init()
     evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
     evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()),
         "fonts/BebasNeue.otf", 80);
+    evolutionPointsLabel->setAlignment(TextHAlignment::CENTER);
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
     evolutionPointsLabel->setColor(Color3B(216, 229, 235));
     evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
@@ -272,7 +273,7 @@ bool UIGameplayMap::init()
 
     timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width * 1.5,
+    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width,
         toggle->getPosition().y));
     this->addChild(timeSteps, 2);
 
@@ -361,7 +362,8 @@ bool UIGameplayMap::init()
     //TIME PROGRESS BAR
     timeBorderBar = Sprite::create("gui/ProgressBarBorder.png");
     timeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeBorderBar->setPosition(102 * visibleSize.width / 204, 150 * visibleSize.height / 155);
+    timeBorderBar->setPosition(6 * visibleSize.width / 21, 15 * visibleSize.height / 16);
+    timeBorderBar->setAnchorPoint(Vec2(0, 0.5));
     this->addChild(timeBorderBar, 3);
     auto barContent = Sprite::create("gui/ProgressBarContent.png");
     timeBar = ProgressTimer::create(barContent);
@@ -374,22 +376,24 @@ bool UIGameplayMap::init()
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
-        / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime();
+        / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() - 1;
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
     {
         float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
         auto goalMark = Sprite::create("gui/GoalMark.png");
         float posXcentered = (float)(GameLevel::getInstance()->getGoals()[i]->getMinTime() + ((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) / 2)) / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
-        goalMark->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2) + (timeBorderBar->getContentSize().height / 35));
+        goalMark->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2));
         //SET SCALE GOAL MARK
         goalMark->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
         timeBorderBar->addChild(goalMark, 1);
-        auto goalNum = Sprite::create("gui/GoalNum.png");
-        goalNum->setPosition(posXaverage, - timeBorderBar->getContentSize().height / 2);
-        auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
+        auto goalNum = Sprite::create("gui/GoalIcon.png");
+        goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height / 2);
+        /*goalNum->setScaleX(GameLevel::getInstance()->getGoals()[i]->getDesviation3Star() * (goalNum->getTexture()->getPixelsWide()
+                           / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() - 1));*/
+        /*auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
         labelGoalNum->setPosition(goalNum->getContentSize().width / 2, goalNum->getContentSize().height / 2);
         labelGoalNum->setColor(Color3B(216, 229, 235));
-        goalNum->addChild(labelGoalNum, 2);
+        goalNum->addChild(labelGoalNum, 2);*/
         timeBorderBar->addChild(goalNum, 2);
     }
 

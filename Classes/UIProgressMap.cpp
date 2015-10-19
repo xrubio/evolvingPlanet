@@ -794,7 +794,18 @@ void UIProgressMap::setStars(int i, Vec2 pos)
                 starFile = "gui/StarEmptyMini.png";
             }
             auto star = Sprite::create(starFile);
-            star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)), pos.y + star->getContentSize().height * 1.8));
+            star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)),
+                                   pos.y + star->getContentSize().height * 1.8));
+            progressMap->addChild(star);
+        }
+    }
+    else if (GameData::getInstance()->getLevelsCompleted().size() == i )
+    {
+        for (int i = 1; i < 4; i++) {
+            string starFile = "gui/StarEmptyMini.png";
+            auto star = Sprite::create(starFile);
+            star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)),
+                                   pos.y + star->getContentSize().height * 1.8));
             progressMap->addChild(star);
         }
     }
