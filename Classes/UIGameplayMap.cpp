@@ -214,7 +214,7 @@ bool UIGameplayMap::init()
 
     //EVOLUTION POINTS
     //string(LocalizedString::create("EVOLUTION_POINTS"))
-    evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.jpg");
+    evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
     evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()),
@@ -238,13 +238,13 @@ bool UIGameplayMap::init()
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
-    MenuItem* playButton = MenuItemImage::create("gui/PlayButton.jpg", "gui/PlayButtonPressed.jpg");
+    MenuItem* playButton = MenuItemImage::create("gui/PlayButton.png", "gui/PlayButtonPressed.png");
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     //playButton->setPosition(Vec2(193 * visibleSize.width / 204, 145 * visibleSize.height / 155));
     playButton->setName("playButton");
     //timeButtons.pushBack(playButton);
 
-    MenuItem* pauseButton = MenuItemImage::create("gui/PauseButton.jpg", "gui/PauseButton.jpg");
+    MenuItem* pauseButton = MenuItemImage::create("gui/PauseButton.png", "gui/PauseButton.png");
     pauseButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseButton->setEnabled(false);
     pauseButton->setName("pauseButton");

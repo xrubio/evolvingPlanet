@@ -780,7 +780,7 @@ void UIProgressMap::setEpisode2(void)
 
 void UIProgressMap::setStars(int i, Vec2 pos)
 {
-    if (GameData::getInstance()->getLevelsCompleted().size() >= i )
+    if (GameData::getInstance()->getLevelsCompleted().size() > i )
     {
         int score = GameData::getInstance()->getLevelScore(i);
         for (int i = 1; i < 4; i++) {

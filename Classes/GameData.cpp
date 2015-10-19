@@ -284,9 +284,13 @@ void GameData::resetGameProgress(void)
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
     levelsCompleted.push_back(0);
+    if (GameData::getInstance()->getAchievements().size() <= 0)
+    {
+        GameData::getInstance()->loadAchievements();
+    }
     for (int i = 0; i < achievements.size(); i++)
     {
-        for (int j = 0; j < achievements.size(); j++)
+        for (int j = 0; j < achievements[i].size(); j++)
         {
             cocos2d::UserDefault::getInstance()->setBoolForKey((to_string(achievements[i][j]->getLevel())+"-"+achievements[i][j]->getGoalType()).c_str(), 0);
         }
