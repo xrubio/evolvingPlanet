@@ -21,7 +21,7 @@
 #include "Message.h"
 #include "GameLevel.h"
 
-Message::Message( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth), _postCondition("tap"), _meetsPostCondition(false)
+Message::Message( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const std::string & image ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth), _postCondition("tap"), _meetsPostCondition(false), _image(image)
 {
 }
 
@@ -41,7 +41,7 @@ void Message::setPostCondition( const std::string & condition )
     _meetsPostCondition = false;
 }
 
-MessageTime::MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step) : Message(text, xPos, yPos, lineWidth), _step(step)
+MessageTime::MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step, const std::string & image) : Message(text, xPos, yPos, lineWidth, image), _step(step)
 {
 }
 
@@ -58,7 +58,7 @@ bool MessageTime::meetsPreCondition() const
     return false;
 }
 
-MessageNext::MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth ) : Message(text, xPos, yPos, lineWidth)
+MessageNext::MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const std::string & image ) : Message(text, xPos, yPos, lineWidth, image)
 {
 }
 

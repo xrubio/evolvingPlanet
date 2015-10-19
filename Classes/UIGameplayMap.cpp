@@ -557,12 +557,18 @@ bool UIGameplayMap::init()
     tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
     tutorialTitle->setVisible(false);
     
+    auto tutorialImage = Sprite::create();
+    tutorialImage->setName("tutorialImage");
+    tutorialImage->runAction(RepeatForever::create(Blink::create(1, 1)));
+    tutorialImage->setVisible(false);
+    
     // add first the border to draw it first
     gameplayMap->addChild(labelBorder);
     gameplayMap->addChild(messageLabel);
     gameplayMap->addChild(messageNextLabel);
     gameplayMap->addChild(spots);
     gameplayMap->addChild(tutorialTitle);
+    gameplayMap->addChild(tutorialImage, 60);
 
     _message = 0;
 
@@ -1771,6 +1777,7 @@ void UIGameplayMap::update(float delta)
                     gameplayMap->getChildByName("tutorialNext")->setVisible(false);
                     gameplayMap->getChildByName("tutorialBorder")->setVisible(false);
                     gameplayMap->getChildByName("tutorialSpots")->setVisible(false);
+                    gameplayMap->getChildByName("tutorialImage")->setVisible(false);
 
                     if(_tutorial->isFinished())
                     {
@@ -1856,6 +1863,7 @@ void UIGameplayMap::setMessage( const Message * message )
 
     Label * label = (Label*)(gameplayMap->getChildByName("tutorial"));
     Label * nextLabel = (Label*)(gameplayMap->getChildByName("tutorialNext"));
+    Sprite* image = (Sprite*)(gameplayMap->getChildByName("tutorialImage"));
 
     label->setString(_message->text());
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -1880,7 +1888,12 @@ void UIGameplayMap::setMessage( const Message * message )
         else
         {
             nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_TAP", "tutorial"));
-        } 
+        }
+        if (_message->image() != "")
+        {
+            image->setTexture(_message->image()+".png");
+            image->setPosition(Vec2(visibleSize.width*_message->beginSpots()->_centerX, visibleSize.height*_message->beginSpots()->_centerY));
+        }
         
         const Rect & contents = label->getBoundingBox();
         const Rect & ownContents = nextLabel->getBoundingBox();
@@ -1889,6 +1902,7 @@ void UIGameplayMap::setMessage( const Message * message )
         label->setVisible(true);    
         labelBorder->setVisible(true);   
         nextLabel->setVisible(true);
+        image->setVisible(true);
         gameplayMap->getChildByName("tutorialTitle")->setVisible(true);
     }
 

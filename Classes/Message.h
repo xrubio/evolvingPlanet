@@ -41,13 +41,15 @@ class Message
 public:
     typedef std::vector<Spot> SpotVector;
 private:    
-    /** text so show on screen **/
+    /** text to show on screen **/
     std::string _text;
     /** position of message (from 0 to 1 of screen) **/
     Vec2 _pos;
     /** percentage of visible size used for width of line of text **/
     float _lineWidth;
     std::vector<Spot> _spots;
+    /** image to show on screen **/
+    std::string _image;
 
     // condition to close the message
     std::string _postCondition;
@@ -56,12 +58,13 @@ private:
     // 
     bool _meetsPostCondition;
 public:
-    Message( const std::string & text = "no text", const float & xPos = 0.5, const float & yPos = 0.5, const float & lineWidth = 0.5);
+    Message( const std::string & text = "no text", const float & xPos = 0.5, const float & yPos = 0.5, const float & lineWidth = 0.5, const std::string & image = "no image");
     virtual ~Message();
 
     const std::string & text() const {return _text;} 
     const float & lineWidth() const {return _lineWidth;}
     const Vec2 & pos() const {return _pos;}
+    const std::string & image() const {return _image;}
     void addSpot( const float & centerX, const float & centerY, const float & radius);
     /** \returns true if conditions to show Message are all achieved**/
     virtual bool meetsPreCondition() const = 0;
@@ -84,7 +87,7 @@ class MessageTime : public Message
 {
     unsigned int _step;
 public:
-    MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step);
+    MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step, const std::string & image);
     virtual ~MessageTime();
 
     bool meetsPreCondition() const;
@@ -94,7 +97,7 @@ public:
 class MessageNext : public Message
 {
 public:    
-    MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth);
+    MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const std::string & image);
     virtual ~MessageNext();
 
     bool meetsPreCondition() const;
