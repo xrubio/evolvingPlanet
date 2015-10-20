@@ -284,6 +284,7 @@ void GameData::resetGameProgress(void)
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
     levelsCompleted.push_back(0);
+    levelsCompleted.push_back(0);
     if (GameData::getInstance()->getAchievements().size() <= 0)
     {
         GameData::getInstance()->loadAchievements();

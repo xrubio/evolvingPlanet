@@ -299,6 +299,9 @@ void UIGoals::menuStartCallback(Ref* pSender)
             j++;
         }
     }*/
+    
+    Director::getInstance()->getTextureCache()->addImage("maps/Level"+to_string(GameLevel::getInstance()->getNumLevel())+"HotSpotsBase.png");
+    
     GameLevel::getInstance()->setAgentAttributesInitToCurrent();
     auto scene = UIGameplayMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);

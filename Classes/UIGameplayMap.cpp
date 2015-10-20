@@ -217,8 +217,7 @@ bool UIGameplayMap::init()
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
-    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()),
-        "fonts/BebasNeue.otf", 80);
+    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80);
     evolutionPointsLabel->setAlignment(TextHAlignment::CENTER);
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
     evolutionPointsLabel->setColor(Color3B(216, 229, 235));
