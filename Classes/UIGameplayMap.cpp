@@ -372,10 +372,14 @@ bool UIGameplayMap::init()
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(0, 0);
     timeBorderBar->addChild(timeBar, 3);
+    
+    auto degradateTime = Sprite::create("gui/GoalDegradate.png");
+    degradateTime->setName("degradateTime");
+    timeBar->addChild(degradateTime, 10);
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
-        / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() - 1;
+        / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime();
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
     {
         float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
@@ -567,7 +571,7 @@ bool UIGameplayMap::init()
     gameplayMap->addChild(messageNextLabel);
     gameplayMap->addChild(spots);
     gameplayMap->addChild(tutorialTitle);
-    gameplayMap->addChild(tutorialImage, 60);
+    gameplayMap->addChild(tutorialImage, 100);
 
     _message = 0;
 
@@ -1810,6 +1814,8 @@ void UIGameplayMap::update(float delta)
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+            CCLOG("%f", timeBar->getPercentage());
+            timeBar->getChildByName("degradateTime")->setPosition(timeBar->getContentSize().width * (timeBar->getPercentage() / 100.0), timeBar->getContentSize().height / 2);
         }
 
         for (size_t i = 0; i < powerButtons.size(); i++) {
