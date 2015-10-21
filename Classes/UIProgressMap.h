@@ -31,6 +31,8 @@
 #include "UIMainMenu.h"
 #include <ui/CocosGUI.h>
 
+using namespace cocos2d::ui;
+
 #define NUM_ERAS 2
 
 class UIProgressMap : public Layer {
@@ -45,18 +47,21 @@ public:
     void proceedLevelCallback(Ref* pSender);
     void restoreProgressMap(Ref* pSender);
     void menuEraCallback(Ref* pSender);
+    
+    virtual void update(float delta);
 
     CREATE_FUNC(UIProgressMap);
 
 private:
-    cocos2d::ui::ScrollView* scrollView;
-    Sprite* progressMap;
+    PageView* pages;
+
+    //Sprite* progressMap;
     Sprite* selectedBackground;
     int tagLevelSelected = 0;
     
-    void setEpisode1(void);
-    void setEpisode2(void);
-    void setStars(int i, Vec2 pos);
+    Layout* setEpisode1(void);
+    Layout* setEpisode2(void);
+    void setStars(int i, Vec2 pos, Sprite* progressMap);
 
 };
 

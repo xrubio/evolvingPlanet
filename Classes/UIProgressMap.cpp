@@ -81,84 +81,6 @@ bool UIProgressMap::init()
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
     this->addChild(menu, 5);
-
-    /*auto popupLevelBackground = Sprite::create("gui/ProgressMapLevelPopupBackground.png");
-    
-    auto labelBorderTop = Label::createWithTTF(LocalizedString::create("FIRST_ERA").c_str(), "fonts/BebasNeue.otf", 60);
-    labelBorderTop->setColor(Color3B(Color3B::WHITE));
-    labelBorderTop->setPosition(Vec2(popupLevelBackground->getBoundingBox().size.width / 2,
-                                     (popupLevelBackground->getContentSize().height + popupLevelBackground->getContentSize().height / 24.3) -  (popupLevelBackground->getContentSize().height / 12.15)));
-    popupLevelBackground->addChild(labelBorderTop);
-    
-    popupLevelBackground->setAnchorPoint(Vec2(0, 0.5));
-    popupLevelBackground->setPosition(Vec2(progressMap->getBoundingBox().size.width, progressMap->getBoundingBox().size.height / 2));
-    
-    selectedBackground = Sprite::create("gui/ProgressMapLevelSelected.png");
-    selectedBackground->setVisible(false);
-    popupLevelBackground->addChild(selectedBackground);
-
-    Vector<MenuItem*> levelButtons;
-
-    for (int i = 0; i < 10; i++) {
-        auto buttonLevel = MenuItem::create(CC_CALLBACK_1(UIProgressMap::menuLevelZoneCallback, this));
-        buttonLevel->setContentSize(selectedBackground->getContentSize());
-        buttonLevel->setTag(i + 1);
-        buttonLevel->setContentSize(Size(popupLevelBackground->getBoundingBox().size.width,
-            popupLevelBackground->getBoundingBox().size.height / 22));
-        string space = " ";
-        auto labelButtonLevel = Label::createWithTTF(LocalizedString::create("LEVEL") + space + to_string(i + 1),
-            "fonts/BebasNeue.otf", 45);
-        labelButtonLevel->setColor(Color3B::WHITE);
-        labelButtonLevel->setPosition(Vec2(1.3 * buttonLevel->getBoundingBox().size.width / 4, buttonLevel->getBoundingBox().size.height / 2));
-        labelButtonLevel->setOpacity(0);
-        labelButtonLevel->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
-        buttonLevel->addChild(labelButtonLevel);
-        if (i > 9) {
-            buttonLevel->setEnabled(false);
-            labelButtonLevel->setColor(Color3B::GRAY);
-        }
-        int score = 0;
-        if (GameData::getInstance()->getLevelsCompleted().size() > i + 1) {
-            score = GameData::getInstance()->getLevelScore(i + 1);
-        }
-        for (int i = 1; i < 4; i++) {
-            string starFile;
-            //Estrella plena
-            if (score >= i) {
-                starFile = "gui/StarFullMini.png";
-            }
-            //Estrella buida
-            else {
-                starFile = "gui/StarEmptyMini.png";
-            }
-            auto star = Sprite::create(starFile);
-            star->setPosition(Vec2((3.85 * buttonLevel->getBoundingBox().size.width / 7) + (i * (star->getContentSize().width + star->getContentSize().width / 4)),
-                buttonLevel->getBoundingBox().size.height / 2));
-            star->setOpacity(0);
-            star->runAction(Sequence::create(DelayTime::create(1.1), FadeIn::create(0.4), NULL));
-            buttonLevel->addChild(star);
-        }
-        buttonLevel->setPosition(Vec2(popupLevelBackground->getBoundingBox().size.width / 2,
-            (popupLevelBackground->getContentSize().height + popupLevelBackground->getContentSize().height / 24.3) - ((i + 2) * (popupLevelBackground->getContentSize().height / 12.15))));
-        levelButtons.pushBack(buttonLevel);
-    }
-    auto menuLevelButtons = Menu::createWithArray(levelButtons);
-    menuLevelButtons->setPosition(Vec2(0, 0));
-    popupLevelBackground->addChild(menuLevelButtons, 1);
-    
-    auto arrowRetract = MenuItemImage::create("gui/ArrowRetract.png", "gui/ArrowRetractPressed.png",
-                                              CC_CALLBACK_1(UIProgressMap::movePopupLevelCallback, this));
-    arrowRetract->setAnchorPoint(Vec2(1, 0));
-    arrowRetract->setPosition(0, 0);
-    Menu* arrowMenu = Menu::createWithItem(arrowRetract);
-    arrowMenu->setPosition(Vec2(0, (popupLevelBackground->getContentSize().height + popupLevelBackground->getContentSize().height / 24.3) -
-                                (11.5 * (popupLevelBackground->getContentSize().height / 12.15))));
-    arrowMenu->setName("menuArrow");
-    popupLevelBackground->addChild(arrowMenu);
-    
-    popupLevelBackground->runAction(EaseBackInOut::create(MoveTo::create(1.0, Vec2(progressMap->getBoundingBox().size.width - popupLevelBackground->getBoundingBox().size.width, popupLevelBackground->getPositionY()))));
-    
-    progressMap->addChild(popupLevelBackground, 8, 103);*/
     
     auto eraWindow = Sprite::create("gui/ProgressMapEraWindow.png");
     eraWindow->setPosition(Vec2(3.3 * visibleSize.width / 4, 6.3 * visibleSize.height / 7));
@@ -192,30 +114,16 @@ bool UIProgressMap::init()
     eraWindow->addChild(menuEra, 5);
     
     this->addChild(eraWindow, 5);
-
-    /*for (int i = 1; i < 3; i++)
-    {
-        auto eraButton = MenuItemImage::create("gui/LevelPointerButton.png", "gui/LevelPointerButtonPressed.png",
-                                               "gui/LevelPointerButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuEraCallback, this));
-        eraButton->setPosition(Vec2(((28 + (i * 2)) * visibleSize.width / 34), (2 * visibleSize.height / 25)));
-        eraButton->setTag(i);
-        auto eraLabel = Label::createWithTTF(LocalizedString::create("FIRST")+LocalizedString::create("ERA"), "fonts/BebasNeue.otf", 40);
-        eraLabel->setPosition(eraButton->getContentSize().width / 2, eraButton->getContentSize().height / 2);
-        eraLabel->setColor(Color3B(32, 47, 55));
-        eraButton->addChild(eraLabel);
-        if (i == 1)
-        {
-            eraButton->setEnabled(false);
-        }
-        eraButtonVec.pushBack(eraButton);
-    }
     
-    auto menuEra = Menu::createWithArray(eraButtonVec);
-    menuEra->setPosition(0, 0);
-    menuEra->setName("menuEra");
-    this->addChild(menuEra, 5);*/
+    pages = PageView::create();
+    pages->setCustomScrollThreshold(visibleSize.width / 6);
+    pages->setTouchEnabled(true);
+    pages->setSize(Size(visibleSize.width, visibleSize.height));
+    pages->setPosition(Point(0, 0));
+    this->addChild(pages);
     
-    setEpisode1();
+    pages->addPage(setEpisode1());
+    pages->addPage(setEpisode2());
 
     //RESET INITIAL CONFIG
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
@@ -240,6 +148,8 @@ bool UIProgressMap::init()
     Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PlusButton.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonPressed.png");
+    
+    this->scheduleUpdate();
 
     return true;
 }
@@ -305,7 +215,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     zoneTimer->setPosition(Vec2(pMenuItem->getPositionX(), pMenuItem->getPositionY() - (pMenuItem->getContentSize().height / 4)));
     zoneTimer->setType(ProgressTimer::Type::RADIAL);
     zoneTimer->runAction(radialTimer);
-    progressMap->addChild(zoneTimer, 1, 102);
+    pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->addChild(zoneTimer, 1, 102);
 
     Vector<MenuItem*> menuButtons;
 
@@ -482,39 +392,63 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
         this->removeChildByTag(101);
     }
     //Hexagon
-    if (progressMap->getChildByTag(102) != nullptr) {
-        progressMap->removeChildByTag(102);
+    if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByTag(102) != nullptr) {
+        pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->removeChildByTag(102);
     }
 }
 
 void UIProgressMap::menuEraCallback(Ref* pSender)
 {
-    auto arrowPrev = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowPrev");
-    auto arrowNext = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowNext");
-    if (progressMap->getChildByName("menuLevelButton")->getChildByTag(1) != NULL)
+    /*auto arrowPrev = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowPrev");
+    auto arrowNext = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowNext");*/
+    auto arrow = (MenuItem*)pSender;
+    ssize_t currentPage = pages->getCurPageIndex();
+    
+    if (arrow->getName() == "arrowPrev")
     {
-        setEpisode2();
+        if (currentPage > 0)
+        {
+            pages->scrollToPage(currentPage - 1);
+        }
+    }
+    else if (arrow->getName() == "arrowNext")
+    {
+        if (currentPage < NUM_ERAS)
+        {
+            pages->scrollToPage(currentPage + 1);
+        }
+    }
+    
+    /*if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(1) != NULL)
+    {
+        pages->scrollToPage(1);
+        auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
+        label->setString(LocalizedString::create("SECOND") + " " + LocalizedString::create("ERA"));
         arrowNext->setVisible(false);
         arrowPrev->setVisible(true);
     }
-    else if (progressMap->getChildByName("menuLevelButton")->getChildByTag(11) != NULL)
+    else if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(11) != NULL)
     {
-        setEpisode1();
+        pages->scrollToPage(0);
+
         arrowNext->setVisible(true);
         arrowPrev->setVisible(false);
-    }
+    }*/
 }
 
-void UIProgressMap::setEpisode1(void)
+Layout* UIProgressMap::setEpisode1(void)
 {
-    this->removeChild(progressMap);
+    auto layout = Layout::create();
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    layout->setContentSize(visibleSize);
     
     auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
     label->setString(LocalizedString::create("FIRST") + " " + LocalizedString::create("ERA"));
     
-    progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
+    auto progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
     progressMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    progressMap->setName("progressMap");
+    layout->addChild(progressMap);
     
     //CLOUDS
     auto cloud2 = Sprite::create("gui/Clouds2.png");
@@ -651,7 +585,7 @@ void UIProgressMap::setEpisode1(void)
             default:
                 break;
         }
-        setStars(i, levelButton->getPosition());
+        setStars(i, levelButton->getPosition(), progressMap);
         levelButtonVec.pushBack(levelButton);
     }
 
@@ -660,19 +594,19 @@ void UIProgressMap::setEpisode1(void)
     menuLevelButton->setName("menuLevelButton");
     progressMap->addChild(menuLevelButton, 3, 0);
     
-    this->addChild(progressMap);
+    return layout;
 }
 
-void UIProgressMap::setEpisode2(void)
+Layout* UIProgressMap::setEpisode2(void)
 {
-    this->removeChild(progressMap);
+    auto layout = Layout::create();
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    layout->setContentSize(visibleSize);
     
-    auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
-    label->setString(LocalizedString::create("SECOND") + " " + LocalizedString::create("ERA"));
-    
-    progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
+    auto progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
     progressMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    progressMap->setName("progressMap");
+    layout->addChild(progressMap);
     
     Vector<MenuItem *> levelButtonVec;
     for (int i = 11; i < 21; i++)
@@ -774,11 +708,10 @@ void UIProgressMap::setEpisode2(void)
     menuLevelButton->setName("menuLevelButton");
     progressMap->addChild(menuLevelButton, 3, 0);
     
-    this->addChild(progressMap);
-
+    return layout;
 }
 
-void UIProgressMap::setStars(int i, Vec2 pos)
+void UIProgressMap::setStars(int i, Vec2 pos, Sprite* progressMap)
 {
     if (GameData::getInstance()->getLevelsCompleted().size() > i )
     {
@@ -807,6 +740,30 @@ void UIProgressMap::setStars(int i, Vec2 pos)
             star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)),
                                    pos.y + star->getContentSize().height * 1.8));
             progressMap->addChild(star);
+        }
+    }
+}
+
+void UIProgressMap::update(float delta)
+{
+    auto arrowPrev = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowPrev");
+    auto arrowNext = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowNext");
+    auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
+
+    switch (pages->getCurPageIndex()) {
+        case 1:
+        {
+            arrowPrev->setVisible(true);
+            arrowNext->setVisible(false);
+            label->setString(LocalizedString::create("SECOND") + " " + LocalizedString::create("ERA"));
+            break;
+        }
+        default:
+        {
+            arrowPrev->setVisible(false);
+            arrowNext->setVisible(true);
+            label->setString(LocalizedString::create("FIRST") + " " + LocalizedString::create("ERA"));
+            break;
         }
     }
 }

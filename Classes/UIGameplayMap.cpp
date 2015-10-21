@@ -375,7 +375,7 @@ bool UIGameplayMap::init()
     
     auto degradateTime = Sprite::create("gui/GoalDegradate.png");
     degradateTime->setName("degradateTime");
-    timeBar->addChild(degradateTime, 10);
+    timeBar->addChild(degradateTime, -1);
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
@@ -1814,7 +1814,6 @@ void UIGameplayMap::update(float delta)
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
-            CCLOG("%f", timeBar->getPercentage());
             timeBar->getChildByName("degradateTime")->setPosition(timeBar->getContentSize().width * (timeBar->getPercentage() / 100.0), timeBar->getContentSize().height / 2);
         }
 
