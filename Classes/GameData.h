@@ -69,6 +69,8 @@ public:
     void setColumnOffsetDrawAgentPrecalc(float c);
     float getColumnDrawAgentPrecalc(void);
     void setColumnDrawAgentPrecalc(float c);
+    int getFirstTimeLevelCompleted(void);
+    void setFirstTimeLevelCompleted(int l);
 
     void loadAchievements(void);
     void resetGameProgress(void);
@@ -95,6 +97,7 @@ private:
     float rowDrawAgentPrecalc;
     float columnOffsetDrawAgentPrecalc;
     float columnDrawAgentPrecalc;
+    int _firstTimeLevelCompleted = 0;
 };
 
 #endif /* defined(__simulplay__GameData__) */

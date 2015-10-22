@@ -41,8 +41,15 @@ public:
     {
         if (typeAch == "COMPLETED")
         {
-            _completed = true;
-            return true;
+            if (GameData::getInstance()->getLevelScore(level) > 0)
+            {
+                _completed = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else if (typeAch == "PERFECT")
         {

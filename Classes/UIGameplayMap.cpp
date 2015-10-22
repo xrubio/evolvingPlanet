@@ -37,6 +37,7 @@
 #include "LevelLoader.h"
 #include "Message.h"
 #include "Tutorial.h"
+#include "UITransitionScene.h"
 #include <audio/include/SimpleAudioEngine.h>
 
 Scene* UIGameplayMap::createScene()
@@ -978,9 +979,19 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     pthread_join(gameLevelThread, nullptr);
     pthread_join(timingThread, nullptr);
     GameData::getInstance()->setGameStarted(false);
-    auto scene = UIProgressMap::createScene();
-    auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->pushScene(transition);
+    
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel())
+    {
+        auto scene = UITransitionScene::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
+    }
+    else
+    {
+        auto scene = UIProgressMap::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
+    }
 }
 
 void UIGameplayMap::menuGoalsCallback(Ref* pSender)
@@ -989,7 +1000,7 @@ void UIGameplayMap::menuGoalsCallback(Ref* pSender)
     GameLevel::getInstance()->setTimeSpeed(0);
     auto scene = UIGoals::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->pushScene(transition);
+    Director::getInstance()->replaceScene(transition);
 }
 
 void UIGameplayMap::pauseGame()
@@ -1570,6 +1581,12 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     auto retryMenu = Menu::createWithItem(retryButton);
     retryMenu->setPosition(0, 0);
     window->addChild(retryMenu);
+    
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel())
+    {
+        retryButton->setVisible(false);
+        continueButton->setPositionX(window->getContentSize().width / 2);
+    }
     
     //delete wave nodes
     this->getChildByName("graphicBackground")->removeAllChildren();

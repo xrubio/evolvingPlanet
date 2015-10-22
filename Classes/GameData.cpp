@@ -85,8 +85,10 @@ void GameData::setLevelScore(int level, int score)
     if (levelsCompleted.size() == 0) {
         levelsCompleted.push_back(0);
     }
+    //FIRST TIME LEVEL COMPLETED
     if (level == levelsCompleted.size()) {
         levelsCompleted.push_back(score);
+        GameData::getInstance()->setFirstTimeLevelCompleted(level);
     }
     else if (level > levelsCompleted.size())
     {
@@ -94,6 +96,7 @@ void GameData::setLevelScore(int level, int score)
         {
             levelsCompleted.push_back(0);
         }
+        GameData::getInstance()->setFirstTimeLevelCompleted(level);
         levelsCompleted.push_back(score);
     }
     else
@@ -219,6 +222,16 @@ void GameData::setColumnDrawAgentPrecalc(float c)
     columnDrawAgentPrecalc = c;
 }
 
+int GameData::getFirstTimeLevelCompleted(void)
+{
+    return _firstTimeLevelCompleted;
+}
+
+void GameData::setFirstTimeLevelCompleted(int l)
+{
+    _firstTimeLevelCompleted = l;
+}
+
 void GameData::loadAchievements(void)
 {
     xml_document doc;
@@ -284,7 +297,6 @@ void GameData::resetGameProgress(void)
     cocos2d::UserDefault::getInstance()->flush();
     levelsCompleted.clear();
     levelsCompleted.push_back(0);
-    levelsCompleted.push_back(0);
     if (GameData::getInstance()->getAchievements().size() <= 0)
     {
         GameData::getInstance()->loadAchievements();
@@ -297,6 +309,7 @@ void GameData::resetGameProgress(void)
         }
     }
     achievements.clear();
+    _firstTimeLevelCompleted = 0;
 }
 
 bool GameData::launchTutorial(int level) const

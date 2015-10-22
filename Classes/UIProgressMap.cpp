@@ -127,6 +127,11 @@ bool UIProgressMap::init()
 
     //RESET INITIAL CONFIG
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
+    
+    //ANIMATION OF COMPLETED LEVEL AND UNLOCKING NEW LEVEL
+    
+    //RESET FIRST TIME COMPLETED LEVEL FLAG
+    GameData::getInstance()->setFirstTimeLevelCompleted(0);
 
     this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
@@ -732,7 +737,7 @@ void UIProgressMap::setStars(int i, Vec2 pos, Sprite* progressMap)
             progressMap->addChild(star);
         }
     }
-    else if (GameData::getInstance()->getLevelsCompleted().size() == i )
+    else if (GameData::getInstance()->getLevelsCompleted().size() == i)
     {
         for (int i = 1; i < 4; i++) {
             string starFile = "gui/StarEmptyMini.png";
