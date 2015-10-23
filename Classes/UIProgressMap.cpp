@@ -72,6 +72,7 @@ bool UIProgressMap::init()
     auto backButton = MenuItemImage::create(
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
     backButton->setPosition(Vec2((3 * visibleSize.width / 34), (2 * visibleSize.height / 25)));
+    backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
@@ -84,6 +85,7 @@ bool UIProgressMap::init()
     
     auto eraWindow = Sprite::create("gui/ProgressMapEraWindow.png");
     eraWindow->setPosition(Vec2(3.3 * visibleSize.width / 4, 6.3 * visibleSize.height / 7));
+    eraWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     eraWindow->setName("eraWindow");
     
     auto eraLabel = Label::createWithTTF(LocalizedString::create("FIRST")+" "+LocalizedString::create("ERA"), "fonts/BebasNeue.otf", 80);
@@ -133,7 +135,7 @@ bool UIProgressMap::init()
     //RESET FIRST TIME COMPLETED LEVEL FLAG
     GameData::getInstance()->setFirstTimeLevelCompleted(0);
 
-    this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapHexagonLevelOn.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapBackButton.png");
@@ -445,32 +447,30 @@ Layout* UIProgressMap::setEpisode1(void)
 {
     auto layout = Layout::create();
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    layout->setContentSize(visibleSize);
     
     auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
     label->setString(LocalizedString::create("FIRST") + " " + LocalizedString::create("ERA"));
     
     auto progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
     progressMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    progressMap->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     progressMap->setName("progressMap");
     layout->addChild(progressMap);
     
     //CLOUDS
     auto cloud2 = Sprite::create("gui/Clouds2.png");
-    cloud2->setPosition(Vec2((3.2 * progressMap->getBoundingBox().size.width / 4),
-                             (0.95 * progressMap->getBoundingBox().size.height / 2)));
+    cloud2->setPosition(Vec2((3.2 * progressMap->getContentSize().width / 4),
+                             (0.90 * progressMap->getContentSize().height / 2)));
     progressMap->addChild(cloud2);
-    auto movBy1 = MoveBy::create(10, Vec2(-15 * GameData::getInstance()->getRaConversion(),
-                                          -15 * GameData::getInstance()->getRaConversion()));
+    auto movBy1 = MoveBy::create(10, Vec2(-15 * GameData::getInstance()->getRaConversion(), -15 * GameData::getInstance()->getRaConversion()));
     auto easeBy1 = EaseIn::create(movBy1, 1);
-    auto movBy2 = MoveBy::create(15, Vec2(15 * GameData::getInstance()->getRaConversion(),
-                                          15 * GameData::getInstance()->getRaConversion()));
+    auto movBy2 = MoveBy::create(15, Vec2(15 * GameData::getInstance()->getRaConversion(), 15 * GameData::getInstance()->getRaConversion()));
     auto easeBy2 = EaseIn::create(movBy2, 2);
     auto seqC2 = Sequence::create(easeBy1, easeBy2, NULL);
     cloud2->runAction(RepeatForever::create(seqC2));
     
     auto cloud3 = Sprite::create("gui/Clouds3.png");
-    cloud3->setPosition(Vec2(progressMap->getBoundingBox().size.width / 2, progressMap->getBoundingBox().size.height / 2));
+    cloud3->setPosition(Vec2(progressMap->getContentSize().width / 2, progressMap->getContentSize().height / 2));
     cloud3->setOpacity(0);
     progressMap->addChild(cloud3);
     auto fadeInC3 = FadeIn::create(15);
@@ -481,19 +481,17 @@ Layout* UIProgressMap::setEpisode1(void)
     cloud3->runAction(RepeatForever::create(seqC3));
     
     auto cloud1 = Sprite::create("gui/Clouds1.png");
-    cloud1->setPosition(Vec2(progressMap->getBoundingBox().size.width / 2, progressMap->getBoundingBox().size.height / 2));
+    cloud1->setPosition(Vec2(progressMap->getContentSize().width / 2, progressMap->getContentSize().height / 2));
     cloud1->setOpacity(0);
     progressMap->addChild(cloud1);
     auto fadeIn = FadeIn::create(35);
-    auto move = MoveTo::create(60, Vec2(progressMap->getBoundingBox().size.width,
-                                        (5 * progressMap->getBoundingBox().size.height / 8)));
+    auto move = MoveTo::create(60, Vec2(progressMap->getContentSize().width, (5 * progressMap->getContentSize().height / 8)));
     //auto ease = EaseIn::create(move, 1);
     auto spawn = Spawn::create(fadeIn, move, NULL);
-    auto move2 = MoveTo::create(25, Vec2((progressMap->getBoundingBox().size.width * 1.5),
-                                         (5 * progressMap->getBoundingBox().size.height / 8)));
+    auto move2 = MoveTo::create(25, Vec2((progressMap->getContentSize().width * 1.5), (5 * progressMap->getContentSize().height / 8)));
     auto fadeOut = FadeOut::create(15);
     auto spawn2 = Spawn::create(fadeOut, move2, NULL);
-    auto relocate = MoveTo::create(0.1, Vec2(progressMap->getBoundingBox().size.width / 2, progressMap->getBoundingBox().size.height / 2));
+    auto relocate = MoveTo::create(0.1, Vec2(progressMap->getContentSize().width / 2, progressMap->getContentSize().height / 2));
     auto delayC1 = DelayTime::create(5);
     auto seq = Sequence::create(spawn, spawn2, relocate, delayC1, NULL);
     cloud1->runAction(RepeatForever::create(seq));
@@ -606,10 +604,10 @@ Layout* UIProgressMap::setEpisode2(void)
 {
     auto layout = Layout::create();
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    layout->setContentSize(visibleSize);
     
     auto progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
     progressMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    progressMap->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     progressMap->setName("progressMap");
     layout->addChild(progressMap);
     

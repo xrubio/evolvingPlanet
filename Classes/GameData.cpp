@@ -234,9 +234,15 @@ void GameData::setFirstTimeLevelCompleted(int l)
 
 void GameData::loadAchievements(void)
 {
+    string dir = "data/";
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    dir = "";
+#endif
+    
     xml_document doc;
     xml_parse_result result;
-    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename("achievements.xml");
+    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + "achievements.xml");
     result = doc.load_file((fullPath).c_str());
     
     //initialize achievements vec of vecs
