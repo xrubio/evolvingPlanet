@@ -131,9 +131,53 @@ bool UIProgressMap::init()
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
     
     //ANIMATION OF COMPLETED LEVEL AND UNLOCKING NEW LEVEL
-    
-    //RESET FIRST TIME COMPLETED LEVEL FLAG
-    GameData::getInstance()->setFirstTimeLevelCompleted(0);
+    int ftlc;
+    if ((ftlc = GameData::getInstance()->getFirstTimeLevelCompleted()) > 0)
+    {
+        if (ftlc != 10 or ftlc != 20)
+        {
+            //STAR ANIMATION
+            auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc));
+
+            auto star1 = (Sprite*)(pointerLevel->getChildByName("star1"));
+            auto scalePlus1 = ScaleTo::create(0.4, 1.7);
+            auto scaleMinus1 = ScaleTo::create(0.4, 1);
+            star1->runAction(Sequence::create(DelayTime::create(1), scalePlus1, scaleMinus1, NULL));
+            
+            auto star2 = (Sprite*)(pointerLevel->getChildByName("star2"));
+            auto scalePlus2 = ScaleTo::create(0.4, 1.7);
+            auto scaleMinus2 = ScaleTo::create(0.4, 1);
+            star2->runAction(Sequence::create(DelayTime::create(1.4), scalePlus2, scaleMinus2, NULL));
+            
+            auto star3 = (Sprite*)(pointerLevel->getChildByName("star3"));
+            auto scalePlus3 = ScaleTo::create(0.4, 1.7);
+            auto scaleMinus3 = ScaleTo::create(0.4, 1);
+            star3->runAction(Sequence::create(DelayTime::create(1.8), scalePlus3, scaleMinus3, NULL));
+            
+            
+            //POINTER LEVEL UNLOCKED ANIMATION
+            auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
+            
+            Vec2 pos = pointerNextLevel->getPosition();
+            pointerNextLevel->setPositionY(visibleSize.height * 1.5);
+            auto fall = MoveTo::create(0.6, pos);
+            auto fallEase = EaseBackOut::create(fall);
+            pointerNextLevel->runAction(Sequence::create(DelayTime::create(2), fallEase, NULL));
+            
+            /*auto dropActionLevelButton = MoveBy::create(1.5, Vec2(0, 5));
+            auto easeDropActionLevelButton = EaseOut::create(dropActionLevelButton, 1);
+            auto dropActionLevelButton2 = MoveBy::create(1.5, Vec2(0, -5));
+            auto easeDropActionLevelButton2 = EaseOut::create(dropActionLevelButton2, 1);
+            auto seqDrop = Sequence::create(easeDropActionLevelButton, easeDropActionLevelButton2, NULL);
+            auto actionRep = RepeatForever::create(seqDrop);
+            pointerNextLevel->runAction(actionRep);*/
+            
+        }
+        
+        //RESET FIRST TIME COMPLETED LEVEL FLAG
+        GameData::getInstance()->setFirstTimeLevelCompleted(0);
+    }
+
 
     //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
@@ -588,7 +632,7 @@ Layout* UIProgressMap::setEpisode1(void)
             default:
                 break;
         }
-        setStars(i, levelButton->getPosition(), progressMap);
+        setStars(i, levelButton);
         levelButtonVec.pushBack(levelButton);
     }
 
@@ -703,6 +747,7 @@ Layout* UIProgressMap::setEpisode2(void)
             default:
                 break;
         }
+        setStars(i, levelButton);
         levelButtonVec.pushBack(levelButton);
     }
     
@@ -714,11 +759,11 @@ Layout* UIProgressMap::setEpisode2(void)
     return layout;
 }
 
-void UIProgressMap::setStars(int i, Vec2 pos, Sprite* progressMap)
+void UIProgressMap::setStars(int level, MenuItemImage* levelButton)
 {
-    if (GameData::getInstance()->getLevelsCompleted().size() > i )
+    if (GameData::getInstance()->getLevelsCompleted().size() > level )
     {
-        int score = GameData::getInstance()->getLevelScore(i);
+        int score = GameData::getInstance()->getLevelScore(level);
         for (int i = 1; i < 4; i++) {
             string starFile;
             //Estrella plena
@@ -730,19 +775,19 @@ void UIProgressMap::setStars(int i, Vec2 pos, Sprite* progressMap)
                 starFile = "gui/StarEmptyMini.png";
             }
             auto star = Sprite::create(starFile);
-            star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)),
-                                   pos.y + star->getContentSize().height * 1.8));
-            progressMap->addChild(star);
+            star->setPosition(Vec2((levelButton->getContentSize().width / 2) - star->getContentSize().width + (star->getContentSize().width * (i - 1)), levelButton->getContentSize().height + star->getContentSize().height / 2));
+            star->setName("star"+to_string(i));
+            levelButton->addChild(star);
         }
     }
-    else if (GameData::getInstance()->getLevelsCompleted().size() == i)
+    else if (GameData::getInstance()->getLevelsCompleted().size() == level)
     {
         for (int i = 1; i < 4; i++) {
             string starFile = "gui/StarEmptyMini.png";
             auto star = Sprite::create(starFile);
-            star->setPosition(Vec2(pos.x - star->getContentSize().width + (star->getContentSize().width * (i - 1)),
-                                   pos.y + star->getContentSize().height * 1.8));
-            progressMap->addChild(star);
+            star->setPosition(Vec2((levelButton->getContentSize().width / 2) - star->getContentSize().width + (star->getContentSize().width * (i - 1)), levelButton->getContentSize().height + star->getContentSize().height / 2));
+            star->setName("star"+to_string(i));
+            levelButton->addChild(star);
         }
     }
 }

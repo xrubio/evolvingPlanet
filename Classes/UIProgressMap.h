@@ -61,7 +61,7 @@ private:
     
     Layout* setEpisode1(void);
     Layout* setEpisode2(void);
-    void setStars(int i, Vec2 pos, Sprite* progressMap);
+    void setStars(int level, MenuItemImage* levelButton);
 
 };
 
