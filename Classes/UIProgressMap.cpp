@@ -177,9 +177,6 @@ bool UIProgressMap::init()
         //RESET FIRST TIME COMPLETED LEVEL FLAG
         GameData::getInstance()->setFirstTimeLevelCompleted(0);
     }
-
-
-    //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapHexagonLevelOn.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapBackButton.png");
@@ -276,6 +273,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     menuButtons.pushBack(darkBackground);
 
     auto popupBackground = Sprite::create("gui/ProgressMapPopupBackground.png");
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     popupBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height + (visibleSize.height / 2)));
     this->addChild(popupBackground, 20, 101);
 

@@ -433,6 +433,7 @@ bool UIGameplayMap::init()
     const GameLevel::Levels & modifAttr = GameLevel::getInstance()->getModifiableAttr();
         
         auto graphicBackground = Sprite::create("gui/GraphicBackground.jpg");
+        graphicBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         graphicBackground->setPosition(10.15 * visibleSize.width / 11, 0.55 * visibleSize.height / 7.5);
         lifeBars.pushBack(graphicBackground);
         agentsEvolution = DrawNode::create();
@@ -489,14 +490,14 @@ bool UIGameplayMap::init()
         
         auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
         minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-        minusAttButton->setPosition(Vec2((4 + (j * 2)) * bottomFrame->getContentSize().width / 12, 0.5 * visibleSize.height / 7.5));
+        minusAttButton->setPosition(Vec2((4 + (j * 2)) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
         minusAttButton->setTag(j + 10);
         minusAttButton->setEnabled(false);
         minusAttButton->setName("minus"+labelAttRight->getString());
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-        plusAttButton->setPosition(Vec2((4 + (j * 2) + 1.4) * bottomFrame->getContentSize().width / 12, 0.5 * visibleSize.height / 7.5));
+        plusAttButton->setPosition(Vec2((4 + (j * 2) + 1.4) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
         plusAttButton->setTag(j + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
@@ -504,7 +505,7 @@ bool UIGameplayMap::init()
 
         float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
         float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-        int posY = 0.5 * visibleSize.height / 7.5;
+        int posY = 0.8 * bottomFrame->getContentSize().height / 2;
 
         for (int m = 0; m < 5; m++) {
             posX = posX + incX;
@@ -541,12 +542,14 @@ bool UIGameplayMap::init()
     messageLabel->setColor(Color3B(230, 230, 230));
     messageLabel->setMaxLineWidth(300);
     messageLabel->setVisible(false);
+    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     auto messageNextLabel = Label::createWithSystemFont("", "Arial Rounded MT Bold", 18);
     messageNextLabel->setName("tutorialNext");
     messageNextLabel->setColor(Color3B(210, 210, 210));
     messageNextLabel->setMaxLineWidth(300);
     messageNextLabel->setVisible(false);
+    messageNextLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
     auto labelBorder = DrawNode::create();
     labelBorder->setName("tutorialBorder");
@@ -560,19 +563,21 @@ bool UIGameplayMap::init()
     tutorialTitle->setColor(Color3B(210, 210, 210));
     tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
     tutorialTitle->setVisible(false);
+    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     auto tutorialImage = Sprite::create();
     tutorialImage->setName("tutorialImage");
     tutorialImage->runAction(RepeatForever::create(Blink::create(1, 1)));
     tutorialImage->setVisible(false);
+    tutorialImage->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     // add first the border to draw it first
-    gameplayMap->addChild(labelBorder);
-    gameplayMap->addChild(messageLabel);
-    gameplayMap->addChild(messageNextLabel);
-    gameplayMap->addChild(spots);
-    gameplayMap->addChild(tutorialTitle);
-    gameplayMap->addChild(tutorialImage, 100);
+    this->addChild(labelBorder);
+    this->addChild(messageLabel);
+    this->addChild(messageNextLabel);
+    this->addChild(spots);
+    this->addChild(tutorialTitle);
+    this->addChild(tutorialImage, 100);
 
     _message = 0;
 
@@ -1793,11 +1798,12 @@ void UIGameplayMap::update(float delta)
                 else if(_tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->meetsPostCondition())
                 {
                     _tutorial->removeCurrentMessage();
-                    gameplayMap->getChildByName("tutorial")->setVisible(false);
-                    gameplayMap->getChildByName("tutorialNext")->setVisible(false);
-                    gameplayMap->getChildByName("tutorialBorder")->setVisible(false);
-                    gameplayMap->getChildByName("tutorialSpots")->setVisible(false);
-                    gameplayMap->getChildByName("tutorialImage")->setVisible(false);
+                    this->getChildByName("tutorial")->setVisible(false);
+                    this->getChildByName("tutorialNext")->setVisible(false);
+                    this->getChildByName("tutorialBorder")->setVisible(false);
+                    this->getChildByName("tutorialSpots")->setVisible(false);
+                    this->getChildByName("tutorialImage")->stopAllActions();
+                    this->getChildByName("tutorialImage")->setVisible(false);
 
                     if(_tutorial->isFinished())
                     {
@@ -1882,9 +1888,9 @@ void UIGameplayMap::setMessage( const Message * message )
 
     _message = message;
 
-    Label * label = (Label*)(gameplayMap->getChildByName("tutorial"));
-    Label * nextLabel = (Label*)(gameplayMap->getChildByName("tutorialNext"));
-    Sprite* image = (Sprite*)(gameplayMap->getChildByName("tutorialImage"));
+    Label * label = (Label*)(this->getChildByName("tutorial"));
+    Label * nextLabel = (Label*)(this->getChildByName("tutorialNext"));
+    Sprite* image = (Sprite*)(this->getChildByName("tutorialImage"));
 
     label->setString(_message->text());
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -1893,7 +1899,7 @@ void UIGameplayMap::setMessage( const Message * message )
     Vec2 position = Vec2(visibleSize.width*_message->pos().x, visibleSize.height*_message->pos().y);
     label->setPosition(position);
 
-    auto labelBorder = (DrawNode*)(gameplayMap->getChildByName("tutorialBorder"));
+    auto labelBorder = (DrawNode*)(this->getChildByName("tutorialBorder"));
     labelBorder->clear();
     if(_message->text()!="")
     {
@@ -1910,10 +1916,12 @@ void UIGameplayMap::setMessage( const Message * message )
         {
             nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_TAP", "tutorial"));
         }
-        if (_message->image() != "")
+        if (message->image() != "")
         {
-            image->setTexture(_message->image()+".png");
-            image->setPosition(Vec2(visibleSize.width*_message->beginSpots()->_centerX, visibleSize.height*_message->beginSpots()->_centerY));
+            image->setTexture(message->image()+".png");
+            image->setPosition(Vec2(visibleSize.width*message->beginSpots()->_centerX, visibleSize.height*message->beginSpots()->_centerY));
+            image->setVisible(true);
+            image->runAction(RepeatForever::create(Blink::create(1, 1)));
         }
         
         const Rect & contents = label->getBoundingBox();
@@ -1923,8 +1931,7 @@ void UIGameplayMap::setMessage( const Message * message )
         label->setVisible(true);    
         labelBorder->setVisible(true);   
         nextLabel->setVisible(true);
-        image->setVisible(true);
-        gameplayMap->getChildByName("tutorialTitle")->setVisible(true);
+
     }
 
     Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
@@ -1937,7 +1944,7 @@ void UIGameplayMap::setMessage( const Message * message )
 
     // spots
     Message::SpotVector::const_iterator spotIt = _message->beginSpots();
-    auto spotsLayer = (DrawNode*)(gameplayMap->getChildByName("tutorialSpots"));
+    auto spotsLayer = (DrawNode*)(this->getChildByName("tutorialSpots"));
     spotsLayer->clear();
     spotsLayer->setVisible(true);
 
