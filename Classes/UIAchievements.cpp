@@ -103,14 +103,7 @@ bool UIAchievements::init()
     list->setContentSize(Size(modelAux->getContentSize().width, modelAux->getContentSize().height * 7.75));
     list->setItemsMargin(5);
     
-    //LOAD ACHIEVEMENTS FROM XML
-    if ( GameData::getInstance()->getAchievements().size() <= 0)
-    {
-        GameData::getInstance()->loadAchievements();
-    }
-
     vector< vector<Achievement*> > achs = GameData::getInstance()->getAchievements();
-    
     int k = 0;
     for (int i = 0; i < achs.size(); i++) {
         for (int j = 0; j < achs[i].size(); j++)

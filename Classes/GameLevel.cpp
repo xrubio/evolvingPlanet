@@ -501,6 +501,8 @@ void GameLevel::playLevel(void)
     }
     
     checkAchievements();
+    
+    CCLOG("COMPLETED %lu ACHIEVEMENTS", completedAchievements.size());
 
     ended = true;
     CCLOG("End of game: %i", _finishedGame);
@@ -731,6 +733,11 @@ void GameLevel::checkGoals()
         else
         {
             finalScore += goals[j]->getScore();
+            //COMPLETING LAST GOAL ANIMATION
+            if (j == goals.size() - 1)
+            {
+                gameplayMap->moveGoalPopup(j + 1);
+            }
         }
     }
     if(!failed and !goals.empty())

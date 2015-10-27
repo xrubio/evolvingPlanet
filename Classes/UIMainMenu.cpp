@@ -214,6 +214,12 @@ bool UIMainMenu::init()
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
     }
+    
+    //LOAD ACHIEVEMENTS FROM XML
+    if ( GameData::getInstance()->getAchievements().size() <= 0)
+    {
+        GameData::getInstance()->loadAchievements();
+    }
 
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
@@ -274,13 +280,13 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         }
         else
         {
+            GameData::getInstance()->resetGameProgress();
             auto scene = UIProgressMap::createScene();
             auto transition = TransitionFade::create(1.0f, scene);
             Director::getInstance()->replaceScene(transition);
             if (GameData::getInstance()->getSFX() == true) {
                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
             }
-            GameData::getInstance()->resetGameProgress();
             //ANIMACIO
         }
     }

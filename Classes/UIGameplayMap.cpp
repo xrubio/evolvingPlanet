@@ -95,9 +95,9 @@ bool UIGameplayMap::init()
     gameplayMapHotSpot = new Image();
     gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
     int x = 3;
-    /*if (gameplayMapHotSpot->hasAlpha()) {
-     x = 4;
-     }*/
+    if (gameplayMapHotSpot->hasAlpha()) {
+        x = 4;
+    }
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
     CCLOG("%lu : %zu : %zu", sizeof(dataGameplayMapHotSpot), strlen((char*)dataGameplayMapHotSpot), gameplayMapHotSpot->getDataLen());
@@ -335,8 +335,6 @@ bool UIGameplayMap::init()
                 }
             }
             ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->setCenterArea(maxX - ((maxX - minX) / 2), maxY - ((maxY - minY) / 2));
-            CCLOG("Center Goal %d %d", ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getCenterArea().getX(),
-                  ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getCenterArea().getY());
             int x = (int)((maxX - ((maxX - minX) / 2)) * float(2048.0 / 480.0));
             int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
             auto area = Sprite::create("gui/CheckpointArea.png");
@@ -566,7 +564,7 @@ bool UIGameplayMap::init()
     tutorialTitle->setColor(Color3B(210, 210, 210));
     tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
     tutorialTitle->setVisible(false);
-    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
     
     auto tutorialImage = Sprite::create();
     tutorialImage->setName("tutorialImage");
@@ -1298,6 +1296,10 @@ void UIGameplayMap::playLevel(void)
             delete _tutorial;
             _tutorial = nullptr;
         }
+        else
+        {
+            this->getChildByName("tutorialTitle")->setVisible(true);
+        }
     }
     GameLevel::getInstance()->playLevel();
     CCLOG("DONE GAME LEVEL");
@@ -1435,9 +1437,15 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt, int map)
 
     switch (map) {
     case 1:
+        if (gameplayMapResources->hasAlpha()) {
+            x = 4;
+        }
         pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
         break;
     default:
+        if (gameplayMapHotSpot->hasAlpha()) {
+                x = 4;
+        }
         pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
         break;
     }
