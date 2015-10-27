@@ -202,7 +202,7 @@ bool UIConfiguration::init()
 void UIConfiguration::menuBackCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
@@ -217,7 +217,7 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
 void UIConfiguration::catFlagCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
 
     GameData::getInstance()->setLanguage("cat");
@@ -228,7 +228,7 @@ void UIConfiguration::catFlagCallback(Ref* pSender)
 void UIConfiguration::esFlagCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
 
     GameData::getInstance()->setLanguage("es");
@@ -239,7 +239,7 @@ void UIConfiguration::esFlagCallback(Ref* pSender)
 void UIConfiguration::enFlagCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
 
     GameData::getInstance()->setLanguage("en");
@@ -250,7 +250,7 @@ void UIConfiguration::enFlagCallback(Ref* pSender)
 void UIConfiguration::musicOnCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     auto musicOnLabel = (MenuItem*)pSender;
     musicOnLabel->setEnabled(false);
@@ -259,13 +259,13 @@ void UIConfiguration::musicOnCallback(Ref* pSender)
     musicOffLabel->setEnabled(true);
 
     GameData::getInstance()->setMusic(true);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
 }
 
 void UIConfiguration::musicOffCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     auto musicOffLabel = (MenuItem*)pSender;
     musicOffLabel->setEnabled(false);
@@ -280,7 +280,7 @@ void UIConfiguration::musicOffCallback(Ref* pSender)
 void UIConfiguration::sfxOnCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     auto sfxOnLabel = (MenuItem*)pSender;
     sfxOnLabel->setEnabled(false);
@@ -294,7 +294,7 @@ void UIConfiguration::sfxOnCallback(Ref* pSender)
 void UIConfiguration::sfxOffCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     auto sfxOffLabel = (MenuItem*)pSender;
     sfxOffLabel->setEnabled(false);

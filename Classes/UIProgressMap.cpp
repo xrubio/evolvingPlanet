@@ -50,7 +50,7 @@ bool UIProgressMap::init()
     }
     
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }
     
     Director::getInstance()->setAnimationInterval(1.0 / 60);
@@ -199,7 +199,7 @@ bool UIProgressMap::init()
 void UIProgressMap::menuBackCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     auto scene = UIMainMenu::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
@@ -209,7 +209,7 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     GameData::getInstance()->setGameStarted(false);
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -372,7 +372,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
 void UIProgressMap::proceedLevelCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     auto pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
