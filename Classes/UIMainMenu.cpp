@@ -212,7 +212,7 @@ bool UIMainMenu::init()
     this->addChild(menu, 5, 4);
 
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("main.mp3", true);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }
 
     auto listener = EventListenerTouchAllAtOnce::create();
@@ -254,7 +254,7 @@ void UIMainMenu::menuContinueCallback(Ref* pSender)
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
-            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
     }
     else {
@@ -278,7 +278,7 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
             auto transition = TransitionFade::create(1.0f, scene);
             Director::getInstance()->replaceScene(transition);
             if (GameData::getInstance()->getSFX() == true) {
-                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
             }
             GameData::getInstance()->resetGameProgress();
             //ANIMACIO
@@ -296,7 +296,7 @@ void UIMainMenu::menuAchievementsCallback(Ref* pSender)
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
-            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
     }
     else {
@@ -311,7 +311,7 @@ void UIMainMenu::menuConfigurationCallback(Ref* pSender)
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
-            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
     }
     else {
@@ -364,7 +364,7 @@ void UIMainMenu::menuResetYesCallback(Ref* pSender)
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     //ANIMACIO
 }

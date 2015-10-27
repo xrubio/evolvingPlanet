@@ -155,7 +155,7 @@ bool UIAchievements::init()
 void UIAchievements::menuBackCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("click.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
 
     auto scene = UIMainMenu::createScene();
