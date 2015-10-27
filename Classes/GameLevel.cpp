@@ -700,20 +700,16 @@ void GameLevel::computeOffspring( int type )
 }
 
 void GameLevel::checkGoals()
-{    
-    for (size_t k = 0; k < _agents.size(); k++)
+{
+    bool exit = false;
+    for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end() and exit == false; it++)
     {
-        // TODO XRC cal que sigui per tots els tipus d'agents?
-        // TODO GLC Check goal d'expansió només de addedAgents ?? mes eficient, com diferenciar tipus goal
-
-        for(std::list<Agent*>::iterator it=_agents.at(k).begin(); it!=_agents.at(k).end(); it++)
+        for (size_t  j = 0; j < goals.size() and exit == false; j++)
         {
-            for (size_t  j = 0; j < goals.size(); j++)
+            if (goals[j]->getCompleted() == false)
             {
-                if (goals[j]->getCompleted() == false)
-                {
-                    goals[j]->checkGoal(k, *it);
-                }
+                goals[j]->checkGoal(0, *it);
+                exit = true;
             }
         }
     }
@@ -725,7 +721,7 @@ void GameLevel::checkGoals()
     {
         if (goals[j]->getCompleted() == false)
         {
-            if (prevGoal != j)
+            if (prevGoal < j)
             {
                 gameplayMap->moveGoalPopup(j);
                 prevGoal = j;

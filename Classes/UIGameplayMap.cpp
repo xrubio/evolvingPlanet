@@ -90,6 +90,18 @@ bool UIGameplayMap::init()
     gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     gameplayMap->setName("gameplayMap");
     this->addChild(gameplayMap, 0);
+    
+    //HOTSPOT
+    gameplayMapHotSpot = new Image();
+    gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
+    int x = 3;
+    /*if (gameplayMapHotSpot->hasAlpha()) {
+     x = 4;
+     }*/
+    dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
+    dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
+    CCLOG("%lu : %zu : %zu", sizeof(dataGameplayMapHotSpot), strlen((char*)dataGameplayMapHotSpot), gameplayMapHotSpot->getDataLen());
+
 
     //FINGER SPOT
     fingerSpot = MenuItemImage::create("gui/FingerSpot.png", "gui/FingerSpot.png", CC_CALLBACK_1(UIGameplayMap::removeFingerSpot, this));
@@ -143,17 +155,6 @@ bool UIGameplayMap::init()
     quitRetryMenu->setPosition(0, 0);
     quitRetryMenu->setName("quitRetryMenu");
     this->addChild(quitRetryMenu, 10);
-
-    //HOTSPOT
-    gameplayMapHotSpot = new Image();
-    gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
-    int x = 3;
-    /*if (gameplayMapHotSpot->hasAlpha()) {
-        x = 4;
-    }*/
-    dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
-    dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
-    CCLOG("%lu : %zu : %zu", sizeof(dataGameplayMapHotSpot), strlen((char*)dataGameplayMapHotSpot), gameplayMapHotSpot->getDataLen());
 
     //RESOURCES MAP (IF ANY)
     for(size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
@@ -334,6 +335,8 @@ bool UIGameplayMap::init()
                 }
             }
             ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->setCenterArea(maxX - ((maxX - minX) / 2), maxY - ((maxY - minY) / 2));
+            CCLOG("Center Goal %d %d", ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getCenterArea().getX(),
+                  ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getCenterArea().getY());
             int x = (int)((maxX - ((maxX - minX) / 2)) * float(2048.0 / 480.0));
             int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
             auto area = Sprite::create("gui/CheckpointArea.png");
@@ -1432,16 +1435,9 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt, int map)
 
     switch (map) {
     case 1:
-        if (gameplayMapResources->hasAlpha()) {
-            x = 4;
-        }
         pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
         break;
-
     default:
-        if (gameplayMapHotSpot->hasAlpha()) {
-            x = 4;
-        }
         pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
         break;
     }
@@ -1808,7 +1804,7 @@ void UIGameplayMap::update(float delta)
                     if(_tutorial->isFinished())
                     {
                         _eventDispatcher->removeEventListener(_listenerTutorial);
-                        gameplayMap->removeChildByName("tutorialTitle");
+                        this->removeChildByName("tutorialTitle");
                         pauseGame();
                     }
                 }
