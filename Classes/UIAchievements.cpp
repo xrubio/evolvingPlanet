@@ -127,7 +127,7 @@ bool UIAchievements::init()
             title->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width),
                                     5 * model->getBoundingBox().size.height / 7));
             model->addChild(title);
-            auto text = Label::createWithSystemFont(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "Corbel", 30);
+            auto text = Label::createWithTTF(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 30);
             text->setColor(Color3B(190, 221, 226));
             text->setAnchorPoint(Vec2(0, 0.5));
             text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));

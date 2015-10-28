@@ -52,7 +52,7 @@ bool UITransitionScene::init()
     image->setOpacity(0);
     this->addChild(image);
     
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
     contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());

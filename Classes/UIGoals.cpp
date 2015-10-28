@@ -100,7 +100,7 @@ bool UIGoals::init()
     hexagonButtonLevel2->setEnabled(false);
     this->addChild(hexagonButtonLevel2, 1);
 
-    auto title = Label::createWithSystemFont(LocalizedString::create("GOALS"), "Arial Rounded MT Bold", 180);
+    auto title = Label::createWithTTF(LocalizedString::create("GOALS"), "fonts/arial_rounded_mt_bold.ttf", 180);
     title->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height - ((visibleSize.height / 8))));
     //this->addChild(title, 1);
@@ -151,7 +151,7 @@ bool UIGoals::init()
     layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
     layoutContextIntroduction->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
-    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
     contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     contextIntroduction->setScaleX(GameData::getInstance()->getRaWConversion());
@@ -185,7 +185,7 @@ bool UIGoals::init()
     contextLabelDeployment->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContextDeployment->addChild(contextLabelDeployment);
     
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Corbel", 40);
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextDeployment->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 12));
     contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
