@@ -377,7 +377,10 @@ bool UIGameplayMap::init()
     
     auto degradateTime = Sprite::create("gui/GoalDegradate.png");
     degradateTime->setName("degradateTime");
-    timeBar->addChild(degradateTime, -1);
+    degradateTime->setPositionY(timeBar->getContentSize().height / 2);
+    degradateTime->setVisible(false);
+    degradateTime->setAnchorPoint(Vec2(0, 0.5));
+    timeBorderBar->addChild(degradateTime, 1);
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
@@ -1024,6 +1027,7 @@ void UIGameplayMap::togglePlay(Ref* pSender)
         auto l = ((Label*)pauseDarkBackground->getChildByName("pauseDarkLabel"));
         l->setTTFConfig(_ttfConfig("fonts/BebasNeue.otf", 170));
         l->setString(string(LocalizedString::create("PAUSE")));
+        timeBorderBar->getChildByName("degradateTime")->setVisible(true);
         firstPlayFF = false;
     }
 
@@ -1841,7 +1845,7 @@ void UIGameplayMap::update(float delta)
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
-            timeBar->getChildByName("degradateTime")->setPosition(timeBar->getContentSize().width * (timeBar->getPercentage() / 100.0), timeBar->getContentSize().height / 2);
+            timeBorderBar->getChildByName("degradateTime")->setPositionX(timeBorderBar->getContentSize().width * (timeBar->getPercentage() / 100.0));
         }
 
         for (size_t i = 0; i < powerButtons.size(); i++) {
