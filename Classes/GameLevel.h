@@ -130,8 +130,6 @@ public:
     void setGoals(std::vector<Goal*> g);
     void addGoal(Goal* g);
     void deleteGoal(int i);
-    int getAddedAgents(void);
-    void setAddedAgents(int i);
     std::vector<cocos2d::Point> getDeletedAgents(void);
     void setDeletedAgents(std::vector<cocos2d::Point> v);
     void addDeletedAgent(cocos2d::Point p);
@@ -228,7 +226,6 @@ private:
     bool depletedMap[480][320] = { { false } };
     bool adaptedMap[480][320] = { { false } };
 
-    int addedAgents = 0;
     std::vector<cocos2d::Point> deletedAgents;
     int idCounter = 0;
 

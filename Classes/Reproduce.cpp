@@ -90,30 +90,22 @@ void Reproduce::execute(Agent* agent)
             Agent::_numOffspring.at(type)--;
 
             int maxIterations = 30;
-            /*if (agent->getType() != 0) {
-                fingerSpot.x = -1;
-                fingerSpot.y = -1;
-            }*/
+
             int minRandomX = agent->getPosition().getX() - mobility;
             int maxRandomX = agent->getPosition().getX() + mobility;
             int minRandomY = agent->getPosition().getY() - mobility;
             int maxRandomY = agent->getPosition().getY() + mobility;
 
-            /*int posx = rand() % (2 * mobility) + (agent->getPosition().getX() - mobility);
-            int posy = rand() % (2 * mobility) + (agent->getPosition().getY() - mobility);*/
             int posx = RandomHelper::random_int(minRandomX, maxRandomX);
             int posy = RandomHelper::random_int(minRandomY, maxRandomY);
             while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false)
             {
-                /*posx = rand() % (2 * mobility) + (agent->getPosition().getX() - mobility);
-                posy = rand() % (2 * mobility) + (agent->getPosition().getY() - mobility);*/
                 posx = RandomHelper::random_int(minRandomX, maxRandomX);
                 posy = RandomHelper::random_int(minRandomY, maxRandomY);
                 maxIterations--;
             }
             if (maxIterations > 0)
             {
-                //auto ag = new Agent(GameLevel::getInstance()->getIdCounter(), 100, type, posx, posy);
                 Agent* ag = GameLevel::getInstance()->getAgentsPool()[type].front();
                 GameLevel::getInstance()->popFrontAgentsPool(type);
                 ag->setId(GameLevel::getInstance()->getIdCounter());
@@ -122,7 +114,6 @@ void Reproduce::execute(Agent* agent)
                 ag->setPosition(posx, posy);
                 ag->copyValues(type);
                 GameLevel::getInstance()->addAgent(ag);
-                GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
                 GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
             }
         }
@@ -135,8 +126,6 @@ void Reproduce::execute(Agent* agent)
             ag->copyValues(type);
             GameLevel::getInstance()->addAgent(ag);
             agent->setLife(0);
-            //GameLevel::getInstance()->setAddedAgents(GameLevel::getInstance()->getAddedAgents() + 1);
-            //GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
         }
     }
 }

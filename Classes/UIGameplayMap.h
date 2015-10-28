@@ -59,8 +59,6 @@ public:
 
     void onMouseScroll(Event* event);
     void menuBackCallback(Ref* pSender);
-    void menuGoalsCallback(Ref* pSender);
-    void menuAgentsCallback(Ref* pSender);
 
     // toggle between pause and play
     void togglePlay(Ref* pSender);
@@ -72,7 +70,6 @@ public:
     void retryCallback(Ref* pSender);
     void retryOkCallback(Ref* pSender);
     void NoCallback(Ref* pSender);
-    void agentTypeCallback(Ref* pSender);
     void minusAttCallback(Ref* pSender);
     void plusAttCallback(Ref* pSender);
     void hideAchievementWindowCallback(Ref* pSender);
@@ -103,7 +100,6 @@ private:
     unsigned char* dataGameplayMapResources;
 
     MenuItem* fingerSpot;
-    //Sprite* fingerSpotArea;
 
     bool moveBackground = false;
     bool moveBackgroundLeft = false;
@@ -124,7 +120,6 @@ private:
     ProgressTimer* timeBar;
     Sprite* timeBorderBar;
     Sprite* pauseDarkBackground;
-    Sprite* goalPopup;
     float timeProgressBar = 0.0;
     
     Vector<Sprite*> lifeBars;
@@ -138,8 +133,6 @@ private:
     Label* evolutionPointsLabel;
     Label* restaEvolutionPointsLabel;
     Sprite* evolutionPointsIcon;
-    Label* collect1PointsLabel;
-    Label* distanceLabel;
 
     vector<UIPower*> powerButtons;
 

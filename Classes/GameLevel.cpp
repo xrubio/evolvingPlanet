@@ -265,16 +265,6 @@ void GameLevel::deleteGoal(int i)
     goals.erase(goals.begin() + i);
 }
 
-int GameLevel::getAddedAgents(void)
-{
-    return addedAgents;
-}
-
-void GameLevel::setAddedAgents(int i)
-{
-    addedAgents = i;
-}
-
 std::vector<Point> GameLevel::getDeletedAgents(void)
 {
     return deletedAgents;
@@ -519,14 +509,8 @@ void GameLevel::resetLevel(void)
     _modifiableAtt.resize(3);
     std::fill(_modifiableAtt.begin(), _modifiableAtt.end(), -1);
     powers.clear();
-    /*for (int i = 0; i < _agents.size(); i++) {
-        for (int j = 0; j < _agents.at(i).size(); j++) {
-            delete _agents.at(i).at(j);
-        }
-    }*/
     _agents.clear();
     _agentsPool.clear();
-    addedAgents = 0;
     deletedAgents.clear();
     idCounter = 0;
     agentPixelSize = 1;
@@ -579,7 +563,7 @@ void GameLevel::createLevel(void)
     initializeAgentsPool();
     for(size_t i = 0; i < numInitialAgents.size(); i++)
     {
-        generateInitialAgents(i);
+        generateInitialAgents(int(i));
         _agentDirections.push_back(Point(-1, -1));
     }
 
@@ -631,13 +615,12 @@ void GameLevel::generateInitialAgents(int type)
     int i = 0;
     while (i < numInitialAgents[type])
     {
-        int posx = random(minX, maxX); //rand() % maxX + minX;
-        int posy = random(minY, maxY); //rand() % maxY + minY;
-        if(!validatePosition(posx, posy) or !gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type)
+        int posx = random(minX, maxX);
+        int posy = random(minY, maxY);
+        if(!validatePosition(posx, posy) or !(gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type))
         {
             continue;
         }
-        //auto a =new Agent(idCounter, 100, type, posx, posy);
         Agent* a = _agentsPool[type].front();
         _agentsPool[type].pop_front();
         a->setId(idCounter);
@@ -716,7 +699,7 @@ void GameLevel::checkGoals()
         }
     }
             
-    //ALL GOALS COMPLETED ??
+    //CHECK IF ALL GOALS COMPLETED
     bool failed = false;
     int finalScore = 0;
     for (size_t j = 0; j < goals.size() and failed == false; j++)
@@ -725,8 +708,8 @@ void GameLevel::checkGoals()
         {
             if (prevGoal < j)
             {
-                gameplayMap->moveGoalPopup(j);
-                prevGoal = j;
+                gameplayMap->moveGoalPopup(int(j));
+                prevGoal = int(j);
             }
             failed = true;
         }
@@ -736,7 +719,7 @@ void GameLevel::checkGoals()
             //COMPLETING LAST GOAL ANIMATION
             if (j == goals.size() - 1)
             {
-                gameplayMap->moveGoalPopup(j + 1);
+                gameplayMap->moveGoalPopup(int(j) + 1);
             }
         }
     }
@@ -823,18 +806,6 @@ void GameLevel::consumeAndRemove(int type)
     while(it!=agents.end())
     {
         checkDeath(it);
-        /*
-        Agent * agent = *it;
-        if(agent->getLife()<=0)
-        {
-            it = agents.erase(it);
-            delete agent;
-        }
-        else
-        {
-            it++;
-        }
-        */
     }
 }
 
@@ -858,13 +829,12 @@ void GameLevel::act(void)
     }
 
     deletedAgents.clear();
-    addedAgents = 0;
 
     for(size_t k = 0; k < _agents.size(); k++)
     {
-        updateDirections(k);
-        consumeAndRemove(k);
-        computeOffspring(k);
+        updateDirections(int(k));
+        consumeAndRemove(int(k));
+        computeOffspring(int(k));
 
         // reorder based on distance to fingerSpot (closest first)
         const Point & fingerSpot = _agentDirections.at(k);
@@ -872,7 +842,7 @@ void GameLevel::act(void)
         {
             _agents.at(k).sort(DistSorter(fingerSpot));
         }
-        executeActions(k);
+        executeActions(int(k));
     }
     
     checkGoals();

@@ -33,7 +33,7 @@ void Deplete::execute(Agent* agent)
     CCLOG("Deplete is an Act with temporal implementation");
     //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
 
-    int type = agent->getType();
+    //int type = agent->getType();
     int sustainability;// = GameLevel::getInstance()->getAttributesValues(type, "SUSTAINABILITY", agent->getValOfAttribute("SUSTAINABILITY"));
     /*switch (sustainability) {
     case 1:

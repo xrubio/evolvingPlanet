@@ -37,7 +37,6 @@ public:
     virtual bool init();
 
     void menuBackCallback(Ref* pSender);
-    void menuResetCallback(Ref* pSender);
     void catFlagCallback(Ref* pSender);
     void esFlagCallback(Ref* pSender);
     void enFlagCallback(Ref* pSender);

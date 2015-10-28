@@ -172,7 +172,6 @@ bool UIProgressMap::init()
         GameData::getInstance()->setFirstTimeLevelCompleted(0);
     }
     
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapHexagonLevelOn.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapBackButton.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapBackButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ArrowBack.png");
@@ -180,16 +179,8 @@ bool UIProgressMap::init()
     Director::getInstance()->getTextureCache()->addImage("gui/ArrowNext.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ArrowNextPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PageBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/BlankAttributePointButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/FilledAttributePointButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ContextPageButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ContextPageButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapPlayButton.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapPlayButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/MinusButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/PlusButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonPressed.png");
     
     this->scheduleUpdate();
 
@@ -442,6 +433,9 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
 
 void UIProgressMap::menuEraCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     /*auto arrowPrev = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowPrev");
     auto arrowNext = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowNext");*/
     auto arrow = (MenuItem*)pSender;

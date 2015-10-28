@@ -92,11 +92,6 @@ bool UIMainMenu::init()
     this->addChild(planet2, 1, 2);
 
     auto spaceship = Sprite::create("gui/MainMenuBackgroundSpaceship.png");
-    /*spaceship->setPosition(Vec2(visibleSize.width, 0));
-    auto moveSpaceship = MoveTo::create(3.0, Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 2);
-    auto spaceshipDelay = DelayTime::create(2.0);
-    auto spaceshipSeq = Sequence::create(spaceshipDelay, moveEaseSpaceship, NULL);*/
     spaceship->setPosition(Vec2((visibleSize.width / 3), (visibleSize.height / 2)));
     spaceship->setScale(0);
     auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
@@ -230,8 +225,6 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("gui/Clouds1.png");
     Director::getInstance()->getTextureCache()->addImage("gui/StarFullMini.png");
     Director::getInstance()->getTextureCache()->addImage("gui/StarEmptyMini.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapHexagonLevelOff.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapLevelPopupBackground.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapDarkBackground.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapPopupBackground.png");
@@ -241,7 +234,6 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonShadow.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapLevelSelected.png");
     
     return true;
 }
@@ -359,19 +351,23 @@ void UIMainMenu::menuExitCallback(Ref* pSender)
 
 void UIMainMenu::menuResetNoCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     this->removeChildByTag(30);
     ((MenuItemImage*)(this->getChildByTag(4)->getChildByName("newCampaign")))->setEnabled(true);
+
 }
 
 void UIMainMenu::menuResetYesCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     GameData::getInstance()->resetGameProgress();
     auto scene = UIProgressMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
-    if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
-    }
     //ANIMACIO
 }
 
