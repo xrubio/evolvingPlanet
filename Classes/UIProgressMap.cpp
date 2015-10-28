@@ -303,7 +303,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
 
     auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str(), "text"),
         Size(13 * (popupBackground->getContentSize().width / 25), 6 * (popupBackground->getContentSize().height / 14)),
-        TextHAlignment::LEFT, "Corbel", 28);
+        TextHAlignment::LEFT, "Arial Rounded MT Bold", 28);
     briefText->setColorSpaceHolder(Color3B(216, 229, 235));
     briefText->setPosition(Vec2(17 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14)));
     popupBackground->addChild(briefText);

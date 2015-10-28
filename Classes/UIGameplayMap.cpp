@@ -272,7 +272,7 @@ bool UIGameplayMap::init()
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
 
-    timeSteps = Label::createWithSystemFont(to_string(GameLevel::getInstance()->getTimeSteps()), "Arial Rounded MT Bold", 70);
+    timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 70);
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width,
         toggle->getPosition().y));
@@ -541,14 +541,14 @@ bool UIGameplayMap::init()
     bottomFrame->addChild(attrMenu, 1, 100000);
 
     // TUTORIAL MESSAGES
-    auto messageLabel = Label::createWithTTF("no message", "fonts/BebasNeue.otf", 24);
+    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 28);
     messageLabel->setName("tutorial");
     messageLabel->setColor(Color3B(230, 230, 230));
     messageLabel->setMaxLineWidth(300);
     messageLabel->setVisible(false);
     messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
-    auto messageNextLabel = Label::createWithSystemFont("", "Arial Rounded MT Bold", 18);
+    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 20);
     messageNextLabel->setName("tutorialNext");
     messageNextLabel->setColor(Color3B(210, 210, 210));
     messageNextLabel->setMaxLineWidth(300);
@@ -1562,7 +1562,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
         titleLabel->setPosition(9 * window->getContentSize().width / 18, 4 * window->getContentSize().height / 10);
         window->addChild(titleLabel);
 
-        auto textLabel = Label::createWithSystemFont(text, "Corbel", 30);
+        auto textLabel = Label::createWithTTF(text, "fonts/arial_rounded_mt_bold.ttf", 30);
         textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
         textLabel->setAlignment(TextHAlignment::CENTER);
         window->addChild(textLabel);
@@ -1934,7 +1934,7 @@ void UIGameplayMap::setMessage( const Message * message )
         
         const Rect & contents = label->getBoundingBox();
         const Rect & ownContents = nextLabel->getBoundingBox();
-        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height/2)));
+        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height)));
         
         label->setVisible(true);    
         labelBorder->setVisible(true);   
