@@ -108,7 +108,6 @@ void GameData::setLevelScore(int level, int score)
     cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(level).c_str(), score);
     cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", (int)levelsCompleted.size());
     cocos2d::UserDefault::getInstance()->flush();
-    //levelsCompleted.push_back(score);
 }
 
 bool GameData::getGameStarted(void)

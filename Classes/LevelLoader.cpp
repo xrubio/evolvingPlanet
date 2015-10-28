@@ -111,10 +111,7 @@ void LevelLoader::loadXmlFile(string filename)
         {
             int attrType = GameLevel::getInstance()->convertAttStringToInt(atts.attribute("NAME").value());
             GameLevel::getInstance()->setAgentAttribute(i, attrType, atoi(atts.child("INITIAL_VALUE").child_value()));
-            //temporal
-            /*if (type == 0) {
-                GameLevel::getInstance()->setAttributesValues(type, atts.attribute("NAME").value());
-            }*/
+
             xml_attribute guiOrder= atts.attribute("GUI");
             if(guiOrder)
             {

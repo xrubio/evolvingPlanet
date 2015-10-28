@@ -252,11 +252,7 @@ bool UIGoals::init()
     Director::getInstance()->getTextureCache()->addImage("gui/CheckpointArea.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarBorder.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarContent.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/GoalMark.png");
     Director::getInstance()->getTextureCache()->addImage("gui/GoalIcon.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/AgentTypeButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/AgentTypeButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/AgentAttributesBackground.png");
     Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmall.png");
     Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmallPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonSmall.png");
@@ -272,8 +268,12 @@ bool UIGoals::init()
 
 void UIGoals::menuBackCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     GameData::getInstance()->setGameStarted(false);
     GameLevel::getInstance()->resetLevel();
+
     auto scene = UIProgressMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
@@ -299,6 +299,9 @@ void UIGoals::menuStartCallback(Ref* pSender)
             j++;
         }
     }*/
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     
     Director::getInstance()->getTextureCache()->addImage("maps/Level"+to_string(GameLevel::getInstance()->getNumLevel())+"HotSpotsBase.png");
     
@@ -311,6 +314,9 @@ void UIGoals::menuStartCallback(Ref* pSender)
 
 void UIGoals::menuArrowBackCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     if (pages->getCurPageIndex() <= 0)
     {
         return;
@@ -327,6 +333,9 @@ void UIGoals::menuArrowBackCallback(Ref* pSender)
 
 void UIGoals::menuArrowNextCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     if (pages->getCurPageIndex() >= pages->getPages().size() - 1)
     {
         return;
@@ -400,7 +409,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     attributesLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(attributesLabel);
     
-    const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
+    //const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
     for(size_t i=0; i<GameLevel::getInstance()->getModifiableAttr().size(); i++)
     {
         //ATRIBUT MODIFICABLE

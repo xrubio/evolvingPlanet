@@ -30,7 +30,6 @@
 
 void Kill::execute(Agent* agent)
 {
-    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
     float probKill = agent->getValue(Hostility);
     int mobility = agent->getValue(Mobility);
     if(RandomHelper::random_real(0.0f, 1.0f)< probKill)

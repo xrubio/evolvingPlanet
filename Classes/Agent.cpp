@@ -105,8 +105,8 @@ void Agent::copyValues( int type )
         {
             continue;
         }
-        float value = GameLevel::getInstance()->getValueAtLevel(i, currentValue);
-        setValue(i, value);
+        float value = GameLevel::getInstance()->getValueAtLevel(int(i), currentValue);
+        setValue(int(i), value);
     }
 }
 

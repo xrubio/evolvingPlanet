@@ -28,6 +28,8 @@
 #include "UIGlobalPower.h"
 #include "UIGameplayMap.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
 {
     icon = Sprite::create("gui/PowerBackgroundButton.png");
@@ -52,11 +54,6 @@ UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
     active->setVisible(false);
     active->setOpacity(50);
     icon->addChild(active, 100);
-    //cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
-    //cooldown->setColor(Color3B::MAGENTA);
-    //cooldown->setVisible(false);
-    //cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
-    //icon->addChild(cooldown, 3);
 }
 
 void UIGlobalPower::onTouchesBegan(Point touchLocation)
@@ -66,6 +63,9 @@ void UIGlobalPower::onTouchesBegan(Point touchLocation)
         //DO NOTHING
     }
     else if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+        }
         clicked = true;
         icon->setScale(0.8 * GameData::getInstance()->getRaWConversion(), 0.8 * GameData::getInstance()->getRaHConversion());
         //auto button = (Sprite*)icon->getChildByTag(0);
@@ -99,17 +99,8 @@ void UIGlobalPower::update(float delta)
 {
     ProgressTimer* actionTimer = (ProgressTimer*)icon->getChildByTag(1);
     ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
-
-    /*if (clicked == false and power->getDurationLeft() > 0) {
-        actionTime += delta;
-        if (actionTime > power->getDuration()) {
-            actionTime = 0.0;
-        }
-    }*/
     
     actionTimer->setPercentage((power->getDurationLeft() / power->getDuration()) * 100.0);
-
-    //actionTimer->setPercentage((float(power->getDurationLeft())) / float(power->getDuration()) * 100.0);
 
     if (power->getCooldownLeft() > 0) {
         if (actionTimer->getPercentage() == 0) {

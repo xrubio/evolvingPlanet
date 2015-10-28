@@ -28,6 +28,8 @@
 #include "UIAreaPower.h"
 #include "UIGameplayMap.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
 {
     icon = Sprite::create("gui/PowerBackgroundButton.png");
@@ -52,11 +54,6 @@ UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
     active->setVisible(false);
     active->setOpacity(50);
     icon->addChild(active, 100);
-    //cooldown = Label::createWithSystemFont(to_string(power->getCooldownLeft()), "Arial Rounded MT Bold", 60);
-    //cooldown->setColor(Color3B::BLUE);
-    //cooldown->setVisible(false);
-    //cooldown->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
-    //icon->addChild(cooldown);
     area = Sprite::create("gui/BoostResistanceArea.png");
     area->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     area->setOpacity(100);
@@ -75,6 +72,11 @@ void UIAreaPower::onTouchesBegan(Point touchLocation)
         //DO NOTHING
     }
     else if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+        
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+        }
+        
         clicked = true;
         area->setPosition(area->getParent()->convertToNodeSpace(icon->getPosition()));
         area->setVisible(true);

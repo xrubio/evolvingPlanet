@@ -67,9 +67,6 @@ bool UIGameplayMap::init()
     _tutorial = nullptr;
     Director::getInstance()->setAnimationInterval(1.0 / 30);
     
-    //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-
-    //Director::getInstance()->getTextureCache()->addImage("Agent.png");
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -100,8 +97,6 @@ bool UIGameplayMap::init()
     }
     dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
     dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
-    CCLOG("%lu : %zu : %zu", sizeof(dataGameplayMapHotSpot), strlen((char*)dataGameplayMapHotSpot), gameplayMapHotSpot->getDataLen());
-
 
     //FINGER SPOT
     fingerSpot = MenuItemImage::create("gui/FingerSpot.png", "gui/FingerSpot.png", CC_CALLBACK_1(UIGameplayMap::removeFingerSpot, this));
@@ -111,9 +106,6 @@ bool UIGameplayMap::init()
     mFinger->setPosition(0, 0);
     mFinger->setName("finger");
     gameplayMap->addChild(mFinger, 3);
-    /*fingerSpotArea = Sprite::create("FingerSpotArea.png");
-    fingerSpotArea->setVisible(false);
-    gameplayMap->addChild(fingerSpotArea, 2);*/
 
     //FRAMES
     auto topFrame = Sprite::create("gui/FrameTop.png");
@@ -215,7 +207,6 @@ bool UIGameplayMap::init()
     agentsSprite->setCascadeOpacityEnabled(true);
 
     //EVOLUTION POINTS
-    //string(LocalizedString::create("EVOLUTION_POINTS"))
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
@@ -230,21 +221,11 @@ bool UIGameplayMap::init()
     evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
     this->addChild(evolutionPointsIcon, 1);
 
-    //FER DINAMIC
-    /*if (GameLevel::getInstance()->getNumLevel() == 2) {
-        collect1PointsLabel = Label::createWithSystemFont(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()),
-            "Arial", 65);
-        collect1PointsLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
-        this->addChild(collect1PointsLabel, 1);
-    }*/
-
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
     MenuItem* playButton = MenuItemImage::create("gui/PlayButton.png", "gui/PlayButtonPressed.png");
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    //playButton->setPosition(Vec2(193 * visibleSize.width / 204, 145 * visibleSize.height / 155));
     playButton->setName("playButton");
-    //timeButtons.pushBack(playButton);
 
     MenuItem* pauseButton = MenuItemImage::create("gui/PauseButton.png", "gui/PauseButton.png");
     pauseButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -343,19 +324,13 @@ bool UIGameplayMap::init()
                 auto repeatBlink = RepeatForever::create(blink);
                 area->setColor(Color3B::WHITE);
                 area->runAction(repeatBlink);
-
-                //GOAL EXPANSION DISTANCE
-                distanceLabel = Label::createWithTTF(" ", "fonts/BebasNeue.otf", 40);
-                distanceLabel->setColor(Color3B(216, 229, 235));
-                distanceLabel->setPosition(visibleSize.width - 80, visibleSize.height - 300);
-                //this->addChild(distanceLabel);
             }
             else {
                 area->setColor(Color3B::RED);
                 area->setOpacity(0);
             }
             area->setPosition(x, y);
-            area->setTag(400 + i);
+            area->setTag(400 + int(i));
             gameplayMap->addChild(area, 3);
         }
     }
@@ -417,8 +392,6 @@ bool UIGameplayMap::init()
     }
 
     auto listener = EventListenerTouchAllAtOnce::create();
-
-
     listener->onTouchesBegan = CC_CALLBACK_2(UIGameplayMap::onTouchesBegan, this);
     listener->onTouchesMoved = CC_CALLBACK_2(UIGameplayMap::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(UIGameplayMap::onTouchesEnded, this);
@@ -433,11 +406,7 @@ bool UIGameplayMap::init()
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/driver2.mp3", true);
     }
-
-    time_t wait;
-    //wait = clock();
-    /*while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.2)
-        ;*/
+    
     if (GameData::getInstance()->getGameStarted() == false) {
         GameLevel::getInstance()->createLevel();
     }
@@ -493,12 +462,12 @@ bool UIGameplayMap::init()
         }
         auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr[j]).c_str())), "fonts/BebasNeue.otf", 30);
         labelAttRight->setColor(Color3B(216, 229, 236));
-        bottomFrame->addChild(labelAttRight, 1, (j + 1) * 1000);
+        bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
         auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr[j])), "fonts/BebasNeue.otf", 30);
         attNumLabel->setColor(Color3B::BLACK);
         attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
-        bottomFrame->addChild(attNumLabel, 1, (j + 1) * 1100);
+        bottomFrame->addChild(attNumLabel, 1, (int(j) + 1) * 1100);
         
         auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
         bottomFrame->addChild(costBackground);
@@ -506,14 +475,14 @@ bool UIGameplayMap::init()
         auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
         minusAttButton->setAnchorPoint(Vec2(0, 0.5));
         minusAttButton->setPosition(Vec2((4 + (j * 2)) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
-        minusAttButton->setTag(j + 10);
+        minusAttButton->setTag(int(j) + 10);
         minusAttButton->setEnabled(false);
         minusAttButton->setName("minus"+labelAttRight->getString());
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
         plusAttButton->setPosition(Vec2((4 + (j * 2) + 1.4) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
-        plusAttButton->setTag(j + 50);
+        plusAttButton->setTag(int(j) + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
         attributesButtons.pushBack(plusAttButton);
@@ -597,10 +566,8 @@ bool UIGameplayMap::init()
     _message = 0;
 
     createTimingThread();
-    wait = clock();
-    while ((clock() / CLOCKS_PER_SEC) - (wait / CLOCKS_PER_SEC) < 0.1)
-        ;
     createNewLevelThread();
+    
     gameplayMap->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
 	auto mouseListener  = EventListenerMouse::create();
@@ -638,9 +605,6 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
     if (touches.size() == 1)
     {
         if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.3 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
-            //PASAR TIPUS D'AGENT SELECCIONAT AL MOMENT
-            /*GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(2048.0 / 480.0),
-                                                               (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));*/
             float verticalMargin = visibleSize.width / 1.5;
             if (verticalMargin > visibleSize.height)
             {
@@ -672,6 +636,9 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 
 void UIGameplayMap::changeSpotPosition()
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     fingerSpot->setPosition(Vec2(gameplayMap->convertToNodeSpace(firstTouchLocation)));
     fingerSpot->setVisible(true);
     if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="spot")
@@ -796,7 +763,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 
 bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
 {    
-    if(!_tutorial)// || !_tutorial->getCurrentMessage())// || _tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
+    if(!_tutorial)
     {
         return false;
     }
@@ -916,14 +883,7 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     }
     moveBackground = false;
     _touches.clear();
-    //CCLOG("%f %i %i, (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC, touches[0]->getLocation().x, firstTouchLocation.x)
-    /*if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC > 1 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 20) {
-        GameLevel::getInstance()->setFingerSpot(Point(firstTouchLocation.x / float(2048.0 / 480.0),
-                                                      (firstTouchLocation.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0)));
-    } else if (GameLevel::getInstance()->getFingerSpot().x == -1) {
-        fingerSpot->stopAllActionsByTag(1);
-        fingerSpot->setVisible(false);
-    }*/
+
     firstTouchLocation = touches[0]->getLocation();
     timeFingerSpot = clock();
 }
@@ -989,6 +949,9 @@ void UIGameplayMap::onMouseScroll(Event* event)
 
 void UIGameplayMap::menuBackCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     _eventDispatcher->removeEventListener(_listenerTutorial);
     GameLevel::getInstance()->setFinishedGame(UserCancel);
@@ -1014,15 +977,6 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     }
 }
 
-void UIGameplayMap::menuGoalsCallback(Ref* pSender)
-{
-    GameLevel::getInstance()->setTimeSpeedBeforePause(GameLevel::getInstance()->getTimeSpeed());
-    GameLevel::getInstance()->setTimeSpeed(0);
-    auto scene = UIGoals::createScene();
-    auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->replaceScene(transition);
-}
-
 void UIGameplayMap::pauseGame()
 {
     ((MenuItemToggle*)this->getChildByName("timeMenu")->getChildByName("playToggle"))->setSelectedIndex(0);
@@ -1032,6 +986,9 @@ void UIGameplayMap::pauseGame()
 
 void UIGameplayMap::togglePlay(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     if (firstPlayFF == true)
     {
         setAttributesToInitialAgents();
@@ -1071,6 +1028,9 @@ void UIGameplayMap::attributeSelectionCallback(Ref* pSender)
 
 void UIGameplayMap::quitCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     MenuItem* p = (MenuItem*)pSender;
     p->setEnabled(false);
     auto confirmBackground = Sprite::create("gui/ConfirmBackground.png");
@@ -1104,6 +1064,9 @@ void UIGameplayMap::quitCallback(Ref* pSender)
 
 void UIGameplayMap::retryCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     MenuItem* p = (MenuItem*)pSender;
     p->setEnabled(false);
     auto confirmBackground = Sprite::create("gui/ConfirmBackground.png");
@@ -1137,10 +1100,12 @@ void UIGameplayMap::retryCallback(Ref* pSender)
 
 void UIGameplayMap::retryOkCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameLevel::getInstance()->setFinishedGame(UserCancel);
-    /*while (GameLevel::getInstance()->ended == false)
-        ;*/
+
     pthread_cancel(gameLevelThread);
     pthread_cancel(timingThread);
     pthread_join(gameLevelThread, nullptr);
@@ -1150,10 +1115,6 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
     GameLevel::getInstance()->resetLevel();
     LevelLoader loader;
     loader.loadXmlFile(filename);
-
-    /*auto scene = UIGoals::createScene();
-    auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->replaceScene(transition);*/
     
     _eventDispatcher->removeEventListener(_listenerTutorial);
     GameLevel::getInstance()->setAgentAttributesInitToCurrent();
@@ -1164,6 +1125,9 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
 
 void UIGameplayMap::NoCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     MenuItem* p = (MenuItem*)((MenuItem*)pSender)->getParent()->getParent();
     MenuItem* p2 = (MenuItem*)p->getParent();
     p2->setEnabled(true);
@@ -1172,13 +1136,6 @@ void UIGameplayMap::NoCallback(Ref* pSender)
     auto ease = EaseBackOut::create(moveConfirm);
     p->runAction(ease);
     p2->removeChild(p);
-}
-
-void UIGameplayMap::agentTypeCallback(Ref* pSender)
-{
-    MenuItem* p = (MenuItem*)pSender;
-    p->setEnabled(false);
-    GameLevel::getInstance()->setCurrentAgentType(0);
 }
 
 void UIGameplayMap::minusAttCallback(Ref* pSender)
@@ -1193,6 +1150,11 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
     {
         return;
     }
+    
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    
     GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) - 1);
     GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]));
     int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]);
@@ -1225,6 +1187,10 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     {
         return;
     }
+    
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
 
     GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i], GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) + 1);
     GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]));
@@ -1255,9 +1221,11 @@ void UIGameplayMap::hideAchievementWindowCallback(Ref* pSender)
 
 void UIGameplayMap::removeFingerSpot(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     GameLevel::getInstance()->setAgentDirection(0, Point(-1, -1));
     fingerSpot->setVisible(false);
-    //fingerSpotArea->setVisible(false);
 }
 
 void UIGameplayMap::createTimingThread(void)
@@ -1328,9 +1296,6 @@ bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
 
 void UIGameplayMap::moveGoalPopup(int index)
 {
-    /*goalPopup->runAction(MoveTo::create(1.5, Vec2(Director::getInstance()->getVisibleSize().width - timeBorderBar->getBoundingBox().size.width + (GameLevel::getInstance()->getGoals()[index]->getAverageTime() * (timeBorderBar->getBoundingBox().size.width / GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime())),
-                                                  timeBorderBar->getPosition().y - timeBorderBar->getBoundingBox().size.height / 2)));*/
-
     if (GameLevel::getInstance()->getGoals()[index - 1]->getGoalType() == Expansion) {
         auto area = gameplayMap->getChildByTag(400 + index - 1);
         area->stopAllActions();
@@ -1402,8 +1367,6 @@ void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
 int UIGameplayMap::getValueAtGameplayMap(int rgb, int posx, int posy, int map)
 {
     Point loc(Point(posx, posy));
-    //Size visibleSize = Director::getInstance()->getVisibleSize();
-    //loc.y = visibleSize.height - loc.y;
     loc.y = 320 - loc.y;
     return getValueAtGameplayMap(rgb, loc, map);
 }
@@ -1733,11 +1696,6 @@ void UIGameplayMap::updateAgents(void)
     if (resourcesMap) {
         exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, 2048, 1536);
     }
-
-    /*vector<int> null;
-    vector<Point> p;
-    GameLevel::getInstance()->setDeletedAgents(p);
-    GameLevel::getInstance()->setAddedAgents(0);*/
 }
 
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
@@ -1833,26 +1791,18 @@ void UIGameplayMap::update(float delta)
                 }
             }
        
-            //clock_t beforeTime = clock();
             updateAgents();
             timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-            /*if (GameLevel::getInstance()->getNumLevel() == 2) {
-                collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-            }*/
+
             size_t i = 0;
             while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getCompleted() == true) {
                 i++;
             }
-            if (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
-                //distanceLabel->setString(to_string(((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getMinDistanceToGoal()));
-            }
-
+            
             // TODO everything stopped if _message?
             updateWave(int(0));
             
             play = true;
-
-            //CCLOG("Pintat: %f", ((float)clock() / CLOCKS_PER_SEC) - ((float)beforeTime / CLOCKS_PER_SEC));
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
@@ -1873,13 +1823,10 @@ void UIGameplayMap::update(float delta)
         //DARRER PINTAT
         play = false;
         updateAgents();
-        //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
         }
-        /*if (GameLevel::getInstance()->getNumLevel() == 2) {
-            collect1PointsLabel->setString(to_string(((CollectionGoal*)GameLevel::getInstance()->getGoals()[1])->getCurrentAmount()));
-        }*/
+
         play = true;
 
         for (size_t i = 0; i < powerButtons.size(); i++) {
@@ -1980,9 +1927,7 @@ void UIGameplayMap::setMessage( const Message * message )
 void UIGameplayMap::updateWave(int indexAgent)
 {
     float height = float(GameLevel::getInstance()->getAgents()[indexAgent].size())/float(GameLevel::getInstance()->getMaxAgents()[indexAgent]) * lifeBars.at(indexAgent)->getContentSize().height * GameData::getInstance()->getRaHConversion();
-       
-    /*waveNodes[indexAgent]->dynamicVerts[GameLevel::getInstance()->getTimeSteps()].y = height + this->getChildByName("attColorsBackground")->getPositionY() + lifeBars.at(indexAgent)->getPositionY() - (lifeBars.at(indexAgent)->getContentSize().height / 2);
-    waveNodes[indexAgent]->dynamicVertColors[GameLevel::getInstance()->getTimeSteps()] = Color4B::RED;*/
+
     // Space the verticies out evenly across the screen for the wave.
     float vertexHorizontalSpacing = lifeBars.at(indexAgent)->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
     

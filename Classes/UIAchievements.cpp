@@ -195,6 +195,10 @@ void UIAchievements::zoomImageOutCallback(Ref* pSender)
 
 void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aType)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     if (aType == ui::Widget::TouchEventType::ENDED) {
