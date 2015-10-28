@@ -662,6 +662,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 void UIGameplayMap::changeSpotPosition()
 {
     fingerSpot->setPosition(Vec2(gameplayMap->convertToNodeSpace(firstTouchLocation)));
+    CCLOG("change spot position to %f/%f", fingerSpot->getPosition().x, fingerSpot->getPosition().y);
     fingerSpot->setVisible(true);
     if(_tutorial && _tutorial->getCurrentMessage() && _tutorial->getCurrentMessage()->getPostCondition()=="spot")
     {
@@ -835,10 +836,16 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     }
     if(_tutorial->getCurrentMessage()->getPostCondition() == "spot")
     {
+        CCLOG("check tutorial spot %f - %f value: %f", clock(), timeFingerSpot, (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC );
         if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.3)
         {
+            CCLOG("ok");
             firstTouchLocation = touchLocation;
             changeSpotPosition();
+        }
+        else
+        {
+            CCLOG("not ok");
         }
         timeFingerSpot = clock();
         return true;
