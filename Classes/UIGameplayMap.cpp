@@ -380,7 +380,7 @@ bool UIGameplayMap::init()
     degradateTime->setPositionY(timeBar->getContentSize().height / 2);
     degradateTime->setVisible(false);
     degradateTime->setAnchorPoint(Vec2(0, 0.5));
-    timeBorderBar->addChild(degradateTime, 1);
+    timeBorderBar->addChild(degradateTime, 2);
 
     //SET GOALS ON TIME PROGRESS BAR
     float pixelPerStep = barContent->getTexture()->getPixelsWide()
@@ -388,21 +388,32 @@ bool UIGameplayMap::init()
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
     {
         float posXaverage = (float)GameLevel::getInstance()->getGoals()[i]->getAverageTime() / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
-        auto goalMark = Sprite::create("gui/GoalMark.png");
         float posXcentered = (float)(GameLevel::getInstance()->getGoals()[i]->getMinTime() + ((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) / 2)) / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() * timeBorderBar->getContentSize().width;
-        goalMark->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2));
-        //SET SCALE GOAL MARK
-        goalMark->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
-        timeBorderBar->addChild(goalMark, 1);
-        auto goalNum = Sprite::create("gui/GoalIcon.png");
-        goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height / 2);
+        
+        auto goalMark1star = Sprite::create("gui/GoalMark1.png");
+        goalMark1star->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2));
+        goalMark1star->setScaleX((GameLevel::getInstance()->getGoals()[i]->getMaxTime() - GameLevel::getInstance()->getGoals()[i]->getMinTime()) * pixelPerStep);
+        timeBorderBar->addChild(goalMark1star, 1);
+        
+        auto goalMark2star = Sprite::create("gui/GoalMark2.png");
+        goalMark2star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
+        goalMark2star->setScaleX((GameLevel::getInstance()->getGoals()[i]->getDesviation2Star() * 2) * pixelPerStep);
+        timeBorderBar->addChild(goalMark2star, 1);
+        
+        auto goalMark3star = Sprite::create("gui/GoalMark3.png");
+        goalMark3star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
+        goalMark3star->setScaleX((GameLevel::getInstance()->getGoals()[i]->getDesviation3Star() * 2) * pixelPerStep);
+        timeBorderBar->addChild(goalMark3star, 1);
+        
+        //auto goalNum = Sprite::create("gui/GoalIcon.png");
+        //goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height / 2);
         /*goalNum->setScaleX(GameLevel::getInstance()->getGoals()[i]->getDesviation3Star() * (goalNum->getTexture()->getPixelsWide()
                            / (float)GameLevel::getInstance()->getGoals()[GameLevel::getInstance()->getGoals().size() - 1]->getMaxTime() - 1));*/
         /*auto labelGoalNum = Label::createWithTTF(to_string(i + 1), "fonts/BebasNeue.otf", 30);
         labelGoalNum->setPosition(goalNum->getContentSize().width / 2, goalNum->getContentSize().height / 2);
         labelGoalNum->setColor(Color3B(216, 229, 235));
         goalNum->addChild(labelGoalNum, 2);*/
-        timeBorderBar->addChild(goalNum, 2);
+        //timeBorderBar->addChild(goalNum, 2);
     }
 
     auto listener = EventListenerTouchAllAtOnce::create();

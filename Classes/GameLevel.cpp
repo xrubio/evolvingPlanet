@@ -706,7 +706,7 @@ void GameLevel::checkGoals()
     bool exit = false;
     for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end() and exit == false; it++)
     {
-        for (size_t  j = 0; j < goals.size() and exit == false; j++)
+        for (size_t j = 0; j < goals.size() and exit == false; j++)
         {
             if (goals[j]->getCompleted() == false)
             {
