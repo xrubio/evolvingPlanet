@@ -102,8 +102,7 @@ void GameData::setLevelScore(int level, int score)
     else
     {
         if (score > levelsCompleted[level]) {
-            levelsCompleted.insert(levelsCompleted.begin() + level, score);
-            levelsCompleted.erase(levelsCompleted.begin() + level + 1);
+            levelsCompleted[level] = score;
         }
     }
     cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(level).c_str(), score);

@@ -81,6 +81,7 @@ void ExpansionGoal::checkGoal(int type, Agent* agent)
                     GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
                 }
                 else {
+                    CCLOG("goal completed");
                     completed = true;
                     if (timeSteps >= averageTime - desviation2Star and timeSteps <= averageTime + desviation2Star) {
                         if (timeSteps >= averageTime - desviation3Star and timeSteps <= averageTime + desviation3Star) {
