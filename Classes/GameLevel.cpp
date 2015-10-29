@@ -482,8 +482,6 @@ void GameLevel::playLevel(void)
     
     checkAchievements();
     
-    CCLOG("COMPLETED %lu ACHIEVEMENTS", completedAchievements.size());
-
     ended = true;
     CCLOG("End of game: %i", _finishedGame);
 }
@@ -686,7 +684,6 @@ void GameLevel::checkGoals()
         }
     }
 
-    CCLOG("checking goal %d of %d", goalToCheck, goals.size());
     bool nextGoalAchieved = false;
     for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end(); it++)
     {
@@ -939,6 +936,12 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
 
 void GameLevel::checkAchievements(void)
 {
+
+    #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
+    CCLOG("WARNING: Achievements implemented only for IOS");
+    return;
+    #endif    
+
     vector<Achievement*> progressAchs = GameData::getInstance()->getAchievements(0);
     vector<Achievement*> levelAchs = GameData::getInstance()->getAchievements(numLevel);
     
@@ -967,5 +970,6 @@ void GameLevel::checkAchievements(void)
             }
         }
     }
+    CCLOG("COMPLETED %lu ACHIEVEMENTS", completedAchievements.size());
 }
 

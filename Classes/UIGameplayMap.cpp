@@ -315,7 +315,6 @@ bool UIGameplayMap::init()
             {
                 int goalCode = expansionGoal->getColorZone();
                 int valueAtMap = getValueAtGameplayMap(1,x,y,0);
-                CCLOG("\tchecking pos: %d/%d goalcode: %d valuemap: %d", x,y,goalCode,valueAtMap);
                 if(goalCode!=valueAtMap)
                 {
                     continue;
@@ -324,23 +323,19 @@ bool UIGameplayMap::init()
                 // check limits
                 if(minX>x)
                 {
-                    CCLOG("\tupdating minX from %d to %d", minX, x);
                     minX = x;
                 }
                 if(maxX<x)
                 {
-                    CCLOG("\tupdating maxX from %d to %d", maxX, x);
                     maxX = x;
                 }
 
                 if(minY>y)
                 {
-                    CCLOG("\tupdating minY from %d to %d", minY, y);
                     minY = y;
                 }
                 if(maxY<y)
                 {
-                    CCLOG("\tupdating maxY from %d to %d", maxY, y);
                     maxY = y;
                 }
             }
@@ -348,25 +343,23 @@ bool UIGameplayMap::init()
 
         int centerX = maxX - ((maxX - minX) / 2);
         int centerY = maxY - ((maxY - minY) / 2);
-        CCLOG("limits x: %d/%d y: %d/%d center: %d/%d", minX, maxX, minY, maxY, centerX, centerY);
         expansionGoal->setCenterArea(centerX, centerY);
 
         int x = (int)(centerX * float(2048.0 / 480.0));
         int y = (int)(float((1536.0 - 1365.0) / 2.0) + (centerY * float(1365.0 / 320.0)));
 
         auto area = Sprite::create("gui/CheckpointArea.png");
-//        if(i == 0)
+        if(i == 0)
         {
             auto blink = Blink::create(2, 2);
             auto repeatBlink = RepeatForever::create(blink);
             area->setColor(Color3B::WHITE);
             area->runAction(repeatBlink);
         }
-        if(i!=0)
-//        else
+        else
         {
             area->setColor(Color3B::RED);
-//            area->setOpacity(0);
+            area->setOpacity(0);
         }
         CCLOG("goal %d pos: %d/%d", i, x, y);
         area->setPosition(x, y);
@@ -439,7 +432,8 @@ bool UIGameplayMap::init()
     // set listener for tutorial
     _listenerTutorial = EventListenerTouchOneByOne::create();
     _listenerTutorial->setSwallowTouches(true);
-    _listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchTutorial, this);
+    _listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchBeganTutorial, this);
+    _listenerTutorial->onTouchEnded = CC_CALLBACK_2(UIGameplayMap::onTouchEndedTutorial, this);
     _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial,-1);
 
     if (GameData::getInstance()->getMusic() == true) {
@@ -631,29 +625,22 @@ bool UIGameplayMap::checkPowersClicked(void)
 }
 
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
-{
-    Size visibleSize = Director::getInstance()->getVisibleSize();
+{   
     if (endGameWindowPainted || checkPowersClicked())
     {
         return;
     }
+
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     for (auto touch : touches)
     {
         _touches.pushBack(touch);
     }
     if (touches.size() == 1)
     {
-        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.3 and abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40) {
-            float verticalMargin = visibleSize.width / 1.5;
-            if (verticalMargin > visibleSize.height)
-            {
-                verticalMargin = visibleSize.height;
-            }
-            GameLevel::getInstance()->setAgentDirection(0, Point(firstTouchLocation.x / float(visibleSize.width / 480.0),
-                                                                 (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0)));
+        if ((((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC) < 0.3) and (abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40))
+        {
             firstTouchLocation = touches[0]->getLocation();
-            auto fadeFinger = FadeIn::create(1);
-            fadeFinger->setTag(1);
             changeSpotPosition();
         }
     }
@@ -674,10 +661,25 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 }
 
 void UIGameplayMap::changeSpotPosition()
-{
-    if (GameData::getInstance()->getSFX() == true) {
+{      
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    float verticalMargin = visibleSize.width / 1.5;
+    if (verticalMargin > visibleSize.height)
+    {
+        verticalMargin = visibleSize.height;
+    }
+
+    Point nextDirection(firstTouchLocation.x / float(visibleSize.width / 480.0), (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0));
+    GameLevel::getInstance()->setAgentDirection(0, nextDirection);
+    
+    auto fadeFinger = FadeIn::create(1);
+    fadeFinger->setTag(1);
+
+    if (GameData::getInstance()->getSFX() == true)
+    {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
+
     fingerSpot->setPosition(Vec2(gameplayMap->convertToNodeSpace(firstTouchLocation)));
     CCLOG("change spot position to %f/%f", fingerSpot->getPosition().x, fingerSpot->getPosition().y);
     fingerSpot->setVisible(true);
@@ -801,7 +803,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
     }
 }
 
-bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
+bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
 {    
     if(!_tutorial)
     {
@@ -853,18 +855,12 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     }
     if(_tutorial->getCurrentMessage()->getPostCondition() == "spot")
     {
-        CCLOG("check tutorial spot %f - %f value: %f", clock(), timeFingerSpot, (clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC );
-        if ((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC < 0.3)
-        {
-            CCLOG("ok");
+        // XRC this is implemented in a different way than the standard onTouchesBegan. Should we unify both codes?
+        if (((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC) < 0.3)
+        {     
             firstTouchLocation = touchLocation;
             changeSpotPosition();
         }
-        else
-        {
-            CCLOG("not ok");
-        }
-        timeFingerSpot = clock();
         return true;
     }
     if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
@@ -905,6 +901,12 @@ bool UIGameplayMap::onTouchTutorial(Touch * touch, Event* event)
     }
 
     return true;
+}
+
+bool UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
+{   
+    timeFingerSpot = clock();
+    return false;
 }
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
