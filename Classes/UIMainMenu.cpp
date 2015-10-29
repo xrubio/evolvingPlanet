@@ -317,8 +317,8 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
 
 void UIMainMenu::menuExtrasCallback(Ref* pSender)
 {
+    auto extrasButton = (MenuItemToggle*) pSender;
     if (stoppedAnimation or allActionsFinished()) {
-        auto extrasButton = (MenuItemToggle*) pSender;
         if (this->getChildByName("menu")->getChildByName("story")->isVisible() == false)
         {
             this->getChildByName("menu")->getChildByName("story")->setVisible(true);
@@ -336,6 +336,7 @@ void UIMainMenu::menuExtrasCallback(Ref* pSender)
         }
     }
     else {
+        extrasButton->setSelectedIndex(0);
         endActions();
     }
 }

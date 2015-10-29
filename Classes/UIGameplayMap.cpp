@@ -371,7 +371,6 @@ bool UIGameplayMap::init()
     timeBorderBar->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     timeBorderBar->setPosition(6 * visibleSize.width / 21, 15 * visibleSize.height / 16);
     auto timeBorderSize = timeBorderBar->getContentSize();
-    CCLOG("BORDER HEIGHT %f", timeBorderSize.height);
     timeBorderBar->setAnchorPoint(Vec2(0, 0.5));
     this->addChild(timeBorderBar, 3);
     auto barContent = Sprite::create("gui/ProgressBarContent.png");
@@ -381,9 +380,6 @@ bool UIGameplayMap::init()
     timeBar->setMidpoint(Vec2(0, 0));
     timeBar->setBarChangeRate(Vec2(1, 0));
     timeBar->setPosition(0, 0);
-    
-    CCLOG("content HEIGHT %f", timeBar->getContentSize().height);
-
     timeBorderBar->addChild(timeBar, 3);
     
     auto degradateTime = Sprite::create("gui/GoalDegradate.png");
@@ -841,25 +837,48 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     string qrButton = "";
     if (quitRetry->getChildByName("quitButton")->getChildByName("confirmBackground") != nullptr)
     {
-        qrButton = "quitButton";
-    }
-    else if (quitRetry->getChildByName("retryButton")->getChildByName("confirmBackground") != nullptr)
-    {
-        qrButton = "retryButton";
-    }
-    
-    if (qrButton != "")
-    {
-        Node * n = quitRetry->getChildByName(qrButton)->getChildByName("confirmBackground")->getChildByName("confirmMenu");
+        Node * n = quitRetry->getChildByName("quitButton")->getChildByName("confirmBackground")->getChildByName("confirmMenu");
         
-        Rect rNo(n->getParent()->getParent()->getPositionX() + n->getChildByName("confirmNo")->getPositionX(), n->getParent()->getParent()->getPositionY() - n->getChildByName("confirmNo")->getPositionY() / 2, n->getChildByName("confirmNo")->getBoundingBox().size.width, n->getChildByName("confirmNo")->getBoundingBox().size.height);
+        //both buttons have same size
+        Size buttonSize = n->getChildByName("confirmNo")->getContentSize();
         
-        Rect rOk(n->getParent()->getParent()->getPositionX() + n->getChildByName("confirmOk")->getPositionX(), n->getParent()->getParent()->getPositionY() - n->getChildByName("confirmOk")->getPositionY() / 2, n->getChildByName("confirmOk")->getBoundingBox().size.width, n->getChildByName("confirmOk")->getBoundingBox().size.height);
+        Vec2 posRNO = n->convertToWorldSpace(n->getChildByName("confirmNo")->getPosition());
+        posRNO.x -= buttonSize.width / 2;
+        posRNO.y -= buttonSize.height / 2;
+        Rect rNo(posRNO, buttonSize);
+        
+        Vec2 posROK = n->convertToWorldSpace(n->getChildByName("confirmOk")->getPosition());
+        posROK.x -= buttonSize.width / 2;
+        posROK.y -= buttonSize.height / 2;
+        Rect rOk(posROK, buttonSize);
         
         if (rNo.containsPoint(touchLocation) or rOk.containsPoint(touchLocation))
         {
             return false;
         }
+    }
+    if (quitRetry->getChildByName("retryButton")->getChildByName("confirmBackground") != nullptr)
+    {
+        Node * n = quitRetry->getChildByName("retryButton")->getChildByName("confirmBackground")->getChildByName("confirmMenu");
+        
+        //both buttons have same size
+        Size buttonSize = n->getChildByName("confirmNo")->getContentSize();
+        
+        Vec2 posRNO = n->convertToWorldSpace(n->getChildByName("confirmNo")->getPosition());
+        posRNO.x -= buttonSize.width / 2;
+        posRNO.y -= buttonSize.height / 2;
+        Rect rNo(posRNO, buttonSize);
+        
+        Vec2 posROK = n->convertToWorldSpace(n->getChildByName("confirmOk")->getPosition());
+        posROK.x -= buttonSize.width / 2;
+        posROK.y -= buttonSize.height / 2;
+        Rect rOk(posROK, buttonSize);
+        
+        if (rNo.containsPoint(touchLocation) or rOk.containsPoint(touchLocation))
+        {
+            return false;
+        }
+        
     }
     
     if(_tutorial->getCurrentMessage()->getPostCondition() == "tap")
@@ -1028,7 +1047,7 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel())
     {
         auto scene = UITransitionScene::createScene();
-        auto transition = TransitionFade::create(1.0f, scene);
+        auto transition = TransitionFade::create(0.2f, scene);
         Director::getInstance()->replaceScene(transition);
     }
     else

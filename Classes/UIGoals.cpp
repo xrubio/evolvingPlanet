@@ -303,7 +303,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     
-    Director::getInstance()->getTextureCache()->addImage("maps/Level"+to_string(GameLevel::getInstance()->getNumLevel())+"HotSpotsBase.png");
+    Director::getInstance()->getTextureCache()->addImage("maps/"+GameLevel::getInstance()->getMapFilename()+"HotSpotsBase.png");
     
     GameLevel::getInstance()->setAgentAttributesInitToCurrent();
     auto scene = UIGameplayMap::createScene();

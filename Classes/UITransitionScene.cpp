@@ -61,8 +61,8 @@ bool UITransitionScene::init()
     contextDeployment->setName("text");
     this->addChild(contextDeployment);
     
-    image->runAction(FadeIn::create(3));
-    contextDeployment->runAction(FadeIn::create(3));
+    image->runAction(FadeIn::create(2));
+    contextDeployment->runAction(FadeIn::create(2));
     
     auto tapToContinue = Label::createWithTTF("Tap to continue", "fonts/BebasNeue.otf", 50);
     tapToContinue->setColor(Color3B::WHITE);
@@ -105,7 +105,7 @@ void UITransitionScene::endActions(void)
 
 bool UITransitionScene::allActionsFinished(void)
 {
-    if (this->getChildByName("image")->getNumberOfRunningActions() == 0 and this->getChildByName("text")->getNumberOfRunningActions()) {
+    if (this->getChildByName("image")->getNumberOfRunningActions() == 0 and this->getChildByName("text")->getNumberOfRunningActions() == 0) {
         return true;
     }
     return false;
