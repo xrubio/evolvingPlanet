@@ -62,43 +62,53 @@ void ExpansionGoal::setCenterArea(int x, int y)
     centerArea.setPosition(x, y);
 }
 
-void ExpansionGoal::checkGoal(int type, Agent* agent)
+bool ExpansionGoal::checkGoal(int type, Agent* agent)
 {
-    /*int dist = Point(agent->getPosition().getX(), agent->getPosition().getY()).getDistance(Vec2(centerArea.getX(), centerArea.getY()));
-    if (dist < minDistanceToGoal) {
-        minDistanceToGoal = dist;
-    }*/
-    int timeSteps = GameLevel::getInstance()->getTimeSteps();
-    if (type == agentType) {
-        if (timeSteps > maxTime) {
-            GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
-        }
-        else {
-            //Check agent at goal zone
-            if (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(),
-                    agent->getPosition().getY(), 0) == colorZone) {
-                if (minTime > timeSteps) {
-                    GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
-                }
-                else {
-                    CCLOG("goal completed");
-                    completed = true;
-                    if (timeSteps >= averageTime - desviation2Star and timeSteps <= averageTime + desviation2Star) {
-                        if (timeSteps >= averageTime - desviation3Star and timeSteps <= averageTime + desviation3Star) {
-                            // 3 STARS
-                            score = 3;
-                        }
-                        else {
-                            //2 STARS
-                            score = 2;
-                        }
-                    }
-                    else {
-                        //1 STAR
-                        score = 1;
-                    }
-                }
-            }
-        }
+    // not correct agent, exit
+    if(type!=agentType)
+    {
+        return false;
     }
+
+    int timeSteps = GameLevel::getInstance()->getTimeSteps();
+    // goal failed due to time
+    if (timeSteps > maxTime)
+    {
+        GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
+        return false;
+    }
+
+    // goal is completed if the agent is within the color coded zone for the goal
+    int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(), agent->getPosition().getY(), 0);
+    if(agentColorCode != colorZone)
+    {
+        return false;
+    }
+    
+    // the agent arrived before it had to be within the color coded goal zone
+    if (minTime > timeSteps)
+    {
+        GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
+        return false;
+    }
+            
+    completed = true;
+
+    // compute deviation
+    int diff = std::abs(averageTime-timeSteps);
+    if(diff<=desviation3Star)
+    {
+        score = 3;
+    }
+    else if(diff<=desviation2Star)
+    {
+        score = 2;
+    }
+    else
+    {
+        score = 1;
+    }
+    CCLOG("goal completed in step: %d average: %d diff: %d 3star: %d 2star: %d final score: %d", timeSteps, averageTime, diff, desviation3Star, desviation2Star, score);
+    return true;
 }
+

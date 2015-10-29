@@ -126,10 +126,8 @@ public:
     void popFrontAgentsPool(int type);
     void addAction(Act* act);
     void deleteAction(int i);
-    std::vector<Goal*> getGoals(void);
-    void setGoals(std::vector<Goal*> g);
+    std::vector<Goal*> & getGoals(void);
     void addGoal(Goal* g);
-    void deleteGoal(int i);
     std::vector<cocos2d::Point> getDeletedAgents(void);
     void setDeletedAgents(std::vector<cocos2d::Point> v);
     void addDeletedAgent(cocos2d::Point p);
@@ -186,7 +184,6 @@ public:
     bool paint = false;
     bool ended = false;
     float calcTime = 0;
-    int prevGoal = 0;
 
     void setModifiableAttr(int order, int attr) { _modifiableAtt.at(order) = attr; }
     const Levels & getModifiableAttr() const { return _modifiableAtt; }

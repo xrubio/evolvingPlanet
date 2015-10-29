@@ -245,24 +245,14 @@ void GameLevel::deleteAction(int i)
     actions.erase(actions.begin() + i);
 }
 
-std::vector<Goal*> GameLevel::getGoals(void)
+std::vector<Goal*> & GameLevel::getGoals(void)
 {
     return goals;
-}
-
-void GameLevel::setGoals(std::vector<Goal*> g)
-{
-    goals.swap(g);
 }
 
 void GameLevel::addGoal(Goal* g)
 {
     goals.push_back(g);
-}
-
-void GameLevel::deleteGoal(int i)
-{
-    goals.erase(goals.begin() + i);
 }
 
 std::vector<Point> GameLevel::getDeletedAgents(void)
@@ -541,7 +531,6 @@ void GameLevel::resetLevel(void)
 
     paint = false;
     ended = false;
-    prevGoal = 0;
     calcTime = 0;
 
     _agentDirections.clear();
@@ -598,7 +587,7 @@ void GameLevel::generateInitialAgents(int type)
     int minY = 319;
     int maxY = 0;
     for (int x = 0; x < 480; x++) {
-        for (int y = 0; y < 320; y++) {
+        for (int y = 1; y <= 320; y++) {
             if (gameplayMap->getValueAtGameplayMap(1, x, y, 0) == type) {
                 if (minX > x)
                     minX = x;
@@ -686,51 +675,51 @@ void GameLevel::computeOffspring( int type )
 
 void GameLevel::checkGoals()
 {
-    bool exit = false;
-    for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end() and exit == false; it++)
+    int goalToCheck = -1;
+    // goalToCheck is the first goal not completed (they are sequential)
+    for(size_t j=0; j<goals.size(); j++)
     {
-        for (size_t j = 0; j < goals.size() and exit == false; j++)
+        if(!goals.at(j)->getCompleted())
         {
-            if (goals[j]->getCompleted() == false)
-            {
-                goals[j]->checkGoal(0, *it);
-                exit = true;
-            }
+            goalToCheck = j;
+            break;
         }
     }
-            
-    //CHECK IF ALL GOALS COMPLETED
-    bool failed = false;
-    int finalScore = 0;
-    for (size_t j = 0; j < goals.size() and failed == false; j++)
+
+    CCLOG("checking goal %d of %d", goalToCheck, goals.size());
+    bool nextGoalAchieved = false;
+    for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end(); it++)
     {
-        if (goals[j]->getCompleted() == false)
+        // as soon as one agent completes the goal then stop checks 
+        if(goals.at(goalToCheck)->checkGoal(0, *it))
         {
-            if (prevGoal < j)
-            {
-                gameplayMap->moveGoalPopup(int(j));
-                prevGoal = int(j);
-            }
-            failed = true;
-        }
-        else
-        {
-            finalScore += goals[j]->getScore();
-            //COMPLETING LAST GOAL ANIMATION
-            if (j == goals.size() - 1)
-            {
-                gameplayMap->moveGoalPopup(int(j) + 1);
-            }
+            nextGoalAchieved = true;
+            break;
         }
     }
-    if(!failed and !goals.empty())
+
+    if(nextGoalAchieved)
     {
-        CCLOG("FINAL SCORE: %i", (finalScore/int(goals.size())));
-        GameData::getInstance()->setLevelScore(numLevel, finalScore / goals.size());
-        _finishedGame = Success;
-        return;
-    }
+        // update gui
+        gameplayMap->moveGoalPopup(goalToCheck);
     
+        // check if this was the last goal
+        if(goalToCheck==(goals.size()-1))
+        {
+            // compute final score
+            int finalScore = 0;
+            for(size_t j=0; j<goals.size(); j++)
+            {
+                finalScore += goals.at(j)->getScore();
+            }
+            int averagedScore = int(finalScore/goals.size());
+            CCLOG("FINAL SCORE: %d", averagedScore);
+            GameData::getInstance()->setLevelScore(numLevel, averagedScore);
+            _finishedGame = Success;
+            return;
+        }
+    }
+    // mission finished due to extinction
     bool noAgentsLeft = _agents.at(0).empty();
     if(_finishedGame==Running and noAgentsLeft)
     {

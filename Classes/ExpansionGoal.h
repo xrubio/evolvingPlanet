@@ -42,7 +42,8 @@ public:
     Position getCenterArea(void);
     void setCenterArea(int x, int y);
 
-    void checkGoal(int type, Agent* agent);
+    // returns true if agent of type completes the goal this step
+    bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
     {
         return Expansion;

@@ -40,7 +40,7 @@ public:
     int getCurrentAmount(void);
     void setCurrentAmount(int currAm);
 
-    void checkGoal(int type, Agent* agent);
+    bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
     {
         return Collection;

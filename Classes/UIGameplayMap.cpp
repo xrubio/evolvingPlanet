@@ -293,46 +293,85 @@ bool UIGameplayMap::init()
     }
 
     //SET GOALS ON MAP
-    for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
+    for (size_t i=0; i<GameLevel::getInstance()->getGoals().size(); i++)
+    {
+        Goal * goal = GameLevel::getInstance()->getGoals().at(i);
         //Set Checkpoint Area
-        if (GameLevel::getInstance()->getGoals()[i]->getGoalType() == Expansion) {
-            //FIND AREA
-            int minX = 479;
-            int maxX = 0;
-            int minY = 319;
-            int maxY = 0;
-            for (int x = 0; x < 480; x++) {
-                for (int y = 0; y < 320; y++) {
-                    if (getValueAtGameplayMap(1, x, y, 0) == ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->getColorZone()) {
-                        if (minX > x)
-                            minX = x;
-                        if (maxX < x)
-                            maxX = x;
-                        if (minY > y)
-                            minY = y;
-                        if (maxY < y)
-                            maxY = y;
-                    }
+        if(goal->getGoalType()!= Expansion)
+        {
+            CCLOG("Goal type still not implemented TODO");
+            continue;
+        }
+        ExpansionGoal * expansionGoal = (ExpansionGoal*)(goal);
+            
+        //FIND AREA
+        int minX = 479;
+        int maxX = 0;
+        int minY = 319;
+        int maxY = 0;
+        for(int x = 0; x < 480; x++)
+        {
+            for(int y = 1; y <= 320; y++)
+            {
+                int goalCode = expansionGoal->getColorZone();
+                int valueAtMap = getValueAtGameplayMap(1,x,y,0);
+                CCLOG("\tchecking pos: %d/%d goalcode: %d valuemap: %d", x,y,goalCode,valueAtMap);
+                if(goalCode!=valueAtMap)
+                {
+                    continue;
+                }                    
+
+                // check limits
+                if(minX>x)
+                {
+                    CCLOG("\tupdating minX from %d to %d", minX, x);
+                    minX = x;
+                }
+                if(maxX<x)
+                {
+                    CCLOG("\tupdating maxX from %d to %d", maxX, x);
+                    maxX = x;
+                }
+
+                if(minY>y)
+                {
+                    CCLOG("\tupdating minY from %d to %d", minY, y);
+                    minY = y;
+                }
+                if(maxY<y)
+                {
+                    CCLOG("\tupdating maxY from %d to %d", maxY, y);
+                    maxY = y;
                 }
             }
-            ((ExpansionGoal*)GameLevel::getInstance()->getGoals()[i])->setCenterArea(maxX - ((maxX - minX) / 2), maxY - ((maxY - minY) / 2));
-            int x = (int)((maxX - ((maxX - minX) / 2)) * float(2048.0 / 480.0));
-            int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((maxY - ((maxY - minY) / 2)) * float(1365.0 / 320.0)));
-            auto area = Sprite::create("gui/CheckpointArea.png");
-            if (i == 0) {
-                auto blink = Blink::create(2, 2);
-                auto repeatBlink = RepeatForever::create(blink);
-                area->setColor(Color3B::WHITE);
-                area->runAction(repeatBlink);
-            }
-            else {
-                area->setColor(Color3B::RED);
-                area->setOpacity(0);
-            }
-            area->setPosition(x, y);
-            area->setTag(400 + int(i));
-            gameplayMap->addChild(area, 3);
         }
+
+        int centerX = maxX - ((maxX - minX) / 2);
+        int centerY = maxY - ((maxY - minY) / 2);
+        CCLOG("limits x: %d/%d y: %d/%d center: %d/%d", minX, maxX, minY, maxY, centerX, centerY);
+        expansionGoal->setCenterArea(centerX, centerY);
+
+        int x = (int)(centerX * float(2048.0 / 480.0));
+        int y = (int)(float((1536.0 - 1365.0) / 2.0) + (centerY * float(1365.0 / 320.0)));
+
+        auto area = Sprite::create("gui/CheckpointArea.png");
+//        if(i == 0)
+        {
+            auto blink = Blink::create(2, 2);
+            auto repeatBlink = RepeatForever::create(blink);
+            area->setColor(Color3B::WHITE);
+            area->runAction(repeatBlink);
+        }
+        if(i!=0)
+//        else
+        {
+            area->setColor(Color3B::RED);
+//            area->setOpacity(0);
+        }
+        CCLOG("goal %d pos: %d/%d", i, x, y);
+        area->setPosition(x, y);
+        area->setTag(400 + int(i));
+        gameplayMap->addChild(area, 3);        
     }
 
     //TIME PROGRESS BAR
@@ -1303,16 +1342,24 @@ bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
 
 void UIGameplayMap::moveGoalPopup(int index)
 {
-    if (GameLevel::getInstance()->getGoals()[index - 1]->getGoalType() == Expansion) {
-        auto area = gameplayMap->getChildByTag(400 + index - 1);
-        area->stopAllActions();
-        area->setVisible(true);
-        area->setColor(Color3B(223, 211, 39));
-        auto fadeOut = FadeOut::create(2.5);
-        area->runAction(fadeOut);
+    Goal * goal = GameLevel::getInstance()->getGoals().at(index);
+    if(goal->getGoalType() != Expansion)
+    {
+        CCLOG("goal not expansion, not implemented TODO");
+        return;
     }
-    if (index < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals()[index]->getGoalType() == Expansion) {
-        auto nextArea = gameplayMap->getChildByTag(400 + index);
+
+    auto area = gameplayMap->getChildByTag(400+index);
+    area->stopAllActions();
+    area->setVisible(true);
+    area->setColor(Color3B(223, 211, 39));
+    auto fadeOut = FadeOut::create(2.5);
+    area->runAction(fadeOut);
+
+    // if it's not the last goal, highlight the next one
+    if(index!=(GameLevel::getInstance()->getGoals().size()-1))
+    {
+        auto nextArea = gameplayMap->getChildByTag(400+index+1);
         auto blink = Blink::create(2, 2);
         auto repeatBlink = RepeatForever::create(blink);
         nextArea->setColor(Color3B::WHITE);

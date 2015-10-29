@@ -52,34 +52,49 @@ void CollectionGoal::setCurrentAmount(int currAm)
     currentAmount = currAm;
 }
 
-void CollectionGoal::checkGoal(int type, Agent* agent)
-{
+bool CollectionGoal::checkGoal(int type, Agent* agent)
+{ 
+    // not correct agent, exit
+    if(type!=agentType)
+    {
+        return false;
+    }
+
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
-    if (timeSteps > maxTime) {
+    // goal failed due to time
+    if (timeSteps > maxTime)
+    {
         GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
+        return false;
     }
-    else {
-        if (currentAmount >= goalAmount) {
-            if (minTime > timeSteps) {
-                GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
-            }
-            else {
-                completed = true;
-                if (timeSteps >= averageTime - desviation2Star and timeSteps <= averageTime + desviation2Star) {
-                    if (timeSteps >= averageTime - desviation3Star and timeSteps <= averageTime + desviation3Star) {
-                        // 3 STARS
-                        score = 3;
-                    }
-                    else {
-                        //2 STARS
-                        score = 2;
-                    }
-                }
-                else {
-                    //1 STAR
-                    score = 1;
-                }
-            }
-        }
+
+    if(currentAmount<goalAmount)
+    {
+        return false;
     }
+    
+    // resources collected they had to be 
+    if (minTime > timeSteps)
+    {
+        GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
+        return false;
+    }
+
+    completed = true;   
+    int diff = std::abs(averageTime-timeSteps);
+    if(diff<=desviation3Star)
+    {
+        score = 3;
+    }
+    else if(diff<=desviation2Star)
+    {
+        score = 2;
+    }
+    else
+    {
+        score = 1;
+    }
+    CCLOG("goal completed in step: %d average: %d diff: %d 3star: %d 2star: %d final score: %d", timeSteps, averageTime, diff, desviation3Star, desviation2Star, score);
+    return true;
 }
+

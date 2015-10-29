@@ -59,7 +59,7 @@ public:
     void setScore(int s);
     virtual GoalType getGoalType() const = 0;
 
-    virtual void checkGoal(int type = 0, Agent* agent = nullptr) = 0;
+    virtual bool checkGoal(int type = 0, Agent* agent = nullptr) = 0;
 
 protected:
     int agentType;
