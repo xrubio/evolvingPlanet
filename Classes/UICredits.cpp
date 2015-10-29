@@ -90,17 +90,75 @@ bool UICredits::init()
                                   13.5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(configLabel);
     
-    Vector<MenuItem*> languageItems;
-    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE"), "fonts/BebasNeue.otf", 80);
-    languageLabel->setColor(Color3B(72, 108, 118));
-    languageLabel->setAnchorPoint(Vec2(1, 0.5));
-    languageLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(languageLabel);
+    auto programmerLabel = Label::createWithTTF(LocalizedString::create("PROGRAMMER"), "fonts/BebasNeue.otf", 80);
+    programmerLabel->setColor(Color3B(72, 108, 118));
+    programmerLabel->setAnchorPoint(Vec2(0, 0.5));
+    programmerLabel->setPosition(Vec2(3 * popupBackground->getContentSize().width / 28, 11.7 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(programmerLabel);
+    auto xpLabel = Label::createWithTTF("Xavier Rubio", "fonts/BebasNeue.otf", 50);
+    xpLabel->setColor(Color3B(72, 108, 118));
+    xpLabel->setAnchorPoint(Vec2(0, 0.5));
+    xpLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 10.4 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(xpLabel);
+    auto gpLabel = Label::createWithTTF("Guillem Laborda", "fonts/BebasNeue.otf", 50);
+    gpLabel->setColor(Color3B(72, 108, 118));
+    gpLabel->setAnchorPoint(Vec2(0, 0.5));
+    gpLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 9.5 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(gpLabel);
     
+    auto designerLabel = Label::createWithTTF(LocalizedString::create("GRAPHIC_DESIGNER"), "fonts/BebasNeue.otf", 80);
+    designerLabel->setColor(Color3B(72, 108, 118));
+    designerLabel->setAnchorPoint(Vec2(0, 0.5));
+    designerLabel->setPosition(Vec2(3 * popupBackground->getContentSize().width / 28, 7.3 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(designerLabel);
+    auto gdLabel = Label::createWithTTF("Guillem H. Pongiluppi", "fonts/BebasNeue.otf", 50);
+    gdLabel->setColor(Color3B(72, 108, 118));
+    gdLabel->setAnchorPoint(Vec2(0, 0.5));
+    gdLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 6.2 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(gdLabel);
+    auto ddLabel = Label::createWithTTF("David Ramos", "fonts/BebasNeue.otf", 50);
+    ddLabel->setColor(Color3B(72, 108, 118));
+    ddLabel->setAnchorPoint(Vec2(0, 0.5));
+    ddLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 5.3 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(ddLabel);
     
-    auto menuLanguage = Menu::createWithArray(languageItems);
-    menuLanguage->setPosition(0, 0);
-    popupBackground->addChild(menuLanguage, 10);
+    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC_AND_SFX"), "fonts/BebasNeue.otf", 80);
+    musicLabel->setColor(Color3B(72, 108, 118));
+    musicLabel->setAnchorPoint(Vec2(0, 0.5));
+    musicLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 12 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(musicLabel);
+    auto gsLabel = Label::createWithTTF("Guillem Laborda", "fonts/BebasNeue.otf", 50);
+    gsLabel->setColor(Color3B(72, 108, 118));
+    gsLabel->setAnchorPoint(Vec2(0, 0.5));
+    gsLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 10.7 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(gsLabel);
+    
+    auto contentLabel = Label::createWithTTF(LocalizedString::create("CONTENT_AND_STORY"), "fonts/BebasNeue.otf", 80);
+    contentLabel->setColor(Color3B(72, 108, 118));
+    contentLabel->setAnchorPoint(Vec2(0, 0.5));
+    contentLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 8.5 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(contentLabel);
+    auto jcLabel = Label::createWithTTF("Jorge Caro", "fonts/BebasNeue.otf", 50);
+    jcLabel->setColor(Color3B(72, 108, 118));
+    jcLabel->setAnchorPoint(Vec2(0, 0.5));
+    jcLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 7.2 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(jcLabel);
+    auto xcLabel = Label::createWithTTF("Xavier Rubio", "fonts/BebasNeue.otf", 50);
+    xcLabel->setColor(Color3B(72, 108, 118));
+    xcLabel->setAnchorPoint(Vec2(0, 0.5));
+    xcLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 6.3 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(xcLabel);
+    
+    auto directorLabel = Label::createWithTTF(LocalizedString::create("DIRECTOR_AND_SLAVER"), "fonts/BebasNeue.otf", 80);
+    directorLabel->setColor(Color3B(72, 108, 118));
+    directorLabel->setAnchorPoint(Vec2(0, 0.5));
+    directorLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 4.1 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(directorLabel);
+    auto xdLabel = Label::createWithTTF("Xavier Rubio", "fonts/BebasNeue.otf", 50);
+    xdLabel->setColor(Color3B(72, 108, 118));
+    xdLabel->setAnchorPoint(Vec2(0, 0.5));
+    xdLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2.8 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(xdLabel);
     
     return true;
 }
