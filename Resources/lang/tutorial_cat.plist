@@ -52,11 +52,11 @@ La consola mostra un agregat de totes aquestes dades, fent-te la vida més fàci
 	<key>LEVEL1M20</key>
 	<string>Increase Resistance to 3 and the setup will be finished.</string>
 	<key>LEVEL1M21</key>
-	<string>It seems that we are set! At the beginning of a scenario the dispersion can be rather slow. Tap here to accelerate the metabolism of your agents.</string>
+	<string>It seems that we are set! Let's see if they survive with these traits</string>
 	<key>LEVEL1M22</key>
 	<string>Now that our population is striving let&apos;s suggest them where to expand; set the orientation marker within the goal zone</string>
 	<key>LEVEL1M23</key>
-	<string>As you can see you get new Evolution Points with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need. Continue tapping Fast Forward again.</string>
+	<string>As you can see you get new Evolution Points with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need.</string>
 	<key>LEVEL1M24</key>
 	<string>I suggest to start increasing Resistance and then focus on Mobility; your population needs to move a large amount of space if you want them to reach the goal before the time is over. Good luck commander!</string>
 	<key>LEVEL2M1</key>

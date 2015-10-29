@@ -49,9 +49,7 @@
         <spot centerX="0.95" centerY="0.94" radius="0.03"/>
     </message>
     <message id="22" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="10" text="LEVEL1M22" closesWhen="spot"/>
-    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23" closesWhen="tapButton" button="timeMenu/playToggle">
-        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
-    </message>
+    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23"/>
     <message id="24" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M24"/>
 </level>
 
