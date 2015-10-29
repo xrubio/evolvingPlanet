@@ -53,34 +53,32 @@ void CollectionGoal::setCurrentAmount(int currAm)
 }
 
 bool CollectionGoal::checkGoal(int type, Agent* agent)
-{ 
-    // not correct agent, exit
+{
     if(type!=agentType)
     {
         return false;
     }
-
+    
     int timeSteps = GameLevel::getInstance()->getTimeSteps();
     // goal failed due to time
-    if (timeSteps > maxTime)
-    {
+    if (timeSteps > maxTime) {
         GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
         return false;
     }
-
-    if(currentAmount<goalAmount)
+    
+    if (currentAmount<goalAmount)
     {
         return false;
     }
     
-    // resources collected they had to be 
+    // resources collected they had to be
     if (minTime > timeSteps)
     {
         GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
         return false;
     }
-
-    completed = true;   
+    
+    completed = true;
     int diff = std::abs(averageTime-timeSteps);
     if(diff<=desviation3Star)
     {
@@ -97,4 +95,3 @@ bool CollectionGoal::checkGoal(int type, Agent* agent)
     CCLOG("goal completed in step: %d average: %d diff: %d 3star: %d 2star: %d final score: %d", timeSteps, averageTime, diff, desviation3Star, desviation2Star, score);
     return true;
 }
-

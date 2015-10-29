@@ -106,7 +106,7 @@ void Reproduce::execute(Agent* agent)
             }
             if (maxIterations > 0)
             {
-                Agent* ag = GameLevel::getInstance()->getAgentsPool()[type].front();
+                Agent* ag = GameLevel::getInstance()->getAgentsPool().at(type).front();
                 GameLevel::getInstance()->popFrontAgentsPool(type);
                 ag->setId(GameLevel::getInstance()->getIdCounter());
                 ag->setLife(200);

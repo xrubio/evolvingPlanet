@@ -67,17 +67,17 @@ vector< vector<Achievement*> > GameData::getAchievements(void)
 
 vector<Achievement*> GameData::getAchievements(int i)
 {
-    return achievements[i];
+    return achievements.at(i);
 }
 
 void GameData::setAchievements(int i, vector<Achievement*> ach)
 {
-    achievements[i].swap(ach);
+    achievements.at(i).swap(ach);
 }
 
 int GameData::getLevelScore(int level)
 {
-    return levelsCompleted[level];
+    return levelsCompleted.at(level);
 }
 
 void GameData::setLevelScore(int level, int score)
@@ -101,7 +101,7 @@ void GameData::setLevelScore(int level, int score)
     }
     else
     {
-        if (score > levelsCompleted[level]) {
+        if (score > levelsCompleted.at(level)) {
             levelsCompleted[level] = score;
         }
     }
@@ -271,7 +271,7 @@ void GameData::loadAchievements(void)
             key = to_string(level) + "_" + goalType;
             
             auto ach = new LevelAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
-            achievements[level].push_back(ach);
+            achievements.at(level).push_back(ach);
         }
         //PROGRESS ACHIEVEMENT
         else if (strncmp(achs.attribute("TYPE").value(), "PROGRESS", 8) == 0) {
@@ -284,7 +284,7 @@ void GameData::loadAchievements(void)
             key = to_string(level) + "_" + goalType;
                         
             auto ach = new ProgressAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
-            achievements[0].push_back(ach);
+            achievements.at(0).push_back(ach);
         }
         
         achs = achs.next_sibling("ACHIEVEMENT");
@@ -307,9 +307,9 @@ void GameData::resetGameProgress(void)
     }
     for (int i = 0; i < achievements.size(); i++)
     {
-        for (int j = 0; j < achievements[i].size(); j++)
+        for (int j = 0; j < achievements.at(i).size(); j++)
         {
-            cocos2d::UserDefault::getInstance()->setBoolForKey((to_string(achievements[i][j]->getLevel())+"_"+achievements[i][j]->getGoalType()).c_str(), false);
+            cocos2d::UserDefault::getInstance()->setBoolForKey((to_string(achievements.at(i).at(j)->getLevel())+"_"+achievements.at(i).at(j)->getGoalType()).c_str(), false);
         }
     }
     achievements.clear();

@@ -28,6 +28,10 @@
 	<string>LANGUAGE</string>
 	<key>CREDITS</key>
 	<string>CREDITS</string>
+	<key>EXTRAS</key>
+	<string>EXTRAS</string>
+	<key>STORY</key>
+	<string>STORY</string>
 	<key>GOALS</key>
 	<string>GOALS</string>
 	<key>ERA</key>

@@ -29,6 +29,7 @@
 #define __simulplay__UICredits__
 
 #include "UIMainMenu.h"
+#include "GameData.h"
 
 class UICredits : public Layer {
 public:

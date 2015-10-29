@@ -82,14 +82,14 @@ void Collect::execute(Agent* agent)
     Power* pRest = nullptr;
     for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
-        PowerId powerId = GameLevel::getInstance()->getPowers()[i]->getId();
+        PowerId powerId = GameLevel::getInstance()->getPowers().at(i)->getId();
         if (powerId == RecollectionBoost)
         {
-            p = GameLevel::getInstance()->getPowers()[i];
+            p = GameLevel::getInstance()->getPowers().at(i);
         }
         else if (powerId == RestoreLand)
         {
-            pRest = GameLevel::getInstance()->getPowers()[i];
+            pRest = GameLevel::getInstance()->getPowers().at(i);
         }
     }
     if (p != nullptr and p->getDurationLeft() > 0) {
@@ -104,7 +104,7 @@ void Collect::execute(Agent* agent)
     }
 
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++) {
-        if (GameLevel::getInstance()->getGoals()[i]->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getGoalAmount() > 0) {
+        if (GameLevel::getInstance()->getGoals().at(i)->getAgentType() == type and ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getGoalAmount() > 0) {
             int mapSelector = 0;
             if (GameLevel::getInstance()->getDepleted(agent->getPosition().getX(), agent->getPosition().getY())) {
                 mapSelector = 1;
@@ -113,7 +113,7 @@ void Collect::execute(Agent* agent)
                 mapSelector = 2;
             }
 
-            ((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->setCurrentAmount(((CollectionGoal*)GameLevel::getInstance()->getGoals()[i])->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition().getX(), agent->getPosition().getY(), 1) * efficiency));
+            ((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->setCurrentAmount(((CollectionGoal*)GameLevel::getInstance()->getGoals().at(i))->getCurrentAmount() + (GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(mapSelector, agent->getPosition().getX(), agent->getPosition().getY(), 1) * efficiency));
         }
     }
 }

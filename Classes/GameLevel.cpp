@@ -84,7 +84,7 @@ void GameLevel::setMaxAgents(std::vector<int> max)
 
 int GameLevel::getMaxAgent(int type)
 {
-    return maxAgents[type];
+    return maxAgents.at(type);
 }
 
 void GameLevel::setMaxAgent(int type, int max)
@@ -104,7 +104,7 @@ void GameLevel::setNumInitialAgents(std::vector<int> ini)
 
 int GameLevel::getNumInitialAgent(int type)
 {
-    return numInitialAgents[type];
+    return numInitialAgents.at(type);
 }
 
 void GameLevel::setNumInitialAgent(int type, int ini)
@@ -134,7 +134,7 @@ void GameLevel::setNumLevel(int lvl)
 
 int GameLevel::getAgentAttribute(int type, int key)
 {
-    return _agentAttributes.at(type)[key];
+    return _agentAttributes.at(type).at(key);
 }
 
 void GameLevel::setAgentAttribute(int type, int key, int level)
@@ -212,7 +212,7 @@ void GameLevel::addAgent(Agent* ag)
         std::list<Agent*> v;
         _agents.push_back(v);
     }
-    _agents[ag->getType()].push_back(ag);
+    _agents.at(ag->getType()).push_back(ag);
     _agentsMap[ag->getPosition().getX()][ag->getPosition().getY()] = ag;
 }
 
@@ -222,7 +222,7 @@ void GameLevel::deleteAgent(Agent* agent)
     int posx = agent->getPosition().getX();
     int posy = agent->getPosition().getY();
     _agentsMap[posx][posy] = nullptr;
-    _agentsPool[type].push_back(agent);
+    _agentsPool.at(type).push_back(agent);
 }
 
 std::vector<std::list<Agent*> > GameLevel::getAgentsPool(void)
@@ -232,7 +232,7 @@ std::vector<std::list<Agent*> > GameLevel::getAgentsPool(void)
 
 void GameLevel::popFrontAgentsPool(int type)
 {
-    _agentsPool[type].pop_front();
+    _agentsPool.at(type).pop_front();
 }
 
 void GameLevel::addAction(Act* act)
@@ -402,7 +402,7 @@ void GameLevel::setMaxAllAgents(int m)
 
 void GameLevel::setAgentDirection(int agentType, cocos2d::Point p)
 {
-    _agentDirections[agentType] = p;
+    _agentDirections.at(agentType) = p;
 }
 
 void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
@@ -412,7 +412,7 @@ void GameLevel::setAgentFutureDirection(int type, int step, cocos2d::Point p)
         std::vector<pair<int, cocos2d::Point> > v;
         _agentFutureDirections.push_back(v);
     }
-    _agentFutureDirections[type].push_back(par);
+    _agentFutureDirections.at(type).push_back(par);
 }
 
 void GameLevel::setAgentPixelSize(int i)
@@ -464,10 +464,10 @@ void GameLevel::playLevel(void)
             size_t numAgents = 0;
             for (size_t i = 0; i < _agents.size(); i++)
             {
-                numAgents += _agents[i].size();
+                numAgents += _agents.at(i).size();
             }
 
-            CCLOG("%d;%d;%f", timeSteps, numAgents, float(clock() - stepTime) / CLOCKS_PER_SEC);
+            CCLOG("%d;%zu;%f", timeSteps, numAgents, float(clock() - stepTime) / CLOCKS_PER_SEC);
             calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
             /*try {
                 if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
@@ -559,7 +559,7 @@ void GameLevel::createLevel(void)
 
 void GameLevel::setAttributesToInitialAgents(void)
 {
-    std::list<Agent*> agents = _agents[0];
+    std::list<Agent*> agents = _agents.at(0);
     for(std::list<Agent*>::iterator it=agents.begin(); it!=agents.end(); it++)
     {
         (*it)->copyValues(0);
@@ -570,7 +570,7 @@ void GameLevel::initializeAgentsPool(void)
 {
     for (int i = 0; i < maxAgents.size(); i++) {
         std::list<Agent*> l_agent;
-        for (int j = 0; j < maxAgents[i]; j++) {
+        for (int j = 0; j < maxAgents.at(i); j++) {
             l_agent.push_back(new Agent());
         }
         _agentsPool.push_back(l_agent);
@@ -600,7 +600,7 @@ void GameLevel::generateInitialAgents(int type)
     }
 
     int i = 0;
-    while (i < numInitialAgents[type])
+    while (i < numInitialAgents.at(type))
     {
         int posx = random(minX, maxX);
         int posy = random(minY, maxY);
@@ -608,8 +608,8 @@ void GameLevel::generateInitialAgents(int type)
         {
             continue;
         }
-        Agent* a = _agentsPool[type].front();
-        _agentsPool[type].pop_front();
+        Agent* a = _agentsPool.at(type).front();
+        _agentsPool.at(type).pop_front();
         a->setId(idCounter);
         a->setLife(100);
         a->setType(type);
@@ -653,11 +653,11 @@ void GameLevel::computeOffspring( int type )
         Power* p = nullptr;
         for (size_t i = 0; i < getPowers().size(); i++)
         {
-            if (getPowers()[i]->getId() != ReproductionBoost)
+            if (getPowers().at(i)->getId() != ReproductionBoost)
             {
                 continue;
             }
-            p = getPowers()[i];
+            p = getPowers().at(i);
         }
         if (p != nullptr and p->getDurationLeft() > 0)
         {
@@ -679,27 +679,27 @@ void GameLevel::checkGoals()
     {
         if(!goals.at(j)->getCompleted())
         {
-            goalToCheck = j;
+            goalToCheck = int(j);
             break;
         }
     }
-
+    
     bool nextGoalAchieved = false;
     for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end(); it++)
     {
-        // as soon as one agent completes the goal then stop checks 
+        // as soon as one agent completes the goal then stop checks
         if(goals.at(goalToCheck)->checkGoal(0, *it))
         {
             nextGoalAchieved = true;
             break;
         }
     }
-
+    
     if(nextGoalAchieved)
     {
         // update gui
         gameplayMap->moveGoalPopup(goalToCheck);
-    
+        
         // check if this was the last goal
         if(goalToCheck==(goals.size()-1))
         {
@@ -716,6 +716,7 @@ void GameLevel::checkGoals()
             return;
         }
     }
+    
     // mission finished due to extinction
     bool noAgentsLeft = _agents.at(0).empty();
     if(_finishedGame==Running and noAgentsLeft)
@@ -727,16 +728,16 @@ void GameLevel::checkGoals()
 void GameLevel::updateDirections(int type)
 {        
     //CHECK DIRECTION
-    if(_agentFutureDirections.empty() or _agentFutureDirections[type].empty())
+    if(_agentFutureDirections.empty() or _agentFutureDirections.at(type).empty())
     {
         return;
     }
-    if(timeSteps != _agentFutureDirections[type][0].first)
+    if(timeSteps != _agentFutureDirections.at(type).at(0).first)
     {
         return;
     }
-    _agentDirections[type] = _agentFutureDirections[type][0].second;
-    _agentFutureDirections[type].erase(_agentFutureDirections[type].begin());
+    _agentDirections.at(type) = _agentFutureDirections.at(type).at(0).second;
+    _agentFutureDirections.at(type).erase(_agentFutureDirections.at(type).begin());
 }
 
 void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
@@ -753,11 +754,11 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
         Power* p = nullptr;
         for (size_t i = 0; i < getPowers().size(); i++)
         {
-            if(getPowers()[i]->getId() != ResistanceBoost)
+            if(getPowers().at(i)->getId() != ResistanceBoost)
             {
                 continue;
             }
-           p = getPowers()[i];
+           p = getPowers().at(i);
         }
         if(p != nullptr and p->getDurationLeft() > 0)
         {
@@ -802,7 +803,7 @@ void GameLevel::executeActions(int type)
     {
         for(size_t j=0; j<actions.size(); j++)
         {
-            actions[j]->execute(*it);
+            actions.at(j)->execute(*it);
         }
     }
 }
@@ -936,22 +937,21 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
 
 void GameLevel::checkAchievements(void)
 {
-
-    #if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
     CCLOG("WARNING: Achievements implemented only for IOS");
     return;
-    #endif    
-
+#endif
+    
     vector<Achievement*> progressAchs = GameData::getInstance()->getAchievements(0);
     vector<Achievement*> levelAchs = GameData::getInstance()->getAchievements(numLevel);
     
     for (int i = 0; i < progressAchs.size(); i++)
     {
-        if (progressAchs[i]->getCompleted() == false)
+        if (progressAchs.at(i)->getCompleted() == false)
         {
-            if (((ProgressAchievement*)progressAchs[i])->checkAchievement(progressAchs[i]->getGoalType(), 0) == true)
+            if (((ProgressAchievement*)progressAchs.at(i))->checkAchievement(progressAchs.at(i)->getGoalType(), 0) == true)
             {
-                string key = to_string(0) + "_" + progressAchs[i]->getGoalType();
+                string key = to_string(0) + "_" + progressAchs.at(i)->getGoalType();
                 completedAchievements.push_back(key);
                 UserDefault::getInstance()->setBoolForKey(key.c_str(), true);
             }
@@ -960,11 +960,11 @@ void GameLevel::checkAchievements(void)
 
     for (int i = 0; i < levelAchs.size(); i++)
     {
-        if (levelAchs[i]->getCompleted() == false)
+        if (levelAchs.at(i)->getCompleted() == false)
         {
-            if (((LevelAchievement*)levelAchs[i])->checkAchievement(levelAchs[i]->getGoalType(), numLevel) == true)
+            if (((LevelAchievement*)levelAchs.at(i))->checkAchievement(levelAchs.at(i)->getGoalType(), numLevel) == true)
             {
-                string key = to_string(numLevel) + "_" + levelAchs[i]->getGoalType();
+                string key = to_string(numLevel) + "_" + levelAchs.at(i)->getGoalType();
                 completedAchievements.push_back(key);
                 UserDefault::getInstance()->setBoolForKey(key.c_str(), true);
             }

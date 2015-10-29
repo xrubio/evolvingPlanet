@@ -66,6 +66,8 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             std::string text = LocalizedString::create(message.attribute("text").value(), "tutorial");
             std::string image = message.attribute("image").value();
             Message * newMessage = 0;
+            // add a dummy message if spot due to double tap (2 taps are added so we need to "swallow" a dummy one to prevent closing the next message.)
+            bool addDummy = false;
             if(trigger=="next")
             { 
                 newMessage = new MessageNext(text, xPos, yPos, lineBreak, image);
@@ -85,6 +87,10 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
                     std::string button = message.attribute("button").value();
                     newMessage->setPostConditionButtonTap(button);
                 }
+                else if(condition=="spot")
+                {
+                    addDummy = true;
+                }
             }
 
             // add spots (if any)
@@ -99,6 +105,11 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             }
 
             _messages.push_back(newMessage);
+            if(addDummy)
+            {
+                Message * dummy = new MessageNext("", xPos, yPos, lineBreak, "");
+                _messages.push_back(dummy);
+            }
             message = message.next_sibling("message");
         }
     }

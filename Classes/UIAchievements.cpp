@@ -106,7 +106,7 @@ bool UIAchievements::init()
     vector< vector<Achievement*> > achs = GameData::getInstance()->getAchievements();
     int k = 0;
     for (int i = 0; i < achs.size(); i++) {
-        for (int j = 0; j < achs[i].size(); j++)
+        for (int j = 0; j < achs.at(i).size(); j++)
         {
             auto model = ui::Button::create();
             model->addTouchEventListener(CC_CALLBACK_2(UIAchievements::showAchievement, this));
@@ -120,7 +120,7 @@ bool UIAchievements::init()
             auto icon = Sprite::create("gui/AchievementIconOff.png");
             icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
             model->addChild(icon);
-            string key = to_string(i) + "_" + achs[i][j]->getGoalType();
+            string key = to_string(i) + "_" + achs.at(i).at(j)->getGoalType();
             auto title = Label::createWithTTF(LocalizedString::create(string("TITLE_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 47);
             title->setColor(Color3B(190, 221, 226));
             title->setAnchorPoint(Vec2(0, 0.5));
@@ -133,7 +133,7 @@ bool UIAchievements::init()
             text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));
             model->addChild(text);
             model->setName(to_string(i) + "-" + to_string(j));
-            model->setEnabled(achs[i][j]->getCompleted());
+            model->setEnabled(achs.at(i).at(j)->getCompleted());
             k++;
         }
     }
@@ -223,7 +223,7 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         size_t dash = selectedAchievement->getName().find("-");
         int i = atoi(selectedAchievement->getName().substr(0, dash).c_str());
         int j = atoi(selectedAchievement->getName().substr(dash + 1).c_str());
-        auto ach = GameData::getInstance()->getAchievements()[i][j];
+        auto ach = GameData::getInstance()->getAchievements().at(i).at(j);
         size_t pos = ach->getResource().find("/");
         string resourceType = ach->getResource().substr(0, pos);
         string resource = ach->getResource().substr(pos);

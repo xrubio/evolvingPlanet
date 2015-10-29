@@ -42,6 +42,8 @@ public:
 
     void menuContinueCallback(Ref* pSender);
     void menuStartCallback(Ref* pSender);
+    void menuExtrasCallback(Ref* pSender);
+    void menuStoryCallback(Ref* pSender);
     void menuAchievementsCallback(Ref* pSender);
     void menuConfigurationCallback(Ref* pSender);
     void menuCreditsCallback(Ref* pSender);

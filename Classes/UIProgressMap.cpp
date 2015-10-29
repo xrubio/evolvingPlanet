@@ -280,10 +280,10 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     vector<string> goalTypes = loader.getGoalTypes("level" + to_string(tag));
     for (size_t i = 0; i < goalTypes.size(); i++) {
         Sprite* iconLevel;
-        if (goalTypes[i] == "Expansion") {
+        if (goalTypes.at(i) == "Expansion") {
             iconLevel = Sprite::create("gui/ExpansionGoalIcon.png");
         }
-        else if (goalTypes[i] == "Collection") {
+        else if (goalTypes.at(i) == "Collection") {
             iconLevel = Sprite::create("gui/CollectionGoalIcon.png");
         }
         iconLevel->setAnchorPoint(Vec2(1, 0.75));

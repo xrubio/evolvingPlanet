@@ -413,7 +413,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     for(size_t i=0; i<GameLevel::getInstance()->getModifiableAttr().size(); i++)
     {
         //ATRIBUT MODIFICABLE
-        auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr()[i]).c_str()) + ":    Explicació de l'atribut",
+        auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr().at(i)).c_str()) + ":    Explicació de l'atribut",
                                          "fonts/BebasNeue.otf", 60);
         attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (i * 2)) * visibleSize.height / 31));
         attLabel->setColor(Color3B(211, 230, 236));
@@ -431,13 +431,13 @@ void UIGoals::setLevelGoals(Layout* layout)
     
     for(size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
-        if (GameLevel::getInstance()->getPowers()[i]->getType() == "Global") {
-            auto power = new UIGlobalPower(GameLevel::getInstance()->getPowers()[i]);
+        if (GameLevel::getInstance()->getPowers().at(i)->getType() == "Global") {
+            auto power = new UIGlobalPower(GameLevel::getInstance()->getPowers().at(i));
             power->setPosition(9 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31);
             layout->addChild(power->getIcon());
         }
-        else if (GameLevel::getInstance()->getPowers()[i]->getType() == "Area") {
-            auto power = new UIAreaPower(GameLevel::getInstance()->getPowers()[i]);
+        else if (GameLevel::getInstance()->getPowers().at(i)->getType() == "Area") {
+            auto power = new UIAreaPower(GameLevel::getInstance()->getPowers().at(i));
             power->setPosition(9 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31);
             layout->addChild(power->getIcon());
         }

@@ -122,7 +122,7 @@ bool UIMainMenu::init()
                                      (10 * visibleSize.height / 18)));
         auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 50);
         continueLabel->setColor(Color3B(219, 234, 241));
-        continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
+        continueLabel->setPosition(1.1 * continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
         continueButton->addChild(continueLabel);
         continueButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
         menuButtons.pushBack(continueButton);
@@ -141,30 +141,82 @@ bool UIMainMenu::init()
     {
         startButton->setPosition(Vec2((2 * visibleSize.width / 25), (10 * visibleSize.height / 18)));
     }
-    auto startLabel = Label::createWithTTF(LocalizedString::create("NEW_CAMPAIGN"), "fonts/BebasNeue.otf", 45);
+    auto startLabel = Label::createWithTTF(LocalizedString::create("NEW_CAMPAIGN"), "fonts/BebasNeue.otf", 42);
     startLabel->setColor(Color3B(219, 234, 241));
-    startLabel->setPosition(startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
+    startLabel->setPosition(1.1 * startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
     startButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     menuButtons.pushBack(startButton);
+    
+    auto extrasButton = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIMainMenu::menuExtrasCallback, this), MenuItemImage::create("gui/MainMenuStartButton.png", "gui/MainMenuStartButton.png"), MenuItemImage::create("gui/MainMenuStartButtonPressed.png", "gui/MainMenuStartButtonPressed.png"), NULL);
+    extrasButton->setAnchorPoint(Vec2(0, 0.5));
+    extrasButton->setName("extras");
+    extrasButton->setPosition(Vec2((2 * visibleSize.width / 25), startButton->getPositionY() - (1.5 * visibleSize.height / 18)));
+    auto extrasLabel = Label::createWithTTF(LocalizedString::create("EXTRAS"), "fonts/BebasNeue.otf", 50);
+    extrasLabel->setColor(Color3B(219, 234, 241));
+    extrasLabel->setPosition(extrasButton->getContentSize().width / 2, extrasButton->getContentSize().height / 2);
+    extrasButton->addChild(extrasLabel, 3);
+    extrasButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    extrasButton->setCascadeOpacityEnabled(true);
+    menuButtons.pushBack(extrasButton);
+    
+    auto storyButton = MenuItemImage::create("gui/MainMenuAchButton.png", "gui/MainMenuAchButtonPressed.png",
+                                             CC_CALLBACK_1(UIMainMenu::menuStoryCallback, this));
+    storyButton->setPosition(Vec2(extrasButton->getPositionX() + extrasButton->getBoundingBox().size.width,
+                                  extrasButton->getPositionY() - (1.2 * visibleSize.height / 18)));
+    storyButton->setName("story");
+    auto storyLabel = Label::createWithTTF(LocalizedString::create("STORY"), "fonts/BebasNeue.otf", 40);
+    storyLabel->setColor(Color3B(219, 234, 241));
+    storyLabel->setPosition(storyButton->getContentSize().width / 2, storyButton->getContentSize().height / 2);
+    storyButton->addChild(storyLabel);
+    storyButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    storyButton->setVisible(false);
+    menuButtons.pushBack(storyButton);
 
     auto achievementsButton = MenuItemImage::create(
         "gui/MainMenuAchButton.png", "gui/MainMenuAchButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuAchievementsCallback, this));
-    achievementsButton->setAnchorPoint(Vec2(1, 0.5));
-    achievementsButton->setPosition(Vec2(startButton->getPositionX() + startButton->getBoundingBox().size.width,
-        startButton->getPositionY() - (1.5 * visibleSize.height / 18)));
+    achievementsButton->setPosition(Vec2(extrasButton->getPositionX() + extrasButton->getBoundingBox().size.width,
+        storyButton->getPositionY() - (1.2 * visibleSize.height / 18)));
+    achievementsButton->setName("achievements");
     auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 40);
     achLabel->setColor(Color3B(219, 234, 241));
-    achLabel->setPosition(startButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
+    achLabel->setPosition(1.1 * achievementsButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
     achievementsButton->addChild(achLabel);
     achievementsButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    achievementsButton->setVisible(false);
     menuButtons.pushBack(achievementsButton);
-
+    
+    int pos = 1;
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    {
+        auto exitButton = MenuItemImage::create(
+                                                "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
+        exitButton->setAnchorPoint(Vec2(0, 0.5));
+        exitButton->setPosition(Vec2((21 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
+        auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 30);
+        exitLabel->setColor(Color3B(73, 109, 118));
+        exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
+        exitButton->addChild(exitLabel);
+        exitButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+        menuButtons.pushBack(exitButton);
+        pos = 2;
+    }
+    
+    auto creditsButton = MenuItemImage::create(
+                                               "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
+    creditsButton->setAnchorPoint(Vec2(0, 0.5));
+    creditsButton->setPosition(Vec2((21 * visibleSize.width / 25), (pos * visibleSize.height / 18)));
+    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 30);
+    credLabel->setColor(Color3B(73, 109, 118));
+    credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
+    creditsButton->addChild(credLabel);
+    creditsButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    menuButtons.pushBack(creditsButton);
+    
     auto configurationButton = MenuItemImage::create(
         "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
-    //configurationButton->setPosition(Vec2(2 * (visibleSize.width / 25), 3 * (visibleSize.height / 18)));
-    configurationButton->setPosition(Vec2((2 * visibleSize.width / 25), (2 * visibleSize.height / 18)));
+    configurationButton->setPosition(Vec2((21 * visibleSize.width / 25), ((pos + 1) * visibleSize.height / 18)));
     auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 30);
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
@@ -172,32 +224,8 @@ bool UIMainMenu::init()
     configurationButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
     menuButtons.pushBack(configurationButton);
 
-    auto creditsButton = MenuItemImage::create(
-        "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
-    creditsButton->setAnchorPoint(Vec2(0, 0.5));
-    creditsButton->setPosition(Vec2((2 * visibleSize.width / 25),
-        (2 * visibleSize.height / 18)));
-    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 30);
-    credLabel->setColor(Color3B(73, 109, 118));
-    credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
-    creditsButton->addChild(credLabel);
-    //menuButtons.pushBack(creditsButton);
-
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-    {
-    auto exitButton = MenuItemImage::create(
-        "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
-    exitButton->setAnchorPoint(Vec2(0, 0.5));
-    exitButton->setPosition(Vec2((2 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
-    auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 30);
-    exitLabel->setColor(Color3B(73, 109, 118));
-    exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
-    exitButton->addChild(exitLabel);
-    exitButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
-    menuButtons.pushBack(exitButton);
-    }
-
     auto menu = Menu::createWithArray(menuButtons);
+    menu->setName("menu");
     menu->setPosition(Vec2(0, 0));
     menu->setOpacity(0);
     auto fadeMenu = FadeIn::create(2.0);
@@ -280,6 +308,46 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
             }
             //ANIMACIO
+        }
+    }
+    else {
+        endActions();
+    }
+}
+
+void UIMainMenu::menuExtrasCallback(Ref* pSender)
+{
+    if (stoppedAnimation or allActionsFinished()) {
+        auto extrasButton = (MenuItemToggle*) pSender;
+        if (this->getChildByName("menu")->getChildByName("story")->isVisible() == false)
+        {
+            this->getChildByName("menu")->getChildByName("story")->setVisible(true);
+            this->getChildByName("menu")->getChildByName("achievements")->setVisible(true);
+            extrasButton->setSelectedIndex(1);
+        }
+        else
+        {
+            this->getChildByName("menu")->getChildByName("story")->setVisible(false);
+            this->getChildByName("menu")->getChildByName("achievements")->setVisible(false);
+            extrasButton->setSelectedIndex(0);
+        }
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+        }
+    }
+    else {
+        endActions();
+    }
+}
+
+void UIMainMenu::menuStoryCallback(Ref* pSender)
+{
+    if (stoppedAnimation or allActionsFinished()) {
+        auto scene = UICredits::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
     }
     else {
@@ -392,6 +460,9 @@ void UIMainMenu::endActions(void)
     p->resetSystem();
     this->getChildByTag(4)->stopAllActions();
     this->getChildByTag(4)->setOpacity(255);
+    this->getChildByName("menu")->getChildByName("extras")->stopAllActions();
+    this->getChildByName("menu")->getChildByName("extras")->setOpacity(255);
+
 }
 
 bool UIMainMenu::allActionsFinished(void)

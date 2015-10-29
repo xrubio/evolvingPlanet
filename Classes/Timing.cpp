@@ -73,7 +73,7 @@ void Timing::start(void)
                 //powerTime = clock();
                 gettimeofday(&powerTime, nullptr);
                 for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++) {
-                    Power* p = GameLevel::getInstance()->getPowers()[i];
+                    Power* p = GameLevel::getInstance()->getPowers().at(i);
                     if (p->getDurationLeft() == p->getDuration()) {
                         p->setCooldownLeft(p->getCooldown());
                     }

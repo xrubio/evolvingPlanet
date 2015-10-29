@@ -28,6 +28,10 @@
 	<string>IDIOMA</string>
 	<key>CREDITS</key>
 	<string>CRÈDITS</string>
+	<key>EXTRAS</key>
+	<string>EXTRES</string>
+	<key>STORY</key>
+	<string>HISTÒRIA</string>
 	<key>GOALS</key>
 	<string>OBJECTIUS</string>
 	<key>ERA</key>

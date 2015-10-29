@@ -43,20 +43,64 @@ bool UICredits::init()
     }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-    auto title = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/arial_rounded_mt_bold.ttf", 180);
-    title->setPosition(Vec2(origin.x + visibleSize.width / 2,
-        origin.y + visibleSize.height - ((visibleSize.height / 8))));
-    this->addChild(title, 1);
-
-    auto backButton = MenuItemImage::create(
-        "gui/BackButton.png", "gui/BackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
-
-    auto menu = cocos2d::Menu::createWithItem(backButton);
-    menu->setPosition(Vec2(origin.x + visibleSize.width - (backButton->getContentSize().width / 2),
-        origin.y + (backButton->getContentSize().height / 2)));
-    this->addChild(menu, 1);
+    
+    auto background = Sprite::create("gui/MainMenuBackground.png");
+    background->setPosition(Vec2(visibleSize.width / 2,
+                                 visibleSize.height / 2));
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    this->addChild(background, 0);
+    
+    auto title = Sprite::create("gui/MainMenuTitle.png");
+    title->setAnchorPoint(Vec2(0, 0.5));
+    title->setPosition(Vec2((2 * visibleSize.width / 25),
+                            (15 * visibleSize.height / 18)));
+    title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    this->addChild(title, 5, 0);
+    
+    auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
+    planet2->setScale(1.3);
+    planet2->setPosition(Vec2((18 * visibleSize.width / 40),
+                              (10 * visibleSize.height / 31)));
+    planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    this->addChild(planet2, 1, 2);
+    
+    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
+    this->addChild(popupBackground, 6);
+    
+    Vector<MenuItem*> menuButtons;
+    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
+    backButton->setAnchorPoint(Vec2(0, 0.5));
+    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
+    backLabel->setColor(Color3B(205, 202, 207));
+    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->addChild(backLabel);
+    menuButtons.pushBack(backButton);
+    
+    auto menu = Menu::createWithArray(menuButtons);
+    menu->setPosition(0, 0);
+    popupBackground->addChild(menu, 1, 20);
+    
+    auto configLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 100);
+    configLabel->setColor(Color3B(255, 255, 255));
+    configLabel->setAnchorPoint(Vec2(1, 0.5));
+    configLabel->setPosition(Vec2((popupBackground->getContentSize().width / 28) + backButton->getContentSize().width,
+                                  13.5 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(configLabel);
+    
+    Vector<MenuItem*> languageItems;
+    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE"), "fonts/BebasNeue.otf", 80);
+    languageLabel->setColor(Color3B(72, 108, 118));
+    languageLabel->setAnchorPoint(Vec2(1, 0.5));
+    languageLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(languageLabel);
+    
+    
+    auto menuLanguage = Menu::createWithArray(languageItems);
+    menuLanguage->setPosition(0, 0);
+    popupBackground->addChild(menuLanguage, 10);
     
     return true;
 }
