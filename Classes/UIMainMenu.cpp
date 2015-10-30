@@ -30,6 +30,7 @@
 #include "UIConfiguration.h"
 #include "UIProgressMap.h"
 #include "UIAchievements.h"
+#include "UIStoryGallery.h"
 #include "LocalizedString.h"
 #include "GameData.h"
 
@@ -50,7 +51,7 @@ bool UIMainMenu::init()
     if (!Layer::init()) {
         return false;
     }
-    
+        
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMap1Background.jpg");
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -344,7 +345,7 @@ void UIMainMenu::menuExtrasCallback(Ref* pSender)
 void UIMainMenu::menuStoryCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        auto scene = UICredits::createScene();
+        auto scene = UIStoryGallery::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {

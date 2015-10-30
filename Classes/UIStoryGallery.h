@@ -18,53 +18,41 @@
  */
 
 //
-//  UIProgressMap.h
-//  simulplay
+//  UIStoryGallery.h
+//  EvolvingPlanet
 //
-//  Created by Guillem Laborda on 13/08/14.
+//  Created by Guillem Laborda on 30/10/15.
 //
 //
 
-#ifndef __simulplay__UIProgressMap__
-#define __simulplay__UIProgressMap__
+#ifndef __simulplay__UIStoryGallery__
+#define __simulplay__UIStoryGallery__
 
-#include "UIMainMenu.h"
+#include "UIGameplayMap.h"
+#include "UIProgressMap.h"
 #include <ui/CocosGUI.h>
 
-using namespace cocos2d::ui;
+using namespace ui;
 
-#define NUM_ERAS 2
-
-class UIProgressMap : public Layer {
+class UIStoryGallery : public Layer {
 public:
     static Scene* createScene();
-
+    
     virtual bool init();
-
+    
     void menuBackCallback(Ref* pSender);
-    void menuLevelZoneCallback(Ref* pSender);
-    void menuLevelCallback(Ref* pSender);
-    void proceedLevelCallback(Ref* pSender);
-    void restoreProgressMap(Ref* pSender);
-    void menuEraCallback(Ref* pSender);
+    void menuArrowBackCallback(Ref* pSender);
+    void menuArrowNextCallback(Ref* pSender);
     
     virtual void update(float delta);
-
-    CREATE_FUNC(UIProgressMap);
-
+    
+    CREATE_FUNC(UIStoryGallery);
+    
 private:
     PageView* pages;
-
-    //Sprite* progressMap;
-    Sprite* selectedBackground;
-    int tagLevelSelected = 0;
+    MenuItemImage* arrowNext;
+    MenuItemImage* arrowBack;
     
-    Vector<MenuItem*> pagesIndicatorVec;
-    
-    Layout* setEpisode1(void);
-    Layout* setEpisode2(void);
-    void setStars(int level, MenuItemImage* levelButton);
-
 };
 
-#endif /* defined(__simulplay__UIProgressMap__) */
+#endif /* defined(__simulplay__UIStoryGallery__) */

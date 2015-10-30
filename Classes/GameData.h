@@ -83,7 +83,7 @@ private:
     GameData(){}; // Private so that it can not be called
 
     static GameData* gamedataInstance;
-    vector<int> levelsCompleted;
+    vector<int> levelsCompleted;     //pos = level
     //0 = progress achievements, 1-X = level achievements
     vector< vector<Achievement*> > achievements;
     bool gameStarted = false;

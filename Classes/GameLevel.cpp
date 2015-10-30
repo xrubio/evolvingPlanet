@@ -480,7 +480,7 @@ void GameLevel::playLevel(void)
         }
     }
     
-    //checkAchievements();
+    checkAchievements();
     
     ended = true;
     CCLOG("End of game: %i", _finishedGame);

@@ -28,6 +28,8 @@
 #include "UICredits.h"
 #include "LocalizedString.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 Scene* UICredits::createScene()
 {
     auto scene = Scene::create();
@@ -165,6 +167,9 @@ bool UICredits::init()
 
 void UICredits::menuBackCallback(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
     auto scene = UIMainMenu::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
