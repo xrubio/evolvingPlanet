@@ -48,6 +48,7 @@ bool UITransitionScene::init()
     
     auto image = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     image->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+    image->setScale(visibleSize.width / 2500);
     image->setName("image");
     image->setOpacity(0);
     this->addChild(image);

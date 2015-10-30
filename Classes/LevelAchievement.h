@@ -39,24 +39,27 @@ public:
     // TODO implement this method
     bool checkAchievement(string typeAch, int level)
     {
-        if (typeAch == "COMPLETED")
+        if (GameData::getInstance()->getLevelsCompleted().size() > level)
         {
-            if (GameData::getInstance()->getLevelScore(level) > 0)
+            if (typeAch == "COMPLETED")
             {
-                _completed = true;
-                return true;
+                if (GameData::getInstance()->getLevelScore(level) > 0)
+                {
+                    _completed = true;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            else if (typeAch == "PERFECT")
             {
-                return false;
-            }
-        }
-        else if (typeAch == "PERFECT")
-        {
-            if (GameData::getInstance()->getLevelScore(level) == 3)
-            {
-                _completed = true;
-                return true;
+                if (GameData::getInstance()->getLevelScore(level) == 3)
+                {
+                    _completed = true;
+                    return true;
+                }
             }
         }
         

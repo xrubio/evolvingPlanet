@@ -172,6 +172,25 @@ bool UIProgressMap::init()
         GameData::getInstance()->setFirstTimeLevelCompleted(0);
     }
     
+    auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                               "gui/ProgressMapHexagonLevelOff.png");
+    pageIndicator->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    unsigned long int numPages = (GameData::getInstance()->getLevelsCompleted().size() / 12) + 1;
+    int initialPosX = (visibleSize.width / 2) - ((numPages / 2) * (pageIndicator->getContentSize().width * 3));
+    int incrX = (pageIndicator->getContentSize().width * 3);
+    for (int i = 0; i < numPages; i++)
+    {
+        auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                "gui/ProgressMapHexagonLevelOff.png");
+        //pageIndicator->setColor(Color3B(120, 120, 120));
+        pageIndicator->setPosition(Vec2(initialPosX + incrX * i, visibleSize.height / 20));
+        pageIndicator->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        pageIndicator->setEnabled(false);
+        pageIndicator->setName("pageIndicator"+to_string(i));
+        this->addChild(pageIndicator, 1);
+        pagesIndicatorVec.pushBack(pageIndicator);
+    }
+    
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapBackButton.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapBackButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ArrowBack.png");
@@ -798,6 +817,18 @@ void UIProgressMap::update(float delta)
             arrowNext->setVisible(true);
             label->setString(LocalizedString::create("FIRST") + " " + LocalizedString::create("ERA"));
             break;
+        }
+    }
+    
+    for (int i = 0; i < pagesIndicatorVec.size(); i++)
+    {
+        if (i == pages->getCurPageIndex())
+        {
+            pagesIndicatorVec.at(i)->setEnabled(true);
+        }
+        else
+        {
+            pagesIndicatorVec.at(i)->setEnabled(false);
         }
     }
 }

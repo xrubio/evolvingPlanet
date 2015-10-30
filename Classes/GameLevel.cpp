@@ -480,7 +480,10 @@ void GameLevel::playLevel(void)
         }
     }
     
-    //checkAchievements();
+    if (_finishedGame != UserCancel)
+    {
+        checkAchievements();
+    }
     
     ended = true;
     CCLOG("End of game: %i", _finishedGame);
@@ -941,7 +944,7 @@ void GameLevel::checkAchievements(void)
     CCLOG("WARNING: Achievements implemented only for IOS");
     return;
 #endif
-    
+        
     vector<Achievement*> progressAchs = GameData::getInstance()->getAchievements(0);
     vector<Achievement*> levelAchs = GameData::getInstance()->getAchievements(numLevel);
     

@@ -819,7 +819,7 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     }
     if (!_tutorial->getCurrentMessage())
     {
-        return false;
+        return true;
     }
     
     Node * parent = this;
