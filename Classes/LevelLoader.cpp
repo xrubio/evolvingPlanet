@@ -122,14 +122,11 @@ void LevelLoader::loadXmlFile(string filename)
         //DIRECTIONS
         xml_node drs = ags.child("DIRECTIONS").child("DIRECTION");
 
-        while (drs != nullptr) {
-            GameLevel::getInstance()->setAgentFutureDirection(i, atoi(drs.child("STEP").child_value()),
-                cocos2d::Point(atoi(drs.child("POSITION").attribute("X").value()),
-                                                                  atoi(drs.child("POSITION").attribute("Y").value())));
-
+        while(drs != nullptr)
+        {
+            GameLevel::getInstance()->setAgentFutureDirection(i, atoi(drs.child("STEP").child_value()), cocos2d::Point(atoi(drs.child("POSITION").attribute("X").value()), atoi(drs.child("POSITION").attribute("Y").value())));
             drs = drs.next_sibling("DIRECTION");
         }
-
         ags = ags.next_sibling("AGENT");
     }
 

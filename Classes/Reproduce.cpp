@@ -43,26 +43,21 @@ void Reproduce::execute(Agent* agent)
     {
         //CERCAR AGENT EN RADI
         int radi = 3;
-        int maxIterations = 9;
 
         int minRandomX = agent->getPosition().getX() - radi;
         int maxRandomX = agent->getPosition().getX() + radi;
         int minRandomY = agent->getPosition().getY() - radi;
         int maxRandomY = agent->getPosition().getY() + radi;
         
-        int posx = RandomHelper::random_int(minRandomX, maxRandomX);
-        int posy = RandomHelper::random_int(minRandomY, maxRandomY);
         bool validTypeAgent = false;
-        if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and
-            GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
+        int maxIterations = 9;
+        int posx = 0;
+        int posy = 0;
+        while (maxIterations > 0 and validTypeAgent == false)
         {
-            validTypeAgent = true;
-        }
-        while (maxIterations > 0 and validTypeAgent == false) {
             posx = RandomHelper::random_int(minRandomX, maxRandomX);
             posy = RandomHelper::random_int(minRandomY, maxRandomY);
-            if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and
-                GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
+            if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
             {
                 validTypeAgent = true;
             }

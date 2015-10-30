@@ -37,9 +37,9 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL1M13</key>
 	<string>The first one is the orientation marker. Tap twice in any place of the map to suggest the direction of dispersion to your agents.</string>
 	<key>LEVEL1M14</key>
-	<string>The second one is the evolution track. You begin each scenario with 10 Evolution Points(EP) that you can assign to three different traits.</string>
+	<string>The second one is the evolution track. You begin each scenario with 10 Evolution Points or EvoPoints. You can assign to three different traits.</string>
 	<key>LEVEL1M15</key>
-	<string>Let&apos;s begin increasing the rate of movement of your agents with the Mobility attribute. Tap here to spent 1 EP to move it to Level 2</string>
+	<string>Let&apos;s begin increasing the rate of movement of your agents with the Mobility attribute. Tap here to spent 1 EvoPoint to move it to Level 2</string>
 	<key>LEVEL1M16</key>
 	<string>Each additional level will cost you one additional point. Let&apos;s take a look at the second attribute: Reproduction. It controls the interest of your agents for having offspring. This is a critical trait; if your population decreases until 0 you will fail the scenario. Increase it.</string>
 	<key>LEVEL1M17</key>
@@ -47,7 +47,7 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL1M18</key>
 	<string>Ok the last one, to level 4!</string>
 	<key>LEVEL1M19</key>
-	<string>Resistance tells you the ability of your agents to survive. This value is combined with the location of your agent to calculate its lifespan. Remember, arid zones and mountains will shorten this lifespan, while forests will make them long-livd. Spend the remanining 3 EP points on moving it to Level 3.</string>
+	<string>Resistance tells you the ability of your agents to survive. This value is combined with the location of your agent to calculate its lifespan. Remember, arid zones and mountains will shorten this lifespan, while forests will make them long-livd. Spend the remanining 3 EvoPoints on moving it to Level 3.</string>
 	<key>LEVEL1M20</key>
 	<string>Increase Resistance to 3 and the setup will be finished.</string>
 	<key>LEVEL1M21</key>
@@ -55,7 +55,7 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL1M22</key>
 	<string>Now that our population is striving let&apos;s suggest them where to expand; set the orientation marker within the goal zone</string>
 	<key>LEVEL1M23</key>
-	<string>As you can see you get new Evolution Points with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need</string>
+	<string>As you can see you get new EvoPoints with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need</string>
 	<key>LEVEL1M24</key>
 	<string>I suggest to start increasing Resistance and then focus on Mobility; your population needs to move a large amount of space if you want them to reach the goal before the time is over. Good luck commander!</string>
 	<key>LEVEL2M1</key>
@@ -67,23 +67,23 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL2M4</key>
 	<string>A final note: some zones of the planet, like the huge mountain range in the middle of the map are too hostile to your agents, so they cannot live there. Good luck commander!</string>
 	<key>LEVEL3M1</key>
-	<string>Welcome commander! This mission is more difficult so you have a new tool in your console: the T.A.P.A.T.B.C.T.</string>
+	<string>Welcome commander! We are having problems understanding what happened in this zone so you have a new tool in your console: the T.A.P.A.T.B.C.T.</string>
 	<key>LEVEL3M2</key>
 	<string>This is the acronym for Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits. Beautiful, isn&apos;t it?</string>
 	<key>LEVEL3M3</key>
 	<string>So...to avoid any strokes the team simply called them Boosts.</string>
 	<key>LEVEL3M4</key>
-	<string>They basically allow you temporaly increase one attribute of your population. You spend Evolution Points using Boosts, so you need to balance changing your attributes with these short-term improvements. After you use them they need a cooldown period because we don&apos;t want the population to rely on this external factor to achieve its goals.</string>
+	<string>They basically allow you temporaly increase one attribute of your population. You spend EvoPoints using Boosts, so you need to balance changing your attributes with these short-term improvements. After you use them they need a cooldown period because we don&apos;t want the population to rely on this external factor to achieve its goals.</string>
 	<key>LEVEL3M5</key>
-	<string>You got two Boosts for this mission. The first one affects your entire population, and increases its rate of reproduction. Press it now and please</string>
+	<string>You got two Boosts for this mission. The first one affects your entire population, and increases its rate of reproduction. Press it now.</string>
 	<key>LEVEL3M6</key>
 	<string>Please don&apos;t ask how did we achieve this baby boom...</string>
 	<key>LEVEL3M7</key>
-	<string>The second Boost increases the Resistance of the agents in a particular zone. You can tap and drag the finger to the area of effect when you have the needed EvoPoints (3).</string>
+	<string>The second Boost increases the Resistance of the agents in a particular zone. You can tap and drag the finger to the area of effect when you have the needed EvoPoints</string>
 	<key>LEVEL3M8</key>
-	<string>It will be extremely handy if you need to cross an arid region such as the western part of this map.</string>
+	<string>Both will be needed to see how did they manage to cross the arid zones of this map.</string>
 	<key>LEVEL3M9</key>
-	<string>Distribute your initial EvoPoints and tap Play whenever you are ready. Good luck commander!</string>
+	<string>Distribute your initial EvoPoints and tap Play whenever you are ready.</string>
 	<key>LEVEL3M10</key>
 	<string>Good luck commander!</string>
 	<key>LEVEL4M1</key>

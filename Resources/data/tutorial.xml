@@ -88,16 +88,16 @@
 </level>
 
 <level num="5" numMessages="5">
-    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL5M1"/>
-    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL5M2"/>
+    <message id="1" x="0.5" y="0.3" lineWidth="0.4" trigger="time" step="0" text="LEVEL5M1"/>
+    <message id="2" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL5M2"/>
     <message id="3" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL5M3">
         <spot centerX="0.6" centerY="0.6" radius="0.07"/>
     </message>        
-    <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL5M4">
+    <message id="4" x="0.6" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL5M4">
         <spot centerX="0.2" centerY="0.3" radius="0.03"/>
         <spot centerX="0.4" centerY="0.3" radius="0.03"/>
         <spot centerX="0.6" centerY="0.3" radius="0.03"/>
     </message>        
-    <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL5M5"/>
+    <message id="5" x="0.6" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL5M5"/>
 </level>
 

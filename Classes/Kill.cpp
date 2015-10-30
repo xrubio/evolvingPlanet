@@ -32,24 +32,27 @@ void Kill::execute(Agent* agent)
 {
     float probKill = agent->getValue(Hostility);
     int mobility = agent->getValue(Mobility);
-    if(RandomHelper::random_real(0.0f, 1.0f)< probKill)
+    if(RandomHelper::random_real(0.0f, 1.0f)>= probKill)
     {
-        int maxIterations = 100;
-        bool kill = false;
-        int posx = RandomHelper::random_int(0, mobility) + (agent->getPosition().getX() - mobility);
-        int posy = RandomHelper::random_int(0, mobility) + (agent->getPosition().getY() - mobility);
-        while (maxIterations > 0 and kill == false) {
-            if (posx >= 0 and posx < 480 and posy >= 0 and posy < 320) {
-                if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
-                {
-                    GameLevel::getInstance()->getAgentAtMap(posx, posy)->setLife(0);
-                    kill = true;
-                }
-            }
-            posx = RandomHelper::random_int(0, mobility) + (agent->getPosition().getX() - mobility);
-            posy = RandomHelper::random_int(0, mobility) + (agent->getPosition().getY() - mobility);
-            maxIterations--;
+        return;
+    }
+    int minRandomX = agent->getPosition().getX() - mobility;
+    int maxRandomX = agent->getPosition().getX() + mobility;
+    int minRandomY = agent->getPosition().getY() - mobility;
+    int maxRandomY = agent->getPosition().getY() + mobility;
+
+    int maxIterations = 10;
+    while (maxIterations > 0)
+    {
+        int posx = RandomHelper::random_int(minRandomX, maxRandomX);
+        int posy = RandomHelper::random_int(minRandomY, maxRandomY);
+
+        if(GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
+        {
+            GameLevel::getInstance()->getAgentAtMap(posx, posy)->setLife(0);
+            return;
         }
+        maxIterations--;
     }
 }
 
