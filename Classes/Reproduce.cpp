@@ -71,6 +71,7 @@ void Reproduce::execute(Agent* agent)
             // if a random value between 0 and targetCulture is lower than 0 and ownCulture influence the agent
             if(RandomHelper::random_real(0.0f, targetCulture)<RandomHelper::random_real(0.0f, probCulture))
             {
+                CCLOG("agent influenced!");
                 // XRC TODO això és correcte?
                 type = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType();
             }

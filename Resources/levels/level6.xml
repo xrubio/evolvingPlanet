@@ -6,16 +6,19 @@
 <EVPOINTS_FREQ>3</EVPOINTS_FREQ>
 <ATTRIBUTES_CONFIG>
     <ATTRIBUTE NAME="REPRODUCTION">
-        <VALUES>0.2,0.25,0.3,0.35,0.4,0.45</VALUES>
-    </ATTRIBUTE>
-    <ATTRIBUTE NAME="TECHNOLOGY">
-        <VALUES>1,1.1,1.3,1.5,2,2.5</VALUES>
+        <VALUES>0.1,0.15,0.17,0.20,0.25,0.3</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="RESISTANCE">
-        <VALUES>1,1.25,1.5,1.75,2,2.25</VALUES>
-    </ATTRIBUTE>
+        <VALUES>1,1.3,1.5,1.6,1.8,2.2</VALUES>
+    </ATTRIBUTE>  
     <ATTRIBUTE NAME="MOBILITY">
-        <VALUES>5,7,8,10,12,15</VALUES>
+        <VALUES>3,5,8,10,12,13</VALUES>
+    </ATTRIBUTE>
+    <ATTRIBUTE NAME="TECHNOLOGY">
+        <VALUES>1,1.1,1.2,1.3,1.4,1.5</VALUES>
+    </ATTRIBUTE>
+    <ATTRIBUTE NAME="CULTURAL_INFLUENCE">
+        <VALUES>0.05,0.1,0.2,0.25,0.3,1.0</VALUES>
     </ATTRIBUTE>
 </ATTRIBUTES_CONFIG>
 <AGENTS MAX_ALL="NO" NUMTYPES="2">
@@ -27,31 +30,31 @@
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
-                <INITIAL_VALUE>4</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="TECHNOLOGY" GUI="2">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>1</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="CULTURAL_INFLUENCE" GUI="0">
-                <INITIAL_VALUE>0</INITIAL_VALUE>
+                <INITIAL_VALUE>5</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
     </AGENT>
     <AGENT TYPE="1">
-        <NUM_INITIAL_AGENTS>100</NUM_INITIAL_AGENTS>
-        <MAX_AGENTS>200</MAX_AGENTS>
+        <NUM_INITIAL_AGENTS>500</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>800</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>5</INITIAL_VALUE>
+                <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+                <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+                <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="CULTURAL_INFLUENCE">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
@@ -59,9 +62,10 @@
         </ATTRIBUTES>
         <DIRECTIONS>
             <DIRECTION>
-                <STEP>65</STEP>
-                <POSITION X="319" Y="232"/>
+                <STEP>5</STEP>
+                <POSITION X="150" Y="90"/>
             </DIRECTION>
+            <!--
             <DIRECTION>
                 <STEP>70</STEP>
                 <POSITION X="338" Y="232"/>
@@ -74,10 +78,29 @@
                 <STEP>80</STEP>
                 <POSITION X="397" Y="188"/>
             </DIRECTION>
+            -->
         </DIRECTIONS>
     </AGENT>
 </AGENTS>
 <POWERS>
+    <POWER NAME="MobilityBoost">
+        <COST>2</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>10</DURATION>
+        <ATTRIBUTE>MOBILITY</ATTRIBUTE>  
+        <TYPE TYPE_NAME="Area">
+            <RADIUS>20</RADIUS>
+        </TYPE>
+    </POWER>
+    <POWER NAME="ResistanceBoost">
+        <COST>2</COST>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>10</DURATION>
+        <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
+        <TYPE TYPE_NAME="Area">
+            <RADIUS>20</RADIUS>
+        </TYPE>
+    </POWER>
 </POWERS>
 <ACTIONS>
     <ACTION>Reproduce</ACTION>
