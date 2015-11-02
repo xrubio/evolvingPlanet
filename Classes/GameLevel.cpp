@@ -729,7 +729,25 @@ void GameLevel::checkGoals()
 }
 
 void GameLevel::updateDirections(int type)
-{        
+{       
+    // check if NPC agents arrived to destination
+    if(type!=0 && _agentDirections.at(type).x!=-1)
+    {
+        cocos2d::Point pos(-1,-1);
+        for(std::list<Agent*>::iterator it=_agents.at(type).begin(); it!=_agents.at(type).end(); it++)
+        {
+            pos.x = (*it)->getPosition().getX();
+            pos.y = (*it)->getPosition().getY();
+            const cocos2d::Point & goal = _agentDirections.at(type);
+            float distance = pos.getDistance(goal);
+            if(distance<5.0f)
+            {
+                _agentDirections.at(type) = Point(-1,-1);
+                break;
+            }
+        }
+    }
+
     //CHECK DIRECTION
     if(_agentFutureDirections.empty() or _agentFutureDirections.at(type).empty())
     {
