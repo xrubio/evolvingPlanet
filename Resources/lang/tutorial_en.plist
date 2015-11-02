@@ -103,7 +103,7 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL5M3</key>
 	<string>It seems that this first contact with another species was not extremely peaceful. Both of them moved south to colonize these arid zones due to environmental stress caused by overpopulation.</string>
 	<key>LEVEL5M4</key>
-	<string>You&apos;ll have to use Resistance boosts and Technology to arrive first to the different objectives.</string>
+	<string>You&apos;ll have to use Resistance boosts and Technology to arrive to the different objectives. You should avoid the other population, as they are far more experience on warfare than you.</string>
 	<key>LEVEL5M5</key>
 	<string>Good luck Commander!</string>
 </dict>

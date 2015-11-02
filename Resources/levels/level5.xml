@@ -66,9 +66,17 @@
         </ATTRIBUTES>
         <DIRECTIONS>
             <DIRECTION>
-                <STEP>10</STEP>
+                <STEP>5</STEP>
                 <POSITION X="210" Y="90"/>
             </DIRECTION>          
+            <DIRECTION>
+                <STEP>50</STEP>
+                <POSITION X="270" Y="80"/>
+            </DIRECTION>          
+            <DIRECTION>
+                <STEP>70</STEP>
+                <POSITION X="430" Y="140"/>
+            </DIRECTION>  
         </DIRECTIONS>
     </AGENT>
 </AGENTS>
