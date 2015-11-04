@@ -187,6 +187,10 @@ void LevelLoader::loadXmlFile(string filename)
         else if (action == "Kill") {
             GameLevel::getInstance()->addAction(new Kill());
         }
+        else if (action == "Influence") {
+            GameLevel::getInstance()->addAction(new Influence());
+        }
+
         acts = acts.next_sibling("ACTION");
     }
 
