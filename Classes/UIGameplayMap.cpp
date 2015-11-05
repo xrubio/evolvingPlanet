@@ -1732,7 +1732,7 @@ void UIGameplayMap::updateAgents(void)
         drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
     }
 
-    for (size_t i = 0; i < agentsDomain.size(); i++)
+    for (int i = agentsDomain.size() - 1; i >= 0 ; i--)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {
