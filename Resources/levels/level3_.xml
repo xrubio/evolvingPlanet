@@ -13,7 +13,7 @@
             <ATTRIBUTE NAME="MOBILITY">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="HOSTILITY">
+            <ATTRIBUTE NAME="WARFARE">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
@@ -34,7 +34,7 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>1</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="HOSTILITY">
+            <ATTRIBUTE NAME="WARFARE">
                 <INITIAL_VALUE>1</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
@@ -52,7 +52,7 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>1</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="HOSTILITY">
+            <ATTRIBUTE NAME="WARFARE">
                 <INITIAL_VALUE>1</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>

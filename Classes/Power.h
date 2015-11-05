@@ -38,6 +38,7 @@ enum PowerId
    ResistanceBoost = 1,
    RecollectionBoost = 2,
    RestoreLand = 3,
+   InfluenceBoost = 4,
    NoPower = -1
 };
 

@@ -35,7 +35,7 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="CULTURAL_INFLUENCE">
+            <ATTRIBUTE NAME="INFLUENCE">
                 <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
@@ -53,7 +53,7 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="CULTURAL_INFLUENCE">
+            <ATTRIBUTE NAME="INFLUENCE">
                 <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>

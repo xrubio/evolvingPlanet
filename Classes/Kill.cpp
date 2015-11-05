@@ -26,16 +26,18 @@
 //
 
 #include "Kill.h"
-#include "UIGameplayMap.h"
+#include "GameLevel.h"
+#include <base/ccRandom.h>
 
 void Kill::execute(Agent* agent)
 {
-    float probKill = agent->getValue(Hostility);
-    int mobility = agent->getValue(Mobility);
-    if(RandomHelper::random_real(0.0f, 1.0f)>= probKill)
+    float probKill = agent->getValue(eWarfare);
+    if(cocos2d::RandomHelper::random_real(0.0f, 1.0f)>= probKill)
     {
         return;
     }
+    
+    int mobility = agent->getValue(eMobility);
     int minRandomX = agent->getPosition().getX() - mobility;
     int maxRandomX = agent->getPosition().getX() + mobility;
     int minRandomY = agent->getPosition().getY() - mobility;
@@ -44,8 +46,8 @@ void Kill::execute(Agent* agent)
     int maxIterations = 10;
     while (maxIterations > 0)
     {
-        int posx = RandomHelper::random_int(minRandomX, maxRandomX);
-        int posy = RandomHelper::random_int(minRandomY, maxRandomY);
+        int posx = cocos2d::RandomHelper::random_int(minRandomX, maxRandomX);
+        int posy = cocos2d::RandomHelper::random_int(minRandomY, maxRandomY);
 
         if(GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
         {

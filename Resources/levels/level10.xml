@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NUM_LEVEL>10</NUM_LEVEL>
-<NAME_LEVEL>Hostility</NAME_LEVEL>
+<NAME_LEVEL>WARFARE</NAME_LEVEL>
 <FILE_MAP>Level10</FILE_MAP>
 <AGENTS_PIXEL_SIZE>2</AGENTS_PIXEL_SIZE>
 <EVPOINTS_FREQ>3</EVPOINTS_FREQ>
@@ -35,10 +35,10 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="HOSTILITY" GUI="1">
+            <ATTRIBUTE NAME="WARFARE" GUI="1">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="CULTURAL_INFLUENCE" GUI="0">
+            <ATTRIBUTE NAME="INFLUENCE" GUI="0">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
@@ -56,7 +56,7 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="HOSTILITY">
+            <ATTRIBUTE NAME="WARFARE">
                 <INITIAL_VALUE>5</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
@@ -74,7 +74,7 @@
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="CULTURAL_INFLUENCE">
+            <ATTRIBUTE NAME="INFLUENCE">
                 <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>

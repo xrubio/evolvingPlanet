@@ -646,12 +646,41 @@ public:
     }
 };
 
+void GameLevel::computeInfluenced( int type )
+{
+    // definir número d'agents que han de crear-se
+    size_t numAgents = _agents.at(type).size();
+    float probInfluence = getValueAtLevel(eInfluence, _agentAttributes.at(type).at(eInfluence));
+
+    // ReproductionBoost only affects user's population
+    if(type==0)
+    {
+        Power* p = nullptr;
+        for (size_t i = 0; i < getPowers().size(); i++)
+        {
+            if (getPowers().at(i)->getId() != InfluenceBoost)
+            {
+                continue;
+            }
+            p = getPowers().at(i);
+        }
+        if (p != nullptr and p->getDurationLeft() > 0)
+        {
+            probInfluence = getValueAtLevel(eInfluence, 5);
+        }
+    }
+
+    int newAgents = int((float)numAgents*probInfluence);
+    // check diff between current agents and max agents, and see if it's lower than newAgents
+    int value = min(newAgents, int(getMaxAgent(type)-_agents.at(type).size()));
+    Agent::_numInfluenced.at(type) = RandomHelper::random_int(int(value*0.5f), value);
+}
 
 void GameLevel::computeOffspring( int type )
 {
     // definir número d'agents que han de crear-se
     size_t numAgents = _agents.at(type).size();
-    float probReproduction = getValueAtLevel(Reproduction, _agentAttributes.at(type).at(Reproduction));
+    float probReproduction = getValueAtLevel(eReproduction, _agentAttributes.at(type).at(eReproduction));
 
     // ReproductionBoost only affects user's population
     if(type==0)
@@ -667,7 +696,7 @@ void GameLevel::computeOffspring( int type )
         }
         if (p != nullptr and p->getDurationLeft() > 0)
         {
-            probReproduction = getValueAtLevel(Reproduction, 5);
+            probReproduction = getValueAtLevel(eReproduction, 5);
         }
     }
 
@@ -770,7 +799,7 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
 
     float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition().getX(), agent->getPosition().getY(), 0);
-    float resistance = agent->getValue(Resistance);
+    float resistance = agent->getValue(eResistance);
 
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     if(agent->getType()==0)
@@ -788,7 +817,7 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
         {
             if (gameplayMap->isInBoostResistanceArea(agent->getPosition().getX() * float(2048.0 / 480.0), ((1536 - 1365) / 2) + (agent->getPosition().getY() * float(1365.0 / 320.0))))
             {
-                resistance = getValueAtLevel(Resistance, 5);
+                resistance = getValueAtLevel(eResistance, 5);
             }
         }
     }
@@ -820,12 +849,23 @@ void GameLevel::consumeAndRemove(int type)
     }
 }
 
+void GameLevel::reproduce(int type)
+{  
+    // Reproduction is always the first action in the list
+    std::list<Agent*> & agents = _agents.at(type);
+    for(std::list<Agent*>::iterator it=agents.begin(); it!=agents.end(); it++)
+    {
+        actions.at(0)->execute(*it);
+    }
+}
+
 void GameLevel::executeActions(int type)
 {
     std::list<Agent*> & agents = _agents.at(type);
     for(std::list<Agent*>::iterator it=agents.begin(); it!=agents.end(); it++)
     {
-        for(size_t j=0; j<actions.size(); j++)
+        // skip action 0 (reproduce)
+        for(size_t j=1; j<actions.size(); j++)
         {
             actions.at(j)->execute(*it);
         }
@@ -843,9 +883,10 @@ void GameLevel::act(void)
 
     for(size_t k = 0; k < _agents.size(); k++)
     {
-        updateDirections(int(k));
-        consumeAndRemove(int(k));
-        computeOffspring(int(k));
+        int agentType = (int)k;
+        updateDirections(agentType);
+        consumeAndRemove(agentType);
+        computeOffspring(agentType);
 
         // reorder based on distance to fingerSpot (closest first)
         const Point & fingerSpot = _agentDirections.at(k);
@@ -853,7 +894,14 @@ void GameLevel::act(void)
         {
             _agents.at(k).sort(DistSorter(fingerSpot));
         }
-        executeActions(int(k));
+        // reproduce and compute if there's room for converting influenced agents
+        reproduce(agentType);
+        computeInfluenced(agentType);
+        if(fingerSpot.x != -1)
+        {
+            _agents.at(k).sort(DistSorter(fingerSpot));
+        }
+        executeActions(agentType);
     }
     
     checkGoals();
@@ -882,31 +930,31 @@ int GameLevel::convertAttStringToInt(const string & s)
 
     if (s == "MOBILITY")
     {
-        ret = Mobility;
+        ret = eMobility;
     }
     else if (s == "REPRODUCTION")
     {
-        ret = Reproduction;
+        ret = eReproduction;
     }
     else if (s == "RESISTANCE")
     {
-        ret = Resistance;
+        ret = eResistance;
     }
     else if (s == "TECHNOLOGY")
     {
-        ret = Technology;
+        ret = eTechnology;
     }
-    else if (s == "HOSTILITY")
+    else if (s == "WARFARE")
     {
-        ret = Hostility;
+        ret = eWarfare;
     }
-    else if (s == "CULTURAL_INFLUENCE")
+    else if (s == "INFLUENCE")
     {
-        ret = CulturalInfluence;
+        ret = eInfluence;
     }
     else if (s == "ADAPTATION")
     {
-        ret = Adaptation;
+        ret = eAdaptation;
     }
     
     return ret;
@@ -917,25 +965,25 @@ string GameLevel::convertAttIntToString(int i)
     string ret = "";
     
     switch (i) {
-        case Mobility:
+        case eMobility:
             ret = "MOBILITY";
             break;
-        case Reproduction:
+        case eReproduction:
             ret = "REPRODUCTION";
             break;
-        case Resistance:
+        case eResistance:
             ret = "RESISTANCE";
             break;
-        case Technology:
+        case eTechnology:
             ret = "TECHNOLOGY";
             break;
-        case Hostility:
-            ret = "HOSTILITY";
+        case eWarfare:
+            ret = "WARFARE";
             break;
-        case CulturalInfluence:
-            ret = "CULTURAL_INFLUENCE";
+        case eInfluence:
+            ret = "INFLUENCE";
             break;
-        case Adaptation:
+        case eAdaptation:
             ret = "ADAPTATION";
             break;
         default:
@@ -949,6 +997,7 @@ string GameLevel::convertAttIntToString(int i)
 void GameLevel::setNumAgentTypes(size_t numAgents)
 {
     Agent::_numOffspring.clear();
+    Agent::_numInfluenced.clear();
     _agentAttributes.clear();
     _attributesCost.clear();
     for(size_t i=0; i<numAgents; i++)
@@ -956,6 +1005,7 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
         _agentAttributes.push_back(Levels(_numAttributes, 0));
         _attributesCost.push_back(Levels(_numAttributes, 1));
         Agent::_numOffspring.push_back(0);
+        Agent::_numInfluenced.push_back(0);
     }
 }
 

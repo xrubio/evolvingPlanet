@@ -29,6 +29,7 @@
 #include "GameLevel.h"
 
 std::vector<int> Agent::_numOffspring = std::vector<int>();
+std::vector<int> Agent::_numInfluenced = std::vector<int>();
 
 Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _attributes(GameLevel::_numAttributes, 0.0f)
 {
@@ -79,13 +80,13 @@ float Agent::getValue(int att) const
 {
     float value = _attributes.at(att);
     // if technology multiply result
-    if(att==Technology or _attributes.at(Technology)==0.0f)
+    if(att==eTechnology or _attributes.at(eTechnology)==0.0f)
     {
         return value;
     }
     else
     {
-        return value*_attributes.at(Technology);
+        return value*_attributes.at(eTechnology);
     }
 }
 

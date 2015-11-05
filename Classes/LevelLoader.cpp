@@ -176,14 +176,14 @@ void LevelLoader::loadXmlFile(string filename)
         pws = pws.next_sibling("POWER");
     }
 
+    // always reproduce (first action)
+
+    GameLevel::getInstance()->addAction(new Reproduce());
     //ACTIONS (REPRODUCE ALWAYS BEFORE DIE)
     xml_node acts = doc.child("ACTIONS").child("ACTION");
     while (acts != nullptr) {
         string action = acts.child_value();
-        if (action == "Reproduce") {
-            GameLevel::getInstance()->addAction(new Reproduce());
-        }
-        else if (action == "Collect") {
+        if (action == "Collect") {
             GameLevel::getInstance()->addAction(new Collect());
         }
         else if (action == "Deplete") {
@@ -198,7 +198,6 @@ void LevelLoader::loadXmlFile(string filename)
         else if (action == "Influence") {
             GameLevel::getInstance()->addAction(new Influence());
         }
-
         acts = acts.next_sibling("ACTION");
     }
 

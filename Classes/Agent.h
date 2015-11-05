@@ -40,6 +40,8 @@ public:
     typedef std::vector<float> Attributes;
     // number of children to create on a given time step
     static std::vector<int> _numOffspring;
+    // number of agents that can be influenced to create on a given time step
+    static std::vector<int> _numInfluenced;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent(){};

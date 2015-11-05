@@ -38,7 +38,7 @@ void Reproduce::execute(Agent* agent)
         return;
     }
   
-    int mobility = agent->getValue(Mobility);
+    int mobility = agent->getValue(eMobility);
 
     int minRandomX = agent->getPosition().getX() - mobility;
     int maxRandomX = agent->getPosition().getX() + mobility;

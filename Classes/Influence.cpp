@@ -18,111 +18,47 @@
  */
 
 #include "Influence.h"
-#include "Power.h"
-#include "UIGameplayMap.h"
 #include "GameLevel.h"
+#include <base/ccRandom.h>
 
 void Influence::execute(Agent* agent)
 {
     int type = agent->getType();
 
     // no available slot
-    if(Agent::_numOffspring.at(type)<1)
+    if(Agent::_numInfluenced.at(type)<1)
     {
         return;
     }
-
-    //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
-
-    int mobility = agent->getValue(Mobility);
-    // TODO XRC move this to method
-    //INFLUENCIA CULTURAL - CALCULAR TIPUS
-    float probCulture = agent->getValue(CulturalInfluence);
-    if (probCulture > 0.0f)
+    float probInfluence = agent->getValue(eInfluence);
+    if(cocos2d::RandomHelper::random_real(0.0f, 1.0f)>= probInfluence)
     {
-        int minRandomX = agent->getPosition().getX() - mobility;
-        int maxRandomX = agent->getPosition().getX() + mobility;
-        int minRandomY = agent->getPosition().getY() - mobility;
-        int maxRandomY = agent->getPosition().getY() + mobility;
-        
-        bool validTypeAgent = false;
-        int maxIterations = 9;
-        int posx = 0;
-        int posy = 0;
-        while (maxIterations > 0 and validTypeAgent == false)
-        {
-            posx = RandomHelper::random_int(minRandomX, maxRandomX);
-            posy = RandomHelper::random_int(minRandomY, maxRandomY);
-            if (GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()!=type)
-            {
-                validTypeAgent = true;
-            }
-            maxIterations--;
-        }
-        
-        //SI S'HA TROBAT AGENT I INFLUEIX
-        if(validTypeAgent)
-        {
-            //float targetCulture = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getValue(CulturalInfluence);
-            // if a random value between 0 and targetCulture is lower than 0 and ownCulture influence the agent
-            //if(RandomHelper::random_real(0.0f, targetCulture)<RandomHelper::random_real(0.0f, probCulture))
-            //{
-                CCLOG("agent influenced!");
-                // XRC TODO això és correcte?
-                type = GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType();
-            //}
-        }
-        else
-        {
-            CCLOG("faiiiiiiiiiil!");
-        }
- 
+        return;
     }
-
-    if(Agent::_numOffspring.at(type)>0)
+    
+    int mobility = agent->getValue(eMobility);
+    int minRandomX = agent->getPosition().getX() - mobility;
+    int maxRandomX = agent->getPosition().getX() + mobility;
+    int minRandomY = agent->getPosition().getY() - mobility;
+    int maxRandomY = agent->getPosition().getY() + mobility;
+       
+    int maxIterations = 10;
+    while (maxIterations > 0)
     {
-        if (type == agent->getType())
+        int posx = cocos2d::RandomHelper::random_int(minRandomX, maxRandomX);
+        int posy = cocos2d::RandomHelper::random_int(minRandomY, maxRandomY);
+    
+        if(GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()!=type)
         {
-            Agent::_numOffspring.at(type)--;
-
-            int maxIterations = 30;
-
-            int minRandomX = agent->getPosition().getX() - mobility;
-            int maxRandomX = agent->getPosition().getX() + mobility;
-            int minRandomY = agent->getPosition().getY() - mobility;
-            int maxRandomY = agent->getPosition().getY() + mobility;
-
-            int posx = RandomHelper::random_int(minRandomX, maxRandomX);
-            int posy = RandomHelper::random_int(minRandomY, maxRandomY);
-            while (maxIterations > 0 and GameLevel::getInstance()->validatePosition(posx, posy) == false)
-            {
-                posx = RandomHelper::random_int(minRandomX, maxRandomX);
-                posy = RandomHelper::random_int(minRandomY, maxRandomY);
-                maxIterations--;
-            }
-            if (maxIterations > 0)
-            {
-                Agent* ag = GameLevel::getInstance()->getAgentsPool().at(type).front();
-                GameLevel::getInstance()->popFrontAgentsPool(type);
-                ag->setId(GameLevel::getInstance()->getIdCounter());
-                ag->setLife(200);
-                ag->setType(type);
-                ag->setPosition(posx, posy);
-                ag->copyValues(type);
-                GameLevel::getInstance()->addAgent(ag);
-                GameLevel::getInstance()->setIdCounter(GameLevel::getInstance()->getIdCounter() + 1);
-            }
-        }
-        //SI TIPUS DIFERENT -> INFLUENCIA CULTURAL PROVOCA QUE LAGENT ES CONVERTEIXI I NO ES REPRODUEIXI
-        // XRC TODO mirar si offspring és correcte
-        else
-        {
-            Agent::_numOffspring.at(type)--;
-            auto ag = new Agent(agent->getId(), agent->getLife(), type, agent->getPosition().getX(), agent->getPosition().getY());
+            Agent * target = GameLevel::getInstance()->getAgentAtMap(posx, posy);
+            auto ag = new Agent(target->getId(), target->getLife(), type, posx, posy);
             ag->copyValues(type);
             GameLevel::getInstance()->addAgent(ag);
-            agent->setLife(0);
+            target->setLife(0);
+            Agent::_numInfluenced.at(type)--;
+            return;
         }
+        maxIterations--;
     }
 }
 

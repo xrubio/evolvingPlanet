@@ -55,13 +55,13 @@ enum LevelState
 
 enum Attributes
 {
-    Mobility = 0,
-    Reproduction = 1,
-    Resistance = 2,
-    Technology = 3,
-    Hostility = 4,
-    CulturalInfluence = 5,
-    Adaptation = 6
+    eMobility = 0,
+    eReproduction = 1,
+    eResistance = 2,
+    eTechnology = 3,
+    eWarfare = 4,
+    eInfluence = 5,
+    eAdaptation = 6
 };
 
 class GameLevel
@@ -249,14 +249,18 @@ private:
 
     // updates mission goals and _finishedGame state
     void checkGoals();
+    // computes the influenced agents that type population can have based on Influence attribute, InfluenceBoost and maxAgents
+    void computeInfluenced( int type );
     // computes the offspring that type population can have based on Reproduction attribute, ReproductionBoost and maxAgents
     void computeOffspring( int type );
     // sets directions from _agentFutureDirections to _agentDirections if timeSteps has arrived
     void updateDirections(int type);
     // consumes resistance and removes agents from simulation if life <= 0
     void consumeAndRemove(int type);
-    // executes all actions for all agents of type
+    // executes all actions for all agents of type (except for reproduction)
     void executeActions(int type);
+    // execute Reproduction action
+    void reproduce(int type);
     // XRC TODO temporary (move to Agent)
     void checkDeath( std::list<Agent*>::iterator & it);
     void deleteAgent(Agent* agent);
