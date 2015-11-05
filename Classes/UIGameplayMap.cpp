@@ -724,17 +724,15 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
             
             // Calculate new scale
             float prevScaleX = gameplayMap->getScaleX();
-            float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
-                            GameData::getInstance()->getRaWConversion();
+            float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) ;
             
             float prevScaleY = gameplayMap->getScaleY();
-            float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
-                                GameData::getInstance()->getRaHConversion();
+            float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) ;
             
             gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
-                                      3.0 * GameData::getInstance()->getRaWConversion()),
+                                      3.0),
                                   MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
-                                      3.0 * GameData::getInstance()->getRaHConversion()));
+                                      3.0 ));
             
             if( this->getScaleX() != prevScaleX )
             {
