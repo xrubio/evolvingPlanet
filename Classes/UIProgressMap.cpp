@@ -54,7 +54,7 @@ bool UIProgressMap::init()
     }
     
     Director::getInstance()->setAnimationInterval(1.0 / 60);
-    
+    setLoadingAnimation(false);
     //Alliberar memòria
     //SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
     //Director::getInstance()->getTextureCache()->removeUnusedTextures();
@@ -218,6 +218,7 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 
 void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
+    setLoadingAnimation(true);
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
@@ -377,6 +378,8 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         auto trophySpawn = Spawn::create(trophyScale, trophyFade, Repeat::create(trophyRotate, 2), NULL);
         trophy->runAction(Sequence::create(DelayTime::create(0.5), trophySpawn, NULL));
     }
+    
+    setLoadingAnimation(false);
 }
 
 void UIProgressMap::proceedLevelCallback(Ref* pSender)
@@ -384,6 +387,7 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
+    setLoadingAnimation(true);
     auto pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
 
@@ -833,3 +837,21 @@ void UIProgressMap::update(float delta)
     }
 }
 
+void UIProgressMap::setLoadingAnimation(bool visible)
+{
+    if (this->getChildByName("loading") != nullptr)
+    {
+        this->getChildByName("loading")->setVisible(visible);
+    }
+    else
+    {
+        auto visibleSize = Director::getInstance()->getVisibleSize();
+        auto loading = Sprite::create("gui/Loading.png");
+        loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
+        loading->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        loading->setName("loading");
+        loading->setVisible(visible);
+        this->addChild(loading, 500);
+        loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
+    }
+}

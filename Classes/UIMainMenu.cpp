@@ -56,10 +56,12 @@ bool UIMainMenu::init()
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
+    setLoadingAnimation(false);
+    
     auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
-    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 
     auto title = Sprite::create("gui/MainMenuTitle.png");
@@ -67,7 +69,7 @@ bool UIMainMenu::init()
     title->setPosition(Vec2((2 * visibleSize.width / 25),
         (12 * visibleSize.height / 18)));
     title->setOpacity(0);
-    title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    title->setScale(GameData::getInstance()->getRaHConversion());
     auto fadeTitle = FadeIn::create(2.0);
     auto titleDelay = DelayTime::create(4.0);
     auto titleSeq = Sequence::create(titleDelay, fadeTitle, NULL);
@@ -77,7 +79,7 @@ bool UIMainMenu::init()
     auto planet1 = Sprite::create("gui/MainMenuBackgroundPlanet1.png");
     planet1->setPosition(Vec2((3 * visibleSize.width / 25),
         (7 * visibleSize.height / 18)));
-    planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto movePlanet1 = MoveTo::create(4, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEasePlanet1 = EaseInOut::create(movePlanet1, 1);
     planet1->runAction(moveEasePlanet1);
@@ -86,7 +88,7 @@ bool UIMainMenu::init()
     auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
     planet2->setPosition(Vec2((15 * visibleSize.width / 25),
         (13 * visibleSize.height / 18)));
-    planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    planet2->setScale(GameData::getInstance()->getRaHConversion());
     auto movePlanet2 = MoveTo::create(4.8, Vec2(visibleSize.width / 2, visibleSize.height / 2));
     auto moveEasePlanet2 = EaseBackOut::create(movePlanet2);
     planet2->runAction(moveEasePlanet2);
@@ -95,7 +97,7 @@ bool UIMainMenu::init()
     auto spaceship = Sprite::create("gui/MainMenuBackgroundSpaceship.png");
     spaceship->setPosition(Vec2((visibleSize.width / 3), (visibleSize.height / 2)));
     spaceship->setScale(0);
-    auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaHConversion());
     auto moveSpaceship = MoveTo::create(3.0, Vec2((visibleSize.width / 2),
                                                  (visibleSize.height / 2)));
     auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 5);
@@ -125,7 +127,7 @@ bool UIMainMenu::init()
         continueLabel->setColor(Color3B(219, 234, 241));
         continueLabel->setPosition(1.1 * continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
         continueButton->addChild(continueLabel);
-        continueButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+        continueButton->setScale(GameData::getInstance()->getRaHConversion());
         menuButtons.pushBack(continueButton);
     }
     
@@ -146,7 +148,7 @@ bool UIMainMenu::init()
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(1.1 * startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
-    startButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    startButton->setScale(GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(startButton);
     
     auto extrasButton = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIMainMenu::menuExtrasCallback, this), MenuItemImage::create("gui/MainMenuStartButton.png", "gui/MainMenuStartButton.png"), MenuItemImage::create("gui/MainMenuStartButtonPressed.png", "gui/MainMenuStartButtonPressed.png"), NULL);
@@ -157,7 +159,7 @@ bool UIMainMenu::init()
     extrasLabel->setColor(Color3B(219, 234, 241));
     extrasLabel->setPosition(extrasButton->getContentSize().width / 2, extrasButton->getContentSize().height / 2);
     extrasButton->addChild(extrasLabel, 3);
-    extrasButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    extrasButton->setScale(GameData::getInstance()->getRaHConversion());
     extrasButton->setCascadeOpacityEnabled(true);
     menuButtons.pushBack(extrasButton);
     
@@ -170,7 +172,7 @@ bool UIMainMenu::init()
     storyLabel->setColor(Color3B(219, 234, 241));
     storyLabel->setPosition(storyButton->getContentSize().width / 2, storyButton->getContentSize().height / 2);
     storyButton->addChild(storyLabel);
-    storyButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    storyButton->setScale(GameData::getInstance()->getRaHConversion());
     storyButton->setVisible(false);
     menuButtons.pushBack(storyButton);
 
@@ -183,7 +185,7 @@ bool UIMainMenu::init()
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(1.1 * achievementsButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
     achievementsButton->addChild(achLabel);
-    achievementsButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    achievementsButton->setScale(GameData::getInstance()->getRaHConversion());
     achievementsButton->setVisible(false);
     menuButtons.pushBack(achievementsButton);
     
@@ -198,7 +200,7 @@ bool UIMainMenu::init()
         exitLabel->setColor(Color3B(73, 109, 118));
         exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
         exitButton->addChild(exitLabel);
-        exitButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+        exitButton->setScale(GameData::getInstance()->getRaHConversion());
         menuButtons.pushBack(exitButton);
         pos = 2;
     }
@@ -211,7 +213,7 @@ bool UIMainMenu::init()
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
-    creditsButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    creditsButton->setScale(GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(creditsButton);
     
     auto configurationButton = MenuItemImage::create(
@@ -222,7 +224,7 @@ bool UIMainMenu::init()
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
-    configurationButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    configurationButton->setScale(GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(configurationButton);
 
     auto menu = Menu::createWithArray(menuButtons);
@@ -277,6 +279,7 @@ void UIMainMenu::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 void UIMainMenu::menuContinueCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
+        setLoadingAnimation(true);
         auto scene = UIProgressMap::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -301,6 +304,7 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         }
         else
         {
+            setLoadingAnimation(true);
             GameData::getInstance()->resetGameProgress();
             auto scene = UIProgressMap::createScene();
             auto transition = TransitionFade::create(1.0f, scene);
@@ -345,12 +349,14 @@ void UIMainMenu::menuExtrasCallback(Ref* pSender)
 void UIMainMenu::menuStoryCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
+        setLoadingAnimation(true);
         auto scene = UIStoryGallery::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
+
     }
     else {
         endActions();
@@ -360,6 +366,7 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
 void UIMainMenu::menuAchievementsCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
+        setLoadingAnimation(true);
         auto scene = UIAchievements::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -375,6 +382,7 @@ void UIMainMenu::menuAchievementsCallback(Ref* pSender)
 void UIMainMenu::menuConfigurationCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
+        setLoadingAnimation(true);
         auto scene = UIConfiguration::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -390,6 +398,7 @@ void UIMainMenu::menuConfigurationCallback(Ref* pSender)
 void UIMainMenu::menuCreditsCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
+        setLoadingAnimation(true);
         auto scene = UICredits::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -434,6 +443,7 @@ void UIMainMenu::menuResetYesCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
+    setLoadingAnimation(true);
     GameData::getInstance()->resetGameProgress();
     auto scene = UIProgressMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
@@ -521,4 +531,23 @@ void UIMainMenu::createWarningWindow(void)
     alertBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
     this->addChild(alertBackground, 30, 30);
+}
+
+void UIMainMenu::setLoadingAnimation(bool visible)
+{
+    if (this->getChildByName("loading") != nullptr)
+    {
+        this->getChildByName("loading")->setVisible(visible);
+    }
+    else
+    {
+        auto visibleSize = Director::getInstance()->getVisibleSize();
+        auto loading = Sprite::create("gui/Loading.png");
+        loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
+        loading->setScale(GameData::getInstance()->getRaHConversion());
+        loading->setName("loading");
+        loading->setVisible(visible);
+        this->addChild(loading, 500);
+        loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
+    }
 }

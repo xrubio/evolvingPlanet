@@ -42,7 +42,6 @@ public:
     virtual bool init();
 
     void menuBackCallback(Ref* pSender);
-    void menuLevelZoneCallback(Ref* pSender);
     void menuLevelCallback(Ref* pSender);
     void proceedLevelCallback(Ref* pSender);
     void restoreProgressMap(Ref* pSender);
@@ -64,6 +63,8 @@ private:
     Layout* setEpisode1(void);
     Layout* setEpisode2(void);
     void setStars(int level, MenuItemImage* levelButton);
+    void setLoadingAnimation(bool visible);
+
 
 };
 

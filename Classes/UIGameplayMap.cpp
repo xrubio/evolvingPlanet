@@ -397,20 +397,26 @@ bool UIGameplayMap::init()
         
         auto goalMark1star = Sprite::create("gui/GoalMark1.png");
         goalMark1star->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2));
-        goalMark1star->setScaleX((GameLevel::getInstance()->getGoals().at(i)->getMaxTime() - GameLevel::getInstance()->getGoals().at(i)->getMinTime()) * pixelPerStep);
+        float pixelPerStepMark = goalMark1star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
+        float sizeInPixelsMark = (GameLevel::getInstance()->getGoals().at(i)->getMaxTime() - GameLevel::getInstance()->getGoals().at(i)->getMinTime()) * pixelPerStepMark;
+        goalMark1star->setScaleX(sizeInPixelsMark / goalMark1star->getTexture()->getPixelsWide());
         timeBorderBar->addChild(goalMark1star, 1);
         
         auto goalMark2star = Sprite::create("gui/GoalMark2.png");
         goalMark2star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
-        goalMark2star->setScaleX((GameLevel::getInstance()->getGoals().at(i)->getDesviation2Star() * 2) * pixelPerStep);
+        pixelPerStepMark = goalMark2star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
+        sizeInPixelsMark = (GameLevel::getInstance()->getGoals().at(i)->getDesviation2Star() * 2) * pixelPerStepMark;
+        goalMark2star->setScaleX(sizeInPixelsMark / goalMark2star->getTexture()->getPixelsWide());
         timeBorderBar->addChild(goalMark2star, 1);
         
         auto goalMark3star = Sprite::create("gui/GoalMark3.png");
         goalMark3star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
-        goalMark3star->setScaleX((GameLevel::getInstance()->getGoals().at(i)->getDesviation3Star() * 2) * pixelPerStep);
-        //timeBorderBar->addChild(goalMark3star, 1);
+        pixelPerStepMark = goalMark3star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
+        sizeInPixelsMark = (GameLevel::getInstance()->getGoals().at(i)->getDesviation3Star() * 2) * pixelPerStepMark;
+        goalMark3star->setScaleX(sizeInPixelsMark / goalMark3star->getTexture()->getPixelsWide());
+        timeBorderBar->addChild(goalMark3star, 1);
         
-        auto goalHex = DrawNode::create();
+        /*auto goalHex = DrawNode::create();
         float R = (GameLevel::getInstance()->getGoals().at(i)->getDesviation3Star() * 2) * pixelPerStep / 2;
         Vec2 v[6];
         v[0]= Vec2(posXaverage - R, timeBorderSize.height);
@@ -420,7 +426,7 @@ bool UIGameplayMap::init()
         v[4]= Vec2(posXaverage, - timeBorderSize.height / 10);
         v[5]= Vec2(posXaverage - R, 0);
         timeBorderBar->addChild(goalHex, 2);
-        goalHex->drawPolygon(v, 6, Color4F(Color4B(108, 185, 94, 240)), 1, Color4F::WHITE);//(v, 6, true, Color4F::WHITE);
+        goalHex->drawPolygon(v, 6, Color4F(Color4B(108, 185, 94, 240)), 1, Color4F::WHITE);//(v, 6, true, Color4F::WHITE);*/
 
         //auto goalNum = Sprite::create("gui/GoalIcon.png");
         //goalNum->setPosition(posXaverage, timeBorderBar->getContentSize().height / 2);
@@ -724,17 +730,15 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
             
             // Calculate new scale
             float prevScaleX = gameplayMap->getScaleX();
-            float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
-                            GameData::getInstance()->getRaWConversion();
+            float curScaleX = gameplayMap->getScaleX() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) ;
             
             float prevScaleY = gameplayMap->getScaleY();
-            float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) *
-                                GameData::getInstance()->getRaHConversion();
+            float curScaleY = gameplayMap->getScaleY() * curPosTouch1.getDistance(curPosTouch2) / prevPosTouch1.getDistance(prevPosTouch2) ;
             
             gameplayMap->setScale(MIN( MAX( curScaleX, GameData::getInstance()->getRaWConversion()),
-                                      3.0 * GameData::getInstance()->getRaWConversion()),
+                                      3.0),
                                   MIN( MAX( curScaleY, GameData::getInstance()->getRaHConversion()),
-                                      3.0 * GameData::getInstance()->getRaHConversion()));
+                                      3.0 ));
             
             if( this->getScaleX() != prevScaleX )
             {
@@ -1732,7 +1736,7 @@ void UIGameplayMap::updateAgents(void)
         drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
     }
 
-    for (size_t i = 0; i < agentsDomain.size(); i++)
+    for (int i = agentsDomain.size() - 1; i >= 0 ; i--)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {

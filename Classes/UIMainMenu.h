@@ -59,6 +59,8 @@ private:
     void endActions(void);
     bool allActionsFinished(void);
     void createWarningWindow(void);
+    
+    void setLoadingAnimation(bool visible);
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */
