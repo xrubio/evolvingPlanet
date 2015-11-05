@@ -23,7 +23,9 @@
 #include "GameLevel.h"
 
 void Influence::execute(Agent* agent)
-{   
+{
+    int type = agent->getType();
+
     // no available slot
     if(Agent::_numOffspring.at(type)<1)
     {
@@ -32,7 +34,6 @@ void Influence::execute(Agent* agent)
 
     //Agent* agent = GameLevel::getInstance()->getAgents().at(typeAgent).at(indexAgent);
 
-    int type = agent->getType();
     int mobility = agent->getValue(Mobility);
     // TODO XRC move this to method
     //INFLUENCIA CULTURAL - CALCULAR TIPUS

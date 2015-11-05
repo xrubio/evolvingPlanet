@@ -241,8 +241,15 @@ void GameData::loadAchievements(void)
     xml_document doc;
     xml_parse_result result;
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + "achievements.xml");
-    result = doc.load_file((fullPath).c_str());
-    
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    long tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
+
     //initialize achievements vec of vecs
     if (achievements.size() == 0)
     {

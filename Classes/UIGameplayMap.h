@@ -56,7 +56,7 @@ public:
     void onTouchesMoved(const vector<Touch*>& touches, Event* event);
     void onTouchesEnded(const vector<Touch*>& touches, Event* event);
     bool onTouchBeganTutorial(Touch * touch, Event* event);
-    bool onTouchEndedTutorial(Touch * touch, Event* event);
+    void onTouchEndedTutorial(Touch * touch, Event* event);
     
     void onMouseScroll(Event* event);
     void menuBackCallback(Ref* pSender);

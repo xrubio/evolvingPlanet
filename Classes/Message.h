@@ -22,6 +22,7 @@
 
 #include <string>
 #include <math/Vec2.h>
+#include <vector>
 
 using namespace cocos2d;
 

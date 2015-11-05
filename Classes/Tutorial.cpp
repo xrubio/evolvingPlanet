@@ -114,8 +114,14 @@ bool Tutorial::loadTutorial()
 
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + "tutorial.xml");
     pugi::xml_document doc;
-    doc.load_file((fullPath).c_str());
-
+    pugi::xml_parse_result result;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    long tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
     int numLevel = GameLevel::getInstance()->getNumLevel();
     pugi::xml_node level = doc.child("level");
     CCLOG("checking level %i", numLevel);

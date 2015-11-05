@@ -25,8 +25,6 @@
 //
 //
 
-#define COCOS2D_DEBUG 1
-
 #include "UIGoals.h"
 #include "GameData.h"
 #include "LocalizedString.h"
@@ -192,7 +190,7 @@ bool UIGoals::init()
     contextDeployment->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContextDeployment->addChild(contextDeployment);
     
-    auto nameArt = ("art/Escenari" + to_string(GameLevel::getInstance()->getNumLevel()) + ".jpg").c_str();
+    string nameArt = "art/Escenari" + to_string(GameLevel::getInstance()->getNumLevel()) + ".jpg";
     auto contextImage = MenuItemImage::create(nameArt, nameArt, CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
     contextImage->setScale(0.4 * GameData::getInstance()->getRaWConversion());
     contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);

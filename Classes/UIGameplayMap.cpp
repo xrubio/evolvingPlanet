@@ -934,10 +934,9 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     return true;
 }
 
-bool UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
+void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
 {
     timeFingerSpot = clock();
-    return false;
 }
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
@@ -1036,8 +1035,8 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     GameLevel::getInstance()->setFinishedGame(UserCancel);
     while (GameLevel::getInstance()->ended == false)
         ;
-    pthread_cancel(gameLevelThread);
-    pthread_cancel(timingThread);
+    //pthread_cancel(gameLevelThread);
+    //pthread_cancel(timingThread);
     pthread_join(gameLevelThread, nullptr);
     pthread_join(timingThread, nullptr);
     GameData::getInstance()->setGameStarted(false);
@@ -1185,8 +1184,8 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameLevel::getInstance()->setFinishedGame(UserCancel);
 
-    pthread_cancel(gameLevelThread);
-    pthread_cancel(timingThread);
+    //pthread_cancel(gameLevelThread);
+    //pthread_cancel(timingThread);
     pthread_join(gameLevelThread, nullptr);
     pthread_join(timingThread, nullptr);
     GameData::getInstance()->setGameStarted(false);

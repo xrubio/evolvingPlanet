@@ -37,6 +37,7 @@
 #include "ExpansionGoal.h"
 #include "CollectionGoal.h"
 #include "Power.h"
+#include "Influence.h"
 
 #include "cocos2d.h"
 
@@ -51,7 +52,14 @@ void LevelLoader::loadXmlFile(string filename)
 
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
-    result = doc.load_file((fullPath).c_str());
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    long tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
+    
     //NUM_LEVEL
     GameLevel::getInstance()->setNumLevel(atoi(doc.child_value("NUM_LEVEL")));
     //NAME_LEVEL
@@ -228,7 +236,14 @@ string LevelLoader::getLevelFileMap(string filename)
 
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
-    result = doc.load_file((fullPath).c_str());
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    long tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
+    
     return doc.child_value("FILE_MAP");
 }
 
@@ -242,8 +257,14 @@ vector<string> LevelLoader::getGoalTypes(string filename)
 
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
-    result = doc.load_file((fullPath).c_str());
-    //return doc.child_value("FILE_MAP");
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    long tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
+
     vector<string> goalTypes;
     xml_node goals = doc.child("GOALS").child("GOAL");
     while (goals != nullptr) {
