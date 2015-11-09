@@ -38,16 +38,13 @@ void Kill::execute(Agent* agent)
     }
     
     int mobility = agent->getValue(eMobility);
-    int minRandomX = agent->getPosition().getX() - mobility;
-    int maxRandomX = agent->getPosition().getX() + mobility;
-    int minRandomY = agent->getPosition().getY() - mobility;
-    int maxRandomY = agent->getPosition().getY() + mobility;
+    cocos2d::Rect area = GameLevel::getInstance()->getArea(agent->getPosition(), mobility);
 
     int maxIterations = 10;
     while (maxIterations > 0)
     {
-        int posx = cocos2d::RandomHelper::random_int(minRandomX, maxRandomX);
-        int posy = cocos2d::RandomHelper::random_int(minRandomY, maxRandomY);
+        int posx = int(cocos2d::RandomHelper::random_real(area.getMinX(), area.getMaxX()));
+        int posy = int(cocos2d::RandomHelper::random_real(area.getMinY(), area.getMaxY()));
 
         if(GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType() != agent->getType())
         {

@@ -12,13 +12,13 @@
         <VALUES>1,1.3,1.5,1.6,1.8,2.2</VALUES>
     </ATTRIBUTE>  
     <ATTRIBUTE NAME="MOBILITY">
-        <VALUES>3,5,8,10,12,13</VALUES>
+        <VALUES>5,7,10,11,12,13</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="TECHNOLOGY">
         <VALUES>1,1.1,1.2,1.3,1.4,1.5</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="INFLUENCE">
-        <VALUES>0.05,0.1,0.2,0.25,0.3,1.0</VALUES>
+        <VALUES>0.1,0.2,0.3,0.4,0.5,0.6</VALUES>
     </ATTRIBUTE>
 </ATTRIBUTES_CONFIG>
 <AGENTS MAX_ALL="YES" NUMTYPES="2">
@@ -27,19 +27,19 @@
         <MAX_AGENTS>800</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>2</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY" GUI="1">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+                <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="TECHNOLOGY" GUI="2">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+                <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="INFLUENCE" GUI="0">
-                <INITIAL_VALUE>5</INITIAL_VALUE>
+                <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
     </AGENT>
@@ -51,7 +51,7 @@
                 <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
-                <INITIAL_VALUE>4</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>4</INITIAL_VALUE>
@@ -62,24 +62,13 @@
         </ATTRIBUTES>
         <DIRECTIONS>
             <DIRECTION>
-<!--                <STEP>5</STEP> -->
-                <STEP>1</STEP>
+                <STEP>5</STEP>
                 <POSITION X="150" Y="90"/>
             </DIRECTION>
-            <!--
             <DIRECTION>
-                <STEP>70</STEP>
-                <POSITION X="338" Y="232"/>
+                <STEP>30</STEP>
+                <POSITION X="300" Y="80"/>
             </DIRECTION>
-            <DIRECTION>
-                <STEP>75</STEP>
-                <POSITION X="366" Y="232"/>
-            </DIRECTION>
-            <DIRECTION>
-                <STEP>80</STEP>
-                <POSITION X="397" Y="188"/>
-            </DIRECTION>
-            -->
         </DIRECTIONS>
     </AGENT>
 </AGENTS>
@@ -109,41 +98,28 @@
 <GOALS>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <!--
         <MIN>21</MIN>
         <MAX>29</MAX>        
         <AVERAGE>25</AVERAGE>
-        -->
-        <MIN>1</MIN>
-        <MAX>200</MAX>        
-        <AVERAGE>150</AVERAGE>
-        <DESVIATION_2_STAR>2</DESVIATION_2_STAR>
+        <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
-    <!--
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>55</MIN>
-        <MAX>65</MAX>
-        <AVERAGE>60</AVERAGE>
-        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <MIN>45</MIN>
+        <MAX>55</MAX>
+        <AVERAGE>50</AVERAGE>
+        <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
-    -->
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <!--
-        <MIN>80</MIN>
-        <MAX>90</MAX>
-        <AVERAGE>85</AVERAGE>
-        -->
-        <MIN>280</MIN>
-        <MAX>490</MAX>
-        <AVERAGE>300</AVERAGE>
-
-        <DESVIATION_2_STAR>6</DESVIATION_2_STAR>
+        <MIN>62</MIN>
+        <MAX>72</MAX>
+        <AVERAGE>67</AVERAGE>
+        <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>13</COLOR_ZONE>
     </GOAL>

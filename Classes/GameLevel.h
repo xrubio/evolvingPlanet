@@ -34,10 +34,10 @@
 #include "Act.h"
 #include "Power.h"
 #include "Goal.h"
-#include "cocos2d.h"
 #include "Timing.h"
 #include <vector>
 #include "Achievement.h"
+#include <cocos2d.h>
 
 class UIGameplayMap;
 
@@ -187,6 +187,8 @@ public:
 
     void setModifiableAttr(int order, int attr) { _modifiableAtt.at(order) = attr; }
     const Levels & getModifiableAttr() const { return _modifiableAtt; }
+    // returns a Rect based on center and distance after checking for boundaries
+    cocos2d::Rect getArea(const Position & center, int mobility) const;
 
 private:
     static GameLevel* gamelevelInstance;
@@ -266,7 +268,6 @@ private:
     void deleteAgent(Agent* agent);
     //check achievements
     void checkAchievements(void);
-
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

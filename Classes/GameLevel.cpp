@@ -385,6 +385,16 @@ void GameLevel::setCurrentAgentType(int i)
     currentAgentType = i;
 }
 
+cocos2d::Rect GameLevel::getArea(const Position & center, int mobility) const
+{
+    // map size is 480x320
+    int minX = std::max(0, center.getX() - mobility);
+    int maxX = std::min(479, center.getX() + mobility);
+    int minY = std::max(0, center.getY() - mobility);
+    int maxY = std::min(319, center.getY() + mobility);
+    return cocos2d::Rect(minX, minY, maxX-minX, maxY-minY);
+}
+
 Agent* GameLevel::getAgentAtMap(int i, int j)
 {
     return _agentsMap[i][j];
