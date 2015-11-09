@@ -20,9 +20,9 @@ $ source ~/.bashrc
 
 2. create cocos project
 # setup dummy project
-$ cocos new simulplay -p org.cocos2dx.simulplay -l cpp -d .
+$ cocos new evolvingPlanet -p org.murphystoast.evolvingPlanet -l cpp -d .
 # compile hello world
-$ cd simulplay
+$ cd evolvingPlanet
 $ cocos compile -p linux
 # run hello world
 
@@ -36,9 +36,11 @@ $ ln -s repo/Classes/ .
 $ ln -s repo/Resources/ .
 $ ln -s repo/libs/ .
 $ ln -s repo/CMakeLists.txt .
-# edit file CMakeLists.txt and add all cpp and h files to GAME_SRC and GAME_HEADERS
-# add also the cpp/hpp of libs/pugixml
-# there is a sample file in this same dir (from cocos 3.3)
+
+# cp CCApplication-linux.cpp and CCCommon.h to the place where they should be:
+CCApplication-linux.cpp -> cocos2d/cocos/platform
+CCCommon.h -> cocos2d/cocos/platform/linux
+
 # compile again
 $ cocos compile -p linux
 
