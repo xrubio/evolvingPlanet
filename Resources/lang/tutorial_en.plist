@@ -106,5 +106,19 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<string>You&apos;ll have to use Resistance boosts and Technology to arrive to the different objectives. You should avoid the other population, as they are far more experience on warfare than you.</string>
 	<key>LEVEL5M5</key>
 	<string>Good luck Commander!</string>
+
+    <key>LEVEL6M1</key>
+    <string>Greetings Professor. We have another situation of interaction with a different species.</string>
+    <key>LEVEL6M2</key>
+    <string>We are certain that this population did not have enough mobility to reach the objectives within the time recorded by archaeologists.</string>
+    <key>LEVEL6M3</key>
+    <string>This population seems to have increased their mobility so we have added a Boost to this attribute</string>
+    <key>LEVEL6M4</key>
+    <string>On the other hand, a long time ago someone said that if you can't beat your enemies you can always force them to join you...so we have added another attribute called Influence</string>
+    <key>LEVEL6M5</key>
+    <string>We are confident that superior mobility and cultural influence would allow your population to ally with the other species and achieve your objectives. It will definitely be faster than fighting them while dispersing.</string>
+    <key>LEVEL6M6</key>
+    <string>Good luck Professor!</string>
 </dict>
 </plist>
+

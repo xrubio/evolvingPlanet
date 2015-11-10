@@ -12,7 +12,7 @@
         <VALUES>1,1.3,1.5,1.6,1.8,2.2</VALUES>
     </ATTRIBUTE>  
     <ATTRIBUTE NAME="MOBILITY">
-        <VALUES>5,7,10,11,12,13</VALUES>
+        <VALUES>5,7,10,12,14,15</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="TECHNOLOGY">
         <VALUES>1,1.1,1.2,1.3,1.4,1.5</VALUES>
@@ -75,7 +75,7 @@
 <POWERS>
     <POWER NAME="MobilityBoost">
         <COST>2</COST>
-        <COOLDOWN>20</COOLDOWN>
+        <COOLDOWN>15</COOLDOWN>
         <DURATION>10</DURATION>
         <ATTRIBUTE>MOBILITY</ATTRIBUTE>  
         <TYPE TYPE_NAME="Area">
@@ -84,8 +84,8 @@
     </POWER>
     <POWER NAME="ReproductionBoost">
         <COST>2</COST>
-        <COOLDOWN>20</COOLDOWN>
-        <DURATION>5</DURATION>
+        <COOLDOWN>15</COOLDOWN>
+        <DURATION>7</DURATION>
         <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
         <TYPE TYPE_NAME="Global"/>
     </POWER>
@@ -116,9 +116,9 @@
     </GOAL>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>62</MIN>
-        <MAX>72</MAX>
-        <AVERAGE>67</AVERAGE>
+        <MIN>65</MIN>
+        <MAX>75</MAX>
+        <AVERAGE>70</AVERAGE>
         <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>13</COLOR_ZONE>

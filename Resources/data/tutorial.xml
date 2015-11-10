@@ -118,3 +118,20 @@
     <message id="5" x="0.6" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL5M5"/>
 </level>
 
+<level num="6" numMessages="6">
+    <message id="1" x="0.5" y="0.3" lineWidth="0.4" trigger="time" step="0" text="LEVEL6M1">
+        <spot image="tutorial/tCircle" centerX="0.55" centerY="0.67"/>
+    </message>    
+    <message id="2" x="0.65" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M2">
+        <spot image="tutorial/tCircle" centerX="0.1" centerY="0.34"/>
+    </message>
+    <message id="3" x="0.65" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M3">
+        <spot image="tutorial/tBoost" centerX="0.068" centerY="0.075"/>
+    </message>
+    <message id="4" x="0.65" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M4"/>
+    <message id="5" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M5">
+        <spot image="tutorial/tCircle" centerX="0.55" centerY="0.7"/>
+    </message>    
+    <message id="6" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M6"/>
+</level>
+
