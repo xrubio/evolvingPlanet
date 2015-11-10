@@ -4,19 +4,19 @@
 <FILE_MAP>Level5</FILE_MAP>
 <AGENTS_PIXEL_SIZE>2</AGENTS_PIXEL_SIZE>
 <EVPOINTS_FREQ>3</EVPOINTS_FREQ>
-<ATTRIBUTES_CONFIG>  
+<ATTRIBUTES_CONFIG> 
     <ATTRIBUTE NAME="REPRODUCTION">
-        <VALUES>0.1,0.15,0.20,0.25,0.3,0.5</VALUES>
-    </ATTRIBUTE>  
+        <VALUES>0.1,0.2,0.25,0.3,0.35,0.4</VALUES>
+    </ATTRIBUTE>
     <ATTRIBUTE NAME="RESISTANCE">
-        <VALUES>1,1.2,1.4,1.5,1.6,2.2</VALUES>
+        <VALUES>1,1.35,1.6,1.7,1.8,2</VALUES>
     </ATTRIBUTE>  
+    <ATTRIBUTE NAME="MOBILITY">
+        <VALUES>5,7,9,11,13,15</VALUES>
+    </ATTRIBUTE> 
     <ATTRIBUTE NAME="TECHNOLOGY">
         <VALUES>1,1.1,1.2,1.3,1.4,1.5</VALUES>
     </ATTRIBUTE>  
-    <ATTRIBUTE NAME="MOBILITY">
-        <VALUES>4,6,8,10,12,15</VALUES>
-    </ATTRIBUTE>
     <ATTRIBUTE NAME="WARFARE">
         <VALUES>0,0,0,0,0,0.3</VALUES>
     </ATTRIBUTE>
@@ -70,11 +70,11 @@
                 <POSITION X="210" Y="90"/>
             </DIRECTION>          
             <DIRECTION>
-                <STEP>50</STEP>
+                <STEP>45</STEP>
                 <POSITION X="270" Y="80"/>
             </DIRECTION>          
             <DIRECTION>
-                <STEP>70</STEP>
+                <STEP>65</STEP>
                 <POSITION X="430" Y="140"/>
             </DIRECTION>  
         </DIRECTIONS>
@@ -124,10 +124,10 @@
     </GOAL>
     <GOAL TYPE_GOAL="Expansion">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>90</MIN>
-        <MAX>100</MAX>
-        <AVERAGE>95</AVERAGE>
-        <DESVIATION_2_STAR>4</DESVIATION_2_STAR>
+        <MIN>80</MIN>
+        <MAX>90</MAX>
+        <AVERAGE>85</AVERAGE>
+        <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>13</COLOR_ZONE>
     </GOAL>

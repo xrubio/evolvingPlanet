@@ -97,9 +97,9 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL4M5</key>
 	<string>Good luck commander!</string>
 	<key>LEVEL5M1</key>
-	<string>Greetings, Commander. For the first time your agents will have to share this landscape with other populations</string>
+	<string>Greetings, Commander. For the first time your agents will have to share this landscape with other populations. The zone around this river was populated before our arrival.</string>
 	<key>LEVEL5M2</key>
-	<string>Interaction between population is a complex process with a diversity of outcomes; it will range from trade and cultural exchange to open conflict. Some times even a mix of all these processes.</string>
+	<string>Interaction between population is a complex process with a diversity of outcomes; it will range from trade and cultural exchange to open conflict. Usually it is a mix of all these processes.</string>
 	<key>LEVEL5M3</key>
 	<string>It seems that this first contact with another species was not extremely peaceful. Both of them moved south to colonize these arid zones due to environmental stress caused by overpopulation.</string>
 	<key>LEVEL5M4</key>
