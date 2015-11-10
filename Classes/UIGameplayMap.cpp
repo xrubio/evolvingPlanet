@@ -597,7 +597,6 @@ bool UIGameplayMap::init()
     
     auto tutorialImage = Sprite::create();
     tutorialImage->setName("tutorialImage");
-    tutorialImage->runAction(RepeatForever::create(Blink::create(1, 1)));
     tutorialImage->setVisible(false);
     tutorialImage->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
@@ -948,15 +947,18 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     Point touchLocation = this->convertTouchToNodeSpace(touches.at(0));
     for(size_t i = 0; i < powerButtons.size(); i++)
     {
-        powerButtons.at(i)->onTouchesEnded(touchLocation);
+        bool actioned = powerButtons.at(i)->onTouchesEnded(touchLocation);
         //ANIMACIO RESTA PUNTS
-        if (powerButtons.at(i)->getClicked() == true)
+        if (actioned == true)
         {
             restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
             restaEvolutionPointsLabel->setString("-" + to_string(int(powerButtons.at(i)->getPower()->getCost())));
             auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
             restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
-            powerButtons.at(i)->setClicked(false);
+        }
+        else
+        {
+            powerButtons.at(i)->disabled = true;
         }
     }
     moveBackground = false;
@@ -1996,7 +1998,7 @@ void UIGameplayMap::setMessage( const Message * message )
             image->setTexture(spot->_image+".png");
             image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setVisible(true);
-            image->runAction(RepeatForever::create(Blink::create(1, 1)));
+            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(1.1, 70), FadeTo::create(1, 200), nullptr)));
         }
         
         const Rect & contents = label->getBoundingBox();

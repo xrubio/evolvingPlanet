@@ -49,8 +49,11 @@ public:
 
     virtual void onTouchesBegan(Point touchLocation) = 0;
     virtual void onTouchesMoved(Touch* touchLocation) = 0;
-    virtual void onTouchesEnded(Point touchLocation) = 0;
+    virtual bool onTouchesEnded(Point touchLocation) = 0;
     virtual void update(float delta) = 0;
+    
+    bool disabled = false;
+
 
 protected:
     Power* power;
@@ -59,7 +62,6 @@ protected:
     Sprite* active;
 
     bool clicked = false;
-    bool disabled = false;
 };
 
 #endif /* defined(__simulplay__UIPower__) */

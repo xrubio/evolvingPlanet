@@ -36,7 +36,7 @@ public:
     
     void onTouchesBegan(Point touchLocation);
     void onTouchesMoved(Touch* touchLocation);
-    void onTouchesEnded(Point touchLocation);
+    bool onTouchesEnded(Point touchLocation);
     void update(float delta);
 
 private:

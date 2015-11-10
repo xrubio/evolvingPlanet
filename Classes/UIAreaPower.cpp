@@ -98,7 +98,7 @@ void UIAreaPower::onTouchesMoved(Touch* touchLocation)
     }
 }
 
-void UIAreaPower::onTouchesEnded(Point touchLocation)
+bool UIAreaPower::onTouchesEnded(Point touchLocation)
 {
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (clicked) {
@@ -113,9 +113,13 @@ void UIAreaPower::onTouchesEnded(Point touchLocation)
             //((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GREEN);
             active->setVisible(true);
             cooldownTimer->setPercentage(100.0);
+            clicked = false;
             //cooldown->setVisible(true);
+            return true;
         }
     }
+    clicked = false;
+    return false;
 }
 
 void UIAreaPower::update(float delta)
