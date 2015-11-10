@@ -57,7 +57,8 @@ void Reproduce::execute(Agent* agent)
         Agent * ag = GameLevel::getInstance()->getAgentsPool().at(type).front();
         GameLevel::getInstance()->popFrontAgentsPool(type);
         ag->setId(GameLevel::getInstance()->getIdCounter());
-        ag->setLife(200);
+        // mean of 200, but each agent is slightly different
+        ag->setLife(cocos2d::RandomHelper::random_int(150,250));
         ag->setType(type);
         ag->setPosition(posx, posy);
         ag->copyValues(type);
