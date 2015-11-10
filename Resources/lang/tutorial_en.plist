@@ -119,6 +119,27 @@ The Console shows you an aggregated of these data, making your life much easier<
     <string>We are confident that superior mobility and cultural influence would allow your population to ally with the other species and achieve your objectives. It will definitely be faster than fighting them while dispersing.</string>
     <key>LEVEL6M6</key>
     <string>Good luck Professor!</string>
+    
+    <key>LEVEL7M1</key>
+    <string>Conflict is unfortunately often present in competition, and this planet is not an exception</string>
+    <key>LEVEL7M2</key>
+    <string>We know that our population engaged on warfare against these poor little blue dots...</string>
+    <key>LEVEL7M3</key>
+    <string>We need to replicate this so you have another attribute here called Warfare</string>
+    <key>LEVEL7M4</key>
+    <string>Both populations will try to disperse to the richer zones displayed here; make sure that our bots are the ones that takes control of the area</string>
+    <key>LEVEL7M5</key>
+    <string>Good luck Professor!</string>
+    <key>LEVEL9M1</key>
+    <string>We have here a peculiar situation...your population will get involved with two radically different species</string>
+    <key>LEVEL9M2</key>
+    <string>The yellow bots are extremely agressive</string>    
+    <key>LEVEL9M3</key>
+    <string>In contrast, the blue ones have a strong cultural influence even if their military strength is weak</string>
+    <key>LEVEL9M4</key>
+    <string>Our population alternated both strategies, so you have here a couple of new Boosts to use</string>
+    <key>LEVEL9M5</key>
+    <string>Good luck Professor!</string>
 </dict>
 </plist>
 

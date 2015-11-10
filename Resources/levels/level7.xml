@@ -45,20 +45,20 @@
         </ATTRIBUTES>
     </AGENT>
     <AGENT TYPE="1">
-        <NUM_INITIAL_AGENTS>100</NUM_INITIAL_AGENTS>
-        <MAX_AGENTS>400</MAX_AGENTS>
+        <NUM_INITIAL_AGENTS>400</NUM_INITIAL_AGENTS>
+        <MAX_AGENTS>700</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
                 <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
-                <INITIAL_VALUE>2</INITIAL_VALUE>
+                <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="WARFARE">
-                <INITIAL_VALUE>5</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
         </ATTRIBUTES>
         <DIRECTIONS>

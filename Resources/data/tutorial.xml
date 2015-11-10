@@ -135,3 +135,31 @@
     <message id="6" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M6"/>
 </level>
 
+<level num="7" numMessages="5">
+    <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0" text="LEVEL7M1"/>
+    <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL7M2">
+        <spot image="tutorial/tCircle" centerX="0.45" centerY="0.8"/>
+    </message>
+    <message id="3" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL7M3">
+        <spot image="tutorial/tCircle" centerX="0.1" centerY="0.25"/>
+    </message>
+    <message id="4" x="0.5" y="0.5" lineWidth="0.4" trigger="next" text="LEVEL7M4">
+        <spot image="tutorial/tArea" centerX="0.45" centerY="0.3"/>
+    </message>
+    <message id="5" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL7M5"/>
+</level>
+
+<level num="9" numMessages="5">
+    <message id="1" x="0.45" y="0.55" lineWidth="0.4" trigger="time" step="0" text="LEVEL9M1"/>
+    <message id="2" x="0.45" y="0.55" lineWidth="0.4" trigger="next" text="LEVEL9M2">
+        <spot image="tutorial/tCircle" centerX="0.9" centerY="0.7"/>
+    </message>
+    <message id="3" x="0.7" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL9M3">
+        <spot image="tutorial/tCircle" centerX="0.55" centerY="0.35"/>
+    </message>
+    <message id="4" x="0.7" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL9M4">
+        <spot image="tutorial/tBoostsArea" centerX="0.11" centerY="0.08"/>
+    </message>
+    <message id="5" x="0.7" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL9M5"/>
+</level>
+
