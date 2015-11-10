@@ -848,7 +848,7 @@ void UIProgressMap::setLoadingAnimation(bool visible)
         auto visibleSize = Director::getInstance()->getVisibleSize();
         auto loading = Sprite::create("gui/Loading.png");
         loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
-        loading->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        loading->setScale(GameData::getInstance()->getRaHConversion());
         loading->setName("loading");
         loading->setVisible(visible);
         this->addChild(loading, 500);

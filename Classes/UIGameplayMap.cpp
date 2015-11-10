@@ -975,7 +975,7 @@ void UIGameplayMap::onMouseScroll(Event* event)
 
     // ZOOM
     EventMouse* e = (EventMouse*)event;
-    if (checkPowersClicked() == false) {
+    if (checkPowersClicked() == false and _tutorial->isFinished()) {
         // Get current and previous positions of the touches
         Point curPosTouch1 = Director::getInstance()->convertToGL(e->getLocationInView());
         Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
@@ -1064,6 +1064,11 @@ void UIGameplayMap::pauseGame()
 
 void UIGameplayMap::togglePlay(Ref* pSender)
 {
+    if (endGameWindowPainted)
+    {
+        return;
+    }
+    
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
@@ -1218,6 +1223,11 @@ void UIGameplayMap::NoCallback(Ref* pSender)
 
 void UIGameplayMap::minusAttCallback(Ref* pSender)
 {
+    if (endGameWindowPainted)
+    {
+        return;
+    }
+    
     MenuItem* pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
     int i = tag - 10;
@@ -1255,6 +1265,11 @@ void UIGameplayMap::minusAttCallback(Ref* pSender)
 
 void UIGameplayMap::plusAttCallback(Ref* pSender)
 {
+    if (endGameWindowPainted)
+    {
+        return;
+    }
+    
     MenuItem* pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
     int i = tag - 50;
@@ -1299,6 +1314,11 @@ void UIGameplayMap::hideAchievementWindowCallback(Ref* pSender)
 
 void UIGameplayMap::removeFingerSpot(Ref* pSender)
 {
+    if (endGameWindowPainted)
+    {
+        return;
+    }
+    
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
@@ -1663,6 +1683,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     
     //delete wave nodes
     this->getChildByName("graphicBackground")->removeAllChildren();
+    ((MenuItem*)this->getChildByName("timeMenu")->getChildByName("playToggle"))->setEnabled(false);
     
     this->addChild(window, 10);
 }
