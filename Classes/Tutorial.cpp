@@ -64,16 +64,15 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
             float yPos = message.attribute("y").as_float();
             float lineBreak = message.attribute("lineWidth").as_float();
             std::string text = LocalizedString::create(message.attribute("text").value(), "tutorial");
-            std::string image = message.attribute("image").value();
             Message * newMessage = 0;
             if(trigger=="next")
             { 
-                newMessage = new MessageNext(text, xPos, yPos, lineBreak, image);
+                newMessage = new MessageNext(text, xPos, yPos, lineBreak);
             }
             else if(trigger=="time")
             {
                 int step = message.attribute("step").as_int();
-                newMessage = new MessageTime(text, xPos, yPos, lineBreak, step, image);
+                newMessage = new MessageTime(text, xPos, yPos, lineBreak, step);
             }
             // post condition to close message (basic behavior is close it if tap)
             if(!message.attribute("closesWhen").empty())
@@ -89,13 +88,12 @@ void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
 
             // add spots (if any)
             pugi::xml_node spot = message.child("spot");
-            while(spot!= nullptr)
+            if(spot!= nullptr)
             {
                 float centerX = spot.attribute("centerX").as_float();
                 float centerY = spot.attribute("centerY").as_float();
-                float radius = spot.attribute("radius").as_float();
-                newMessage->addSpot(centerX, centerY, radius);
-                spot = spot.next_sibling("spot");
+                std::string image = spot.attribute("image").value();
+                newMessage->createSpot(centerX, centerY, image);
             }
 
             _messages.push_back(newMessage);

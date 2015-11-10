@@ -21,18 +21,25 @@
 #include "Message.h"
 #include "GameLevel.h"
 
-Message::Message( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const std::string & image ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth), _postCondition("tap"), _meetsPostCondition(false), _image(image)
+Message::Message( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth ) : _text(text), _pos(xPos, yPos), _lineWidth(lineWidth), _postCondition("tap"), _meetsPostCondition(false), _spot(0)
 {
 }
 
 Message::~Message()
 {
+    if(_spot)
+    {
+        delete _spot;
+    }
 }
 
-void Message::addSpot( const float & centerX, const float & centerY, const float & radius)
+void Message::createSpot( const float & centerX, const float & centerY, const std::string & image )
 {
-    Spot spot(centerX, centerY, radius);
-    _spots.push_back(spot);
+    if(_spot)
+    {
+        delete _spot;
+    }
+    _spot = new Spot(centerX, centerY, image);
 }
 
 void Message::setPostCondition( const std::string & condition )
@@ -41,7 +48,7 @@ void Message::setPostCondition( const std::string & condition )
     _meetsPostCondition = false;
 }
 
-MessageTime::MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step, const std::string & image) : Message(text, xPos, yPos, lineWidth, image), _step(step)
+MessageTime::MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step) : Message(text, xPos, yPos, lineWidth), _step(step)
 {
 }
 
@@ -58,7 +65,7 @@ bool MessageTime::meetsPreCondition() const
     return false;
 }
 
-MessageNext::MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const std::string & image ) : Message(text, xPos, yPos, lineWidth, image)
+MessageNext::MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth ) : Message(text, xPos, yPos, lineWidth)
 {
 }
 

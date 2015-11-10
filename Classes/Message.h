@@ -31,16 +31,15 @@ class Spot
 public:    
     float _centerX;
     float _centerY;
-    float _radius;
-
-    Spot( const float & centerX, const float & centerY, const float & radius ) : _centerX(centerX), _centerY(centerY), _radius(radius){}
+    /** image to show on screen **/
+    std::string _image;
+    
+    Spot( const float & centerX, const float & centerY, const std::string & image ) : _centerX(centerX), _centerY(centerY), _image(image){}
 };
 
 /** Popup note for the tutorial **/
 class Message
 {
-public:
-    typedef std::vector<Spot> SpotVector;
 private:    
     /** text to show on screen **/
     std::string _text;
@@ -48,10 +47,8 @@ private:
     Vec2 _pos;
     /** percentage of visible size used for width of line of text **/
     float _lineWidth;
-    std::vector<Spot> _spots;
-    /** image to show on screen **/
-    std::string _image;
-
+    Spot * _spot;
+    
     // condition to close the message
     std::string _postCondition;
     // button name to be tapped in order to close the message when _postCondition is "tapButton"
@@ -59,22 +56,20 @@ private:
     // 
     bool _meetsPostCondition;
 public:
-    Message( const std::string & text = "no text", const float & xPos = 0.5, const float & yPos = 0.5, const float & lineWidth = 0.5, const std::string & image = "no image");
+    Message( const std::string & text = "no text", const float & xPos = 0.5, const float & yPos = 0.5, const float & lineWidth = 0.5);
     virtual ~Message();
 
     const std::string & text() const {return _text;} 
     const float & lineWidth() const {return _lineWidth;}
     const Vec2 & pos() const {return _pos;}
-    const std::string & image() const {return _image;}
-    void addSpot( const float & centerX, const float & centerY, const float & radius);
+    void createSpot( const float & centerX, const float & centerY, const std::string & image);
     /** \returns true if conditions to show Message are all achieved**/
     virtual bool meetsPreCondition() const = 0;
     /** \returns true if conditions to close Message are all achieved**/
     bool meetsPostCondition() const{return _meetsPostCondition;}
     void postConditionAchieved() { _meetsPostCondition = true;}
 
-    SpotVector::const_iterator beginSpots() const { return _spots.begin(); }
-    SpotVector::const_iterator endSpots() const { return _spots.end(); }
+    const Spot * getSpot()const{return _spot;}
 
     void setPostCondition( const std::string & condition );
     void setPostConditionOk( bool postConditionOk );
@@ -88,7 +83,7 @@ class MessageTime : public Message
 {
     unsigned int _step;
 public:
-    MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step, const std::string & image);
+    MessageTime( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const unsigned int & step);
     virtual ~MessageTime();
 
     bool meetsPreCondition() const;
@@ -98,7 +93,7 @@ public:
 class MessageNext : public Message
 {
 public:    
-    MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth, const std::string & image);
+    MessageNext( const std::string & text, const float & xPos, const float & yPos, const float & lineWidth);
     virtual ~MessageNext();
 
     bool meetsPreCondition() const;

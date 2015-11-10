@@ -587,9 +587,6 @@ bool UIGameplayMap::init()
     auto labelBorder = DrawNode::create();
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
-    auto spots = DrawNode::create();
-    spots->setName("tutorialSpots");
-    spots->setVisible(false);
 
     auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 50);
     tutorialTitle->setName("tutorialTitle");
@@ -608,7 +605,6 @@ bool UIGameplayMap::init()
     this->addChild(labelBorder);
     this->addChild(messageLabel);
     this->addChild(messageNextLabel);
-    this->addChild(spots);
     this->addChild(tutorialTitle);
     this->addChild(tutorialImage, 100);
 
@@ -1868,7 +1864,6 @@ void UIGameplayMap::update(float delta)
                     this->getChildByName("tutorial")->setVisible(false);
                     this->getChildByName("tutorialNext")->setVisible(false);
                     this->getChildByName("tutorialBorder")->setVisible(false);
-                    this->getChildByName("tutorialSpots")->setVisible(false);
                     this->getChildByName("tutorialImage")->stopAllActions();
                     this->getChildByName("tutorialImage")->setVisible(false);
 
@@ -1972,10 +1967,14 @@ void UIGameplayMap::setMessage( const Message * message )
         {
             nextLabel->setString(LocalizedString::create("NEXT_MESSAGE_TAP", "tutorial"));
         }
-        if (message->image() != "")
+
+        // if message shows an image in a particular spot
+        if(message->getSpot()!=nullptr)
         {
-            image->setTexture(message->image()+".png");
-            image->setPosition(Vec2(visibleSize.width*message->beginSpots()->_centerX, visibleSize.height*message->beginSpots()->_centerY));
+            const Spot * spot = message->getSpot();
+            CCLOG("image name: %s",spot->_image.c_str());
+            image->setTexture(spot->_image+".png");
+            image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setVisible(true);
             image->runAction(RepeatForever::create(Blink::create(1, 1)));
         }
@@ -1997,21 +1996,6 @@ void UIGameplayMap::setMessage( const Message * message )
 
     auto pauseDarkBackground = this->getChildByName("pauseDarkBackground");
     pauseDarkBackground->setVisible(false);
-
-    // spots
-    Message::SpotVector::const_iterator spotIt = _message->beginSpots();
-    auto spotsLayer = (DrawNode*)(this->getChildByName("tutorialSpots"));
-    spotsLayer->clear();
-    spotsLayer->setVisible(true);
-
-    while(spotIt!=_message->endSpots())
-    {
-        const Spot & spot = *spotIt;
-        Vec2 posCircle = Vec2(visibleSize.width*spot._centerX, visibleSize.height*spot._centerY);
-        spotsLayer->drawCircle( posCircle, spot._radius*visibleSize.width, 0.0f, 6, false, Color4F(1.0f, 1.0f, 1.0f, 0.75f));
-        spotsLayer->drawCircle( posCircle, spot._radius*visibleSize.width*0.95f, 0.0f, 6, false, Color4F(1.0f, 1.0f, 1.0f, 0.5f));
-        spotIt++;
-    }
 }
 
 void UIGameplayMap::updateWave(int indexAgent)
