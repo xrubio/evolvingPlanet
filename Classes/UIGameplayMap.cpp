@@ -1570,7 +1570,7 @@ void UIGameplayMap::initializeAgents(void)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {
-            Color4B color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 100));
+            Color4B color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 175));
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
     }
@@ -1774,16 +1774,16 @@ void UIGameplayMap::updateAgents(void)
             default:
                 switch ((*it)->getType()) {
                 case 1:
-                    color = Color4B(0, 248, 251, (*it)->getLife() * (255 / 100));
+                    color = Color4B(0, 248, 251, (*it)->getLife() * (255 / 175));
                     break;
                 case 2:
-                    color = Color4B(210, 214, 47, (*it)->getLife() * (255 / 100));
+                    color = Color4B(210, 214, 47, (*it)->getLife() * (255 / 175));
                     break;
                 case 3:
-                    color = Color4B(68, 165, 195, (*it)->getLife() * (255 / 100));
+                    color = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
                     break;
                 default:
-                    color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 100));
+                    color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 175));
                     break;
                 }
                 break;
