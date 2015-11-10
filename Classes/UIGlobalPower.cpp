@@ -67,7 +67,7 @@ void UIGlobalPower::onTouchesBegan(Point touchLocation)
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
         clicked = true;
-        icon->setScale(0.8 * GameData::getInstance()->getRaWConversion(), 0.8 * GameData::getInstance()->getRaHConversion());
+        icon->setScale(1.25 * GameData::getInstance()->getRaWConversion(), 1.25 * GameData::getInstance()->getRaHConversion());
         //auto button = (Sprite*)icon->getChildByTag(0);
         //button->setColor(Color3B::GRAY);
     }
@@ -77,7 +77,7 @@ void UIGlobalPower::onTouchesMoved(Touch* touchLocation)
 {
 }
 
-void UIGlobalPower::onTouchesEnded(Point touchLocation)
+bool UIGlobalPower::onTouchesEnded(Point touchLocation)
 {
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked) {
@@ -91,8 +91,13 @@ void UIGlobalPower::onTouchesEnded(Point touchLocation)
         active->setVisible(true);
         cooldownTimer->setPercentage(100.0);
         //cooldown->setVisible(true);
+        actionTime = 0.0;
+        clicked = false;
+        return true;
     }
+    clicked = false;
     actionTime = 0.0;
+    return false;
 }
 
 void UIGlobalPower::update(float delta)
