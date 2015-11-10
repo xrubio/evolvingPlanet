@@ -55,12 +55,13 @@ public:
 
 private:
     bool stoppedAnimation = false;
+    bool loading = false;
 
     void endActions(void);
     bool allActionsFinished(void);
     void createWarningWindow(void);
     
-    void setLoadingAnimation(bool visible);
+    void setLoadingAnimation(bool b);
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

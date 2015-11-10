@@ -56,8 +56,6 @@ bool UIMainMenu::init()
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    setLoadingAnimation(false);
-    
     auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height / 2));
@@ -279,7 +277,6 @@ void UIMainMenu::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 void UIMainMenu::menuContinueCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        setLoadingAnimation(true);
         auto scene = UIProgressMap::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -304,7 +301,6 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         }
         else
         {
-            setLoadingAnimation(true);
             GameData::getInstance()->resetGameProgress();
             auto scene = UIProgressMap::createScene();
             auto transition = TransitionFade::create(1.0f, scene);
@@ -349,14 +345,15 @@ void UIMainMenu::menuExtrasCallback(Ref* pSender)
 void UIMainMenu::menuStoryCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        setLoadingAnimation(true);
+        Director::getInstance()->getTextureCache()->addImageAsync("gui/Loading.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        CCLog("STORY");
+        //setLoadingAnimation(true);
         auto scene = UIStoryGallery::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
-
     }
     else {
         endActions();
@@ -366,7 +363,6 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
 void UIMainMenu::menuAchievementsCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        setLoadingAnimation(true);
         auto scene = UIAchievements::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -382,7 +378,6 @@ void UIMainMenu::menuAchievementsCallback(Ref* pSender)
 void UIMainMenu::menuConfigurationCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        setLoadingAnimation(true);
         auto scene = UIConfiguration::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -398,7 +393,6 @@ void UIMainMenu::menuConfigurationCallback(Ref* pSender)
 void UIMainMenu::menuCreditsCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        setLoadingAnimation(true);
         auto scene = UICredits::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -443,7 +437,6 @@ void UIMainMenu::menuResetYesCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
-    setLoadingAnimation(true);
     GameData::getInstance()->resetGameProgress();
     auto scene = UIProgressMap::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
@@ -533,11 +526,11 @@ void UIMainMenu::createWarningWindow(void)
     this->addChild(alertBackground, 30, 30);
 }
 
-void UIMainMenu::setLoadingAnimation(bool visible)
+void UIMainMenu::setLoadingAnimation(bool b)
 {
     if (this->getChildByName("loading") != nullptr)
     {
-        this->getChildByName("loading")->setVisible(visible);
+        this->getChildByName("loading")->setVisible(b);
     }
     else
     {
@@ -546,7 +539,7 @@ void UIMainMenu::setLoadingAnimation(bool visible)
         loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
         loading->setScale(GameData::getInstance()->getRaHConversion());
         loading->setName("loading");
-        loading->setVisible(visible);
+        loading->setVisible(true);
         this->addChild(loading, 500);
         loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
     }
