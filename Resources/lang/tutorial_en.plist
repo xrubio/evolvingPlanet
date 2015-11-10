@@ -53,7 +53,7 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL1M21</key>
 	<string>It seems that we are set! Let&apos;s see if they survive with these traits</string>
 	<key>LEVEL1M22</key>
-	<string>Now that our population is striving let&apos;s suggest them where to expand; set the orientation marker within the goal zone</string>
+	<string>You can see in this panel that your population is striving. Let&apos;s suggest them where to expand; set the orientation marker within the goal zone</string>
 	<key>LEVEL1M23</key>
 	<string>As you can see you get new EvoPoints with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need</string>
 	<key>LEVEL1M24</key>

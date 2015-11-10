@@ -4,52 +4,57 @@
     <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M2"/>
     <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M3"/>
     <message id="4" x="0.4" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL1M4">
-        <spot centerX="0.26" centerY="0.64" radius="0.05"/>
+        <spot image="tutorial/tArea" centerX="0.26" centerY="0.64"/>
     </message>
-    <message id="5" x="0.6" y="0.5" lineWidth="0.4" trigger="next" text="LEVEL1M5">
-        <spot centerX="0.82" centerY="0.33" radius="0.05"/>
+    <message id="5" x="0.5" y="0.5" lineWidth="0.4" trigger="next" text="LEVEL1M5">
+        <spot image="tutorial/tArid01" centerX="0.5" centerY="0.5"/>
     </message>
-    <message id="6" x="0.6" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M6">
-        <spot centerX="0.26" centerY="0.64" radius="0.05"/>
-        <spot centerX="0.82" centerY="0.33" radius="0.05"/>
-    </message>
+    <message id="6" x="0.6" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M6"/>
     <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M7">
-        <spot centerX="0.62" centerY="0.3" radius="0.05"/>
+        <spot image="tutorial/tArea" centerX="0.62" centerY="0.3"/>
     </message>        
     <message id="8" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M8">
-        <spot centerX="0.14" centerY="0.7" radius="0.03"/>
+        <spot image="tutorial/tCircle" centerX="0.16" centerY="0.7"/>
     </message>        
-    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M9"/>
+    <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M9">
+        <spot image="tutorial/tTarget" centerX="0.78" centerY="0.22"/>
+    </message>
     <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M10"/>
     <message id="11" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M11" image="gui/TutorialPlaySpot" closesWhen="tapButton" button="timeMenu/playToggle">
-        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
+        <spot image="tutorial/tArea" centerX="0.89" centerY="0.93"/>
     </message>
     <message id="12" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="2" text="LEVEL1M12"/>
     <message id="13" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M13" closesWhen="spot"/>
-    <message id="14" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M14"/>
+    <message id="14" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M14">
+        <spot image="tutorial/tEvoTrack" centerX="0.56" centerY="0.07"/>
+    </message>        
     <message id="15" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M15" closesWhen="tapButton" button="bottomFrame/attrMenu/plusMOBILITY">
-        <spot centerX="0.97" centerY="0.32" radius="0.02"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.45" centerY="0.065"/>
     </message>
-    <message id="17" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M16" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
-        <spot centerX="0.97" centerY="0.24" radius="0.02"/>
+    <message id="16" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M16" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
+        <spot image="tutorial/tEvoPlus" centerX="0.617" centerY="0.065"/>
     </message>
-    <message id="18" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M17" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">   
-        <spot centerX="0.97" centerY="0.24" radius="0.02"/>
+    <message id="17" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M17" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">   
+        <spot image="tutorial/tEvoPlus" centerX="0.617" centerY="0.065"/>
     </message>
-    <message id="19" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M18" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
-        <spot centerX="0.97" centerY="0.24" radius="0.02"/>
+    <message id="18" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M18" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
+        <spot image="tutorial/tEvoPlus" centerX="0.617" centerY="0.065"/>
     </message>
-    <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M19" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
-        <spot centerX="0.97" centerY="0.16" radius="0.02"/>
+    <message id="19" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M19" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
+        <spot  image="tutorial/tEvoPlus" centerX="0.783" centerY="0.065"/>
     </message>
     <message id="20" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M20" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
-        <spot centerX="0.97" centerY="0.16" radius="0.02"/>
+        <spot   image="tutorial/tEvoPlus" centerX="0.783" centerY="0.065"/>
     </message>
     <message id="21" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M21" closesWhen="tapButton" button="timeMenu/playToggle">
-        <spot centerX="0.95" centerY="0.94" radius="0.03"/>
+        <spot image="tutorial/tArea" centerX="0.89" centerY="0.93"/>
     </message>
-    <message id="22" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="10" text="LEVEL1M22" closesWhen="spot"/>
-    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23"/>
+    <message id="22" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="10" text="LEVEL1M22" closesWhen="spot">
+        <spot image="tutorial/tPopSize" centerX="0.92" centerY="0.08"/>
+    </message>
+    <message id="23" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M23">
+        <spot image="tutorial/tEvoPoints" centerX="0.263" centerY="0.065"/>
+    </message>
     <message id="24" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL1M24"/>
 </level>
 
