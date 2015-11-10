@@ -597,7 +597,6 @@ bool UIGameplayMap::init()
     
     auto tutorialImage = Sprite::create();
     tutorialImage->setName("tutorialImage");
-    tutorialImage->runAction(RepeatForever::create(Blink::create(1, 1)));
     tutorialImage->setVisible(false);
     tutorialImage->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
@@ -1996,7 +1995,7 @@ void UIGameplayMap::setMessage( const Message * message )
             image->setTexture(spot->_image+".png");
             image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setVisible(true);
-            image->runAction(RepeatForever::create(Blink::create(1, 1)));
+            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(1.1, 70), FadeTo::create(1, 200), nullptr)));
         }
         
         const Rect & contents = label->getBoundingBox();
