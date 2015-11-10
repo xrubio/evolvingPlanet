@@ -59,10 +59,18 @@
 </level>
 
 <level num="2" numMessages="4">
-    <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0" text="LEVEL2M1"/>
-    <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M2"/>
-    <message id="3" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M3"/>
-    <message id="4" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M4"/>
+    <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0" text="LEVEL2M1">
+        <spot image="tutorial/tTime" centerX="0.535" centerY="0.938"/>
+    </message>
+    <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M2">
+        <spot image="tutorial/tGoalLength" centerX="0.515" centerY="0.91"/>
+    </message>
+    <message id="3" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M3">  
+        <spot image="tutorial/tArrowTop" centerX="0.515" centerY="0.91"/>
+    </message>
+    <message id="4" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M4">
+        <spot image="tutorial/tMountain02" centerX="0.5" centerY="0.5"/>
+    </message>
 </level>
 
 <level num="3" numMessages="10">

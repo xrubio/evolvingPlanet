@@ -1993,7 +1993,6 @@ void UIGameplayMap::setMessage( const Message * message )
         if(message->getSpot()!=nullptr)
         {
             const Spot * spot = message->getSpot();
-            CCLOG("image name: %s",spot->_image.c_str());
             image->setTexture(spot->_image+".png");
             image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setVisible(true);

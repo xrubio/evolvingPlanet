@@ -61,9 +61,9 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL2M1</key>
 	<string>Some missions have more than one goal. As you can see in the Goal bar in the top your population needs to achieve 3 objectives</string>
 	<key>LEVEL2M2</key>
-	<string>You have to reach to each one in the time span defined by the darker interval (in this case between 30 and 50). If you arrive before or after this interval the mission will fail.</string>
+	<string>You have to reach to each one in the time span defined by the brighter interval (in this case between 30 and 50). If you arrive before or after this interval the mission will fail.</string>
 	<key>LEVEL2M3</key>
-	<string>The best arrival time is marked by the number; your evaluation will be based on how close you get to this evidence.</string>
+	<string>The best arrival time is marked by the brightest interval; your evaluation will be based on how close you get to this evidence.</string>
 	<key>LEVEL2M4</key>
 	<string>A final note: some zones of the planet, like the huge mountain range in the middle of the map are too hostile to your agents, so they cannot live there. Good luck commander!</string>
 	<key>LEVEL3M1</key>
