@@ -33,8 +33,6 @@
     </AGENT>
 </AGENTS>
 <ACTIONS>
-    <ACTION>Reproduce</ACTION>
-    <ACTION>Die</ACTION>
 </ACTIONS>
 <GOALS>
     <GOAL TYPE_GOAL="Expansion">

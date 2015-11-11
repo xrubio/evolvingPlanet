@@ -93,10 +93,8 @@
     </POWER>
 </POWERS>
 <ACTIONS>
-    <ACTION>Reproduce</ACTION>
     <ACTION>Kill</ACTION>
     <ACTION>Influence</ACTION>
-    <ACTION>Die</ACTION>
 </ACTIONS>
 <GOALS>
     <GOAL TYPE_GOAL="Expansion">
