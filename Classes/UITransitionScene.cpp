@@ -45,13 +45,20 @@ bool UITransitionScene::init()
     }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    
-    auto image = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
-    image->setPosition(visibleSize.width / 2, visibleSize.height / 2);
+
+    auto image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".png");
+    image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     image->setScale(visibleSize.width / 2500);
-    image->setName("image");
-    image->setOpacity(0);
     this->addChild(image);
+
+    auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
+    imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    imageUnlocked->setScale(visibleSize.width / 2500);
+    imageUnlocked->setOpacity(0.0f);
+    auto seq = Sequence::create(DelayTime::create(2.0f), FadeIn::create(3.0f), nullptr);
+    imageUnlocked->runAction(seq);
+    imageUnlocked->setName("imageUnlocked");
+    this->addChild(imageUnlocked);
     
     auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
@@ -62,7 +69,6 @@ bool UITransitionScene::init()
     contextDeployment->setName("text");
     this->addChild(contextDeployment);
     
-    image->runAction(FadeIn::create(2));
     contextDeployment->runAction(FadeIn::create(2));
     
     auto tapToContinue = Label::createWithTTF("Tap to continue", "fonts/BebasNeue.otf", 50);
@@ -98,15 +104,15 @@ void UITransitionScene::endActions(void)
 {
     stoppedAnimation = true;
     
-    this->getChildByName("image")->stopAllActions();
-    this->getChildByName("image")->setOpacity(255);
+    this->getChildByName("imageUnlocked")->stopAllActions();
+    this->getChildByName("imageUnlocked")->setOpacity(255);
     this->getChildByName("text")->stopAllActions();
     this->getChildByName("text")->setOpacity(255);
 }
 
 bool UITransitionScene::allActionsFinished(void)
 {
-    if (this->getChildByName("image")->getNumberOfRunningActions() == 0 and this->getChildByName("text")->getNumberOfRunningActions() == 0) {
+    if (this->getChildByName("imageUnlocked")->getNumberOfRunningActions() == 0 and this->getChildByName("text")->getNumberOfRunningActions() == 0) {
         return true;
     }
     return false;

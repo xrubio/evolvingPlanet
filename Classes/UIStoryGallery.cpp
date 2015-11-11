@@ -86,25 +86,24 @@ bool UIStoryGallery::init()
     for (int i=1; i<=numLevels; i++)
     {
         auto layout = Layout::create();
-        
-        auto image = Sprite::create("art/locked/Escenari"+to_string(i)+".png");
-        image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-        image->setScale(visibleSize.width / 2500);
-        layout->addChild(image);
 
+        // unlocked
+        // TODO, it should be: if(GameData::getInstance()->getLevelsCompleted().at(i)!=0)
         if(i<GameData::getInstance()->getLevelsCompleted().size() && GameData::getInstance()->getLevelsCompleted().at(i)!=0)
-            // TODO it should be
-//        if(GameData::getInstance()->getLevelsCompleted().at(i)!=0)
         {
-            auto image2 = Sprite::create("art/Escenari"+to_string(i)+".jpg");
-            image2->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-            image2->setScale(visibleSize.width / 2500);
-            image2->setOpacity(0.0f);
-            auto seq = Sequence::create(DelayTime::create(2.0f), FadeIn::create(5.0f), nullptr);
-            image2->runAction(seq);
-            layout->addChild(image2);
+            auto image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
+            image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+            image->setScale(visibleSize.width / 2500);
+            layout->addChild(image);
         }
-        
+        else
+        {
+            auto image = Sprite::create("art/locked/Escenari"+to_string(i)+".png");
+            image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+            image->setScale(visibleSize.width / 2500);
+            layout->addChild(image);
+        }
+
         auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
         contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
         contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
