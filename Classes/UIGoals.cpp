@@ -89,15 +89,6 @@ bool UIGoals::init()
     hexagonButtonLevel1->setEnabled(false);
     this->addChild(hexagonButtonLevel1, 1);
     
-    hexagonButtonLevel2 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
-                                                     "gui/ProgressMapHexagonLevelOff.png");
-    hexagonButtonLevel2->setColor(Color3B(120, 120, 120));
-    hexagonButtonLevel2->setPosition(Vec2((visibleSize.width / 2) + (hexagonButtonLevel2->getBoundingBox().size.width * 3),
-                                          visibleSize.height / 20));
-    hexagonButtonLevel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    hexagonButtonLevel2->setEnabled(false);
-    this->addChild(hexagonButtonLevel2, 1);
-
     auto title = Label::createWithTTF(LocalizedString::create("GOALS"), "fonts/arial_rounded_mt_bold.ttf", 180);
     title->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height - ((visibleSize.height / 8))));
@@ -166,6 +157,7 @@ bool UIGoals::init()
     
     pages->addPage(layoutContextIntroduction);
     
+    /*
     
     //DEPLOYMENT
     auto layoutContextDeployment = Layout::create();
@@ -200,6 +192,7 @@ bool UIGoals::init()
     layoutContextDeployment->addChild(menuContext, 2);
     
     pages->addPage(layoutContextDeployment);
+    */
 
     auto layout = Layout::create();
     auto pageBackground2 = Sprite::create("gui/PageBackground.png");
@@ -467,50 +460,22 @@ void UIGoals::update(float delta)
     {
         hexagonButtonLevel0->setEnabled(true);
         hexagonButtonLevel1->setEnabled(false);
-        hexagonButtonLevel2->setEnabled(false);
     }
     else if (pages->getCurPageIndex() == 1)
     {
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(true);
-        hexagonButtonLevel2->setEnabled(false);
     }
-    else if (pages->getCurPageIndex() == 2)
-    {
-        hexagonButtonLevel0->setEnabled(false);
-        hexagonButtonLevel1->setEnabled(false);
-        hexagonButtonLevel2->setEnabled(true);
 
-        /*Layout* layout = pages->getPage(2);
-        Menu* attributesMenu = (Menu*)layout->getChildByTag(100000);
-        for (int i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++) {
-            MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(i + 50);
-            if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr()[i]) >
-                GameLevel::getInstance()->getEvolutionPoints())
-            {
-                plus->setEnabled(false);
-            }
-            else
-            {
-                plus->setEnabled(true);
-            }
-        }*/
-    }
-    
-    if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {
-        arrowBack->setVisible(true);
+    if (pages->getCurPageIndex() == 0)
+    {
+        arrowBack->setVisible(false);
         arrowNext->setVisible(true);
     }
-    else {
-        if (pages->getCurPageIndex() == 0) {
-            arrowBack->setVisible(false);
-            arrowNext->setVisible(true);
-        }
-        else if (pages->getCurPageIndex() == pages->getPages().size() - 1) {
-            arrowBack->setVisible(true);
-            arrowNext->setVisible(false);
-        }
-    }
+    else
+    {
+        arrowBack->setVisible(true);
+        arrowNext->setVisible(false);
 
-    //evolutionPointsNumberIcon->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
+    }
 }

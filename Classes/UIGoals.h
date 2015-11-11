@@ -68,3 +68,4 @@ private:
 };
 
 #endif /* defined(__simulplay__UIGoals__) */
+
