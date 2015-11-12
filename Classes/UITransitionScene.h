@@ -42,6 +42,7 @@ public:
     
 private:
     bool stoppedAnimation = false;
+    bool unlockedImage = false;
     
     void endActions(void);
     bool allActionsFinished(void);

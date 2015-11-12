@@ -50,13 +50,17 @@ bool UITransitionScene::init()
     image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     image->setScale(visibleSize.width / 2500);
     this->addChild(image);
+    
+    auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100);
+    unlockLabel->setTextColor(Color4B(216, 229, 235, 60));
+    unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    unlockLabel->setName("unlockLabel");
+    this->addChild(unlockLabel);
 
     auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     imageUnlocked->setScale(visibleSize.width / 2500);
     imageUnlocked->setOpacity(0.0f);
-    auto seq = Sequence::create(DelayTime::create(2.0f), FadeIn::create(3.0f), nullptr);
-    imageUnlocked->runAction(seq);
     imageUnlocked->setName("imageUnlocked");
     this->addChild(imageUnlocked);
     
@@ -69,15 +73,15 @@ bool UITransitionScene::init()
     contextDeployment->setName("text");
     this->addChild(contextDeployment);
     
-    contextDeployment->runAction(FadeIn::create(2));
-    
-    auto tapToContinue = Label::createWithTTF("Tap to continue", "fonts/BebasNeue.otf", 50);
+    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 50);
     tapToContinue->setColor(Color3B::WHITE);
     tapToContinue->setAnchorPoint(Vec2(0, 0));
     tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
+    tapToContinue->setOpacity(0);
+    tapToContinue->setName("tapToContinue");
     this->addChild(tapToContinue);
     
-    tapToContinue->runAction(RepeatForever::create(Blink::create(2, 1)));
+    //tapToContinue->runAction(RepeatForever::create(Blink::create(2, 1)));
     
     this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
@@ -90,13 +94,25 @@ bool UITransitionScene::init()
 
 void UITransitionScene::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
-    if (stoppedAnimation or allActionsFinished()) {
-        auto scene = UIProgressMap::createScene();
-        auto transition = TransitionFade::create(1.0f, scene);
-        Director::getInstance()->replaceScene(transition);
+    if (unlockedImage == false)
+    {
+        this->getChildByName("imageUnlocked")->runAction(FadeIn::create(3.0f));
+        this->getChildByName("text")->runAction(FadeIn::create(2));
+        this->getChildByName("unlockLabel")->runAction(FadeOut::create(0.5f));
+        this->getChildByName("tapToContinue")->runAction(Sequence::create(DelayTime::create(2.9f), FadeIn::create(0.1), RepeatForever::create(Blink::create(2, 1)), nullptr));
+
+        unlockedImage = true;
     }
-    else {
-        endActions();
+    else
+    {
+        if (stoppedAnimation or allActionsFinished()) {
+            auto scene = UIProgressMap::createScene();
+            auto transition = TransitionFade::create(1.0f, scene);
+            Director::getInstance()->replaceScene(transition);
+        }
+        else {
+            endActions();
+        }
     }
 }
 
@@ -108,6 +124,8 @@ void UITransitionScene::endActions(void)
     this->getChildByName("imageUnlocked")->setOpacity(255);
     this->getChildByName("text")->stopAllActions();
     this->getChildByName("text")->setOpacity(255);
+    this->getChildByName("tapToContinue")->setOpacity(255);
+    this->getChildByName("tapToContinue")->runAction(RepeatForever::create(Blink::create(2, 1)));
 }
 
 bool UITransitionScene::allActionsFinished(void)

@@ -46,6 +46,10 @@
 	<string>RETRY ?</string>
 	<key>AGENTS</key>
 	<string>Agents</string>
+	<key>TAP_TO_UNLOCK</key>
+	<string>TAP TO UNLOCK</string>
+	<key>TAP_TO_CONTINUE</key>
+	<string>TAP TO CONTINUE</string>
 	<key>LIFE</key>
 	<string>LIFE</string>
 	<key>REPRODUCTION</key>

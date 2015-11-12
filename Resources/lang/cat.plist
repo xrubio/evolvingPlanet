@@ -46,6 +46,10 @@
 	<string>REPETIR ?</string>
 	<key>AGENTS</key>
 	<string>Agents</string>
+	<key>TAP_TO_UNLOCK</key>
+	<string>TOCA PER DESBLOQUEJAR</string>
+	<key>TAP_TO_CONTINUE</key>
+	<string>TOCA PER CONTINUAR</string>
 	<key>LIFE</key>
 	<string>VIDA</string>
 	<key>REPRODUCTION</key>
