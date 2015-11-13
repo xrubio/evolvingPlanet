@@ -570,14 +570,15 @@ bool UIGameplayMap::init()
     bottomFrame->addChild(attrMenu, 1, 100000);
 
     // TUTORIAL MESSAGES
-    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 28);
+    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 32);
     messageLabel->setName("tutorial");
     messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->enableShadow();
     messageLabel->setMaxLineWidth(300);
     messageLabel->setVisible(false);
     messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
-    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 20);
+    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 24);
     messageNextLabel->setName("tutorialNext");
     messageNextLabel->setColor(Color3B(210, 210, 210));
     messageNextLabel->setMaxLineWidth(300);
@@ -1998,21 +1999,21 @@ void UIGameplayMap::setMessage( const Message * message )
             image->setTexture(spot->_image+".png");
             image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setVisible(true);
-            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(1.1, 70), FadeTo::create(1, 200), nullptr)));
+            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(0.9, 70), FadeTo::create(1, 255), nullptr)));
         }
         
         const Rect & contents = label->getBoundingBox();
         const Rect & ownContents = nextLabel->getBoundingBox();
-        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-(ownContents.size.height)));
+        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-20-ownContents.size.height/2));
         
-        label->setVisible(true);    
+        label->setVisible(true);
         labelBorder->setVisible(true);   
         nextLabel->setVisible(true);
 
     }
 
-    Vec2 origin(label->getBoundingBox().origin - Vec2(5.0f, 5.0f));
-    Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + Vec2(5.0f, 5.0f));
+    Vec2 origin(label->getBoundingBox().origin - Vec2(20.0f, 20.0f));
+    Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + Vec2(20.0f, 20.0f));
     labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));
     labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
 
