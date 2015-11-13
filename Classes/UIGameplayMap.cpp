@@ -71,8 +71,8 @@ bool UIGameplayMap::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     Size contentSize;
-    contentSize.width = 2048;
-    contentSize.height = 1536;
+    contentSize.width = GameData::getInstance()->getResourcesWidth();
+    contentSize.height = GameData::getInstance()->getResourcesHeight();
 
     string map = "maps/" + GameLevel::getInstance()->getMapFilename();
     //fer DEFINES
@@ -173,7 +173,7 @@ bool UIGameplayMap::init()
         unsigned char* data = new unsigned char[im->getDataLen() * 4];
         data = im->getData();
 
-        exploitedMapTexture->initWithData(exploitedMapTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888, 2048, 1536, contentSize);
+        exploitedMapTexture->initWithData(exploitedMapTextureData, GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
         for (int i = 0; i < im->getWidth(); i++) {
             for (int j = 0; j < im->getHeight(); j++) {
                 unsigned char* pixel = data + ((int)i + (int)j * im->getWidth()) * 4;
@@ -199,8 +199,8 @@ bool UIGameplayMap::init()
     }
 
     agentsTexture = new Texture2D;
-    agentsTexture->initWithData(agentsTextureData, 2048 * 1536, Texture2D::PixelFormat::RGBA8888,
-        2048, 1536, contentSize);
+    agentsTexture->initWithData(agentsTextureData, GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888,
+        GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
     agentsSprite = Sprite::createWithTexture(agentsTexture);
     agentsSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
     gameplayMap->addChild(agentsSprite, 2);
@@ -244,7 +244,7 @@ bool UIGameplayMap::init()
     pauseDarkBackground->addChild(pauseDarkLabel);
     addChild(pauseDarkBackground, 0);
 
-    MenuItemToggle *toggle = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::togglePlay, this), pauseButton, playButton, NULL);
+    MenuItemToggle *toggle = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::togglePlay, this), playButton, pauseButton, NULL);
     toggle->setPosition(Vec2(184 * visibleSize.width / 204, 144 * visibleSize.height / 155));
     toggle->setName("playToggle");
 
@@ -343,8 +343,8 @@ bool UIGameplayMap::init()
         int centerY = maxY - ((maxY - minY) / 2);
         expansionGoal->setCenterArea(centerX, centerY);
         
-        int x = (int)(centerX * float(2048.0 / 480.0));
-        int y = (int)(float((1536.0 - 1365.0) / 2.0) + (centerY * float(1365.0 / 320.0)));
+        int x = (int)(centerX * float(GameData::getInstance()->getResourcesWidth() / 480.0));
+        int y = (int)(float((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0) + (centerY * float(GameData::getInstance()->getResourcesMargin() / 320.0)));
         
         auto area = Sprite::create("gui/CheckpointArea.png");
         if(i == 0)
@@ -1501,8 +1501,8 @@ void UIGameplayMap::restoreLand(void)
     float radius = 37.0; //((UIAreaPower*)powerButtons.at(i))->getScale();
     Point pos = ((UIAreaPower*)powerButtons.at(i))->getArea()->getPosition();
     Point posTransformed;
-    posTransformed.x = pos.x / float(2048.0 / 480.0),
-    posTransformed.y = ((pos.y - ((1536 - 1365) / 2)) / float(1365.0 / 320.0));
+    posTransformed.x = pos.x / float(GameData::getInstance()->getResourcesWidth() / 480.0),
+    posTransformed.y = ((pos.y - ((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2)) / float(GameData::getInstance()->getResourcesMargin() / 320.0));
     for (int i = -37; i < 37; i++) {
         for (int j = -37; j < 37; j++) {
             float dist = sqrt((i * i) + (j * j));
@@ -1575,7 +1575,7 @@ void UIGameplayMap::initializeAgents(void)
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
     }
-    agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
+    agentsTexture->updateWithData(agentsTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     play = true;
 }
 
@@ -1802,9 +1802,9 @@ void UIGameplayMap::updateAgents(void)
         }
     }
 
-    agentsTexture->updateWithData(agentsTextureData, 0, 0, 2048, 1536);
+    agentsTexture->updateWithData(agentsTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     if (resourcesMap) {
-        exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, 2048, 1536);
+        exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
 }
 
@@ -1812,39 +1812,39 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 {
     int x = (int)(pos.x * GameData::getInstance()->getRowDrawAgentPrecalc());
     int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((pos.y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
-    int position = x + ((1536.0 - y) * 2048.0);
+    int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());
 
     switch (geometry) {
     case 1: {
-        int k = -2048 * 2;
-        while (k <= 2048 * 2) {
-            int i = abs(k / 2048);
+        int k = -GameData::getInstance()->getResourcesWidth() * 2;
+        while (k <= GameData::getInstance()->getResourcesWidth() * 2) {
+            int i = GameData::getInstance()->getResourcesWidth();
             for (int j = -2 + i; j < 3 - i; j++) {
                 agentsTextureData[position + j + k] = colour;
             }
-            k += 2048;
+            k += GameData::getInstance()->getResourcesWidth();
         }
         break;
     }
     case 2: {
-        int k = -2048 * 2;
+        int k = -GameData::getInstance()->getResourcesWidth() * 2;
         int times = 0;
-        while (k <= 2048 * 2) {
+        while (k <= GameData::getInstance()->getResourcesWidth() * 2) {
             for (int j = times; j < abs(times) - 1; j++) {
                 agentsTextureData[position + j + k] = colour;
             }
             times--;
-            k += 2048;
+            k += GameData::getInstance()->getResourcesWidth();
         }
         break;
     }
     default:
-        int k = -2048 * GameLevel::getInstance()->getAgentPixelSize();
-        while (k <= 2048 * GameLevel::getInstance()->getAgentPixelSize()) {
+        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
+        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
             for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
                 agentsTextureData[position + j + k] = colour;
             }
-            k += 2048;
+            k += GameData::getInstance()->getResourcesWidth();
         }
         break;
     }
@@ -1852,18 +1852,18 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 
 void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
 {
-    int x = (int)(pos.x * float(2048.0 / 480.0));
-    int y = (int)(float((1536.0 - 1365.0) / 2.0) + ((pos.y) * float(1365.0 / 320.0)));
-    int position = x + ((1536.0 - y) * 2048.0);
+    int x = (int)(pos.x * float(GameData::getInstance()->getResourcesWidth() / 480.0));
+    int y = (int)(float((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0) + ((pos.y) * float(GameData::getInstance()->getResourcesMargin() / 320.0)));
+    int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());
     switch (geometry) {
     default:
-        int k = -4096;
-        while (k <= 4096) {
+        int k = -GameData::getInstance()->getResourcesWidth()*2;
+        while (k <= GameData::getInstance()->getResourcesWidth()*2) {
             for (int j = -2; j < 3; j++) {
                 //exploitedMapTextureData[position + j + k] = colour;
                 exploitedMapTextureData[position + j + k] = Color4B(0, 0, 0, 0);
             }
-            k += 2048;
+            k += GameData::getInstance()->getResourcesWidth()*2;
         }
         break;
     }
@@ -2004,9 +2004,9 @@ void UIGameplayMap::setMessage( const Message * message )
         
         const Rect & contents = label->getBoundingBox();
         const Rect & ownContents = nextLabel->getBoundingBox();
-        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-20-ownContents.size.height/2));
+        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-20-(ownContents.size.height/2)));
         
-        label->setVisible(true);
+        label->setVisible(true);    
         labelBorder->setVisible(true);   
         nextLabel->setVisible(true);
 

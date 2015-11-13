@@ -33,6 +33,7 @@
 #include "UIStoryGallery.h"
 #include "LocalizedString.h"
 #include "GameData.h"
+#include "UITransitionScene.h"
 
 #include <audio/include/SimpleAudioEngine.h>
 
@@ -263,11 +264,12 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonShadow.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/Loading.png");
     
     return true;
 }
 
-void UIMainMenu::onTouchesBegan(const vector<Touch*>& touches, Event* event)
+void UIMainMenu::onTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
     if (stoppedAnimation == false) {
         endActions();
@@ -276,13 +278,14 @@ void UIMainMenu::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 
 void UIMainMenu::menuContinueCallback(Ref* pSender)
 {
-    if (stoppedAnimation or allActionsFinished()) {
-        auto scene = UIProgressMap::createScene();
-        auto transition = TransitionFade::create(1.0f, scene);
-        Director::getInstance()->replaceScene(transition);
+    if (stoppedAnimation or allActionsFinished()) {        
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
+        
+        auto scene = UIProgressMap::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
     }
     else {
         endActions();
@@ -345,15 +348,34 @@ void UIMainMenu::menuExtrasCallback(Ref* pSender)
 void UIMainMenu::menuStoryCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        Director::getInstance()->getTextureCache()->addImageAsync("gui/Loading.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        CCLog("STORY");
-        //setLoadingAnimation(true);
-        auto scene = UIStoryGallery::createScene();
-        auto transition = TransitionFade::create(1.0f, scene);
-        Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
+    
+            auto visibleSize = Director::getInstance()->getVisibleSize();
+            auto loading = Sprite::create("gui/Loading.png");
+            loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
+            loading->setScale(GameData::getInstance()->getRaHConversion());
+            loading->setName("loading");
+            loading->setVisible(true);
+            this->addChild(loading, 500);
+            loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
+        
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari5.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari6.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari7.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari8.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari9.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        
+        //GameData::getInstance()->setNextScene(Story);
+        auto scene = UIStoryGallery::createScene();
+        auto transition = TransitionFade::create(0.5f, scene);
+        Director::getInstance()->replaceScene(transition);
     }
     else {
         endActions();
@@ -363,12 +385,13 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
 void UIMainMenu::menuAchievementsCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        auto scene = UIAchievements::createScene();
-        auto transition = TransitionFade::create(1.0f, scene);
-        Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
+        
+        auto scene = UIAchievements::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
     }
     else {
         endActions();
@@ -528,19 +551,5 @@ void UIMainMenu::createWarningWindow(void)
 
 void UIMainMenu::setLoadingAnimation(bool b)
 {
-    if (this->getChildByName("loading") != nullptr)
-    {
-        this->getChildByName("loading")->setVisible(b);
-    }
-    else
-    {
-        auto visibleSize = Director::getInstance()->getVisibleSize();
-        auto loading = Sprite::create("gui/Loading.png");
-        loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
-        loading->setScale(GameData::getInstance()->getRaHConversion());
-        loading->setName("loading");
-        loading->setVisible(true);
-        this->addChild(loading, 500);
-        loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
-    }
+
 }

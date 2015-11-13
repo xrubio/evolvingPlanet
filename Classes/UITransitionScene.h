@@ -37,7 +37,9 @@ public:
     virtual bool init();
     
     void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
-
+    
+    virtual void update(float delta);
+    
     CREATE_FUNC(UITransitionScene);
     
 private:
@@ -46,6 +48,10 @@ private:
     
     void endActions(void);
     bool allActionsFinished(void);
+    void setLoadingAnimation(bool b);
+    
+    clock_t updateTimeToLoadScene = 0;
+    bool loadset = false;
     
 };
 

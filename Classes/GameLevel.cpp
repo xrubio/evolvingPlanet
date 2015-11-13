@@ -826,7 +826,7 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
         }
         if(p != nullptr and p->getDurationLeft() > 0)
         {
-            if (gameplayMap->isInBoostResistanceArea(agent->getPosition().getX() * float(2048.0 / 480.0), ((1536 - 1365) / 2) + (agent->getPosition().getY() * float(1365.0 / 320.0))))
+            if (gameplayMap->isInBoostResistanceArea(agent->getPosition().getX() * float(GameData::getInstance()->getResourcesWidth() / 480.0), ((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2) + (agent->getPosition().getY() * float(GameData::getInstance()->getResourcesMargin() / 320.0))))
             {
                 resistance = getValueAtLevel(eResistance, 5);
             }

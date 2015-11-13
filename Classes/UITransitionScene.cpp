@@ -29,6 +29,7 @@
 #include "GameData.h"
 #include "LocalizedString.h"
 #include "UIProgressMap.h"
+#include "UIStoryGallery.h"
 
 Scene* UITransitionScene::createScene()
 {
@@ -46,6 +47,14 @@ bool UITransitionScene::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() <= 0)
+    {
+        updateTimeToLoadScene = clock();
+        this->scheduleUpdate();
+    }
+    else
+    {
+    
     auto image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".png");
     image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     image->setScale(visibleSize.width / 2500);
@@ -88,6 +97,7 @@ bool UITransitionScene::init()
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UITransitionScene::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    }
     
     return true;
 }
@@ -135,3 +145,54 @@ bool UITransitionScene::allActionsFinished(void)
     }
     return false;
 }
+
+void UITransitionScene::setLoadingAnimation(bool b)
+{
+    if (this->getChildByName("loading") == nullptr)
+    {
+        auto visibleSize = Director::getInstance()->getVisibleSize();
+        auto loading = Sprite::create("gui/Loading.png");
+        loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
+        loading->setScale(GameData::getInstance()->getRaHConversion());
+        loading->setName("loading");
+        loading->setVisible(true);
+        this->addChild(loading, 500);
+        loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
+    }
+}
+
+void UITransitionScene::update(float delta)
+{
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() <= 0 and loadset == false)
+    {
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation, this));
+        loadset = true;
+    }
+    if (GameData::getInstance()->getNextScene() >= 0 and ((clock() - float(updateTimeToLoadScene)) / CLOCKS_PER_SEC) > 0.2)
+    {
+        Scene *scene;
+        TransitionFade *transition;
+        switch (GameData::getInstance()->getNextScene()) {
+        case Story:
+        {
+            scene = UIStoryGallery::createScene();
+            transition = TransitionFade::create(0.5f, scene);
+            break;
+        }
+            
+        default:
+        {
+            scene = UIMainMenu::createScene();
+            transition = TransitionFade::create(0.5f, scene);
+            break;
+        }
+    }
+    GameData::getInstance()->setNextScene(-1);
+    Director::getInstance()->replaceScene(transition);
+
+    }
+}
+

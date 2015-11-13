@@ -39,6 +39,8 @@ public:
     virtual bool init();
 
     void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
+    bool onTouchBeganLoading(Touch * touch, Event* event);
+    void onTouchEndedLoading(Touch * touch, Event* event);
 
     void menuContinueCallback(Ref* pSender);
     void menuStartCallback(Ref* pSender);

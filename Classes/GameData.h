@@ -34,6 +34,12 @@
 
 using namespace std;
 
+enum toScene
+{
+    MainMenu = 0,
+    Story = 1
+};
+
 #define NUM_LEVELS 10
 
 class GameData {
@@ -71,6 +77,15 @@ public:
     void setColumnDrawAgentPrecalc(float c);
     int getFirstTimeLevelCompleted(void);
     void setFirstTimeLevelCompleted(int l);
+    int getNextScene(void);
+    void setNextScene(int s);
+    
+    float getResourcesHeight(void);
+    void setResourcesHeight(int r);
+    float getResourcesWidth(void);
+    void setResourcesWidth(int r);
+    float getResourcesMargin(void);
+    void setResourcesMargin(int r);
 
     void loadAchievements(void);
     void resetGameProgress(void);
@@ -98,6 +113,11 @@ private:
     float columnOffsetDrawAgentPrecalc;
     float columnDrawAgentPrecalc;
     int _firstTimeLevelCompleted = 0;
+    int nextScene = 0;
+    float resourcesHeight;
+    float resourcesWidth;
+    float resourcesMargin;
+
 };
 
 #endif /* defined(__simulplay__GameData__) */

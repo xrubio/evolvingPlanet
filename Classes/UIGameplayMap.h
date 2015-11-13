@@ -140,11 +140,11 @@ private:
     //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
     int agentColor = 0;
 
-    Color4B* agentsTextureData = new Color4B[2048 * 1536];
+    Color4B* agentsTextureData = new Color4B[int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight())];
     Texture2D* agentsTexture;
     Sprite* agentsSprite;
 
-    Color4B* exploitedMapTextureData = new Color4B[2048 * 1536];
+    Color4B* exploitedMapTextureData = new Color4B[int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight())];
     Texture2D* exploitedMapTexture;
     Sprite* exploitedMapSprite;
 

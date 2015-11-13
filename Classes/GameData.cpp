@@ -230,6 +230,46 @@ void GameData::setFirstTimeLevelCompleted(int l)
     _firstTimeLevelCompleted = l;
 }
 
+int GameData::getNextScene(void)
+{
+    return nextScene;
+}
+
+void GameData::setNextScene(int s)
+{
+    nextScene = s;
+}
+
+float GameData::getResourcesHeight(void)
+{
+    return resourcesHeight;
+}
+
+void GameData::setResourcesHeight(int r)
+{
+    resourcesHeight = r;
+}
+
+float GameData::getResourcesWidth(void)
+{
+    return resourcesWidth;
+}
+
+void GameData::setResourcesWidth(int r)
+{
+    resourcesWidth = r;
+}
+
+float GameData::getResourcesMargin(void)
+{
+    return resourcesMargin;
+}
+
+void GameData::setResourcesMargin(int r)
+{
+    resourcesMargin = r;
+}
+
 void GameData::loadAchievements(void)
 {
     string dir = "data/";

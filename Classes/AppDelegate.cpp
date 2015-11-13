@@ -52,11 +52,36 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto screenSize = glview->getFrameSize();
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> resDirOrders;
+    
+    if (screenSize.width > 1024) {
+        CCLOG("2048");
+        resDirOrders.push_back("tablethd");
+        resDirOrders.push_back("tablet");
+        resDirOrders.push_back("phone");
+        GameData::getInstance()->setResourcesWidth(2048);
+        GameData::getInstance()->setResourcesHeight(1536);
+        GameData::getInstance()->setResourcesMargin(1365);
+    } else if (screenSize.width > 512) {
+        CCLOG("1024");
+        resDirOrders.push_back("tablet");
+        resDirOrders.push_back("phone");
+        GameData::getInstance()->setResourcesWidth(1024);
+        GameData::getInstance()->setResourcesHeight(768);
+        GameData::getInstance()->setResourcesMargin(682);
+        
+    } else {
+        CCLOG("512");
+        resDirOrders.push_back("phone");
+        GameData::getInstance()->setResourcesWidth(512);
+        GameData::getInstance()->setResourcesHeight(384);
+        GameData::getInstance()->setResourcesMargin(341);
+    }
+    
+    fileUtils->setSearchPaths(resDirOrders);
 
-    //resDirOrders.push_back("ipadhd");
     glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
 
-    fileUtils->setSearchPaths(resDirOrders);
+    //fileUtils->setSearchPaths(resDirOrders);
 
     //Primer cop language = '', agafar del dispositiu per defecte
     string lang = UserDefault::getInstance()->getStringForKey("language");
@@ -75,18 +100,18 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     //RA CONVERSION - PRECALCS
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    GameData::getInstance()->setRaConversion((2048.0 / 1536.0) / (visibleSize.width / visibleSize.height));
-    GameData::getInstance()->setRaWConversion(visibleSize.width / 2048.0);
-    GameData::getInstance()->setRaHConversion(visibleSize.height / 1536.0);
+    GameData::getInstance()->setRaConversion((GameData::getInstance()->getResourcesWidth() / GameData::getInstance()->getResourcesHeight()) / (visibleSize.width / visibleSize.height));
+    GameData::getInstance()->setRaWConversion(visibleSize.width / GameData::getInstance()->getResourcesWidth());
+    GameData::getInstance()->setRaHConversion(visibleSize.height / GameData::getInstance()->getResourcesHeight());
     /*GameData::getInstance()->setHeightProportionalResolution((Director::getInstance()->getVisibleSize().width / 480.0) * 320.0);
     GameData::getInstance()->setRowDrawAgentPrecalc(Director::getInstance()->getVisibleSize().width / 480.0);
     GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((Director::getInstance()->getVisibleSize().height -
                                                               GameData::getInstance()->getHeightProportionalResolution()) / 2.0);
     GameData::getInstance()->setColumnDrawAgentPrecalc(GameData::getInstance()->getHeightProportionalResolution() / 320.0);*/
-    GameData::getInstance()->setHeightProportionalResolution((2048.0 / 480.0) * 320.0);
-    GameData::getInstance()->setRowDrawAgentPrecalc(2048.0 / 480.0);
-    GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((1536.0 - 1365.0) / 2.0);
-    GameData::getInstance()->setColumnDrawAgentPrecalc(1365.0 / 320.0);
+    GameData::getInstance()->setHeightProportionalResolution((GameData::getInstance()->getResourcesWidth() / 480.0) * 320.0);
+    GameData::getInstance()->setRowDrawAgentPrecalc(GameData::getInstance()->getResourcesWidth() / 480.0);
+    GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0);
+    GameData::getInstance()->setColumnDrawAgentPrecalc(GameData::getInstance()->getResourcesMargin() / 320.0);
 
     //LOAD LEVELS
     vector<int> levelsCompleted;
