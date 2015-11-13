@@ -57,10 +57,10 @@ bool UITransitionScene::init()
     
     auto image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".png");
     image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    image->setScale(visibleSize.width / 2500);
+    image->setScale(visibleSize.width / image->getContentSize().width);
     this->addChild(image);
     
-    auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100);
+    auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     unlockLabel->setTextColor(Color4B(216, 229, 235, 60));
     unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     unlockLabel->setName("unlockLabel");
@@ -68,12 +68,12 @@ bool UITransitionScene::init()
 
     auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    imageUnlocked->setScale(visibleSize.width / 2500);
+    imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
     imageUnlocked->setOpacity(0.0f);
     imageUnlocked->setName("imageUnlocked");
     this->addChild(imageUnlocked);
     
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40 * GameData::getInstance()->getRaConversion());
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
     contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
@@ -82,7 +82,7 @@ bool UITransitionScene::init()
     contextDeployment->setName("text");
     this->addChild(contextDeployment);
     
-    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 50);
+    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
     tapToContinue->setColor(Color3B::WHITE);
     tapToContinue->setAnchorPoint(Vec2(0, 0));
     tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
@@ -91,9 +91,7 @@ bool UITransitionScene::init()
     this->addChild(tapToContinue);
     
     //tapToContinue->runAction(RepeatForever::create(Blink::create(2, 1)));
-    
-    this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    
+        
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UITransitionScene::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);

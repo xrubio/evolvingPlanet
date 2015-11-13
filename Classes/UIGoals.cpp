@@ -100,7 +100,7 @@ bool UIGoals::init()
     backButton->setPosition(Vec2((4 * visibleSize.width / 42),
         (34 * visibleSize.height / 36)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(207, 203, 208));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -140,7 +140,7 @@ bool UIGoals::init()
     layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
     layoutContextIntroduction->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
-    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
+    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40 * GameData::getInstance()->getRaConversion());
     contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     contextIntroduction->setScaleX(GameData::getInstance()->getRaWConversion());
@@ -148,7 +148,7 @@ bool UIGoals::init()
     layoutContextIntroduction->addChild(contextIntroduction);
     
     auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"),
-                                                         "fonts/BebasNeue.otf", 100);
+                                                         "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     contextLabelIntroduction->setPosition(Vec2(6 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     contextLabelIntroduction->setColor(Color3B(211, 230, 236));
     contextLabelIntroduction->setAnchorPoint(Vec2(0, 0.5));
@@ -208,7 +208,7 @@ bool UIGoals::init()
                                             CC_CALLBACK_1(UIGoals::menuStartCallback, this));
     playButton->setPosition(Vec2(34 * visibleSize.width / 42, 5 * visibleSize.height / 31));
     playButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto startPlay = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50);
+    auto startPlay = Label::createWithTTF(LocalizedString::create("START"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
     startPlay->setPosition(playButton->getContentSize().width / 2, playButton->getContentSize().height / 2);
     startPlay->setColor(Color3B(207, 203, 208));
     playButton->addChild(startPlay);
@@ -386,14 +386,14 @@ void UIGoals::setLevelGoals(Layout* layout)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto featuresLabel = Label::createWithTTF(LocalizedString::create("LEVEL_FEATURES"),
-                                                         "fonts/BebasNeue.otf", 100);
+                                                         "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     featuresLabel->setPosition(Vec2(6 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     featuresLabel->setColor(Color3B(211, 230, 236));
     featuresLabel->setAnchorPoint(Vec2(0, 0.5));
     featuresLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(featuresLabel);
     
-    auto attributesLabel = Label::createWithTTF(LocalizedString::create("ATTRIBUTES"), "fonts/BebasNeue.otf", 80);
+    auto attributesLabel = Label::createWithTTF(LocalizedString::create("ATTRIBUTES"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     attributesLabel->setPosition(Vec2(6 * visibleSize.width / 42, 22 * visibleSize.height / 31));
     attributesLabel->setColor(Color3B::WHITE);
     attributesLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -405,7 +405,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     {
         //ATRIBUT MODIFICABLE
         auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr().at(i)).c_str()) + ":    Explicació de l'atribut",
-                                         "fonts/BebasNeue.otf", 60);
+                                         "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
         attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (i * 2)) * visibleSize.height / 31));
         attLabel->setColor(Color3B(211, 230, 236));
         attLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -413,7 +413,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         layout->addChild(attLabel);
     }
     
-    auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/BebasNeue.otf", 80);
+    auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     powersLabel->setPosition(Vec2(6 * visibleSize.width / 42, 13 * visibleSize.height / 31));
     powersLabel->setColor(Color3B::WHITE);
     powersLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -434,7 +434,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         }
         
         auto powerLabel = Label::createWithTTF("Explicació del poder",
-                                               "fonts/BebasNeue.otf", 60);
+                                               "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
         powerLabel->setPosition(Vec2(11 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31));
         powerLabel->setColor(Color3B(211, 230, 236));
         powerLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -444,7 +444,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     //POWERS NOT AVAILABLE
     if( GameLevel::getInstance()->getPowers().size() == 0)
     {
-        auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/BebasNeue.otf", 80);
+        auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
         powersNotAvailableLabel->setPosition(Vec2(7 * visibleSize.width / 42, 10 * visibleSize.height / 31));
         powersNotAvailableLabel->setColor(Color3B::GRAY);
         powersNotAvailableLabel->setAnchorPoint(Vec2(0, 0.5));

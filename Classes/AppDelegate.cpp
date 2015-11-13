@@ -100,7 +100,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     //RA CONVERSION - PRECALCS
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    GameData::getInstance()->setRaConversion((GameData::getInstance()->getResourcesWidth() / GameData::getInstance()->getResourcesHeight()) / (visibleSize.width / visibleSize.height));
+    if (visibleSize.width >= 2048)
+    {
+        GameData::getInstance()->setRaConversion(1);
+    }
+    else
+    {
+        GameData::getInstance()->setRaConversion((visibleSize.height / visibleSize.width));
+    }
     GameData::getInstance()->setRaWConversion(visibleSize.width / GameData::getInstance()->getResourcesWidth());
     GameData::getInstance()->setRaHConversion(visibleSize.height / GameData::getInstance()->getResourcesHeight());
     /*GameData::getInstance()->setHeightProportionalResolution((Director::getInstance()->getVisibleSize().width / 480.0) * 320.0);
