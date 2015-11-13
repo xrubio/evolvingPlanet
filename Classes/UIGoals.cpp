@@ -156,43 +156,6 @@ bool UIGoals::init()
     layoutContextIntroduction->addChild(contextLabelIntroduction);
     
     pages->addPage(layoutContextIntroduction);
-    
-    /*
-    
-    //DEPLOYMENT
-    auto layoutContextDeployment = Layout::create();
-    //TRIAR ESTIL SEGONS EL LVL
-    auto pageBackgroundDeployment = Sprite::create("gui/PageBackground.png");
-    pageBackgroundDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    pageBackgroundDeployment->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    layoutContextDeployment->addChild(pageBackgroundDeployment, -1);
-    layoutContextDeployment->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
-    auto contextLabelDeployment = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_DEPLOYMENT"),
-                                        "fonts/BebasNeue.otf", 100);
-    contextLabelDeployment->setPosition(Vec2(6 * visibleSize.width / 42, 25 * visibleSize.height / 31));
-    contextLabelDeployment->setColor(Color3B(211, 230, 236));
-    contextLabelDeployment->setAnchorPoint(Vec2(0, 0.5));
-    contextLabelDeployment->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    layoutContextDeployment->addChild(contextLabelDeployment);
-    
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
-    contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-    contextDeployment->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 12));
-    contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
-    contextDeployment->setScaleY(GameData::getInstance()->getRaHConversion());
-    layoutContextDeployment->addChild(contextDeployment);
-    
-    string nameArt = "art/Escenari" + to_string(GameLevel::getInstance()->getNumLevel()) + ".jpg";
-    auto contextImage = MenuItemImage::create(nameArt, nameArt, CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
-    contextImage->setScale(0.4 * GameData::getInstance()->getRaWConversion());
-    contextImage->setPosition(visibleSize.width / 2, 6.8 * visibleSize.height / 12);
-    auto menuContext = Menu::create(contextImage, NULL);
-    menuContext->setPosition(0, 0);
-    menuContext->setName("menuContext");
-    layoutContextDeployment->addChild(menuContext, 2);
-    
-    pages->addPage(layoutContextDeployment);
-    */
 
     auto layout = Layout::create();
     auto pageBackground2 = Sprite::create("gui/PageBackground.png");
