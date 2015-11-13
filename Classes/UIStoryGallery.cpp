@@ -52,7 +52,7 @@ bool UIStoryGallery::init()
     backButton->setPosition(Vec2((4 * visibleSize.width / 42),
                                  (34 * visibleSize.height / 36)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50);
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(207, 203, 208));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -93,18 +93,18 @@ bool UIStoryGallery::init()
         {
             auto image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-            image->setScale(visibleSize.width / 2500);
+            image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);
         }
         else
         {
             auto image = Sprite::create("art/locked/Escenari"+to_string(i)+".png");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-            image->setScale(visibleSize.width / 2500);
+            image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);
         }
 
-        auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40);
+        auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40 * GameData::getInstance()->getRaConversion());
         contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
         contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
         contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
