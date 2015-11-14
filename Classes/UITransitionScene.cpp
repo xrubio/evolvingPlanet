@@ -60,7 +60,7 @@ bool UITransitionScene::init()
     image->setScale(visibleSize.width / image->getContentSize().width);
     this->addChild(image);
     
-    auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 200 * GameData::getInstance()->getRaConversion());
     unlockLabel->setTextColor(Color4B(216, 229, 235, 60));
     unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     unlockLabel->setName("unlockLabel");
@@ -73,7 +73,7 @@ bool UITransitionScene::init()
     imageUnlocked->setName("imageUnlocked");
     this->addChild(imageUnlocked);
     
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40 * GameData::getInstance()->getRaConversion());
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 80 * GameData::getInstance()->getRaConversion());
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
     contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
@@ -82,7 +82,7 @@ bool UITransitionScene::init()
     contextDeployment->setName("text");
     this->addChild(contextDeployment);
     
-    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     tapToContinue->setColor(Color3B::WHITE);
     tapToContinue->setAnchorPoint(Vec2(0, 0));
     tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);

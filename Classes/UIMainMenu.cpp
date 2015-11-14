@@ -58,8 +58,7 @@ bool UIMainMenu::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
     auto background = Sprite::create("gui/MainMenuBackground.png");
-    background->setPosition(Vec2(visibleSize.width / 2,
-        visibleSize.height / 2));
+    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 
@@ -122,7 +121,7 @@ bool UIMainMenu::init()
         continueButton->setAnchorPoint(Vec2(0, 0.5));
         continueButton->setPosition(Vec2((2 * visibleSize.width / 25),
                                      (10 * visibleSize.height / 18)));
-        auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+        auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
         continueLabel->setColor(Color3B(219, 234, 241));
         continueLabel->setPosition(1.1 * continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
         continueButton->addChild(continueLabel);
@@ -143,7 +142,7 @@ bool UIMainMenu::init()
     {
         startButton->setPosition(Vec2((2 * visibleSize.width / 25), (10 * visibleSize.height / 18)));
     }
-    auto startLabel = Label::createWithTTF(LocalizedString::create("NEW_CAMPAIGN"), "fonts/BebasNeue.otf", 42 * GameData::getInstance()->getRaConversion());
+    auto startLabel = Label::createWithTTF(LocalizedString::create("NEW_CAMPAIGN"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(1.1 * startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
     startButton->addChild(startLabel);
@@ -154,7 +153,7 @@ bool UIMainMenu::init()
     extrasButton->setAnchorPoint(Vec2(0, 0.5));
     extrasButton->setName("extras");
     extrasButton->setPosition(Vec2((2 * visibleSize.width / 25), startButton->getPositionY() - (1.5 * visibleSize.height / 18)));
-    auto extrasLabel = Label::createWithTTF(LocalizedString::create("EXTRAS"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto extrasLabel = Label::createWithTTF(LocalizedString::create("EXTRAS"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     extrasLabel->setColor(Color3B(219, 234, 241));
     extrasLabel->setPosition(extrasButton->getContentSize().width / 2, extrasButton->getContentSize().height / 2);
     extrasButton->addChild(extrasLabel, 3);
@@ -167,7 +166,7 @@ bool UIMainMenu::init()
     storyButton->setPosition(Vec2(extrasButton->getPositionX() + extrasButton->getBoundingBox().size.width,
                                   extrasButton->getPositionY() - (1.2 * visibleSize.height / 18)));
     storyButton->setName("story");
-    auto storyLabel = Label::createWithTTF(LocalizedString::create("STORY"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto storyLabel = Label::createWithTTF(LocalizedString::create("STORY"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     storyLabel->setColor(Color3B(219, 234, 241));
     storyLabel->setPosition(storyButton->getContentSize().width / 2, storyButton->getContentSize().height / 2);
     storyButton->addChild(storyLabel);
@@ -180,7 +179,7 @@ bool UIMainMenu::init()
     achievementsButton->setPosition(Vec2(extrasButton->getPositionX() + extrasButton->getBoundingBox().size.width,
         storyButton->getPositionY() - (1.2 * visibleSize.height / 18)));
     achievementsButton->setName("achievements");
-    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto achLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     achLabel->setColor(Color3B(219, 234, 241));
     achLabel->setPosition(1.1 * achievementsButton->getContentSize().width / 2, achievementsButton->getContentSize().height / 2);
     achievementsButton->addChild(achLabel);
@@ -195,7 +194,7 @@ bool UIMainMenu::init()
                                                 "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
         exitButton->setAnchorPoint(Vec2(0, 0.5));
         exitButton->setPosition(Vec2((21 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
-        auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 30 * GameData::getInstance()->getRaConversion());
+        auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
         exitLabel->setColor(Color3B(73, 109, 118));
         exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
         exitButton->addChild(exitLabel);
@@ -208,7 +207,7 @@ bool UIMainMenu::init()
                                                "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
     creditsButton->setAnchorPoint(Vec2(0, 0.5));
     creditsButton->setPosition(Vec2((21 * visibleSize.width / 25), (pos * visibleSize.height / 18)));
-    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 30 * GameData::getInstance()->getRaConversion());
+    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
@@ -219,7 +218,7 @@ bool UIMainMenu::init()
         "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
     configurationButton->setPosition(Vec2((21 * visibleSize.width / 25), ((pos + 1) * visibleSize.height / 18)));
-    auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 30 * GameData::getInstance()->getRaConversion());
+    auto confLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
@@ -507,19 +506,19 @@ void UIMainMenu::createWarningWindow(void)
     auto alertBackground = Sprite::create("gui/ConfigurationAlert.png");
     alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2,
                                       Director::getInstance()->getVisibleSize().height / 2));
-    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     alertLabel->setColor(Color3B(255, 255, 255));
     alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertLabel);
     
-    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     alertTextLabel->setColor(Color3B(255, 255, 255));
     alertTextLabel->setMaxLineWidth(325);
     alertTextLabel->setAlignment(TextHAlignment::CENTER);
     alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertTextLabel);
     
-    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("START") + string(" ?"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("START") + string(" ?"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     alertConfirmationLabel->setColor(Color3B(255, 255, 255));
     alertConfirmationLabel->setPosition(Vec2(1.2 * alertBackground->getBoundingBox().size.width / 4,
                                              alertBackground->getBoundingBox().size.height / 6));

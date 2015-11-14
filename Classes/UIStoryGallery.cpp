@@ -52,7 +52,7 @@ bool UIStoryGallery::init()
     backButton->setPosition(Vec2((4 * visibleSize.width / 42),
                                  (34 * visibleSize.height / 36)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(207, 203, 208));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -104,7 +104,7 @@ bool UIStoryGallery::init()
             layout->addChild(image);
         }
 
-        auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 40 * GameData::getInstance()->getRaConversion());
+        auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 80 * GameData::getInstance()->getRaConversion());
         contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
         contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
         contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());

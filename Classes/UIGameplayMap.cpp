@@ -120,7 +120,7 @@ bool UIGameplayMap::init()
 
     string space = " ";
     string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 114 * GameData::getInstance()->getRaConversion());
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 228 * GameData::getInstance()->getRaConversion());
     levelLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     levelLabel->setColor(Color3B(139, 146, 154));
     levelLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -210,12 +210,12 @@ bool UIGameplayMap::init()
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
     evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
-    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 160 * GameData::getInstance()->getRaConversion());
     evolutionPointsLabel->setAlignment(TextHAlignment::CENTER);
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
     evolutionPointsLabel->setColor(Color3B(216, 229, 235));
     evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
-    restaEvolutionPointsLabel = Label::createWithTTF("- ", "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    restaEvolutionPointsLabel = Label::createWithTTF("- ", "fonts/BebasNeue.otf", 160 * GameData::getInstance()->getRaConversion());
     restaEvolutionPointsLabel->setColor(Color3B(211, 197, 0));
     restaEvolutionPointsLabel->setOpacity(0);
     evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
@@ -237,7 +237,7 @@ bool UIGameplayMap::init()
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     pauseDarkBackground->setOpacity(150);
-    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("SET_ATTRIBUTES")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("SET_ATTRIBUTES")), "fonts/BebasNeue.otf", 200 * GameData::getInstance()->getRaConversion());
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
     pauseDarkLabel->setName("pauseDarkLabel");
@@ -253,7 +253,7 @@ bool UIGameplayMap::init()
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
 
-    timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 70 * GameData::getInstance()->getRaConversion());
+    timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 140 * GameData::getInstance()->getRaConversion());
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width/2, toggle->getPosition().y));
     this->addChild(timeSteps, 2);
@@ -486,14 +486,14 @@ bool UIGameplayMap::init()
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     attBackgroundTitle->setColor(Color3B(216, 229, 236));
     attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
     attBackgroundTitle->setPosition(Vec2(3 * bottomFrame->getContentSize().width / 9,
                                          4 * bottomFrame->getContentSize().height / 6));
     bottomFrame->addChild(attBackgroundTitle);
     
-    auto attBackgroundTitleCost = Label::createWithTTF(" [ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 35 * GameData::getInstance()->getRaConversion());
+    auto attBackgroundTitleCost = Label::createWithTTF(" [ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
     attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
     attBackgroundTitleCost->setPosition(Vec2(attBackgroundTitle->getPositionX() + attBackgroundTitle->getContentSize().width,
@@ -509,11 +509,11 @@ bool UIGameplayMap::init()
         {
             continue;
         }
-        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 30 * GameData::getInstance()->getRaConversion());
+        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
         labelAttRight->setColor(Color3B(216, 229, 236));
         bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
-        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/BebasNeue.otf", 30 * GameData::getInstance()->getRaConversion());
+        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
         attNumLabel->setColor(Color3B::BLACK);
         attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
         bottomFrame->addChild(attNumLabel, 1, (int(j) + 1) * 1100);
@@ -570,7 +570,7 @@ bool UIGameplayMap::init()
     bottomFrame->addChild(attrMenu, 1, 100000);
 
     // TUTORIAL MESSAGES
-    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 32 * GameData::getInstance()->getRaConversion());
+    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     messageLabel->setName("tutorial");
     messageLabel->setColor(Color3B(230, 230, 230));
     messageLabel->enableShadow();
@@ -578,7 +578,7 @@ bool UIGameplayMap::init()
     messageLabel->setVisible(false);
     messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
-    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 24 * GameData::getInstance()->getRaConversion());
+    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     messageNextLabel->setName("tutorialNext");
     messageNextLabel->setColor(Color3B(210, 210, 210));
     messageNextLabel->setMaxLineWidth(300);
@@ -589,7 +589,7 @@ bool UIGameplayMap::init()
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
 
-    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     tutorialTitle->setName("tutorialTitle");
     tutorialTitle->setColor(Color3B(210, 210, 210));
     tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
@@ -1079,7 +1079,7 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     {
         setAttributesToInitialAgents();
         auto l = ((Label*)pauseDarkBackground->getChildByName("pauseDarkLabel"));
-        l->setTTFConfig(_ttfConfig("fonts/BebasNeue.otf", 170 * GameData::getInstance()->getRaConversion()));
+        l->setTTFConfig(_ttfConfig("fonts/BebasNeue.otf", 340 * GameData::getInstance()->getRaConversion()));
         l->setString(string(LocalizedString::create("PAUSE")));
         timeBorderBar->getChildByName("degradateTime")->setVisible(true);
         firstPlayFF = false;
@@ -1135,7 +1135,7 @@ void UIGameplayMap::quitCallback(Ref* pSender)
     Menu* confirmMenu = Menu::createWithArray(confirmVec);
     confirmMenu->setName("confirmMenu");
     confirmMenu->setPosition(0, 0);
-    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("QUIT_QUESTION")), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("QUIT_QUESTION")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     labelConfirm->setPosition(Vec2(confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmBackground->addChild(separator);
     confirmBackground->addChild(confirmMenu, 10);
@@ -1171,7 +1171,7 @@ void UIGameplayMap::retryCallback(Ref* pSender)
     Menu* confirmMenu = Menu::createWithArray(confirmVec);
     confirmMenu->setName("confirmMenu");
     confirmMenu->setPosition(0, 0);
-    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("RETRY_QUESTION")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto labelConfirm = Label::createWithTTF(string(LocalizedString::create("RETRY_QUESTION")), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     labelConfirm->setPosition(Vec2(confirmBackground->getContentSize().width / 4, confirmBackground->getContentSize().height / 2));
     confirmBackground->addChild(separator);
     confirmBackground->addChild(confirmMenu);
@@ -1619,7 +1619,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
             }
             starCount++;
         }
-        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 120 * GameData::getInstance()->getRaConversion());
+        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 240 * GameData::getInstance()->getRaConversion());
         titleLabel->setColor(Color3B(255, 255, 255));
         titleLabel->setPosition(5 * window->getContentSize().width / 18, 5 * window->getContentSize().height / 10);
         window->addChild(titleLabel);
@@ -1640,12 +1640,12 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
             text = LocalizedString::create("ALL_AGENTS_DIED");
         }
 
-        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 120 * GameData::getInstance()->getRaConversion());
+        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 240 * GameData::getInstance()->getRaConversion());
         titleLabel->setColor(Color3B(255, 255, 255));
         titleLabel->setPosition(9 * window->getContentSize().width / 18, 4 * window->getContentSize().height / 10);
         window->addChild(titleLabel);
 
-        auto textLabel = Label::createWithTTF(text, "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+        auto textLabel = Label::createWithTTF(text, "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
         textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
         textLabel->setAlignment(TextHAlignment::CENTER);
         window->addChild(textLabel);
@@ -1653,14 +1653,14 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 
     string space = " ";
     string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 200 * GameData::getInstance()->getRaConversion());
     levelLabel->setColor(Color3B(85, 108, 117));
     levelLabel->setPosition(Vec2(4 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
     window->addChild(levelLabel);
 
     auto continueButton = MenuItemImage::create("gui/ProgressMapPlayButton.png", "gui/ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
     continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
-    auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     continueLabel->setColor(Color3B(205, 202, 207));
     continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
     continueButton->addChild(continueLabel);
@@ -1670,7 +1670,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 
     auto retryButton = MenuItemImage::create("gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
     retryButton->setPosition(4 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
-    auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     retryLabel->setColor(Color3B(205, 202, 207));
     retryLabel->setPosition(retryButton->getContentSize().width / 2, retryButton->getContentSize().height / 2);
     retryButton->addChild(retryLabel);
@@ -1708,7 +1708,7 @@ void UIGameplayMap::createAchievementWindow(void)
         s = "S";
     }
     auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED " + to_string(numCompletedAchievements) + " ACHIEVEMENT" + s,
-                                           "fonts/BebasNeue.otf", 120 * GameData::getInstance()->getRaConversion());
+                                           "fonts/BebasNeue.otf", 240 * GameData::getInstance()->getRaConversion());
     titleLabel->setColor(Color3B(255, 255, 255));
     titleLabel->setAnchorPoint(Vec2(0.5, 0));
     titleLabel->setPosition(Vec2(window->getContentSize().width / 2, window->getContentSize().height / 2 - titleLabel->getContentSize().height * 1.1));
@@ -1718,7 +1718,7 @@ void UIGameplayMap::createAchievementWindow(void)
     {
         string titleAch = LocalizedString::create(("TITLE_LVL" + GameLevel::getInstance()->getCompletedAchievements().at(i)).c_str(), "achievements");
         string descrAch = LocalizedString::create(("DESCR_LVL" + GameLevel::getInstance()->getCompletedAchievements().at(i)).c_str(), "achievements");
-        auto labelAch = Label::createWithTTF(titleAch + ": " + descrAch, "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+        auto labelAch = Label::createWithTTF(titleAch + ": " + descrAch, "fonts/BebasNeue.otf", 120 * GameData::getInstance()->getRaConversion());
         labelAch->setColor(Color3B(85, 108, 117));
         labelAch->setPosition(Vec2(window->getContentSize().width / 2,
                                    (titleLabel->getPositionY() - titleLabel->getContentSize().height) - (labelAch->getContentSize().height * 1.2 * i)));

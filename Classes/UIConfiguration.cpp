@@ -77,7 +77,7 @@ bool UIConfiguration::init()
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -87,14 +87,14 @@ bool UIConfiguration::init()
     menu->setPosition(0, 0);
     popupBackground->addChild(menu, 1, 20);
 
-    auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("CONFIGURATION"), "fonts/BebasNeue.otf", 200 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(1, 0.5));
     configLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 13.5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(configLabel);
 
     Vector<MenuItem*> languageItems;
-    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    auto languageLabel = Label::createWithTTF(LocalizedString::create("LANGUAGE"), "fonts/BebasNeue.otf", 160 * GameData::getInstance()->getRaConversion());
     languageLabel->setColor(Color3B(72, 108, 118));
     languageLabel->setAnchorPoint(Vec2(1, 0.5));
     languageLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 11 * popupBackground->getContentSize().height / 16));
@@ -132,7 +132,7 @@ bool UIConfiguration::init()
 
     Vector<MenuItem*> soundItems;
 
-    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC"), "fonts/BebasNeue.otf", 160 * GameData::getInstance()->getRaConversion());
     musicLabel->setColor(Color3B(72, 108, 118));
     musicLabel->setAnchorPoint(Vec2(1, 0.5));
     musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
@@ -155,7 +155,7 @@ bool UIConfiguration::init()
         8 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOffLabel);
 
-    auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS"), "fonts/BebasNeue.otf", 160 * GameData::getInstance()->getRaConversion());
     sfxLabel->setColor(Color3B(72, 108, 118));
     sfxLabel->setAnchorPoint(Vec2(1, 0.5));
     sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
