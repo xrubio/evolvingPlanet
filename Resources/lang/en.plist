@@ -4,8 +4,8 @@
 <dict>
 	<key>START</key>
 	<string>START</string>
-	<key>NEW_CAMPAIGN</key>
-	<string>NEW CAMPAIGN</string>
+	<key>NEW_GAME</key>
+	<string>NEW GAME</string>
 	<key>BACK</key>
 	<string>BACK</string>
 	<key>RESET</key>
@@ -17,11 +17,11 @@
 	<key>WARNING</key>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>
-	<string>STARTING A NEW CAMPAIGN WILL ERASE ALL YOUR PROGRESS</string>
+	<string>STARTING A NEW GAME WILL ERASE ALL YOUR PROGRESS</string>
 	<key>LEVEL</key>
 	<string>MISSION</string>
-	<key>CONFIGURATION</key>
-	<string>CONFIGURATION</string>
+	<key>OPTIONS</key>
+	<string>OPTIONS</string>
 	<key>ACHIEVEMENTS</key>
 	<string>ACHIEVEMENTS</string>
 	<key>LANGUAGE</key>

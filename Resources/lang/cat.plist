@@ -4,8 +4,8 @@
 <dict>
 	<key>START</key>
 	<string>COMENÇAR</string>
-	<key>NEW_CAMPAIGN</key>
-	<string>NOVA CAMPANYA</string>
+	<key>NEW_GAME</key>
+	<string>NOVA PARTIDA</string>
 	<key>BACK</key>
 	<string>TORNAR</string>
 	<key>RESET</key>
@@ -17,11 +17,11 @@
 	<key>WARNING</key>
 	<string>ALERTA</string>
 	<key>WARNING_TEXT</key>
-	<string>COMENÇAR UNA NOVA CAMPANYA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
+	<string>COMENÇAR UNA NOVA PARTIDA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
 	<key>LEVEL</key>
 	<string>MISSIÓ</string>
-	<key>CONFIGURATION</key>
-	<string>CONFIGURACIÓ</string>
+	<key>OPTIONS</key>
+	<string>OPCIONS</string>
 	<key>ACHIEVEMENTS</key>
 	<string>FITES</string>
 	<key>LANGUAGE</key>

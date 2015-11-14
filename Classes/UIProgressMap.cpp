@@ -67,7 +67,7 @@ bool UIProgressMap::init()
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
     backButton->setPosition(Vec2((3 * visibleSize.width / 34), (2 * visibleSize.height / 25)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -82,7 +82,7 @@ bool UIProgressMap::init()
     eraWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     eraWindow->setName("eraWindow");
     
-    auto eraLabel = Label::createWithTTF(LocalizedString::create("FIRST")+" "+LocalizedString::create("ERA"), "fonts/BebasNeue.otf", 160 * GameData::getInstance()->getRaConversion());
+    auto eraLabel = Label::createWithTTF(LocalizedString::create("FIRST")+" "+LocalizedString::create("ERA"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     eraLabel->setPosition(eraWindow->getContentSize().width / 2, eraWindow->getContentSize().height / 2);
     eraLabel->setColor(Color3B(137, 146, 155));
     eraLabel->setName("eraLabel");
@@ -284,7 +284,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
 
     string space = " ";
     string lvl = (LocalizedString::create("LEVEL")) + space + to_string(tag);
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 200 * GameData::getInstance()->getRaConversion());
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     levelLabel->setColor(Color3B(85, 108, 117));
     levelLabel->setAnchorPoint(Vec2(0, 0.5));
     levelLabel->setPosition(Vec2(2 * (popupBackground->getContentSize().width / 25), 12 * (popupBackground->getContentSize().height / 14)));
@@ -314,7 +314,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
 
     auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str(), "text"),
         Size(13 * (popupBackground->getContentSize().width / 25), 6 * (popupBackground->getContentSize().height / 14)),
-        TextHAlignment::LEFT, "Arial Rounded MT Bold", 60 * GameData::getInstance()->getRaConversion());
+        TextHAlignment::LEFT, "Arial Rounded MT Bold", 40 * GameData::getInstance()->getRaConversion());
     briefText->setColorSpaceHolder(Color3B(216, 229, 235));
     briefText->setPosition(Vec2(17 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14)));
     popupBackground->addChild(briefText);
@@ -322,7 +322,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     auto playButton = MenuItemImage::create("gui/ProgressMapPlayButton.png", "gui/ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIProgressMap::proceedLevelCallback, this));
     playButton->setPosition(Vec2(21 * (popupBackground->getContentSize().width / 25), 2 * (popupBackground->getContentSize().height / 14)));
     playButton->setTag(tag);
-    auto labelPlay = Label::createWithTTF(LocalizedString::create("PLAY"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    auto labelPlay = Label::createWithTTF(LocalizedString::create("PLAY"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     labelPlay->setPosition(playButton->getContentSize().width / 2, playButton->getContentSize().height / 2);
     labelPlay->setColor(Color3B(205, 202, 207));
     playButton->addChild(labelPlay);
@@ -557,7 +557,7 @@ Layout* UIProgressMap::setEpisode1(void)
         auto levelButton = MenuItemImage::create("gui/LevelPointerButton.png", "gui/LevelPointerButtonPressed.png",
                                             CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
         levelButton->setTag(i);
-        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
         levelLabel->setPosition(levelButton->getContentSize().width/2, levelButton->getContentSize().height/2);
         levelButton->addChild(levelLabel);
         levelLabel->setColor(Color3B(32, 47, 55));
@@ -672,7 +672,7 @@ Layout* UIProgressMap::setEpisode2(void)
         auto levelButton = MenuItemImage::create("gui/LevelPointerButton.png", "gui/LevelPointerButtonPressed.png",
                                                  CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
         levelButton->setTag(i);
-        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
         levelLabel->setPosition(levelButton->getContentSize().width / 2, levelButton->getContentSize().height / 2);
         levelButton->addChild(levelLabel);
         levelLabel->setColor(Color3B(32, 47, 55));

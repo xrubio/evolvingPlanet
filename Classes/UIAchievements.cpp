@@ -79,7 +79,7 @@ bool UIAchievements::init()
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIAchievements::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
@@ -89,7 +89,7 @@ bool UIAchievements::init()
     menu->setPosition(0, 0);
     popupBackground->addChild(menu, 1, 20);
 
-    auto configLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 200 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(1, 0.5));
     configLabel->setPosition(Vec2(8 * popupBackground->getContentSize().width / 28, 13.5 * popupBackground->getContentSize().height / 16));
@@ -121,13 +121,13 @@ bool UIAchievements::init()
             icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
             model->addChild(icon);
             string key = to_string(i) + "_" + achs.at(i).at(j)->getGoalType();
-            auto title = Label::createWithTTF(LocalizedString::create(string("TITLE_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+            auto title = Label::createWithTTF(LocalizedString::create(string("TITLE_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
             title->setColor(Color3B(190, 221, 226));
             title->setAnchorPoint(Vec2(0, 0.5));
             title->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width),
                                     5 * model->getBoundingBox().size.height / 7));
             model->addChild(title);
-            auto text = Label::createWithTTF(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
+            auto text = Label::createWithTTF(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
             text->setColor(Color3B(190, 221, 226));
             text->setAnchorPoint(Vec2(0, 0.5));
             text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));
