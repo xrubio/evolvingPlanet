@@ -73,9 +73,9 @@ bool UITransitionScene::init()
     imageUnlocked->setName("imageUnlocked");
     this->addChild(imageUnlocked);
     
-    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_DEPLOYMENT").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
+    auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
     contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-    contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 4));
+    contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 6));
     contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
     contextDeployment->setScaleY(GameData::getInstance()->getRaHConversion());
     contextDeployment->setOpacity(0);

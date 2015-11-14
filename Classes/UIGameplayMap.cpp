@@ -255,7 +255,7 @@ bool UIGameplayMap::init()
 
     timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width, toggle->getPosition().y));
+    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width/2, toggle->getPosition().y));
     this->addChild(timeSteps, 2);
 
     //Powers
@@ -595,7 +595,7 @@ bool UIGameplayMap::init()
     tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
     tutorialTitle->setVisible(false);
     tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
-    auto repeatBlink = RepeatForever::create(Blink::create(5,2));
+    auto repeatBlink = RepeatForever::create(Blink::create(3,1));
     tutorialTitle->runAction(repeatBlink);
   
     auto tutorialImage = Sprite::create();
