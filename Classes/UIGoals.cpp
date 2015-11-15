@@ -66,11 +66,6 @@ bool UIGoals::init()
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }
 
-    auto background = Sprite::create("gui/MainMenuBackground.png");
-    background->setPosition(Vec2(visibleSize.width / 2,
-        visibleSize.height / 2));
-    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    //this->addChild(background, 0);
 
     hexagonButtonLevel0 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
                                                         "gui/ProgressMapHexagonLevelOff.png");
@@ -122,16 +117,19 @@ bool UIGoals::init()
 
     GameLevel::getInstance()->setCurrentAgentType(0);
 
+    auto background = Sprite::create("gui/MainMenuBackground.png");
+    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+
     pages = PageView::create();
     pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->addChild(background);
-    //pages->setBackGroundImage("MainMenuBackground.png");
+    
     pages->setTouchEnabled(true);
     pages->setSize(Size(visibleSize.width, visibleSize.height));
     pages->setPosition(Point(0, 0));
-    //pages->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
 
-    //INTRODUCTION
+    // BRIEFING
     auto layoutContextIntroduction = Layout::create();
     //TRIAR ESTIL SEGONS EL LVL
     auto pageBackgroundIntroduction = Sprite::create("gui/PageBackground.png");
@@ -342,6 +340,17 @@ void UIGoals::zoomImageOutCallback(Ref* pSender)
     image->setCallback(CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
     pages->getPage(1)->getChildByTag(100)->runAction(FadeOut::create(0.5));
     pages->getPage(1)->removeChildByTag(100);
+}     
+
+UIPower * UIGoals::createPower(int i)
+{
+    if (GameLevel::getInstance()->getPowers().at(i)->getType() == "Global")
+    {
+        return new UIGlobalPower(GameLevel::getInstance()->getPowers().at(i));
+    }
+
+    // area
+    return new UIAreaPower(GameLevel::getInstance()->getPowers().at(i));
 }
 
 void UIGoals::setLevelGoals(Layout* layout)
@@ -354,7 +363,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     featuresLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(featuresLabel);
     
-    auto attributesLabel = Label::createWithTTF(LocalizedString::create("ATTRIBUTES"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto attributesLabel = Label::createWithTTF(LocalizedString::create("ATTRIBUTES"), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     attributesLabel->setPosition(Vec2(6 * visibleSize.width / 42, 22 * visibleSize.height / 31));
     attributesLabel->setColor(Color3B::WHITE);
     attributesLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -364,16 +373,21 @@ void UIGoals::setLevelGoals(Layout* layout)
     //const GameLevel::Levels & atts = GameLevel::getInstance()->getAgentAttributes(0);
     for(size_t i=0; i<GameLevel::getInstance()->getModifiableAttr().size(); i++)
     {
+        std::string attributeName = GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr().at(i));
+        std::string descriptionName = "DESCRIPTION_"+attributeName;
+        std::string attributeLine = LocalizedString::create(attributeName.c_str()) + " - " +  LocalizedString::create(descriptionName.c_str());
+
         //ATRIBUT MODIFICABLE
-        auto attLabel = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(GameLevel::getInstance()->getModifiableAttr().at(i)).c_str()) + ":    Explicació de l'atribut", "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+        auto attLabel = Label::createWithTTF(attributeLine, "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
         attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (i * 2)) * visibleSize.height / 31));
         attLabel->setColor(Color3B(211, 230, 236));
         attLabel->setAnchorPoint(Vec2(0, 0.5));
         attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        attLabel->enableGlow(Color4B(150,150,200,150));
         layout->addChild(attLabel);
     }
     
-    auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     powersLabel->setPosition(Vec2(6 * visibleSize.width / 42, 13 * visibleSize.height / 31));
     powersLabel->setColor(Color3B::WHITE);
     powersLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -382,29 +396,23 @@ void UIGoals::setLevelGoals(Layout* layout)
     
     for(size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
     {
-        if (GameLevel::getInstance()->getPowers().at(i)->getType() == "Global") {
-            auto power = new UIGlobalPower(GameLevel::getInstance()->getPowers().at(i));
-            power->setPosition(9 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31);
-            layout->addChild(power->getIcon());
-        }
-        else if (GameLevel::getInstance()->getPowers().at(i)->getType() == "Area") {
-            auto power = new UIAreaPower(GameLevel::getInstance()->getPowers().at(i));
-            power->setPosition(9 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31);
-            layout->addChild(power->getIcon());
-        }
-        
-        auto powerLabel = Label::createWithTTF("Explicació del poder",
-                                               "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+        auto power = createPower(i);
+        power->setPosition(9 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31);
+        layout->addChild(power->getIcon());
+
+        std::string boostLine = "DESCRIPTION_"+GameLevel::getInstance()->getPowers().at(i)->getName();
+        auto powerLabel = Label::createWithTTF(LocalizedString::create(boostLine.c_str()), "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
         powerLabel->setPosition(Vec2(11 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31));
         powerLabel->setColor(Color3B(211, 230, 236));
         powerLabel->setAnchorPoint(Vec2(0, 0.5));
         powerLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        powerLabel->enableGlow(Color4B(150,150,200,150));
         layout->addChild(powerLabel);
     }
     //POWERS NOT AVAILABLE
     if( GameLevel::getInstance()->getPowers().size() == 0)
     {
-        auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+        auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/arial_rounded_mt_bold.ttf", 70 * GameData::getInstance()->getRaConversion());
         powersNotAvailableLabel->setPosition(Vec2(7 * visibleSize.width / 42, 10 * visibleSize.height / 31));
         powersNotAvailableLabel->setColor(Color3B::GRAY);
         powersNotAvailableLabel->setAnchorPoint(Vec2(0, 0.5));

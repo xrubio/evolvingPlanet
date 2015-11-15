@@ -52,34 +52,64 @@
 	<string>TAP TO CONTINUE</string>
 	<key>LIFE</key>
 	<string>LIFE</string>
+
+    <!-- attributes -->
+	<key>LEVEL_FEATURES</key>
+	<string>ABILITIES</string>
+	<key>ATTRIBUTES</key>
+	<string>ATTRIBUTES</string>
+	<key>POWERS</key>
+	<string>BOOSTS</string>
+	<key>NOT_AVAILABLE</key>
+	<string>NOT AVAILABLE IN THIS MISSION</string>
+
 	<key>REPRODUCTION</key>
 	<string>REPRODUCTION</string>
+    <key>DESCRIPTION_REPRODUCTION</key>
+	<string>Fertility rate of your agents</string>
 	<key>MOBILITY</key>
 	<string>MOBILITY</string>
+    <key>DESCRIPTION_MOBILITY</key>
+	<string>Range of interaction</string>
 	<key>RESISTANCE</key>
 	<string>RESISTANCE</string>
+    <key>DESCRIPTION_RESISTANCE</key>
+	<string>Endurance in harsh environments</string>
 	<key>TECHNOLOGY</key>
 	<string>TECHNOLOGY</string>
+    <key>DESCRIPTION_TECHNOLOGY</key>
+	<string>Overall technological skills</string>
+	<key>INFLUENCE</key>
+	<string>INFLUENCE</string>
+    <key>DESCRIPTION_INFLUENCE</key>
+	<string>Convert other agents to join your group</string>
+	<key>WARFARE</key>
+	<string>WARFARE</string>
+    <key>DESCRIPTION_WARFARE</key>
+	<string>Lethality in combat</string>
+
+    <!-- boosts -->
+    <key>DESCRIPTION_MobilityBoost</key>
+    <string>Mobility</string>
+    <key>DESCRIPTION_ReproductionBoost</key>
+    <string>Reproduction</string>
+    <key>DESCRIPTION_ResistanceBoost</key>
+    <string>Resistance</string>
+    <key>DESCRIPTION_InfluenceBoost</key>
+    <string>Influence</string>
+    <key>DESCRIPTION_WarfareBoost</key>
+    <string>Warfare</string>
+
+    <!-- other attributes -->
 	<key>RECOLLECTION</key>
 	<string>RECOLLECTION</string>
 	<key>SUSTAINABILITY</key>
 	<string>SUSTAINABILITY</string>
 	<key>ADAPTATION</key>
 	<string>ADAPTATION</string>
-	<key>CULTURAL_INFLUENCE</key>
-	<string>CULTURAL INFL</string>
-	<key>HOSTILITY</key>
-	<string>HOSTILITY</string>
+
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
-	<key>LEVEL_FEATURES</key>
-	<string>MISSION FEATURES</string>
-	<key>ATTRIBUTES</key>
-	<string>ATTRIBUTES</string>
-	<key>POWERS</key>
-	<string>POWERS</string>
-	<key>NOT_AVAILABLE</key>
-	<string>NOT AVAILABLE IN THIS MISSION</string>
 	<key>MUSIC</key>
 	<string>MUSIC</string>
 	<key>SPECIAL_EFFECTS</key>
@@ -106,8 +136,6 @@ archaeological data suggests</string>
 	<key>PLAY</key>
 	<string>PLAY</string>
 	<key>CONTEXT_TITLE_INTRO</key>
-	<string>INTRODUCTION</string>
-	<key>CONTEXT_TITLE_DEPLOYMENT</key>
-	<string>DEPLOYMENT</string>
+	<string>BRIEFING</string>
 </dict>
 </plist>

@@ -65,6 +65,8 @@ private:
 
     void setLevelGoals(Layout* layout);
     void createUIAgent(Layout* layout);
+
+    UIPower * createPower(int i);
 };
 
 #endif /* defined(__simulplay__UIGoals__) */
