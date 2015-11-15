@@ -44,8 +44,8 @@ bool UIStoryGallery::init()
         return false;
     }
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    
+    Size visibleSize = Director::getInstance()->getVisibleSize();   
+
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create("gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png",
                                             CC_CALLBACK_1(UIStoryGallery::menuBackCallback, this));
@@ -86,6 +86,10 @@ bool UIStoryGallery::init()
     for (int i=1; i<=numLevels; i++)
     {
         auto layout = Layout::create();
+        auto background = Sprite::create("gui/MainMenuBackground.png");
+        background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        layout->addChild(background, 0);
 
         // unlocked
         // TODO, it should be: if(GameData::getInstance()->getLevelsCompleted().at(i)!=0)
@@ -97,15 +101,12 @@ bool UIStoryGallery::init()
             layout->addChild(image);
 
             
-//            auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
             auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
             storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
             storyLine->setScaleX(GameData::getInstance()->getRaWConversion());
             storyLine->setScaleY(GameData::getInstance()->getRaHConversion());
 
             layout->addChild(storyLine);
-            CCLOG("font: %f/%f", storyLine->getContentSize().width, storyLine->getContentSize().height);
-            CCLOG("visible: %f/%f", visibleSize.width, visibleSize.height);
             storyLine->setPosition(Vec2(storyLine->getContentSize().width/2, visibleSize.height-1.5f*storyLine->getContentSize().height));
             storyLine->setName("text");
         }

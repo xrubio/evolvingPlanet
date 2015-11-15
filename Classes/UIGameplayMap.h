@@ -184,6 +184,10 @@ private:
 
     // listener tutorial is removed/added based on need when a mission starts
     EventListenerTouchOneByOne * _listenerTutorial;
+
+    void createTutorialGUI();
+    void enableTutorialGUI();
+    void disableTutorialGUI();
     
     void restoreGameplayMap(void);
     void updateAttributesButtons(void);

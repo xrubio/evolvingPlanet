@@ -569,47 +569,8 @@ bool UIGameplayMap::init()
     attrMenu->setName("attrMenu");
     bottomFrame->addChild(attrMenu, 1, 100000);
 
-    // TUTORIAL MESSAGES
-    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
-    messageLabel->setName("tutorial");
-    messageLabel->setColor(Color3B(230, 230, 230));
-    messageLabel->enableShadow();
-    messageLabel->setMaxLineWidth(300);
-    messageLabel->setVisible(false);
-    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    
-    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
-    messageNextLabel->setName("tutorialNext");
-    messageNextLabel->setColor(Color3B(210, 210, 210));
-    messageNextLabel->setMaxLineWidth(300);
-    messageNextLabel->setVisible(false);
-    messageNextLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
-    auto labelBorder = DrawNode::create();
-    labelBorder->setName("tutorialBorder");
-    labelBorder->setVisible(false);
-
-    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
-    tutorialTitle->setName("tutorialTitle");
-    tutorialTitle->setColor(Color3B(210, 210, 210));
-    tutorialTitle->setPosition(Vec2(retryButton->getContentSize().width, topFrame->getPositionY() - topFrame->getContentSize().height));
-    tutorialTitle->setVisible(false);
-    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
-    auto repeatBlink = RepeatForever::create(Blink::create(3,1));
-    tutorialTitle->runAction(repeatBlink);
-  
-    auto tutorialImage = Sprite::create();
-    tutorialImage->setName("tutorialImage");
-    tutorialImage->setVisible(false);
-    tutorialImage->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    
-    // add first the border to draw it first
-    this->addChild(labelBorder);
-    this->addChild(messageLabel);
-    this->addChild(messageNextLabel);
-    this->addChild(tutorialTitle);
-    this->addChild(tutorialImage, 100);
-
+    createTutorialGUI();
     _message = 0;
 
     createTimingThread();
@@ -980,7 +941,8 @@ void UIGameplayMap::onMouseScroll(Event* event)
 
     // ZOOM
     EventMouse* e = (EventMouse*)event;
-    if (checkPowersClicked() == false and _tutorial->isFinished()) {
+    if(checkPowersClicked() == false and (!_tutorial or _tutorial->isFinished()))
+    {
         // Get current and previous positions of the touches
         Point curPosTouch1 = Director::getInstance()->convertToGL(e->getLocationInView());
         Point prevPosTouch1 = Director::getInstance()->convertToGL(e->getPreviousLocationInView());
@@ -1365,6 +1327,20 @@ void* UIGameplayMap::createLevel(void* arg)
     return nullptr;
 }
 
+void UIGameplayMap::enableTutorialGUI()
+{
+    this->getChildByName("tutorialTitle")->setVisible(true);
+    auto repeatBlink = RepeatForever::create(Blink::create(3,1));
+    this->getChildByName("tutorialTitle")->runAction(repeatBlink);
+}
+
+void UIGameplayMap::disableTutorialGUI()
+{
+    this->getChildByName("tutorialTitle")->stopAllActions();
+    this->getChildByName("tutorialTitle")->setVisible(false);
+}
+
+
 void UIGameplayMap::playLevel(void)
 {
     pthread_mutex_lock(&gameLevelMutex);
@@ -1372,6 +1348,8 @@ void UIGameplayMap::playLevel(void)
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
     delete _tutorial;
     _tutorial = nullptr;
+
+    disableTutorialGUI();
 
     if(launchTutorial)
     {
@@ -1384,7 +1362,7 @@ void UIGameplayMap::playLevel(void)
         }
         else
         {
-            this->getChildByName("tutorialTitle")->setVisible(true);
+            enableTutorialGUI();
         }
     }
     GameLevel::getInstance()->playLevel();
@@ -1871,6 +1849,49 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
     }
 }
 
+void UIGameplayMap::createTutorialGUI()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    // TUTORIAL MESSAGES
+    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+    messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->enableShadow();
+    messageLabel->setMaxLineWidth(300);
+    messageLabel->setVisible(false);
+    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+    messageNextLabel->setName("tutorialNext");
+    messageNextLabel->setColor(Color3B(210, 210, 210));
+    messageNextLabel->setMaxLineWidth(300);
+    messageNextLabel->setVisible(false);
+    messageNextLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+
+    auto labelBorder = DrawNode::create();
+    labelBorder->setName("tutorialBorder");
+    labelBorder->setVisible(false);
+
+    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    tutorialTitle->setName("tutorialTitle");
+    tutorialTitle->setColor(Color3B(210, 210, 210));
+    tutorialTitle->setPosition(Vec2(tutorialTitle->getContentSize().width, visibleSize.height-2.5f*tutorialTitle->getContentSize().height));
+    tutorialTitle->setVisible(false);
+    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
+  
+    auto tutorialImage = Sprite::create();
+    tutorialImage->setName("tutorialImage");
+    tutorialImage->setVisible(false);
+    tutorialImage->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    // add first the border to draw it first
+    this->addChild(labelBorder);
+    this->addChild(messageLabel);
+    this->addChild(messageNextLabel);
+    this->addChild(tutorialTitle);
+    this->addChild(tutorialImage, 100);
+}
+
 void UIGameplayMap::update(float delta)
 {
     if (GameLevel::getInstance()->getFinishedGame() == Running) {
@@ -1896,7 +1917,7 @@ void UIGameplayMap::update(float delta)
                     if(_tutorial->isFinished())
                     {
                         _eventDispatcher->removeEventListener(_listenerTutorial);
-                        this->removeChildByName("tutorialTitle");
+                        disableTutorialGUI();
                         pauseGame();
                     }
                 }

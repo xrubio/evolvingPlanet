@@ -48,8 +48,7 @@ bool UIConfiguration::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     auto background = Sprite::create("gui/MainMenuBackground.png");
-    background->setPosition(Vec2(visibleSize.width / 2,
-        visibleSize.height / 2));
+    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(background, 0);
 

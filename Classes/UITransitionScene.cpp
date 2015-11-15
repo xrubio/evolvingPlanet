@@ -61,7 +61,7 @@ bool UITransitionScene::init()
     this->addChild(image);
     
     auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
-    unlockLabel->setTextColor(Color4B(75, 75, 150, 20));
+    unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
     unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     unlockLabel->setName("unlockLabel");
     this->addChild(unlockLabel);
@@ -83,8 +83,8 @@ bool UITransitionScene::init()
     this->addChild(storyLine);
     
     auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
-    tapToContinue->setTextColor(Color4B(50, 50, 100, 180));
     tapToContinue->setAnchorPoint(Vec2(0, 0));
+    tapToContinue->setColor(Color3B::WHITE);
     tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
     tapToContinue->setOpacity(0);
     tapToContinue->setName("tapToContinue");
