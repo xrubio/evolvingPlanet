@@ -91,7 +91,7 @@ bool UIStoryGallery::init()
         // TODO, it should be: if(GameData::getInstance()->getLevelsCompleted().at(i)!=0)
         if(i<GameData::getInstance()->getLevelsCompleted().size() && GameData::getInstance()->getLevelsCompleted().at(i)!=0)
         {
-            auto image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
+            auto image = Sprite::create("art/Escenari"+to_string(i)+".png");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);

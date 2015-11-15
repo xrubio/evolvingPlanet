@@ -363,16 +363,16 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
             this->addChild(loading, 500);
             loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
         
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari5.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari6.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari7.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari8.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari9.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.jpg", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari5.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari6.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari7.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari8.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari9.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
         
         //GameData::getInstance()->setNextScene(Story);
         auto scene = UIStoryGallery::createScene();

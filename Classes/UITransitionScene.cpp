@@ -66,7 +66,7 @@ bool UITransitionScene::init()
     unlockLabel->setName("unlockLabel");
     this->addChild(unlockLabel);
 
-    auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
+    auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".png");
     imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
     imageUnlocked->setOpacity(0.0f);
@@ -161,19 +161,16 @@ void UITransitionScene::setLoadingAnimation(bool b)
 
 void UITransitionScene::update(float delta)
 {
-    if (GameData::getInstance()->getFirstTimeLevelCompleted() <= 0 and loadset == false)
+
+    if (GameData::getInstance()->getNextScene() < 0 or ((clock() - float(updateTimeToLoadScene)) / CLOCKS_PER_SEC) <= 0.2)
     {
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation,this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.jpg", CC_CALLBACK_1(UITransitionScene::setLoadingAnimation, this));
-        loadset = true;
+        return;
     }
-    if (GameData::getInstance()->getNextScene() >= 0 and ((clock() - float(updateTimeToLoadScene)) / CLOCKS_PER_SEC) > 0.2)
+
+    Scene *scene;
+    TransitionFade *transition;
+    switch (GameData::getInstance()->getNextScene())
     {
-        Scene *scene;
-        TransitionFade *transition;
-        switch (GameData::getInstance()->getNextScene()) {
         case Story:
         {
             scene = UIStoryGallery::createScene();
@@ -190,7 +187,5 @@ void UITransitionScene::update(float delta)
     }
     GameData::getInstance()->setNextScene(-1);
     Director::getInstance()->replaceScene(transition);
-
-    }
 }
 

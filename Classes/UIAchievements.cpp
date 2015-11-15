@@ -230,7 +230,7 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         
         if (resourceType == "IMG")
         {
-            auto nameArt = ("art" + resource + ".jpg").c_str();
+            auto nameArt = ("art" + resource + ".png").c_str();
             auto contextImage = MenuItemImage::create(nameArt, nameArt, CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
             contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion());
             contextImage->setPosition(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2);
