@@ -1022,11 +1022,6 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
 
 void GameLevel::checkAchievements(void)
 {
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
-    CCLOG("WARNING: Achievements implemented only for IOS");
-    return;
-#endif
-        
     vector<Achievement*> progressAchs = GameData::getInstance()->getAchievements(0);
     vector<Achievement*> levelAchs = GameData::getInstance()->getAchievements(numLevel);
     

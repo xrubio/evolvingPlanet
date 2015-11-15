@@ -97,13 +97,17 @@ bool UIStoryGallery::init()
             layout->addChild(image);
 
             
-            auto contextDeployment = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
-            contextDeployment->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-            contextDeployment->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 6));
-            contextDeployment->setScaleX(GameData::getInstance()->getRaWConversion());
-            contextDeployment->setScaleY(GameData::getInstance()->getRaHConversion());
-            contextDeployment->setName("text");
-            layout->addChild(contextDeployment);
+//            auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
+            auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
+            storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
+            storyLine->setScaleX(GameData::getInstance()->getRaWConversion());
+            storyLine->setScaleY(GameData::getInstance()->getRaHConversion());
+
+            layout->addChild(storyLine);
+            CCLOG("font: %f/%f", storyLine->getContentSize().width, storyLine->getContentSize().height);
+            CCLOG("visible: %f/%f", visibleSize.width, visibleSize.height);
+            storyLine->setPosition(Vec2(storyLine->getContentSize().width/2, visibleSize.height-1.5f*storyLine->getContentSize().height));
+            storyLine->setName("text");
         }
         else
         {
@@ -113,6 +117,11 @@ bool UIStoryGallery::init()
             layout->addChild(image);
 
             // TODO add "Pass Mission XX to unlock story
+            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+            unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
+            unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+            unlockLabel->setName("unlockLabel");
+            layout->addChild(unlockLabel);
         }
         
         pages->addPage(layout);
