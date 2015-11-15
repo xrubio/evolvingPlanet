@@ -11,58 +11,49 @@ The team is waiting for your orders to start the mission.</string>
 	<key>CONTEXT_LEVEL_1_INTRO</key>
 	<string>Professor, my name is Dr. Agatha Walker and I'm the leader of the xenoarchaeological team. We will assist you to understand what happened here using bots.  
 
-    We deployed the bots in the zone where the first fossils of Lovans were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago. 
-</string>
+    We deployed the bots in the zone where the first fossils of Lovans were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
 
 	<key>BRIEF_LEVEL_2</key>
 	<string>Greetings, Professor. 
 
-The tests of the system made after the first mission are already finished. We have discovered more traces of Katram 0.2 natives in the same peninsula. They seem to have spread to many other different ecosystems. 
-
-The bots are ready and the team is waiting for your orders to start the next mission.</string>
+The bots seems to respond correctly to our commands. We need them to disperse to the rest of the peninsula where they started.</string>
 	<key>CONTEXT_LEVEL_2_INTRO</key>
-	<string>Thanks Cassandra. 
+	<string>The success of the Lovans allowed them to populate several other ecosystems.
+    
+    In a similar way our first ancestors flourished throughout much of sub-Saharan Africa using different food sources.
+    
+    They were hunters, scavengers and also consumed any edible part from plants.</string>
 
-As we know, after the first movements to other ecosystems, our first ancestors flourished throughout much of sub-Saharan Africa by 3 million years ago. They were hunters, gatherers and scavengers, and remained within the African continent for about 2 million years, as is shown by sites like Olduvay (Tanzania), Koobi Fora (Kenya) and Swartkrans and Sterkfontein (South Africa). 
-Is probable that katramiants have behaved in a similar way. </string>
-	<key>CONTEXT_LEVEL_2_DEPLOYMENT</key>
-	<string>These are the instructions for Mission 2: the bots will expand to different ecosystems until reaching the objectives 2, 3 and 4, to test how the katramiants spread to different areas.
-Cassandra, please execute the order.</string>
 	<key>BRIEF_LEVEL_3</key>
 	<string>Greetings, Professor. 
 
-The tests of the system made after the second mission are already finished. The evidences show that the traces of the natives of Katram 0.2 extend to the entire continent called Sigyn. 
-
-The bots are ready and the team is waiting for your orders to start the next mission.</string>
+The bots are ready to emulate the colonization of arid zones beyond their usual forest habitats.</string>
 	<key>CONTEXT_LEVEL_3_INTRO</key>
-	<string>Thanks Cassandra. 
+	<string>Similarities between the beginnings of the Lovans and human beings are surprising...will we find the same pattern in the entire galaxy?
 
-Well, the evidences support the similarities between the behaviour of katramiants and human beings. On Planet Earth, due to various reasons (technological innovations? Social relations? Environmental changes? Population Growth ?, …), human groups spread throughout Africa and subsequently Eurasia, colonizing the different environments they found on its path.</string>
-	<key>CONTEXT_LEVEL_3_DEPLOYMENT</key>
-	<string>Cassandra, instructions for Mission 3: the bots will be sent to different ecosystems until reaching the objectives 4 to 8 and then colonize the entire continent called Sigyn. Install additional powers in the bots, we want to imitate the human expansion along the Planet Earth.</string>
+I won't be extremely helpful here; we know that hominins spread throghout the entire planet Earth, but we are not sure why.
+
+Let's start with population increase and see where do we go from here.</string>
 	<key>BRIEF_LEVEL_4</key>
 	<string>Greetings, Professor. 
 
-The tests of the system made after the third mission show that the natives of Katram 0.2 developed and used different types of technology during their expansion to the continent Sigyn. 
-
-The bots are ready and the team is waiting for your orders to start the next mission.</string>
+Dr. Walker is not convinced of the previous results so we will try a different idea.</string>
 	<key>CONTEXT_LEVEL_4_INTRO</key>
-	<string>Thanks Cassandra. 
+	<string>Last reports suggest that the dispersion of the Lovans was way faster than we achieved last mission.
 
-Ok... technology. The hominid species called Homo Erectus come to my mind. The very earliest examples of Homo erectus date from around 2 million years ago in East Africa. The tools that they made were of significantly improved design from those of their ancestors, and included shaped hand axes and cleaving tools, which were used for specific functions, such as butchering animals. These early humans were skilled hunters and brilliant opportunists, quick to take advantage of different environments, which must have been a key factor in the success of the species. They are known to have used fire, making settlement possible in cold locations, and allowing them to cook food, which in turn led to the evolution of smaller jaws and less robust teeth.</string>
-	<key>CONTEXT_LEVEL_4_DEPLOYMENT</key>
-	<string>The expansion of the Katramiants seems to be very similar. Cassandra, these are the instructions for the next Mission: introduce the capability of developing technology in the bots and repeat the Mission 3. Let&apos;s see what happen with the addition of this element.
-Please execute the order.</string>
+I want to try a different approach; what if we provide the bots with improved technology?
+
+They should be able to achieve the goals within expected time if they combine fire with stone tools...yeah, I think this should work better!</string>
 	<key>BRIEF_LEVEL_5</key>
 	<string>Greetings, Professor. 
 
-The tests of the system made after the last mission show evidences of the existence of a different alien specie in Katram 0.2. Data collected show that both species were very similar, but the organic and technological remains exhibit certain differences. There is no doubt that both species coexisted in the same environments, Professor. </string>
+The Lovans found other species as they colonized this world. For this mission we have deployed different bots to replicate the existance of these other groups.</string>
 	<key>CONTEXT_LEVEL_5_INTRO</key>
-	<string>Thanks Cassandra. 
-In our History we have evidences of similar situations. For example, Neanderthals and Homo sapiens are both human species. In 2014, a study of Neanderthal bones and tools indicates that Neanderthals died out in Europe between 41,000 and 39,000 years ago, and that Homo sapiens arrived in Europe between 45,000 and 43,000 years ago, it is now apparent that the two different human populations shared Europe for as long as 5,000 years. Both species were expert hunters, who pursued animals with wooden and stone-tipped spears. They made sophisticated tools and dwelt in caves, rock shelters, and open camps. They may have been capable of speech. </string>
-	<key>CONTEXT_LEVEL_5_DEPLOYMENT</key>
-	<string>Cassandra, please send bots with different characteristics to the surface and repeat the Mission 4. We want to see how they manage the encounter with a different group and how both groups expand. 
-Please transmits my orders. </string>
+	<string>We will have interaction with several other species during this archaeological expedition.
+
+This planet was not only populated by the Lovans, as Earth was not a Sapiens-only club. We shared Eurasia with Neanderthals during 5.000 years. They were also hominins, quite similar to us in any aspect, including technology, culture and even language.
+
+They disappeared as a species over 30.000 years ago; however, based on what our DNA tells us each of us has a small Neanderthal inside...and trust me, DNA never lies!</string>
 
 	<key>LEVEL_1_STORY</key>
 	<string>Who are we? Who created us?</string>
