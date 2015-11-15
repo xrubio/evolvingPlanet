@@ -53,8 +53,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> resDirOrders;
     
+    CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
     if (screenSize.width > 1024) {
-        CCLOG("2048");
+        CCLOG("\tusing artwork of size 2048");
         resDirOrders.push_back("tablethd");
         resDirOrders.push_back("tablet");
         resDirOrders.push_back("phone");
@@ -62,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
     } else if (screenSize.width > 512) {
-        CCLOG("1024");
+        CCLOG("\tusing artwork of size 1024");
         resDirOrders.push_back("tablet");
         resDirOrders.push_back("phone");
         GameData::getInstance()->setResourcesWidth(1024);
@@ -70,7 +71,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesMargin(682);
         
     } else {
-        CCLOG("512");
+        CCLOG("\tusing artwork of size 512");
         resDirOrders.push_back("phone");
         GameData::getInstance()->setResourcesWidth(512);
         GameData::getInstance()->setResourcesHeight(384);
@@ -97,17 +98,15 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
         UserDefault::getInstance()->setBoolForKey("firsttimeplaying", false);
     }
-
-    //RA CONVERSION - PRECALCS
+  
+    // conversion is adjusted to the proportion of the largest of the two axis compared to its value in the standard screen (2048x1536)
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    if (visibleSize.width >= 2048)
-    {
-        GameData::getInstance()->setRaConversion(1);
-    }
-    else
-    {
-        GameData::getInstance()->setRaConversion((visibleSize.height / visibleSize.width));
-    }
+    float widthConversion = visibleSize.width/2048;
+    float heightConversion = visibleSize.height/1536;
+    CCLOG("\tvisible size: %d/%d scaling: %f/%f", int(visibleSize.width), int(visibleSize.height), widthConversion, heightConversion);
+    CCLOG("\tusing conversion rate: %f", std::max(widthConversion, heightConversion));
+    GameData::getInstance()->setRaConversion(std::max(widthConversion, heightConversion));
+
     GameData::getInstance()->setRaWConversion(visibleSize.width / GameData::getInstance()->getResourcesWidth());
     GameData::getInstance()->setRaHConversion(visibleSize.height / GameData::getInstance()->getResourcesHeight());
     /*GameData::getInstance()->setHeightProportionalResolution((Director::getInstance()->getVisibleSize().width / 480.0) * 320.0);
@@ -127,7 +126,6 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
 
-    CCLOG("visible size width: %i", int(Director::getInstance()->getVisibleSize().width));
 
     // create a scene. it's an autorelease object
     auto scene = UIMainMenu::createScene();

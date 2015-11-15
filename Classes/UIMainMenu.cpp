@@ -143,8 +143,6 @@ bool UIMainMenu::init()
         startButton->setPosition(Vec2((2 * visibleSize.width / 25), (10 * visibleSize.height / 18)));
     }
     
-    CCLOG("ra conversion: %f", GameData::getInstance()->getRaConversion());
-    
     auto startLabel = Label::createWithTTF(LocalizedString::create("NEW_GAME"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     startLabel->setColor(Color3B(219, 234, 241));
     startLabel->setPosition(1.1 * startButton->getContentSize().width / 2, startButton->getContentSize().height / 2);
