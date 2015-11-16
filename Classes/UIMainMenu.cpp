@@ -114,7 +114,7 @@ bool UIMainMenu::init()
 
     Vector<cocos2d::MenuItem*> menuButtons;
 
-    if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false or UserDefault::getInstance()->getIntegerForKey("maxLevel") > 0)
+    if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false)
     {
         auto continueButton = MenuItemImage::create(
                                                 "gui/MainMenuStartButton.png", "gui/MainMenuStartButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuContinueCallback, this));
@@ -295,8 +295,7 @@ void UIMainMenu::menuContinueCallback(Ref* pSender)
 void UIMainMenu::menuStartCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false or
-            UserDefault::getInstance()->getIntegerForKey("maxLevel") > 0 )
+        if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false)
         {
             //WARNING ERASING GAME DATA
             createWarningWindow();

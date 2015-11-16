@@ -94,6 +94,27 @@ bool UIAchievements::init()
     configLabel->setAnchorPoint(Vec2(1, 0.5));
     configLabel->setPosition(Vec2(8 * popupBackground->getContentSize().width / 28, 13.5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(configLabel);
+    
+    //GET NUM OF ACHIEVEMENTS COMPLETED
+    int numAch = 0;
+    int achCompleted = 0;
+    for (int i = 0; i < GameData::getInstance()->getAchievements().size(); i++)
+    {
+        for (int j = 0; j < GameData::getInstance()->getAchievements().at(i).size(); j++)
+        {
+            if (GameData::getInstance()->getAchievements().at(i).at(j)->getCompleted() == true)
+            {
+                achCompleted++;
+            }
+            numAch++;
+        }
+    }
+    
+    auto labelProgressAchievements = Label::createWithTTF("( " + to_string(achCompleted) + " / " + to_string(numAch) + " )", "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    labelProgressAchievements->setAnchorPoint(Vec2(1, 0.5));
+    labelProgressAchievements->setPosition(Vec2(configLabel->getPositionX(), configLabel->getPositionY() - configLabel->getContentSize().height));
+    labelProgressAchievements->setColor(Color3B::WHITE);
+    popupBackground->addChild(labelProgressAchievements);
 
     ui::ListView* list = ui::ListView::create();
     list->setDirection(ui::ListView::Direction::VERTICAL);
@@ -127,7 +148,7 @@ bool UIAchievements::init()
             title->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width),
                                     5 * model->getBoundingBox().size.height / 7));
             model->addChild(title);
-            auto text = Label::createWithTTF(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+            auto text = Label::createWithTTF(LocalizedString::create(string("DESCR_LVL"+key).c_str(), "achievements"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
             text->setColor(Color3B(190, 221, 226));
             text->setAnchorPoint(Vec2(0, 0.5));
             text->setPosition(Vec2((icon->getPositionX() / 2) + (icon->getBoundingBox().size.width), 2 * model->getBoundingBox().size.height / 7));

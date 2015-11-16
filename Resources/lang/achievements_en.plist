@@ -2,9 +2,205 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- LEVEL 1 -->
 	<key>TITLE_LVL1_COMPLETED</key>
 	<string>ROOKIE</string>
 	<key>DESCR_LVL1_COMPLETED</key>
 	<string>Complete mission 1</string>
+	<key>TITLE_LVL1_PERFECT</key>
+	<string>PERFECTION 1</string>
+	<key>DESCR_LVL1_PERFECT</key>
+	<string>Complete mission 1 with a score of 3 stars</string>
+    
+    <!-- LEVEL 2 -->
+    <key>TITLE_LVL2_COMPLETED</key>
+    <string>GETTING USED TO</string>
+    <key>DESCR_LVL2_COMPLETED</key>
+    <string>Complete mission 2</string>
+    <key>TITLE_LVL2_PERFECT</key>
+    <string>PERFECTION 2</string>
+    <key>DESCR_LVL2_PERFECT</key>
+    <string>Complete mission 2 with a score of 3 stars</string>
+    
+    <!-- LEVEL 3 -->
+    <key>TITLE_LVL3_COMPLETED</key>
+    <string>BOOSTED</string>
+    <key>DESCR_LVL3_COMPLETED</key>
+    <string>Complete mission 3</string>
+    <key>TITLE_LVL3_PERFECT</key>
+    <string>PERFECTION 3</string>
+    <key>DESCR_LVL3_PERFECT</key>
+    <string>Complete mission 3 with a score of 3 stars</string>
+    
+    <!-- LEVEL 4 -->
+    <key>TITLE_LVL4_COMPLETED</key>
+    <string>INTRODUCING TECH</string>
+    <key>DESCR_LVL4_COMPLETED</key>
+    <string>Complete mission 4</string>
+    <key>TITLE_LVL4_PERFECT</key>
+    <string>PERFECTION 4</string>
+    <key>DESCR_LVL4_PERFECT</key>
+    <string>Complete mission 4 with a score of 3 stars</string>
+    
+    <!-- LEVEL 5 -->
+    <key>TITLE_LVL5_COMPLETED</key>
+    <string>GETTING AWAY</string>
+    <key>DESCR_LVL5_COMPLETED</key>
+    <string>Complete mission 5</string>
+    <key>TITLE_LVL5_PERFECT</key>
+    <string>PERFECTION 5</string>
+    <key>DESCR_LVL5_PERFECT</key>
+    <string>Complete mission 5 with a score of 3 stars</string>
+    
+    <!-- LEVEL 6 -->
+    <key>TITLE_LVL6_COMPLETED</key>
+    <string>INFLUENCER</string>
+    <key>DESCR_LVL6_COMPLETED</key>
+    <string>Complete mission 6</string>
+    <key>TITLE_LVL6_PERFECT</key>
+    <string>PERFECTION 6</string>
+    <key>DESCR_LVL6_PERFECT</key>
+    <string>Complete mission 6 with a score of 3 stars</string>
+    
+    <!-- LEVEL 7 -->
+    <key>TITLE_LVL7_COMPLETED</key>
+    <string>CALL TO ARMS</string>
+    <key>DESCR_LVL7_COMPLETED</key>
+    <string>Complete mission 7</string>
+    <key>TITLE_LVL7_PERFECT</key>
+    <string>PERFECTION 7</string>
+    <key>DESCR_LVL7_PERFECT</key>
+    <string>Complete mission 7 with a score of 3 stars</string>
+    
+    <!-- LEVEL 8 -->
+    <key>TITLE_LVL8_COMPLETED</key>
+    <string>THE CROSSING</string>
+    <key>DESCR_LVL8_COMPLETED</key>
+    <string>Complete mission 8</string>
+    <key>TITLE_LVL8_PERFECT</key>
+    <string>PERFECTION 8</string>
+    <key>DESCR_LVL8_PERFECT</key>
+    <string>Complete mission 8 with a score of 3 stars</string>
+    
+    <!-- LEVEL 9 -->
+    <key>TITLE_LVL9_COMPLETED</key>
+    <string>JOINING FORCES</string>
+    <key>DESCR_LVL9_COMPLETED</key>
+    <string>Complete mission 9</string>
+    <key>TITLE_LVL9_PERFECT</key>
+    <string>PERFECTION 9</string>
+    <key>DESCR_LVL9_PERFECT</key>
+    <string>Complete mission 9 with a score of 3 stars</string>
+    
+    <!-- LEVEL 10 -->
+    <key>TITLE_LVL10_COMPLETED</key>
+    <string>FIND A WAY</string>
+    <key>DESCR_LVL10_COMPLETED</key>
+    <string>Complete mission 10</string>
+    <key>TITLE_LVL10_PERFECT</key>
+    <string>PERFECTION 10</string>
+    <key>DESCR_LVL10_PERFECT</key>
+    <string>Complete mission 10 with a score of 3 stars</string>
+    
+    <!-- LEVEL 11 -->
+    <key>TITLE_LVL11_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL11_COMPLETED</key>
+    <string>Complete mission 11</string>
+    <key>TITLE_LVL11_PERFECT</key>
+    <string>PERFECTION 11</string>
+    <key>DESCR_LVL11_PERFECT</key>
+    <string>Complete mission 11 with a score of 3 stars</string>
+    
+    <!-- LEVEL 12 -->
+    <key>TITLE_LVL12_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL12_COMPLETED</key>
+    <string>Complete mission 12</string>
+    <key>TITLE_LVL12_PERFECT</key>
+    <string>PERFECTION 12</string>
+    <key>DESCR_LVL12_PERFECT</key>
+    <string>Complete mission 12 with a score of 3 stars</string>
+    
+    <!-- LEVEL 13 -->
+    <key>TITLE_LVL13_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL13_COMPLETED</key>
+    <string>Complete mission 13</string>
+    <key>TITLE_LVL13_PERFECT</key>
+    <string>PERFECTION 13</string>
+    <key>DESCR_LVL13_PERFECT</key>
+    <string>Complete mission 13 with a score of 3 stars</string>
+    
+    <!-- LEVEL 14 -->
+    <key>TITLE_LVL14_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL14_COMPLETED</key>
+    <string>Complete mission 14</string>
+    <key>TITLE_LVL14_PERFECT</key>
+    <string>PERFECTION 14</string>
+    <key>DESCR_LVL14_PERFECT</key>
+    <string>Complete mission 14 with a score of 3 stars</string>
+    
+    <!-- LEVEL 15 -->
+    <key>TITLE_LVL15_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL15_COMPLETED</key>
+    <string>Complete mission 15</string>
+    <key>TITLE_LVL15_PERFECT</key>
+    <string>PERFECTION 15</string>
+    <key>DESCR_LVL15_PERFECT</key>
+    <string>Complete mission 15 with a score of 3 stars</string>
+    
+    <!-- LEVEL 16 -->
+    <key>TITLE_LVL16_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL16_COMPLETED</key>
+    <string>Complete mission 16</string>
+    <key>TITLE_LVL16_PERFECT</key>
+    <string>PERFECTION 16</string>
+    <key>DESCR_LVL16_PERFECT</key>
+    <string>Complete mission 16 with a score of 3 stars</string>
+    
+    <!-- LEVEL 17 -->
+    <key>TITLE_LVL17_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL17_COMPLETED</key>
+    <string>Complete mission 17</string>
+    <key>TITLE_LVL17_PERFECT</key>
+    <string>PERFECTION 17</string>
+    <key>DESCR_LVL17_PERFECT</key>
+    <string>Complete mission 17 with a score of 3 stars</string>
+    
+    <!-- LEVEL 18 -->
+    <key>TITLE_LVL18_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL18_COMPLETED</key>
+    <string>Complete mission 18</string>
+    <key>TITLE_LVL18_PERFECT</key>
+    <string>PERFECTION 18</string>
+    <key>DESCR_LVL18_PERFECT</key>
+    <string>Complete mission 18 with a score of 3 stars</string>
+    
+    <!-- LEVEL 19 -->
+    <key>TITLE_LVL19_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL19_COMPLETED</key>
+    <string>Complete mission 19</string>
+    <key>TITLE_LVL19_PERFECT</key>
+    <string>PERFECTION 19</string>
+    <key>DESCR_LVL19_PERFECT</key>
+    <string>Complete mission 19 with a score of 3 stars</string>
+    
+    <!-- LEVEL 20 -->
+    <key>TITLE_LVL20_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL20_COMPLETED</key>
+    <string>Complete mission 20</string>
+    <key>TITLE_LVL20_PERFECT</key>
+    <string>PERFECTION 20</string>
+    <key>DESCR_LVL20_PERFECT</key>
+    <string>Complete mission 20 with a score of 3 stars</string>
+    
 </dict>
 </plist>

@@ -2,9 +2,204 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TITLE_LVL1_COMPLETED</key>
-	<string>ROOKIE</string>
-	<key>DESCR_LVL1_COMPLETED</key>
-	<string>Completa la misión 1</string>
+    <!-- LEVEL 1 -->
+    <key>TITLE_LVL1_COMPLETED</key>
+    <string>ROOKIE</string>
+    <key>DESCR_LVL1_COMPLETED</key>
+    <string>Completa la misión 1</string>
+    <key>TITLE_LVL1_PERFECT</key>
+    <string>PERFECCIÓN 1</string>
+    <key>DESCR_LVL1_PERFECT</key>
+    <string>Completa la misión 1 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 2 -->
+    <key>TITLE_LVL2_COMPLETED</key>
+    <string>ACOSTUMBRÁNDOTE</string>
+    <key>DESCR_LVL2_COMPLETED</key>
+    <string>Completa la misión 2</string>
+    <key>TITLE_LVL2_PERFECT</key>
+    <string>PERFECCIÓN 2</string>
+    <key>DESCR_LVL2_PERFECT</key>
+    <string>Completa la misión 2 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 3 -->
+    <key>TITLE_LVL3_COMPLETED</key>
+    <string>IMPULSADO</string>
+    <key>DESCR_LVL3_COMPLETED</key>
+    <string>Completa la misión 3</string>
+    <key>TITLE_LVL3_PERFECT</key>
+    <string>PERFECCIÓN 3</string>
+    <key>DESCR_LVL3_PERFECT</key>
+    <string>Completa la misión 3 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 4 -->
+    <key>TITLE_LVL4_COMPLETED</key>
+    <string>INTRODUCIENDO TECNOLOGÍA</string>
+    <key>DESCR_LVL4_COMPLETED</key>
+    <string>Completa la misión 4</string>
+    <key>TITLE_LVL4_PERFECT</key>
+    <string>PERFECCIÓN 4</string>
+    <key>DESCR_LVL4_PERFECT</key>
+    <string>Completa la misión 4 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 5 -->
+    <key>TITLE_LVL5_COMPLETED</key>
+    <string>HUYENDO</string>
+    <key>DESCR_LVL5_COMPLETED</key>
+    <string>Completa la misión 5</string>
+    <key>TITLE_LVL5_PERFECT</key>
+    <string>PERFECCIÓN 5</string>
+    <key>DESCR_LVL5_PERFECT</key>
+    <string>Completa la misión 5 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 6 -->
+    <key>TITLE_LVL6_COMPLETED</key>
+    <string>INFLUENCIADOR</string>
+    <key>DESCR_LVL6_COMPLETED</key>
+    <string>Completa la misión 6</string>
+    <key>TITLE_LVL6_PERFECT</key>
+    <string>PERFECCIÓN 6</string>
+    <key>DESCR_LVL6_PERFECT</key>
+    <string>Completa la misión 6 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 7 -->
+    <key>TITLE_LVL7_COMPLETED</key>
+    <string>A LAS ARMAS</string>
+    <key>DESCR_LVL7_COMPLETED</key>
+    <string>Completa la misión 7</string>
+    <key>TITLE_LVL7_PERFECT</key>
+    <string>PERFECCIÓN 7</string>
+    <key>DESCR_LVL7_PERFECT</key>
+    <string>Completa la misión 7 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 8 -->
+    <key>TITLE_LVL8_COMPLETED</key>
+    <string>LA TRAVESÍA</string>
+    <key>DESCR_LVL8_COMPLETED</key>
+    <string>Completa la misión 8</string>
+    <key>TITLE_LVL8_PERFECT</key>
+    <string>PERFECCIÓN 8</string>
+    <key>DESCR_LVL8_PERFECT</key>
+    <string>Completa la misión 8 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 9 -->
+    <key>TITLE_LVL9_COMPLETED</key>
+    <string>UNIENDO FUERZAS</string>
+    <key>DESCR_LVL9_COMPLETED</key>
+    <string>Completa la misión 9</string>
+    <key>TITLE_LVL9_PERFECT</key>
+    <string>PERFECCIÓN 9</string>
+    <key>DESCR_LVL9_PERFECT</key>
+    <string>Completa la misión 9 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 10 -->
+    <key>TITLE_LVL10_COMPLETED</key>
+    <string>ENCUENTRA EL MODO</string>
+    <key>DESCR_LVL10_COMPLETED</key>
+    <string>Completa la misión 10</string>
+    <key>TITLE_LVL10_PERFECT</key>
+    <string>PERFECCIÓN 10</string>
+    <key>DESCR_LVL10_PERFECT</key>
+    <string>Completa la misión 10 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 11 -->
+    <key>TITLE_LVL11_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL11_COMPLETED</key>
+    <string>Completa la misión 11</string>
+    <key>TITLE_LVL11_PERFECT</key>
+    <string>PERFECCIÓN 11</string>
+    <key>DESCR_LVL11_PERFECT</key>
+    <string>Completa la misión 11 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 12 -->
+    <key>TITLE_LVL12_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL12_COMPLETED</key>
+    <string>Completa la misión 12</string>
+    <key>TITLE_LVL12_PERFECT</key>
+    <string>PERFECCIÓN 12</string>
+    <key>DESCR_LVL12_PERFECT</key>
+    <string>Completa la misión 12 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 13 -->
+    <key>TITLE_LVL13_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL13_COMPLETED</key>
+    <string>Completa la misión 13</string>
+    <key>TITLE_LVL13_PERFECT</key>
+    <string>PERFECCIÓN 13</string>
+    <key>DESCR_LVL13_PERFECT</key>
+    <string>Completa la misión 13 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 14 -->
+    <key>TITLE_LVL14_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL14_COMPLETED</key>
+    <string>Completa la misión 14</string>
+    <key>TITLE_LVL14_PERFECT</key>
+    <string>PERFECCIÓN 14</string>
+    <key>DESCR_LVL14_PERFECT</key>
+    <string>Completa la misión 14 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 15 -->
+    <key>TITLE_LVL15_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL15_COMPLETED</key>
+    <string>Completa la misión 15</string>
+    <key>TITLE_LVL15_PERFECT</key>
+    <string>PERFECCIÓN 15</string>
+    <key>DESCR_LVL15_PERFECT</key>
+    <string>Completa la misión 15 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 16 -->
+    <key>TITLE_LVL16_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL16_COMPLETED</key>
+    <string>Completa la misión 16</string>
+    <key>TITLE_LVL16_PERFECT</key>
+    <string>PERFECCIÓN 16</string>
+    <key>DESCR_LVL16_PERFECT</key>
+    <string>Completa la misión 16 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 17 -->
+    <key>TITLE_LVL17_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL17_COMPLETED</key>
+    <string>Completa la misión 17</string>
+    <key>TITLE_LVL17_PERFECT</key>
+    <string>PERFECCIÓN 17</string>
+    <key>DESCR_LVL17_PERFECT</key>
+    <string>Completa la misión 17 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 18 -->
+    <key>TITLE_LVL18_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL18_COMPLETED</key>
+    <string>Completa la misión 18</string>
+    <key>TITLE_LVL18_PERFECT</key>
+    <string>PERFECCIÓN 18</string>
+    <key>DESCR_LVL18_PERFECT</key>
+    <string>Completa la misión 18 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 19 -->
+    <key>TITLE_LVL19_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL19_COMPLETED</key>
+    <string>Completa la misión 19</string>
+    <key>TITLE_LVL19_PERFECT</key>
+    <string>PERFECCIÓN 19</string>
+    <key>DESCR_LVL19_PERFECT</key>
+    <string>Completa la misión 19 con una puntuación de 3 estrellas</string>
+    
+    <!-- LEVEL 20 -->
+    <key>TITLE_LVL20_COMPLETED</key>
+    <string></string>
+    <key>DESCR_LVL20_COMPLETED</key>
+    <string>Completa la misión 20</string>
+    <key>TITLE_LVL20_PERFECT</key>
+    <string>PERFECCIÓN 20</string>
+    <key>DESCR_LVL20_PERFECT</key>
+    <string>Completa la misión 20 con una puntuación de 3 estrellas</string>
 </dict>
 </plist>

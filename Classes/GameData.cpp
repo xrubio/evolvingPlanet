@@ -327,14 +327,13 @@ void GameData::loadAchievements(void)
 
 void GameData::resetGameProgress(void)
 {
+    //RESET LEVELS
     for (int i = 0; i < levelsCompleted.size(); i++) {
         cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
+        levelsCompleted[i] = 0;
         setTutorial(i+1, true);
     }
-    cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", 1);
-    cocos2d::UserDefault::getInstance()->flush();
-    levelsCompleted.clear();
-    levelsCompleted.push_back(0);
+    
     for (int i = 0; i < achievements.size(); i++)
     {
         for (int j = 0; j < achievements.at(i).size(); j++)
