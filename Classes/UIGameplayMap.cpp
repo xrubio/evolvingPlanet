@@ -388,8 +388,7 @@ bool UIGameplayMap::init()
     timeBorderBar->addChild(degradateTime, 2);
 
     //SET GOALS ON TIME PROGRESS BAR
-    float pixelPerStep = barContent->getTexture()->getPixelsWide()
-        / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
+    //float pixelPerStep = barContent->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
     {
         float posXaverage = (float)GameLevel::getInstance()->getGoals().at(i)->getAverageTime() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime() * timeBorderBar->getContentSize().width;

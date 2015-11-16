@@ -44,7 +44,12 @@ bool UIStoryGallery::init()
         return false;
     }
     
-    Size visibleSize = Director::getInstance()->getVisibleSize();   
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    auto background = Sprite::create("gui/MainMenuBackground.png");
+    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    this->addChild(background, 0);
 
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create("gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png",
@@ -86,11 +91,6 @@ bool UIStoryGallery::init()
     for (int i=1; i<=numLevels; i++)
     {
         auto layout = Layout::create();
-        auto background = Sprite::create("gui/MainMenuBackground.png");
-        background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-        background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        layout->addChild(background, 0);
-
         // unlocked
         // TODO, it should be: if(GameData::getInstance()->getLevelsCompleted().at(i)!=0)
         if(i<GameData::getInstance()->getLevelsCompleted().size() && GameData::getInstance()->getLevelsCompleted().at(i)!=0)
@@ -99,7 +99,6 @@ bool UIStoryGallery::init()
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);
-
             
             auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
             storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
@@ -117,8 +116,7 @@ bool UIStoryGallery::init()
             image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);
 
-            // TODO add "Pass Mission XX to unlock story
-            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION")+to_string(i)+LocalizedString::create("TO_UNLOCK_STORY")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
             unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
             unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             unlockLabel->setName("unlockLabel");

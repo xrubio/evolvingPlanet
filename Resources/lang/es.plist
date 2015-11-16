@@ -50,6 +50,10 @@
 	<string>TOCA PARA DESBLOQUEAR</string>
 	<key>TAP_TO_CONTINUE</key>
 	<string>TOCA PARA CONTINUAR</string>
+	<key>PASS_MISSION</key>
+	<string>COMPLETA LA MISIÓN </string>
+	<key>TO_UNLOCK_STORY</key>
+	<string> PARA DESBLOQUEAR ESTA HISTORIA</string>
 	<key>LIFE</key>
 	<string>VIDA</string>
 	<key>REPRODUCTION</key>
