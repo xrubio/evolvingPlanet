@@ -455,6 +455,16 @@ void GameLevel::setInGameAchievement(Achievement *ach)
     _inGameAchievement = ach;
 }
 
+bool GameLevel::getPowersUsed(void)
+{
+    return _powersUsed;
+}
+
+void GameLevel::setPowersUsed (bool p)
+{
+    _powersUsed = p;
+}
+
 vector<string> GameLevel::getCompletedAchievements(void)
 {
     return completedAchievements;

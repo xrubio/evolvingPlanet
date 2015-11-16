@@ -82,6 +82,14 @@ public:
                     return true;
                 }
             }
+            else if (typeAch == "NOPOWERS")
+            {
+                if (GameLevel::getInstance()->getPowersUsed() == false)
+                {
+                    _completed = true;
+                    return true;
+                }
+            }
         
         return false;
     }

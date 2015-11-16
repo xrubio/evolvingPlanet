@@ -39,6 +39,10 @@
     <string>PERFECTION 3</string>
     <key>DESCR_LVL3_PERFECT</key>
     <string>Complete mission 3 with a score of 3 stars</string>
+    <key>TITLE_LVL3_NOPOWERS</key>
+    <string>THE HARD WAY</string>
+    <key>DESCR_LVL3_NOPOWERS</key>
+    <string>Complete mission 3 without boosts</string>
     
     <!-- LEVEL 4 -->
     <key>TITLE_LVL4_COMPLETED</key>

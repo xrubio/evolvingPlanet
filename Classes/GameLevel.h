@@ -168,6 +168,9 @@ public:
     
     Achievement* getInGameAchievement(void);
     void setInGameAchievement(Achievement *ach);
+    bool getPowersUsed(void);
+    void setPowersUsed (bool p);
+
     
     vector<string> getCompletedAchievements(void);
     
@@ -247,6 +250,7 @@ private:
     std::vector<std::vector<pair<int, cocos2d::Point> > > _agentFutureDirections;
     
     Achievement* _inGameAchievement = nullptr;
+    bool _powersUsed = false;
 
     GameLevel();
 

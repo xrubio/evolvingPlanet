@@ -916,6 +916,7 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     for(size_t i = 0; i < powerButtons.size(); i++)
     {
         bool actioned = powerButtons.at(i)->onTouchesEnded(touchLocation);
+        GameLevel::getInstance()->setPowersUsed(true);
         //ANIMACIO RESTA PUNTS
         if (actioned == true)
         {

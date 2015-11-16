@@ -39,6 +39,10 @@
     <string>PERFECCIÓ 3</string>
     <key>DESCR_LVL3_PERFECT</key>
     <string>Completa la missió 3 amb una puntuació de 3 estrelles</string>
+    <key>TITLE_LVL3_NOPOWERS</key>
+    <string>LA MANERA DIFÍCIL</string>
+    <key>DESCR_LVL3_NOPOWERS</key>
+    <string>Completa la missió 3 sense fer servir poders</string>
     
     <!-- LEVEL 4 -->
     <key>TITLE_LVL4_COMPLETED</key>
