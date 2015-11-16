@@ -25,6 +25,10 @@
     <string>PERFECTION 2</string>
     <key>DESCR_LVL2_PERFECT</key>
     <string>Complete mission 2 with a score of 3 stars</string>
+    <key>TITLE_LVL2_DISCOVER</key>
+    <string>WRONG WAY</string>
+    <key>DESCR_LVL2_DISCOVER</key>
+    <string>Reach a determined zone in the map</string>
     
     <!-- LEVEL 3 -->
     <key>TITLE_LVL3_COMPLETED</key>

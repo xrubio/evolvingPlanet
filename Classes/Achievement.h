@@ -46,6 +46,7 @@ public:
     bool getOccult() const;
 
     virtual bool checkAchievement(string typeAch, int level = -1) = 0;
+    virtual bool checkInGameAchievement(string typeAch, int level = -1, int agentColorCode = -1) = 0;
     
 protected:
     string _icon;

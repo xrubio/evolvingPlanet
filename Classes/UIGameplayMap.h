@@ -92,6 +92,7 @@ public:
     CREATE_FUNC(UIGameplayMap);
 
     bool play = false;
+    bool drawInGameAchievementWindow = false;
 
 private:
     Sprite* gameplayMap;
@@ -169,6 +170,7 @@ private:
 
     void createEndGameWindow(const LevelState & mode);
     void createAchievementWindow(void);
+    void createInGameAchievementWindow(Achievement *ach);
 
     bool checkPowersClicked(void);
 

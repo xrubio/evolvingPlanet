@@ -568,7 +568,12 @@ bool UIGameplayMap::init()
     attrMenu->setName("attrMenu");
     bottomFrame->addChild(attrMenu, 1, 100000);
 
-
+    //CHECK IF THERE IS ANY IN-GAME ACHIEVEMENT (achievement num 3 of the corresponding level)
+    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "DISCOVER")
+    {
+        GameLevel::getInstance()->setInGameAchievement(GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2));
+    }
+    
     createTutorialGUI();
     _message = 0;
 
@@ -1710,6 +1715,39 @@ void UIGameplayMap::createAchievementWindow(void)
     window->runAction(EaseBackOut::create(MoveTo::create(1, Vec2(visibleSize.width /2, visibleSize.height))));
 }
 
+void UIGameplayMap::createInGameAchievementWindow(Achievement * ach)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto window = MenuItemImage::create("gui/AchievementsBackground.png", "gui/AchievementsBackground.png",
+                                        CC_CALLBACK_1(UIGameplayMap::hideAchievementWindowCallback, this));
+    window->setPosition(Vec2(visibleSize.width /2, visibleSize.height + window->getContentSize().height));
+    window->setScale(GameData::getInstance()->getRaWConversion() * 0.6,
+                     GameData::getInstance()->getRaHConversion() * 0.4);
+    window->setName("achievementWindow");
+    
+    auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED 1 ACHIEVEMENT", "fonts/BebasNeue.otf",
+                                           100 * GameData::getInstance()->getRaConversion());
+    titleLabel->setColor(Color3B(255, 255, 255));
+    titleLabel->setAnchorPoint(Vec2(0.5, 0));
+    titleLabel->setPosition(Vec2(window->getContentSize().width / 2, window->getContentSize().height / 2 - titleLabel->getContentSize().height * 1.1));
+    window->addChild(titleLabel);
+    
+    string key = to_string(ach->getLevel())+"_"+ach->getGoalType();
+    
+        string titleAch = LocalizedString::create(("TITLE_LVL" + key).c_str(), "achievements");
+        string descrAch = LocalizedString::create(("DESCR_LVL" + key).c_str(), "achievements");
+        auto labelAch = Label::createWithTTF(titleAch + ": " + descrAch, "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+        labelAch->setColor(Color3B(85, 108, 117));
+        labelAch->setPosition(Vec2(window->getContentSize().width / 2,
+                                   (titleLabel->getPositionY() - titleLabel->getContentSize().height) - (labelAch->getContentSize().height * 1.2)));
+        window->addChild(labelAch);
+    
+    auto menuWindow = Menu::create(window, NULL);
+    menuWindow->setPosition(Vec2(0, 0));
+    this->addChild(menuWindow, 10);
+    window->runAction(EaseBackOut::create(MoveTo::create(1, Vec2(visibleSize.width /2, visibleSize.height))));
+}
+
 void UIGameplayMap::updateAgents(void)
 {
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
@@ -1948,6 +1986,12 @@ void UIGameplayMap::update(float delta)
         {
             evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
             updateAttributesButtons();
+        }
+        if (drawInGameAchievementWindow)
+        {
+            createInGameAchievementWindow(GameLevel::getInstance()->getInGameAchievement());
+            drawInGameAchievementWindow = false;
+            GameLevel::getInstance()->setInGameAchievement(nullptr);
         }
     }
     else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false and GameLevel::getInstance()->ended == true) {

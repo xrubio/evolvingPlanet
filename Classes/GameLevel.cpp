@@ -445,6 +445,16 @@ int GameLevel::getEvolutionPointsFreq(void)
     return evolutionPointsFreq;
 }
 
+Achievement* GameLevel::getInGameAchievement(void)
+{
+    return _inGameAchievement;
+}
+
+void GameLevel::setInGameAchievement(Achievement *ach)
+{
+    _inGameAchievement = ach;
+}
+
 vector<string> GameLevel::getCompletedAchievements(void)
 {
     return completedAchievements;
@@ -559,6 +569,7 @@ void GameLevel::resetLevel(void)
     }
     
     completedAchievements.clear();
+    _inGameAchievement = nullptr;
 }
 
 void GameLevel::createLevel(void)
@@ -913,6 +924,23 @@ void GameLevel::act(void)
             _agents.at(k).sort(DistSorter(fingerSpot));
         }
         executeActions(agentType);
+    }
+    
+    //DISCOVER ACHIEVEMENT
+    if (_inGameAchievement != nullptr)
+    {
+        bool completed = false;
+        for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end() and completed == false; it++)
+        {
+            int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, (*it)->getPosition().getX(),  (*it)->getPosition().getY(), 0);
+            completed = ((LevelAchievement*)_inGameAchievement)->checkInGameAchievement(_inGameAchievement->getGoalType(), numLevel, agentColorCode);
+        }
+        if (completed)
+        {
+            string key = to_string(numLevel) + "_" + _inGameAchievement->getGoalType();
+            UserDefault::getInstance()->setBoolForKey(key.c_str(), true);
+            GameLevel::getInstance()->getUIGameplayMap()->drawInGameAchievementWindow = true;
+        }
     }
     
     checkGoals();

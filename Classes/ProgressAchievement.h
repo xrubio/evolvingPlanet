@@ -40,6 +40,11 @@ public:
     {
         return false;
     }
+    
+    bool checkInGameAchievement(string typeAch, int level, int agentColorCode)
+    {
+        return false;
+    }
 
 private:
     int numGames;

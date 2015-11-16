@@ -166,6 +166,9 @@ public:
     void setEvolutionPointsFreq(int i);
     int getEvolutionPointsFreq(void);
     
+    Achievement* getInGameAchievement(void);
+    void setInGameAchievement(Achievement *ach);
+    
     vector<string> getCompletedAchievements(void);
     
     void createLevel(void);
@@ -242,6 +245,8 @@ private:
 
     std::vector<cocos2d::Point> _agentDirections;
     std::vector<std::vector<pair<int, cocos2d::Point> > > _agentFutureDirections;
+    
+    Achievement* _inGameAchievement = nullptr;
 
     GameLevel();
 
@@ -268,6 +273,7 @@ private:
     void deleteAgent(Agent* agent);
     //check achievements
     void checkAchievements(void);
+    
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

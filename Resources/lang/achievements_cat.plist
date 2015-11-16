@@ -25,6 +25,10 @@
     <string>PERFECCIÓ 2</string>
     <key>DESCR_LVL2_PERFECT</key>
     <string>Completa la missió 2 amb una puntuació de 3 estrelles</string>
+    <key>TITLE_LVL2_DISCOVER</key>
+    <string>CAMÍ ERRONI</string>
+    <key>DESCR_LVL2_DISCOVER</key>
+    <string>Arriba a un punt determinat del mapa</string>
     
     <!-- LEVEL 3 -->
     <key>TITLE_LVL3_COMPLETED</key>

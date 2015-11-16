@@ -31,6 +31,7 @@
 #include "Achievement.h"
 #include "GameData.h"
 #include "GameLevel.h"
+#include "UIGameplayMap.h"
 
 class LevelAchievement : public Achievement {
 
@@ -75,7 +76,6 @@ public:
             }
             else if (typeAch == "EVPOINTSLEFT")
             {
-                CCLOG("EV POINTS LEFT %d, variaable %d", GameLevel::getInstance()->getEvolutionPoints(), _variable);
                 if (GameLevel::getInstance()->getEvolutionPoints() >= _variable)
                 {
                     _completed = true;
@@ -84,6 +84,23 @@ public:
             }
         
         return false;
+    }
+    
+    bool checkInGameAchievement(string typeAch, int level, int agentColorCode)
+    {
+        if (typeAch == "DISCOVER")
+        {
+                // as soon as one agent completes the achievement then stop checks
+                // achievement is completed if the agent is within the color coded zone for the achievement
+                if(agentColorCode == _variable)
+                {
+                    _completed = true;
+                    return true;
+                }
+        }
+        
+        return false;
+        
     }
     
     //evPoints or color of discover zone
