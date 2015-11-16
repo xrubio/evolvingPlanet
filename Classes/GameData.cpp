@@ -305,6 +305,10 @@ void GameData::loadAchievements(void)
             key = to_string(level) + "_" + goalType;
             
             auto ach = new LevelAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
+            if (goalType == "EVPOINTSLEFT" or goalType == "DISCOVER")
+            {
+                ach->setVariable(stoi(logic.child_value("GOAL")));
+            }
             achievements.at(level).push_back(ach);
         }
         //PROGRESS ACHIEVEMENT

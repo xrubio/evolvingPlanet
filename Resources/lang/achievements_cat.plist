@@ -11,6 +11,10 @@
     <string>PERFECCIÓ 1</string>
     <key>DESCR_LVL1_PERFECT</key>
     <string>Completa la missió 1 amb una puntuació de 3 estrelles</string>
+    <key>TITLE_LVL1_EVPOINTSLEFT</key>
+    <string>SOBRES</string>
+    <key>DESCR_LVL1_EVPOINTSLEFT</key>
+    <string>Completa la missió 1 deixant al menys 10 punts d'evolució sense fer servir</string>
     
     <!-- LEVEL 2 -->
     <key>TITLE_LVL2_COMPLETED</key>

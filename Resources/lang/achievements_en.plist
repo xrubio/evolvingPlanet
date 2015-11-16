@@ -11,6 +11,10 @@
 	<string>PERFECTION 1</string>
 	<key>DESCR_LVL1_PERFECT</key>
 	<string>Complete mission 1 with a score of 3 stars</string>
+    <key>TITLE_LVL1_EVPOINTSLEFT</key>
+    <string>LEFTOVERS</string>
+    <key>DESCR_LVL1_EVPOINTSLEFT</key>
+    <string>Complete mission 1 having at least 10 evolution points at the end</string>
     
     <!-- LEVEL 2 -->
     <key>TITLE_LVL2_COMPLETED</key>

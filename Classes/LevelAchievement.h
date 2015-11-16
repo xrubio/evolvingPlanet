@@ -30,11 +30,22 @@
 
 #include "Achievement.h"
 #include "GameData.h"
+#include "GameLevel.h"
 
 class LevelAchievement : public Achievement {
 
 public:
     LevelAchievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
+    
+    int getVariable()
+    {
+        return _variable;
+    };
+    
+    void setVariable(int v)
+    {
+        _variable = v;
+    };
     
     // TODO implement this method
     bool checkAchievement(string typeAch, int level)
@@ -53,7 +64,8 @@ public:
                     return false;
                 }
             }
-            else if (typeAch == "PERFECT")
+        }
+            if (typeAch == "PERFECT")
             {
                 if (GameData::getInstance()->getLevelScore(level) == 3)
                 {
@@ -61,9 +73,21 @@ public:
                     return true;
                 }
             }
-        }
+            else if (typeAch == "EVPOINTSLEFT")
+            {
+                CCLOG("EV POINTS LEFT %d, variaable %d", GameLevel::getInstance()->getEvolutionPoints(), _variable);
+                if (GameLevel::getInstance()->getEvolutionPoints() >= _variable)
+                {
+                    _completed = true;
+                    return true;
+                }
+            }
+        
         return false;
     }
+    
+    //evPoints or color of discover zone
+    int _variable;
 };
 
 #endif /* defined(__simulplay__LevelAchievement__) */
