@@ -330,10 +330,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     playMenu->setPosition(0, 0);
     popupBackground->addChild(playMenu);
 
-    int score = 0;
-    if (GameData::getInstance()->getLevelsCompleted().size() > size_t(tag)) {
-        score = GameData::getInstance()->getLevelScore(tag);
-    }
+    int score =  GameData::getInstance()->getLevelScore(tag);
     CCLOG("SCORE: %i", score);
     for (int i = 1; i < 4; i++) {
         string starFile;
@@ -641,7 +638,14 @@ Layout* UIProgressMap::setEpisode1(void)
             default:
                 break;
         }
-        setStars(i, levelButton);
+        if (nextLevelUnlockedStars == false)
+        {
+            setStars(i, levelButton);
+            if (GameData::getInstance()->getLevelScore(i) == 0)
+            {
+                nextLevelUnlockedStars = true;
+            }
+        }
         levelButtonVec.pushBack(levelButton);
     }
 
@@ -756,7 +760,14 @@ Layout* UIProgressMap::setEpisode2(void)
             default:
                 break;
         }
-        setStars(i, levelButton);
+        if (nextLevelUnlockedStars == false)
+        {
+            setStars(i, levelButton);
+            if (GameData::getInstance()->getLevelScore(i) == 0)
+            {
+                nextLevelUnlockedStars = true;
+            }
+        }
         levelButtonVec.pushBack(levelButton);
     }
     
@@ -770,8 +781,6 @@ Layout* UIProgressMap::setEpisode2(void)
 
 void UIProgressMap::setStars(int level, MenuItemImage* levelButton)
 {
-    if (GameData::getInstance()->getLevelsCompleted().size() > level )
-    {
         int score = GameData::getInstance()->getLevelScore(level);
         for (int i = 1; i < 4; i++) {
             string starFile;
@@ -788,17 +797,6 @@ void UIProgressMap::setStars(int level, MenuItemImage* levelButton)
             star->setName("star"+to_string(i));
             levelButton->addChild(star);
         }
-    }
-    else if (GameData::getInstance()->getLevelsCompleted().size() == level)
-    {
-        for (int i = 1; i < 4; i++) {
-            string starFile = "gui/StarEmptyMini.png";
-            auto star = Sprite::create(starFile);
-            star->setPosition(Vec2((levelButton->getContentSize().width / 2) - star->getContentSize().width + (star->getContentSize().width * (i - 1)), levelButton->getContentSize().height + star->getContentSize().height / 2));
-            star->setName("star"+to_string(i));
-            levelButton->addChild(star);
-        }
-    }
 }
 
 void UIProgressMap::update(float delta)

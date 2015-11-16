@@ -60,6 +60,8 @@ private:
     
     Vector<MenuItem*> pagesIndicatorVec;
     
+    bool nextLevelUnlockedStars = false;
+    
     Layout* setEpisode1(void);
     Layout* setEpisode2(void);
     void setStars(int level, MenuItemImage* levelButton);

@@ -86,31 +86,32 @@ bool UIStoryGallery::init()
     pages->setPosition(Point(0, 0));
     //pages->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
     
-    // TODO make sure that number of levels is extracted from GameData
-    int numLevels = 10;
-    for (int i=1; i<=numLevels; i++)
+    for (int i = 1; i < GameData::getInstance()->getLevelsCompleted().size(); i++)
     {
         auto layout = Layout::create();
         // unlocked
-        // TODO, it should be: if(GameData::getInstance()->getLevelsCompleted().at(i)!=0)
-        if(i<GameData::getInstance()->getLevelsCompleted().size() && GameData::getInstance()->getLevelsCompleted().at(i)!=0)
+        if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
         {
             auto image = Sprite::create("art/Escenari"+to_string(i)+".png");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);
             
-            auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
+            auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text")+ "  ", "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
             storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
             storyLine->setScaleX(GameData::getInstance()->getRaWConversion());
             storyLine->setScaleY(GameData::getInstance()->getRaHConversion());
 
             layout->addChild(storyLine);
-            storyLine->setPosition(Vec2(storyLine->getContentSize().width/2, visibleSize.height-1.5f*storyLine->getContentSize().height));
+            storyLine->setAnchorPoint(Vec2(1.0, 0.5));
+            storyLine->setPosition(Vec2(visibleSize.width, visibleSize.height-1.5f*storyLine->getContentSize().height));
             storyLine->setName("text");
         }
         else
         {
+            //TODO fix mentre no hi ha els dibuixos del 11 al 20
+            if (i < 10)
+            {
             auto image = Sprite::create("art/locked/Escenari"+to_string(i)+".png");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
@@ -121,6 +122,7 @@ bool UIStoryGallery::init()
             unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             unlockLabel->setName("unlockLabel");
             layout->addChild(unlockLabel);
+            }
         }
         
         pages->addPage(layout);

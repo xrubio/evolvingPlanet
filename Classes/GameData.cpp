@@ -82,22 +82,10 @@ int GameData::getLevelScore(int level)
 
 void GameData::setLevelScore(int level, int score)
 {
-    if (levelsCompleted.size() == 0) {
-        levelsCompleted.push_back(0);
-    }
     //FIRST TIME LEVEL COMPLETED
-    if (level == levelsCompleted.size()) {
-        levelsCompleted.push_back(score);
+    if (levelsCompleted.at(level) == 0) {
+        levelsCompleted[level] = score;
         GameData::getInstance()->setFirstTimeLevelCompleted(level);
-    }
-    else if (level > levelsCompleted.size())
-    {
-        while (level > levelsCompleted.size())
-        {
-            levelsCompleted.push_back(0);
-        }
-        GameData::getInstance()->setFirstTimeLevelCompleted(level);
-        levelsCompleted.push_back(score);
     }
     else
     {
@@ -105,8 +93,7 @@ void GameData::setLevelScore(int level, int score)
             levelsCompleted[level] = score;
         }
     }
-    cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(level).c_str(), score);
-    cocos2d::UserDefault::getInstance()->setIntegerForKey("maxLevel", (int)levelsCompleted.size());
+    cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(level).c_str(), levelsCompleted[level]);
     cocos2d::UserDefault::getInstance()->flush();
 }
 

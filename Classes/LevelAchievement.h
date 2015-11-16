@@ -39,7 +39,7 @@ public:
     // TODO implement this method
     bool checkAchievement(string typeAch, int level)
     {
-        if (GameData::getInstance()->getLevelsCompleted().size() > level)
+        if (GameData::getInstance()->getFirstTimeLevelCompleted() == level)
         {
             if (typeAch == "COMPLETED")
             {
@@ -62,7 +62,6 @@ public:
                 }
             }
         }
-        
         return false;
     }
 };

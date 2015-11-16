@@ -40,7 +40,7 @@ enum toScene
     Story = 1
 };
 
-#define NUM_LEVELS 10
+#define NUM_LEVELS 20
 
 class GameData {
 public:

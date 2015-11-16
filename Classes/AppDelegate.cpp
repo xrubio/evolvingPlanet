@@ -121,7 +121,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     //LOAD LEVELS
     vector<int> levelsCompleted;
-    for (int i = 0; i < UserDefault::getInstance()->getIntegerForKey("maxLevel"); i++) {
+    for (int i = 0; i < NUM_LEVELS + 1; i++) {
         levelsCompleted.push_back(UserDefault::getInstance()->getIntegerForKey(to_string(i).c_str()));
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
