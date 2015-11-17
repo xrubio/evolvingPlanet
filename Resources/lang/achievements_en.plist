@@ -15,7 +15,14 @@
     <string>LEFTOVERS</string>
     <key>DESCR_LVL1_EVPOINTSLEFT</key>
     <string>Complete mission 1 having at least 10 evolution points at the end</string>
-    
+
+
+    <key>ACH_LVL1_2</key>
+   <string>The first human ancestors were the Australopithecines. They appeared 4 million yeas ago in the forests of East Africa. They diversified into many forms that shared a vital characteristic: bipedalism. Walking upright enabled them to operate away from the forests in the open terrain of the savannah, giving them a wider food gathering range than other animals.</string>
+   <key>ACH_LVL1_3</key>
+   <string>First draft of our logo! Muprhy's Toast Games was born in a bar</string>
+
+
     <!-- LEVEL 2 -->
     <key>TITLE_LVL2_COMPLETED</key>
     <string>GETTING USED TO</string>
@@ -28,7 +35,13 @@
     <key>TITLE_LVL2_DISCOVER</key>
     <string>WRONG WAY</string>
     <key>DESCR_LVL2_DISCOVER</key>
-    <string>Reach a determined zone in the map</string>
+    <string>Move through the river</string>
+
+    <key>ACH_LVL2_2</key>
+    <string>Hominin is a general term used by archaeologists and paleontologists to refer to humans and any member of the species of animal we are most closely evolved from. Some examples are Australopithecus, Homo Habilis and Homo Sapiens. A fossil ape is identified as a human ancestor, in general, if it walked on two legs and had relatively smaller teeth and bigger brains than the rest of the apes. Although the hominin fossil record is far from complete, and the evidence is often fragmentary, there is enough to give a good outline of the evolutionary history of humans.<string>
+   <key>ACH_LVL2_3</key>
+   <string>"Science is the belief in the ignorance of experts."
+Richard Feynman (one of the most important physicists of XXth century)</string>
     
     <!-- LEVEL 3 -->
     <key>TITLE_LVL3_COMPLETED</key>
@@ -43,7 +56,14 @@
     <string>THE HARD WAY</string>
     <key>DESCR_LVL3_NOPOWERS</key>
     <string>Complete mission 3 without boosts</string>
-    
+
+    <key>ACH_LVL3_2</string>
+    <string>The second hydrographic expedition of the british ship HMS Beagle, from 27 December 1831 to 2 October 1836, sailed across the Atlantic Ocean and around the coasts of the southern part of South America, returning via Tahiti and Australia after having circumnavigated the Earth. A young graduate called Charles Darwin was among the crew, and data and detailed observations about plants and animals he collected were essential to the development of his theory of evolution and natural selection.<string>
+
+    <key>ACH_LVL3_3</string>
+    <string>Te imaginas adentrarte en uno de los desiertos más áridos del planeta sin mapa ni brújula para buscar un metro cuadrado en un radio de 80 kms? Las mujeres de la etnia bereber Tubu (o Toubou), que habitan regiones desérticas del Chad, Níger, Libia y Sudán, son capaces de viajar durante tres días con sus camellos por las zonas más duras del Sáhara para encontrar agua. Leyendo el movimiento de las dunas durante el día, y las estrellas por la noche, son capaces de encontrar el único pozo que existe, de un metro cuadrado de tamaño, en un radio de 80 kms dentro del Ténéré, el país de la nada.</string>
+
+
     <!-- LEVEL 4 -->
     <key>TITLE_LVL4_COMPLETED</key>
     <string>INTRODUCING TECH</string>
@@ -53,6 +73,9 @@
     <string>PERFECTION 4</string>
     <key>DESCR_LVL4_PERFECT</key>
     <string>Complete mission 4 with a score of 3 stars</string>
+    
+    <key>ACH_LVL4_2</key>
+    <string>Although certain species of ape, including chimpanzees, have been observed to use tools such as sticks and stones for digging, opening shellfish, or threatening enemies, it was early human ancestors who were the first to deliberately shape tools around 2 million years ago. Around the same time, our ancestors began to evolve the necessary changes to communicate through language.</string>    
     
     <!-- LEVEL 5 -->
     <key>TITLE_LVL5_COMPLETED</key>
@@ -64,6 +87,9 @@
     <key>DESCR_LVL5_PERFECT</key>
     <string>Complete mission 5 with a score of 3 stars</string>
     
+
+
+
     <!-- LEVEL 6 -->
     <key>TITLE_LVL6_COMPLETED</key>
     <string>INFLUENCER</string>
@@ -73,7 +99,11 @@
     <string>PERFECTION 6</string>
     <key>DESCR_LVL6_PERFECT</key>
     <string>Complete mission 6 with a score of 3 stars</string>
-    
+ 
+
+    <key>ACH_LVL6_2</key>
+    <string>During most of the history of research on hominid evolution, have existed diverse theoretical and technical objections to the idea that Neanderthals interbred with the ancestors of modern Sapiens. Nowadays these objections have been overcome, thanks to different genome analysis that confirm  the crossbreeding. Moreover, some researchers sustain that recent advances in molecular biology show evidence for hybridization between modern humans and archaic forms long time before in Africa.</string>
+
     <!-- LEVEL 7 -->
     <key>TITLE_LVL7_COMPLETED</key>
     <string>CALL TO ARMS</string>
@@ -93,7 +123,10 @@
     <string>PERFECTION 8</string>
     <key>DESCR_LVL8_PERFECT</key>
     <string>Complete mission 8 with a score of 3 stars</string>
-    
+   
+    <key>ACH_LVL8_2</key>
+    <string>Did you know that what is considered the first feature-length documentary in film history is about hunter-gatherer people? Nanook of the North (also known as Nanook of the North: A Story of Life and Love in the Actual Arctic) is a 1922 silent documentary film by Robert J. Flaherty, which describes the life and the fight for survival of Nanook and his family, members of the Inuit people of the Canadian Arctic.</string>
+
     <!-- LEVEL 9 -->
     <key>TITLE_LVL9_COMPLETED</key>
     <string>JOINING FORCES</string>
@@ -103,7 +136,10 @@
     <string>PERFECTION 9</string>
     <key>DESCR_LVL9_PERFECT</key>
     <string>Complete mission 9 with a score of 3 stars</string>
-    
+   
+    <key>ACH_LVL9_2</key>
+    <string>Conflict, violence and displacement has been one of the scenarios suggested by some researchers to explain the extinction of Neanderthals in Europe. However, interbreeding, competition for resources or climate changes have been the most accepted theories. The interest for the interaction with modern humans has exceeded the scientific field: you can find good examples like the novel The Clan of the Cave Bear, by J. M. Auel, or the film Quest for Fire, by J. J. Anaud.</string>
+
     <!-- LEVEL 10 -->
     <key>TITLE_LVL10_COMPLETED</key>
     <string>FIND A WAY</string>
