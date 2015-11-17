@@ -331,6 +331,7 @@ void GameData::loadAchievements(void)
 
 void GameData::resetGameProgress(void)
 {
+    UserDefault::getInstance()->setBoolForKey("firsttimeplaying", false);
     //RESET LEVELS
     for (int i = 0; i < levelsCompleted.size(); i++) {
         cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
