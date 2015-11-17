@@ -249,15 +249,14 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         int i = atoi(selectedAchievement->getName().substr(0, dash).c_str());
         int j = atoi(selectedAchievement->getName().substr(dash + 1).c_str());
         auto ach = GameData::getInstance()->getAchievements().at(i).at(j);
-        size_t pos = ach->getResource().find("/");
+        size_t pos = ach->getResource().find("-");
         string resourceType = ach->getResource().substr(0, pos);
-        string resource = ach->getResource().substr(pos);
+        string resource = ach->getResource().substr(pos + 1);
         
         if (resourceType == "IMG")
         {
-            auto nameArt = ("art" + resource + ".png").c_str();
-            auto contextImage = MenuItemImage::create(nameArt, nameArt);// CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
-            contextImage->setScale(1.2 * GameData::getInstance()->getRaConversion());
+            auto contextImage = MenuItemImage::create(resource, resource);// CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
+            contextImage->setScale(0.6);
             contextImage->setPosition(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2);
             auto menuContext = Menu::create(contextImage, NULL);
             menuContext->setPosition(0, 0);

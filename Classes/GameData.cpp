@@ -300,7 +300,7 @@ void GameData::loadAchievements(void)
             string goalType = logic.child("GOAL").attribute("TYPE").value();
             //SIGNIFIER
             string icon = signifier.child_value("ICON");
-            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
+            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "-" + string(signifier.child_value("RESOURCE"));
          
             key = to_string(level) + "_" + goalType;
             
@@ -317,7 +317,7 @@ void GameData::loadAchievements(void)
             string goalType = logic.child("GOAL").attribute("TYPE").value();
             //SIGNIFIER
             string icon = signifier.child_value("ICON");
-            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "/" + string(signifier.child_value("RESOURCE"));
+            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "-" + string(signifier.child_value("RESOURCE"));
                         
             key = to_string(level) + "_" + goalType;
                         
@@ -347,9 +347,9 @@ void GameData::resetGameProgress(void)
         }
     }
     achievements.clear();
-    if ( GameData::getInstance()->getAchievements().size() <= 0)
+    if (achievements.size() <= 0)
     {
-        GameData::getInstance()->loadAchievements();
+        loadAchievements();
     }
     _firstTimeLevelCompleted = 0;
 }

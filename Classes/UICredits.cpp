@@ -203,20 +203,6 @@ void UICredits::simulpast(Layout* layout)
     
     //SIMULPAST
     
-    Vector<MenuItem*> menuButtons;
-    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
-    backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    backLabel->setColor(Color3B(205, 202, 207));
-    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
-    backButton->addChild(backLabel);
-    menuButtons.pushBack(backButton);
-    
-    auto menu = Menu::createWithArray(menuButtons);
-    menu->setPosition(0, 0);
-    popupBackground->addChild(menu, 1, 20);
-    
     auto configLabel = Label::createWithTTF("SIMULPAST", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -295,7 +281,7 @@ void UICredits::murphysToastStudios(Layout* layout)
     xcLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 6.3 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(xcLabel);
     
-    auto directorLabel = Label::createWithTTF(LocalizedString::create("DIRECTOR_AND_SLAVER"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    auto directorLabel = Label::createWithTTF(LocalizedString::create("DIRECTOR"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     directorLabel->setColor(Color3B(72, 108, 118));
     directorLabel->setAnchorPoint(Vec2(0, 0.5));
     directorLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 4.1 * popupBackground->getContentSize().height / 16));
@@ -305,20 +291,6 @@ void UICredits::murphysToastStudios(Layout* layout)
     xdLabel->setAnchorPoint(Vec2(0, 0.5));
     xdLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2.8 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(xdLabel);
-    
-    Vector<MenuItem*> menuButtons;
-    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
-    backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    backLabel->setColor(Color3B(205, 202, 207));
-    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
-    backButton->addChild(backLabel);
-    menuButtons.pushBack(backButton);
-    
-    auto menu = Menu::createWithArray(menuButtons);
-    menu->setPosition(0, 0);
-    popupBackground->addChild(menu, 1, 20);
     
     auto configLabel = Label::createWithTTF("MURPHY'S TOAST STUDIOS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
@@ -339,20 +311,6 @@ void UICredits::specialThanks1(Layout* layout)
     
     //THANKS 1
     
-    Vector<MenuItem*> menuButtons;
-    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
-    backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    backLabel->setColor(Color3B(205, 202, 207));
-    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
-    backButton->addChild(backLabel);
-    menuButtons.pushBack(backButton);
-    
-    auto menu = Menu::createWithArray(menuButtons);
-    menu->setPosition(0, 0);
-    popupBackground->addChild(menu, 1, 20);
-    
     auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -371,20 +329,6 @@ void UICredits::specialThanks2(Layout* layout)
     layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //THANKS 2
-    
-    Vector<MenuItem*> menuButtons;
-    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
-    backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
-    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    backLabel->setColor(Color3B(205, 202, 207));
-    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
-    backButton->addChild(backLabel);
-    menuButtons.pushBack(backButton);
-    
-    auto menu = Menu::createWithArray(menuButtons);
-    menu->setPosition(0, 0);
-    popupBackground->addChild(menu, 1, 20);
     
     auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
