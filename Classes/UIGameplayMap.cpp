@@ -111,6 +111,7 @@ bool UIGameplayMap::init()
     auto topFrame = Sprite::create("gui/FrameTop.png");
     topFrame->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     topFrame->setPosition(visibleSize.width / 2, visibleSize.height - (topFrame->getBoundingBox().size.height / 2));
+    topFrame->setName("topFrame");
     this->addChild(topFrame, 1);
     auto bottomFrame = Sprite::create("gui/FrameBottom.png");
     bottomFrame->setName("bottomFrame");
@@ -1910,10 +1911,11 @@ void UIGameplayMap::createTutorialGUI()
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
 
-    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     tutorialTitle->setName("tutorialTitle");
     tutorialTitle->setColor(Color3B(210, 210, 210));
-    tutorialTitle->setPosition(Vec2(tutorialTitle->getContentSize().width, visibleSize.height-2.5f*tutorialTitle->getContentSize().height));
+    tutorialTitle->setAnchorPoint(Vec2(0, 1));
+    tutorialTitle->setPosition(Vec2(0, visibleSize.height - (this->getChildByName("topFrame")->getContentSize().height * GameData::getInstance()->getRaHConversion())));
     tutorialTitle->setVisible(false);
     tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
   
