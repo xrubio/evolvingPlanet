@@ -138,7 +138,13 @@ bool UIAchievements::init()
                 model->loadTextures("gui/AchievementBackground2.png", "gui/AchievementBackgroundPressed.png");
             }
             list->pushBackCustomItem(model);
-            auto icon = Sprite::create("gui/AchievementIconOff.png");
+
+            std::string iconPath = "gui/AchievementIconOff.png";
+            if(achs.at(i).at(j)->getCompleted())
+            {
+                iconPath = "gui/AchievementIconOn.png";
+            }
+            auto icon = Sprite::create(iconPath);
             icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
             model->addChild(icon);
             string key = to_string(i) + "_" + achs.at(i).at(j)->getGoalType();
