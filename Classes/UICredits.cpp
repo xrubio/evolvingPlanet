@@ -50,26 +50,158 @@ bool UICredits::init()
     background->setPosition(Vec2(visibleSize.width / 2,
                                  visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    this->addChild(background, 0);
+    //this->addChild(background, 0);
     
     auto title = Sprite::create("gui/MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
     title->setPosition(Vec2((2 * visibleSize.width / 25),
                             (15 * visibleSize.height / 18)));
     title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    this->addChild(title, 5, 0);
+    //this->addChild(title, 5, 0);
     
     auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
     planet2->setScale(1.3);
     planet2->setPosition(Vec2((18 * visibleSize.width / 40),
                               (10 * visibleSize.height / 31)));
     planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    this->addChild(planet2, 1, 2);
+    //this->addChild(planet2, 1, 2);
     
+    hexagonButtonLevel0 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                "gui/ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel0->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel0->setPosition(Vec2((visibleSize.width / 2) - (hexagonButtonLevel0->getBoundingBox().size.width * 6),
+                                          visibleSize.height / 20));
+    hexagonButtonLevel0->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    hexagonButtonLevel0->setEnabled(false);
+    this->addChild(hexagonButtonLevel0, 1);
+    
+    hexagonButtonLevel1 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                "gui/ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel1->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel1->setPosition(Vec2((visibleSize.width / 2) - (hexagonButtonLevel0->getBoundingBox().size.width * 2), visibleSize.height / 20));
+    hexagonButtonLevel1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    hexagonButtonLevel1->setEnabled(false);
+    this->addChild(hexagonButtonLevel1, 1);
+    
+    hexagonButtonLevel2 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                "gui/ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel2->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel2->setPosition(Vec2((visibleSize.width / 2) + (hexagonButtonLevel0->getBoundingBox().size.width * 2), visibleSize.height / 20));
+    hexagonButtonLevel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    hexagonButtonLevel2->setEnabled(false);
+    this->addChild(hexagonButtonLevel2, 1);
+    
+    hexagonButtonLevel3 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
+                                                "gui/ProgressMapHexagonLevelOff.png");
+    hexagonButtonLevel3->setColor(Color3B(120, 120, 120));
+    hexagonButtonLevel3->setPosition(Vec2((visibleSize.width / 2) + (hexagonButtonLevel0->getBoundingBox().size.width * 6), visibleSize.height / 20));
+    hexagonButtonLevel3->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    hexagonButtonLevel3->setEnabled(false);
+    this->addChild(hexagonButtonLevel3, 1);
+    
+    Vector<MenuItem*> menuButtons;
+    arrowBack = MenuItemImage::create("gui/ArrowBack.png", "gui/ArrowBackPressed.png", CC_CALLBACK_1(UICredits::menuArrowBackCallback, this));
+    arrowBack->setPosition(Vec2((2 * visibleSize.width / 42), (7.5 * visibleSize.height / 18)));
+    arrowBack->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    menuButtons.pushBack(arrowBack);
+    
+    arrowNext = MenuItemImage::create("gui/ArrowNext.png", "gui/ArrowNextPressed.png", CC_CALLBACK_1(UICredits::menuArrowNextCallback, this));
+    arrowNext->setPosition(Vec2((40 * visibleSize.width / 42), (7.5 * visibleSize.height / 18)));
+    arrowNext->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    menuButtons.pushBack(arrowNext);
+    
+    auto backButton = MenuItemImage::create("gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
+    backButton->setPosition(Vec2((4 * visibleSize.width / 34), (1.5 * visibleSize.height / 25)));
+    backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    backLabel->setColor(Color3B(205, 202, 207));
+    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->addChild(backLabel);
+    menuButtons.pushBack(backButton);
+    
+    auto menu = Menu::createWithArray(menuButtons);
+    menu->setPosition(0, 0);
+    this->addChild(menu, 1);
+    
+    pages = PageView::create();
+    pages->setCustomScrollThreshold(visibleSize.width / 6);
+    pages->addChild(background);
+    pages->addChild(title);
+    pages->addChild(planet2);
+    
+    pages->setTouchEnabled(true);
+    pages->setSize(Size(visibleSize.width, visibleSize.height));
+    pages->setPosition(Point(0, 0));
+    
+    auto layoutSimulpast = Layout::create();
+    simulpast(layoutSimulpast);
+    pages->addPage(layoutSimulpast);
+    
+    auto layoutMurphys = Layout::create();
+    murphysToastStudios(layoutMurphys);
+    pages->addPage(layoutMurphys);
+    
+    auto layoutThanks1 = Layout::create();
+    specialThanks1(layoutThanks1);
+    pages->addPage(layoutThanks1);
+    
+    auto layoutThanks2 = Layout::create();
+    specialThanks2(layoutThanks2);
+    pages->addPage(layoutThanks2);
+    
+    this->addChild(pages);
+    
+    this->scheduleUpdate();
+    
+    return true;
+}
+
+void UICredits::menuBackCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    }
+    auto scene = UIMainMenu::createScene();
+    auto transition = TransitionFade::create(1.0f, scene);
+    Director::getInstance()->replaceScene(transition);
+}
+
+
+void UICredits::menuArrowBackCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    if (pages->getCurPageIndex() <= 0)
+    {
+        return;
+    }
+    pages->scrollToPage(pages->getCurPageIndex() - 1);
+}
+
+void UICredits::menuArrowNextCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    if (pages->getCurPageIndex() >= pages->getPages().size() - 1)
+    {
+        return;
+    }
+    pages->scrollToPage(pages->getCurPageIndex() + 1);
+}
+
+
+void UICredits::simulpast(Layout* layout)
+{
+    auto visibleSize = Director::getInstance()->getVisibleSize();
     auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
-    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
-    this->addChild(popupBackground, 6);
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layout->addChild(popupBackground, -1);
+    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    
+    //SIMULPAST
     
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
@@ -85,13 +217,25 @@ bool UICredits::init()
     menu->setPosition(0, 0);
     popupBackground->addChild(menu, 1, 20);
     
-    auto configLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF("SIMULPAST", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
-    configLabel->setAnchorPoint(Vec2(1, 0.5));
-    configLabel->setPosition(Vec2((popupBackground->getContentSize().width / 28) + backButton->getContentSize().width,
-                                  13.5 * popupBackground->getContentSize().height / 16));
+    configLabel->setAnchorPoint(Vec2(0, 0.5));
+    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
+                                  14 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(configLabel);
     
+}
+
+void UICredits::murphysToastStudios(Layout* layout)
+{
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layout->addChild(popupBackground, -1);
+    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    
+    //MURPHYS TOAST
     auto programmerLabel = Label::createWithTTF(LocalizedString::create("PROGRAMMER"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     programmerLabel->setColor(Color3B(72, 108, 118));
     programmerLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -162,15 +306,138 @@ bool UICredits::init()
     xdLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2.8 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(xdLabel);
     
-    return true;
+    Vector<MenuItem*> menuButtons;
+    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
+    backButton->setAnchorPoint(Vec2(0, 0.5));
+    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    backLabel->setColor(Color3B(205, 202, 207));
+    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->addChild(backLabel);
+    menuButtons.pushBack(backButton);
+    
+    auto menu = Menu::createWithArray(menuButtons);
+    menu->setPosition(0, 0);
+    popupBackground->addChild(menu, 1, 20);
+    
+    auto configLabel = Label::createWithTTF("MURPHY'S TOAST STUDIOS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    configLabel->setColor(Color3B(255, 255, 255));
+    configLabel->setAnchorPoint(Vec2(0, 0.5));
+    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
+                                  14 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(configLabel);
 }
 
-void UICredits::menuBackCallback(Ref* pSender)
+void UICredits::specialThanks1(Layout* layout)
 {
-    if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layout->addChild(popupBackground, -1);
+    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    
+    //THANKS 1
+    
+    Vector<MenuItem*> menuButtons;
+    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
+    backButton->setAnchorPoint(Vec2(0, 0.5));
+    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    backLabel->setColor(Color3B(205, 202, 207));
+    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->addChild(backLabel);
+    menuButtons.pushBack(backButton);
+    
+    auto menu = Menu::createWithArray(menuButtons);
+    menu->setPosition(0, 0);
+    popupBackground->addChild(menu, 1, 20);
+    
+    auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    configLabel->setColor(Color3B(255, 255, 255));
+    configLabel->setAnchorPoint(Vec2(0, 0.5));
+    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
+                                  14 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(configLabel);
+}
+
+void UICredits::specialThanks2(Layout* layout)
+{
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
+    popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    layout->addChild(popupBackground, -1);
+    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    
+    //THANKS 2
+    
+    Vector<MenuItem*> menuButtons;
+    auto backButton = MenuItemImage::create( "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UICredits::menuBackCallback, this));
+    backButton->setAnchorPoint(Vec2(0, 0.5));
+    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    backLabel->setColor(Color3B(205, 202, 207));
+    backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
+    backButton->addChild(backLabel);
+    menuButtons.pushBack(backButton);
+    
+    auto menu = Menu::createWithArray(menuButtons);
+    menu->setPosition(0, 0);
+    popupBackground->addChild(menu, 1, 20);
+    
+    auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    configLabel->setColor(Color3B(255, 255, 255));
+    configLabel->setAnchorPoint(Vec2(0, 0.5));
+    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
+                                  14 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(configLabel);
+}
+
+void UICredits::update(float delta)
+{
+    if (pages->getCurPageIndex() == 0)
+    {
+        hexagonButtonLevel0->setEnabled(true);
+        hexagonButtonLevel1->setEnabled(false);
+        hexagonButtonLevel2->setEnabled(false);
+        hexagonButtonLevel3->setEnabled(false);
     }
-    auto scene = UIMainMenu::createScene();
-    auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->replaceScene(transition);
+    else if (pages->getCurPageIndex() == 1)
+    {
+        hexagonButtonLevel0->setEnabled(false);
+        hexagonButtonLevel1->setEnabled(true);
+        hexagonButtonLevel2->setEnabled(false);
+        hexagonButtonLevel3->setEnabled(false);
+    }
+    else if (pages->getCurPageIndex() == 2)
+    {
+        hexagonButtonLevel0->setEnabled(false);
+        hexagonButtonLevel1->setEnabled(false);
+        hexagonButtonLevel2->setEnabled(true);
+        hexagonButtonLevel3->setEnabled(false);
+    }
+    else if (pages->getCurPageIndex() == 3)
+    {
+        hexagonButtonLevel0->setEnabled(false);
+        hexagonButtonLevel1->setEnabled(false);
+        hexagonButtonLevel2->setEnabled(false);
+        hexagonButtonLevel3->setEnabled(true);
+    }
+    
+    if (pages->getCurPageIndex() == 0)
+    {
+        arrowBack->setVisible(false);
+        arrowNext->setVisible(true);
+    }
+    else if (pages->getCurPageIndex() == 3)
+    {
+        arrowBack->setVisible(true);
+        arrowNext->setVisible(false);
+    }
+    else
+    {
+        arrowBack->setVisible(true);
+        arrowNext->setVisible(true);
+    }
 }

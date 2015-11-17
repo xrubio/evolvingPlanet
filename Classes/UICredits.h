@@ -30,6 +30,9 @@
 
 #include "UIMainMenu.h"
 #include "GameData.h"
+#include <ui/CocosGUI.h>
+
+using namespace ui;
 
 class UICredits : public Layer {
 public:
@@ -38,8 +41,29 @@ public:
     virtual bool init();
     
     void menuBackCallback(Ref* pSender);
+    void menuArrowBackCallback(Ref* pSender);
+    void menuArrowNextCallback(Ref* pSender);
+    
+    virtual void update(float delta);
 
     CREATE_FUNC(UICredits);
+    
+private:
+    
+    PageView *pages;
+    
+    MenuItemImage* arrowNext;
+    MenuItemImage* arrowBack;
+    
+    MenuItemImage* hexagonButtonLevel0;
+    MenuItemImage* hexagonButtonLevel1;
+    MenuItemImage* hexagonButtonLevel2;
+    MenuItemImage* hexagonButtonLevel3;
+    
+    void simulpast(Layout* layout);
+    void murphysToastStudios(Layout* layout);
+    void specialThanks1(Layout* layout);
+    void specialThanks2(Layout* layout);
     
 };
 

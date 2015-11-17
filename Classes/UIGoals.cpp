@@ -60,8 +60,6 @@ bool UIGoals::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
-    Director::getInstance()->setAnimationInterval(1.0 / 60);
-
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }
