@@ -55,6 +55,64 @@ This planet was not only populated by the Lovans, as Earth was not a Sapiens-onl
 
 They disappeared as a species over 30.000 years ago; however, based on what our DNA tells us each of us has a small Neanderthal inside...and trust me, DNA never lies!</string>
 
+    <!-- Influence -->
+    <key>BRIEF_LEVEL_6</key>
+	<string>Greetings Professor.
+
+We discovered that one of the species present in this planet disappeared after contacting the Lovans.
+
+Mission control wants to test if they hybridized and became somehow a single species.</string>
+	<key>CONTEXT_LEVEL_6_INTRO</key>
+	<string>This situation raises a lot of complex questions.
+    
+    One hypothesis about the extinction of Neanderthals suggests that they were absorbed by the Cro-Magnon population by a mix of cultural influence and hybridation...
+    
+    Let's try this idea here.</string>
+    <key>BRIEF_LEVEL_7</key>
+	<string>Greetings Professor.
+
+    We found another extinct species. There are clear evidences of conflict with the Lovans so for this mission your bots will be able to fight.
+    </string>
+	<key>CONTEXT_LEVEL_7_INTRO</key>
+	<string>And I thought that they were good kids...we discovered a bunch of skeletons with clear signs of violence. 
+
+    Violence is not uncommon when different species are competing for the same resources and territory. However the probability of conflict becomes scary as social organization and technology grow. We humans have a pretty solid record on this regard; we almost killed ourselves before so maybe this is what happened with the Lovans?
+    
+    The Lovans wiped out this species while they invaded their territory, so I'm afraid we will have to emulate them with our bots.</string>
+
+    <key>BRIEF_LEVEL_8</key>
+	<string>Greetings Professor.
+
+Climate drastically changed through the Lovans dispersal. Here the species had to cross a vast zone while resources were rapidly decreasing.</string>
+	<key>CONTEXT_LEVEL_8_INTRO</key>
+	<string>Hunting and gathering are usually a pretty decent lifestyle. Ok, you rely on wild animals and plants to survive and you have to move a lot, but you are more flexible than farmers. Plus, you work less hours!
+
+    However, when resources suddenly become scarce you will have to compete for resources. This is what happened here.
+
+    The eastern part of the map was once a green forest, but it transformed into the desert we have now. The Lovans moved through it as another group struggled to survive there. You will need to combine cultural influence and conflict to reach your goals.</string>
+
+    <key>BRIEF_LEVEL_9</key>
+	<string>Greetings Professor.
+
+Looks like this planet was a crowded place. For this mission you will have to face two species simultaneously.</string>
+	<key>CONTEXT_LEVEL_9_INTRO</key>
+	<string>It seems that you'll find both competition and cooperation here. 
+
+I think that we face here a situation where the Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest ones, and once your group is large enough deal with the rest of objectives.</string>
+
+    <key>BRIEF_LEVEL_10</key>
+	<string>Greetings Professor.
+
+We know now that the Lovans dominated the whole planet through a mixture of conflict and cooperation with other species. Evidence is scarce in this last zone so we are not sure what happened.
+
+You will have to test both approaches to this last mission of the dispersal process.</string>
+	<key>CONTEXT_LEVEL_10_INTRO</key>
+	<string>We are finishing the dispersal process of the Lovans, isn't it exciting? Well, to be honest we have an issue here...we don't know why they were so well adapted to this zone.
+
+Yeah this uncertainty is killing me, but this is science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.
+
+Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other bots.</string>
+
 	<key>LEVEL_1_STORY</key>
 	<string>Who are we? Who created us?</string>
     <key>LEVEL_2_STORY</key>
