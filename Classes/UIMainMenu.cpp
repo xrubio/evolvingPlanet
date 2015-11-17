@@ -64,8 +64,7 @@ bool UIMainMenu::init()
 
     auto title = Sprite::create("gui/MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
-    title->setPosition(Vec2((2 * visibleSize.width / 25),
-        (12 * visibleSize.height / 18)));
+    title->setPosition(Vec2((2 * visibleSize.width / 25), (12 * visibleSize.height / 18)));
     title->setOpacity(0);
     title->setScale(GameData::getInstance()->getRaHConversion());
     auto fadeTitle = FadeIn::create(2.0);
