@@ -48,7 +48,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG" TXT="ACH_LVL1_3">misc/firstLogo.jpg</RESOURCE>
+        <RESOURCE TYPE="IMG" TXT="ACH_LVL1_3">misc/firstLogo.png</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 

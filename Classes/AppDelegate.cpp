@@ -126,7 +126,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
 
-    
+   
+    /*
     ////// UNLOCK ACHIEVEMENTS
     
     UserDefault::getInstance()->setBoolForKey("1_COMPLETED", true);
@@ -140,6 +141,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     UserDefault::getInstance()->setBoolForKey("3_NOPOWERS", true);
     UserDefault::getInstance()->setBoolForKey("4_COMPLETED", true);
     UserDefault::getInstance()->setBoolForKey("4_PERFECT", true);
+    */
 
 
     // create a scene. it's an autorelease object

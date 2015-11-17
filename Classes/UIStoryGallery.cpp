@@ -110,7 +110,7 @@ bool UIStoryGallery::init()
         else
         {
             //TODO fix mentre no hi ha els dibuixos del 11 al 20
-            if (i < 10)
+            if(i < 11)
             {
             auto image = Sprite::create("art/locked/Escenari"+to_string(i)+".png");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
