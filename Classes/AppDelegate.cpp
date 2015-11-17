@@ -126,6 +126,21 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
 
+    
+    ////// UNLOCK ACHIEVEMENTS
+    
+    UserDefault::getInstance()->setBoolForKey("1_COMPLETED", true);
+    UserDefault::getInstance()->setBoolForKey("1_PERFECT", true);
+    UserDefault::getInstance()->setBoolForKey("1_EVPOINTSLEFT", true);
+    UserDefault::getInstance()->setBoolForKey("2_COMPLETED", true);
+    UserDefault::getInstance()->setBoolForKey("2_PERFECT", true);
+    UserDefault::getInstance()->setBoolForKey("2_DISCOVER", true);
+    UserDefault::getInstance()->setBoolForKey("3_COMPLETED", true);
+    UserDefault::getInstance()->setBoolForKey("3_PERFECT", true);
+    UserDefault::getInstance()->setBoolForKey("3_NOPOWERS", true);
+    UserDefault::getInstance()->setBoolForKey("4_COMPLETED", true);
+    UserDefault::getInstance()->setBoolForKey("4_PERFECT", true);
+
 
     // create a scene. it's an autorelease object
     auto scene = UIMainMenu::createScene();

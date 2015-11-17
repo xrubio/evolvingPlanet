@@ -300,7 +300,14 @@ void GameData::loadAchievements(void)
             string goalType = logic.child("GOAL").attribute("TYPE").value();
             //SIGNIFIER
             string icon = signifier.child_value("ICON");
-            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "-" + string(signifier.child_value("RESOURCE"));
+            string textImage = "";
+            if (string(signifier.child("RESOURCE").attribute("TXT").value()) != "")
+            {
+                textImage = string(signifier.child("RESOURCE").attribute("TXT").value())+"-";
+            }
+            
+            //example: IMG-ACH_LVL1_3-misc/firstLogo.jpg
+            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "-" + textImage + string(signifier.child_value("RESOURCE"));
          
             key = to_string(level) + "_" + goalType;
             
@@ -317,8 +324,12 @@ void GameData::loadAchievements(void)
             string goalType = logic.child("GOAL").attribute("TYPE").value();
             //SIGNIFIER
             string icon = signifier.child_value("ICON");
-            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "-" + string(signifier.child_value("RESOURCE"));
-                        
+            string textImage = "";
+            if (string(signifier.child("RESOURCE").attribute("TXT").value()) != "")
+            {
+                textImage = string(signifier.child("RESOURCE").attribute("TXT").value())+"-";
+            }
+            string resource = string(signifier.child("RESOURCE").attribute("TYPE").value()) + "-" + textImage + string(signifier.child_value("RESOURCE"));
             key = to_string(level) + "_" + goalType;
                         
             auto ach = new ProgressAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);

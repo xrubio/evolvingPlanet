@@ -232,6 +232,7 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
             CC_CALLBACK_1(UIAchievements::restoreAchievementsWindow, this));
         darkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
         darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        darkBackground->setColor(Color3B::GRAY);
         menuButtons.pushBack(darkBackground);
         auto menu = Menu::createWithArray(menuButtons);
         menu->setPosition(0, 0);
@@ -255,16 +256,37 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         
         if (resourceType == "IMG")
         {
+            string textImage = "";
+            //check if there is text
+            if (resource.find("-") != string::npos)
+            {
+                pos = resource.find("-");
+                textImage = resource.substr(0, pos);
+                resource = resource.substr(pos + 1);
+            }
+            
             auto contextImage = MenuItemImage::create(resource, resource);// CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
             contextImage->setScale(0.6);
             contextImage->setPosition(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2);
+            
             auto menuContext = Menu::create(contextImage, NULL);
             menuContext->setPosition(0, 0);
             popupBackground->addChild(menuContext, 2);
+            
+            if (textImage != "")
+            {
+                auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(textImage.c_str(), "achievements"), Size(visibleSize.width / (1.8 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+                contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
+                contextIntroduction->setPosition(Vec2(popupBackground->getContentSize().width / 2, 6.3*popupBackground->getContentSize().height / 7));
+                popupBackground->addChild(contextIntroduction);
+            }
         }
         else if (resourceType == "TXT")
         {
-            
+            auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(resource.c_str(), "achievements"), Size(visibleSize.width / (1.8 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+            contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
+            contextIntroduction->setPosition(Vec2(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2));
+            popupBackground->addChild(contextIntroduction);
         }
     }
 }

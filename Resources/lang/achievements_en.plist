@@ -18,7 +18,10 @@
 
 
     <key>ACH_LVL1_2</key>
-   <string>The first human ancestors were the Australopithecines. They appeared 4 million yeas ago in the forests of East Africa. They diversified into many forms that shared a vital characteristic: bipedalism. Walking upright enabled them to operate away from the forests in the open terrain of the savannah, giving them a wider food gathering range than other animals.</string>
+   <string>The first human ancestors were the Australopithecines.
+They appeared 4 million yeas ago in the forests of East Africa.
+They diversified into many forms that shared a vital characteristic: bipedalism.
+Walking upright enabled them to operate away from the forests in the open terrain of the savannah, giving them a wider food gathering range than other animals.</string>
    <key>ACH_LVL1_3</key>
    <string>First draft of our logo! Muprhy's Toast Games was born in a bar</string>
 
@@ -41,7 +44,10 @@
     <string>Hominin is a general term used by archaeologists and paleontologists to refer to humans and any member of the species of animal we are most closely evolved from. Some examples are Australopithecus, Homo Habilis and Homo Sapiens. A fossil ape is identified as a human ancestor, in general, if it walked on two legs and had relatively smaller teeth and bigger brains than the rest of the apes. Although the hominin fossil record is far from complete, and the evidence is often fragmentary, there is enough to give a good outline of the evolutionary history of humans.</string>
    <key>ACH_LVL2_3</key>
    <string>"Science is the belief in the ignorance of experts."
-Richard Feynman (one of the most important physicists of XXth century)</string>
+       
+       
+             Richard Feynman
+             (one of the most important physicists of XXth century)</string>
     
     <!-- LEVEL 3 -->
     <key>TITLE_LVL3_COMPLETED</key>
