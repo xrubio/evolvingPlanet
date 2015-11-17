@@ -202,7 +202,7 @@ void UIAchievements::zoomImageInCallback(Ref* pSender)
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
     
-    image->runAction(ScaleTo::create(0.5, 0.6 * GameData::getInstance()->getRaWConversion()));
+    image->runAction(ScaleTo::create(0.5, 1.2 * GameData::getInstance()->getRaConversion()));
     image->setCallback(CC_CALLBACK_1(UIAchievements::zoomImageOutCallback, this));
 }
 
@@ -213,7 +213,7 @@ void UIAchievements::zoomImageOutCallback(Ref* pSender)
     {
         return;
     }
-    image->runAction(ScaleTo::create(0.5, 0.5 * GameData::getInstance()->getRaWConversion()));
+    image->runAction(ScaleTo::create(0.5, GameData::getInstance()->getRaConversion()));
     image->setCallback(CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
 }
 
@@ -256,8 +256,8 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
         if (resourceType == "IMG")
         {
             auto nameArt = ("art" + resource + ".png").c_str();
-            auto contextImage = MenuItemImage::create(nameArt, nameArt, CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
-            contextImage->setScale(0.5 * GameData::getInstance()->getRaWConversion());
+            auto contextImage = MenuItemImage::create(nameArt, nameArt);// CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
+            contextImage->setScale(1.2 * GameData::getInstance()->getRaConversion());
             contextImage->setPosition(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2);
             auto menuContext = Menu::create(contextImage, NULL);
             menuContext->setPosition(0, 0);
