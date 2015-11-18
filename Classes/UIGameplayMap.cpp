@@ -254,10 +254,10 @@ bool UIGameplayMap::init()
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
 
-    timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
+    /*timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width/2, toggle->getPosition().y));
-    this->addChild(timeSteps, 2);
+    this->addChild(timeSteps, 2);*/
 
     //Powers
     vector<Power*> pws = GameLevel::getInstance()->getPowers();
@@ -1959,7 +1959,7 @@ void UIGameplayMap::update(float delta)
             }
        
             updateAgents();
-            timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+            //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
 
             // TODO everything stopped if _message?
             updateWave(int(0));
