@@ -254,10 +254,10 @@ bool UIGameplayMap::init()
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
 
-    /*timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
+    timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
     timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width/2, toggle->getPosition().y));
-    this->addChild(timeSteps, 2);*/
+    this->addChild(timeSteps, 2);
 
     //Powers
     vector<Power*> pws = GameLevel::getInstance()->getPowers();
@@ -1555,14 +1555,13 @@ void UIGameplayMap::initializeAgents(void)
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
     for (size_t i = 0; i < agentsDomain.size(); i++)
     {
-        for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
+        for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); it++)
         {
             Color4B color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 175));
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
-    play = true;
 }
 
 void UIGameplayMap::setAttributesToInitialAgents(void)
@@ -1937,8 +1936,6 @@ void UIGameplayMap::update(float delta)
     if (GameLevel::getInstance()->getFinishedGame() == Running) {
         if (GameLevel::getInstance()->paint == true and GameLevel::getInstance()->ended == false)
         {
-            play = false;
-            
             if(_tutorial)
             {
                 if(_tutorial->checkNextMessage())
@@ -1964,17 +1961,10 @@ void UIGameplayMap::update(float delta)
             }
        
             updateAgents();
-            //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
+            timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
 
-            size_t i = 0;
-            while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals().at(i)->getCompleted() == true) {
-                i++;
-            }
-            
             // TODO everything stopped if _message?
             updateWave(int(0));
-            
-            play = true;
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
@@ -1998,14 +1988,10 @@ void UIGameplayMap::update(float delta)
         }
     }
     else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false and GameLevel::getInstance()->ended == true) {
-        //DARRER PINTAT
-        play = false;
         updateAgents();
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
         }
-
-        play = true;
 
         for (size_t i = 0; i < powerButtons.size(); i++) {
             powerButtons.at(i)->update(delta);

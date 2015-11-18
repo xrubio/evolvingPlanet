@@ -91,7 +91,6 @@ public:
 
     CREATE_FUNC(UIGameplayMap);
 
-    bool play = false;
     bool drawInGameAchievementWindow = false;
 
 private:

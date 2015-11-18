@@ -476,8 +476,6 @@ void GameLevel::playLevel(void)
     while (_finishedGame == Running)
     {
         if (Timing::getInstance()->act == true) {
-            while (gameplayMap->play == false)
-                ;
             paint = false;
             clock_t stepTime = clock();
 //            CCLOG("Start calc");
@@ -490,26 +488,8 @@ void GameLevel::playLevel(void)
             paint = true;
             Timing::getInstance()->act = false;  
             
-            // number of agents of type 0
-            size_t numAgents = _agents.at(0).size();
-            // alternate summary statistic: total number of agents
-            /*
-            for (size_t i = 0; i < _agents.size(); i++)
-            {
-                numAgents += _agents.at(i).size();
-            }
-            */
-
-            CCLOG("%d;%zu;%f", timeSteps, numAgents, float(clock() - stepTime) / CLOCKS_PER_SEC);
+            CCLOG("%d;%zu;%f", timeSteps, _agents.at(0).size(), float(clock() - stepTime) / CLOCKS_PER_SEC);
             calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
-            /*try {
-                if (float(clock() - stepTime) / CLOCKS_PER_SEC > 1.27) {
-                    throw 2;
-                }
-            }
-            catch (int e) {
-                CCLOG("Time Exceeded");
-            }*/
         }
     }
     

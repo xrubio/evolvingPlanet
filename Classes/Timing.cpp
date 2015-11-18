@@ -60,7 +60,7 @@ void Timing::start(void)
             float step = (currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (stepTime.tv_sec + (stepTime.tv_usec / 1000000.0));
             //float stepPart = ((float)currentTimePart / CLOCKS_PER_SEC) - ((float)stepTimePart / CLOCKS_PER_SEC);
             float stepPart = (currentTimePart.tv_sec + (currentTimePart.tv_usec / 1000000.0)) - (stepTimePart.tv_sec + (stepTimePart.tv_usec / 1000000.0));
-            if (step >= GameLevel::getInstance()->getTimeSpeed() and step > GameLevel::getInstance()->calcTime + 0.4 and act == false and GameLevel::getInstance()->paint == true and GameLevel::getInstance()->getUIGameplayMap()->play == true) {
+            if (step >= GameLevel::getInstance()->getTimeSpeed() and step > GameLevel::getInstance()->calcTime + 0.4 and act == false and GameLevel::getInstance()->paint == true) {
                 act = true;
                 //CCLOG("Time: %f %i", step, act);
                 //GameLevel::getInstance()->setTimeSteps(GameLevel::getInstance()->getTimeSteps() + 1);
