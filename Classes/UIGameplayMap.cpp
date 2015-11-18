@@ -453,7 +453,7 @@ bool UIGameplayMap::init()
     _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial,-1);
 
     if (GameData::getInstance()->getMusic() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/driver2.mp3", true);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/level.mp3", true);
     }
     
     if (GameData::getInstance()->getGameStarted() == false) {
