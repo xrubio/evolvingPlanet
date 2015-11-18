@@ -196,7 +196,6 @@ public:
     // returns a Rect based on center and distance after checking for boundaries
     cocos2d::Rect getArea(const Position & center, int mobility) const;
  
-    bool isFinished() const { return _isFinished;}
 private:
     static GameLevel* gamelevelInstance;
     UIGameplayMap* gameplayMap;

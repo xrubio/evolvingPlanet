@@ -65,7 +65,7 @@ bool UIGameplayMap::init()
     }
 
     _tutorial = nullptr;
-    Director::getInstance()->setAnimationInterval(1.0 / 30);
+    Director::getInstance()->setAnimationInterval(1.0 / 60);
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -1314,10 +1314,8 @@ void* UIGameplayMap::createTiming(void* arg)
 
 void UIGameplayMap::startTiming(void)
 {
-    pthread_mutex_lock(&timingMutex);
     Timing::getInstance()->start();
     CCLOG("DONE TIMING");
-    pthread_mutex_unlock(&timingMutex);
 }
 
 void UIGameplayMap::createNewLevelThread(void)
@@ -1349,8 +1347,6 @@ void UIGameplayMap::disableTutorialGUI()
 
 void UIGameplayMap::playLevel(void)
 {
-    pthread_mutex_lock(&gameLevelMutex);
-
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
     delete _tutorial;
     _tutorial = nullptr;
@@ -1373,7 +1369,6 @@ void UIGameplayMap::playLevel(void)
     }
     GameLevel::getInstance()->playLevel();
     CCLOG("DONE GAME LEVEL");
-    pthread_mutex_unlock(&gameLevelMutex);
 }
 
 bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
@@ -1751,10 +1746,8 @@ void UIGameplayMap::createInGameAchievementWindow(Achievement * ach)
 
 void UIGameplayMap::updateAgents(void)
 {
-    if(!GameLevel::getInstance()->isFinished())
-    {
-        return;
-    }
+
+    pthread_mutex_lock(&gameLevelMutex);
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
 
     Color4B white = Color4B::WHITE;
@@ -1828,6 +1821,7 @@ void UIGameplayMap::updateAgents(void)
     if (resourcesMap) {
         exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
+    pthread_mutex_unlock(&gameLevelMutex);
 }
 
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)

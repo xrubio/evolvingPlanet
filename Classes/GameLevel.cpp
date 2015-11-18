@@ -48,7 +48,7 @@ GameLevel* GameLevel::getInstance()
     return gamelevelInstance;
 }
 
-GameLevel::GameLevel() : _isFinished(true)
+GameLevel::GameLevel()
 {
 }
 
@@ -479,9 +479,9 @@ void GameLevel::playLevel(void)
             paint = false;
             clock_t stepTime = clock();
 //            CCLOG("Start calc");
-            _isFinished = false;
+            pthread_mutex_lock(&gameplayMap->gameLevelMutex);
             act();
-            _isFinished = true;
+            pthread_mutex_unlock(&gameplayMap->gameLevelMutex);
             timeSteps++;
             gameplayMap->setTimeProgressBar(timeSteps);
             if (timeSteps % evolutionPointsFreq == 0) {
@@ -508,7 +508,6 @@ void GameLevel::resetLevel(void)
 {
     //REVISAR MEMORIA, O ESBORRAR INSTANCIA ENLLOC DE FER RESET I ALLIBERAR AL DESTRUCTOR
 
-    _isFinished = true;
     currentTime = 0;
     numLevel = 0;
     _agentAttributes.clear();
@@ -895,7 +894,6 @@ void GameLevel::act(void)
     }
 
     deletedAgents.clear();
-
     for(size_t k = 0; k < _agents.size(); k++)
     {
         int agentType = (int)k;

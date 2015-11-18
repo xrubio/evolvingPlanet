@@ -45,7 +45,6 @@ class UIGameplayMap : public Layer
     Tutorial * _tutorial;
 public:
     pthread_mutex_t gameLevelMutex = PTHREAD_MUTEX_INITIALIZER;
-    pthread_mutex_t timingMutex = PTHREAD_MUTEX_INITIALIZER;
 
     static Scene* createScene();
 
