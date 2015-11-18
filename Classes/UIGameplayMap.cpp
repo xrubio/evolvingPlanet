@@ -1751,6 +1751,10 @@ void UIGameplayMap::createInGameAchievementWindow(Achievement * ach)
 
 void UIGameplayMap::updateAgents(void)
 {
+    if(!GameLevel::getInstance()->isFinished())
+    {
+        return;
+    }
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
 
     Color4B white = Color4B::WHITE;

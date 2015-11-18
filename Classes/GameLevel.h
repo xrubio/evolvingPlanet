@@ -195,7 +195,8 @@ public:
     const Levels & getModifiableAttr() const { return _modifiableAtt; }
     // returns a Rect based on center and distance after checking for boundaries
     cocos2d::Rect getArea(const Position & center, int mobility) const;
-
+ 
+    bool isFinished() const { return _isFinished;}
 private:
     static GameLevel* gamelevelInstance;
     UIGameplayMap* gameplayMap;
@@ -277,7 +278,8 @@ private:
     void deleteAgent(Agent* agent);
     //check achievements
     void checkAchievements(void);
-    
+
+    bool _isFinished; 
 };
 
 #endif /* defined(__simulplay__GameLevel__) */
