@@ -65,7 +65,7 @@ bool UIGameplayMap::init()
     }
 
     _tutorial = nullptr;
-    Director::getInstance()->setAnimationInterval(1.0 / 60);
+    Director::getInstance()->setAnimationInterval(1.0 / 30);
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
