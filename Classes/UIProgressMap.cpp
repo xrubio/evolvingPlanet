@@ -638,14 +638,17 @@ Layout* UIProgressMap::setEpisode1(void)
             default:
                 break;
         }
-        if (nextLevelUnlockedStars == false)
+        //temporary for all unlocked levels
+        setStars(i, levelButton);
+
+        /*if (nextLevelUnlockedStars == false)
         {
             setStars(i, levelButton);
             if (GameData::getInstance()->getLevelScore(i) == 0)
             {
                 nextLevelUnlockedStars = true;
             }
-        }
+        }*/
         levelButtonVec.pushBack(levelButton);
     }
 
@@ -676,7 +679,7 @@ Layout* UIProgressMap::setEpisode2(void)
         auto levelButton = MenuItemImage::create("gui/LevelPointerButton.png", "gui/LevelPointerButtonPressed.png",
                                                  CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
         levelButton->setTag(i);
-        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
         levelLabel->setPosition(levelButton->getContentSize().width / 2, levelButton->getContentSize().height / 2);
         levelButton->addChild(levelLabel);
         levelLabel->setColor(Color3B(32, 47, 55));
