@@ -35,6 +35,8 @@
 #include "GameData.h"
 #include "UITransitionScene.h"
 
+#include <UIVideoPlayer.h>
+
 #include <audio/include/SimpleAudioEngine.h>
 
 USING_NS_CC;
@@ -52,7 +54,7 @@ bool UIMainMenu::init()
     if (!Layer::init()) {
         return false;
     }
-        
+    
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressMap1Background.jpg");
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -265,11 +267,25 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
     Director::getInstance()->getTextureCache()->addImage("gui/Loading.png");
     
+   /* cocos2d::experimental::ui::VideoPlayer *p = cocos2d::experimental::ui::VideoPlayer::create();
+    p->setFileName("audio/Xplosion.mov");
+    p->setName("video");
+    p->setFullScreenEnabled(true);
+    p->setKeepAspectRatioEnabled(true);
+    p->play();
+    this->addChild(p);
+    */
+    this->scheduleUpdate();
+    
     return true;
 }
 
 void UIMainMenu::onTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
+    if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and ((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying())
+    {
+        return;
+    }
     if (stoppedAnimation == false) {
         endActions();
     }
@@ -551,3 +567,12 @@ void UIMainMenu::setLoadingAnimation(bool b)
 {
 
 }
+
+void UIMainMenu::update(float delta)
+{
+    if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
+    {
+        this->removeChild(((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")));
+    }
+}
+

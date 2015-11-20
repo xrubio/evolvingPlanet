@@ -52,6 +52,8 @@ public:
     void menuExitCallback(Ref* pSender);
     void menuResetNoCallback(Ref* pSender);
     void menuResetYesCallback(Ref* pSender);
+    
+    virtual void update(float delta);
 
     CREATE_FUNC(UIMainMenu);
 
