@@ -81,7 +81,7 @@ public:
     void restoreLand(void);
     inline void updateAgents(void);
     virtual void update(float delta);
-    bool selectSpriteForTouch(Sprite* sprite, Point p);
+    bool selectSpriteForTouch(Node* sprite, Point p);
 
     void moveGoalPopup(int index);
 
@@ -171,6 +171,7 @@ private:
     void createInGameAchievementWindow(Achievement *ach);
 
     bool checkPowersClicked(void);
+    bool checkButtonPressed(Touch* touch);
 
     // 0 = square, 1 = triangle
     inline void drawAgent(Point pos, Color4B colour, int geometry = 0);

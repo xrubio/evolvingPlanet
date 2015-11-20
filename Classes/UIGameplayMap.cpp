@@ -604,9 +604,36 @@ bool UIGameplayMap::checkPowersClicked(void)
     return false;
 }
 
+bool UIGameplayMap::checkButtonPressed(Touch* touch)
+{
+    auto menu = (Menu*)this->getChildByName("bottomFrame")->getChildByName("attrMenu");
+    Point touchLocation = menu->convertToNodeSpace(touch->getLocation());
+    
+    Vector<Node*> menuChildren = menu->getChildren();
+    for (int i = 0; i < menuChildren.size(); i++)
+    {
+        Node *button = menuChildren.at(i);
+        if(button->getBoundingBox().containsPoint(touchLocation))
+        {
+            return true;
+        }
+    }
+    
+    touchLocation = touch->getLocation();
+    for (size_t i = 0; i < powerButtons.size(); i++)
+    {
+        if(powerButtons.at(i)->getIcon()->getBoundingBox().containsPoint(touchLocation))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
-    if (endGameWindowPainted || checkPowersClicked())
+    if (endGameWindowPainted || checkPowersClicked() || checkButtonPressed(touches.at(0)))
     {
         return;
     }
@@ -1371,7 +1398,7 @@ void UIGameplayMap::playLevel(void)
     CCLOG("DONE GAME LEVEL");
 }
 
-bool UIGameplayMap::selectSpriteForTouch(Sprite* sprite, Point touchLocation)
+bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)
 {
     return sprite->getBoundingBox().containsPoint(touchLocation);
 }
