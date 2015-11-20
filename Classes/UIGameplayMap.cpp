@@ -633,7 +633,7 @@ bool UIGameplayMap::checkButtonPressed(Touch* touch)
 
 void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 {
-    if (endGameWindowPainted || checkPowersClicked() || checkButtonPressed(touches.at(0)))
+    if (endGameWindowPainted || checkPowersClicked())
     {
         return;
     }
@@ -642,7 +642,7 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
     {
         _touches.pushBack(touch);
     }
-    if (touches.size() == 1)
+    if (touches.size() == 1 and checkButtonPressed(touches.at(0)) == false)
     {
         if ((((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC) < 0.3) and (abs(touches[0]->getLocation().distance(firstTouchLocation)) < 40))
         {
