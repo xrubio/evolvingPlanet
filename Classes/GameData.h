@@ -30,6 +30,7 @@
 
 #include <vector>
 #include <string>
+#include <cocos2d.h>
 #include "Achievement.h"
 
 using namespace std;
