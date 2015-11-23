@@ -35,7 +35,7 @@
 #include "GameData.h"
 #include "UITransitionScene.h"
 
-#include <UIVideoPlayer.h>
+#include <ui/UIVideoPlayer.h>
 
 #include <audio/include/SimpleAudioEngine.h>
 
