@@ -1798,6 +1798,7 @@ void UIGameplayMap::updateAgents(void)
         drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
     }
 
+    Color3B agentColorPlayer = GameData::getInstance()->getAgentColor();
     for (int i = agentsDomain.size() - 1; i >= 0 ; i--)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
@@ -1826,7 +1827,7 @@ void UIGameplayMap::updateAgents(void)
                     color = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
                     break;
                 default:
-                    color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 175));
+                    color = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, (*it)->getLife() * (255 / 175));
                     break;
                 }
                 break;

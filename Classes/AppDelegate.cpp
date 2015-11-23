@@ -91,11 +91,13 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setMusic(true);
         GameData::getInstance()->setSFX(true);
         UserDefault::getInstance()->setBoolForKey("firsttimeplaying", true);
+        UserDefault::getInstance()->setStringForKey("agentColor", "red");
     }
     else {
         GameData::getInstance()->setLanguage(lang);
         GameData::getInstance()->setMusic(UserDefault::getInstance()->getBoolForKey("music"));
         GameData::getInstance()->setSFX(UserDefault::getInstance()->getBoolForKey("sfx"));
+        GameData::getInstance()->setAgentColor(UserDefault::getInstance()->getStringForKey("agentColor"));
         UserDefault::getInstance()->setBoolForKey("firsttimeplaying", false);
     }
   

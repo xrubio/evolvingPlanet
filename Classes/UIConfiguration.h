@@ -40,6 +40,7 @@ public:
     void catFlagCallback(Ref* pSender);
     void esFlagCallback(Ref* pSender);
     void enFlagCallback(Ref* pSender);
+    void colorCallback(Ref* pSender);
     void musicOnCallback(Ref* pSender);
     void musicOffCallback(Ref* pSender);
     void sfxOnCallback(Ref* pSender);

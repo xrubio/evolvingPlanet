@@ -282,10 +282,10 @@ bool UIMainMenu::init()
 
 void UIMainMenu::onTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
-    if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and ((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying())
+    /*if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and ((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying())
     {
         return;
-    }
+    }*/
     if (stoppedAnimation == false) {
         endActions();
     }
@@ -570,9 +570,9 @@ void UIMainMenu::setLoadingAnimation(bool b)
 
 void UIMainMenu::update(float delta)
 {
-    if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
+   /* if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
     {
         this->removeChild(((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")));
-    }
+    }*/
 }
 

@@ -128,53 +128,97 @@ bool UIConfiguration::init()
     auto menuLanguage = Menu::createWithArray(languageItems);
     menuLanguage->setPosition(0, 0);
     popupBackground->addChild(menuLanguage, 10);
+    
+    Vector<MenuItem*> colorItems;
+    auto colorLabel = Label::createWithTTF(LocalizedString::create("AGENT_COLOR"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    colorLabel->setColor(Color3B(72, 108, 118));
+    colorLabel->setAnchorPoint(Vec2(1, 0.5));
+    colorLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(colorLabel);
+    
+    auto redButton = MenuItemImage::create("gui/redAgentColor.png", "gui/redAgentColorPressed.png", "gui/redAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    redButton->setName("red");
+    redButton->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(redButton);
+    
+    auto greenButton = MenuItemImage::create("gui/greenAgentColor.png", "gui/greenAgentColorPressed.png", "gui/greenAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    greenButton->setName("green");
+    greenButton->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(greenButton);
+    
+    auto blueButton = MenuItemImage::create("gui/blueAgentColor.png", "gui/blueAgentColorPressed.png", "gui/blueAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    blueButton->setName("blue");
+    blueButton->setPosition(Vec2(19 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(blueButton);
+    
+    auto purpleButton = MenuItemImage::create("gui/purpleAgentColor.png", "gui/purpleAgentColorPressed.png", "gui/purpleAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    purpleButton->setName("purple");
+    purpleButton->setPosition(Vec2(23 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(purpleButton);
+    
+    string color = GameData::getInstance()->getAgentColorString();
+    if (color == "red") {
+        redButton->setEnabled(false);
+    }
+    else if (color == "green") {
+        greenButton->setEnabled(false);
+    }
+    else if (color == "blue") {
+        blueButton->setEnabled(false);
+    }
+    else if (color == "purple") {
+        purpleButton->setEnabled(false);
+    }
+    
+    auto menuColor = Menu::createWithArray(colorItems);
+    menuColor->setPosition(0, 0);
+    popupBackground->addChild(menuColor, 10);
 
     Vector<MenuItem*> soundItems;
-
     auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     musicLabel->setColor(Color3B(72, 108, 118));
     musicLabel->setAnchorPoint(Vec2(1, 0.5));
-    musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5.5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(musicLabel);
 
     auto musicOnLabel = MenuItemImage::create("gui/ActiveOff.png", "gui/ActiveOff.png", "gui/ActiveOn.png",
         CC_CALLBACK_1(UIConfiguration::musicOnCallback, this));
     musicOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
-        8 * popupBackground->getContentSize().height / 16)));
+        5.5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOnLabel);
 
     auto musicSeparator = Sprite::create("gui/ConfigurationSeparator.png");
     musicSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
-        8 * popupBackground->getContentSize().height / 16)));
+        5.5 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(musicSeparator, 10);
 
     auto musicOffLabel = MenuItemImage::create("gui/InactiveOff.png", "gui/InactiveOff.png", "gui/InactiveOn.png",
         CC_CALLBACK_1(UIConfiguration::musicOffCallback, this));
     musicOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
-        8 * popupBackground->getContentSize().height / 16)));
+        5.5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOffLabel);
 
     auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     sfxLabel->setColor(Color3B(72, 108, 118));
     sfxLabel->setAnchorPoint(Vec2(1, 0.5));
-    sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
+    sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 3 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(sfxLabel);
 
     auto sfxOnLabel = MenuItemImage::create("gui/ActiveOff.png", "gui/ActiveOff.png", "gui/ActiveOn.png",
         CC_CALLBACK_1(UIConfiguration::sfxOnCallback, this));
     sfxOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
-        5 * popupBackground->getContentSize().height / 16)));
+        3 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOnLabel);
 
     auto sfxSeparator = Sprite::create("gui/ConfigurationSeparator.png");
     sfxSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
-        5 * popupBackground->getContentSize().height / 16)));
+        3 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(sfxSeparator, 10);
 
     auto sfxOffLabel = MenuItemImage::create("gui/InactiveOff.png", "gui/InactiveOff.png", "gui/InactiveOn.png",
         CC_CALLBACK_1(UIConfiguration::sfxOffCallback, this));
     sfxOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
-        5 * popupBackground->getContentSize().height / 16)));
+        3 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOffLabel);
 
     if (GameData::getInstance()->getMusic() == true) {
@@ -206,6 +250,7 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
     UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
+    UserDefault::getInstance()->setStringForKey("agentColor", GameData::getInstance()->getAgentColorString());
     UserDefault::getInstance()->flush();
 
     auto scene = UIMainMenu::createScene();
@@ -244,6 +289,21 @@ void UIConfiguration::enFlagCallback(Ref* pSender)
     GameData::getInstance()->setLanguage("en");
     auto scene = UIConfiguration::createScene();
     Director::getInstance()->replaceScene(scene);
+}
+
+void UIConfiguration::colorCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+
+    auto color = (MenuItem*)pSender;
+    GameData::getInstance()->setAgentColor(color->getName());
+    for (int i = 0; i < color->getParent()->getChildren().size(); i++)
+    {
+        ((MenuItem*)(color->getParent()->getChildren().at(i)))->setEnabled(true);
+    }
+    color->setEnabled(false);
 }
 
 void UIConfiguration::musicOnCallback(Ref* pSender)
