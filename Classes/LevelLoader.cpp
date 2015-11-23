@@ -167,36 +167,44 @@ void LevelLoader::loadXmlFile(string filename)
         string attribute = pws.child("ATTRIBUTE").child_value();
         string type = pws.child("TYPE").attribute("TYPE_NAME").value();
         if (type == "Global") {
-            GameLevel::getInstance()->addPower(new Power(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost));
+            auto p = new Power(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost);
+            GameLevel::getInstance()->addPower(p);
         }
         else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
-            GameLevel::getInstance()->addPower(new AreaPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost, radius));
+            auto ap = new AreaPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost, radius);
+            GameLevel::getInstance()->addPower(ap);
         }
         pws = pws.next_sibling("POWER");
     }
 
     // always reproduce (first action)
 
-    GameLevel::getInstance()->addAction(new Reproduce());
+    auto r = new Reproduce();
+    GameLevel::getInstance()->addAction(r);
     //ACTIONS (REPRODUCE ALWAYS BEFORE DIE)
     xml_node acts = doc.child("ACTIONS").child("ACTION");
     while (acts != nullptr) {
         string action = acts.child_value();
         if (action == "Collect") {
-            GameLevel::getInstance()->addAction(new Collect());
+            auto c = new Collect();
+            GameLevel::getInstance()->addAction(c);
         }
         else if (action == "Deplete") {
-            GameLevel::getInstance()->addAction(new Deplete());
+            auto d = new Deplete();
+            GameLevel::getInstance()->addAction(d);
         }
         else if (action == "EnvironmentAdaptation") {
-            GameLevel::getInstance()->addAction(new EnvironmentAdaptation());
+            auto ea = new EnvironmentAdaptation();
+            GameLevel::getInstance()->addAction(ea);
         }
         else if (action == "Kill") {
-            GameLevel::getInstance()->addAction(new Kill());
+            auto k = new Kill();
+            GameLevel::getInstance()->addAction(k);
         }
         else if (action == "Influence") {
-            GameLevel::getInstance()->addAction(new Influence());
+            auto i = new Influence();
+            GameLevel::getInstance()->addAction(i);
         }
         acts = acts.next_sibling("ACTION");
     }
@@ -214,11 +222,13 @@ void LevelLoader::loadXmlFile(string filename)
         int desviation3Star = atoi(goals.child("DESVIATION_3_STAR").child_value());
         if (type == "Expansion") {
             int color = atoi(goals.child("COLOR_ZONE").child_value());
-            GameLevel::getInstance()->addGoal(new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color));
+            auto eg = new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color);
+            GameLevel::getInstance()->addGoal(eg);
         }
         else if (type == "Collection") {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
-            GameLevel::getInstance()->addGoal(new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount));
+            auto cg = new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount);
+            GameLevel::getInstance()->addGoal(cg);
         }
         i++;
         goals = goals.next_sibling("GOAL");

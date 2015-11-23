@@ -575,6 +575,22 @@ bool UIGameplayMap::init()
         GameLevel::getInstance()->setInGameAchievement(GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2));
     }
     
+    //INFLUENCE LABEL
+    for (int i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++)
+    {
+        if (GameLevel::getInstance()->getModifiableAttr().at(i) == eInfluence)
+        {
+            int x = (int)(GameLevel::getInstance()->getAgents().at(0).front()->getPosition().getX() * GameData::getInstance()->getRowDrawAgentPrecalc());
+            int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((GameLevel::getInstance()->getAgents().at(0).front()->getPosition().getY()) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
+            auto labelInfluenced = Label::createWithTTF(to_string(Agent::_numInfluenced.at(0)), "fonts/BebasNeue.otf", 50);
+            labelInfluenced->setPosition(Vec2(x, y));
+            labelInfluenced->setName("labelInfluence");
+            labelInfluenced->setOpacity(0);
+            gameplayMap->addChild(labelInfluenced);
+            i = GameLevel::getInstance()->getModifiableAttr().size();
+        }
+    }
+    
     createTutorialGUI();
     _message = 0;
 
@@ -1579,8 +1595,9 @@ void UIGameplayMap::initializeAgents(void)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); it++)
         {
-            Color4B color = Color4B(255, 4, 4, (*it)->getLife() * (255 / 175));
-            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
+            Color3B c = GameData::getInstance()->getAgentColor();
+            Color4B color = Color4B(c.r, c.g, c.b, (*it)->getLife() * (255 / 175));
+            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1);
         }
     }
     agentsTexture->updateWithData(agentsTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
@@ -1794,7 +1811,7 @@ void UIGameplayMap::updateAgents(void)
         p->setLife(0.05);
         p->setScale(0.07);
         gameplayMap->addChild(p);*/
-        
+
         drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
     }
 
@@ -1832,8 +1849,8 @@ void UIGameplayMap::updateAgents(void)
                 }
                 break;
             }
-
-            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
+            
+            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1);
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()),
                     Color4B(100, 100, 100, 100));
@@ -1849,7 +1866,7 @@ void UIGameplayMap::updateAgents(void)
     if (resourcesMap) {
         exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
-    pthread_mutex_unlock(&gameLevelMutex);
+    //pthread_mutex_unlock(&gameLevelMutex);
 }
 
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
@@ -1861,19 +1878,67 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
     switch (geometry) {
     case 1: {
         int k = -GameData::getInstance()->getResourcesWidth() * 2;
-        while (k <= GameData::getInstance()->getResourcesWidth() * 2) {
-            int i = GameData::getInstance()->getResourcesWidth();
-            for (int j = -2 + i; j < 3 - i; j++) {
-                agentsTextureData[position + j + k] = colour;
-            }
-            k += GameData::getInstance()->getResourcesWidth();
-        }
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 3 + k] = colour;
+        agentsTextureData[position - 2 + k] = colour;
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        agentsTextureData[position + 2 + k] = colour;
+        agentsTextureData[position + 3 + k] = colour;
+        
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 3 + k] = colour;
+        agentsTextureData[position - 2 + k] = colour;
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        agentsTextureData[position + 2 + k] = colour;
+        agentsTextureData[position + 3 + k] = colour;
+    
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position - 2 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        agentsTextureData[position + 2 + k] = colour;
+        
+        /*k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;
+        
+        k += GameData::getInstance()->getResourcesWidth();
+        agentsTextureData[position - 1 + k] = colour;
+        agentsTextureData[position + 0 + k] = colour;
+        agentsTextureData[position + 1 + k] = colour;*/
+        
         break;
     }
     case 2: {
-        int k = -GameData::getInstance()->getResourcesWidth() * 2;
+        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
         int times = 0;
-        while (k <= GameData::getInstance()->getResourcesWidth() * 2) {
+        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
             for (int j = times; j < abs(times) - 1; j++) {
                 agentsTextureData[position + j + k] = colour;
             }
@@ -1987,10 +2052,22 @@ void UIGameplayMap::update(float delta)
             }
        
             updateAgents();
+            
+            if (gameplayMap->getChildByName("labelInfluence") != nullptr and Agent::_numInfluenced.at(0) > 0)
+            {
+                int x = (int)(GameLevel::getInstance()->getAgents().at(0).front()->getPosition().getX() * GameData::getInstance()->getRowDrawAgentPrecalc());
+                int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((GameLevel::getInstance()->getAgents().at(0).front()->getPosition().getY()) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
+                auto labelInfluenced = (Label*)gameplayMap->getChildByName("labelInfluence");
+                labelInfluenced->setString(to_string(Agent::_numInfluenced.at(0)));
+                labelInfluenced->setPosition(Vec2(x, y));
+                labelInfluenced->runAction(Sequence::create(FadeIn::create(0.1), MoveBy::create(0.2, Vec2(0, 5.0)), FadeOut::create(0.1), NULL));
+            }
             //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
 
             // TODO everything stopped if _message?
             updateWave(int(0));
+            
+            pthread_mutex_unlock(&gameLevelMutex);
         }
         if (GameLevel::getInstance()->getGoals().empty() == false) {
             timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);

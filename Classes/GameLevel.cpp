@@ -562,6 +562,7 @@ void GameLevel::resetLevel(void)
     
     completedAchievements.clear();
     _inGameAchievement = nullptr;
+        
 }
 
 void GameLevel::createLevel(void)
@@ -590,7 +591,8 @@ void GameLevel::initializeAgentsPool(void)
     for (int i = 0; i < maxAgents.size(); i++) {
         std::list<Agent*> l_agent;
         for (int j = 0; j < maxAgents.at(i); j++) {
-            l_agent.push_back(new Agent());
+            auto a = new Agent();
+            l_agent.push_back(a);
         }
         _agentsPool.push_back(l_agent);
     }
