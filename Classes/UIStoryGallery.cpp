@@ -92,20 +92,24 @@ bool UIStoryGallery::init()
         // unlocked
         if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
         {
-            auto image = Sprite::create("art/Escenari"+to_string(i)+".png");
-            image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-            image->setScale(visibleSize.width / image->getContentSize().width);
-            layout->addChild(image);
-            
-            auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text")+ "  ", "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
-            storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-            storyLine->setScaleX(GameData::getInstance()->getRaWConversion());
-            storyLine->setScaleY(GameData::getInstance()->getRaHConversion());
+            //TODO fix mentre no hi ha els dibuixos del 11 al 20
+            if(i<11)
+            {
+                auto image = Sprite::create("art/Escenari"+to_string(i)+".png");
+                image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+                image->setScale(visibleSize.width / image->getContentSize().width);
+                layout->addChild(image);
+                
+                auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text")+ "  ", "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
+                storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
+                storyLine->setScaleX(GameData::getInstance()->getRaWConversion());
+                storyLine->setScaleY(GameData::getInstance()->getRaHConversion());
 
-            layout->addChild(storyLine);
-            storyLine->setAnchorPoint(Vec2(1.0, 0.5));
-            storyLine->setPosition(Vec2(visibleSize.width, visibleSize.height-1.5f*storyLine->getContentSize().height));
-            storyLine->setName("text");
+                layout->addChild(storyLine);
+                storyLine->setAnchorPoint(Vec2(1.0, 0.5));
+                storyLine->setPosition(Vec2(visibleSize.width, visibleSize.height-1.5f*storyLine->getContentSize().height));
+                storyLine->setName("text");
+            }
         }
         else
         {
