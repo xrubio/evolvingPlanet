@@ -54,14 +54,24 @@ bool AppDelegate::applicationDidFinishLaunching()
     std::vector<std::string> resDirOrders;
     
     CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
-    if (screenSize.width > 1024) {
+    if (screenSize.width > 1536) {
         CCLOG("\tusing artwork of size 2048");
         resDirOrders.push_back("tablethd");
+        resDirOrders.push_back("tableth");
         resDirOrders.push_back("tablet");
         resDirOrders.push_back("phone");
         GameData::getInstance()->setResourcesWidth(2048);
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
+    } else if (screenSize.width > 1024) {
+        CCLOG("\tusing artwork of size 1536");
+        resDirOrders.push_back("tableth");
+        resDirOrders.push_back("tablet");
+        resDirOrders.push_back("phone");
+        GameData::getInstance()->setResourcesWidth(1536);
+        GameData::getInstance()->setResourcesHeight(1152);
+        GameData::getInstance()->setResourcesMargin(1024);
+        
     } else if (screenSize.width > 512) {
         CCLOG("\tusing artwork of size 1024");
         resDirOrders.push_back("tablet");
