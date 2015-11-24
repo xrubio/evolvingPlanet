@@ -27,7 +27,7 @@
 
 #include "Power.h"
 
-Power::Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float _cost) : name(name), id(id), cooldown(c), duration(dur), cooldownLeft(cl), durationLeft(dl), attribute(attr), type(t), cost(_cost)
+Power::Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, const std::string & attr, const std::string & t, float _cost) : name(name), id(id), cooldown(c), duration(dur), cooldownLeft(cl), durationLeft(dl), attribute(attr), type(t), cost(_cost)
 {
 }
 

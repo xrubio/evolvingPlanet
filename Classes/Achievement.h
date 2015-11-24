@@ -36,7 +36,7 @@ class Achievement
 {
     
 public:
-    Achievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
+    Achievement(const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed = false, bool occult = false);
     
     string getIcon() const;
     string getResource() const;

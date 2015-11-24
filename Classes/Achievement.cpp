@@ -27,7 +27,7 @@
 
 #include "Achievement.h"
 
-Achievement::Achievement(string icon, string resource, string goalType, int level, bool completed, bool occult) : _icon(icon), _resource(resource), _goalType(goalType), _level(level), _completed(completed), _occult(occult)
+Achievement::Achievement(const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed, bool occult) : _icon(icon), _resource(resource), _goalType(goalType), _level(level), _completed(completed), _occult(occult)
 {
 }
 

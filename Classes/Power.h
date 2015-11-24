@@ -48,7 +48,7 @@ class Power
     PowerId id;
 
 public:
-    Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float _cost);
+    Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, const std::string & attr, const std::string & t, float _cost);
     virtual ~Power(){}
 
     const string & getName() const;

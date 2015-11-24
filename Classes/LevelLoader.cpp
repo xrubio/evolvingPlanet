@@ -53,7 +53,7 @@ void LevelLoader::loadXmlFile(string filename)
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    long tmpSize;
+    ssize_t tmpSize;
     const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
     result = doc.load(xmlData);
 #else
@@ -246,7 +246,7 @@ string LevelLoader::getLevelFileMap(string filename)
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    long tmpSize;
+    ssize_t tmpSize;
     const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
     result = doc.load(xmlData);
 #else
@@ -267,7 +267,7 @@ vector<string> LevelLoader::getGoalTypes(string filename)
     string ext = ".xml";
     string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    long tmpSize;
+    ssize_t tmpSize;
     const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
     result = doc.load(xmlData);
 #else

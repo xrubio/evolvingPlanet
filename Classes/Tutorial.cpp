@@ -114,7 +114,7 @@ bool Tutorial::loadTutorial()
     pugi::xml_document doc;
     pugi::xml_parse_result result;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    long tmpSize;
+    ssize_t tmpSize;
     const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
     result = doc.load(xmlData);
 #else
