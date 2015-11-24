@@ -9,65 +9,65 @@
 	<key>NEXT_MESSAGE_TAP</key>
 	<string>Tap to continue</string>
 	<key>LEVEL1M1</key>
-	<string>Commander, welcome to the Console. Cool interface, isn&apos;t it?
-I hope you like it because you&apos;ll spend the next weeks looking at it! Allow me to give you a quick reminder on how does it work.</string>
+	<string>Professor, welcome to the Console.
+    
+Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the next weeks looking at it! Allow me to give you a quick reminder on how does it work.</string>
 	<key>LEVEL1M2</key>
-	<string>The satellites we deployed around the planet are tracking real-time information about the environment and our agents.
-The Console shows you an aggregated of these data, making your life much easier</string>
+	<string>The Console shows you data collected by satellites deployed around the planet.</string>
 	<key>LEVEL1M3</key>
-	<string>The map shows you the landscape faced by your agents. You can zoom in/out pinching the screen, or pan around sliding your finger through the screen</string>
+	<string>The mission takes place inside this landscape. You can zoom in/out pinching the screen, or pan around sliding your finger through the screen.</string>
 	<key>LEVEL1M4</key>
-	<string>Each scenario is played on a different map containing several geographic features. For example, the zone delimited by this hexagon is a mountain</string>
+	<string>The landscape is full of features. For example, this hexagon is a mountain.</string>
 	<key>LEVEL1M5</key>
 	<string>This arid area here has almost no vegetation. Not a comfy area to live.</string>
 	<key>LEVEL1M6</key>
-	<string>Mountains and arid areas delimit regions where resources are scarce, so the agents living there will die faster than usual</string>
+	<string>Living in these regions will be more difficult because because resources are scarce.</string>
 	<key>LEVEL1M7</key>
-	<string>The environment is not always that dangerous. This zone is a forest, where your agents will find plenty of resources to increase their survival chances</string>
+	<string>The environment is not always that dangerous. Survival is easier in forests like this one.</string>
 	<key>LEVEL1M8</key>
-	<string>Speaking of the devil, these red dots here are your agents. We have deployed a small initial population which is ready to begin evolving.</string>
+	<string>The Console shows your bots are these little dots. We have deployed a small initial population in this area.</string>
 	<key>LEVEL1M9</key>
-	<string>This first scenario simulates a dispersion process. Your population needs to colonize the marked zone delimited by the blinking hexagon in your bottom right.</string>
+	<string>This first mission is a dispersal. Your bots should arrive to the blinking hexagon in your bottom right.</string>
 	<key>LEVEL1M10</key>
-	<string>Your task is to supervise that this population arrives at this goal within a temporal span similar to what the archaeological evidence suggests. The closer you get, the better you understand what happened.</string>
+	<string>You will supervise that the bots arrive there within the time span identified in the archaeological evidence. The closer you get, the better.</string>
 	<key>LEVEL1M11</key>
-	<string>Let&apos;s see what the population is doing; tap the Play button and let it evolve during a couple of time steps.</string>
+	<string>Tap the Play button to see what are your bots doing.</string>
 	<key>LEVEL1M12</key>
-	<string>I paused the agents for the moment (you can do it yourself tapping the Play button). As you can see the agents are independent. They move, reproduce and die without your intervention. We don&apos;t want to modify each one individually, but we do want to guide them in order to reproduce what we see in the archaeological data. To achieve this goal I have some cool tools to show you.</string>
+	<string>The bots move, reproduce and die without your intervention. We developed some cool tools to guide them to the mission objectives.</string>
 	<key>LEVEL1M13</key>
-	<string>The first one is the orientation marker. Tap twice in any place of the map to suggest the direction of dispersion to your agents.</string>
+	<string>The first one is the orientation marker. Tap twice in any place of the map to suggest the direction of dispersion to your population.</string>
 	<key>LEVEL1M14</key>
-	<string>The second one is the evolution track. You begin each scenario with 10 Evolution Points or EvoPoints. You can assign to three different traits.</string>
+	<string>The second one is the evolution track. You begin with 10 EvoPoints and receive additional points during the mission..</string>
 	<key>LEVEL1M15</key>
-	<string>Let&apos;s begin increasing the rate of movement of your agents with the Mobility attribute. Tap here to spent 1 EvoPoint to move it to Level 2</string>
+	<string>EvoPoints are used to increase the three attributes. Tap here to spend 1 EvoPoint and upgrade Mobility to Level 2.</string>
 	<key>LEVEL1M16</key>
-	<string>Each additional level will cost you one additional point. Let&apos;s take a look at the second attribute: Reproduction. It controls the interest of your agents for having offspring. This is a critical trait; if your population decreases until 0 you will fail the scenario. Increase it.</string>
+	<string>Reproduction controls the fertility of your bots. Move it to level 2.</string>
 	<key>LEVEL1M17</key>
-	<string>This is level 2, increase it 2 additional levels...</string>
+	<string>Each change of an attribute costs 1 additional EvoPoints, as it is highlighted in yellow. Increase it to 3.</string>
 	<key>LEVEL1M18</key>
-	<string>Ok the last one, to level 4!</string>
+	<string>Tap again to set Reproduction to 4.</string>
 	<key>LEVEL1M19</key>
-	<string>Resistance tells you the ability of your agents to survive. This value is combined with the location of your agent to calculate its lifespan. Remember, arid zones and mountains will shorten this lifespan, while forests will make them long-livd. Spend the remanining 3 EvoPoints on moving it to Level 3.</string>
+	<string>Increasing Resistance improves the survival skills of your bots. Spend the remanining on this attribute.</string>
 	<key>LEVEL1M20</key>
-	<string>Increase Resistance to 3 and the setup will be finished.</string>
+	<string>Use the remaining 2 EvoPoints to increase Resistance again.</string>
 	<key>LEVEL1M21</key>
-	<string>It seems that we are set! Let&apos;s see if they survive with these traits</string>
+	<string>Deployment finished! Let&apos;s see if the bots survive with these traits.</string>
 	<key>LEVEL1M22</key>
-	<string>You can see in this panel that your population is striving. Let&apos;s suggest them where to expand; set the orientation marker within the goal zone</string>
+	<string>This panel shows how your population is increasing. Set now the orientation marker within the goal zone.</string>
 	<key>LEVEL1M23</key>
-	<string>As you can see you get new EvoPoints with time. You can use them to increase or decrease the level of your attributes. Keep in mind that the cost increases with each change so consider what you need</string>
+	<string>As you can see here you received additional EvoPoints.</string>
 	<key>LEVEL1M24</key>
-	<string>I suggest to start increasing Resistance and then focus on Mobility; your population needs to move a large amount of space if you want them to reach the goal before the time is over. Good luck commander!</string>
+	<string>You should now increase Resistance and then focus on Mobility. Good luck!</string>
 	<key>LEVEL2M1</key>
-	<string>Some missions have more than one goal. As you can see in the Goal bar in the top your population needs to achieve 3 objectives</string>
+	<string>Some missions have more than one goal as shown in the top of the Console.</string>
 	<key>LEVEL2M2</key>
-	<string>You have to reach to each one in the time span defined by the brighter interval (in this case between 30 and 50). If you arrive before or after this interval the mission will fail.</string>
+	<string>You have to arrive to each goal within the bright interval. If you arrive before or after this span the mission will fail.</string>
 	<key>LEVEL2M3</key>
-	<string>The best arrival time is marked by the brightest interval; your evaluation will be based on how close you get to this evidence.</string>
+	<string>The best arrival time suggested by the evidence is marked by the highlighted zone.</string>
 	<key>LEVEL2M4</key>
-	<string>A final note: some zones of the planet, like the huge mountain range in the middle of the map are too hostile to your agents, so they cannot live there. Good luck commander!</string>
+	<string>A final note: regions like this mountain range are too hostile to your bots, so your bots cannot live there.</string>
 	<key>LEVEL3M1</key>
-	<string>Welcome commander! We are having problems understanding what happened in this zone so you have a new tool in your console: the T.A.P.A.T.B.C.T.</string>
+	<string>Welcome Professor! We are having problems understanding what happened in this zone so you have a new tool in your console: the T.A.P.A.T.B.C.T.</string>
 	<key>LEVEL3M2</key>
 	<string>This is the acronym for Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits. Beautiful, isn&apos;t it?</string>
 	<key>LEVEL3M3</key>
@@ -79,13 +79,13 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL3M6</key>
 	<string>Please don&apos;t ask how did we achieve this baby boom...</string>
 	<key>LEVEL3M7</key>
-	<string>The second Boost increases the Resistance of the agents in a particular zone. You can tap and drag the finger to the area of effect when you have the needed EvoPoints</string>
+	<string>The second Boost increases the Resistance of the bots in a particular zone. You can tap and drag the finger to the area of effect when you have the needed EvoPoints</string>
 	<key>LEVEL3M8</key>
 	<string>Both will be needed to see how did they manage to cross the arid zones of this map.</string>
 	<key>LEVEL3M9</key>
 	<string>Distribute your initial EvoPoints and tap Play whenever you are ready.</string>
 	<key>LEVEL3M10</key>
-	<string>Good luck commander!</string>
+	<string>Good luck!</string>
 	<key>LEVEL4M1</key>
 	<string>It seems that the archaeologists have new clues so let&apos;s repeat the last experiment with this new evidence.</string>
 	<key>LEVEL4M2</key>
@@ -95,9 +95,9 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL4M4</key>
 	<string>Try dispersing your population towards the arid zones increasing their technological skills.</string>
 	<key>LEVEL4M5</key>
-	<string>Good luck commander!</string>
+	<string>Good luck!</string>
 	<key>LEVEL5M1</key>
-	<string>Greetings, Commander. For the first time your agents will have to share this landscape with other populations. The zone around this river was populated before our arrival.</string>
+	<string>Welcome, Professor. For the first time your bots will have to share this landscape with other populations. The zone around this river was populated before our arrival.</string>
 	<key>LEVEL5M2</key>
 	<string>Interaction between population is a complex process with a diversity of outcomes; it will range from trade and cultural exchange to open conflict. Usually it is a mix of all these processes.</string>
 	<key>LEVEL5M3</key>
@@ -105,7 +105,7 @@ The Console shows you an aggregated of these data, making your life much easier<
 	<key>LEVEL5M4</key>
 	<string>You&apos;ll have to use Resistance boosts and Technology to arrive to the different objectives. You should avoid the other population, as they are far more experience on warfare than you.</string>
 	<key>LEVEL5M5</key>
-	<string>Good luck Commander!</string>
+	<string>Good luck Professor!</string>
 
     <key>LEVEL6M1</key>
     <string>Greetings Professor. We have another situation of interaction with a different species.</string>
