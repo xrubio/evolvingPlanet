@@ -79,7 +79,7 @@ bool ExpansionGoal::checkGoal(int type, Agent* agent)
     }
     
     // goal is completed if the agent is within the color coded zone for the goal
-    int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(), agent->getPosition().getY(), 0);
+    int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(), agent->getPosition().getY());
     if(agentColorCode != colorZone)
     {
         return false;

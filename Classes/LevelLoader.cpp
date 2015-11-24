@@ -28,7 +28,7 @@
 #include "LevelLoader.h"
 #include "GameLevel.h"
 #include "Reproduce.h"
-#include "Collect.h"
+#include "Exploit.h"
 #include "Deplete.h"
 #include "EnvironmentAdaptation.h"
 #include "Kill.h"
@@ -186,8 +186,8 @@ void LevelLoader::loadXmlFile(string filename)
     xml_node acts = doc.child("ACTIONS").child("ACTION");
     while (acts != nullptr) {
         string action = acts.child_value();
-        if (action == "Collect") {
-            auto c = new Collect();
+        if (action == "Exploit") {
+            auto c = new Exploit();
             GameLevel::getInstance()->addAction(c);
         }
         else if (action == "Deplete") {

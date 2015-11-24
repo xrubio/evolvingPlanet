@@ -607,7 +607,7 @@ void GameLevel::generateInitialAgents(int type)
     int maxY = 0;
     for (int x = 0; x < 480; x++) {
         for (int y = 1; y <= 320; y++) {
-            if (gameplayMap->getValueAtGameplayMap(1, x, y, 0) == type) {
+            if (gameplayMap->getValueAtGameplayMap(1, x, y) == type) {
                 if (minX > x)
                     minX = x;
                 if (maxX < x)
@@ -625,7 +625,7 @@ void GameLevel::generateInitialAgents(int type)
     {
         int posx = random(minX, maxX);
         int posy = random(minY, maxY);
-        if(!validatePosition(posx, posy) or !(gameplayMap->getValueAtGameplayMap(1, posx, posy, 0) == type))
+        if(!validatePosition(posx, posy) or !(gameplayMap->getValueAtGameplayMap(1, posx, posy) == type))
         {
             continue;
         }
@@ -668,7 +668,7 @@ void GameLevel::computeInfluenced( int type )
     size_t numAgents = _agents.at(type).size();
     float probInfluence = getValueAtLevel(eInfluence, _agentAttributes.at(type).at(eInfluence));
 
-    // ReproductionBoost only affects user's population
+    // InfluenceBoost only affects user's population
     if(type==0)
     {
         Power* p = nullptr;
@@ -814,7 +814,7 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
     Agent * agent = *it;
     UIGameplayMap* gameplayMap = GameLevel::getInstance()->getUIGameplayMap();
 
-    float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition().getX(), agent->getPosition().getY(), 0);
+    float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition().getX(), agent->getPosition().getY());
     float resistance = agent->getValue(eResistance);
 
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
@@ -925,7 +925,7 @@ void GameLevel::act(void)
         bool completed = false;
         for(std::list<Agent*>::iterator it=_agents.at(0).begin(); it!=_agents.at(0).end() and completed == false; it++)
         {
-            int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, (*it)->getPosition().getX(),  (*it)->getPosition().getY(), 0);
+            int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, (*it)->getPosition().getX(),  (*it)->getPosition().getY());
             completed = ((LevelAchievement*)_inGameAchievement)->checkInGameAchievement(_inGameAchievement->getGoalType(), numLevel, agentColorCode);
         }
         if (completed)
@@ -946,7 +946,7 @@ bool GameLevel::validatePosition(int posx, int posy)
         return false;
     }
     //Aigua o similar
-    if (gameplayMap->getValueAtGameplayMap(0, posx, posy, 0) == 0) {
+    if (gameplayMap->getValueAtGameplayMap(0, posx, posy) == 0) {
         return false;
     }
     //Hi ha un agent
@@ -984,9 +984,9 @@ int GameLevel::convertAttStringToInt(const string & s)
     {
         ret = eInfluence;
     }
-    else if (s == "ADAPTATION")
+    else if (s == "EXPLOITATION")
     {
-        ret = eAdaptation;
+        ret = eExploitation;
     }
     
     return ret;
@@ -1015,8 +1015,8 @@ string GameLevel::convertAttIntToString(int i)
         case eInfluence:
             ret = "INFLUENCE";
             break;
-        case eAdaptation:
-            ret = "ADAPTATION";
+        case eExploitation:
+            ret = "EXPLOITATION";
             break;
         default:
             ret = "";
@@ -1030,6 +1030,7 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
 {
     Agent::_numOffspring.clear();
     Agent::_numInfluenced.clear();
+    Agent::_resourcesPool.clear();
     _agentAttributes.clear();
     _attributesCost.clear();
     for(size_t i=0; i<numAgents; i++)
@@ -1038,6 +1039,8 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
         _attributesCost.push_back(Levels(_numAttributes, 1));
         Agent::_numOffspring.push_back(0);
         Agent::_numInfluenced.push_back(0);
+        vector<int> resources (3, 0);
+        Agent::_resourcesPool.push_back(resources);
     }
 }
 

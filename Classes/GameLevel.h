@@ -61,7 +61,7 @@ enum Attributes
     eTechnology = 3,
     eWarfare = 4,
     eInfluence = 5,
-    eAdaptation = 6
+    eExploitation = 6
 };
 
 class GameLevel

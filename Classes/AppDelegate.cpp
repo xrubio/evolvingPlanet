@@ -71,7 +71,6 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesWidth(1536);
         GameData::getInstance()->setResourcesHeight(1152);
         GameData::getInstance()->setResourcesMargin(1024);
-        
     } else if (screenSize.width > 512) {
         CCLOG("\tusing artwork of size 1024");
         resDirOrders.push_back("tablet");
@@ -79,7 +78,6 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesWidth(1024);
         GameData::getInstance()->setResourcesHeight(768);
         GameData::getInstance()->setResourcesMargin(682);
-        
     } else {
         CCLOG("\tusing artwork of size 512");
         resDirOrders.push_back("phone");

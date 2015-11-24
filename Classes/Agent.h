@@ -34,6 +34,13 @@
 
 using namespace std;
 
+enum Resources
+{
+    Wood = 0,
+    Mineral = 1,
+    Stone = 2
+};
+
 class Agent {
 
 public:
@@ -42,6 +49,8 @@ public:
     static std::vector<int> _numOffspring;
     // number of agents that can be influenced to create on a given time step
     static std::vector<int> _numInfluenced;
+    // pool of resources -> Wood, Mineral, Stone
+    static std::vector< std::vector<int> > _resourcesPool;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent()
@@ -65,6 +74,7 @@ public:
     void setValue(int att, float val);
     // copy attribute values at current levels to agent of type
     void copyValues(int type);
+    
 private:
     int id;
     int life;

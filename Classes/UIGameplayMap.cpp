@@ -158,17 +158,17 @@ bool UIGameplayMap::init()
         }
     }
     if (resourcesMap) {
-        gameplayMapResources = new Image();
+        /*gameplayMapResources = new Image();
         gameplayMapResources->initWithImageFile(map + resources + ext);
         x = 3;
         if (gameplayMapResources->hasAlpha()) {
             x = 4;
         }
         dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
-        dataGameplayMapResources = gameplayMapResources->getData();
+        dataGameplayMapResources = gameplayMapResources->getData();*/
 
         exploitedMapTexture = new Texture2D;
-        Image* im = new Image();
+        auto im = new Image();
         im->initWithImageFile(map + forest + ext);
         //4 = alpha
         unsigned char* data = new unsigned char[im->getDataLen() * 4];
@@ -314,7 +314,7 @@ bool UIGameplayMap::init()
             for(int y = 1; y <= 320; y++)
             {
                 int goalCode = expansionGoal->getColorZone();
-                int valueAtMap = getValueAtGameplayMap(1,x,y,0);
+                int valueAtMap = getValueAtGameplayMap(1,x,y);
                 if(goalCode!=valueAtMap)
                 {
                     continue;
@@ -464,25 +464,58 @@ bool UIGameplayMap::init()
     initializeAgents();
 
     const GameLevel::Levels & modifAttr = GameLevel::getInstance()->getModifiableAttr();
-        
-        auto graphicBackground = Sprite::create("gui/GraphicBackground.jpg");
-        graphicBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        graphicBackground->setPosition(10.15 * visibleSize.width / 11, 0.55 * visibleSize.height / 7.5);
-        lifeBars.pushBack(graphicBackground);
-        agentsEvolution = DrawNode::create();
-        graphicBackground->addChild(agentsEvolution);
-        graphicBackground->setName("graphicBackground");
-        this->addChild(graphicBackground, 1);
-        
-        
-        ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
-        auto waveNode = new WaveNode();
-        waveNode->init();
-        graphicBackground->addChild(waveNode, 1);
-        // Try experimenting with different draw modes to see the effect.
-        waveNode->glDrawMode = kDrawLines;
-        waveNode->setReadyToDrawDynamicVerts(true);
-        waveNodes.push_back(waveNode);
+    
+    auto graphicBackground = MenuItemImage::create("gui/GraphicBackground.jpg", "gui/GraphicBackground.jpg", CC_CALLBACK_1(UIGameplayMap::changeGraphicCallback, this));
+    graphicBackground->setPosition(10.15 * visibleSize.width / 11, 0.55 * visibleSize.height / 7.5);
+    graphicBackground->setName("graphicBackground");
+
+    auto menuGraphic = Menu::create(graphicBackground, nullptr);
+    menuGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    menuGraphic->setPosition(Vec2::ZERO);
+    menuGraphic->setName("menuGraphic");
+    this->addChild(menuGraphic, 1);
+    
+    auto labelGraphic = Label::createWithTTF("AGENTS", "fonts/BebasNeue.otf", 40);
+    labelGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() + (graphicBackground->getContentSize().height / 2) + (labelGraphic->getContentSize().height / 2));
+    labelGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    labelGraphic->setName("graphicLabel");
+    this->addChild(labelGraphic);
+    
+    auto labelCounterGraphic = Label::createWithTTF("( 1 / 4 )", "fonts/BebasNeue.otf", 40);
+    labelCounterGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() - (graphicBackground->getContentSize().height / 2) - (labelCounterGraphic->getContentSize().height / 2));
+    labelCounterGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    labelCounterGraphic->setName("graphicCounterLabel");
+    this->addChild(labelCounterGraphic);
+    
+    ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
+    auto populationNode = new WaveNode();
+    populationNode->init();
+    populationNode->glDrawMode = kDrawLines;
+    populationNode->setReadyToDrawDynamicVerts(true);
+    populationNode->setName("population");
+    graphicBackground->addChild(populationNode, 1, 1);
+    waveNodes.push_back(populationNode);
+    
+    auto woodNode = new WaveNode();
+    woodNode->init();
+    woodNode->glDrawMode = kDrawLines;
+    woodNode->setReadyToDrawDynamicVerts(true);
+    woodNode->setName("wood");
+    waveNodes.push_back(woodNode);
+    
+    auto mineralNode = new WaveNode();
+    mineralNode->init();
+    mineralNode->glDrawMode = kDrawLines;
+    mineralNode->setReadyToDrawDynamicVerts(true);
+    mineralNode->setName("mineral");
+    waveNodes.push_back(mineralNode);
+    
+    auto stoneNode = new WaveNode();
+    stoneNode->init();
+    stoneNode->glDrawMode = kDrawLines;
+    stoneNode->setReadyToDrawDynamicVerts(true);
+    stoneNode->setName("stone");
+    waveNodes.push_back(stoneNode);
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1342,6 +1375,49 @@ void UIGameplayMap::removeFingerSpot(Ref* pSender)
     fingerSpot->setVisible(false);
 }
 
+void UIGameplayMap::changeGraphicCallback(Ref* pSender)
+{
+    auto graphicBackground = (MenuItem*) pSender;
+    auto graphicLabel = (Label*)this->getChildByName("graphicLabel");
+    auto graphicCounterLabel = (Label*)this->getChildByName("graphicCounterLabel");
+    string name;
+    for (size_t i = 0; i < graphicBackground->getChildren().size(); i++)
+    {
+        if ((name = graphicBackground->getChildren().at(i)->getName()) != "")
+        {
+            i = graphicBackground->getChildren().size();
+        }
+    }
+    if (name == "population")
+    {
+        graphicBackground->removeChild(waveNodes.at(0));
+        graphicBackground->addChild(waveNodes.at(1), 1, 1);
+        graphicLabel->setString("WOOD");
+        graphicCounterLabel->setString("( 2 / 4 )");
+    }
+    else if (name == "wood")
+    {
+        graphicBackground->removeChild(waveNodes.at(1));
+        graphicBackground->addChild(waveNodes.at(2), 1, 1);
+        graphicLabel->setString("MINERAL");
+        graphicCounterLabel->setString("( 3 / 4 )");
+    }
+    else if (name == "mineral")
+    {
+        graphicBackground->removeChild(waveNodes.at(2));
+        graphicBackground->addChild(waveNodes.at(3), 1, 1);
+        graphicLabel->setString("STONE");
+        graphicCounterLabel->setString("( 4 / 4 )");
+    }
+    else if (name == "stone")
+    {
+        graphicBackground->removeChild(waveNodes.at(3));
+        graphicBackground->addChild(waveNodes.at(0), 1, 1);
+        graphicLabel->setString("AGENTS");
+        graphicCounterLabel->setString("( 1 / 4 )");
+    }
+}
+
 void UIGameplayMap::createTimingThread(void)
 {
     pthread_create(&timingThread, NULL, &UIGameplayMap::createTiming, this);
@@ -1497,11 +1573,11 @@ void UIGameplayMap::checkBackgroundLimitsInTheScreen(Point destPoint)
     }
 }
 
-int UIGameplayMap::getValueAtGameplayMap(int rgb, int posx, int posy, int map)
+int UIGameplayMap::getValueAtGameplayMap(int rgb, int posx, int posy)
 {
     Point loc(Point(posx, posy));
     loc.y = 320 - loc.y;
-    return getValueAtGameplayMap(rgb, loc, map);
+    return getValueAtGameplayMap(rgb, loc);
 }
 
 bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
@@ -1540,26 +1616,16 @@ void UIGameplayMap::restoreLand(void)
     }
 }
 
-//map = 0 -> hotspot, map = 1 -> resources
-int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt, int map)
+
+int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt)
 {
     unsigned char* pixel;
     int x = 3;
 
-    switch (map) {
-    case 1:
-        if (gameplayMapResources->hasAlpha()) {
-            x = 4;
-        }
-        pixel = dataGameplayMapResources + ((int)pt.x + (int)pt.y * gameplayMapResources->getWidth()) * x;
-        break;
-    default:
-        if (gameplayMapHotSpot->hasAlpha()) {
-                x = 4;
-        }
-        pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
-        break;
+    if (gameplayMapHotSpot->hasAlpha()) {
+        x = 4;
     }
+    pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
 
     switch (rgb) {
     case 0: {
@@ -1709,7 +1775,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     }
     
     //delete wave nodes
-    this->getChildByName("graphicBackground")->removeAllChildren();
+    this->getChildByName("menuGraphic")->getChildByName("graphicBackground")->removeAllChildren();
     ((MenuItem*)this->getChildByName("timeMenu")->getChildByName("playToggle"))->setEnabled(false);
     
     this->addChild(window, 10);
@@ -1966,13 +2032,13 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
     int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());
     switch (geometry) {
     default:
-        int k = -GameData::getInstance()->getResourcesWidth()*2;
-        while (k <= GameData::getInstance()->getResourcesWidth()*2) {
-            for (int j = -2; j < 3; j++) {
+        int k = -GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize();
+        while (k <= GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize()) {
+            for (int j = - GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
                 //exploitedMapTextureData[position + j + k] = colour;
                 exploitedMapTextureData[position + j + k] = Color4B(0, 0, 0, 0);
             }
-            k += GameData::getInstance()->getResourcesWidth()*2;
+            k += GameData::getInstance()->getResourcesWidth();
         }
         break;
     }
@@ -2065,7 +2131,10 @@ void UIGameplayMap::update(float delta)
             //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
 
             // TODO everything stopped if _message?
-            updateWave(int(0));
+            updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
+            updateWave(1, Agent::_resourcesPool.at(0).at(Wood), 2000, Color4B(0, 249, 105, 255));
+            updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), 2000, Color4B(229, 232, 5, 255));
+            updateWave(3, Agent::_resourcesPool.at(0).at(Stone), 2000, Color4B(225, 144, 57, 255));
             
             pthread_mutex_unlock(&gameLevelMutex);
         }
@@ -2179,21 +2248,23 @@ void UIGameplayMap::setMessage( const Message * message )
     pauseDarkBackground->setVisible(false);
 }
 
-void UIGameplayMap::updateWave(int indexAgent)
+void UIGameplayMap::updateWave(int index, int variable, int maxVariable, Color4B color)
 {
-    float height = float(GameLevel::getInstance()->getAgents().at(indexAgent).size())/float(GameLevel::getInstance()->getMaxAgents().at(indexAgent)) * lifeBars.at(indexAgent)->getContentSize().height * GameData::getInstance()->getRaHConversion();
+    auto graphicBackground = (MenuItem*)this->getChildByName("menuGraphic")->getChildByName("graphicBackground");
+    
+    float height = float(variable)/float(maxVariable) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
 
     // Space the verticies out evenly across the screen for the wave.
-    float vertexHorizontalSpacing = lifeBars.at(indexAgent)->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
     
     // Used to increment to the next vertexX position.
-    float currentWaveVertX = this->convertToWorldSpace(lifeBars.at(indexAgent)->getPosition()).x - (lifeBars.at(indexAgent)->getContentSize().width * GameData::getInstance()->getRaWConversion() / 2);
+    float currentWaveVertX = this->convertToWorldSpace(graphicBackground->getPosition()).x - (graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion() / 2);
 
     WavePoint w;
     w.x = currentWaveVertX + vertexHorizontalSpacing * GameLevel::getInstance()->getTimeSteps();
-    w.y = height + this->convertToWorldSpace(lifeBars.at(indexAgent)->getPosition()).y - (lifeBars.at(indexAgent)->getContentSize().height * GameData::getInstance()->getRaHConversion() / 2);
+    w.y = height + this->convertToWorldSpace(graphicBackground->getPosition()).y - (graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion() / 2);
     w.z = 0;
-    waveNodes.at(indexAgent)->addToDynamicVerts3D(w, Color4B(179, 205, 221, 255));
+    waveNodes.at(index)->addToDynamicVerts3D(w, color);
 }
 
 void UIGameplayMap::restoreGameplayMap(void)

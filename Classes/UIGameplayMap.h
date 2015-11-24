@@ -74,8 +74,9 @@ public:
     void plusAttCallback(Ref* pSender);
     void hideAchievementWindowCallback(Ref* pSender);
     void removeFingerSpot(Ref* pSender);
+    void changeGraphicCallback(Ref* pSender);
 
-    int getValueAtGameplayMap(int rgb, int posx, int posy, int map);
+    int getValueAtGameplayMap(int rgb, int posx, int posy);
 
     bool isInBoostResistanceArea(int posx, int posy);
     void restoreLand(void);
@@ -95,9 +96,9 @@ public:
 private:
     Sprite* gameplayMap;
     Image* gameplayMapHotSpot;
-    Image* gameplayMapResources;
+    //Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;
-    unsigned char* dataGameplayMapResources;
+    //unsigned char* dataGameplayMapResources;
 
     MenuItem* fingerSpot;
 
@@ -122,11 +123,10 @@ private:
     Sprite* pauseDarkBackground;
     float timeProgressBar = 0.0;
     
-    Vector<Sprite*> lifeBars;
     std::vector<Vec2*> *numAgentsEvolutionPoints;
     PointArray *numAgentsEvolution;
     int indexAgentsEvolution = 0;
-    DrawNode *agentsEvolution;
+    // 0 = population, 1 = wood, 2 = mineral, 3 = stone
     vector<WaveNode*> waveNodes;
 
     Label* timeSteps;
@@ -155,7 +155,7 @@ private:
     
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
-    int getValueAtGameplayMap(int rgb, Point pt, int map);
+    int getValueAtGameplayMap(int rgb, Point pt);
 
     void createTimingThread(void);
     static void* createTiming(void* arg);
@@ -196,7 +196,7 @@ private:
 public:
     // tutorial related methods
     void setMessage(const Message * message);
-    void updateWave(int indexAgent);
+    void updateWave(int index, int variable, int maxVariable, Color4B color);
 };
 
 #endif /* defined(__simulplay__UIGameplayMap__) */
