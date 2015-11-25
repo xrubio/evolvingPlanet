@@ -726,8 +726,8 @@ void UIGameplayMap::changeSpotPosition()
     {
         verticalMargin = visibleSize.height;
     }
-        
-    Point nextDirection(firstTouchLocation.x / float(visibleSize.width / 480.0), (firstTouchLocation.y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0));
+    
+    Point nextDirection(gameplayMap->convertToNodeSpace(firstTouchLocation).x / float(visibleSize.width / 480.0), (gameplayMap->convertToNodeSpace(firstTouchLocation).y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0));
     GameLevel::getInstance()->setAgentDirection(0, nextDirection);
         
     auto fadeFinger = FadeIn::create(1);
