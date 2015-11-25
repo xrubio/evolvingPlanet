@@ -466,23 +466,23 @@ bool UIGameplayMap::init()
     const GameLevel::Levels & modifAttr = GameLevel::getInstance()->getModifiableAttr();
     
     auto graphicBackground = MenuItemImage::create("gui/GraphicBackground.jpg", "gui/GraphicBackground.jpg", CC_CALLBACK_1(UIGameplayMap::changeGraphicCallback, this));
+    graphicBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     graphicBackground->setPosition(10.15 * visibleSize.width / 11, 0.55 * visibleSize.height / 7.5);
     graphicBackground->setName("graphicBackground");
 
     auto menuGraphic = Menu::create(graphicBackground, nullptr);
-    menuGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     menuGraphic->setPosition(Vec2::ZERO);
     menuGraphic->setName("menuGraphic");
     this->addChild(menuGraphic, 1);
     
-    auto labelGraphic = Label::createWithTTF("AGENTS", "fonts/BebasNeue.otf", 40);
-    labelGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() + (graphicBackground->getContentSize().height / 2) + (labelGraphic->getContentSize().height / 2));
+    auto labelGraphic = Label::createWithTTF("AGENTS", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    labelGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() + (graphicBackground->getBoundingBox().size.height / 2) + (labelGraphic->getBoundingBox().size.height / 2));
     labelGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelGraphic->setName("graphicLabel");
     this->addChild(labelGraphic);
     
-    auto labelCounterGraphic = Label::createWithTTF("( 1 / 4 )", "fonts/BebasNeue.otf", 40);
-    labelCounterGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() - (graphicBackground->getContentSize().height / 2) - (labelCounterGraphic->getContentSize().height / 2));
+    auto labelCounterGraphic = Label::createWithTTF("( 1 / 4 )", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    labelCounterGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() - (graphicBackground->getBoundingBox().size.height / 2) - (labelCounterGraphic->getBoundingBox().size.height / 2));
     labelCounterGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
