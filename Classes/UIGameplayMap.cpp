@@ -399,21 +399,24 @@ bool UIGameplayMap::init()
         goalMark1star->setPosition(posXcentered, (timeBorderBar->getContentSize().height / 2));
         float pixelPerStepMark = goalMark1star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
         float sizeInPixelsMark = (GameLevel::getInstance()->getGoals().at(i)->getMaxTime() - GameLevel::getInstance()->getGoals().at(i)->getMinTime()) * pixelPerStepMark;
-        goalMark1star->setScaleX(sizeInPixelsMark / goalMark1star->getTexture()->getPixelsWide());
+        float sizeRatio = timeBorderBar->getContentSize().width/goalMark1star->getTexture()->getPixelsWide();
+        goalMark1star->setScaleX(sizeRatio *sizeInPixelsMark / goalMark1star->getTexture()->getPixelsWide());
         timeBorderBar->addChild(goalMark1star, 1);
-        
+       
         auto goalMark2star = Sprite::create("gui/GoalMark2.png");
         goalMark2star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
         pixelPerStepMark = goalMark2star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
         sizeInPixelsMark = (GameLevel::getInstance()->getGoals().at(i)->getDesviation2Star() * 2) * pixelPerStepMark;
-        goalMark2star->setScaleX(sizeInPixelsMark / goalMark2star->getTexture()->getPixelsWide());
+        sizeRatio = timeBorderBar->getContentSize().width/goalMark2star->getTexture()->getPixelsWide();
+        goalMark2star->setScaleX(sizeRatio * sizeInPixelsMark / goalMark2star->getTexture()->getPixelsWide());
         timeBorderBar->addChild(goalMark2star, 1);
         
         auto goalMark3star = Sprite::create("gui/GoalMark3.png");
         goalMark3star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
         pixelPerStepMark = goalMark3star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
         sizeInPixelsMark = (GameLevel::getInstance()->getGoals().at(i)->getDesviation3Star() * 2) * pixelPerStepMark;
-        goalMark3star->setScaleX(sizeInPixelsMark / goalMark3star->getTexture()->getPixelsWide());
+        sizeRatio = timeBorderBar->getContentSize().width/goalMark3star->getTexture()->getPixelsWide();
+        goalMark3star->setScaleX(sizeRatio * sizeInPixelsMark / goalMark3star->getTexture()->getPixelsWide());
         timeBorderBar->addChild(goalMark3star, 1);
         
         /*auto goalHex = DrawNode::create();

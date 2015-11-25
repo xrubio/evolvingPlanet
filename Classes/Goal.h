@@ -42,21 +42,13 @@ public:
     Goal(int agentType, int min, int max, int average, int des2, int des3);
 
     int getAgentType(void);
-    void setAgentType(int agType);
     int getMinTime(void);
-    void setMinTime(int min);
     int getMaxTime(void);
-    void setMaxTime(int max);
     int getAverageTime(void);
-    void setAverageTime(int average);
     int getDesviation2Star(void);
-    void setDesviation2Star(int des);
     int getDesviation3Star(void);
-    void setDesviation3Star(int des);
     bool getCompleted(void);
-    void setCompleted(bool c);
     int getScore(void);
-    void setScore(int s);
     virtual GoalType getGoalType() const = 0;
 
     virtual bool checkGoal(int type = 0, Agent* agent = nullptr) = 0;
