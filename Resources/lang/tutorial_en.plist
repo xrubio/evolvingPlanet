@@ -10,14 +10,15 @@
 	<string>Tap to continue</string>
 	<key>LEVEL1M1</key>
 	<string>Professor, welcome to the Console.
-    
-Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the next weeks looking at it! Allow me to give you a quick reminder on how does it work.</string>
+Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the next weeks looking at it and drinking coffee.</string>
 	<key>LEVEL1M2</key>
 	<string>The Console shows you data collected by satellites deployed around the planet.</string>
 	<key>LEVEL1M3</key>
-	<string>The mission takes place inside this landscape. You can zoom in/out pinching the screen, or pan around sliding your finger through the screen.</string>
+	<string>The mission takes place inside this landscape.
+You can zoom in/out pinching the screen, or pan around sliding your finger through the screen.</string>
 	<key>LEVEL1M4</key>
-	<string>The landscape is full of features. For example, this hexagon is a mountain.</string>
+	<string>The landscape is full of features.
+For example, this hexagon is a mountain.</string>
 	<key>LEVEL1M5</key>
 	<string>This arid area here has almost no vegetation. Not a comfy area to live.</string>
 	<key>LEVEL1M6</key>
@@ -25,110 +26,128 @@ Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the 
 	<key>LEVEL1M7</key>
 	<string>The environment is not always that dangerous. Survival is easier in forests like this one.</string>
 	<key>LEVEL1M8</key>
-	<string>The Console shows your bots are these little dots. We have deployed a small initial population in this area.</string>
+	<string>The Console shows your bots are these little dots.
+We have deployed a small initial population in this area.</string>
 	<key>LEVEL1M9</key>
-	<string>This first mission is a dispersal. Your bots should arrive to the blinking hexagon in your bottom right.</string>
+	<string>This first mission is a dispersal.
+Your bots should arrive to the blinking hexagon in your bottom right.</string>
 	<key>LEVEL1M10</key>
-	<string>You will supervise that the bots arrive there within the time span identified in the archaeological evidence. The closer you get, the better.</string>
+	<string>You will supervise that the bots arrive there within the time span identified in the archaeological evidence.
+The closer you get, the better.</string>
 	<key>LEVEL1M11</key>
 	<string>Tap the Play button to see what are your bots doing.</string>
 	<key>LEVEL1M12</key>
-	<string>The bots move, reproduce and die without your intervention. We developed some cool tools to guide them to the mission objectives.</string>
+	<string>The bots move, reproduce and die without your intervention.
+We developed some cool tools to guide them to the mission objectives.</string>
 	<key>LEVEL1M13</key>
-	<string>The first one is the orientation marker. Tap twice in any place of the map to suggest the direction of dispersion to your population.</string>
+	<string>The first one is the orientation marker.
+Tap twice in any place of the map to suggest the direction of dispersion to your population.</string>
 	<key>LEVEL1M14</key>
-	<string>The second one is the evolution track. You begin with 10 EvoPoints and receive additional points during the mission..</string>
+	<string>The second one is the evolution track.
+You begin with 10 EvoPoints and receive additional points during the mission.</string>
 	<key>LEVEL1M15</key>
-	<string>EvoPoints are used to increase the three attributes. Tap here to spend 1 EvoPoint and upgrade Mobility to Level 2.</string>
+	<string>EvoPoints are used to increase the three attributes.
+Tap here to spend 1 EvoPoint and upgrade Mobility to Level 2.</string>
 	<key>LEVEL1M16</key>
-	<string>Reproduction controls the fertility of your bots. Move it to level 2.</string>
+	<string>Reproduction controls the fertility of your bots.
+Move it to level 2.</string>
 	<key>LEVEL1M17</key>
-	<string>Each change of an attribute costs 1 additional EvoPoints, as it is highlighted in yellow. Increase it to 3.</string>
+	<string>Each change of an attribute costs 1 additional EvoPoints, as it is highlighted in yellow.
+Increase it to 3.</string>
 	<key>LEVEL1M18</key>
 	<string>Tap again to set Reproduction to 4.</string>
 	<key>LEVEL1M19</key>
-	<string>Increasing Resistance improves the survival skills of your bots. Spend the remanining on this attribute.</string>
+	<string>Increasing Resistance improves the survival skills of your bots.
+Spend the remanining on this attribute.</string>
 	<key>LEVEL1M20</key>
 	<string>Use the remaining 2 EvoPoints to increase Resistance again.</string>
 	<key>LEVEL1M21</key>
 	<string>Deployment finished! Let&apos;s see if the bots survive with these traits.</string>
 	<key>LEVEL1M22</key>
-	<string>This panel shows how your population is increasing. Set now the orientation marker within the goal zone.</string>
+	<string>This panel shows how your population is increasing.
+Set now the orientation marker within the goal zone.</string>
 	<key>LEVEL1M23</key>
 	<string>As you can see here you received additional EvoPoints.</string>
 	<key>LEVEL1M24</key>
-	<string>You should now increase Resistance and then focus on Mobility. Good luck!</string>
+	<string>You should now increase Resistance and then focus on Mobility.
+Good luck!</string>
 	<key>LEVEL2M1</key>
 	<string>Some missions have more than one goal as shown in the top of the Console.</string>
 	<key>LEVEL2M2</key>
-	<string>You have to arrive to each goal within the bright interval. If you arrive before or after this span the mission will fail.</string>
+	<string>You have to arrive to each goal within the bright interval.
+If you arrive before or after this span the mission will fail.</string>
 	<key>LEVEL2M3</key>
 	<string>The best arrival time is marked by the highlighted zone.</string>
 	<key>LEVEL2M4</key>
 	<string>A final note: regions like this mountain range are too hostile to your bots, so they cannot live there.</string>
 	<key>LEVEL3M1</key>
-	<string>Welcome Professor. You will use a new tool in this mission.</string>
+	<string>Welcome Professor.
+You will use a new tool in this mission.</string>
 	<key>LEVEL3M2</key>
-	<string>These are TAPATBCT: Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits.</string>
+	<string>The technical term is Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits.</string>
 	<key>LEVEL3M3</key>
 	<string>The team just call them Boosts.</string>
 	<key>LEVEL3M4</key>
-	<string>They allow you to use EvoPoints to temporally increase an attribute.</string>
+	<string>They use EvoPoints to temporally increase an attribute.</string>
 	<key>LEVEL3M5</key>
-	<string>You got two Boosts for this mission. The first one increase Reproduction. Tap it now.</string>
+	<string>You got two Boosts for this mission. The first one increases Reproduction.
+Tap it now.</string>
 	<key>LEVEL3M6</key>
 	<string>Please don&apos;t ask how did we achieve this baby boom...</string>
 	<key>LEVEL3M7</key>
-	<string>The second Boost increases Resistance, and it has an area of effect. You need to tap and drag towards the zone you wish to improve your bots.</string>
+	<string>The second Boost increases Resistance, and it has an area of effect.
+You need to tap and drag towards the zone you wish to improve your bots.</string>
 	<key>LEVEL3M8</key>
-	<string>You will need these boosts to cross reach this desert.</string>
+	<string>You will need these boosts to cross the savanna where the last evidence was found.</string>
 	<key>LEVEL3M9</key>
-	<string>Boosts have a cooldown period so use them wisely. Good luck!</string>
+	<string>Boosts have a cooldown period so use them wisely.
+Good luck!</string>
 	<key>LEVEL4M1</key>
-	<string>It seems that the archaeologists have new clues so let&apos;s repeat the last experiment with this new evidence.</string>
+	<string>We need to replicate this dispersal using a shorter time.</string>
 	<key>LEVEL4M2</key>
-	<string>Technological development was quite relevant here so you have control over this attribute instead of Reproduction. On the other hand the available time to reach your goals is considerable shorter</string>
+	<string>We have replaced Reproduction for Technology.</string>
 	<key>LEVEL4M3</key>
-	<string>It is a peculiar attribute; it is not aparticular behavior of your population, but all of them. When you increase your Technology all the other attributes increase their efficiency</string>
-	<key>LEVEL4M4</key>
-	<string>Try dispersing your population towards the arid zones increasing their technological skills. Good luck!</string>
-	<key>LEVEL5M1</key>
-	<string>Welcome Professor. For the first time your bots will have to share this landscape with other populations. The zone around this river was populated before our arrival.</string>
+	<string>You improve the rest of attributes by increasing the technological skill of your bots.
+Good luck!</string>
+	
+    <key>LEVEL5M1</key>
+	<string>Welcome Professor. The zone around this river was populated before our arrival.</string>
 	<key>LEVEL5M2</key>
-	<string>Interaction between population is a complex process with a diversity of outcomes; it will range from trade and cultural exchange to open conflict. Usually it is a mix of all these processes.</string>
+	<string>Interaction between population will range from trade and cultural exchange to open conflict. It is often a mix of everything.</string>
 	<key>LEVEL5M3</key>
-	<string>It seems that this first contact with another species was not extremely peaceful. Both of them moved south to colonize these arid zones due to environmental stress caused by overpopulation.</string>
+	<string>This first contact was not really peaceful. Overpopulation forced both groups to compete for these arid zones.</string>
 	<key>LEVEL5M4</key>
-	<string>You&apos;ll have to use Resistance boosts and Technology to arrive to the different objectives. You should avoid the other population, as they are far more experience on warfare than you. Good luck!</string>
+	<string>You should avoid the other population. They are far more experience on warfare than you.
+Good luck!</string>
 
     <key>LEVEL6M1</key>
-    <string>Welcome Professor. We have another situation of interaction with a different species.</string>
+    <string>Welcome Professor. In this mission we will influence the other group of bots</string>
     <key>LEVEL6M2</key>
-    <string>We are certain that this population did not have enough mobility to reach the objectives within the time recorded by archaeologists.</string>
+    <string>The Lovans did not have enough mobility to reach the objectives within the observed time.</string>
     <key>LEVEL6M3</key>
-    <string>This population seems to have increased their mobility so we have added a Boost to this attribute</string>
+    <string>Sudden increases in mobility will be replicated by this Boost</string>
     <key>LEVEL6M4</key>
-    <string>On the other hand, a long time ago someone said that if you can't beat your enemies you can always force them to join you...so we have added another attribute called Influence</string>
+    <string>We have also added another attribute called Influence</string>
     <key>LEVEL6M5</key>
-    <string>We are confident that superior mobility and cultural influence would allow your population to ally with the other species and achieve your objectives. It will definitely be faster than fighting them while dispersing. Good luck!</string>
-    
+    <string>Superior mobility and cultural influence should do he trick.
+Good luck!</string>
+
     <key>LEVEL7M1</key>
-    <string>Conflict is unfortunately often present in competition, and this planet is not an exception</string>
+    <string>Lovans engaged on warfare against these poor little blue bots...</string>
     <key>LEVEL7M2</key>
-    <string>We know that our population engaged on warfare against these poor little blue dots...</string>
+    <string>We need to replicate this so you will use the attribute Warfare.</string>
     <key>LEVEL7M3</key>
-    <string>We need to replicate this so you have another attribute here called Warfare</string>
-    <key>LEVEL7M4</key>
-    <string>Both populations will try to disperse to the richer zones displayed here; make sure that our bots are the ones that takes control of the area. Good luck!</string>
+    <string>Both populations will try to disperse to the richer zones displayed here.
+Good luck!</string>
 
     <key>LEVEL9M1</key>
-    <string>We have here a peculiar situation...your population will get involved with two radically different species</string>
+    <string>We have here a peculiar situation...your population will get involved with two radically different species.</string>
     <key>LEVEL9M2</key>
-    <string>The yellow bots are extremely agressive</string>    
+    <string>One of the groups is extremely aggresive...</string>    
     <key>LEVEL9M3</key>
-    <string>In contrast, the blue ones have a strong cultural influence even if their military strength is weak</string>
+    <string>...and the other one has a strong cultural influence.</string>
     <key>LEVEL9M4</key>
-    <string>Our population alternated both strategies, so you have here a couple of new Boosts to use. Good luck!</string>
+    <string>You have here a couple of new Boosts to use. Good luck!</string>
 </dict>
 </plist>
 
