@@ -113,6 +113,13 @@ The uncertainty is killing me, but this is science! We accept an explanation unt
 
 Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other bots.</string>
 
+    <key>BRIEF_LEVEL_11</key>
+	<string>Campaign day 41
+
+    </string>
+	<key>CONTEXT_LEVEL_11_INTRO</key>
+	<string>Exploitation</string>
+
 	<key>LEVEL_1_STORY</key>
 	<string>Who are we? Who created us?</string>
     <key>LEVEL_2_STORY</key>
