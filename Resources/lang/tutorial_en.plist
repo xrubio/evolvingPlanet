@@ -63,29 +63,27 @@ Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the 
 	<key>LEVEL2M2</key>
 	<string>You have to arrive to each goal within the bright interval. If you arrive before or after this span the mission will fail.</string>
 	<key>LEVEL2M3</key>
-	<string>The best arrival time suggested by the evidence is marked by the highlighted zone.</string>
+	<string>The best arrival time is marked by the highlighted zone.</string>
 	<key>LEVEL2M4</key>
-	<string>A final note: regions like this mountain range are too hostile to your bots, so your bots cannot live there.</string>
+	<string>A final note: regions like this mountain range are too hostile to your bots, so they cannot live there.</string>
 	<key>LEVEL3M1</key>
-	<string>Welcome Professor! We are having problems understanding what happened in this zone so you have a new tool in your console: the T.A.P.A.T.B.C.T.</string>
+	<string>Welcome Professor. You will use a new tool in this mission.</string>
 	<key>LEVEL3M2</key>
-	<string>This is the acronym for Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits. Beautiful, isn&apos;t it?</string>
+	<string>These are TAPATBCT: Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits.</string>
 	<key>LEVEL3M3</key>
-	<string>So...to avoid any strokes the team simply called them Boosts.</string>
+	<string>The team just call them Boosts.</string>
 	<key>LEVEL3M4</key>
-	<string>They basically allow you temporaly increase one attribute of your population. You spend EvoPoints using Boosts, so you need to balance changing your attributes with these short-term improvements. After you use them they need a cooldown period because we don&apos;t want the population to rely on this external factor to achieve its goals.</string>
+	<string>They allow you to use EvoPoints to temporally increase an attribute.</string>
 	<key>LEVEL3M5</key>
-	<string>You got two Boosts for this mission. The first one affects your entire population, and increases its rate of reproduction. Press it now.</string>
+	<string>You got two Boosts for this mission. The first one increase Reproduction. Tap it now.</string>
 	<key>LEVEL3M6</key>
 	<string>Please don&apos;t ask how did we achieve this baby boom...</string>
 	<key>LEVEL3M7</key>
-	<string>The second Boost increases the Resistance of the bots in a particular zone. You can tap and drag the finger to the area of effect when you have the needed EvoPoints</string>
+	<string>The second Boost increases Resistance, and it has an area of effect. You need to tap and drag towards the zone you wish to improve your bots.</string>
 	<key>LEVEL3M8</key>
-	<string>Both will be needed to see how did they manage to cross the arid zones of this map.</string>
+	<string>You will need these boosts to cross reach this desert.</string>
 	<key>LEVEL3M9</key>
-	<string>Distribute your initial EvoPoints and tap Play whenever you are ready.</string>
-	<key>LEVEL3M10</key>
-	<string>Good luck!</string>
+	<string>Boosts have a cooldown period so use them wisely. Good luck!</string>
 	<key>LEVEL4M1</key>
 	<string>It seems that the archaeologists have new clues so let&apos;s repeat the last experiment with this new evidence.</string>
 	<key>LEVEL4M2</key>
@@ -93,22 +91,18 @@ Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the 
 	<key>LEVEL4M3</key>
 	<string>It is a peculiar attribute; it is not aparticular behavior of your population, but all of them. When you increase your Technology all the other attributes increase their efficiency</string>
 	<key>LEVEL4M4</key>
-	<string>Try dispersing your population towards the arid zones increasing their technological skills.</string>
-	<key>LEVEL4M5</key>
-	<string>Good luck!</string>
+	<string>Try dispersing your population towards the arid zones increasing their technological skills. Good luck!</string>
 	<key>LEVEL5M1</key>
-	<string>Welcome, Professor. For the first time your bots will have to share this landscape with other populations. The zone around this river was populated before our arrival.</string>
+	<string>Welcome Professor. For the first time your bots will have to share this landscape with other populations. The zone around this river was populated before our arrival.</string>
 	<key>LEVEL5M2</key>
 	<string>Interaction between population is a complex process with a diversity of outcomes; it will range from trade and cultural exchange to open conflict. Usually it is a mix of all these processes.</string>
 	<key>LEVEL5M3</key>
 	<string>It seems that this first contact with another species was not extremely peaceful. Both of them moved south to colonize these arid zones due to environmental stress caused by overpopulation.</string>
 	<key>LEVEL5M4</key>
-	<string>You&apos;ll have to use Resistance boosts and Technology to arrive to the different objectives. You should avoid the other population, as they are far more experience on warfare than you.</string>
-	<key>LEVEL5M5</key>
-	<string>Good luck Professor!</string>
+	<string>You&apos;ll have to use Resistance boosts and Technology to arrive to the different objectives. You should avoid the other population, as they are far more experience on warfare than you. Good luck!</string>
 
     <key>LEVEL6M1</key>
-    <string>Greetings Professor. We have another situation of interaction with a different species.</string>
+    <string>Welcome Professor. We have another situation of interaction with a different species.</string>
     <key>LEVEL6M2</key>
     <string>We are certain that this population did not have enough mobility to reach the objectives within the time recorded by archaeologists.</string>
     <key>LEVEL6M3</key>
@@ -116,9 +110,7 @@ Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the 
     <key>LEVEL6M4</key>
     <string>On the other hand, a long time ago someone said that if you can't beat your enemies you can always force them to join you...so we have added another attribute called Influence</string>
     <key>LEVEL6M5</key>
-    <string>We are confident that superior mobility and cultural influence would allow your population to ally with the other species and achieve your objectives. It will definitely be faster than fighting them while dispersing.</string>
-    <key>LEVEL6M6</key>
-    <string>Good luck Professor!</string>
+    <string>We are confident that superior mobility and cultural influence would allow your population to ally with the other species and achieve your objectives. It will definitely be faster than fighting them while dispersing. Good luck!</string>
     
     <key>LEVEL7M1</key>
     <string>Conflict is unfortunately often present in competition, and this planet is not an exception</string>
@@ -127,9 +119,8 @@ Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the 
     <key>LEVEL7M3</key>
     <string>We need to replicate this so you have another attribute here called Warfare</string>
     <key>LEVEL7M4</key>
-    <string>Both populations will try to disperse to the richer zones displayed here; make sure that our bots are the ones that takes control of the area</string>
-    <key>LEVEL7M5</key>
-    <string>Good luck Professor!</string>
+    <string>Both populations will try to disperse to the richer zones displayed here; make sure that our bots are the ones that takes control of the area. Good luck!</string>
+
     <key>LEVEL9M1</key>
     <string>We have here a peculiar situation...your population will get involved with two radically different species</string>
     <key>LEVEL9M2</key>
@@ -137,9 +128,7 @@ Cool interface, isn&apos;t it? I hope you like it because you&apos;ll spend the 
     <key>LEVEL9M3</key>
     <string>In contrast, the blue ones have a strong cultural influence even if their military strength is weak</string>
     <key>LEVEL9M4</key>
-    <string>Our population alternated both strategies, so you have here a couple of new Boosts to use</string>
-    <key>LEVEL9M5</key>
-    <string>Good luck Professor!</string>
+    <string>Our population alternated both strategies, so you have here a couple of new Boosts to use. Good luck!</string>
 </dict>
 </plist>
 

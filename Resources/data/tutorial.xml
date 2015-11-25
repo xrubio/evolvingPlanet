@@ -63,17 +63,17 @@
         <spot image="tutorial/tTime" centerX="0.535" centerY="0.938"/>
     </message>
     <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M2">
-        <spot image="tutorial/tGoalLength" centerX="0.515" centerY="0.91"/>
+        <spot image="tutorial/tGoalLength" centerX="0.492" centerY="0.91"/>
     </message>
     <message id="3" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M3">  
-        <spot image="tutorial/tArrowTop" centerX="0.515" centerY="0.91"/>
+        <spot image="tutorial/tArrowTop" centerX="0.492" centerY="0.91"/>
     </message>
     <message id="4" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M4">
         <spot image="tutorial/tMountain02" centerX="0.5" centerY="0.5"/>
     </message>
 </level>
 
-<level num="3" numMessages="10">
+<level num="3" numMessages="9">
     <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL3M1">
         <spot image="tutorial/tBoostsArea" centerX="0.11" centerY="0.08"/>
     </message>        
@@ -91,18 +91,16 @@
         <spot image="tutorial/tArid03" centerX="0.5" centerY="0.5"/>
     </message>    
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M9"/>
-    <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M10"/>
 </level>
 
-<level num="4" numMessages="5">
+<level num="4" numMessages="4">
     <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL4M1"/>
     <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M2"/>
     <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M3"/>
     <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M4"/>
-    <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL4M5"/>
 </level>
 
-<level num="5" numMessages="5">
+<level num="5" numMessages="4">
     <message id="1" x="0.5" y="0.3" lineWidth="0.4" trigger="time" step="0" text="LEVEL5M1">
         <spot image="tutorial/tRiver05" centerX="0.5" centerY="0.5"/>
     </message>    
@@ -115,10 +113,9 @@
     <message id="4" x="0.2" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL5M4">
         <spot image="tutorial/tCircle" centerX="0.5" centerY="0.55"/>
     </message>        
-    <message id="5" x="0.6" y="0.7" lineWidth="0.4" trigger="next" text="LEVEL5M5"/>
 </level>
 
-<level num="6" numMessages="6">
+<level num="6" numMessages="5">
     <message id="1" x="0.5" y="0.3" lineWidth="0.4" trigger="time" step="0" text="LEVEL6M1">
         <spot image="tutorial/tCircle" centerX="0.55" centerY="0.67"/>
     </message>    
@@ -135,7 +132,7 @@
     <message id="6" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL6M6"/>
 </level>
 
-<level num="7" numMessages="5">
+<level num="7" numMessages="4">
     <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0" text="LEVEL7M1"/>
     <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL7M2">
         <spot image="tutorial/tCircle" centerX="0.45" centerY="0.8"/>
@@ -149,7 +146,7 @@
     <message id="5" x="0.5" y="0.3" lineWidth="0.4" trigger="next" text="LEVEL7M5"/>
 </level>
 
-<level num="9" numMessages="5">
+<level num="9" numMessages="4">
     <message id="1" x="0.45" y="0.55" lineWidth="0.4" trigger="time" step="0" text="LEVEL9M1"/>
     <message id="2" x="0.45" y="0.55" lineWidth="0.4" trigger="next" text="LEVEL9M2">
         <spot image="tutorial/tCircle" centerX="0.9" centerY="0.7"/>
