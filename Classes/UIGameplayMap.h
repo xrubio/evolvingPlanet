@@ -77,6 +77,7 @@ public:
     void changeGraphicCallback(Ref* pSender);
 
     int getValueAtGameplayMap(int rgb, int posx, int posy);
+    Color4B* getExploitedMapTextureData(void);
 
     bool isInBoostResistanceArea(int posx, int posy);
     void restoreLand(void);
@@ -175,7 +176,7 @@ private:
 
     // 0 = square, 1 = triangle
     inline void drawAgent(Point pos, Color4B colour, int geometry = 0);
-    inline void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
+    inline void drawExploitedMap(Point pos, vector<Color4B> colour, int geometry = 0);
 
     // tutorial related stuff
     /** reference to current message. 0 if no message to show **/
