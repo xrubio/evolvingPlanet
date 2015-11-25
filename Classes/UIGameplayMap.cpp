@@ -402,7 +402,7 @@ bool UIGameplayMap::init()
         float sizeRatio = timeBorderBar->getContentSize().width/goalMark1star->getTexture()->getPixelsWide();
         goalMark1star->setScaleX(sizeRatio *sizeInPixelsMark / goalMark1star->getTexture()->getPixelsWide());
         timeBorderBar->addChild(goalMark1star, 1);
-       
+        
         auto goalMark2star = Sprite::create("gui/GoalMark2.png");
         goalMark2star->setPosition(posXaverage, (timeBorderBar->getContentSize().height / 2));
         pixelPerStepMark = goalMark2star->getTexture()->getPixelsWide() / (float)GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime();
@@ -1926,7 +1926,7 @@ void UIGameplayMap::updateAgents(void)
             
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
-                drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), vector<Color4B>());
+                drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
             }
             /*if (GameLevel::getInstance()->getEnvironmentAdaptation((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()),
@@ -1940,8 +1940,9 @@ void UIGameplayMap::updateAgents(void)
         //restore map
         for (int i = 0; i < GameLevel::getInstance()->getRestored().size(); i++)
         {
-            drawExploitedMap(Point(GameLevel::getInstance()->getRestored().at(i)._point.x, GameLevel::getInstance()->getRestored().at(i)._point.y), GameLevel::getInstance()->getRestored().at(i)._color);
+            drawExploitedMap(Point(GameLevel::getInstance()->getRestored().at(i).x, GameLevel::getInstance()->getRestored().at(i).y), Color4B(255,255,255,255));
         }
+        GameLevel::getInstance()->clearRestored();
         exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
     //pthread_mutex_unlock(&gameLevelMutex);
@@ -2037,7 +2038,7 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
     }
 }
 
-void UIGameplayMap::drawExploitedMap(Point pos, vector<Color4B> colour, int geometry)
+void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
 {
     /*int x = (int)(pos.x * float(GameData::getInstance()->getResourcesWidth() / 480.0));
     int y = (int)(float((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0) + ((pos.y) * float(GameData::getInstance()->getResourcesMargin() / 320.0)));
@@ -2047,18 +2048,30 @@ void UIGameplayMap::drawExploitedMap(Point pos, vector<Color4B> colour, int geom
     int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());    
     switch (geometry) {
     default:
-        int i = 0;
         int k = -GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize();
         while (k <= GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize()) {
             for (int j = - GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
-                if (colour.size() < 1)
+                if (colour.r == 0)
                 {
-                    exploitedMapTextureData[position + j + k].a = 0;
+                    if (Color3B(exploitedMapTextureData[position + j + k]) == Color3B::BLACK)
+                    {
+                        exploitedMapTextureData[position + j + k].a = 1;
+                    }
+                    else
+                    {
+                        exploitedMapTextureData[position + j + k].a = 0;
+                    }
                 }
                 else
                 {
-                    exploitedMapTextureData[position + j + k] = colour.at(i);
-                    i++;
+                    if (exploitedMapTextureData[position + j + k].a != 0)
+                    {
+                        exploitedMapTextureData[position + j + k].a = 1;
+                    }
+                    else
+                    {
+                        exploitedMapTextureData[position + j + k].a = 255;
+                    }
                 }
             }
             k += GameData::getInstance()->getResourcesWidth();
@@ -2191,6 +2204,8 @@ void UIGameplayMap::update(float delta)
         for (size_t i = 0; i < powerButtons.size(); i++) {
             powerButtons.at(i)->update(delta);
         }
+        pthread_mutex_unlock(&gameLevelMutex);
+
 
         evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
 

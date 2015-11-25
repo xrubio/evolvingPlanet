@@ -369,7 +369,7 @@ void GameLevel::setDepleted(int x, int y, bool val)
     }
 }
 
-std::vector<GameLevel::RestoredCell> GameLevel::getRestored(void)
+std::vector<cocos2d::Point> GameLevel::getRestored(void)
 {
     return _restoredVector;
 }
@@ -1108,7 +1108,6 @@ void GameLevel::checkAchievements(void)
 void GameLevel::regenerate(void)
 {
     std::random_shuffle(_depletedVector.begin(), _depletedVector.end());
-    _restoredVector.clear();
     int init = _depletedVector.size() - 1;
     for (int i = init; i >= 0 and i > init - _regenerationRate; i--)
     {
@@ -1118,24 +1117,15 @@ void GameLevel::regenerate(void)
         if ((x > 0 and depletedMap[x - 1][y] == false) or  (x < 479 and depletedMap[x + 1][y] == false) or (y > 0 and depletedMap[x][y - 1] == false) or (y < 319 and depletedMap[x][y + 1] == false))
         {
             depletedMap[x][y] = false;
-            RestoredCell rc;
-            rc._point = Point(x, y);
-            int posx = (int)(x * GameData::getInstance()->getRowDrawAgentPrecalc());
-            int posy = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
-            int position = posx + ((GameData::getInstance()->getResourcesHeight() - posy) * GameData::getInstance()->getResourcesWidth());
-            
-            int k = -GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize();
-            while (k <= GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize()) {
-                for (int j = - GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
-                    rc._color.push_back(gameplayMap->getExploitedMapTextureData()[position + j + k]);
-                }
-                k += GameData::getInstance()->getResourcesWidth();
-            }
-
-            _restoredVector.push_back(rc);
+            _restoredVector.push_back(Point(x, y));
             //TODO millorar l'erase, per exemple: posar x = -1, ordenar i esborrar
             _depletedVector.erase(_depletedVector.begin() + i);
         }
     }
+}
+
+void GameLevel::clearRestored(void)
+{
+    _restoredVector.clear();
 }
 

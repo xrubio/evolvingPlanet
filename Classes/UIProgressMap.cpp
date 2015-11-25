@@ -559,6 +559,7 @@ Layout* UIProgressMap::setEpisode1(void)
         levelButton->setTag(i);
         auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
         levelLabel->setPosition(levelButton->getContentSize().width/2, levelButton->getContentSize().height/2);
+        levelLabel->setHorizontalAlignment(TextHAlignment::LEFT);
         levelButton->addChild(levelLabel);
         levelLabel->setColor(Color3B(32, 47, 55));
         

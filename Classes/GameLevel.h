@@ -75,8 +75,6 @@ public:
     typedef std::vector<int> Levels;
     // current level for each agent type and attribute
     typedef std::vector<Levels> LevelsVector;
-    // point and opacity of restored cell
-    typedef struct {cocos2d::Point _point; std::vector<cocos2d::Color4B> _color;} RestoredCell;
     
     static GameLevel* getInstance();
 
@@ -152,7 +150,7 @@ public:
     void setTimeExploited(int x, int y, int val);
     bool getDepleted(int x, int y);
     void setDepleted(int x, int y, bool val);
-    std::vector<RestoredCell> getRestored(void);
+    std::vector<cocos2d::Point> getRestored(void);
     bool getEnvironmentAdaptation(int x, int y);
     void setEnvironmentAdaptation(int x, int y, bool val);
     int getCurrentAgentType(void);
@@ -198,6 +196,8 @@ public:
     const Levels & getModifiableAttr() const { return _modifiableAtt; }
     // returns a Rect based on center and distance after checking for boundaries
     cocos2d::Rect getArea(const Position & center, int mobility) const;
+    
+    void clearRestored(void);
  
 private:
     static GameLevel* gamelevelInstance;
@@ -233,7 +233,7 @@ private:
     int timeExploitedMap[480][320] = { { 0 } };
     bool depletedMap[480][320] = { { false } };
     std::vector<cocos2d::Point> _depletedVector;
-    std::vector<RestoredCell> _restoredVector;
+    std::vector<cocos2d::Point> _restoredVector;
     bool adaptedMap[480][320] = { { false } };
 
     std::vector<cocos2d::Point> deletedAgents;
@@ -288,6 +288,7 @@ private:
     bool _isFinished;
     //cells per step
     int _regenerationRate = 0;
+    
 };
 
 #endif /* defined(__simulplay__GameLevel__) */
