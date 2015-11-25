@@ -75,6 +75,8 @@ public:
     typedef std::vector<int> Levels;
     // current level for each agent type and attribute
     typedef std::vector<Levels> LevelsVector;
+    // point and opacity of restored cell
+    typedef struct {cocos2d::Point _point; std::vector<cocos2d::Color4B> _color;} RestoredCell;
     
     static GameLevel* getInstance();
 
@@ -150,6 +152,7 @@ public:
     void setTimeExploited(int x, int y, int val);
     bool getDepleted(int x, int y);
     void setDepleted(int x, int y, bool val);
+    std::vector<RestoredCell> getRestored(void);
     bool getEnvironmentAdaptation(int x, int y);
     void setEnvironmentAdaptation(int x, int y, bool val);
     int getCurrentAgentType(void);
@@ -158,18 +161,18 @@ public:
     int getMaxAllAgents(void);
     void setMaxAllAgents(int m);
     void setAgentDirection(int agentType, cocos2d::Point p);
-    
     void setAgentFutureDirections(std::vector<std::vector<pair<int, cocos2d::Point> > > afd);
     void setAgentFutureDirection(int type, int step, cocos2d::Point p);
     void setAgentPixelSize(int i);
     int getAgentPixelSize(void);
     void setEvolutionPointsFreq(int i);
     int getEvolutionPointsFreq(void);
-    
     Achievement* getInGameAchievement(void);
     void setInGameAchievement(Achievement *ach);
     bool getPowersUsed(void);
     void setPowersUsed (bool p);
+    int getRegenerationRate(void);
+    void setRegenerationRate(int r);
 
     
     vector<string> getCompletedAchievements(void);
@@ -229,6 +232,8 @@ private:
     //Resources exploitment
     int timeExploitedMap[480][320] = { { 0 } };
     bool depletedMap[480][320] = { { false } };
+    std::vector<cocos2d::Point> _depletedVector;
+    std::vector<RestoredCell> _restoredVector;
     bool adaptedMap[480][320] = { { false } };
 
     std::vector<cocos2d::Point> deletedAgents;
@@ -277,8 +282,12 @@ private:
     void deleteAgent(Agent* agent);
     //check achievements
     void checkAchievements(void);
+    //regenerate wood
+    void regenerate(void);
 
-    bool _isFinished; 
+    bool _isFinished;
+    //cells per step
+    int _regenerationRate = 0;
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

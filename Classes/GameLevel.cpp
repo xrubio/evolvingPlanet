@@ -363,6 +363,15 @@ bool GameLevel::getDepleted(int x, int y)
 void GameLevel::setDepleted(int x, int y, bool val)
 {
     depletedMap[x][y] = val;
+    if (val)
+    {
+        _depletedVector.push_back(Point(x, y));
+    }
+}
+
+std::vector<GameLevel::RestoredCell> GameLevel::getRestored(void)
+{
+    return _restoredVector;
 }
 
 bool GameLevel::getEnvironmentAdaptation(int x, int y)
@@ -465,6 +474,16 @@ void GameLevel::setPowersUsed (bool p)
     _powersUsed = p;
 }
 
+int GameLevel::getRegenerationRate(void)
+{
+    return _regenerationRate;
+}
+
+void GameLevel::setRegenerationRate(int r)
+{
+    _regenerationRate = r;
+}
+
 vector<string> GameLevel::getCompletedAchievements(void)
 {
     return completedAchievements;
@@ -562,6 +581,9 @@ void GameLevel::resetLevel(void)
     
     completedAchievements.clear();
     _inGameAchievement = nullptr;
+    _regenerationRate = 0;
+    _depletedVector.clear();
+    _restoredVector.clear();
         
 }
 
@@ -918,6 +940,12 @@ void GameLevel::act(void)
         }
         executeActions(agentType);
     }
+    if (_regenerationRate > 0)
+    {
+        regenerate();
+    }
+    
+    CCLOG("%d %d", _depletedVector.size(), _restoredVector.size());
     
     //DISCOVER ACHIEVEMENT
     if (_inGameAchievement != nullptr)
@@ -1075,5 +1103,39 @@ void GameLevel::checkAchievements(void)
         }
     }
     CCLOG("COMPLETED %lu ACHIEVEMENTS", completedAchievements.size());
+}
+
+void GameLevel::regenerate(void)
+{
+    std::random_shuffle(_depletedVector.begin(), _depletedVector.end());
+    _restoredVector.clear();
+    int init = _depletedVector.size() - 1;
+    for (int i = init; i >= 0 and i > init - _regenerationRate; i--)
+    {
+        int x = int(_depletedVector.at(i).x);
+        int y = int(_depletedVector.at(i).y);
+        //check neighbour cells are depleted (left, right, top, bottom) TODO not checking if the cells are wood
+        if ((x > 0 and depletedMap[x - 1][y] == false) or  (x < 479 and depletedMap[x + 1][y] == false) or (y > 0 and depletedMap[x][y - 1] == false) or (y < 319 and depletedMap[x][y + 1] == false))
+        {
+            depletedMap[x][y] = false;
+            RestoredCell rc;
+            rc._point = Point(x, y);
+            int posx = (int)(x * GameData::getInstance()->getRowDrawAgentPrecalc());
+            int posy = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
+            int position = posx + ((GameData::getInstance()->getResourcesHeight() - posy) * GameData::getInstance()->getResourcesWidth());
+            
+            int k = -GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize();
+            while (k <= GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize()) {
+                for (int j = - GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
+                    rc._color.push_back(gameplayMap->getExploitedMapTextureData()[position + j + k]);
+                }
+                k += GameData::getInstance()->getResourcesWidth();
+            }
+
+            _restoredVector.push_back(rc);
+            //TODO millorar l'erase, per exemple: posar x = -1, ordenar i esborrar
+            _depletedVector.erase(_depletedVector.begin() + i);
+        }
+    }
 }
 

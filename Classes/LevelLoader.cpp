@@ -74,6 +74,11 @@ void LevelLoader::loadXmlFile(string filename)
     while (attsConfig != nullptr)
     {
         string k = attsConfig.attribute("NAME").value();
+        //check if there is regeneration
+        if(atoi(attsConfig.attribute("REGENERATION").value()) > 0)
+        {
+            GameLevel::getInstance()->setRegenerationRate(atoi(attsConfig.attribute("REGENERATION").value()));
+        }
         std::stringstream test(attsConfig.child_value("VALUES"));
         std::string segment;
         
