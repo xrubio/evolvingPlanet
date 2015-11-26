@@ -25,5 +25,10 @@ $ android-build.py cpp-tests
 
 This should get android/cocos2d-x up and running
 
-TODO
+## compile and execute
+
+$ cocos compile -p android
+$ cocos run -s . -p android -m release
+o debug:
+$ cocos run -s . -p android
 
