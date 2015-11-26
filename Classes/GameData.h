@@ -88,9 +88,9 @@ public:
     float getResourcesMargin(void);
     void setResourcesMargin(int r);
     
-    cocos2d::Color3B getAgentColor(void);
-    string getAgentColorString(void);
-    void setAgentColor(string c);
+    cocos2d::Color3B getPlayerColor(void);
+    string getPlayerColorString(void);
+    void setPlayerColor(string c);
 
     void loadAchievements(void);
     void resetGameProgress(void);
@@ -122,7 +122,7 @@ private:
     float resourcesHeight;
     float resourcesWidth;
     float resourcesMargin;
-    cocos2d::Color3B _agentColor = cocos2d::Color3B(255, 4, 4);
+    cocos2d::Color3B _playerColor = cocos2d::Color3B(255, 4, 4);
 
 };
 

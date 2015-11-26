@@ -1408,6 +1408,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(0));
         graphicBackground->addChild(waveNodes.at(1), 1, 1);
+        agentColor = 1;
         graphicLabel->setString("WOOD");
         graphicCounterLabel->setString("( 2 / 4 )");
     }
@@ -1415,6 +1416,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(1));
         graphicBackground->addChild(waveNodes.at(2), 1, 1);
+        agentColor = 2;
         graphicLabel->setString("MINERAL");
         graphicCounterLabel->setString("( 3 / 4 )");
     }
@@ -1422,6 +1424,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(2));
         graphicBackground->addChild(waveNodes.at(3), 1, 1);
+        agentColor = 3;
         graphicLabel->setString("STONE");
         graphicCounterLabel->setString("( 4 / 4 )");
     }
@@ -1429,6 +1432,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(3));
         graphicBackground->addChild(waveNodes.at(0), 1, 1);
+        agentColor = 0;
         graphicLabel->setString("AGENTS");
         graphicCounterLabel->setString("( 1 / 4 )");
     }
@@ -1711,7 +1715,7 @@ void UIGameplayMap::initializeAgents(void)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); it++)
         {
-            Color3B c = GameData::getInstance()->getAgentColor();
+            Color3B c = GameData::getInstance()->getPlayerColor();
             Color4B color = Color4B(c.r, c.g, c.b, (*it)->getLife() * (255 / 175));
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
@@ -1910,44 +1914,34 @@ void UIGameplayMap::updateAgents(void)
     pthread_mutex_lock(&gameLevelMutex);
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
 
-    Color4B white = Color4B::WHITE;
-    white.a = 0;
-    /*for (int i = 0; i < (int)Director::getInstance()->getVisibleSize().width * (int)Director::getInstance()->getVisibleSize().height; i++) {
-        agentsTextureData[i] = white;
-    }*/
+    Color4B transparent = Color4B::WHITE;
+    transparent.a = 0;
     for (size_t i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++)
     {
-        /*int x = (int)(GameLevel::getInstance()->getDeletedAgents()[i].x * GameData::getInstance()->getRowDrawAgentPrecalc());
-        int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((GameLevel::getInstance()->getDeletedAgents()[i].y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
-        
-        auto p = ParticleSmoke::create();
-        p->setPosition(Vec2(x, y));
-        p->setAutoRemoveOnFinish(true);
-        p->setDuration(0.01);
-        p->setLife(0.05);
-        p->setScale(0.07);
-        gameplayMap->addChild(p);*/
-
-        drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
+        drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), transparent);
     }
 
-    Color3B agentColorPlayer = GameData::getInstance()->getAgentColor();
+    Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();
     for (int i = agentsDomain.size() - 1; i >= 0 ; i--)
     {
+        int resourcesPainted = 0;
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {
             Color4B color;
-            // TODO XRC not sure if it works ok with value instead of level
             switch (agentColor) {
+            //wood
             case 1:
-                color = Color4B(212, 105, 11, (*it)->getValue(GameLevel::getInstance()->getModifiableAttr().at(0)) * (255 / 5));
+                color = Color4B(0, 249, 105, 255);
                 break;
+            //mineral
             case 2:
-                color = Color4B(5, 5, 117, (*it)->getValue(GameLevel::getInstance()->getModifiableAttr().at(1)) * (255 / 5));
+                color = Color4B(229, 232, 5, 255);
                 break;
+            //stone
             case 3:
-                color = Color4B(115, 8, 214, (*it)->getValue(GameLevel::getInstance()->getModifiableAttr().at(2)) * (255 / 5));
+                color = Color4B(225, 144, 57, 255);
                 break;
+            //normal
             default:
                 switch ((*it)->getType()) {
                 case 1:
@@ -1964,6 +1958,19 @@ void UIGameplayMap::updateAgents(void)
                     break;
                 }
                 break;
+            }
+            
+            //check num_agents painted in accordance with num_resources if not painting population
+            if (agentColor > 0)
+            {
+                if (resourcesPainted < Agent::_resourcesPool.at(i).at(agentColor - 1))
+                {
+                    resourcesPainted++;
+                }
+                else
+                {
+                    color = transparent;
+                }
             }
             
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);

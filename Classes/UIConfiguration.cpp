@@ -156,7 +156,7 @@ bool UIConfiguration::init()
     purpleButton->setPosition(Vec2(23 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
     colorItems.pushBack(purpleButton);
     
-    string color = GameData::getInstance()->getAgentColorString();
+    string color = GameData::getInstance()->getPlayerColorString();
     if (color == "red") {
         redButton->setEnabled(false);
     }
@@ -250,7 +250,7 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
     UserDefault::getInstance()->setStringForKey("language", GameData::getInstance()->getLanguage());
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
-    UserDefault::getInstance()->setStringForKey("agentColor", GameData::getInstance()->getAgentColorString());
+    UserDefault::getInstance()->setStringForKey("playerColor", GameData::getInstance()->getPlayerColorString());
     UserDefault::getInstance()->flush();
 
     auto scene = UIMainMenu::createScene();
@@ -298,7 +298,7 @@ void UIConfiguration::colorCallback(Ref* pSender)
     }
 
     auto color = (MenuItem*)pSender;
-    GameData::getInstance()->setAgentColor(color->getName());
+    GameData::getInstance()->setPlayerColor(color->getName());
     for (int i = 0; i < color->getParent()->getChildren().size(); i++)
     {
         ((MenuItem*)(color->getParent()->getChildren().at(i)))->setEnabled(true);
