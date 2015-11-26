@@ -62,8 +62,10 @@ void UIGlobalPower::onTouchesBegan(Point touchLocation)
     {
         //DO NOTHING
     }
-    else if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
-        if (GameData::getInstance()->getSFX() == true) {
+    else if(!power->isActivated() and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation))
+    {
+        if (GameData::getInstance()->getSFX() == true)
+        {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
         clicked = true;
@@ -79,11 +81,14 @@ void UIGlobalPower::onTouchesMoved(Touch* touchLocation)
 
 bool UIGlobalPower::onTouchesEnded(Point touchLocation)
 {
+     CCLOG("bar");
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked) {
+    if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked)
+    {
         //Activar boost reproduction un cop s'ha tocat i soltat a sobre la imatge que toca
         //icon->setColor(Color3B::GRAY);
-        power->setDurationLeft(power->getDuration());
+        CCLOG("oeoe");
+        power->activate();
         GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - power->getCost());
         ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
         //cooldownTimer->setVisible(true);
@@ -122,7 +127,8 @@ void UIGlobalPower::update(float delta)
         actionTimer->setPercentage(100.0);
         actionTime = 0.0;
         //cooldown->setVisible(false);
-        if (GameLevel::getInstance()->getTimeSpeed() > 0){
+        if(!GameLevel::getInstance()->isPlaying())
+        {
             cooldownTimer->setVisible(false);
         }
         if (active->isVisible() == false) {

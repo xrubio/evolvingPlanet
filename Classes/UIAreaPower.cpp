@@ -71,7 +71,7 @@ void UIAreaPower::onTouchesBegan(Point touchLocation)
     {
         //DO NOTHING
     }
-    else if (power->getCooldownLeft() <= 0 and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
+    else if (!power->getCooldownLeft() and GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation)) {
         
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
@@ -106,7 +106,8 @@ bool UIAreaPower::onTouchesEnded(Point touchLocation)
         auto button = (Sprite*)icon->getChildByTag(0);
         button->setColor(Color3B::WHITE);
         if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) == false) {
-            power->setDurationLeft(power->getDuration());
+
+            power->activate();
             ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
             GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - power->getCost());
             //cooldownTimer->setVisible(true);
@@ -128,14 +129,15 @@ void UIAreaPower::update(float delta)
     ProgressTimer* cooldownTimer = (ProgressTimer*)icon->getChildByTag(2);
 
     actionTimer->setPercentage((power->getDurationLeft() / power->getDuration()) * 100.0);
-    
-    if (clicked == false and power->getDurationLeft() <= 0) {
+   
+    // area is not visible if not clicked and not activated
+    if (clicked == false and !power->isActivated())
+    {
         area->setVisible(false);
     }
+
     if (power->getCooldownLeft() > 0) {
         if (actionTimer->getPercentage() == 0) {
-            //cooldown->setVisible(true);
-            //cooldown->setString(to_string(power->getCooldownLeft()));
             ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);
             active->setVisible(false);
             cooldownTimer->setVisible(true);
@@ -143,28 +145,25 @@ void UIAreaPower::update(float delta)
         }
     }
     else {
-        //cooldown->setVisible(false);
         actionTime = 0.0;
         actionTimer->setPercentage(100.0);
-        if (GameLevel::getInstance()->getTimeSpeed() > 0){
+        if (GameLevel::getInstance()->isPlaying())
+        {
             cooldownTimer->setVisible(false);
         }
         if (active->isVisible() == false) {
             if (GameLevel::getInstance()->getEvolutionPoints() >= power->getCost())
             {
                 disabled = false;
-                /*actionTimer->setColor(Color3B::WHITE);
-                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::WHITE);*/
                 cooldownTimer->setVisible(false);
                 cooldownTimer->setPercentage(0);
             }
             else {
                 disabled = true;
-                /*actionTimer->setColor(Color3B::GRAY);
-                ((Sprite *)icon->getChildByTag(0))->setColor(Color3B::GRAY);*/
                 cooldownTimer->setVisible(true);
                 cooldownTimer->setPercentage(100);
             }
         }
     }
 }
+

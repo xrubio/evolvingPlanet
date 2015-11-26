@@ -48,34 +48,35 @@ class Power
     PowerId id;
 
 public:
-    Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, const std::string & attr, const std::string & t, float _cost);
+    Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost);
     virtual ~Power(){}
 
     const string & getName() const;
     const PowerId & getId() const;
-    float getCooldown(void);
+    float getCooldown(void) const;
     void setCooldown(float c);
-    float getDuration(void);
-    void setDuration(float d);
-    float getCooldownLeft(void);
+    float getDuration(void) const;
+    float getCooldownLeft(void) const;
     void setCooldownLeft(float c);
-    float getDurationLeft(void);
+    float getDurationLeft(void) const;
     void setDurationLeft(float d);
-    string getAttribute(void);
-    void setAttribute(string attr);
     string getType(void);
     void setType(string t);
     float getCost(void);
     void setCost(float c);
 
+    // a power is activated if it has been pressed and is either in effect or in cooldown 
+    void activate();
+    bool isActivated() const { return _activated; }
+
 protected:
-    float cooldown;
-    float duration;
-    float cooldownLeft;
-    float durationLeft;
-    string attribute;
+    float _cooldown;
+    float _duration;
+    float _cooldownLeft;
+    float _durationLeft;
     string type;
     float cost;
+    bool _activated;
     
 };
 

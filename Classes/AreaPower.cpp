@@ -27,7 +27,7 @@
 
 #include "AreaPower.h"
 
-AreaPower::AreaPower( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, string attr, string t, float cost, float rad) : Power(name, id, c, dur, cl, dl, attr, t, cost)
+AreaPower::AreaPower( const std::string & name, const PowerId & id, float c, float dur, string t, float cost, float rad) : Power(name, id, c, dur, t, cost)
 {
 
     radius = rad;

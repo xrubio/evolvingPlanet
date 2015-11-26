@@ -167,17 +167,14 @@ void LevelLoader::loadXmlFile(string filename)
         float cost = atoi(pws.child("COST").child_value());
         int cooldown = atoi(pws.child("COOLDOWN").child_value());
         int duration = atoi(pws.child("DURATION").child_value());
-        int durationLeft = 0;
-        int cooldownLeft = 0;
-        string attribute = pws.child("ATTRIBUTE").child_value();
         string type = pws.child("TYPE").attribute("TYPE_NAME").value();
         if (type == "Global") {
-            auto p = new Power(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost);
+            auto p = new Power(nameString, id, cooldown, duration, type, cost);
             GameLevel::getInstance()->addPower(p);
         }
         else if (type == "Area") {
             float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
-            auto ap = new AreaPower(nameString, id, cooldown, duration, durationLeft, cooldownLeft, attribute, type, cost, radius);
+            auto ap = new AreaPower(nameString, id, cooldown, duration, type, cost, radius);
             GameLevel::getInstance()->addPower(ap);
         }
         pws = pws.next_sibling("POWER");

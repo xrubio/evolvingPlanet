@@ -31,8 +31,6 @@
 #include "Agent.h"
 #include <list>
 
-class UIGameplayMap;
-
 class Act
 {
 /** This class follows a Strategy pattern for implementing different actions with the same interface **/    
@@ -44,3 +42,4 @@ public:
 };
 
 #endif /* defined(__simulplay__Act__) */
+

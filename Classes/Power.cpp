@@ -27,7 +27,7 @@
 
 #include "Power.h"
 
-Power::Power( const std::string & name, const PowerId & id, float c, float dur, float cl, float dl, const std::string & attr, const std::string & t, float _cost) : name(name), id(id), cooldown(c), duration(dur), cooldownLeft(cl), durationLeft(dl), attribute(attr), type(t), cost(_cost)
+Power::Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost) : name(name), id(id), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), type(t), cost(_cost)
 {
 }
 
@@ -42,54 +42,43 @@ const PowerId & Power::getId() const
     return id;
 }
 
-float Power::getCooldown(void)
+float Power::getCooldown(void) const
 {
-    return cooldown;
+    return _cooldown;
 }
 
 void Power::setCooldown(float c)
 {
-    cooldown = c;
+    _cooldown = c;
 }
 
-float Power::getDuration(void)
+float Power::getDuration(void) const
 {
-    return duration;
+    return _duration;
 }
 
-void Power::setDuration(float d)
+float Power::getCooldownLeft(void) const
 {
-    duration = d;
-}
-
-float Power::getCooldownLeft(void)
-{
-    return cooldownLeft;
+    return _cooldownLeft;
 }
 
 void Power::setCooldownLeft(float c)
 {
-    cooldownLeft = c;
+    _cooldownLeft = c;
+    if(_cooldownLeft<=0.0f)
+    {
+        _activated = false;
+    }
 }
 
-float Power::getDurationLeft(void)
+float Power::getDurationLeft(void) const
 {
-    return durationLeft;
+    return _durationLeft;
 }
 
 void Power::setDurationLeft(float d)
 {
-    durationLeft = d;
-}
-
-string Power::getAttribute(void)
-{
-    return attribute;
-}
-
-void Power::setAttribute(string attr)
-{
-    attribute = attr;
+    _durationLeft = d;
 }
 
 string Power::getType(void)
@@ -110,5 +99,12 @@ float Power::getCost(void)
 void Power::setCost(float c)
 {
     cost = c;
+}
+
+void Power::activate()
+{
+    _durationLeft = _duration;
+    _cooldownLeft = 0.0f;
+    _activated = true;
 }
 

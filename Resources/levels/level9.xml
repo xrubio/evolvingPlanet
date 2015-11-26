@@ -96,15 +96,13 @@
     <POWER NAME="WarfareBoost">
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
-        <DURATION>5</DURATION>
-        <ATTRIBUTE>MOBILITY</ATTRIBUTE>  
+        <DURATION>5</DURATION>        
         <TYPE TYPE_NAME="Global"/>
     </POWER>
     <POWER NAME="InfluenceBoost">
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
-        <DURATION>5</DURATION>
-        <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
+        <DURATION>5</DURATION>        
         <TYPE TYPE_NAME="Global"/>
     </POWER>
 </POWERS>

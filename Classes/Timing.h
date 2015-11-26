@@ -38,10 +38,13 @@ public:
 
     bool act = false;
 
+
 private:
     static Timing* timingInstance;
+    static float _secondsPerStep;
 
     Timing(){};
+    double secs( const timeval & time ) const;
 };
 
 #endif /* defined(__simulplay__Timing__) */

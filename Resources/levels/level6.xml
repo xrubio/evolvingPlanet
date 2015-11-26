@@ -77,7 +77,6 @@
         <COST>2</COST>
         <COOLDOWN>15</COOLDOWN>
         <DURATION>10</DURATION>
-        <ATTRIBUTE>MOBILITY</ATTRIBUTE>  
         <TYPE TYPE_NAME="Area">
             <RADIUS>20</RADIUS>
         </TYPE>
@@ -86,7 +85,6 @@
         <COST>2</COST>
         <COOLDOWN>15</COOLDOWN>
         <DURATION>7</DURATION>
-        <ATTRIBUTE>REPRODUCTION</ATTRIBUTE>
         <TYPE TYPE_NAME="Global"/>
     </POWER>
 </POWERS>

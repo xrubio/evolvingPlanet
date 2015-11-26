@@ -103,14 +103,12 @@
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
-        <ATTRIBUTE>MOBILITY</ATTRIBUTE>  
         <TYPE TYPE_NAME="Global"/>
     </POWER>
     <POWER NAME="ResistanceBoost">
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
-        <ATTRIBUTE>RESISTANCE</ATTRIBUTE>
         <TYPE TYPE_NAME="Area">
             <RADIUS>20</RADIUS>
         </TYPE>

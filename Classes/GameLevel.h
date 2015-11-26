@@ -78,7 +78,7 @@ public:
     
     static GameLevel* getInstance();
 
-    UIGameplayMap* getUIGameplayMap(void);
+    UIGameplayMap * getUIGameplayMap(void);
     void setUIGameplayMap(UIGameplayMap* gmplmap);
     string getMapFilename(void);
     void setMapFilename(string filename);
@@ -138,10 +138,10 @@ public:
     void setFinishedGame(const LevelState & f);
     unsigned int getTimeSteps(void);
     void setTimeSteps(unsigned int steps);
-    float getTimeSpeed(void);
-    void setTimeSpeed(float speed);
-    float getTimeSpeedBeforePause(void);
-    void setTimeSpeedBeforePause(float speed);
+
+    void play( bool play ){ _play = play; }
+    bool isPlaying() const { return _play; }
+
     int getEvolutionPoints(void);
     void setEvolutionPoints(int points);
     int getAttributeCost(int type, int key);
@@ -240,8 +240,9 @@ private:
     int idCounter = 0;
 
     unsigned int timeSteps = 0;
-    float timeSpeed = 0;
-    float timeSpeedBeforePause = 1.265;
+
+    // true if level is playing, false if not started or in pause
+    bool _play;
     
     int evolutionPoints = 10;
     int evolutionPointsFreq = 2;

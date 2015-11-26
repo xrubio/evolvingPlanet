@@ -26,7 +26,6 @@
 //
 
 #include "GameLevel.h"
-#include "UIGameplayMap.h"
 #include "Reproduce.h"
 #include "Power.h"
 #include "AreaPower.h"
@@ -48,7 +47,7 @@ GameLevel* GameLevel::getInstance()
     return gamelevelInstance;
 }
 
-GameLevel::GameLevel()
+GameLevel::GameLevel() : _play(false)
 {
 }
 
@@ -305,26 +304,6 @@ void GameLevel::setTimeSteps(unsigned int steps)
     timeSteps = steps;
 }
 
-float GameLevel::getTimeSpeed(void)
-{
-    return timeSpeed;
-}
-
-void GameLevel::setTimeSpeed(float speed)
-{
-    timeSpeed = speed;
-}
-
-float GameLevel::getTimeSpeedBeforePause(void)
-{
-    return timeSpeedBeforePause;
-}
-
-void GameLevel::setTimeSpeedBeforePause(float speed)
-{
-    timeSpeedBeforePause = speed;
-}
-
 int GameLevel::getEvolutionPoints(void)
 {
     return evolutionPoints;
@@ -555,7 +534,6 @@ void GameLevel::resetLevel(void)
     }
 
     timeSteps = 0;
-    timeSpeed = 0;
 
     evolutionPoints = 10;
 
