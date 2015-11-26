@@ -720,14 +720,14 @@ void UIGameplayMap::onTouchesBegan(const vector<Touch*>& touches, Event* event)
 
 void UIGameplayMap::changeSpotPosition()
 {
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    float verticalMargin = visibleSize.width / 1.5;
-    if (verticalMargin > visibleSize.height)
+    //Size visibleSize = Director::getInstance()->getVisibleSize();
+    float verticalMargin = gameplayMap->getContentSize().width / 1.5;
+    if (verticalMargin > gameplayMap->getContentSize().height)
     {
-        verticalMargin = visibleSize.height;
+        verticalMargin = gameplayMap->getContentSize().height;
     }
     
-    Point nextDirection(gameplayMap->convertToNodeSpace(firstTouchLocation).x / float(visibleSize.width / 480.0), (gameplayMap->convertToNodeSpace(firstTouchLocation).y - ((visibleSize.height - verticalMargin) / 2)) / float(verticalMargin / 320.0));
+    Point nextDirection(gameplayMap->convertToNodeSpace(firstTouchLocation).x / float(gameplayMap->getContentSize().width / 480.0), (gameplayMap->convertToNodeSpace(firstTouchLocation).y - ((gameplayMap->getContentSize().height - verticalMargin) / 2)) / float(verticalMargin / 320.0));
     GameLevel::getInstance()->setAgentDirection(0, nextDirection);
         
     auto fadeFinger = FadeIn::create(1);
