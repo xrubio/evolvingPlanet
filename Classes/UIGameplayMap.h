@@ -75,6 +75,8 @@ public:
     void hideAchievementWindowCallback(Ref* pSender);
     void removeFingerSpot(Ref* pSender);
     void changeGraphicCallback(Ref* pSender);
+    void skipTutorial(Ref* pSender);
+    void skipTutorialConfirm(Ref* pSender);
 
     int getValueAtGameplayMap(int rgb, int posx, int posy);
     Color4B* getExploitedMapTextureData(void);
@@ -137,7 +139,6 @@ private:
 
     vector<UIPower*> powerButtons;
 
-    //0 = life, 1 = reproduction, 2 = mobility, 3 = resistance
     int agentColor = 0;
 
     Color4B* agentsTextureData = new Color4B[int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight())];
@@ -175,7 +176,7 @@ private:
     bool checkButtonPressed(Touch* touch);
 
     // 0 = square, 1 = triangle
-    inline void drawAgent(Point pos, Color4B colour, int geometry = 0);
+    inline void drawAgent(Point pos, Color4B colour, int geometry = 0, Color4B colorBorder = Color4B::WHITE);
     inline void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
 
     // tutorial related stuff

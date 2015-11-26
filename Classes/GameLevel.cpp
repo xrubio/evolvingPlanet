@@ -37,7 +37,7 @@
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
-size_t GameLevel::_numAttributes= 7;
+size_t GameLevel::_numAttributes= 8;
 
 GameLevel* GameLevel::getInstance()
 {
@@ -714,6 +714,18 @@ void GameLevel::computeInfluenced( int type )
     Agent::_numInfluenced.at(type) = RandomHelper::random_int(int(value*0.5f), value);
 }
 
+void GameLevel::computeTraded(int type)
+{
+    // definir número d'agents que han de crear-se
+    size_t numAgents = _agents.at(type).size();
+    float probTrade = getValueAtLevel(eTrade, _agentAttributes.at(type).at(eTrade));
+    
+    int newAgents = int((float)numAgents*probTrade);
+    // check diff between current agents and max agents, and see if it's lower than newAgents
+    int value = min(newAgents, int(getMaxAgent(type)-_agents.at(type).size()));
+    Agent::_numTraded.at(type) = RandomHelper::random_int(int(value*0.5f), value);
+}
+
 void GameLevel::computeOffspring( int type )
 {
     // definir número d'agents que han de crear-se
@@ -934,6 +946,7 @@ void GameLevel::act(void)
         // reproduce and compute if there's room for converting influenced agents
         reproduce(agentType);
         computeInfluenced(agentType);
+        computeTraded(agentType);
         if(fingerSpot.x != -1)
         {
             _agents.at(k).sort(DistSorter(fingerSpot));
@@ -1016,6 +1029,10 @@ int GameLevel::convertAttStringToInt(const string & s)
     {
         ret = eExploitation;
     }
+    else if (s == "TRADE")
+    {
+        ret = eTrade;
+    }
     
     return ret;
 }
@@ -1046,6 +1063,9 @@ string GameLevel::convertAttIntToString(int i)
         case eExploitation:
             ret = "EXPLOITATION";
             break;
+        case eTrade:
+            ret = "TRADE";
+            break;
         default:
             ret = "";
             break;
@@ -1058,6 +1078,7 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
 {
     Agent::_numOffspring.clear();
     Agent::_numInfluenced.clear();
+    Agent::_numTraded.clear();
     Agent::_resourcesPool.clear();
     _agentAttributes.clear();
     _attributesCost.clear();
@@ -1067,6 +1088,7 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
         _attributesCost.push_back(Levels(_numAttributes, 1));
         Agent::_numOffspring.push_back(0);
         Agent::_numInfluenced.push_back(0);
+        Agent::_numTraded.push_back(0);
         vector<int> resources (3, 0);
         Agent::_resourcesPool.push_back(resources);
     }

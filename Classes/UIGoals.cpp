@@ -143,7 +143,7 @@ bool UIGoals::init()
     contextIntroduction->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(contextIntroduction);
     
-    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create(("DATE_LEVEL_"+to_string(GameLevel::getInstance()->getNumLevel())).c_str(), "text"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create("CONTEXT_TITLE_INTRO"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     contextLabelIntroduction->setPosition(Vec2(6 * visibleSize.width / 42, 25 * visibleSize.height / 31));
     contextLabelIntroduction->setColor(Color3B(211, 230, 236));
     contextLabelIntroduction->setAnchorPoint(Vec2(0, 0.5));

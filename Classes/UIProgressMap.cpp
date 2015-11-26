@@ -669,7 +669,7 @@ Layout* UIProgressMap::setEpisode2(void)
     auto layout = Layout::create();
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
-    auto progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
+    auto progressMap = Sprite::create("gui/ProgressMap2Background.jpg");
     progressMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     progressMap->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     progressMap->setName("progressMap");

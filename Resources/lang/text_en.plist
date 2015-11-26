@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BRIEF_LEVEL_1</key>
-	<string>Campaign day 1
+	<string>Greetings, Professor. 
 
 We will use bots to replicate Lovan history. They are a mixture of advanced bioengineering and artificial intelligence that has been fitted to recreate the extinct species.
 
@@ -14,7 +14,7 @@ The team is waiting for your orders to start the mission.</string>
     We deployed the bots in the zone where the first Lovan fossils were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
 
 	<key>BRIEF_LEVEL_2</key>
-	<string>Campaign day 7
+	<string>Greetings, Professor. 
 
 The bots are responding to our commands. We need them to disperse to the rest of the peninsula where they started.</string>
 	<key>CONTEXT_LEVEL_2_INTRO</key>
@@ -25,7 +25,7 @@ The bots are responding to our commands. We need them to disperse to the rest of
     They were hunters, scavengers and also consumed any edible part from plants.</string>
 
 	<key>BRIEF_LEVEL_3</key>
-	<string>Campaign day 10
+	<string>Greetings, Professor. 
 
 The bots are ready to emulate the colonization of arid zones beyond their usual forest habitats.</string>
 	<key>CONTEXT_LEVEL_3_INTRO</key>
@@ -35,7 +35,7 @@ I won't be extremely helpful here; we know that hominins spread throghout the en
 
 Let's start with population increase and see where do we go from here.</string>
 	<key>BRIEF_LEVEL_4</key>
-	<string>Campaign day 11
+	<string>Greetings, Professor. 
 
 Dr. Walker is not convinced of the previous results so we will try a different idea.</string>
 	<key>CONTEXT_LEVEL_4_INTRO</key>
@@ -45,7 +45,7 @@ I want to try a different approach; what if we provide the bots with improved te
 
 They should be able to achieve the goals within expected time if they combine fire with stone tools...yeah, I think this should work better!</string>
 	<key>BRIEF_LEVEL_5</key>
-	<string>Campaign day 16
+	<string>Greetings, Professor. 
 
 Lovans found other species as they colonized this world. For this mission we have deployed different bots to replicate the existance of these other groups.</string>
 	<key>CONTEXT_LEVEL_5_INTRO</key>
@@ -57,7 +57,7 @@ They disappeared as a species over 30.000 years ago; however, based on what our 
 
     <!-- Influence -->
     <key>BRIEF_LEVEL_6</key>
-	<string>Campaign day 17
+	<string>Greetings Professor.
 
 We discovered that one of the species present in this planet disappeared after contacting Lovans.
 
@@ -69,7 +69,7 @@ Mission control wants to test if they hybridized and became somehow a single spe
     
     Let's try this idea here.</string>
     <key>BRIEF_LEVEL_7</key>
-	<string>Campaign day 20
+	<string>Greetings Professor.
 
     We found another extinct species. There are clear evidences of conflict with Lovans so for this mission your bots will be able to fight.
     </string>
@@ -81,7 +81,7 @@ Mission control wants to test if they hybridized and became somehow a single spe
 Lovans wiped out this species while they invaded their territory, so our bots will have to emulate this situation.</string>
 
     <key>BRIEF_LEVEL_8</key>
-	<string>Campaign day 23
+	<string>Greetings Professor.
 
 Climate drastically changed through Lovan dispersal. Here the species had to cross a vast zone while resources were rapidly decreasing.</string>
 	<key>CONTEXT_LEVEL_8_INTRO</key>
@@ -92,7 +92,7 @@ Climate drastically changed through Lovan dispersal. Here the species had to cro
     In this mission a long drought converted a green forest into a desert. Lovans crossed the area where another group was struggling for survival so let's see how this competition goes..</string>
 
     <key>BRIEF_LEVEL_9</key>
-	<string>Campaign day 25
+	<string>Greetings Professor.
 
 Looks like this planet was a crowded place. For this mission you will have to face two species simultaneously.</string>
 	<key>CONTEXT_LEVEL_9_INTRO</key>
@@ -101,7 +101,7 @@ Looks like this planet was a crowded place. For this mission you will have to fa
 I think that we face here a situation where Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest ones, and once your group is large enough deal with the rest of objectives.</string>
 
     <key>BRIEF_LEVEL_10</key>
-	<string>Campaign day 30
+	<string>Greetings Professor.
 
 This mission completes the Lovan dispersal. They proved their adaptive capacity populating the planet from pole to pole.
 
@@ -112,13 +112,6 @@ However, evidence is scarce in this last zone so we are not sure what happened.<
 The uncertainty is killing me, but this is science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.
 
 Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other bots.</string>
-
-    <key>BRIEF_LEVEL_11</key>
-	<string>Campaign day 41
-
-    </string>
-	<key>CONTEXT_LEVEL_11_INTRO</key>
-	<string>Exploitation</string>
 
 	<key>LEVEL_1_STORY</key>
 	<string>Who are we? Who created us?</string>
@@ -140,47 +133,5 @@ Let's explore this last dispersal by trying different approaches. You can make t
 	<string>The Zho'll will succeed where others failed.</string>
     <key>LEVEL_10_STORY</key>
 	<string>Why do we have to obey the Guides and move again?</string>
-
-    <!-- dates -->
-    <key>DATE_LEVEL_1</key>
-    <string>1 million years BE (Before Extinction)</string>
-    <key>DATE_LEVEL_2</key>
-    <string>300.000 BE</string>
-    <key>DATE_LEVEL_3</key>
-    <string>70.000 BE</string>
-    <key>DATE_LEVEL_4</key>
-    <string>70.000 BE</string>
-    <key>DATE_LEVEL_5</key>
-    <string>30.000 BE</string>
-    <key>DATE_LEVEL_6</key>
-    <string>25.000 BE</string>
-    <key>DATE_LEVEL_7</key>
-    <string>22.000 BE</string>
-    <key>DATE_LEVEL_8</key>
-    <string>15.000 BE</string>
-    <key>DATE_LEVEL_9</key>
-    <string>10.000 BE</string>
-    <key>DATE_LEVEL_10</key>
-    <string>8.000 BE</string>
-    <key>DATE_LEVEL_11</key>
-    <string>6.000 BE</string>
-    <key>DATE_LEVEL_12</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_13</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_14</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_15</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_16</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_17</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_18</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_19</key>
-    <string>1 BE</string>
-    <key>DATE_LEVEL_20</key>
-    <string>1 BE</string>
 </dict>
 </plist>

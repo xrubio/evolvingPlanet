@@ -30,6 +30,7 @@
 
 std::vector<int> Agent::_numOffspring = std::vector<int>();
 std::vector<int> Agent::_numInfluenced = std::vector<int>();
+std::vector<int> Agent::_numTraded = std::vector<int>();
 std::vector< std::vector<int> > Agent::_resourcesPool = std::vector< std::vector<int> >();
 
 Agent::Agent(int i, int lf, int t, int posx, int posy) : id(i), life(lf), type(t), position(0), _attributes(GameLevel::_numAttributes, 0.0f)

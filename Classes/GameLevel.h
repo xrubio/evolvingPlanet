@@ -61,7 +61,8 @@ enum Attributes
     eTechnology = 3,
     eWarfare = 4,
     eInfluence = 5,
-    eExploitation = 6
+    eExploitation = 6,
+    eTrade = 7
 };
 
 class GameLevel
@@ -217,7 +218,6 @@ private:
     LevelsVector _attributesCost;
     // list of attributes that can be modified by user
     Levels _modifiableAtt;
-    //temporal
     AttributesLevels _attributesLevels;
     std::vector<Power*> powers;
     std::vector<std::list<Agent*> > _agents;
@@ -265,6 +265,8 @@ private:
 
     // updates mission goals and _finishedGame state
     void checkGoals();
+    // computes the traded agents that type population can have based on Trade attribute and maxAgents
+    void computeTraded(int type);
     // computes the influenced agents that type population can have based on Influence attribute, InfluenceBoost and maxAgents
     void computeInfluenced( int type );
     // computes the offspring that type population can have based on Reproduction attribute, ReproductionBoost and maxAgents

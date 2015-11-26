@@ -49,6 +49,8 @@ public:
     static std::vector<int> _numOffspring;
     // number of agents that can be influenced to create on a given time step
     static std::vector<int> _numInfluenced;
+    // number of agents that can trade resources on a given time step
+    static std::vector<int> _numTraded;
     // pool of resources -> Wood, Mineral, Stone
     static std::vector< std::vector<int> > _resourcesPool;
 

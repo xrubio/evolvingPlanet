@@ -174,3 +174,16 @@ void Tutorial::removeCurrentMessage()
     _current = 0;
 }
 
+void Tutorial::removeAllMessages()
+{
+    MessageList::iterator it = _messages.begin();
+    while(it!=_messages.end())
+    {
+        Message * message = *it;
+        it = _messages.erase(it);
+        delete message;
+        message = nullptr;
+    }
+}
+
+
