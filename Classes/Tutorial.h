@@ -51,6 +51,7 @@ public:
     /** check if next message on list can be shown. \returns true if it's possible **/
     bool checkNextMessage();
     void removeCurrentMessage();
+    void removeAllMessages();
     Message * getCurrentMessage() {return _current;}
 };
 

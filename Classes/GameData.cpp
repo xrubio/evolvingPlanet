@@ -257,26 +257,26 @@ void GameData::setResourcesMargin(int r)
     resourcesMargin = r;
 }
 
-cocos2d::Color3B GameData::getAgentColor(void)
+cocos2d::Color3B GameData::getPlayerColor(void)
 {
-    return _agentColor;
+    return _playerColor;
 }
 
-string GameData::getAgentColorString(void)
+string GameData::getPlayerColorString(void)
 {
-    if (_agentColor.r == 255)
+    if (_playerColor.r == 255)
     {
         return "red";
     }
-    else if (_agentColor.r == 16)
+    else if (_playerColor.r == 16)
     {
         return "blue";
     }
-    else if (_agentColor.r == 198)
+    else if (_playerColor.r == 198)
     {
         return "purple";
     }
-    else if (_agentColor.r == 43)
+    else if (_playerColor.r == 43)
     {
         return "green";
     }
@@ -284,23 +284,23 @@ string GameData::getAgentColorString(void)
     return "red";
 }
 
-void GameData::setAgentColor(string c)
+void GameData::setPlayerColor(string c)
 {
     if (c == "red")
     {
-        _agentColor = Color3B(255, 4, 4);
+        _playerColor = Color3B(255, 4, 4);
     }
     else if (c == "blue")
     {
-        _agentColor = Color3B(16, 102, 243);
+        _playerColor = Color3B(16, 102, 243);
     }
     else if (c == "purple")
     {
-        _agentColor = Color3B(198, 0, 210);
+        _playerColor = Color3B(198, 0, 210);
     }
     else if (c == "green")
     {
-        _agentColor = Color3B(43, 255, 65);
+        _playerColor = Color3B(43, 255, 65);
     }
 }
 

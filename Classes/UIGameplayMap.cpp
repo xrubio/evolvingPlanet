@@ -209,8 +209,8 @@ bool UIGameplayMap::init()
 
     //EVOLUTION POINTS
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
-    evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
+    evolutionPointsIcon->setAnchorPoint(Vec2(0.5, 1));
+    evolutionPointsIcon->setPosition(3.4 * bottomFrame->getContentSize().width / 13, 4.9 * bottomFrame->getContentSize().height / 6);
     evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     evolutionPointsLabel->setAlignment(TextHAlignment::CENTER);
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
@@ -220,7 +220,7 @@ bool UIGameplayMap::init()
     restaEvolutionPointsLabel->setColor(Color3B(211, 197, 0));
     restaEvolutionPointsLabel->setOpacity(0);
     evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
-    this->addChild(evolutionPointsIcon, 1);
+    bottomFrame->addChild(evolutionPointsIcon, 1);
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
@@ -522,14 +522,14 @@ bool UIGameplayMap::init()
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     attBackgroundTitle->setColor(Color3B(216, 229, 236));
     attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
-    attBackgroundTitle->setPosition(Vec2(3 * bottomFrame->getContentSize().width / 9,
+    attBackgroundTitle->setPosition(Vec2(4 * bottomFrame->getContentSize().width / 13,
                                          4 * bottomFrame->getContentSize().height / 6));
     bottomFrame->addChild(attBackgroundTitle);
     
-    auto attBackgroundTitleCost = Label::createWithTTF(" [ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto attBackgroundTitleCost = Label::createWithTTF(" [ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
     attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
     attBackgroundTitleCost->setPosition(Vec2(attBackgroundTitle->getPositionX() + attBackgroundTitle->getContentSize().width,
@@ -545,7 +545,7 @@ bool UIGameplayMap::init()
         {
             continue;
         }
-        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 35 * GameData::getInstance()->getRaConversion());
+        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
         labelAttRight->setColor(Color3B(216, 229, 236));
         bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
@@ -559,14 +559,14 @@ bool UIGameplayMap::init()
         
         auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
         minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-        minusAttButton->setPosition(Vec2((4 + (j * 2)) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
+        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
         minusAttButton->setTag(int(j) + 10);
         minusAttButton->setEnabled(false);
         minusAttButton->setName("minus"+labelAttRight->getString());
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-        plusAttButton->setPosition(Vec2((4 + (j * 2) + 1.4) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
+        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
         plusAttButton->setTag(int(j) + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
@@ -875,6 +875,15 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     
     Node * parent = this;
     Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    
+    //SKIP
+    auto tutorialWindow = parent->getChildByName("menuTutorialWindow")->getChildByName("tutorialWindow");
+    auto skip = parent->getChildByName("menuTutorialWindow")->getChildByName("skipWindow");
+    if(tutorialWindow->getBoundingBox().containsPoint(touchLocation) or skip->getBoundingBox().containsPoint(touchLocation))
+    {
+        return false;
+    }
+    
     //QUIT OR RETRY
     Node * quitRetry = parent->getChildByName("quitRetryMenu");
     if(quitRetry->getChildByName("quitButton")->getBoundingBox().containsPoint(touchLocation) or
@@ -1399,6 +1408,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(0));
         graphicBackground->addChild(waveNodes.at(1), 1, 1);
+        agentColor = 1;
         graphicLabel->setString("WOOD");
         graphicCounterLabel->setString("( 2 / 4 )");
     }
@@ -1406,6 +1416,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(1));
         graphicBackground->addChild(waveNodes.at(2), 1, 1);
+        agentColor = 2;
         graphicLabel->setString("MINERAL");
         graphicCounterLabel->setString("( 3 / 4 )");
     }
@@ -1413,6 +1424,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(2));
         graphicBackground->addChild(waveNodes.at(3), 1, 1);
+        agentColor = 3;
         graphicLabel->setString("STONE");
         graphicCounterLabel->setString("( 4 / 4 )");
     }
@@ -1420,9 +1432,42 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         graphicBackground->removeChild(waveNodes.at(3));
         graphicBackground->addChild(waveNodes.at(0), 1, 1);
+        agentColor = 0;
         graphicLabel->setString("AGENTS");
         graphicCounterLabel->setString("( 1 / 4 )");
     }
+}
+
+void UIGameplayMap::skipTutorial(Ref* pSender)
+{
+    auto window = (MenuItemToggle*)pSender;
+    auto skipWindow = (MenuItem*)window->getParent()->getChildByName("skipWindow");
+    if (skipWindow->isVisible())
+    {
+        skipWindow->runAction(FadeOut::create(0.3));
+        skipWindow->setVisible(false);
+        window->setSelectedIndex(0);
+    }
+    else
+    {
+        skipWindow->setVisible(true);
+        skipWindow->runAction(FadeIn::create(0.2));
+        window->setSelectedIndex(1);
+    }
+}
+
+void UIGameplayMap::skipTutorialConfirm(Ref* pSender)
+{
+    _tutorial->removeCurrentMessage();
+    this->getChildByName("tutorial")->setVisible(false);
+    this->getChildByName("tutorialNext")->setVisible(false);
+    this->getChildByName("tutorialBorder")->setVisible(false);
+    this->getChildByName("tutorialImage")->stopAllActions();
+    this->getChildByName("tutorialImage")->setVisible(false);
+    _tutorial->removeAllMessages();
+    _eventDispatcher->removeEventListener(_listenerTutorial);
+    disableTutorialGUI();
+    pauseGame();
 }
 
 void UIGameplayMap::createTimingThread(void)
@@ -1459,15 +1504,12 @@ void* UIGameplayMap::createLevel(void* arg)
 
 void UIGameplayMap::enableTutorialGUI()
 {
-    this->getChildByName("tutorialTitle")->setVisible(true);
-    auto repeatBlink = RepeatForever::create(Blink::create(3,1));
-    this->getChildByName("tutorialTitle")->runAction(repeatBlink);
+    this->getChildByName("menuTutorialWindow")->setVisible(true);
 }
 
 void UIGameplayMap::disableTutorialGUI()
 {
-    this->getChildByName("tutorialTitle")->stopAllActions();
-    this->getChildByName("tutorialTitle")->setVisible(false);
+    this->getChildByName("menuTutorialWindow")->setVisible(false);
 }
 
 
@@ -1673,7 +1715,7 @@ void UIGameplayMap::initializeAgents(void)
     {
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); it++)
         {
-            Color3B c = GameData::getInstance()->getAgentColor();
+            Color3B c = GameData::getInstance()->getPlayerColor();
             Color4B color = Color4B(c.r, c.g, c.b, (*it)->getLife() * (255 / 175));
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
@@ -1879,23 +1921,27 @@ void UIGameplayMap::updateAgents(void)
         drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
     }
 
-    Color3B agentColorPlayer = GameData::getInstance()->getAgentColor();
+    Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();
     for (int i = agentsDomain.size() - 1; i >= 0 ; i--)
     {
+        int resourcesPainted = 0;
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {
             Color4B color;
-            // TODO XRC not sure if it works ok with value instead of level
             switch (agentColor) {
+            //wood
             case 1:
-                color = Color4B(212, 105, 11, (*it)->getValue(GameLevel::getInstance()->getModifiableAttr().at(0)) * (255 / 5));
+                color = Color4B(0, 249, 105, 255);
                 break;
+            //mineral
             case 2:
-                color = Color4B(5, 5, 117, (*it)->getValue(GameLevel::getInstance()->getModifiableAttr().at(1)) * (255 / 5));
+                color = Color4B(229, 232, 5, 255);
                 break;
+            //stone
             case 3:
-                color = Color4B(115, 8, 214, (*it)->getValue(GameLevel::getInstance()->getModifiableAttr().at(2)) * (255 / 5));
+                color = Color4B(225, 144, 57, 255);
                 break;
+            //normal
             default:
                 switch ((*it)->getType()) {
                 case 1:
@@ -1914,7 +1960,41 @@ void UIGameplayMap::updateAgents(void)
                 break;
             }
             
-            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
+            //check num_agents painted in accordance with num_resources if not painting population
+            if (agentColor > 0)
+            {
+                if (resourcesPainted < Agent::_resourcesPool.at(i).at(agentColor - 1))
+                {
+                    resourcesPainted++;
+                    Color4B colorBorder;
+                    switch ((*it)->getType()) {
+                        case 1:
+                            colorBorder = Color4B(0, 248, 251, 255);
+                            break;
+                        case 2:
+                            colorBorder = Color4B(210, 214, 47, 255);
+                            break;
+                        case 3:
+                            colorBorder = Color4B(68, 165, 195, 255);
+                            break;
+                        default:
+                            colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, 255);
+                            break;
+                    }
+                    drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1, colorBorder);
+                }
+                else
+                {
+                    color = transparent;
+                    drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
+                }
+
+            }
+            else
+            {
+                drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
+  
+            }
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
             }
@@ -1938,7 +2018,7 @@ void UIGameplayMap::updateAgents(void)
     //pthread_mutex_unlock(&gameLevelMutex);
 }
 
-void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
+void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry, Color4B colorBorder)
 {
     int x = (int)(pos.x * GameData::getInstance()->getRowDrawAgentPrecalc());
     int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((pos.y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
@@ -1946,62 +2026,21 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 
     switch (geometry) {
     case 1: {
-        int k = -GameData::getInstance()->getResourcesWidth() * 2;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
+        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
+        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
+            for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
+                agentsTextureData[position + j + k] = colorBorder;
+            }
+            k += GameData::getInstance()->getResourcesWidth();
+        }
         
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 3 + k] = colour;
-        agentsTextureData[position - 2 + k] = colour;
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        agentsTextureData[position + 2 + k] = colour;
-        agentsTextureData[position + 3 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 3 + k] = colour;
-        agentsTextureData[position - 2 + k] = colour;
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        agentsTextureData[position + 2 + k] = colour;
-        agentsTextureData[position + 3 + k] = colour;
-    
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position - 2 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        agentsTextureData[position + 2 + k] = colour;
-        
-        /*k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;*/
-        
+        k = -GameData::getInstance()->getResourcesWidth() * (GameLevel::getInstance()->getAgentPixelSize() / 2);
+        while (k <= GameData::getInstance()->getResourcesWidth() * (GameLevel::getInstance()->getAgentPixelSize() / 2)) {
+            for (int j = -(GameLevel::getInstance()->getAgentPixelSize()/2); j < (GameLevel::getInstance()->getAgentPixelSize() /2) + 1; j++) {
+                agentsTextureData[position + j + k] = colour;
+            }
+            k += GameData::getInstance()->getResourcesWidth();
+        }
         break;
     }
     case 2: {
@@ -2093,14 +2132,36 @@ void UIGameplayMap::createTutorialGUI()
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
 
-    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
+    auto tutorialWindow = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::skipTutorial, this), MenuItemImage::create("gui/TutorialWindow.png", "gui/TutorialWindow.png"), MenuItemImage::create("gui/TutorialWindowPressed.png", "gui/TutorialWindowPressed.png"), nullptr);
+    tutorialWindow->setAnchorPoint(Vec2(0, 0.5));
+    tutorialWindow->setPosition(Vec2(5 * visibleSize.width / 204, 125 * visibleSize.height / 155));
+    tutorialWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    tutorialWindow->setName("tutorialWindow");
+    
+    auto skipWindow = MenuItemImage::create("gui/TutorialWindowSkip.png", "gui/TutorialWindowSkip.png", CC_CALLBACK_1(UIGameplayMap::skipTutorialConfirm, this));
+    skipWindow->setName("skipWindow");
+    skipWindow->setAnchorPoint(Vec2(0, 0.5));
+    skipWindow->setPosition(Vec2(tutorialWindow->getPositionX() + tutorialWindow->getBoundingBox().size.width / 1.05, tutorialWindow->getPositionY() + skipWindow->getBoundingBox().size.height / 1.5));
+    skipWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    skipWindow->setOpacity(0);
+    skipWindow->setVisible(false);
+    
+    auto skipLabel = Label::createWithTTF("SKIP", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    skipLabel->setPosition(Vec2(skipWindow->getContentSize().width / 2, skipWindow->getContentSize().height / 2));
+    skipLabel->setColor(Color3B(139, 146, 154));
+    skipWindow->addChild(skipLabel);
+    
+    auto menuTutorialWindow = Menu::create(tutorialWindow, skipWindow, nullptr);
+    menuTutorialWindow->setName("menuTutorialWindow");
+    menuTutorialWindow->setPosition(Vec2::ZERO);
+    menuTutorialWindow->setVisible(false);
+    
+    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     tutorialTitle->setName("tutorialTitle");
-    tutorialTitle->setColor(Color3B(210, 210, 210));
-    tutorialTitle->setAnchorPoint(Vec2(0, 1));
-    tutorialTitle->setPosition(Vec2(0, visibleSize.height - (this->getChildByName("topFrame")->getContentSize().height * GameData::getInstance()->getRaHConversion())));
-    tutorialTitle->setVisible(false);
-    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
-  
+    tutorialTitle->setColor(Color3B(139, 146, 154));
+    tutorialTitle->setPosition(Vec2(3.3 * tutorialWindow->getContentSize().width / 7, 2.3 * tutorialWindow->getContentSize().height / 5));
+    tutorialWindow->addChild(tutorialTitle, 5);
+    
     auto tutorialImage = Sprite::create();
     tutorialImage->setName("tutorialImage");
     tutorialImage->setVisible(false);
@@ -2110,7 +2171,7 @@ void UIGameplayMap::createTutorialGUI()
     this->addChild(labelBorder);
     this->addChild(messageLabel);
     this->addChild(messageNextLabel);
-    this->addChild(tutorialTitle);
+    this->addChild(menuTutorialWindow);
     this->addChild(tutorialImage, 100);
 }
 

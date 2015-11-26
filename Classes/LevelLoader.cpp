@@ -29,7 +29,7 @@
 #include "GameLevel.h"
 #include "Reproduce.h"
 #include "Exploit.h"
-#include "Deplete.h"
+#include "Trade.h"
 #include "EnvironmentAdaptation.h"
 #include "Kill.h"
 #include "AreaPower.h"
@@ -192,10 +192,6 @@ void LevelLoader::loadXmlFile(string filename)
             auto c = new Exploit();
             GameLevel::getInstance()->addAction(c);
         }
-        else if (action == "Deplete") {
-            auto d = new Deplete();
-            GameLevel::getInstance()->addAction(d);
-        }
         else if (action == "EnvironmentAdaptation") {
             auto ea = new EnvironmentAdaptation();
             GameLevel::getInstance()->addAction(ea);
@@ -206,6 +202,10 @@ void LevelLoader::loadXmlFile(string filename)
         }
         else if (action == "Influence") {
             auto i = new Influence();
+            GameLevel::getInstance()->addAction(i);
+        }
+        else if (action == "Trade") {
+            auto i = new Trade();
             GameLevel::getInstance()->addAction(i);
         }
         acts = acts.next_sibling("ACTION");
