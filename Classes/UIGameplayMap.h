@@ -75,6 +75,8 @@ public:
     void hideAchievementWindowCallback(Ref* pSender);
     void removeFingerSpot(Ref* pSender);
     void changeGraphicCallback(Ref* pSender);
+    void skipTutorial(Ref* pSender);
+    void skipTutorialConfirm(Ref* pSender);
 
     int getValueAtGameplayMap(int rgb, int posx, int posy);
     Color4B* getExploitedMapTextureData(void);

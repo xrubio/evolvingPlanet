@@ -209,8 +209,8 @@ bool UIGameplayMap::init()
 
     //EVOLUTION POINTS
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
-    evolutionPointsIcon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    evolutionPointsIcon->setPosition(2.9 * visibleSize.width / 11, 0.5 * visibleSize.height / 7.5);
+    evolutionPointsIcon->setAnchorPoint(Vec2(0.5, 1));
+    evolutionPointsIcon->setPosition(3.4 * bottomFrame->getContentSize().width / 13, 4.9 * bottomFrame->getContentSize().height / 6);
     evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     evolutionPointsLabel->setAlignment(TextHAlignment::CENTER);
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
@@ -220,7 +220,7 @@ bool UIGameplayMap::init()
     restaEvolutionPointsLabel->setColor(Color3B(211, 197, 0));
     restaEvolutionPointsLabel->setOpacity(0);
     evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
-    this->addChild(evolutionPointsIcon, 1);
+    bottomFrame->addChild(evolutionPointsIcon, 1);
 
     //TIME BUTTONS
     Vector<MenuItem*> timeButtons;
@@ -522,14 +522,14 @@ bool UIGameplayMap::init()
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto attBackgroundTitle = Label::createWithTTF(LocalizedString::create("EVOLUTION_POINTS") + " - ", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     attBackgroundTitle->setColor(Color3B(216, 229, 236));
     attBackgroundTitle->setAnchorPoint(Vec2(0, 0.5));
-    attBackgroundTitle->setPosition(Vec2(3 * bottomFrame->getContentSize().width / 9,
+    attBackgroundTitle->setPosition(Vec2(4 * bottomFrame->getContentSize().width / 13,
                                          4 * bottomFrame->getContentSize().height / 6));
     bottomFrame->addChild(attBackgroundTitle);
     
-    auto attBackgroundTitleCost = Label::createWithTTF(" [ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    auto attBackgroundTitleCost = Label::createWithTTF(" [ " + LocalizedString::create("COST") + " ]", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     attBackgroundTitleCost->setColor(Color3B(211, 197, 0));
     attBackgroundTitleCost->setAnchorPoint(Vec2(0, 0.5));
     attBackgroundTitleCost->setPosition(Vec2(attBackgroundTitle->getPositionX() + attBackgroundTitle->getContentSize().width,
@@ -545,7 +545,7 @@ bool UIGameplayMap::init()
         {
             continue;
         }
-        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 35 * GameData::getInstance()->getRaConversion());
+        auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
         labelAttRight->setColor(Color3B(216, 229, 236));
         bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
@@ -559,14 +559,14 @@ bool UIGameplayMap::init()
         
         auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
         minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-        minusAttButton->setPosition(Vec2((4 + (j * 2)) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
+        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
         minusAttButton->setTag(int(j) + 10);
         minusAttButton->setEnabled(false);
         minusAttButton->setName("minus"+labelAttRight->getString());
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-        plusAttButton->setPosition(Vec2((4 + (j * 2) + 1.4) * bottomFrame->getContentSize().width / 12, 0.8 * bottomFrame->getContentSize().height / 2));
+        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
         plusAttButton->setTag(int(j) + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
@@ -875,6 +875,15 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     
     Node * parent = this;
     Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    
+    //SKIP
+    auto tutorialWindow = parent->getChildByName("menuTutorialWindow")->getChildByName("tutorialWindow");
+    auto skip = parent->getChildByName("menuTutorialWindow")->getChildByName("skipWindow");
+    if(tutorialWindow->getBoundingBox().containsPoint(touchLocation) or skip->getBoundingBox().containsPoint(touchLocation))
+    {
+        return false;
+    }
+    
     //QUIT OR RETRY
     Node * quitRetry = parent->getChildByName("quitRetryMenu");
     if(quitRetry->getChildByName("quitButton")->getBoundingBox().containsPoint(touchLocation) or
@@ -1425,6 +1434,38 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     }
 }
 
+void UIGameplayMap::skipTutorial(Ref* pSender)
+{
+    auto window = (MenuItemToggle*)pSender;
+    auto skipWindow = (MenuItem*)window->getParent()->getChildByName("skipWindow");
+    if (skipWindow->isVisible())
+    {
+        skipWindow->runAction(FadeOut::create(0.3));
+        skipWindow->setVisible(false);
+        window->setSelectedIndex(0);
+    }
+    else
+    {
+        skipWindow->setVisible(true);
+        skipWindow->runAction(FadeIn::create(0.2));
+        window->setSelectedIndex(1);
+    }
+}
+
+void UIGameplayMap::skipTutorialConfirm(Ref* pSender)
+{
+    _tutorial->removeCurrentMessage();
+    this->getChildByName("tutorial")->setVisible(false);
+    this->getChildByName("tutorialNext")->setVisible(false);
+    this->getChildByName("tutorialBorder")->setVisible(false);
+    this->getChildByName("tutorialImage")->stopAllActions();
+    this->getChildByName("tutorialImage")->setVisible(false);
+    _tutorial->removeAllMessages();
+    _eventDispatcher->removeEventListener(_listenerTutorial);
+    disableTutorialGUI();
+    pauseGame();
+}
+
 void UIGameplayMap::createTimingThread(void)
 {
     pthread_create(&timingThread, NULL, &UIGameplayMap::createTiming, this);
@@ -1459,15 +1500,12 @@ void* UIGameplayMap::createLevel(void* arg)
 
 void UIGameplayMap::enableTutorialGUI()
 {
-    this->getChildByName("tutorialTitle")->setVisible(true);
-    auto repeatBlink = RepeatForever::create(Blink::create(3,1));
-    this->getChildByName("tutorialTitle")->runAction(repeatBlink);
+    this->getChildByName("menuTutorialWindow")->setVisible(true);
 }
 
 void UIGameplayMap::disableTutorialGUI()
 {
-    this->getChildByName("tutorialTitle")->stopAllActions();
-    this->getChildByName("tutorialTitle")->setVisible(false);
+    this->getChildByName("menuTutorialWindow")->setVisible(false);
 }
 
 
@@ -2107,14 +2145,36 @@ void UIGameplayMap::createTutorialGUI()
     labelBorder->setName("tutorialBorder");
     labelBorder->setVisible(false);
 
-    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
+    auto tutorialWindow = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::skipTutorial, this), MenuItemImage::create("gui/TutorialWindow.png", "gui/TutorialWindow.png"), MenuItemImage::create("gui/TutorialWindowPressed.png", "gui/TutorialWindowPressed.png"), nullptr);
+    tutorialWindow->setAnchorPoint(Vec2(0, 0.5));
+    tutorialWindow->setPosition(Vec2(5 * visibleSize.width / 204, 125 * visibleSize.height / 155));
+    tutorialWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    tutorialWindow->setName("tutorialWindow");
+    
+    auto skipWindow = MenuItemImage::create("gui/TutorialWindowSkip.png", "gui/TutorialWindowSkip.png", CC_CALLBACK_1(UIGameplayMap::skipTutorialConfirm, this));
+    skipWindow->setName("skipWindow");
+    skipWindow->setAnchorPoint(Vec2(0, 0.5));
+    skipWindow->setPosition(Vec2(tutorialWindow->getPositionX() + tutorialWindow->getBoundingBox().size.width / 1.05, tutorialWindow->getPositionY() + skipWindow->getBoundingBox().size.height / 1.5));
+    skipWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    skipWindow->setOpacity(0);
+    skipWindow->setVisible(false);
+    
+    auto skipLabel = Label::createWithTTF("SKIP", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    skipLabel->setPosition(Vec2(skipWindow->getContentSize().width / 2, skipWindow->getContentSize().height / 2));
+    skipLabel->setColor(Color3B(139, 146, 154));
+    skipWindow->addChild(skipLabel);
+    
+    auto menuTutorialWindow = Menu::create(tutorialWindow, skipWindow, nullptr);
+    menuTutorialWindow->setName("menuTutorialWindow");
+    menuTutorialWindow->setPosition(Vec2::ZERO);
+    menuTutorialWindow->setVisible(false);
+    
+    auto tutorialTitle = Label::createWithTTF("TUTORIAL", "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     tutorialTitle->setName("tutorialTitle");
-    tutorialTitle->setColor(Color3B(210, 210, 210));
-    tutorialTitle->setAnchorPoint(Vec2(0, 1));
-    tutorialTitle->setPosition(Vec2(0, visibleSize.height - (this->getChildByName("topFrame")->getContentSize().height * GameData::getInstance()->getRaHConversion())));
-    tutorialTitle->setVisible(false);
-    tutorialTitle->setScale(GameData::getInstance()->getRaWConversion());
-  
+    tutorialTitle->setColor(Color3B(139, 146, 154));
+    tutorialTitle->setPosition(Vec2(3.3 * tutorialWindow->getContentSize().width / 7, 2.3 * tutorialWindow->getContentSize().height / 5));
+    tutorialWindow->addChild(tutorialTitle, 5);
+    
     auto tutorialImage = Sprite::create();
     tutorialImage->setName("tutorialImage");
     tutorialImage->setVisible(false);
@@ -2124,7 +2184,7 @@ void UIGameplayMap::createTutorialGUI()
     this->addChild(labelBorder);
     this->addChild(messageLabel);
     this->addChild(messageNextLabel);
-    this->addChild(tutorialTitle);
+    this->addChild(menuTutorialWindow);
     this->addChild(tutorialImage, 100);
 }
 
