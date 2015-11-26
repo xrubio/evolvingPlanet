@@ -41,6 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
         //glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
     }
+    auto screenSize = glview->getFrameSize();
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -49,7 +50,6 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setAnimationInterval(1.0 / 60);
 
     // multi-device resolution assets
-    auto screenSize = glview->getFrameSize();
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> resDirOrders;
     
