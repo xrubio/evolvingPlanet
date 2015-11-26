@@ -1966,14 +1966,35 @@ void UIGameplayMap::updateAgents(void)
                 if (resourcesPainted < Agent::_resourcesPool.at(i).at(agentColor - 1))
                 {
                     resourcesPainted++;
+                    Color4B colorBorder;
+                    switch ((*it)->getType()) {
+                        case 1:
+                            colorBorder = Color4B(0, 248, 251, 255);
+                            break;
+                        case 2:
+                            colorBorder = Color4B(210, 214, 47, 255);
+                            break;
+                        case 3:
+                            colorBorder = Color4B(68, 165, 195, 255);
+                            break;
+                        default:
+                            colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, 255);
+                            break;
+                    }
+                    drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1, colorBorder);
                 }
                 else
                 {
                     color = transparent;
+                    drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
                 }
+
             }
-            
-            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
+            else
+            {
+                drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
+  
+            }
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
             }
@@ -1997,7 +2018,7 @@ void UIGameplayMap::updateAgents(void)
     //pthread_mutex_unlock(&gameLevelMutex);
 }
 
-void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
+void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry, Color4B colorBorder)
 {
     int x = (int)(pos.x * GameData::getInstance()->getRowDrawAgentPrecalc());
     int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((pos.y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
@@ -2005,62 +2026,21 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry)
 
     switch (geometry) {
     case 1: {
-        int k = -GameData::getInstance()->getResourcesWidth() * 2;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
+        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
+        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
+            for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
+                agentsTextureData[position + j + k] = colorBorder;
+            }
+            k += GameData::getInstance()->getResourcesWidth();
+        }
         
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 3 + k] = colour;
-        agentsTextureData[position - 2 + k] = colour;
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        agentsTextureData[position + 2 + k] = colour;
-        agentsTextureData[position + 3 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 3 + k] = colour;
-        agentsTextureData[position - 2 + k] = colour;
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        agentsTextureData[position + 2 + k] = colour;
-        agentsTextureData[position + 3 + k] = colour;
-    
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position - 2 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        agentsTextureData[position + 2 + k] = colour;
-        
-        /*k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;
-        
-        k += GameData::getInstance()->getResourcesWidth();
-        agentsTextureData[position - 1 + k] = colour;
-        agentsTextureData[position + 0 + k] = colour;
-        agentsTextureData[position + 1 + k] = colour;*/
-        
+        k = -GameData::getInstance()->getResourcesWidth() * (GameLevel::getInstance()->getAgentPixelSize() / 2);
+        while (k <= GameData::getInstance()->getResourcesWidth() * (GameLevel::getInstance()->getAgentPixelSize() / 2)) {
+            for (int j = -(GameLevel::getInstance()->getAgentPixelSize()/2); j < (GameLevel::getInstance()->getAgentPixelSize() /2) + 1; j++) {
+                agentsTextureData[position + j + k] = colour;
+            }
+            k += GameData::getInstance()->getResourcesWidth();
+        }
         break;
     }
     case 2: {

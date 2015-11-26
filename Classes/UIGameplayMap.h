@@ -176,7 +176,7 @@ private:
     bool checkButtonPressed(Touch* touch);
 
     // 0 = square, 1 = triangle
-    inline void drawAgent(Point pos, Color4B colour, int geometry = 0);
+    inline void drawAgent(Point pos, Color4B colour, int geometry = 0, Color4B colorBorder = Color4B::WHITE);
     inline void drawExploitedMap(Point pos, Color4B colour, int geometry = 0);
 
     // tutorial related stuff
