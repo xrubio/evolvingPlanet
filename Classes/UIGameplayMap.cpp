@@ -1104,6 +1104,7 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     //pthread_cancel(timingThread);
     pthread_join(gameLevelThread, nullptr);
     pthread_join(timingThread, nullptr);
+    GameLevel::getInstance()->play(false);
     GameData::getInstance()->setGameStarted(false);
     
     if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel())
@@ -1258,6 +1259,7 @@ void UIGameplayMap::retryOkCallback(Ref* pSender)
     //pthread_cancel(timingThread);
     pthread_join(gameLevelThread, nullptr);
     pthread_join(timingThread, nullptr);
+    GameLevel::getInstance()->play(false);
     GameData::getInstance()->setGameStarted(false);
     string filename = "level" + to_string(GameLevel::getInstance()->getNumLevel());
     GameLevel::getInstance()->resetLevel();

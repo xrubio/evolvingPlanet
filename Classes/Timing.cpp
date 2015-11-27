@@ -54,10 +54,6 @@ void Timing::start(void)
     timeval stepTime;
     gettimeofday(&stepTime, nullptr);
 
-    // no idea
-    timeval stepTimePart;
-    gettimeofday(&stepTimePart, nullptr);
-
     timeval currentTimePart;
     gettimeofday(&currentTimePart, nullptr);
     double secsCurrentTimePart = secs(currentTimePart);
@@ -73,7 +69,6 @@ void Timing::start(void)
         if (!GameLevel::getInstance()->isPlaying())
         {
             gettimeofday(&stepTime, nullptr);
-            gettimeofday(&stepTimePart, nullptr);
             continue;
         }
         
@@ -111,13 +106,7 @@ void Timing::start(void)
                 p->setCooldownLeft(p->getCooldownLeft() - diff); 
             }
         }
-
-        float stepPart = secsCurrentTimePart - secs(stepTimePart);
-        if (stepPart >= _secondsPerStep / 10.0)
-        {
-            GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + (0.09));
-            gettimeofday(&stepTimePart, nullptr);
-        }
+        GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + diff);
     }
 }
 
