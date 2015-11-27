@@ -31,7 +31,7 @@
 #include <cocos2d.h>
 #include "GameLevel.h"
 
-Power::Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost) : name(name), id(id), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), type(t), cost(_cost)
+Power::Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost) : name(name), id(id), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), type(t), cost(_cost), _activated(false)
 {
 }
 

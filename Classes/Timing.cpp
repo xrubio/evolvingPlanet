@@ -80,8 +80,6 @@ void Timing::start(void)
         double diff = (secsCurrentTimePart - oldPart)/_secondsPerStep;
         float step = secsCurrentTimePart - secs(stepTime);
 
-        CCLOG("step: %f", step);
-
         // if seconds per step has passed and last step was already computed
         if(step >= _secondsPerStep and !act)
         {
@@ -97,23 +95,19 @@ void Timing::start(void)
             {
                 continue;
             }
-            CCLOG("power %s activated with duration: %f at step: %d", p->getName().c_str(), p->getDuration(), GameLevel::getInstance()->getTimeSteps());
 
             // if duration finished then activate cooldown
             if(p->getDurationLeft() > 0)
             {
-                //CCLOG("decreasing duration left: %f by %f", p->getDurationLeft(), diff);
                 p->setDurationLeft(p->getDurationLeft() - diff);
                 // if duration is exhausted then start cooldown
                 if(p->getDurationLeft()<=0)
                 {
                     p->setCooldownLeft(p->getCooldown());
-                    //CCLOG("power %s finished, cooldown started at step: %d", p->getName().c_str(), GameLevel::getInstance()->getTimeSteps());
                 }
             }
             else if(p->getCooldownLeft()>0)
             {
-                CCLOG("decreasing cooldown left: %f by %f", p->getCooldownLeft(), diff);
                 p->setCooldownLeft(p->getCooldownLeft() - diff); 
             }
         }
