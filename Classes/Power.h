@@ -58,7 +58,9 @@ public:
     float getDuration(void) const;
     float getCooldownLeft(void) const;
     void setCooldownLeft(float c);
+    float getLastCooldownLeft() const { return _lastCooldownLeft; }
     float getDurationLeft(void) const;
+    float getLastDurationLeft() const { return _lastDurationLeft; }
     void setDurationLeft(float d);
     string getType(void);
     void setType(string t);
@@ -74,6 +76,11 @@ protected:
     float _duration;
     float _cooldownLeft;
     float _durationLeft;
+    // used to identify transitions from effect to cooldown
+    float _lastDurationLeft;
+    // used to identify transitions from cooldown to available
+    float _lastCooldownLeft;
+
     string type;
     float cost;
     bool _activated;

@@ -1914,11 +1914,11 @@ void UIGameplayMap::updateAgents(void)
     pthread_mutex_lock(&gameLevelMutex);
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
 
-    Color4B white = Color4B::WHITE;
-    white.a = 0;
+    Color4B transparent = Color4B::WHITE;
+    transparent.a = 0;
     for (size_t i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++)
     {
-        drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), white);
+        drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), transparent);
     }
 
     Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();

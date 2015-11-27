@@ -27,6 +27,10 @@
 
 #include "Power.h"
 
+// TODO remove these two includes with CCLOG
+#include <cocos2d.h>
+#include "GameLevel.h"
+
 Power::Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost) : name(name), id(id), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), type(t), cost(_cost)
 {
 }
@@ -64,9 +68,11 @@ float Power::getCooldownLeft(void) const
 
 void Power::setCooldownLeft(float c)
 {
+    _lastCooldownLeft = _cooldownLeft;
     _cooldownLeft = c;
     if(_cooldownLeft<=0.0f)
     {
+        CCLOG("cooldown finished at step: %d", GameLevel::getInstance()->getTimeSteps());
         _activated = false;
     }
 }
@@ -78,6 +84,7 @@ float Power::getDurationLeft(void) const
 
 void Power::setDurationLeft(float d)
 {
+    _lastDurationLeft = _durationLeft;
     _durationLeft = d;
 }
 
@@ -104,7 +111,9 @@ void Power::setCost(float c)
 void Power::activate()
 {
     _durationLeft = _duration;
+    _lastDurationLeft = _durationLeft;
     _cooldownLeft = 0.0f;
+    _lastDurationLeft = _cooldownLeft;
     _activated = true;
 }
 

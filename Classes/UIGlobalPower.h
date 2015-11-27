@@ -38,8 +38,6 @@ public:
     void onTouchesMoved(Touch* touchLocation);
     bool onTouchesEnded(Point touchLocation);
     void update(float delta);
-
-private:
-    float actionTime = 0.0;
 };
+
 #endif /* defined(__simulplay__UIGlobalPower__) */
