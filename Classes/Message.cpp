@@ -58,7 +58,7 @@ MessageTime::~MessageTime()
 
 bool MessageTime::meetsPreCondition() const
 {
-    if(GameLevel::getInstance()->getTimeSteps()==_step)
+    if(int(Timing::getInstance()->getTimeStep())==_step)
     {
         return true;
     }

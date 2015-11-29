@@ -59,7 +59,7 @@ bool CollectionGoal::checkGoal(int type, Agent* agent)
         return false;
     }
     
-    int timeSteps = GameLevel::getInstance()->getTimeSteps();
+    int timeSteps = int(Timing::getInstance()->getTimeStep());
     // goal failed due to time
     if (timeSteps > maxTime) {
         GameLevel::getInstance()->setFinishedGame(GoalFailAfter);

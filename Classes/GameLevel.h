@@ -137,8 +137,6 @@ public:
     void setIdCounter(int count);
     const LevelState & getFinishedGame() const;
     void setFinishedGame(const LevelState & f);
-    unsigned int getTimeSteps(void);
-    void setTimeSteps(unsigned int steps);
 
     void play( bool play ){ _play = play; }
     bool isPlaying() const { return _play; }
@@ -191,7 +189,6 @@ public:
 
     bool paint = false;
     bool ended = false;
-    float calcTime = 0;
 
     void setModifiableAttr(int order, int attr) { _modifiableAtt.at(order) = attr; }
     const Levels & getModifiableAttr() const { return _modifiableAtt; }
@@ -238,8 +235,6 @@ private:
 
     std::vector<cocos2d::Point> deletedAgents;
     int idCounter = 0;
-
-    unsigned int timeSteps = 0;
 
     // true if level is playing, false if not started or in pause
     bool _play;
@@ -291,7 +286,9 @@ private:
     bool _isFinished;
     //cells per step
     int _regenerationRate = 0;
-    
+    // last step of the mission
+    int _lastStep;
+ 
 };
 
 #endif /* defined(__simulplay__GameLevel__) */

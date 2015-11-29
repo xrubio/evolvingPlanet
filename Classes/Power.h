@@ -56,12 +56,16 @@ public:
     float getCooldown(void) const;
     void setCooldown(float c);
     float getDuration(void) const;
+
     float getCooldownLeft(void) const;
-    void setCooldownLeft(float c);
+    void resetCooldownLeft() { _cooldownLeft = _cooldown; }
+    void decreaseCooldownLeft(float c);
     float getLastCooldownLeft() const { return _lastCooldownLeft; }
+
     float getDurationLeft(void) const;
+    void decreaseDurationLeft(float d);
     float getLastDurationLeft() const { return _lastDurationLeft; }
-    void setDurationLeft(float d);
+
     string getType(void);
     void setType(string t);
     float getCost(void);

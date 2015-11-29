@@ -294,16 +294,6 @@ void GameLevel::setFinishedGame(const LevelState & f)
     _finishedGame = f;
 }
 
-unsigned int GameLevel::getTimeSteps(void)
-{
-    return timeSteps;
-}
-
-void GameLevel::setTimeSteps(unsigned int steps)
-{
-    timeSteps = steps;
-}
-
 int GameLevel::getEvolutionPoints(void)
 {
     return evolutionPoints;
@@ -470,26 +460,24 @@ vector<string> GameLevel::getCompletedAchievements(void)
 
 void GameLevel::playLevel(void)
 {
-    CCLOG("step;pop;time");
+    CCLOG("step;floatStep;pop;time");
+    _lastStep = goals.back()->getMaxTime();
+    CCLOG("mission will end in step: %d", _lastStep);
     while (_finishedGame == Running)
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         if (Timing::getInstance()->act == true) {
             paint = false;
             clock_t stepTime = clock();
-//            CCLOG("Start calc");
             pthread_mutex_lock(&gameplayMap->gameLevelMutex);
             act();
             pthread_mutex_unlock(&gameplayMap->gameLevelMutex);
-            timeSteps++;
-            gameplayMap->setTimeProgressBar(timeSteps);
-            if (timeSteps % evolutionPointsFreq == 0) {
+            if(int(Timing::getInstance()->getTimeStep()) % evolutionPointsFreq == 0) {
                 evolutionPoints++;
             }
             paint = true;
             Timing::getInstance()->act = false;  
-            
-            CCLOG("%d;%zu;%f", timeSteps, _agents.at(0).size(), float(clock() - stepTime) / CLOCKS_PER_SEC);
-            calcTime = float(clock() - stepTime) / CLOCKS_PER_SEC;
+            CCLOG("%d;%f;%zu;%f", int(Timing::getInstance()->getTimeStep()), Timing::getInstance()->getTimeStep(), _agents.at(0).size(), float(clock() - stepTime) / CLOCKS_PER_SEC);
         }
     }
     
@@ -533,8 +521,6 @@ void GameLevel::resetLevel(void)
         }
     }
 
-    timeSteps = 0;
-
     evolutionPoints = 10;
 
     _finishedGame = Running;
@@ -544,7 +530,6 @@ void GameLevel::resetLevel(void)
 
     paint = false;
     ended = false;
-    calcTime = 0;
 
     _agentDirections.clear();
     _agentFutureDirections.clear();
@@ -813,7 +798,7 @@ void GameLevel::updateDirections(int type)
     {
         return;
     }
-    if(timeSteps != _agentFutureDirections.at(type).at(0).first)
+    if(int(Timing::getInstance()->getTimeStep()) != _agentFutureDirections.at(type).at(0).first)
     {
         return;
     }

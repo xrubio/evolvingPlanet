@@ -48,7 +48,8 @@ double Timing::secs( const timeval & time) const
 
 void Timing::start(void)
 {
-    CCLOG("timing start");
+    _timeStep = 0.0f;
+    _lastStepExecuted = -1;
     
     // seconds for a time step
     timeval stepTime;
@@ -58,8 +59,11 @@ void Timing::start(void)
     gettimeofday(&currentTimePart, nullptr);
     double secsCurrentTimePart = secs(currentTimePart);
 
+    long int interval = int(1000.0f*float(_secondsPerStep)/20.0f);
+    CCLOG("timing start with interval %ld", interval );
     while (GameLevel::getInstance()->getFinishedGame() == Running)
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
         // store current time in currentTimePart
         gettimeofday(&currentTimePart, nullptr);
         double oldPart = secsCurrentTimePart;
@@ -72,17 +76,15 @@ void Timing::start(void)
             continue;
         }
         
-        double diff = (secsCurrentTimePart - oldPart)/_secondsPerStep;
-        float step = secsCurrentTimePart - secs(stepTime);
-
-        // if seconds per step has passed and last step was already computed
-        if(step >= _secondsPerStep and !act)
+        if(!act and int(floor(_timeStep)>_lastStepExecuted))
         {
             act = true;
-            gettimeofday(&stepTime, nullptr);
+            _lastStepExecuted = int(floor(_timeStep));
         }
 
-        // if powertime already passed
+        double diff = (secsCurrentTimePart - oldPart)/_secondsPerStep;
+        _timeStep += diff;
+
         for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)
         {
             Power* p = GameLevel::getInstance()->getPowers().at(i);
@@ -94,19 +96,18 @@ void Timing::start(void)
             // if duration finished then activate cooldown
             if(p->getDurationLeft() > 0)
             {
-                p->setDurationLeft(p->getDurationLeft() - diff);
+                p->decreaseDurationLeft(diff);
                 // if duration is exhausted then start cooldown
                 if(p->getDurationLeft()<=0)
                 {
-                    p->setCooldownLeft(p->getCooldown());
+                    p->resetCooldownLeft();
                 }
             }
             else if(p->getCooldownLeft()>0)
             {
-                p->setCooldownLeft(p->getCooldownLeft() - diff); 
+                p->decreaseCooldownLeft(diff); 
             }
         }
-        GameLevel::getInstance()->getUIGameplayMap()->setTimeProgressBar(GameLevel::getInstance()->getUIGameplayMap()->getTimeProgressBar() + diff);
     }
 }
 

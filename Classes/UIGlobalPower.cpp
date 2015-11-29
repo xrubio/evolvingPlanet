@@ -61,7 +61,6 @@ void UIGlobalPower::onTouchesBegan(Point touchLocation)
     // do nothing if it's working or there are not enough EPs
     if(power->isActivated() or disabled == true)
     {
-        CCLOG("power %s do nothing on began active %d disabled %d", power->getName().c_str(), int(power->isActivated()), int(disabled));
         //DO NOTHING
         return;
     }

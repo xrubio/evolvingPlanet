@@ -254,11 +254,6 @@ bool UIGameplayMap::init()
     timeMenu->setPosition(Vec2(0, 0));
     this->addChild(timeMenu, 2);
 
-    /*timeSteps = Label::createWithTTF(to_string(GameLevel::getInstance()->getTimeSteps()), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
-    timeSteps->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    timeSteps->setPosition(Vec2(toggle->getPosition().x - toggle->getBoundingBox().size.width/2, toggle->getPosition().y));
-    this->addChild(timeSteps, 2);*/
-
     //Powers
     vector<Power*> pws = GameLevel::getInstance()->getPowers();
     for (size_t i = 0; i < pws.size(); i++)
@@ -1574,16 +1569,6 @@ void UIGameplayMap::moveGoalPopup(int index)
     }
 }
 
-float UIGameplayMap::getTimeProgressBar(void)
-{
-    return timeProgressBar;
-}
-
-void UIGameplayMap::setTimeProgressBar(float t)
-{
-    timeProgressBar = t;
-}
-
 float UIGameplayMap::sqrOfDistanceBetweenPoints(Point p1, Point p2)
 {
     Point diff = p1 - p2;
@@ -2217,8 +2202,6 @@ void UIGameplayMap::update(float delta)
                 labelInfluenced->setPosition(Vec2(x, y));
                 labelInfluenced->runAction(Sequence::create(FadeIn::create(0.1), MoveBy::create(0.2, Vec2(0, 5.0)), FadeOut::create(0.1), NULL));
             }
-            //timeSteps->setString(to_string(GameLevel::getInstance()->getTimeSteps()));
-
             // TODO everything stopped if _message?
             updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
             updateWave(1, Agent::_resourcesPool.at(0).at(Wood), 2000, Color4B(0, 249, 105, 255));
@@ -2227,9 +2210,12 @@ void UIGameplayMap::update(float delta)
             
             pthread_mutex_unlock(&gameLevelMutex);
         }
-        if (GameLevel::getInstance()->getGoals().empty() == false) {
-            timeBar->setPercentage(float(timeProgressBar) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
-            timeBorderBar->getChildByName("degradateTime")->setPositionX(timeBorderBar->getContentSize().width * (timeBar->getPercentage() / 100.0));
+        if (GameLevel::getInstance()->getGoals().empty() == false)
+        {
+            float value = std::min(100.0f, Timing::getInstance()->getTimeStep()/float(GameLevel::getInstance()->getGoals().back()->getMaxTime())*100.0f);
+            // min with 100 and percentage because Timing thread is faster than gamelevel thread (checking goals) and this thread (painting). it will add some diff to _timeStep before checking for fail
+            timeBar->setPercentage(value);
+            timeBorderBar->getChildByName("degradateTime")->setPositionX(timeBorderBar->getContentSize().width * (value/100.0f));
         }
 
         for (size_t i = 0; i < powerButtons.size(); i++) {
@@ -2248,10 +2234,13 @@ void UIGameplayMap::update(float delta)
             GameLevel::getInstance()->setInGameAchievement(nullptr);
         }
     }
-    else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false and GameLevel::getInstance()->ended == true) {
+    else if (GameLevel::getInstance()->getFinishedGame() != Running and endGameWindowPainted == false and GameLevel::getInstance()->ended == true)
+    {
         updateAgents();
-        if (GameLevel::getInstance()->getGoals().empty() == false) {
-            timeBar->setPercentage(float(GameLevel::getInstance()->getTimeSteps()) / float(GameLevel::getInstance()->getGoals().back()->getMaxTime()) * 100.0);
+        if (GameLevel::getInstance()->getGoals().empty() == false)
+        {
+            float value = std::min(100.0f, Timing::getInstance()->getTimeStep()/float(GameLevel::getInstance()->getGoals().back()->getMaxTime())*100.0f);
+            timeBar->setPercentage(value);
         }
 
         for (size_t i = 0; i < powerButtons.size(); i++) {
@@ -2352,7 +2341,7 @@ void UIGameplayMap::updateWave(int index, int variable, int maxVariable, Color4B
     float currentWaveVertX = this->convertToWorldSpace(graphicBackground->getPosition()).x - (graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion() / 2);
 
     WavePoint w;
-    w.x = currentWaveVertX + vertexHorizontalSpacing * GameLevel::getInstance()->getTimeSteps();
+    w.x = currentWaveVertX + vertexHorizontalSpacing * Timing::getInstance()->getTimeStep();
     w.y = height + this->convertToWorldSpace(graphicBackground->getPosition()).y - (graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion() / 2);
     w.z = 0;
     waveNodes.at(index)->addToDynamicVerts3D(w, color);

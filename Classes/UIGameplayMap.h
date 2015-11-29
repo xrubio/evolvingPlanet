@@ -87,9 +87,6 @@ public:
 
     void moveGoalPopup(int index);
 
-    float getTimeProgressBar(void);
-    void setTimeProgressBar(float t);
-
     CREATE_FUNC(UIGameplayMap);
 
     bool drawInGameAchievementWindow = false;
@@ -122,7 +119,6 @@ private:
     ProgressTimer* timeBar;
     Sprite* timeBorderBar;
     Sprite* pauseDarkBackground;
-    float timeProgressBar = 0.0;
     
     std::vector<Vec2*> *numAgentsEvolutionPoints;
     PointArray *numAgentsEvolution;

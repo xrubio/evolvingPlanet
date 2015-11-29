@@ -30,6 +30,8 @@
 
 #include "GameLevel.h"
 
+class timeval;
+
 class Timing {
 public:
     static Timing* getInstance();
@@ -38,10 +40,16 @@ public:
 
     bool act = false;
 
+    float getTimeStep() const { return _timeStep; }
 
 private:
     static Timing* timingInstance;
     static float _secondsPerStep;
+
+    // current time step with decimals
+    float _timeStep;
+    // agents are executed once each time step, it stores the last one that was executed
+    int _lastStepExecuted;
 
     Timing(){};
     double secs( const timeval & time ) const;

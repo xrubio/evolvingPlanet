@@ -69,19 +69,18 @@ bool ExpansionGoal::checkGoal(int type, Agent* agent)
         return false;
     }
     
-    int timeSteps = GameLevel::getInstance()->getTimeSteps();
     
-    // goal failed due to time
-    if (timeSteps > maxTime)
-    {
-        GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
-        return false;
-    }
-    
+  
+    int timeSteps = int(Timing::getInstance()->getTimeStep());
     // goal is completed if the agent is within the color coded zone for the goal
     int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(), agent->getPosition().getY());
     if(agentColorCode != colorZone)
-    {
+    { 
+        // goal failed due to time (timeStep was the last one, and agents did not arrive
+        if (timeSteps >= maxTime)
+        {
+            GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
+        }
         return false;
     }
 
