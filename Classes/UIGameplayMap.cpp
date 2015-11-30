@@ -485,6 +485,18 @@ bool UIGameplayMap::init()
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
     
+    auto goal = DrawNode::create();
+    graphicBackground->addChild(goal);
+    float height = float(1000)/float(2000) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+    
+    // Space the verticies out evenly across the screen for the wave.
+    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+
+    for (int i = 35; i < 45; i++)
+    {
+        goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 12, Color4F::RED);
+    }
+    
     ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
     auto populationNode = new WaveNode();
     populationNode->init();

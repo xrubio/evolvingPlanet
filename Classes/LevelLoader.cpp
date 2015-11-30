@@ -229,7 +229,20 @@ void LevelLoader::loadXmlFile(string filename)
         }
         else if (type == "Collection") {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
-            auto cg = new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount);
+            int resourceType;
+            if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "WOOD", 4) == 0)
+            {
+                resourceType = Wood;
+            }
+            else if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "MINERAL", 7) == 0)
+            {
+                resourceType = Mineral;
+            }
+            else if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "STONE", 5) == 0)
+            {
+                resourceType = Stone;
+            }
+            auto cg = new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount, resourceType);
             GameLevel::getInstance()->addGoal(cg);
         }
         i++;

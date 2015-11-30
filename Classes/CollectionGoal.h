@@ -33,21 +33,20 @@
 class CollectionGoal : public Goal {
 
 public:
-    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm);
+    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType);
 
     int getGoalAmount(void);
     void setGoalAmount(int goalAm);
-    int getCurrentAmount(void);
-    void setCurrentAmount(int currAm);
 
     bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
     {
         return Collection;
     }
+    
 private:
     int goalAmount;
-    int currentAmount;
+    int _resourceType;
 };
 
 #endif /* defined(__simulplay__CollectionGoal__) */
