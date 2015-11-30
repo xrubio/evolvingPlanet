@@ -2215,6 +2215,11 @@ void UIGameplayMap::update(float delta)
             float value = std::min(100.0f, Timing::getInstance()->getTimeStep()/float(GameLevel::getInstance()->getGoals().back()->getMaxTime())*100.0f);
             // min with 100 and percentage because Timing thread is faster than gamelevel thread (checking goals) and this thread (painting). it will add some diff to _timeStep before checking for fail
             timeBar->setPercentage(value);
+            if (value > 99.4)
+            {
+                timeBorderBar->setVisible(false);;
+            }
+
             timeBorderBar->getChildByName("degradateTime")->setPositionX(timeBorderBar->getContentSize().width * (value/100.0f));
         }
 
