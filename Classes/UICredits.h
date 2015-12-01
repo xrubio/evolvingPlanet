@@ -64,6 +64,10 @@ private:
     void murphysToastStudios(Layout* layout);
     void specialThanks1(Layout* layout);
     void specialThanks2(Layout* layout);
+
+    // add a groupName label at position x/y of background
+    void createGroup( const std::string & groupName, float x, float y, Sprite * background);
+    void createName( const std::string & name, float x, float y, Sprite * background);
     
 };
 

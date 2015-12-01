@@ -212,6 +212,26 @@ void UICredits::simulpast(Layout* layout)
     
 }
 
+
+void UICredits::createGroup( const std::string & groupName, float x, float y, Sprite * background)
+{
+    auto label = Label::createWithTTF(LocalizedString::create(groupName.c_str()), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    label->setColor(Color3B(72, 108, 118));
+    label->setAnchorPoint(Vec2(0, 0.5));
+    label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
+    background->addChild(label);
+}
+
+
+void UICredits::createName( const std::string & name, float x, float y, Sprite * background)
+{   
+    auto label = Label::createWithTTF(name, "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
+    label->setColor(Color3B(72, 108, 118));
+    label->setAnchorPoint(Vec2(0, 0.5));
+    label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
+    background->addChild(label);
+}
+
 void UICredits::murphysToastStudios(Layout* layout)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -222,82 +242,42 @@ void UICredits::murphysToastStudios(Layout* layout)
     layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //MURPHYS TOAST
-    auto programmerLabel = Label::createWithTTF(LocalizedString::create("PROGRAMMER"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
-    programmerLabel->setColor(Color3B(72, 108, 118));
-    programmerLabel->setAnchorPoint(Vec2(0, 0.5));
-    programmerLabel->setPosition(Vec2(3 * popupBackground->getContentSize().width / 28, 11.7 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(programmerLabel);
-    auto xpLabel = Label::createWithTTF("Xavier Rubio", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    xpLabel->setColor(Color3B(72, 108, 118));
-    xpLabel->setAnchorPoint(Vec2(0, 0.5));
-    xpLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 10.4 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(xpLabel);
-    auto gpLabel = Label::createWithTTF("Guillem Laborda", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    gpLabel->setColor(Color3B(72, 108, 118));
-    gpLabel->setAnchorPoint(Vec2(0, 0.5));
-    gpLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 9.5 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(gpLabel);
-    
-    auto designerLabel = Label::createWithTTF(LocalizedString::create("GRAPHIC_DESIGNER"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
-    designerLabel->setColor(Color3B(72, 108, 118));
-    designerLabel->setAnchorPoint(Vec2(0, 0.5));
-    designerLabel->setPosition(Vec2(3 * popupBackground->getContentSize().width / 28, 7.3 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(designerLabel);
-    auto gdLabel = Label::createWithTTF("Guillem H. Pongiluppi", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    gdLabel->setColor(Color3B(72, 108, 118));
-    gdLabel->setAnchorPoint(Vec2(0, 0.5));
-    gdLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 6.2 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(gdLabel);
-    auto ddLabel = Label::createWithTTF("David Ramos", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    ddLabel->setColor(Color3B(72, 108, 118));
-    ddLabel->setAnchorPoint(Vec2(0, 0.5));
-    ddLabel->setPosition(Vec2(4 * popupBackground->getContentSize().width / 28, 5.3 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(ddLabel);
-    
-    auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC_AND_SFX"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
-    musicLabel->setColor(Color3B(72, 108, 118));
-    musicLabel->setAnchorPoint(Vec2(0, 0.5));
-    musicLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 12 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(musicLabel);
-    auto gsLabel = Label::createWithTTF("Guillem Laborda", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    gsLabel->setColor(Color3B(72, 108, 118));
-    gsLabel->setAnchorPoint(Vec2(0, 0.5));
-    gsLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 10.7 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(gsLabel);
-    
-    auto contentLabel = Label::createWithTTF(LocalizedString::create("CONTENT_AND_STORY"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
-    contentLabel->setColor(Color3B(72, 108, 118));
-    contentLabel->setAnchorPoint(Vec2(0, 0.5));
-    contentLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 8.5 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(contentLabel);
-    auto jcLabel = Label::createWithTTF("Jorge Caro", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    jcLabel->setColor(Color3B(72, 108, 118));
-    jcLabel->setAnchorPoint(Vec2(0, 0.5));
-    jcLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 7.2 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(jcLabel);
-    auto xcLabel = Label::createWithTTF("Xavier Rubio", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    xcLabel->setColor(Color3B(72, 108, 118));
-    xcLabel->setAnchorPoint(Vec2(0, 0.5));
-    xcLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 6.3 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(xcLabel);
-    
-    auto directorLabel = Label::createWithTTF(LocalizedString::create("DIRECTOR"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
-    directorLabel->setColor(Color3B(72, 108, 118));
-    directorLabel->setAnchorPoint(Vec2(0, 0.5));
-    directorLabel->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 4.1 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(directorLabel);
-    auto xdLabel = Label::createWithTTF("Xavier Rubio", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    xdLabel->setColor(Color3B(72, 108, 118));
-    xdLabel->setAnchorPoint(Vec2(0, 0.5));
-    xdLabel->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2.8 * popupBackground->getContentSize().height / 16));
-    popupBackground->addChild(xdLabel);
-    
-    auto configLabel = Label::createWithTTF("MURPHY'S TOAST STUDIOS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("MURPHY"), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
-                                  14 * popupBackground->getContentSize().height / 16));
+    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
+
+    // first column
+    // between names: 0.06
+    // from last name to next group: 0.12f
+    createGroup("DIRECTOR", 0.1f, 0.75f, popupBackground);
+    createName("Xavier Rubio-Campillo", 0.13f, 0.69f, popupBackground);
+        
+    createGroup("LEAD_PROGRAMMER", 0.1f, 0.57f, popupBackground);
+    createName("Guillem Laborda", 0.13f, 0.51f, popupBackground);
+
+    createGroup("ADDITIONAL_PROGRAMMING", 0.1f, 0.39f, popupBackground);
+    createName("Xavier Rubio-Campillo", 0.13f, 0.33f, popupBackground);
+   
+    createGroup("ART", 0.1f, 0.21f, popupBackground);
+    createName("Guillem H. Pongiluppi", 0.13f, 0.15f, popupBackground);
+    createName("David Ramos", 0.13f, 0.09f, popupBackground);
+    
+    // second column  
+    // between names: 0.07
+    // from last name to next group: 0.14f
+
+    createGroup("UI", 0.6f, 0.75f, popupBackground);
+    createName("David Ramos", 0.63f, 0.68f, popupBackground);
+
+    createGroup("STORY", 0.6f, 0.54f, popupBackground);
+    createName("Xavier Rubio-Campillo", 0.63f, 0.47f, popupBackground);
+    createName("Jorge Caro", 0.63f, 0.40f, popupBackground);
+    createName("Guillem H. Pongiluppi", 0.63f, 0.33f, popupBackground);
+
+    createGroup("MUSIC", 0.6f, 0.19f, popupBackground);
+    createName("Guillem Laborda", 0.63f, 0.12f, popupBackground);
 }
 
 void UICredits::specialThanks1(Layout* layout)
