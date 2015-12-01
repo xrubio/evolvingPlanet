@@ -613,7 +613,7 @@ bool UIGameplayMap::init()
     bottomFrame->addChild(attrMenu, 1, 100000);
 
     //CHECK IF THERE IS ANY IN-GAME ACHIEVEMENT (achievement num 3 of the corresponding level)
-    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).size() > 2 and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "DISCOVER")
+    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).size() > 2 and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "DISCOVER" and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getCompleted() == false)
     {
         GameLevel::getInstance()->setInGameAchievement(GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2));
     }
