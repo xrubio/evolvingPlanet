@@ -67,7 +67,14 @@ private:
 
     // add a groupName label at position x/y of background
     void createGroup( const std::string & groupName, float x, float y, Sprite * background);
+    // add a name label at position x/y of background
     void createName( const std::string & name, float x, float y, Sprite * background);
+    // add an acknowledgement name at position x/y of background
+    void createAcknowledgment( const std::string & name, float x, float y, Sprite * background);
+    // load thanks names from xml
+    void loadAcknowledgements();
+    // acknowledgement names
+    std::list<std::string> _names;
     
 };
 

@@ -41,7 +41,6 @@ bool AppDelegate::applicationDidFinishLaunching()
         director->setOpenGLView(glview);
         //glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
     }
-    auto screenSize = glview->getFrameSize();
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -53,6 +52,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> resDirOrders;
     
+    auto screenSize = glview->getFrameSize();
     CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
     if (screenSize.width > 1536) {
         CCLOG("\tusing artwork of size 2048");

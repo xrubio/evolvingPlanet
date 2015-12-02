@@ -29,6 +29,7 @@
 #include "LocalizedString.h"
 
 #include <audio/include/SimpleAudioEngine.h>
+#include "../libs/pugixml/pugixml.hpp"
 
 Scene* UICredits::createScene()
 {
@@ -43,6 +44,7 @@ bool UICredits::init()
     if (!Layer::init()) {
         return false;
     }
+    loadAcknowledgements();
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
@@ -148,10 +150,12 @@ bool UICredits::init()
     auto layoutThanks2 = Layout::create();
     specialThanks2(layoutThanks2);
     pages->addPage(layoutThanks2);
+
     
     this->addChild(pages);
     
     this->scheduleUpdate();
+
     
     return true;
 }
@@ -199,17 +203,24 @@ void UICredits::simulpast(Layout* layout)
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
-    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    layout->setSize(Size(0.9f*visibleSize.width, 0.9f*visibleSize.height));
     
     //SIMULPAST
     
-    auto configLabel = Label::createWithTTF("SIMULPAST", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("SIMULPAST_TITLE"), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
-                                  14 * popupBackground->getContentSize().height / 16));
+    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
-    
+        
+    auto simulText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("SIMULPAST_TEXT"), visibleSize, TextHAlignment::LEFT, "fonts/arial_rounded_mt_bold.ttf", 45 * GameData::getInstance()->getRaConversion());
+    simulText->setColor(Color3B(72, 108, 118));
+    simulText->setAnchorPoint(Vec2(0, 0.5));
+    simulText->setPosition(Vec2(0.05f * popupBackground->getContentSize().width, 0.5f * popupBackground->getContentSize().height));
+
+    popupBackground->addChild(simulText);
+    // TODO open webpage if tap in logo
+    //Application::getInstance()->openURL("http://simulpast.es");
 }
 
 
@@ -265,19 +276,59 @@ void UICredits::murphysToastStudios(Layout* layout)
     createName("David Ramos", 0.13f, 0.09f, popupBackground);
     
     // second column  
-    // between names: 0.07
-    // from last name to next group: 0.14f
+    // between names: 0.06
+    // from last name to next group: 0.12f
 
     createGroup("UI", 0.6f, 0.75f, popupBackground);
-    createName("David Ramos", 0.63f, 0.68f, popupBackground);
+    createName("David Ramos", 0.63f, 0.69f, popupBackground);
 
-    createGroup("STORY", 0.6f, 0.54f, popupBackground);
-    createName("Xavier Rubio-Campillo", 0.63f, 0.47f, popupBackground);
-    createName("Jorge Caro", 0.63f, 0.40f, popupBackground);
+    createGroup("STORY", 0.6f, 0.57f, popupBackground);
+    createName("Xavier Rubio-Campillo", 0.63f, 0.51f, popupBackground);
+    createName("Jorge Caro", 0.63f, 0.45f, popupBackground);
+    createName("Debora Zurro", 0.63f, 0.39f, popupBackground);
     createName("Guillem H. Pongiluppi", 0.63f, 0.33f, popupBackground);
 
-    createGroup("MUSIC", 0.6f, 0.19f, popupBackground);
-    createName("Guillem Laborda", 0.63f, 0.12f, popupBackground);
+    createGroup("MUSIC", 0.6f, 0.21f, popupBackground);
+    createName("Guillem Laborda", 0.63f, 0.15f, popupBackground);
+}
+
+void UICredits::createAcknowledgment( const std::string & name, float x, float y, Sprite * background)
+{   
+    auto label = Label::createWithTTF(name, "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+    label->setColor(Color3B(72, 108, 118));
+    label->setAnchorPoint(Vec2(0, 0.5));
+    label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
+    background->addChild(label);
+}
+
+void UICredits::loadAcknowledgements() 
+{
+    _names.clear();
+    string dir = "data/";
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    dir = "";
+#endif
+
+    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + "credits.xml");
+    pugi::xml_document doc;
+    pugi::xml_parse_result result;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    ssize_t tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
+    pugi::xml_node thanks = doc.child("thanks1");
+
+    pugi::xml_node nameNode = thanks.child("name");
+    while(nameNode!=nullptr)
+    {
+        _names.push_back(nameNode.attribute("value").value());
+        nameNode = nameNode.next_sibling("name");
+
+    }
 }
 
 void UICredits::specialThanks1(Layout* layout)
@@ -291,12 +342,28 @@ void UICredits::specialThanks1(Layout* layout)
     
     //THANKS 1
     
-    auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
-                                  14 * popupBackground->getContentSize().height / 16));
+    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
+
+   
+    float x = 0.1f;
+    float y = 0.75f;
+    float xInterval = 0.3f;
+    float yInterval = 0.05f;
+
+    for(std::list<std::string>::const_iterator it=_names.begin(); it!=_names.end(); it++)
+    {
+        if(y<0.0f)
+        {
+            y = 0.75f;
+            x += xInterval;
+        }
+        createAcknowledgment(*it, x, y, popupBackground);
+        y -= yInterval;
+    }
 }
 
 void UICredits::specialThanks2(Layout* layout)

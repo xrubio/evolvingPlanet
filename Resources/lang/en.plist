@@ -149,6 +149,15 @@ archaeological data suggests</string>
     <string>Story &amp; content</string>
     <key>MUSIC</key>
     <string>Music &amp; Sound</string>
+    
+    <key>SIMULPAST_TITLE</key>
+    <string>The SimulPast Project</string>
+    <key>SIMULPAST_TEXT</key>
+    <string>Evolving Planet would not exist without a research project called Simulpast.
+    
+Simulpast is breaking the barriers between Science and Humanities to learn about our origins, our present and our future. Archaeologists, Computer Scientists, Anthropologists and other experts use computer simulation to improve our understanding of the past.
+
+The game is a different approach to this new science. In Evolving Planet you play the role of the scientist that explore the evolution of concepts such as technology, human behavior and species dispersals.</string>
         
 </dict>
 </plist>
