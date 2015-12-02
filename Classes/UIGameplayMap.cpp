@@ -448,7 +448,7 @@ bool UIGameplayMap::init()
     _listenerTutorial->setSwallowTouches(true);
     _listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchBeganTutorial, this);
     _listenerTutorial->onTouchEnded = CC_CALLBACK_2(UIGameplayMap::onTouchEndedTutorial, this);
-    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial,-1);
+    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial, -1);
 
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/level.mp3", true);
@@ -870,7 +870,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 }
 
 bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
-{    
+{
     if(!_tutorial)
     {
         return false;
@@ -949,21 +949,39 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     if(_tutorial->getCurrentMessage()->getPostCondition() == "tap")
     {
         _tutorial->getCurrentMessage()->postConditionAchieved();
-        return true;
     }
+
+    return true;
+}
+
+void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
+{
+    if(!_tutorial)
+    {
+        return;
+    }
+    if (!_tutorial->getCurrentMessage())
+    {
+        return;
+    }
+    
+    Node * parent = this;
+    Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    
     if(_tutorial->getCurrentMessage()->getPostCondition() == "spot")
     {
-        // XRC this is implemented in a different way than the standard onTouchesBegan. Should we unify both codes?
         if (((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC) < 0.3)
         {
             firstTouchLocation = touchLocation;
             changeSpotPosition();
         }
-        return true;
+        timeFingerSpot = clock();
+        return;
     }
+    
     if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
     {
-        return false;
+        return;
     }
     
     std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
@@ -979,14 +997,17 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     }
     
     token = buttonName.substr(0, pos);
+    std::string buttonPressed = token;
     
     //attribute translation
     if (token.substr(0, 4) == "plus")
     {
+        buttonPressed = "plus";
         token = "plus" + LocalizedString::create(token.substr(4).c_str());
     }
     else if (token.substr(0, 5) == "minus")
     {
+        buttonPressed = "minus";
         token = "minus" + LocalizedString::create(token.substr(5).c_str());
     }
     
@@ -994,16 +1015,38 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     touchLocation = parent->convertToNodeSpace(touch->getLocation());
     if(button->getBoundingBox().containsPoint(touchLocation))
     {
+        if (buttonPressed == "playToggle")
+        {
+            togglePlay(button);
+        }
+        else if (buttonPressed == "plus")
+        {
+            plusAttCallback(button);
+        }
+        else if (buttonPressed == "minus")
+        {
+            minusAttCallback(button);
+        }
+        else if (buttonPressed == "power0")
+        {
+            powerButtons.at(0)->onTouchesBegan(touchLocation);
+            bool actioned = powerButtons.at(0)->onTouchesEnded(touchLocation);
+            GameLevel::getInstance()->setPowersUsed(true);
+            //ANIMACIO RESTA PUNTS
+            if (actioned == true)
+            {
+                restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+                restaEvolutionPointsLabel->setString("-" + to_string(int(powerButtons.at(0)->getPower()->getCost())));
+                auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+                restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
+            }
+            else
+            {
+                powerButtons.at(0)->disabled = true;
+            }
+        }
         _tutorial->getCurrentMessage()->postConditionAchieved();
-        return false;
     }
-
-    return true;
-}
-
-void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
-{
-    timeFingerSpot = clock();
 }
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
@@ -1495,7 +1538,6 @@ void* UIGameplayMap::createTiming(void* arg)
 void UIGameplayMap::startTiming(void)
 {
     Timing::getInstance()->start();
-    CCLOG("DONE TIMING");
 }
 
 void UIGameplayMap::createNewLevelThread(void)
@@ -1545,7 +1587,6 @@ void UIGameplayMap::playLevel(void)
         }
     }
     GameLevel::getInstance()->playLevel();
-    CCLOG("DONE GAME LEVEL");
 }
 
 bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)

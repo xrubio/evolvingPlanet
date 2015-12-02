@@ -29,22 +29,22 @@
         <spot image="tutorial/tEvoTrack" centerX="0.56" centerY="0.07"/>
     </message>        
     <message id="15" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M15" closesWhen="tapButton" button="bottomFrame/attrMenu/plusMOBILITY">
-        <spot image="tutorial/tEvoPlus" centerX="0.45" centerY="0.065"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.442" centerY="0.067"/>
     </message>
     <message id="16" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M16" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
-        <spot image="tutorial/tEvoPlus" centerX="0.617" centerY="0.065"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.067"/>
     </message>
     <message id="17" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M17" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">   
-        <spot image="tutorial/tEvoPlus" centerX="0.617" centerY="0.065"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.067"/>
     </message>
     <message id="18" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M18" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
-        <spot image="tutorial/tEvoPlus" centerX="0.617" centerY="0.065"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.067"/>
     </message>
     <message id="19" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M19" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
-        <spot  image="tutorial/tEvoPlus" centerX="0.783" centerY="0.065"/>
+        <spot  image="tutorial/tEvoPlus" centerX="0.8035" centerY="0.067"/>
     </message>
     <message id="20" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M20" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
-        <spot   image="tutorial/tEvoPlus" centerX="0.783" centerY="0.065"/>
+        <spot   image="tutorial/tEvoPlus" centerX="0.8035" centerY="0.067"/>
     </message>
     <message id="21" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M21" closesWhen="tapButton" button="timeMenu/playToggle">
         <spot image="tutorial/tPlay" centerX="0.9" centerY="0.93"/>

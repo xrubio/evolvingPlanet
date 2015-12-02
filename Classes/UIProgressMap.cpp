@@ -675,6 +675,16 @@ Layout* UIProgressMap::setEpisode2(void)
     progressMap->setName("progressMap");
     layout->addChild(progressMap);
     
+    auto cloud2 = Sprite::create("gui/Clouds2.png");
+    cloud2->setPosition(Vec2((3.2 * progressMap->getContentSize().width / 4), (0.75 * progressMap->getContentSize().height / 2)));
+    progressMap->addChild(cloud2);
+    auto movBy1 = MoveBy::create(8, Vec2(-20 * GameData::getInstance()->getRaConversion(), -20 * GameData::getInstance()->getRaConversion()));
+    auto easeBy1 = EaseIn::create(movBy1, 1);
+    auto movBy2 = MoveBy::create(15, Vec2(20 * GameData::getInstance()->getRaConversion(), 20 * GameData::getInstance()->getRaConversion()));
+    auto easeBy2 = EaseIn::create(movBy2, 2);
+    auto seqC2 = Sequence::create(easeBy1, easeBy2, NULL);
+    cloud2->runAction(RepeatForever::create(seqC2));
+    
     Vector<MenuItem *> levelButtonVec;
     for (int i = 11; i < 21; i++)
     {
