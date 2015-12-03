@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2015
  * MURPHY'S TOAST GAMES
- * 
+ *
  * This file is part of Evolving Planet.
  * Evolving Planet is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,46 +18,36 @@
  */
 
 //
-//  Achievement.cpp
+//  UIIntro.h
 //  simulplay
 //
-//  Created by Guillem Laborda on 5/3/15.
+//  Created by Guillem Laborda on 3/12/15.
 //
 //
 
-#include "Achievement.h"
+#ifndef __simulplay__UIIntro__
+#define __simulplay__UIIntro__
 
-Achievement::Achievement(const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed, bool occult) : _icon(icon), _resource(resource), _goalType(goalType), _level(level), _completed(completed), _occult(occult)
-{
-}
+#include "cocos2d.h"
 
-string Achievement::getIcon() const
-{
-    return _icon;
-}
+using namespace cocos2d;
 
-string Achievement::getResource() const
-{
-    return _resource;
-}
+class UIIntro : public Layer {
+public:
+    static Scene* createScene();
+    
+    virtual bool init();
+    
+    bool onTouchesBegan(Touch* touch, Event* event);
+    
+    virtual void update(float delta);
+            
+    CREATE_FUNC(UIIntro);
+    
+private:
 
-string Achievement::getGoalType() const
-{
-    return _goalType;
-}
+    EventListenerTouchOneByOne* _listener;
+    
+};
 
-int Achievement::getLevel() const
-{
-    return _level;
-}
-
-bool Achievement::getCompleted() const
-{
-    return true;
-    //return _completed;
-}
-
-bool Achievement::getOccult() const
-{
-    return _occult;
-}
+#endif /* defined(__simulplay__UIIntro__) */

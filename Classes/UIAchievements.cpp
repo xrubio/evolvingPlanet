@@ -143,7 +143,7 @@ bool UIAchievements::init()
             {
                 iconPath = "gui/AchievementIconOn.png";
             }
-            auto icon = Sprite::create(iconPath);     
+            auto icon = Sprite::create(iconPath);
             icon->setPosition(Vec2(model->getPositionX() + (icon->getBoundingBox().size.width / 1.5), model->getBoundingBox().size.height / 2));
             model->addChild(icon);
             string key = to_string(i) + "_" + achs.at(i).at(j)->getGoalType();
@@ -221,13 +221,13 @@ void UIAchievements::zoomImageOutCallback(Ref* pSender)
 
 void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aType)
 {
-    if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
-    }
-    
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     if (aType == ui::Widget::TouchEventType::ENDED) {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+        }
+        
         Vector<MenuItem*> menuButtons;
         auto darkBackground = MenuItemImage::create("gui/ProgressMapDarkBackground.png", "gui/ProgressMapDarkBackground.png",
             CC_CALLBACK_1(UIAchievements::restoreAchievementsWindow, this));

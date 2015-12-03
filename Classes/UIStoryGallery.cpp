@@ -86,12 +86,12 @@ bool UIStoryGallery::init()
     pages->setPosition(Point(0, 0));
     //pages->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
     
- //   for (int i = 1; i < GameData::getInstance()->getLevelsCompleted().size(); i++)
+    //for (int i = 1; i < GameData::getInstance()->getLevelsCompleted().size(); i++)
     for (int i = 1; i < 11; i++)
     {
         auto layout = Layout::create();
         // unlocked
-//        if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
+        //if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
         {
             //TODO fix mentre no hi ha els dibuixos del 11 al 20
             if(i < 11)
@@ -100,18 +100,16 @@ bool UIStoryGallery::init()
                 image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
                 image->setScale(visibleSize.width / image->getContentSize().width);
                 layout->addChild(image);
-
-
-            
+                
                 auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
                 storyLine->setColor(Color3B(216, 229, 235));
                 storyLine->enableShadow();
                 storyLine->setMaxLineWidth(0.5f*visibleSize.width);
                 storyLine->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-
+    
                 storyLine->setAnchorPoint(Vec2(0.0, 0.0));
                 storyLine->setPosition(Vec2(0.05f*visibleSize.width, 0.2f*visibleSize.height));
-
+                
                 auto labelBorder = DrawNode::create();
                 Vec2 origin(storyLine->getBoundingBox().origin - Vec2(20.0f, 20.0f));
                 Vec2 end(storyLine->getBoundingBox().origin + storyLine->getBoundingBox().size + Vec2(20.0f, 20.0f));
@@ -120,10 +118,10 @@ bool UIStoryGallery::init()
                 
                 layout->addChild(labelBorder);
                 layout->addChild(storyLine);
+
             }
         }
-        /*
-        else
+        /*else
         {
             //TODO fix mentre no hi ha els dibuixos del 11 al 20
             if(i < 11)
@@ -141,7 +139,6 @@ bool UIStoryGallery::init()
             }
         }
         */
-        
         pages->addPage(layout);
     }
 

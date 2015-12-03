@@ -39,8 +39,6 @@ public:
     virtual bool init();
 
     void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
-    bool onTouchBeganLoading(Touch * touch, Event* event);
-    void onTouchEndedLoading(Touch * touch, Event* event);
 
     void menuContinueCallback(Ref* pSender);
     void menuStartCallback(Ref* pSender);
@@ -53,8 +51,6 @@ public:
     void menuResetNoCallback(Ref* pSender);
     void menuResetYesCallback(Ref* pSender);
     
-    virtual void update(float delta);
-
     CREATE_FUNC(UIMainMenu);
 
 private:
@@ -64,9 +60,7 @@ private:
     void endActions(void);
     bool allActionsFinished(void);
     void createWarningWindow(void);
-    
-    void setLoadingAnimation(bool b);    
-    
+        
     void openFacebook( Ref * pSender );
     void openTwitter( Ref * pSender );
     void openWeb( Ref * pSender );
