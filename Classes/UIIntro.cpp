@@ -64,7 +64,7 @@ bool UIIntro::init()
     }*/
     
     cocos2d::experimental::ui::VideoPlayer *p = cocos2d::experimental::ui::VideoPlayer::create();
-    p->setFileName("audio/logo_02.mov");
+    p->setFileName("audio/logo_02.mp4");
     p->setName("video");
     p->setContentSize(Size(visibleSize.width, visibleSize.height + (3 * visibleSize.height / 10)));
     p->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
