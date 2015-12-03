@@ -286,7 +286,7 @@ void UICredits::murphysToastStudios(Layout* layout)
     createGroup("UI", 0.6f, 0.75f, popupBackground);
     createName("David Ramos", 0.63f, 0.69f, popupBackground);
 
-    createGroup("STORY", 0.6f, 0.57f, popupBackground);
+    createGroup("STORY_CONTENT", 0.6f, 0.57f, popupBackground);
     createName("Xavier Rubio-Campillo", 0.63f, 0.51f, popupBackground);
     createName("Jorge Caro", 0.63f, 0.45f, popupBackground);
     createName("Debora Zurro", 0.63f, 0.39f, popupBackground);
