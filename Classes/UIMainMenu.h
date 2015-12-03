@@ -65,7 +65,11 @@ private:
     bool allActionsFinished(void);
     void createWarningWindow(void);
     
-    void setLoadingAnimation(bool b);
+    void setLoadingAnimation(bool b);    
+    
+    void openFacebook( Ref * pSender );
+    void openTwitter( Ref * pSender );
+    void openWeb( Ref * pSender );
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

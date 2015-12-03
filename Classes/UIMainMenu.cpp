@@ -227,6 +227,22 @@ bool UIMainMenu::init()
     configurationButton->setScale(GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(configurationButton);
 
+    // links
+    auto facebook = MenuItemImage::create("misc/facebook.png", "misc/facebook.png", CC_CALLBACK_1(UIMainMenu::openFacebook, this));
+    facebook->setAnchorPoint(Vec2(0, 0.5));
+    facebook->setPosition(Vec2(0.91f*visibleSize.width, 0.95f*visibleSize.height));
+    menuButtons.pushBack(facebook);
+
+    auto twitter = MenuItemImage::create("misc/twitter.png", "misc/twitter.png", CC_CALLBACK_1(UIMainMenu::openTwitter, this));
+    twitter->setAnchorPoint(Vec2(0, 0.5));
+    twitter->setPosition(Vec2(0.95f*visibleSize.width, 0.95f*visibleSize.height));
+    menuButtons.pushBack(twitter);
+
+    auto web = MenuItemImage::create("misc/browser.png", "misc/browser.png", CC_CALLBACK_1(UIMainMenu::openWeb, this));
+    web->setAnchorPoint(Vec2(0, 0.5));
+    web->setPosition(Vec2(0.87f*visibleSize.width, 0.95f*visibleSize.height));
+    menuButtons.pushBack(web);
+
     auto menu = Menu::createWithArray(menuButtons);
     menu->setName("menu");
     menu->setPosition(Vec2(0, 0));
@@ -574,5 +590,20 @@ void UIMainMenu::update(float delta)
     {
         this->removeChild(((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")));
     }*/
+}
+
+void UIMainMenu::openFacebook( Ref * pSender )
+{
+    Application::getInstance()->openURL("https://www.facebook.com/evolvingPlanetGame");    
+}
+
+void UIMainMenu::openTwitter( Ref * pSender )
+{
+    Application::getInstance()->openURL("https://twitter.com/evoPlanetGame");    
+}
+
+void UIMainMenu::openWeb( Ref * pSender )
+{
+    Application::getInstance()->openURL("http://evolvingplanetgame.com");    
 }
 

@@ -228,12 +228,6 @@ void UICredits::simulpast(Layout* layout)
     popupBackground->addChild(simulMenu);
 }
 
-void UICredits::openSimulLink( Ref * pSender )
-{
-    CCLOG("opening simulpast");
-    Application::getInstance()->openURL("http://simulpast.es");    
-}
-
 void UICredits::createGroup( const std::string & groupName, float x, float y, Sprite * background)
 {
     auto label = Label::createWithTTF(LocalizedString::create(groupName.c_str()), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
@@ -352,7 +346,7 @@ void UICredits::specialThanks1(Layout* layout)
     
     //THANKS 1
     
-    auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_THANKS"), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
     configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
@@ -387,12 +381,35 @@ void UICredits::specialThanks2(Layout* layout)
     
     //THANKS 2
     
-    auto configLabel = Label::createWithTTF("SPECIAL THANKS", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("SUPPORT"), "fonts/BebasNeue.otf", 70* GameData::getInstance()->getRaConversion()); 
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2((3 * popupBackground->getContentSize().width / 28),
-                                  14 * popupBackground->getContentSize().height / 16));
+    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
+
+    auto recercaixa = Sprite::create("misc/recercaixa.png");
+    auto bsc = Sprite::create("misc/bsc.png");
+    auto micinn = Sprite::create("misc/micinn.png");
+
+    auto poweredLabel = Label::createWithTTF(LocalizedString::create("POWERED"), "fonts/BebasNeue.otf", 70* GameData::getInstance()->getRaConversion()); 
+    poweredLabel->setColor(Color3B(255, 255, 255));
+    poweredLabel->setAnchorPoint(Vec2(0, 0.5));
+    poweredLabel->setPosition(Vec2(0.2f * popupBackground->getContentSize().width, 0.1f*popupBackground->getContentSize().height));
+    popupBackground->addChild(poweredLabel);
+
+    auto cocos = Sprite::create("misc/cocos.png");
+
+    recercaixa->setPosition(0.3f*popupBackground->getContentSize().width, 0.6f*popupBackground->getContentSize().height);
+    bsc->setPosition(0.7f*popupBackground->getContentSize().width, 0.6f*popupBackground->getContentSize().height);
+    micinn->setPosition(0.5f*popupBackground->getContentSize().width, 0.4f*popupBackground->getContentSize().height);
+
+    cocos->setPosition(0.7f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height);
+
+    popupBackground->addChild(recercaixa);
+    popupBackground->addChild(bsc);
+    popupBackground->addChild(micinn);
+    popupBackground->addChild(cocos);
+
 }
 
 void UICredits::update(float delta)
@@ -442,3 +459,10 @@ void UICredits::update(float delta)
         arrowNext->setVisible(true);
     }
 }
+
+
+void UICredits::openSimulLink( Ref * pSender )
+{
+    Application::getInstance()->openURL("http://simulpast.es");    
+}
+

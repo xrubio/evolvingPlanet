@@ -160,6 +160,11 @@ Simulpast is breaking the barriers between Science and Humanities to learn about
 Evolving Planet explores this new way of doing science. You are part of the scientist team studying a species similar to humans through concepts such as evolution, technology, and dispersal.
 
 Tap the logo to know more about SimulPast!</string>
-        
+    <key>SPECIAL_THANKS</key>
+    <string>Special thanks</string>
+    <key>SUPPORT</key>
+    <string>With the support of</string>    
+    <key>POWERED</key>
+    <string>Evolving Planet is powered by</string> 
 </dict>
 </plist>
