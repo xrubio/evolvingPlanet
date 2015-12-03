@@ -120,7 +120,7 @@ bool UICredits::init()
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
     backButton->addChild(backLabel);
     menuButtons.pushBack(backButton);
-    
+      
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
     this->addChild(menu, 1);
@@ -213,21 +213,31 @@ void UICredits::simulpast(Layout* layout)
     configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
         
-    auto simulText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("SIMULPAST_TEXT"), visibleSize, TextHAlignment::LEFT, "fonts/arial_rounded_mt_bold.ttf", 45 * GameData::getInstance()->getRaConversion());
-    simulText->setColor(Color3B(72, 108, 118));
+    auto simulText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("SIMULPAST_TEXT"), Size(0.9f*popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height), TextHAlignment::LEFT, "fonts/arial_rounded_mt_bold.ttf", 45 * GameData::getInstance()->getRaConversion());
+    simulText->setColorSpaceHolder(Color3B(216, 229, 235));
     simulText->setAnchorPoint(Vec2(0, 0.5));
     simulText->setPosition(Vec2(0.05f * popupBackground->getContentSize().width, 0.5f * popupBackground->getContentSize().height));
-
     popupBackground->addChild(simulText);
-    // TODO open webpage if tap in logo
-    //Application::getInstance()->openURL("http://simulpast.es");
+
+    auto simulLink = MenuItemImage::create("misc/simulpast.png", "misc/simulpast.png", CC_CALLBACK_1(UICredits::openSimulLink, this));
+    simulLink->setAnchorPoint(Vec2(0, 0.5));
+    simulLink->setPosition(Vec2(0.8f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+
+    auto simulMenu = Menu::create(simulLink, NULL);
+    simulMenu->setPosition(0, 0);
+    popupBackground->addChild(simulMenu);
 }
 
+void UICredits::openSimulLink( Ref * pSender )
+{
+    CCLOG("opening simulpast");
+    Application::getInstance()->openURL("http://simulpast.es");    
+}
 
 void UICredits::createGroup( const std::string & groupName, float x, float y, Sprite * background)
 {
     auto label = Label::createWithTTF(LocalizedString::create(groupName.c_str()), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
-    label->setColor(Color3B(72, 108, 118));
+    label->setColor(Color3B(216, 229, 235));
     label->setAnchorPoint(Vec2(0, 0.5));
     label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
     background->addChild(label);
@@ -237,7 +247,7 @@ void UICredits::createGroup( const std::string & groupName, float x, float y, Sp
 void UICredits::createName( const std::string & name, float x, float y, Sprite * background)
 {   
     auto label = Label::createWithTTF(name, "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
-    label->setColor(Color3B(72, 108, 118));
+    label->setColor(Color3B(216, 229, 235));
     label->setAnchorPoint(Vec2(0, 0.5));
     label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
     background->addChild(label);
@@ -295,7 +305,7 @@ void UICredits::murphysToastStudios(Layout* layout)
 void UICredits::createAcknowledgment( const std::string & name, float x, float y, Sprite * background)
 {   
     auto label = Label::createWithTTF(name, "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
-    label->setColor(Color3B(72, 108, 118));
+    label->setColor(Color3B(216, 229, 235));
     label->setAnchorPoint(Vec2(0, 0.5));
     label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
     background->addChild(label);
@@ -350,15 +360,15 @@ void UICredits::specialThanks1(Layout* layout)
 
    
     float x = 0.1f;
-    float y = 0.75f;
+    float y = 0.8f;
     float xInterval = 0.3f;
     float yInterval = 0.05f;
 
     for(std::list<std::string>::const_iterator it=_names.begin(); it!=_names.end(); it++)
     {
-        if(y<0.0f)
+        if(y<0.1f)
         {
-            y = 0.75f;
+            y = 0.8f;
             x += xInterval;
         }
         createAcknowledgment(*it, x, y, popupBackground);

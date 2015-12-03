@@ -43,6 +43,7 @@ public:
     void menuBackCallback(Ref* pSender);
     void menuArrowBackCallback(Ref* pSender);
     void menuArrowNextCallback(Ref* pSender);
+    void openSimulLink( Ref * pSender );
     
     virtual void update(float delta);
 
@@ -74,8 +75,7 @@ private:
     // load thanks names from xml
     void loadAcknowledgements();
     // acknowledgement names
-    std::list<std::string> _names;
-    
+    std::list<std::string> _names; 
 };
 
 #endif /* defined(__simulplay__UICredits__) */
