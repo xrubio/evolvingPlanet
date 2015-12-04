@@ -2000,35 +2000,39 @@ void UIGameplayMap::updateAgents(void)
                 break;
             }
             
+            Color4B colorBorder;
+            switch ((*it)->getType()) {
+                case 1:
+                    colorBorder = Color4B(0, 248, 251, (*it)->getLife() * (255 / 175));
+                    break;
+                case 2:
+                    colorBorder = Color4B(210, 214, 47, (*it)->getLife() * (255 / 175));
+                    break;
+                case 3:
+                    colorBorder = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
+                    break;
+                default:
+                    colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, (*it)->getLife() * (255 / 175));
+                    break;
+            }
+            
             //check num_agents painted in accordance with num_resources if not painting population
             if (agentColor > 0)
             {
                 if (resourcesPainted < Agent::_resourcesPool.at(i).at(agentColor - 1))
                 {
                     resourcesPainted++;
-                    Color4B colorBorder;
-                    switch ((*it)->getType()) {
-                        case 1:
-                            colorBorder = Color4B(0, 248, 251, 255);
-                            break;
-                        case 2:
-                            colorBorder = Color4B(210, 214, 47, 255);
-                            break;
-                        case 3:
-                            colorBorder = Color4B(68, 165, 195, 255);
-                            break;
-                        default:
-                            colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, 255);
-                            break;
-                    }
                     drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1, colorBorder);
                 }
                 else
                 {
-                    color = transparent;
+                    color.r = colorBorder.r / 2;
+                    color.g = colorBorder.g / 2;
+                    color.b = colorBorder.b / 2;
+                    color.a = (*it)->getLife() * (255 / 175);
+
                     drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
                 }
-
             }
             else
             {
