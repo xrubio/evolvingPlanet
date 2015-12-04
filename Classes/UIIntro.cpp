@@ -28,12 +28,13 @@
 #include "UIIntro.h"
 #include "UIMainMenu.h"
 #include "GameData.h"
-
-#include <ui/UIVideoPlayer.h>
+#include <extensions/cocos-ext.h>
+#include <ui/CocosGUI.h>
 
 #include <audio/include/SimpleAudioEngine.h>
 
-USING_NS_CC;
+using namespace cocos2d::ui;
+using namespace cocos2d::experimental::ui;
 
 Scene* UIIntro::createScene()
 {
@@ -63,7 +64,7 @@ bool UIIntro::init()
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }*/
     
-    cocos2d::experimental::ui::VideoPlayer *p = cocos2d::experimental::ui::VideoPlayer::create();
+    VideoPlayer *p = VideoPlayer::create();
     p->setFileName("audio/logo_02.mp4");
     p->setName("video");
     p->setContentSize(Size(visibleSize.width, visibleSize.height + (3 * visibleSize.height / 10)));
@@ -84,7 +85,7 @@ bool UIIntro::init()
 
 bool UIIntro::onTouchesBegan(Touch* touch, Event* event)
 {
-    if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr /*and ((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying()*/)
+    if (((VideoPlayer*)this->getChildByName("video")) != nullptr /*and ((VideoPlayer*)this->getChildByName("video"))->isPlaying()*/)
     {
         CCLOG("TAP");
         return true;
@@ -94,9 +95,9 @@ bool UIIntro::onTouchesBegan(Touch* touch, Event* event)
 
 void UIIntro::update(float delta)
 {
-    if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
+    if (((VideoPlayer*)this->getChildByName("video")) != nullptr and((VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
     {
-        //this->removeChild(((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")));
+        //this->removeChild(((VideoPlayer*)this->getChildByName("video")));
         _eventDispatcher->removeEventListener(_listener);
         auto scene = UIMainMenu::createScene();
         Director::getInstance()->replaceScene(scene);

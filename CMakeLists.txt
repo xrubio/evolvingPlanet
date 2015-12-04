@@ -110,6 +110,8 @@ include_directories(
   /usr/local/include/GLFW
   /usr/include/GLFW
   ${COCOS2D_ROOT}/cocos
+  ${COCOS2D_ROOT}/external
+  ${COCOS2D_ROOT}/
   Classes
 )
 
@@ -129,6 +131,7 @@ set(GAME_SRC
 )
 
 file(GLOB evPlanet_HEADERS
+    "Classes/*.h"
     "Classes/*.h"
 )
 
