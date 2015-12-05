@@ -30,11 +30,16 @@
 #include "GameData.h"
 #include <extensions/cocos-ext.h>
 #include <ui/CocosGUI.h>
-
 #include <audio/include/SimpleAudioEngine.h>
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
+#include <ui/UIVideoPlayer.h>
 using namespace cocos2d::ui;
+using namespace cocos2d::experimental;
 using namespace cocos2d::experimental::ui;
+
+#endif
 
 Scene* UIIntro::createScene()
 {
@@ -63,7 +68,10 @@ bool UIIntro::init()
     /*if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }*/
-    
+
+// video player only for ios/android    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
     VideoPlayer *p = VideoPlayer::create();
     p->setFileName("audio/logo_02.mp4");
     p->setName("video");
@@ -72,6 +80,16 @@ bool UIIntro::init()
     //p->setKeepAspectRatioEnabled(true);
     p->play();
     this->addChild(p, 1);
+
+// at least show the logo    
+#else
+    auto logo = Sprite::create("misc/murphy.png");
+    logo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));   
+    logo->setName("logo");
+    logo->setOpacity(0);
+    logo->runAction(Sequence::create(FadeIn::create(1.5f), FadeOut::create(1.0f), nullptr));
+    this->addChild(logo);
+#endif
     
     _listener = EventListenerTouchOneByOne::create();
     _listener->setSwallowTouches(true);
@@ -85,16 +103,25 @@ bool UIIntro::init()
 
 bool UIIntro::onTouchesBegan(Touch* touch, Event* event)
 {
-    if (((VideoPlayer*)this->getChildByName("video")) != nullptr /*and ((VideoPlayer*)this->getChildByName("video"))->isPlaying()*/)
+    
+// video player only for ios/android    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
+    if (((VideoPlayer*)this->getChildByName("video")) != nullptr)
     {
         CCLOG("TAP");
         return true;
     }
+# endif
+
     return true;
 }
 
 void UIIntro::update(float delta)
 {
+    
+// video player only for ios/android    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     if (((VideoPlayer*)this->getChildByName("video")) != nullptr and((VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
     {
         //this->removeChild(((VideoPlayer*)this->getChildByName("video")));
@@ -103,5 +130,14 @@ void UIIntro::update(float delta)
         Director::getInstance()->replaceScene(scene);
         
     }
+# else
+    Node * logo = this->getChildByName("logo");
+    if(logo->getNumberOfRunningActions()==0)
+    {
+        _eventDispatcher->removeEventListener(_listener);
+        auto scene = UIMainMenu::createScene();
+        Director::getInstance()->replaceScene(scene);
+    }
+#endif
 }
 
