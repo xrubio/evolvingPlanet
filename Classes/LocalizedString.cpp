@@ -31,7 +31,7 @@
 
 using namespace std;
 
-string LocalizedString::create(const char* key, string dir)
+string LocalizedString::create(const char* key, const std::string & dir)
 {
     const char* fileName = GameData::getInstance()->getLanguage().c_str();
     if (strlen(fileName) == 0) {
@@ -51,8 +51,6 @@ string LocalizedString::create(const char* key, string dir)
 #endif
 
     fname = directory + fname + ".plist";
-    
-    //CCDictionary* language = CCDictionary::createWithContentsOfFile(fname.c_str());
     cocos2d::ValueMap language = FileUtils::getInstance()->getValueMapFromFile(fname.c_str());
 
     if (language.find(key) != language.end())
@@ -61,6 +59,7 @@ string LocalizedString::create(const char* key, string dir)
     }
     else
     {
+        CCLOG("LANG warning: key: %s not found in file: %s", key, fname.c_str());
         str = key;
     }
     

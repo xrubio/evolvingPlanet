@@ -34,7 +34,7 @@ using namespace cocos2d;
 
 class LocalizedString {
 public:
-    static std::string create(const char* key = "", std::string dir = "");
+    static std::string create(const char* key = "", const std::string & dir = "");
 
     static const char* getSystemLang();
 

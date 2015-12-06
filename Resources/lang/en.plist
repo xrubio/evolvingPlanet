@@ -4,6 +4,8 @@
 <dict>
 	<key>START</key>
 	<string>START</string>
+    <key>EXIT</key>
+	<string>Exit</string>
 	<key>NEW_GAME</key>
 	<string>NEW GAME</string>
 	<key>BACK</key>

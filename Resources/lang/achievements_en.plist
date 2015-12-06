@@ -64,12 +64,11 @@ The oldest species were called Australopithecines. They already walked in two le
 
     <key>ACH_LVL3_2</key>
     <string>The british ship HMS Beagle left Plymouth in 1831 towards South America. A young man called Charled Darwin was onboard, and the data he collected during the voyage was crucial to develop his theory of evolution by natural selection. 
-They returned to Europe 5 years later after circumnavigating the Earth.
+They returned to Europe 5 years later after circumnavigating the Earth.</string>
     <key>ACH_LVL3_3</key>
     <string>Culture makes humans so flexible that they currently live in all environments that can be imagined.
     
 The Tubu live in an African region called Ténéré, the country of emptiness. The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.</string>
-
 
     <!-- LEVEL 4 -->
     <key>TITLE_LVL4_COMPLETED</key>
@@ -96,8 +95,6 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>PERFECTION 5</string>
     <key>DESCR_LVL5_PERFECT</key>
     <string>Complete mission 5 with a score of 3 stars</string>
-    
-
 
 
     <!-- LEVEL 6 -->
@@ -148,11 +145,15 @@ Considering that they are not our ancestors, this hybridation means that both sp
     <string>PERFECTION 9</string>
     <key>DESCR_LVL9_PERFECT</key>
     <string>Complete mission 9 with a score of 3 stars</string>
-   
+    <key>TITLE_LVL9_NOPOWERS</key>
+    <string>Easy Peasy</string>
+    <key>DESCR_LVL9_NOPOWERS</key>
+    <string>Complete mission 9 without using Boosts</string>
+
     <key>ACH_LVL9_2</key>
     <string>We don't know why Neanderthals became extinct: conflict with Sapiens? Climate change? Competition for resources? All of them?
 
-Understanding the extinction of Neanderthals is extremely interesting because it can help us understand the dangers we currently face.<string>
+Understanding the extinction of Neanderthals is extremely interesting because it can help us understand the dangers we currently face.</string>
 
     <key>ACH_LEVEL9_3</key>
     <string>The more we know about Neanderthals the more we see how similar we are. This fascination has generated interesting fiction works, such as the novels "The Clan of the Cave Bear" by J.M. Auel and the science-fiction trilogy "The Neanderthal Parallax", by Robert J. Sawyer.</string>
