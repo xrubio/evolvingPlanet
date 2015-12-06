@@ -1,0 +1,547 @@
+
+Missions
+
+1 - Basics
+    
+    Atributs:
+        * Mobility  
+        * Reproduction
+        * Resistance
+
+    Poders:
+        * No
+        * No
+
+    Goals:
+        1 - Dispersal
+
+    Achievements:
+        1 - Rookie: Success -> Dibuix
+        2 - Perfection 1: Perfect -> text first ancestors
+        3 - Leftovers: have 10 EPs -> logo murphy's toast
+
+    Story:
+        Dibu: Bot a la selva 
+        Contingut: Despertar dels bots
+        Text: "Who are we? Who created us?"
+
+2 - Multi-goal 
+
+    Atributs:
+        * Mobility  
+        * Reproduction
+        * Resistance
+
+    Poders:
+        * No
+        * No
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+
+    Achievements:
+        1 - Getting used to: Success -> Dibuix 
+        2 - Perfection 2: Perfect -> text hominins
+        3 - Wrong way: reach north mountains -> quote Feynman
+
+    Story:  
+        Dibu: Homínids cap a la zona volcànica
+        Contingut: Consciència de grup
+        Text: "Our destiny is to arrive to the mountain of fire"
+
+3 - Boosts
+
+    Atributs:
+        * Mobility
+        * Reproduction
+        * Resistance
+
+    Poders:
+        * Resistance
+        * Reproduction
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+        4 - Dispersal
+        5 - Dispersal
+
+    Achievements:
+        1 - Boosted: Success -> Dibuix
+        2 - Perfection 3: Perfect -> text Beagle and Darwin
+        3 - The hard way: No Boosts -> Tubu orientation
+
+    Story: 
+        Dibu: Homínid descobrint el foc
+        Contingut: Sentit d'identitat i de destí de conquerir el planeta
+        Text: "We are the masters of fire. We are the Zho'll"
+
+4 - Technology
+
+    Atributs:
+        * Mobility
+        * Technology
+        * Resistance
+
+    Poders:
+        * Reproduction
+        * Resistance
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+        4 - Dispersal
+        5 - Dispersal
+
+    Achievements:
+        1 - Introducing Tech: Success -> Dibuix
+        2 - Perfection 4: Perfect -> Origins of technology and language 
+        3 - ??
+
+    Story: 
+        Dibu: Escena domèstica amb foc i eines en una cova
+        Contingut: Posseïdors de tecnologia, presència dels Guies
+        Text: "Fire and stone are our tools. With the help of our Guides we will conquer this world"
+
+5 - First encounters
+
+    Atributs:
+        * Mobility
+        * Reproduction
+        * Technology
+
+    Poders:
+        * Reproduction
+        * Resistance
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+
+    Achievements:
+        1 - Getting away: Success -> Dibuix
+        2 - Perfection 5: Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena de caça
+        Contingut: Arrogància, tot els va bé 
+        Text: "We will not be afraid of anyone or anything."
+
+6 - Cultural Influence
+
+    Atributs:
+        * Influence
+        * Mobility
+        * Technology
+
+    Poders:
+        * Mobility
+        * Reproduction
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+
+    Achievements:
+        1 - Influencer: Success -> Dibuix
+        2 - Perfection 6: Perfect -> Hybridation Neanderthals
+        3 - ??
+
+    Story:
+        Dibu: Escena de recolecció
+        Contingut: Els Zho'll estan expandint-se i guanyant força
+        Text: "The Guides watch us and provide for us"
+
+7 - Warfare
+
+    Atributs:
+        * Warfare
+        * Mobility
+        * Technology
+
+    Poders:
+        * Reproduction
+        * Resistance
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+
+    Achievements:
+        1 - Call to arms: Success -> Dibuix
+        2 - Perfection 7: Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena de pesca
+        Contingut: Els Zho'll poden acomplir el seu destí sense els Guies
+        Text: "Do we need the Guides? The Zho'll already own this land!"
+
+8 - Climate change
+
+    Atributs:
+        * Influence 
+        * Warfare
+        * Resistance
+
+    Poders:
+        * Mobility
+        * Reproduction
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+        4 - Dispersal
+
+    Achievements:
+        1 - The crossing: Success -> Dibuix
+        2 - Perfection 8: Perfect -> Nanook (fix)
+        3 - ??
+
+    Story:
+        Dibu: Escena de combat 
+        Contingut: Dubtes; encara necessiten als Guies
+        Text: "But we are not alone..."
+
+9 - Crowded place
+
+    Atributs:
+        * Reproduction
+        * Technology
+        * Mobility
+
+    Poders:
+        * Warfare
+        * Influence
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+        4 - Dispersal
+
+    Achievements:
+        1 - Joining forces: Success -> Dibuix
+        2 - Perfection 9: Perfect -> Neanderthal extinction
+        3 - Easy Peasy: No Boosts -> ??
+
+    Story:
+        Dibu: Zho'll passant vora l'esquelet d'una espècie extingida
+        Contingut: Estan a prop de conquerir tot el planeta, són l'espècie elegida
+        Text: "The Zho'll will succeed where others failed."
+
+10 - Last dispersal
+
+    Atributs:
+        * Influence 
+        * Warfare
+        * Technology
+
+    Poders:
+        * Reproduction
+        * Resistance
+
+    Goals:
+        1 - Dispersal
+        2 - Dispersal
+        3 - Dispersal
+        4 - Dispersal
+
+    Achievements:
+        1 - Find a way: Success -> Dibuix
+        2 - Perfection 10: Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Poblat vora un llac
+        Contingut: Pas de ser nòmades a sedentaris, cansats de seguir les ordres dels Guies
+        Text: "Why do we have to obey the Guides and move again?"
+
+11 - Intro Explotació
+
+    Anar a 2 llocs, en cada un explotar un tipus de recurs: 1) minerals i 2) fusta. Al segon evitar sobreexplotació
+
+    Atributs:
+        * Exploitation
+        * Reproduction
+        * Technology
+
+    Poders:
+        * Resistance
+        * Mobility
+
+    Goals:
+        1 - Resources 
+        2 - Resources
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Símbols dels Guies en una cova
+        Contingut: 
+        Text: ""
+
+12 - Competició Exploitation
+
+    Competir contra una altra població pels recursos de bosc d'una zona determinada. Dues opcions: pujar influència o guerra mentre es puja exploitation i controlant sobreexplotació
+
+    Atributs:
+        * Exploitation
+        * Influence
+        * Reproduction
+
+    Poders:
+        * Reproduction
+        * Warfare
+
+    Goals:
+        1 - Resources 
+        2 - Population
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena d'enterrament
+        Contingut: 
+        Text: ""
+
+13 - Intro Trade
+
+    Agafar recursos d'una zona, arribar una altra amb ells i comerciar fins tenir XX de l'altre recurs
+
+    Atributs:
+        * Exploitation
+        * Trade
+        * Reproduction
+
+    Poders:
+        * Mobility
+        * Influence
+
+    Goals:
+        1 - Resources
+        2 - Dispersal
+        3 - Resources
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Aixecament d'un menhir amb el símbol dels Guies
+        Contingut: 
+        Text: ""
+
+14 - Trade + Warfare
+
+    Aconseguir un recurs que no es té a través de warfare mentre una tercera població també el vol
+
+    Atributs:
+        * Trade
+        * Warfare
+        * Reproduction
+
+    Poders:
+        * Mobility
+        * Influence
+
+    Objectius: 1 de dispersal, 2 de població, 3 del recurs
+
+    Goals:
+    1 - Dispersal
+    2 - Population
+    3 - Resources
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena de domesticació animals
+        Contingut: 
+        Text: ""
+
+15 - Trade + War/Influence
+
+    Agafar fusta i canviar-lo per metalls a on hi ha una altra població mitjançant trade, influence o warfare
+
+    Atributs: 
+        * Trade
+        * Influence
+        * Mobility 
+
+    Poders:
+        * Reproduction
+        * Warfare
+
+    Goals:
+        1 - Resources 
+        2 - Resources
+        3 - Population
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena d'agricultura
+        Contingut: 
+        Text: ""
+
+16 - Terraforming
+
+    Transformar una zona àrida en una de ben cultivada
+
+    Atributs:
+        * Terraforming
+        * Technology
+        * Mobility
+
+    Poders:
+        * Reproduction
+        * Resistance
+
+    Goals:
+        1 - Dispersal
+        2 - Population
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+        
+    Story:
+        Dibu: Escena de pesca
+        Contingut: 
+        Text: ""
+
+17 - Terraforming + Exploitation
+
+    Expandir una població mitjançant terraforming mentre es recolecta un recurs (cal evitar sobreexplotació)
+
+    Atributs:
+        * Terraform
+        * Exploitation
+        * Reproduction
+
+    Poders:
+        * Resistance
+        * Reproduction
+
+    Goals:
+        1 - Population
+        2 - Dispersal
+        3 - Resources
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena de Guerra
+        Contingut: 
+        Text: ""
+
+18 - Terraforming + Exploitation + War/Influence
+
+    Expandir una població mitjançant terraforming mentre es competeix per un recurs amb una altra cultura
+
+    Atributs:
+        * Terraform
+        * Exploitation
+        * Trade
+
+    Poders:
+        * Warfare
+        * Influence
+
+    Goals:
+        1 - Population
+        2 - Resources
+        3 - Resources
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Escena d'intercanvi entre animals i un carro
+        Contingut: 
+        Text: ""
+
+19 - Terraforming + Exploitation + Trade
+
+    Aconseguir els objectius per crear la primera ciutat
+
+    Atributs:
+        * Terraform
+        * Trade
+        * Exploitation
+
+    Poders:
+        * Influence
+        * Mobility
+
+    Goals:
+        1 - Resources
+        2 - Resources
+        3 - Resources
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Ciutat al fons, i nau a la dreta
+        Contingut: 
+        Text: ""
+
+20 - Terraforming + Warfare 
+
+    La població t'ha desobeït i vol conquerir una zona a on hi ha una altra espècie que se suposa que no van coincidir fins molts segles després. Has d'evitar que els bots no desapareguin.
+
+    Atributs:
+        * Terraform
+        * Reproduction
+        * Warfare
+
+    Poders:
+        * Influence
+        * Mobility
+
+    Goals:
+        1 - Population
+        2 - Dispersal
+        3 - Population 
+
+    Achievements:
+        1 - ?? : Success -> Dibuix
+        2 - ?? : Perfect -> ??
+        3 - ??
+
+    Story:
+        Dibu: Fi del culte als Guies, destrucció dels símbols mentre la nau marxa
+        Contingut: 
+        Text: ""
+

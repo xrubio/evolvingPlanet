@@ -55,7 +55,7 @@ bool UITransitionScene::init()
     else
     {
     
-    auto image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".png");
+    auto image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     image->setScale(visibleSize.width / image->getContentSize().width);
     this->addChild(image);
@@ -66,7 +66,7 @@ bool UITransitionScene::init()
     unlockLabel->setName("unlockLabel");
     this->addChild(unlockLabel);
 
-    auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".png");
+    auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
     imageUnlocked->setOpacity(0.0f);
