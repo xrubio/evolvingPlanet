@@ -13,7 +13,7 @@
 	<key>PAUSE</key>
 	<string>PAUSE</string>
 	<key>SET_ATTRIBUTES</key>
-	<string>CONFIGURE THE AGENTS BEFORE YOU START</string>
+	<string>CONFIGURE YOUR BOTS BEFORE YOU START</string>
 	<key>WARNING</key>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>
@@ -45,7 +45,7 @@
 	<key>RETRY_QUESTION</key>
 	<string>RETRY ?</string>
 	<key>AGENTS</key>
-	<string>Agents</string>
+	<string>Bots</string>
 	<key>TAP_TO_UNLOCK</key>
 	<string>TAP TO UNLOCK</string>
 	<key>TAP_TO_CONTINUE</key>
@@ -67,7 +67,7 @@
 	<key>REPRODUCTION</key>
 	<string>REPRODUCTION</string>
 	<key>DESCRIPTION_REPRODUCTION</key>
-	<string>Fertility rate of your agents</string>
+	<string>Fertility rate of your bots</string>
 	<key>MOBILITY</key>
 	<string>MOBILITY</string>
 	<key>DESCRIPTION_MOBILITY</key>
@@ -83,7 +83,7 @@
 	<key>INFLUENCE</key>
 	<string>INFLUENCE</string>
 	<key>DESCRIPTION_INFLUENCE</key>
-	<string>Convert other agents to join your group</string>
+	<string>Convince other bots to join your group</string>
 	<key>WARFARE</key>
 	<string>WARFARE</string>
 	<key>DESCRIPTION_WARFARE</key>
@@ -126,7 +126,7 @@ archaeological data suggests</string>
 	<key>GOAL_FAIL_AFTER</key>
 	<string>Mission failed: You have not reached the goal on time</string>
 	<key>ALL_AGENTS_DIED</key>
-	<string>All agents died</string>
+	<string>All bots died</string>
 	<key>CONTINUE</key>
 	<string>CONTINUE</string>
 	<key>PLAY</key>
