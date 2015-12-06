@@ -18,7 +18,7 @@
  */
 
 #include "AppDelegate.h"
-#include "UIMainMenu.h"
+#include "UIIntro.h"
 #include "GameData.h"
 #include "LocalizedString.h"
 #include <string>
@@ -33,15 +33,16 @@ AppDelegate::~AppDelegate() {}
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
+    
     if (!glview) {
         glview = GLViewImpl::createWithFullScreen("Evolving Planet");
         director->setOpenGLView(glview);
         //glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
     }
-    auto screenSize = glview->getFrameSize();
 
     // turn on display FPS
     director->setDisplayStats(true);
@@ -53,37 +54,40 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> resDirOrders;
     
+    auto screenSize = glview->getFrameSize();
     CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
+    // folders: 2048 (1:1), 1536 (3/4), 1356 (2:3) i 1024 (1:2)
+
     if (screenSize.width > 1536) {
-        CCLOG("\tusing artwork of size 2048");
-        resDirOrders.push_back("tablethd");
-        resDirOrders.push_back("tableth");
-        resDirOrders.push_back("tablet");
-        resDirOrders.push_back("phone");
+        CCLOG("\tusing artwork of size 2048 (1:1)");
+        resDirOrders.push_back("01_hd");
+        resDirOrders.push_back("02_threeQuarters");
+        resDirOrders.push_back("03_twoThirds");
+        resDirOrders.push_back("04_half");
         GameData::getInstance()->setResourcesWidth(2048);
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
-    } else if (screenSize.width > 1024) {
-        CCLOG("\tusing artwork of size 1536");
-        resDirOrders.push_back("tableth");
-        resDirOrders.push_back("tablet");
-        resDirOrders.push_back("phone");
+    } else if (screenSize.width > 1356) {
+        CCLOG("\tusing artwork of size 1536 (3:4)");  
+        resDirOrders.push_back("02_threeQuarters");
+        resDirOrders.push_back("03_twoThirds");
+        resDirOrders.push_back("04_half");
         GameData::getInstance()->setResourcesWidth(1536);
         GameData::getInstance()->setResourcesHeight(1152);
         GameData::getInstance()->setResourcesMargin(1024);
-    } else if (screenSize.width > 512) {
-        CCLOG("\tusing artwork of size 1024");
-        resDirOrders.push_back("tablet");
-        resDirOrders.push_back("phone");
+    } else if (screenSize.width > 1024) {
+        CCLOG("\tusing artwork of size 1356 (2:3)");
+        resDirOrders.push_back("03_twoThirds");
+        resDirOrders.push_back("04_half");
+        GameData::getInstance()->setResourcesWidth(1356);
+        GameData::getInstance()->setResourcesHeight(1017);
+        GameData::getInstance()->setResourcesMargin(904);
+    } else {
+        CCLOG("\tusing artwork of size 1024 (1:2)");
+        resDirOrders.push_back("04_half");
         GameData::getInstance()->setResourcesWidth(1024);
         GameData::getInstance()->setResourcesHeight(768);
         GameData::getInstance()->setResourcesMargin(682);
-    } else {
-        CCLOG("\tusing artwork of size 512");
-        resDirOrders.push_back("phone");
-        GameData::getInstance()->setResourcesWidth(512);
-        GameData::getInstance()->setResourcesHeight(384);
-        GameData::getInstance()->setResourcesMargin(341);
     }
     
     fileUtils->setSearchPaths(resDirOrders);
@@ -135,27 +139,9 @@ bool AppDelegate::applicationDidFinishLaunching()
         levelsCompleted.push_back(UserDefault::getInstance()->getIntegerForKey(to_string(i).c_str()));
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
-
-   
-    /*
-    ////// UNLOCK ACHIEVEMENTS
     
-    UserDefault::getInstance()->setBoolForKey("1_COMPLETED", true);
-    UserDefault::getInstance()->setBoolForKey("1_PERFECT", true);
-    UserDefault::getInstance()->setBoolForKey("1_EVPOINTSLEFT", true);
-    UserDefault::getInstance()->setBoolForKey("2_COMPLETED", true);
-    UserDefault::getInstance()->setBoolForKey("2_PERFECT", true);
-    UserDefault::getInstance()->setBoolForKey("2_DISCOVER", true);
-    UserDefault::getInstance()->setBoolForKey("3_COMPLETED", true);
-    UserDefault::getInstance()->setBoolForKey("3_PERFECT", true);
-    UserDefault::getInstance()->setBoolForKey("3_NOPOWERS", true);
-    UserDefault::getInstance()->setBoolForKey("4_COMPLETED", true);
-    UserDefault::getInstance()->setBoolForKey("4_PERFECT", true);
-    */
-
-
     // create a scene. it's an autorelease object
-    auto scene = UIMainMenu::createScene();
+    auto scene = UIIntro::createScene();
     // run
     director->runWithScene(scene);
 

@@ -131,5 +131,40 @@ archaeological data suggests</string>
 	<string>CONTINUE</string>
 	<key>PLAY</key>
 	<string>PLAY</string>
+    
+    <!-- credits -->
+    <key>MURPHY</key>
+    <string>Murphy's Toast Games</string>
+    <key>DIRECTOR</key>
+    <string>Game Director &amp; Project Lead</string>
+    <key>LEAD_PROGRAMMER</key>
+    <string>Lead Programmer</string>
+    <key>ADDITIONAL_PROGRAMMING</key>
+    <string>Additional programming</string>
+    <key>ART</key>
+    <string>Artwork</string>
+    <key>UI</key>
+    <string>User Interface</string>
+    <key>STORY_CONTENT</key>
+    <string>Story &amp; content</string>
+    <key>MUSIC</key>
+    <string>Music &amp; Sound</string>
+    
+    <key>SIMULPAST_TITLE</key>
+    <string>The SimulPast Project</string>
+    <key>SIMULPAST_TEXT</key>
+    <string>Evolving Planet would not exist without a research project called Simulpast.
+    
+Simulpast is breaking the barriers between Science and Humanities to learn about our origins, our present and our future. Archaeologists, Computer Scientists, Anthropologists and other experts use computer simulation to improve our understanding of the past.
+
+Evolving Planet explores this new way of doing science. You are part of the scientist team studying a species similar to humans through concepts such as evolution, technology, and dispersal.
+
+Tap the logo to know more about SimulPast!</string>
+    <key>SPECIAL_THANKS</key>
+    <string>Special thanks</string>
+    <key>SUPPORT</key>
+    <string>With the support of</string>    
+    <key>POWERED</key>
+    <string>Evolving Planet is powered by</string> 
 </dict>
 </plist>

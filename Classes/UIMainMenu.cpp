@@ -35,8 +35,6 @@
 #include "GameData.h"
 #include "UITransitionScene.h"
 
-#include <ui/UIVideoPlayer.h>
-
 #include <audio/include/SimpleAudioEngine.h>
 
 USING_NS_CC;
@@ -227,6 +225,25 @@ bool UIMainMenu::init()
     configurationButton->setScale(GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(configurationButton);
 
+    // links
+    auto facebook = MenuItemImage::create("misc/facebook.png", "misc/facebook.png", CC_CALLBACK_1(UIMainMenu::openFacebook, this));
+    facebook->setAnchorPoint(Vec2(0, 0.5));
+    facebook->setScale(GameData::getInstance()->getRaHConversion());
+    facebook->setPosition(Vec2(0.91f*visibleSize.width, 0.95f*visibleSize.height));
+    menuButtons.pushBack(facebook);
+
+    auto twitter = MenuItemImage::create("misc/twitter.png", "misc/twitter.png", CC_CALLBACK_1(UIMainMenu::openTwitter, this));
+    twitter->setAnchorPoint(Vec2(0, 0.5));
+    twitter->setScale(GameData::getInstance()->getRaHConversion());
+    twitter->setPosition(Vec2(0.95f*visibleSize.width, 0.95f*visibleSize.height));
+    menuButtons.pushBack(twitter);
+
+    auto web = MenuItemImage::create("misc/browser.png", "misc/browser.png", CC_CALLBACK_1(UIMainMenu::openWeb, this));
+    web->setAnchorPoint(Vec2(0, 0.5));
+    web->setScale(GameData::getInstance()->getRaHConversion());
+    web->setPosition(Vec2(0.87f*visibleSize.width, 0.95f*visibleSize.height));
+    menuButtons.pushBack(web);
+
     auto menu = Menu::createWithArray(menuButtons);
     menu->setName("menu");
     menu->setPosition(Vec2(0, 0));
@@ -266,26 +283,12 @@ bool UIMainMenu::init()
     Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonShadow.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
     Director::getInstance()->getTextureCache()->addImage("gui/Loading.png");
-    
-   /* cocos2d::experimental::ui::VideoPlayer *p = cocos2d::experimental::ui::VideoPlayer::create();
-    p->setFileName("audio/Xplosion.mov");
-    p->setName("video");
-    p->setFullScreenEnabled(true);
-    p->setKeepAspectRatioEnabled(true);
-    p->play();
-    this->addChild(p);
-    */
-    this->scheduleUpdate();
-    
+        
     return true;
 }
 
 void UIMainMenu::onTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
-    /*if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and ((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying())
-    {
-        return;
-    }*/
     if (stoppedAnimation == false) {
         endActions();
     }
@@ -375,7 +378,7 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
             this->addChild(loading, 500);
             loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
         
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
+        /*Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
@@ -384,7 +387,7 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari7.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari8.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari9.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));*/
         
         //GameData::getInstance()->setNextScene(Story);
         auto scene = UIStoryGallery::createScene();
@@ -415,12 +418,12 @@ void UIMainMenu::menuAchievementsCallback(Ref* pSender)
 void UIMainMenu::menuConfigurationCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
-        auto scene = UIConfiguration::createScene();
-        auto transition = TransitionFade::create(1.0f, scene);
-        Director::getInstance()->replaceScene(transition);
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
+        auto scene = UIConfiguration::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
     }
     else {
         endActions();
@@ -430,6 +433,9 @@ void UIMainMenu::menuConfigurationCallback(Ref* pSender)
 void UIMainMenu::menuCreditsCallback(Ref* pSender)
 {
     if (stoppedAnimation or allActionsFinished()) {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+        }
         auto scene = UICredits::createScene();
         auto transition = TransitionFade::create(1.0f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -563,16 +569,18 @@ void UIMainMenu::createWarningWindow(void)
     this->addChild(alertBackground, 30, 30);
 }
 
-void UIMainMenu::setLoadingAnimation(bool b)
+void UIMainMenu::openFacebook( Ref * pSender )
 {
-
+    Application::getInstance()->openURL("https://www.facebook.com/evolvingPlanetGame");    
 }
 
-void UIMainMenu::update(float delta)
+void UIMainMenu::openTwitter( Ref * pSender )
 {
-   /* if (((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")) != nullptr and((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
-    {
-        this->removeChild(((cocos2d::experimental::ui::VideoPlayer*)this->getChildByName("video")));
-    }*/
+    Application::getInstance()->openURL("https://twitter.com/evoPlanetGame");    
+}
+
+void UIMainMenu::openWeb( Ref * pSender )
+{
+    Application::getInstance()->openURL("http://evolvingplanetgame.com");    
 }
 

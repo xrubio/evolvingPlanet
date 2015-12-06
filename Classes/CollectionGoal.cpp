@@ -28,7 +28,7 @@
 #include "CollectionGoal.h"
 #include "UIGameplayMap.h"
 
-CollectionGoal::CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm) : Goal(agType, min, max, average, des2, des3), goalAmount(goalAm), currentAmount(0)
+CollectionGoal::CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType) : Goal(agType, min, max, average, des2, des3), goalAmount(goalAm), _resourceType(resourceType)
 {
 }
 
@@ -40,16 +40,6 @@ int CollectionGoal::getGoalAmount(void)
 void CollectionGoal::setGoalAmount(int goalAm)
 {
     goalAmount = goalAm;
-}
-
-int CollectionGoal::getCurrentAmount(void)
-{
-    return currentAmount;
-}
-
-void CollectionGoal::setCurrentAmount(int currAm)
-{
-    currentAmount = currAm;
 }
 
 bool CollectionGoal::checkGoal(int type, Agent* agent)
@@ -66,7 +56,7 @@ bool CollectionGoal::checkGoal(int type, Agent* agent)
         return false;
     }
     
-    if (currentAmount<goalAmount)
+    if (Agent::_resourcesPool.at(type).at(_resourceType)<goalAmount)
     {
         return false;
     }

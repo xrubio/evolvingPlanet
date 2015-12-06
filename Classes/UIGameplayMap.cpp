@@ -448,7 +448,7 @@ bool UIGameplayMap::init()
     _listenerTutorial->setSwallowTouches(true);
     _listenerTutorial->onTouchBegan = CC_CALLBACK_2(UIGameplayMap::onTouchBeganTutorial, this);
     _listenerTutorial->onTouchEnded = CC_CALLBACK_2(UIGameplayMap::onTouchEndedTutorial, this);
-    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial,-1);
+    _eventDispatcher->addEventListenerWithFixedPriority(_listenerTutorial, -1);
 
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/level.mp3", true);
@@ -484,6 +484,18 @@ bool UIGameplayMap::init()
     labelCounterGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
+    
+    auto goal = DrawNode::create();
+    graphicBackground->addChild(goal);
+    float height = float(1000)/float(2000) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+    
+    // Space the verticies out evenly across the screen for the wave.
+    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+
+    for (int i = 35; i < 45; i++)
+    {
+        goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 12, Color4F::RED);
+    }
     
     ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
     auto populationNode = new WaveNode();
@@ -601,7 +613,7 @@ bool UIGameplayMap::init()
     bottomFrame->addChild(attrMenu, 1, 100000);
 
     //CHECK IF THERE IS ANY IN-GAME ACHIEVEMENT (achievement num 3 of the corresponding level)
-    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).size() > 2 and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "DISCOVER")
+    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).size() > 2 and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "DISCOVER" and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getCompleted() == false)
     {
         GameLevel::getInstance()->setInGameAchievement(GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2));
     }
@@ -858,7 +870,7 @@ void UIGameplayMap::onTouchesMoved(const vector<Touch*>& touches, Event* event)
 }
 
 bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
-{    
+{
     if(!_tutorial)
     {
         return false;
@@ -937,21 +949,39 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     if(_tutorial->getCurrentMessage()->getPostCondition() == "tap")
     {
         _tutorial->getCurrentMessage()->postConditionAchieved();
-        return true;
     }
+
+    return true;
+}
+
+void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
+{
+    if(!_tutorial)
+    {
+        return;
+    }
+    if (!_tutorial->getCurrentMessage())
+    {
+        return;
+    }
+    
+    Node * parent = this;
+    Point touchLocation = parent->convertToNodeSpace(touch->getLocation());
+    
     if(_tutorial->getCurrentMessage()->getPostCondition() == "spot")
     {
-        // XRC this is implemented in a different way than the standard onTouchesBegan. Should we unify both codes?
         if (((clock() - float(timeFingerSpot)) / CLOCKS_PER_SEC) < 0.3)
         {
             firstTouchLocation = touchLocation;
             changeSpotPosition();
         }
-        return true;
+        timeFingerSpot = clock();
+        return;
     }
+    
     if (_tutorial->getCurrentMessage()->getPostCondition() != "tapButton")
     {
-        return false;
+        return;
     }
     
     std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
@@ -967,14 +997,17 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     }
     
     token = buttonName.substr(0, pos);
+    std::string buttonPressed = token;
     
     //attribute translation
     if (token.substr(0, 4) == "plus")
     {
+        buttonPressed = "plus";
         token = "plus" + LocalizedString::create(token.substr(4).c_str());
     }
     else if (token.substr(0, 5) == "minus")
     {
+        buttonPressed = "minus";
         token = "minus" + LocalizedString::create(token.substr(5).c_str());
     }
     
@@ -982,16 +1015,38 @@ bool UIGameplayMap::onTouchBeganTutorial(Touch * touch, Event* event)
     touchLocation = parent->convertToNodeSpace(touch->getLocation());
     if(button->getBoundingBox().containsPoint(touchLocation))
     {
+        if (buttonPressed == "playToggle")
+        {
+            togglePlay(button);
+        }
+        else if (buttonPressed == "plus")
+        {
+            plusAttCallback(button);
+        }
+        else if (buttonPressed == "minus")
+        {
+            minusAttCallback(button);
+        }
+        else if (buttonPressed == "power0")
+        {
+            powerButtons.at(0)->onTouchesBegan(touchLocation);
+            bool actioned = powerButtons.at(0)->onTouchesEnded(touchLocation);
+            GameLevel::getInstance()->setPowersUsed(true);
+            //ANIMACIO RESTA PUNTS
+            if (actioned == true)
+            {
+                restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
+                restaEvolutionPointsLabel->setString("-" + to_string(int(powerButtons.at(0)->getPower()->getCost())));
+                auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
+                restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
+            }
+            else
+            {
+                powerButtons.at(0)->disabled = true;
+            }
+        }
         _tutorial->getCurrentMessage()->postConditionAchieved();
-        return false;
     }
-
-    return true;
-}
-
-void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
-{
-    timeFingerSpot = clock();
 }
 
 void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
@@ -1483,7 +1538,6 @@ void* UIGameplayMap::createTiming(void* arg)
 void UIGameplayMap::startTiming(void)
 {
     Timing::getInstance()->start();
-    CCLOG("DONE TIMING");
 }
 
 void UIGameplayMap::createNewLevelThread(void)
@@ -1533,7 +1587,6 @@ void UIGameplayMap::playLevel(void)
         }
     }
     GameLevel::getInstance()->playLevel();
-    CCLOG("DONE GAME LEVEL");
 }
 
 bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)
@@ -1947,35 +2000,39 @@ void UIGameplayMap::updateAgents(void)
                 break;
             }
             
+            Color4B colorBorder;
+            switch ((*it)->getType()) {
+                case 1:
+                    colorBorder = Color4B(0, 248, 251, (*it)->getLife() * (255 / 175));
+                    break;
+                case 2:
+                    colorBorder = Color4B(210, 214, 47, (*it)->getLife() * (255 / 175));
+                    break;
+                case 3:
+                    colorBorder = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
+                    break;
+                default:
+                    colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, (*it)->getLife() * (255 / 175));
+                    break;
+            }
+            
             //check num_agents painted in accordance with num_resources if not painting population
             if (agentColor > 0)
             {
                 if (resourcesPainted < Agent::_resourcesPool.at(i).at(agentColor - 1))
                 {
                     resourcesPainted++;
-                    Color4B colorBorder;
-                    switch ((*it)->getType()) {
-                        case 1:
-                            colorBorder = Color4B(0, 248, 251, 255);
-                            break;
-                        case 2:
-                            colorBorder = Color4B(210, 214, 47, 255);
-                            break;
-                        case 3:
-                            colorBorder = Color4B(68, 165, 195, 255);
-                            break;
-                        default:
-                            colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, 255);
-                            break;
-                    }
                     drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1, colorBorder);
                 }
                 else
                 {
-                    color = transparent;
+                    color.r = colorBorder.r / 2;
+                    color.g = colorBorder.g / 2;
+                    color.b = colorBorder.b / 2;
+                    color.a = (*it)->getLife() * (255 / 175);
+
                     drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
                 }
-
             }
             else
             {
@@ -2215,6 +2272,11 @@ void UIGameplayMap::update(float delta)
             float value = std::min(100.0f, Timing::getInstance()->getTimeStep()/float(GameLevel::getInstance()->getGoals().back()->getMaxTime())*100.0f);
             // min with 100 and percentage because Timing thread is faster than gamelevel thread (checking goals) and this thread (painting). it will add some diff to _timeStep before checking for fail
             timeBar->setPercentage(value);
+            if (value > 99.4)
+            {
+                timeBorderBar->setVisible(false);;
+            }
+
             timeBorderBar->getChildByName("degradateTime")->setPositionX(timeBorderBar->getContentSize().width * (value/100.0f));
         }
 

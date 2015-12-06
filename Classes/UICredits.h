@@ -43,6 +43,7 @@ public:
     void menuBackCallback(Ref* pSender);
     void menuArrowBackCallback(Ref* pSender);
     void menuArrowNextCallback(Ref* pSender);
+    void openSimulLink( Ref * pSender );
     
     virtual void update(float delta);
 
@@ -64,7 +65,17 @@ private:
     void murphysToastStudios(Layout* layout);
     void specialThanks1(Layout* layout);
     void specialThanks2(Layout* layout);
-    
+
+    // add a groupName label at position x/y of background
+    void createGroup( const std::string & groupName, float x, float y, Sprite * background);
+    // add a name label at position x/y of background
+    void createName( const std::string & name, float x, float y, Sprite * background);
+    // add an acknowledgement name at position x/y of background
+    void createAcknowledgment( const std::string & name, float x, float y, Sprite * background);
+    // load thanks names from xml
+    void loadAcknowledgements();
+    // acknowledgement names
+    std::list<std::string> _names; 
 };
 
 #endif /* defined(__simulplay__UICredits__) */

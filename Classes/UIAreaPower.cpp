@@ -115,6 +115,10 @@ bool UIAreaPower::onTouchesEnded(Point touchLocation)
             clicked = false;
             return true;
         }
+        else
+        {
+            area->setVisible(false);
+        }
     }
     clicked = false;
     return false;
