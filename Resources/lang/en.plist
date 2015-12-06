@@ -108,6 +108,8 @@
 	<string>ADAPTATION</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
+    <key>COST</key>
+    <string>Cost</string>
 	<key>MUSIC</key>
 	<string>MUSIC</string>
 	<key>SPECIAL_EFFECTS</key>

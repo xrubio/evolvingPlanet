@@ -51,13 +51,6 @@ bool UIGoals::init()
         return false;
     }
     
-    //A UIPROGRESSMAP
-    /*string mapString = GameLevel::getInstance()->getMapFilename();
-    string backgroundImg = "Background";
-    string hotSpotsBase = "HotSpotsBase";
-    Director::getInstance()->getTextureCache()->addImage(mapString + backgroundImg + ".jpg");
-    Director::getInstance()->getTextureCache()->addImage(mapString + hotSpotsBase + ".png");*/
-    
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
@@ -180,14 +173,8 @@ bool UIGoals::init()
     GameLevel::getInstance()->setCurrentAgentType(0);
     pages->setTag(0);
 
-    //SI HI HA UNA CONFIGURACIO INICIAL NO BUIDA, SET CURRENT PAGE ALS ATRIBUTS
-    //pages->scrollToPage(2);
-
-    //pages->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     this->addChild(pages);
 
-    //this->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    
     Director::getInstance()->getTextureCache()->addImage("gui/FingerSpot.png");
     Director::getInstance()->getTextureCache()->addImage("gui/FrameTop.png");
     Director::getInstance()->getTextureCache()->addImage("gui/FrameBottom.png");
@@ -252,7 +239,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     
-    Director::getInstance()->getTextureCache()->addImage("maps/"+GameLevel::getInstance()->getMapFilename()+"HotSpotsBase.png");
+    Director::getInstance()->getTextureCache()->addImage("mapsBase/"+GameLevel::getInstance()->getMapFilename()+"HotSpotsBase.png");
     
     GameLevel::getInstance()->setAgentAttributesInitToCurrent();
     auto scene = UIGameplayMap::createScene();

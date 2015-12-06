@@ -90,7 +90,7 @@ bool UIGameplayMap::init()
     
     //HOTSPOT
     gameplayMapHotSpot = new Image();
-    gameplayMapHotSpot->initWithImageFile(map + hotSpotsBase + ext);
+    gameplayMapHotSpot->initWithImageFile("mapsBase/"+GameLevel::getInstance()->getMapFilename()+hotSpotsBase+ext);
     int x = 3;
     if (gameplayMapHotSpot->hasAlpha()) {
         x = 4;
