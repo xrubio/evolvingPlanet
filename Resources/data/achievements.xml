@@ -28,7 +28,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari1.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari1.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -60,7 +60,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari2.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari2.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -92,7 +92,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari3.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari3.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -124,7 +124,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari4.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari4.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -146,7 +146,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari5.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari5.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -168,7 +168,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari6.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari6.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -190,7 +190,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari7.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari7.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -212,7 +212,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari8.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari8.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -234,7 +234,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari9.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari9.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -266,7 +266,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari10.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari10.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -288,7 +288,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari11.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari11.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -310,7 +310,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari12.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari12.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -332,7 +332,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari13.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari13.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -354,7 +354,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari14.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari14.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -376,7 +376,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari15.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari15.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -398,7 +398,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari16.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari16.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -420,7 +420,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari17.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari17.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -442,7 +442,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari18.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari18.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -464,7 +464,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari19.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari19.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -486,7 +486,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="IMG">art/Escenari20.png</RESOURCE>
+        <RESOURCE TYPE="IMG">art/Escenari20.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 <ACHIEVEMENT TYPE="LEVEL">
@@ -499,3 +499,4 @@
         <RESOURCE TYPE="IMG" TXT="ACH_LVL20_2">achievements/moon_landing.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
+
