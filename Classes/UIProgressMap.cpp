@@ -277,10 +277,14 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     menuButtons.pushBack(darkBackground);
 
-    auto popupBackground = Sprite::create("gui/ProgressMapPopupBackground.png");
+    auto popupBackground = MenuItemImage::create("gui/ProgressMapPopupBackground.png", "gui/ProgressMapPopupBackground.png",
+                                                 CC_CALLBACK_1(UIProgressMap::restoreProgressMap, this));
+    popupBackground->setName("popupBackground");
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     popupBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height + (visibleSize.height / 2)));
-    this->addChild(popupBackground, 20, 101);
+    popupBackground->setTag(101);
+    popupBackground->setLocalZOrder(20);
+    menuButtons.pushBack(popupBackground);
 
     string space = " ";
     string lvl = (LocalizedString::create("LEVEL")) + space + to_string(tag);
@@ -440,14 +444,19 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
 
 void UIProgressMap::restoreProgressMap(Ref* pSender)
 {
+    if (((MenuItemImage*)pSender)->getName() == "popupBackground")
+    {
+        return;
+    }
+    
     //Menu
     if (this->getChildByTag(100) != nullptr) {
         this->removeChildByTag(100);
     }
     //Popup
-    if (this->getChildByTag(101) != nullptr) {
+    /*if (this->getChildByTag(101) != nullptr) {
         this->removeChildByTag(101);
-    }
+    }*/
     //Hexagon
     if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByTag(102) != nullptr) {
         pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->removeChildByTag(102);

@@ -53,7 +53,7 @@
         <spot image="tutorial/tPopSize" centerX="0.92" centerY="0.08"/>
     </message>
     <message id="23" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M23">
-        <spot image="tutorial/tEvoPoints" centerX="0.263" centerY="0.065"/>
+        <spot image="tutorial/tEvoPoints" centerX="0.261" centerY="0.093"/>
     </message>
     <message id="24" x="0.5" y="0.6" lineWidth="0.5" trigger="next" text="LEVEL1M24"/>
 </level>

@@ -1701,9 +1701,8 @@ void UIGameplayMap::restoreLand(void)
         for (int j = -37; j < 37; j++) {
             float dist = sqrt((i * i) + (j * j));
             if (dist <= radius and posTransformed.x + i >= 0 and posTransformed.x + i < 480 and posTransformed.y + j >= 0 and posTransformed.y + j < 320) {
-                GameLevel::getInstance()->setTimeExploited(posTransformed.x + i, posTransformed.y + j, 0);
                 GameLevel::getInstance()->setDepleted(posTransformed.x + i, posTransformed.y + j, false);
-                GameLevel::getInstance()->setEnvironmentAdaptation(posTransformed.x + i, posTransformed.y + j, false);
+                GameLevel::getInstance()->setTerraformed(posTransformed.x + i, posTransformed.y + j, false);
                 //drawExploitedMap(Point(posTransformed.x + i, posTransformed.y + j), Color4B(127, 127, 127, 0), 0);
             }
         }
@@ -1962,7 +1961,7 @@ void UIGameplayMap::updateAgents(void)
     }
 
     Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();
-    for (int i = agentsDomain.size() - 1; i >= 0 ; i--)
+    for (int i = int(agentsDomain.size()) - 1; i >= 0 ; i--)
     {
         int resourcesPainted = 0;
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
@@ -2042,10 +2041,6 @@ void UIGameplayMap::updateAgents(void)
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
             }
-            /*if (GameLevel::getInstance()->getEnvironmentAdaptation((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
-                drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()),
-                    Color4B(0, 0, 0, 50));
-            }*/
         }
     }
 
@@ -2057,9 +2052,16 @@ void UIGameplayMap::updateAgents(void)
             drawExploitedMap(Point(GameLevel::getInstance()->getRestored().at(i).x, GameLevel::getInstance()->getRestored().at(i).y), Color4B(255,255,255,255));
         }
         GameLevel::getInstance()->clearRestored();
+       
+        for (int i = 0; i < GameLevel::getInstance()->getTerraformedVector().size(); i++)
+        {
+            drawExploitedMap(Point(GameLevel::getInstance()->getTerraformedVector().at(i).x, GameLevel::getInstance()->getTerraformedVector().at(i).y), Color4B(255, 255, 255, 255));
+        
+        }
+        GameLevel::getInstance()->clearTerraformedVector();
+        
         exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
-    //pthread_mutex_unlock(&gameLevelMutex);
 }
 
 void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry, Color4B colorBorder)

@@ -18,25 +18,28 @@
  */
 
 //
-//  EnvironmentAdaptation.cpp
+//  Terraform.cpp
 //  simulplay
 //
-//  Created by Guillem Laborda on 24/10/14.
+//  Created by Guillem Laborda on 07/12/15.
 //
 //
 
-#include "EnvironmentAdaptation.h"
+#include "Terraform.h"
 #include "UIGameplayMap.h"
 
-void EnvironmentAdaptation::execute(Agent* agent)
+void Terraform::execute(Agent* agent)
 {
-    //Agent* agent = GameLevel::getInstance()->getAgents().at(type).at(indexAgent);
-    //int type = agent->getType();
-    //float adaptation = agent->getValue(eAdaptation);
-    //JUGAR AMB EL TEMPS QUE HA ESTAT OCUPAT L'ESPAI I LA PROBBILITAT
-    /*if (GameLevel::getInstance()->getTimeExploited(agent->getPosition().getX(), agent->getPosition().getY()) > 2 and RandomHelper::random_real(0.0f,1.0f)< adaptation)
+    //if its not terraformed and is terraformable
+    if (GameLevel::getInstance()->getTerraformed(agent->getPosition().getX(), agent->getPosition().getY()) == false and  GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(2, agent->getPosition().getX(), agent->getPosition().getY()) == 4)
     {
-        GameLevel::getInstance()->setEnvironmentAdaptation(agent->getPosition().getX(), agent->getPosition().getY(), true);
-    }*/
+        //check if agent exploits
+        float probTerraform = agent->getValue(eTerraform);
+        if(cocos2d::RandomHelper::random_real(0.0f, 1.0f) >= probTerraform)
+        {
+            return;
+        }
+        GameLevel::getInstance()->setTerraformed(agent->getPosition().getX(), agent->getPosition().getY(), true);
+    }
 }
 

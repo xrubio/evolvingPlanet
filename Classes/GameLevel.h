@@ -62,7 +62,8 @@ enum Attributes
     eWarfare = 4,
     eInfluence = 5,
     eExploitation = 6,
-    eTrade = 7
+    eTrade = 7,
+    eTerraform = 8
 };
 
 class GameLevel
@@ -145,13 +146,12 @@ public:
     void setEvolutionPoints(int points);
     int getAttributeCost(int type, int key);
     void setAttributeCost(int type, int key, int val);
-    int getTimeExploited(int x, int y);
-    void setTimeExploited(int x, int y, int val);
     bool getDepleted(int x, int y);
     void setDepleted(int x, int y, bool val);
     std::vector<cocos2d::Point> getRestored(void);
-    bool getEnvironmentAdaptation(int x, int y);
-    void setEnvironmentAdaptation(int x, int y, bool val);
+    bool getTerraformed(int x, int y);
+    void setTerraformed(int x, int y, bool val);
+    std::vector<cocos2d::Point> getTerraformedVector(void);
     int getCurrentAgentType(void);
     void setCurrentAgentType(int i);
     Agent* getAgentAtMap(int i, int j);
@@ -170,6 +170,7 @@ public:
     void setPowersUsed (bool p);
     int getRegenerationRate(void);
     void setRegenerationRate(int r);
+    void setTerraformFactor(float t);
 
     
     vector<string> getCompletedAchievements(void);
@@ -196,6 +197,7 @@ public:
     cocos2d::Rect getArea(const Position & center, int mobility) const;
     
     void clearRestored(void);
+    void clearTerraformedVector(void);
  
 private:
     static GameLevel* gamelevelInstance;
@@ -227,11 +229,11 @@ private:
     vector<string> completedAchievements;
 
     //Resources exploitment
-    int timeExploitedMap[480][320] = { { 0 } };
     bool depletedMap[480][320] = { { false } };
     std::vector<cocos2d::Point> _depletedVector;
     std::vector<cocos2d::Point> _restoredVector;
-    bool adaptedMap[480][320] = { { false } };
+    bool _terraformedMap[480][320] = { { false } };
+    std::vector<cocos2d::Point> _terraformedVector;
 
     std::vector<cocos2d::Point> deletedAgents;
     int idCounter = 0;
@@ -288,6 +290,8 @@ private:
     int _regenerationRate = 0;
     // last step of the mission
     int _lastStep;
+    // harm reduction factor
+    float _terraformFactor = 0;
  
 };
 

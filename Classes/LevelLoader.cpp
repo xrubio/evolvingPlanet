@@ -30,7 +30,7 @@
 #include "Reproduce.h"
 #include "Exploit.h"
 #include "Trade.h"
-#include "EnvironmentAdaptation.h"
+#include "Terraform.h"
 #include "Kill.h"
 #include "AreaPower.h"
 #include "UIGameplayMap.h"
@@ -78,6 +78,11 @@ void LevelLoader::loadXmlFile(string filename)
         if(atoi(attsConfig.attribute("REGENERATION").value()) > 0)
         {
             GameLevel::getInstance()->setRegenerationRate(atoi(attsConfig.attribute("REGENERATION").value()));
+        }
+        //check if there is terraform
+        if(atof(attsConfig.attribute("FACTOR").value()) > 0)
+        {
+            GameLevel::getInstance()->setTerraformFactor(atof(attsConfig.attribute("FACTOR").value()));
         }
         std::stringstream test(attsConfig.child_value("VALUES"));
         std::string segment;
@@ -192,10 +197,6 @@ void LevelLoader::loadXmlFile(string filename)
             auto c = new Exploit();
             GameLevel::getInstance()->addAction(c);
         }
-        else if (action == "EnvironmentAdaptation") {
-            auto ea = new EnvironmentAdaptation();
-            GameLevel::getInstance()->addAction(ea);
-        }
         else if (action == "Kill") {
             auto k = new Kill();
             GameLevel::getInstance()->addAction(k);
@@ -206,6 +207,10 @@ void LevelLoader::loadXmlFile(string filename)
         }
         else if (action == "Trade") {
             auto i = new Trade();
+            GameLevel::getInstance()->addAction(i);
+        }
+        else if (action == "Terraform") {
+            auto i = new Terraform();
             GameLevel::getInstance()->addAction(i);
         }
         acts = acts.next_sibling("ACTION");

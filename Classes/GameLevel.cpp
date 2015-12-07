@@ -36,7 +36,7 @@
 
 GameLevel* GameLevel::gamelevelInstance = NULL;
 
-size_t GameLevel::_numAttributes= 8;
+size_t GameLevel::_numAttributes = 9;
 
 GameLevel* GameLevel::getInstance()
 {
@@ -314,16 +314,6 @@ void GameLevel::setAttributeCost(int type, int key, int val)
     _attributesCost.at(type).at(key) = val;
 }
 
-int GameLevel::getTimeExploited(int x, int y)
-{
-    return timeExploitedMap[x][y];
-}
-
-void GameLevel::setTimeExploited(int x, int y, int val)
-{
-    timeExploitedMap[x][y] = val;
-}
-
 bool GameLevel::getDepleted(int x, int y)
 {
     return depletedMap[x][y];
@@ -343,14 +333,23 @@ std::vector<cocos2d::Point> GameLevel::getRestored(void)
     return _restoredVector;
 }
 
-bool GameLevel::getEnvironmentAdaptation(int x, int y)
+bool GameLevel::getTerraformed(int x, int y)
 {
-    return adaptedMap[x][y];
+    return _terraformedMap[x][y];
 }
 
-void GameLevel::setEnvironmentAdaptation(int x, int y, bool val)
+void GameLevel::setTerraformed(int x, int y, bool val)
 {
-    adaptedMap[x][y] = val;
+    _terraformedMap[x][y] = val;
+    if (val)
+    {
+        _terraformedVector.push_back(Point(x, y));
+    }
+}
+
+std::vector<cocos2d::Point> GameLevel::getTerraformedVector(void)
+{
+    return _terraformedVector;
 }
 
 int GameLevel::getCurrentAgentType(void)
@@ -453,6 +452,11 @@ void GameLevel::setRegenerationRate(int r)
     _regenerationRate = r;
 }
 
+void GameLevel::setTerraformFactor(float t)
+{
+    _terraformFactor = t;
+}
+
 vector<string> GameLevel::getCompletedAchievements(void)
 {
     return completedAchievements;
@@ -515,9 +519,8 @@ void GameLevel::resetLevel(void)
     for (int i = 0; i < 480; i++) {
         for (int j = 0; j < 320; j++) {
             _agentsMap[i][j] = nullptr;
-            timeExploitedMap[i][j] = 0;
             depletedMap[i][j] = false;
-            adaptedMap[i][j] = false;
+            _terraformedMap[i][j] = false;
         }
     }
 
@@ -547,6 +550,7 @@ void GameLevel::resetLevel(void)
     _regenerationRate = 0;
     _depletedVector.clear();
     _restoredVector.clear();
+    _terraformedVector.clear();
         
 }
 
@@ -836,6 +840,13 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
     }
 
     harm = max(0.0f, harm/resistance);
+    
+    //Terraformed
+    if (_terraformedMap[agent->getPosition().getX()][agent->getPosition().getY()] == true and _terraformFactor > 0.0)
+    {
+        harm = harm * _terraformFactor;
+    }
+    
     agent->setLife(agent->getLife() - int(harm));
 
     if (agent->getLife() <= 0)
@@ -996,6 +1007,10 @@ int GameLevel::convertAttStringToInt(const string & s)
     {
         ret = eTrade;
     }
+    else if (s == "TERRAFORM")
+    {
+        ret = eTerraform;
+    }
     
     return ret;
 }
@@ -1028,6 +1043,9 @@ string GameLevel::convertAttIntToString(int i)
             break;
         case eTrade:
             ret = "TRADE";
+            break;
+        case eTerraform:
+            ret = "TERRAFORM";
             break;
         default:
             ret = "";
@@ -1093,7 +1111,7 @@ void GameLevel::checkAchievements(void)
 void GameLevel::regenerate(void)
 {
     std::random_shuffle(_depletedVector.begin(), _depletedVector.end());
-    int init = _depletedVector.size() - 1;
+    int init = int(_depletedVector.size()) - 1;
     for (int i = init; i >= 0 and i > init - _regenerationRate; i--)
     {
         int x = int(_depletedVector.at(i).x);
@@ -1103,7 +1121,6 @@ void GameLevel::regenerate(void)
         {
             depletedMap[x][y] = false;
             _restoredVector.push_back(Point(x, y));
-            //TODO millorar l'erase, per exemple: posar x = -1, ordenar i esborrar
             _depletedVector.erase(_depletedVector.begin() + i);
         }
     }
@@ -1112,5 +1129,10 @@ void GameLevel::regenerate(void)
 void GameLevel::clearRestored(void)
 {
     _restoredVector.clear();
+}
+
+void GameLevel::clearTerraformedVector(void)
+{
+    _terraformedVector.clear();
 }
 
