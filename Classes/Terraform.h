@@ -18,24 +18,24 @@
  */
 
 //
-//  EnvironmentAdaptation.h
+//  Terraform.h
 //  simulplay
 //
-//  Created by Guillem Laborda on 24/10/14.
+//  Created by Guillem Laborda on 07/12/15.
 //
 //
 
-#ifndef __simulplay__EnvironmentAdaptation__
-#define __simulplay__EnvironmentAdaptation__
+#ifndef __simulplay__Terraform__
+#define __simulplay__Terraform__
 
 #include "Act.h"
 
-class EnvironmentAdaptation : public Act {
+class Terraform : public Act {
 
 public:
-    EnvironmentAdaptation(){};
+    Terraform(){};
 
     void execute(Agent* agent);
 };
 
-#endif /* defined(__simulplay__EnvironmentAdaptation__) */
+#endif /* defined(__simulplay__Terraform__) */

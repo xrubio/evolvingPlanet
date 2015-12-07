@@ -22,7 +22,7 @@ For example, this hexagon is a mountain.</string>
 	<key>LEVEL1M5</key>
 	<string>This arid area here has almost no vegetation. Not a comfy area to live.</string>
 	<key>LEVEL1M6</key>
-	<string>Living in these regions will be more difficult because because resources are scarce.</string>
+	<string>Living in these regions will be more difficult because resources are scarce.</string>
 	<key>LEVEL1M7</key>
 	<string>The environment is not always that dangerous. Survival is easier in forests like this one.</string>
 	<key>LEVEL1M8</key>
@@ -109,8 +109,7 @@ Good luck!</string>
 	<key>LEVEL4M3</key>
 	<string>You improve the rest of attributes by increasing the technological skill of your bots.
 Good luck!</string>
-	
-    <key>LEVEL5M1</key>
+	<key>LEVEL5M1</key>
 	<string>Welcome Professor. The zone around this river was populated before our arrival.</string>
 	<key>LEVEL5M2</key>
 	<string>Interaction between population will range from trade and cultural exchange to open conflict. It is often a mix of everything.</string>
@@ -119,35 +118,31 @@ Good luck!</string>
 	<key>LEVEL5M4</key>
 	<string>You should avoid the other population. They are far more experience on warfare than you.
 Good luck!</string>
-
-    <key>LEVEL6M1</key>
-    <string>Welcome Professor. In this mission we will influence the other group of bots</string>
-    <key>LEVEL6M2</key>
-    <string>The Lovans did not have enough mobility to reach the objectives within the observed time.</string>
-    <key>LEVEL6M3</key>
-    <string>Sudden increases in mobility will be replicated by this Boost</string>
-    <key>LEVEL6M4</key>
-    <string>We have also added another attribute called Influence</string>
-    <key>LEVEL6M5</key>
-    <string>Superior mobility and cultural influence should do he trick.
+	<key>LEVEL6M1</key>
+	<string>Welcome Professor. In this mission we will influence the other group of bots</string>
+	<key>LEVEL6M2</key>
+	<string>The Lovans did not have enough mobility to reach the objectives within the observed time.</string>
+	<key>LEVEL6M3</key>
+	<string>Sudden increases in mobility will be replicated by this Boost</string>
+	<key>LEVEL6M4</key>
+	<string>We have also added another attribute called Influence</string>
+	<key>LEVEL6M5</key>
+	<string>Superior mobility and cultural influence should do he trick.
 Good luck!</string>
-
-    <key>LEVEL7M1</key>
-    <string>Lovans engaged on warfare against these poor little blue bots...</string>
-    <key>LEVEL7M2</key>
-    <string>We need to replicate this so you will use the attribute Warfare.</string>
-    <key>LEVEL7M3</key>
-    <string>Both populations will try to disperse to the richer zones displayed here.
+	<key>LEVEL7M1</key>
+	<string>Lovans engaged on warfare against these poor little blue bots...</string>
+	<key>LEVEL7M2</key>
+	<string>We need to replicate this so you will use the attribute Warfare.</string>
+	<key>LEVEL7M3</key>
+	<string>Both populations will try to disperse to the richer zones displayed here.
 Good luck!</string>
-
-    <key>LEVEL9M1</key>
-    <string>We have here a peculiar situation...your population will get involved with two radically different species.</string>
-    <key>LEVEL9M2</key>
-    <string>One of the groups is extremely aggresive...</string>    
-    <key>LEVEL9M3</key>
-    <string>...and the other one has a strong cultural influence.</string>
-    <key>LEVEL9M4</key>
-    <string>You have here a couple of new Boosts to use. Good luck!</string>
+	<key>LEVEL9M1</key>
+	<string>We have here a peculiar situation...your population will get involved with two radically different species.</string>
+	<key>LEVEL9M2</key>
+	<string>One of the groups is extremely aggresive...</string>
+	<key>LEVEL9M3</key>
+	<string>...and the other one has a strong cultural influence.</string>
+	<key>LEVEL9M4</key>
+	<string>You have here a couple of new Boosts to use. Good luck!</string>
 </dict>
 </plist>
-
