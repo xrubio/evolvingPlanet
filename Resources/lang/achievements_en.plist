@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- LEVEL 1 -->
+    <!-- LVL 1 -->
 	<key>TITLE_LVL1_COMPLETED</key>
 	<string>ROOKIE</string>
 	<key>DESCR_LVL1_COMPLETED</key>
@@ -24,7 +24,7 @@ The oldest species were called Australopithecines. They already walked in two le
    <key>ACH_LVL1_3</key>
    <string>This is the first draft of our logo! It was born in a bar, as other good ideas</string>
 
-    <!-- LEVEL 2 -->
+    <!-- LVL 2 -->
     <key>TITLE_LVL2_COMPLETED</key>
     <string>GETTING USED TO</string>
     <key>DESCR_LVL2_COMPLETED</key>
@@ -48,7 +48,7 @@ The oldest species were called Australopithecines. They already walked in two le
              Richard Feynman
              he was one of the most important physicists of the XXth century</string>
     
-    <!-- LEVEL 3 -->
+    <!-- LVL 3 -->
     <key>TITLE_LVL3_COMPLETED</key>
     <string>BOOSTED</string>
     <key>DESCR_LVL3_COMPLETED</key>
@@ -63,14 +63,15 @@ The oldest species were called Australopithecines. They already walked in two le
     <string>Complete mission 3 without boosts</string>
 
     <key>ACH_LVL3_2</key>
-    <string>The british ship HMS Beagle left Plymouth in 1831 towards South America. A young man called Charled Darwin was onboard, and the data he collected during the voyage was crucial to develop his theory of evolution by natural selection. 
+    <string>The british ship HMS Beagle left Plymouth in 1831 towards South America; her crew included a young man called Charles Darwin.
+The data he collected during the voyage was crucial to develop his theory of evolution by natural selection.
 They returned to Europe 5 years later after circumnavigating the Earth.</string>
     <key>ACH_LVL3_3</key>
     <string>Culture makes humans so flexible that they currently live in all environments that can be imagined.
     
 The Tubu live in an African region called Ténéré, the country of emptiness. The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.</string>
 
-    <!-- LEVEL 4 -->
+    <!-- LVL 4 -->
     <key>TITLE_LVL4_COMPLETED</key>
     <string>INTRODUCING TECH</string>
     <key>DESCR_LVL4_COMPLETED</key>
@@ -84,9 +85,9 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>Our ancestors started using tools 2 million ago. Technology was not an isolated innovation, as it seems that hominins also started using language during the same period.</string>
 
     <key>ACH_LVL4_3</key>
-    <string>Culture is not only a human thing. Apes, dolphins and orcas also have complex cultural traits such as tools and language. However, the pace at which we learn and create new ideas makes us quite different than the rest of the animals.</string>    
+    <string>Culture is not only a human thing. Apes, dolphins and orcas show complex cultural traits such as tools and language. However, the pace at which we learn and create new ideas makes us quite unique.</string>    
     
-    <!-- LEVEL 5 -->
+    <!-- LVL 5 -->
     <key>TITLE_LVL5_COMPLETED</key>
     <string>GETTING AWAY</string>
     <key>DESCR_LVL5_COMPLETED</key>
@@ -97,7 +98,7 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>Complete mission 5 with a score of 3 stars</string>
 
 
-    <!-- LEVEL 6 -->
+    <!-- LVL 6 -->
     <key>TITLE_LVL6_COMPLETED</key>
     <string>INFLUENCER</string>
     <key>DESCR_LVL6_COMPLETED</key>
@@ -109,11 +110,11 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
  
 
     <key>ACH_LVL6_2</key>
-    <string>Breakthroughs in biology has proved that part of our genetic information comes form Neanderthals.
+    <string>Recent advances in biology demonstrate that part of our genetic information comes from Neanderthals.
     
-Considering that they are not our ancestors, this hybridation means that both species coexisted and interbred in Europe.</string>
+They are not our ancestors, so this information means that both species coexisted and interbred in Europe 35.000 years ago.</string>
 
-    <!-- LEVEL 7 -->
+    <!-- LVL 7 -->
     <key>TITLE_LVL7_COMPLETED</key>
     <string>CALL TO ARMS</string>
     <key>DESCR_LVL7_COMPLETED</key>
@@ -123,7 +124,7 @@ Considering that they are not our ancestors, this hybridation means that both sp
     <key>DESCR_LVL7_PERFECT</key>
     <string>Complete mission 7 with a score of 3 stars</string>
     
-    <!-- LEVEL 8 -->
+    <!-- LVL 8 -->
     <key>TITLE_LVL8_COMPLETED</key>
     <string>THE CROSSING</string>
     <key>DESCR_LVL8_COMPLETED</key>
@@ -134,9 +135,9 @@ Considering that they are not our ancestors, this hybridation means that both sp
     <string>Complete mission 8 with a score of 3 stars</string>
    
     <key>ACH_LVL8_2</key>
-    <string>Did you know that what is considered the first feature-length documentary in film history is about hunter-gatherer people? Nanook of the North (also known as Nanook of the North: A Story of Life and Love in the Actual Arctic) is a 1922 silent documentary film by Robert J. Flaherty, which describes the life and the fight for survival of Nanook and his family, members of the Inuit people of the Canadian Arctic.</string>
+    <string>Did you know that one of the first documentaries ever made show hunter-gatherer life? Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the struggle for survival of a family of Inuit living in the Arctic under extreme conditions.</string>
 
-    <!-- LEVEL 9 -->
+    <!-- LVL 9 -->
     <key>TITLE_LVL9_COMPLETED</key>
     <string>JOINING FORCES</string>
     <key>DESCR_LVL9_COMPLETED</key>
@@ -151,14 +152,14 @@ Considering that they are not our ancestors, this hybridation means that both sp
     <string>Complete mission 9 without using Boosts</string>
 
     <key>ACH_LVL9_2</key>
-    <string>We don't know why Neanderthals became extinct: conflict with Sapiens? Climate change? Competition for resources? All of them?
+    <string>Conflict with Sapiens? Climate change? Competition for resources? We don't know why Neanderthals became extinct and we are fascinated about it.
 
-Understanding the extinction of Neanderthals is extremely interesting because it can help us understand the dangers we currently face.</string>
+Understanding the extinction of Neanderthals could help us understand the risks we currently face.</string>
 
-    <key>ACH_LEVEL9_3</key>
-    <string>The more we know about Neanderthals the more we see how similar we are. This fascination has generated interesting fiction works, such as the novels "The Clan of the Cave Bear" by J.M. Auel and the science-fiction trilogy "The Neanderthal Parallax", by Robert J. Sawyer.</string>
+    <key>ACH_LVL9_3</key>
+    <string>The more we know about Neanderthals the more we see the similarities with us. This interest has generated several fiction works, such as the novels "The Clan of the Cave Bear" by J.M. Auel and the science-fiction trilogy "The Neanderthal Parallax", by Robert J. Sawyer.</string>
 
-    <!-- LEVEL 10 -->
+    <!-- LVL 10 -->
     <key>TITLE_LVL10_COMPLETED</key>
     <string>FIND A WAY</string>
     <key>DESCR_LVL10_COMPLETED</key>
@@ -168,7 +169,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL10_PERFECT</key>
     <string>Complete mission 10 with a score of 3 stars</string>
     
-    <!-- LEVEL 11 -->
+    <!-- LVL 11 -->
     <key>TITLE_LVL11_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL11_COMPLETED</key>
@@ -177,8 +178,13 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <string>PERFECTION 11</string>
     <key>DESCR_LVL11_PERFECT</key>
     <string>Complete mission 11 with a score of 3 stars</string>
+ 
+    <key>ACH_LVL11_2</key>
+    <string>The finding of several cave paintings created the wrong idea that our ancestors lived in caves.
     
-    <!-- LEVEL 12 -->
+This image is wrong; they moved around the territory and only used caves occasionally as a refuge. Paintings in caves have just better chance to be preserved after thousands of years.</string>
+  
+    <!-- LVL 12 -->
     <key>TITLE_LVL12_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL12_COMPLETED</key>
@@ -188,7 +194,12 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL12_PERFECT</key>
     <string>Complete mission 12 with a score of 3 stars</string>
     
-    <!-- LEVEL 13 -->
+    <key>ACH_LVL12_2</key>
+    <string>Most population in Himalaya practice Buddishm. Believers of this religion are supposed to burn their deaths, but where are you supposed to find wood at at height of 4.000 meters?
+
+They practice a different ritual called Sky Burial: corpses are placed on a mountaintop, where they are consumed by scanvenging birds such as vultures.</string>
+
+    <!-- LVL 13 -->
     <key>TITLE_LVL13_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL13_COMPLETED</key>
@@ -198,7 +209,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL13_PERFECT</key>
     <string>Complete mission 13 with a score of 3 stars</string>
     
-    <!-- LEVEL 14 -->
+    <!-- LVL 14 -->
     <key>TITLE_LVL14_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL14_COMPLETED</key>
@@ -208,7 +219,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL14_PERFECT</key>
     <string>Complete mission 14 with a score of 3 stars</string>
     
-    <!-- LEVEL 15 -->
+    <!-- LVL 15 -->
     <key>TITLE_LVL15_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL15_COMPLETED</key>
@@ -218,7 +229,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL15_PERFECT</key>
     <string>Complete mission 15 with a score of 3 stars</string>
     
-    <!-- LEVEL 16 -->
+    <!-- LVL 16 -->
     <key>TITLE_LVL16_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL16_COMPLETED</key>
@@ -228,7 +239,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL16_PERFECT</key>
     <string>Complete mission 16 with a score of 3 stars</string>
     
-    <!-- LEVEL 17 -->
+    <!-- LVL 17 -->
     <key>TITLE_LVL17_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL17_COMPLETED</key>
@@ -238,7 +249,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL17_PERFECT</key>
     <string>Complete mission 17 with a score of 3 stars</string>
     
-    <!-- LEVEL 18 -->
+    <!-- LVL 18 -->
     <key>TITLE_LVL18_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL18_COMPLETED</key>
@@ -248,7 +259,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL18_PERFECT</key>
     <string>Complete mission 18 with a score of 3 stars</string>
     
-    <!-- LEVEL 19 -->
+    <!-- LVL 19 -->
     <key>TITLE_LVL19_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL19_COMPLETED</key>
@@ -258,7 +269,7 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL19_PERFECT</key>
     <string>Complete mission 19 with a score of 3 stars</string>
     
-    <!-- LEVEL 20 -->
+    <!-- LVL 20 -->
     <key>TITLE_LVL20_COMPLETED</key>
     <string></string>
     <key>DESCR_LVL20_COMPLETED</key>
@@ -268,5 +279,11 @@ Understanding the extinction of Neanderthals is extremely interesting because it
     <key>DESCR_LVL20_PERFECT</key>
     <string>Complete mission 20 with a score of 3 stars</string>
     
+    <key>ACH_LVL20_2</key>
+    <string>The moon landing conspiracy suggests that the mission was filmed by directory Stanley Kubrick on Earth.
+
+In reality this director and NASA only shared cameras. Some scenes of his movie Barry Lindon were filmed using just candlelight, thanks to a camera model owned by the space agency.</string>
+
 </dict>
 </plist>
+
