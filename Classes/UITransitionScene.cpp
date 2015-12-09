@@ -71,15 +71,18 @@ bool UITransitionScene::init()
     imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
     imageUnlocked->setOpacity(0.0f);
     imageUnlocked->setName("imageUnlocked");
+    int diff = (visibleSize.height - imageUnlocked->getContentSize().height);
     this->addChild(imageUnlocked);
-    
-    auto storyLine = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
-    storyLine->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-    storyLine->setScaleX(GameData::getInstance()->getRaWConversion());
-    storyLine->setScaleY(GameData::getInstance()->getRaHConversion());
-    storyLine->setPosition(Vec2(storyLine->getContentSize().width/2, visibleSize.height-1.5f*storyLine->getContentSize().height));
+
+    auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());   
+    storyLine->setColor(Color3B(216, 229, 235));
+    storyLine->setMaxLineWidth(0.6f*visibleSize.width);
+    storyLine->setAnchorPoint(Vec2(0.0, 0.0));
+    storyLine->enableShadow();
+    storyLine->setPosition(Vec2(0.05f*visibleSize.width, diff));
     storyLine->setOpacity(0);
     storyLine->setName("text");
+ 
     this->addChild(storyLine);
     
     auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());

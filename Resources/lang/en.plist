@@ -46,6 +46,8 @@
 	<string>QUIT ?</string>
 	<key>RETRY_QUESTION</key>
 	<string>RETRY ?</string>
+    <key>RETRY</key>
+	<string>Retry</string>
 	<key>AGENTS</key>
 	<string>Bots</string>
 	<key>TAP_TO_UNLOCK</key>

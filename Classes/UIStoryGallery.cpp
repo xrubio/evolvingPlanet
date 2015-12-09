@@ -95,24 +95,17 @@ bool UIStoryGallery::init()
             auto image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
+
+            int diff = (visibleSize.height - image->getContentSize().height);
             layout->addChild(image);
             
             auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
             storyLine->setColor(Color3B(216, 229, 235));
-            storyLine->enableShadow();
-            storyLine->setMaxLineWidth(0.5f*visibleSize.width);
-            storyLine->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-
+            storyLine->setMaxLineWidth(0.6f*visibleSize.width);
             storyLine->setAnchorPoint(Vec2(0.0, 0.0));
-            storyLine->setPosition(Vec2(0.05f*visibleSize.width, 0.2f*visibleSize.height));
+            storyLine->enableShadow();
+            storyLine->setPosition(Vec2(0.05f*visibleSize.width, diff));
             
-            auto labelBorder = DrawNode::create();
-            Vec2 origin(storyLine->getBoundingBox().origin - Vec2(20.0f, 20.0f));
-            Vec2 end(storyLine->getBoundingBox().origin + storyLine->getBoundingBox().size + Vec2(20.0f, 20.0f));
-            labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));
-            labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
-            
-            layout->addChild(labelBorder);
             layout->addChild(storyLine);
         }
         /*else

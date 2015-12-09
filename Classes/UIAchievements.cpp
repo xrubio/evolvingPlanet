@@ -267,19 +267,24 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
             }
             
             auto contextImage = MenuItemImage::create(resource, resource);// CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
-            contextImage->setScale(0.6);
-            contextImage->setPosition(popupBackground->getContentSize().width / 2, popupBackground->getContentSize().height / 2);
+            float ratio = std::min(popupBackground->getContentSize().width/contextImage->getContentSize().width, popupBackground->getContentSize().height/contextImage->getContentSize().height);
+            contextImage->setScale(0.7f*ratio);
+            contextImage->setAnchorPoint(Vec2(0.5, 0.0f));
+            contextImage->setPosition(0.5f*popupBackground->getContentSize().width, 0.05f*popupBackground->getContentSize().height);
             
             auto menuContext = Menu::create(contextImage, NULL);
             menuContext->setPosition(0, 0);
-            popupBackground->addChild(menuContext, 2);
+            popupBackground->addChild(menuContext);
             
             if (textImage != "")
             {
-                auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(textImage.c_str(), "achievements"), Size(visibleSize.width / (1.8 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
-                contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
-                contextIntroduction->setPosition(Vec2(popupBackground->getContentSize().width / 2, 6.3*popupBackground->getContentSize().height / 7));
-                popupBackground->addChild(contextIntroduction);
+                auto textLabel = Label::createWithTTF(LocalizedString::create(textImage.c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+                textLabel->setColor(Color3B(216, 229, 235));
+                textLabel->setMaxLineWidth(0.9f*popupBackground->getContentSize().width);
+                textLabel->setAnchorPoint(Vec2(0.5, 1.0));
+                textLabel->setPosition(Vec2(0.5f*popupBackground->getContentSize().width, 0.95*popupBackground->getContentSize().height));
+
+                popupBackground->addChild(textLabel);
             }
         }
         else if (resourceType == "TXT")
