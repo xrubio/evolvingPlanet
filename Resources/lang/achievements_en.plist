@@ -18,11 +18,13 @@
 
 
     <key>ACH_LVL1_2</key>
+    <string>Evolving Planet story unfolds in an imaginary exoplanet called Kepler-1138.
+
+An exoplanet is a planet that orbits a star other than the Sun. Over 2000 exoplanets have been discovered, most of them by the Kepler space telescope since its launch by NASA in 2009.</string>
+   <key>ACH_LVL1_3</key>
    <string>The first human ancestors appeared 4 million yeas ago in the forests of East Africa.
 
 The oldest species were called Australopithecines. They already walked in two legs, and it seems that this property allowed them very important for their success. They managed to live in a diversity of environments, from forests to savannah.</string>
-   <key>ACH_LVL1_3</key>
-   <string>This is the first draft of our logo! It was born in a bar, as other good ideas</string>
 
     <!-- LVL 2 -->
     <key>TITLE_LVL2_COMPLETED</key>
@@ -40,14 +42,10 @@ The oldest species were called Australopithecines. They already walked in two le
 
     <key>ACH_LVL2_2</key>
     <string>Australopithecus, Homo Habilis or Homo Neanderthal were different species of hominins. They were quite diverse, but all of them shared being bipeds, having small teeth and big brains. Homo Sapiens is the only surviving hominin.</string>
+    <key>ACH_LVL2_3</key>
+    <string>The Tubu live in an African region called Ténéré, the country of emptiness. The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.
+Culture is a powerful tool, and thanks to it we populate the entire surface of the planet.</string>
 
-   <key>ACH_LVL2_3</key>
-   <string>"Science is the belief in the ignorance of experts."
-       
-       
-             Richard Feynman
-             he was one of the most important physicists of the XXth century</string>
-    
     <!-- LVL 3 -->
     <key>TITLE_LVL3_COMPLETED</key>
     <string>BOOSTED</string>
@@ -57,20 +55,18 @@ The oldest species were called Australopithecines. They already walked in two le
     <string>PERFECTION 3</string>
     <key>DESCR_LVL3_PERFECT</key>
     <string>Complete mission 3 with a score of 3 stars</string>
-    <key>TITLE_LVL3_NOPOWERS</key>
+    <key>TITLE_LVL3_EVPOINTSLEFT</key>
     <string>THE HARD WAY</string>
-    <key>DESCR_LVL3_NOPOWERS</key>
-    <string>Complete mission 3 without boosts</string>
+    <key>DESCR_LVL3_EVPOINTSLEFT</key>
+    <string>Complete mission 3 having at least 10 evolution points at the end</string>
 
     <key>ACH_LVL3_2</key>
-    <string>The british ship HMS Beagle left Plymouth in 1831 towards South America; her crew included a young man called Charles Darwin.
-The data he collected during the voyage was crucial to develop his theory of evolution by natural selection.
-They returned to Europe 5 years later after circumnavigating the Earth.</string>
-    <key>ACH_LVL3_3</key>
-    <string>Culture makes humans so flexible that they currently live in all environments that can be imagined.
-    
-The Tubu live in an African region called Ténéré, the country of emptiness. The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.</string>
+    <string>The british ship HMS Beagle left Plymouth in 1831 towards South America. She returned to Europe 5 years later after circumnavigating the Earth.
+Her crew included a young man called Charles Darwin. The data he collected during the voyage was crucial to develop his theory of evolution by natural selection.</string>
 
+    <key>ACH_LVL3_3</key>
+    <string>The first pregnancy for women in hunter-gatherer societies was around 19 years. It decreased after the adoption of sedentary lifestyles and did not increase again until the XXth century.</string>
+    
     <!-- LVL 4 -->
     <key>TITLE_LVL4_COMPLETED</key>
     <string>INTRODUCING TECH</string>
@@ -80,13 +76,20 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>PERFECTION 4</string>
     <key>DESCR_LVL4_PERFECT</key>
     <string>Complete mission 4 with a score of 3 stars</string>
-    
+    <key>TITLE_LVL4_NOPOWERS</key>
+    <string>TECH NERD</string>
+    <key>DESCR_LVL3_NOPOWERS</key>
+    <string>Complete mission 4 without boosts</string>
+
     <key>ACH_LVL4_2</key>
     <string>Our ancestors started using tools 2 million ago. Technology was not an isolated innovation, as it seems that hominins also started using language during the same period.</string>
-
-    <key>ACH_LVL4_3</key>
-    <string>Culture is not only a human thing. Apes, dolphins and orcas show complex cultural traits such as tools and language. However, the pace at which we learn and create new ideas makes us quite unique.</string>    
-    
+   <key>ACH_LVL4_3</key>
+   <string>"Science is the belief in the ignorance of experts."
+       
+       
+             Richard Feynman
+             One of the most important physicists of the XXth century</string>
+        
     <!-- LVL 5 -->
     <key>TITLE_LVL5_COMPLETED</key>
     <string>GETTING AWAY</string>
@@ -98,10 +101,7 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>Complete mission 5 with a score of 3 stars</string>
    
     <key>ACH_LVL5_2</key>
-    <string>Kepler-1138 is an exoplanet. Exoplanet means external solar planet: a planet that orbits a star other than the Sun. Over 2000 exoplanets have been discovered, most of them by the Kepler space telescope since its launch by NASA in 2009.</string>
-
-
-
+    <string>The more we know about Neanderthals the more we see the similarities with us. This interest has generated several fiction works, such as the novels "The Clan of the Cave Bear" by J.M. Auel and the science-fiction trilogy "The Neanderthal Parallax", by Robert J. Sawyer.</string>
 
     <!-- LVL 6 -->
     <key>TITLE_LVL6_COMPLETED</key>
@@ -118,6 +118,9 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>Recent advances in biology demonstrate that part of our genetic information comes from Neanderthals.
     
 They are not our ancestors, so this information means that both species coexisted and interbred in Europe 35.000 years ago.</string>
+    <key>ACH_LVL6_3</key>
+    <string>Culture is not only a human thing. Apes, dolphins and orcas show complex cultural traits such as tools and language. However, the pace at which we learn and create new ideas makes us quite unique.</string>
+
 
     <!-- LVL 7 -->
     <key>TITLE_LVL7_COMPLETED</key>
@@ -128,7 +131,19 @@ They are not our ancestors, so this information means that both species coexiste
     <string>PERFECTION 7</string>
     <key>DESCR_LVL7_PERFECT</key>
     <string>Complete mission 7 with a score of 3 stars</string>
+    <key>TITLE_LVL7_DISCOVER</key>
+    <string>THE WORLD ON HORSEBACK</string>
+    <key>DESCR_LVL7_DISCOVER</key>
+    <string>Cross the mountain range through the northern pass</string>
+
+    <key>ACH_LVL7_2</key>
+    <string>The first evidences of warfare are currently dated around 13.000 years ago. Conflict scenes are depicted in several cave paintings, and archaeologists have also found several bodies embedding arrowheads.</string>
+
+    <key>ACH_LVL7_3</key>
+    <string>"I feel alive when I ride my horse"
     
+These are words from a Mongol horse rider whom was said to be "born in the saddle". Mongols live in the steppe, where their culture is centered around horses.</string>
+
     <!-- LVL 8 -->
     <key>TITLE_LVL8_COMPLETED</key>
     <string>THE CROSSING</string>
@@ -173,7 +188,18 @@ Understanding the extinction of Neanderthals could help us understand the risks 
     <string>PERFECTION 10</string>
     <key>DESCR_LVL10_PERFECT</key>
     <string>Complete mission 10 with a score of 3 stars</string>
-    
+    <key>TITLE_LVL10_NOPOWERS</key>
+    <string>HALF WAY</string>
+    <key>DESCR_LVL10_NOPOWERS</key>
+    <string>Complete mission 10 without boosts</string>
+ 
+    <key>ACH_LVL10_2</key>
+    <string>This is the first draft of our logo! It was born in a bar, as other good ideas</string>
+
+    <key>ACH_LVL10_3</key>
+    <string>“The good thing about science is that it's true whether or not you believe in it.”
+
+Neil deGrasse Tyson is one of the most famous astrophysicists.</string>
     <!-- LVL 11 -->
     <key>TITLE_LVL11_COMPLETED</key>
     <string></string>
@@ -253,6 +279,16 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     <string>PERFECTION 17</string>
     <key>DESCR_LVL17_PERFECT</key>
     <string>Complete mission 17 with a score of 3 stars</string>
+    <key>TITLE_LVL17_EVPOINTSLEFT</key>
+    <string>UNINTELLIGENT DESIGN</string>
+    <key>DESCR_LVL17_EVPOINTSLEFT</key>
+    <string>Complete mission 1 having at least 17 evolution points at the end</string>
+  
+    <key>ACH_LVL17_2</key>
+    <string>Miners working in the island of Java have probably the most dangerous job in the world. They have to work insied the guts of the Lijen volcano to collect sulphur.</string>
+
+    <key>ACH_LVL17_3</key>
+    <string>Some people say that Intelligent Design (ID) is a theory as good as Evolution to explain life. However, evolution is a scientific theory while ID is a religious argument lacking empirical support and does not offer any explanation that could be tested.</string>
     
     <!-- LVL 18 -->
     <key>TITLE_LVL18_COMPLETED</key>
@@ -276,18 +312,26 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     
     <!-- LVL 20 -->
     <key>TITLE_LVL20_COMPLETED</key>
-    <string></string>
+    <string>Humans go home!</string>
     <key>DESCR_LVL20_COMPLETED</key>
     <string>Complete mission 20</string>
     <key>TITLE_LVL20_PERFECT</key>
-    <string>PERFECTION 20</string>
+    <string>That's no moon</string>
     <key>DESCR_LVL20_PERFECT</key>
     <string>Complete mission 20 with a score of 3 stars</string>
+    <key>TITLE_LVL20_NOPOWERS</key>
+    <string>TOP GAMER</string>
+    <key>DESCR_LVL20_NOPOWERS</key>
+    <string>Complete mission 20 without boosts</string>
     
     <key>ACH_LVL20_2</key>
     <string>The moon landing conspiracy suggests that the mission was filmed by directory Stanley Kubrick on Earth.
 In reality this director and NASA only shared cameras. Some scenes of his movie Barry Lindon were filmed using just candlelight, thanks to a camera model owned by the space agency.</string>
 
+    <key>ACH_LVL20_3</key>
+    <string>“We are star stuff which has taken its destiny into its own hands.”
+
+Carl Sagan was probably the best science communicator that has ever lived. If you don't know his Cosmos tv series you should inmediately close this game and watch it!</string>
 </dict>
 </plist>
 
