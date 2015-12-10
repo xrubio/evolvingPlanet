@@ -99,9 +99,15 @@ Her crew included a young man called Charles Darwin. The data he collected durin
     <string>PERFECTION 5</string>
     <key>DESCR_LVL5_PERFECT</key>
     <string>Complete mission 5 with a score of 3 stars</string>
-   
+    <key>TITLE_LVL5_DISCOVER</key>
+    <string>You are not the first one</string>
+    <key>DESCR_LVL5_DISCOVER</key>
+    <string>Reach the north-eastern part of the map</string>
+ 
     <key>ACH_LVL5_2</key>
     <string>The more we know about Neanderthals the more we see the similarities with us. This interest has generated several fiction works, such as the novels "The Clan of the Cave Bear" by J.M. Auel and the science-fiction trilogy "The Neanderthal Parallax", by Robert J. Sawyer.</string>
+    <key>ACH_LVL5_3</key>
+    <string>Christoper Columbus famous voyage from 1492 was not the first contact between Europeans and Americans. Several viking expeditions reached Northern America during the Xth century.</string>
 
     <!-- LVL 6 -->
     <key>TITLE_LVL6_COMPLETED</key>
@@ -153,9 +159,15 @@ These are words from a Mongol horse rider whom was said to be "born in the saddl
     <string>PERFECTION 8</string>
     <key>DESCR_LVL8_PERFECT</key>
     <string>Complete mission 8 with a score of 3 stars</string>
-   
+    <key>TITLE_LVL8_EVPOINTSLEFT</key>
+    <string>Ice and Fire</string>
+    <key>DESCR_LVL8_EVPOINTSLEFT</key>
+    <string>Complete mission 8 having at least 10 evolution points at the end</string>
+ 
     <key>ACH_LVL8_2</key>
     <string>Did you know that one of the first documentaries ever made show hunter-gatherer life? Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the struggle for survival of a family of Inuit living in the Arctic under extreme conditions.</string>
+    <key>ACH_LVL8_3</key>
+    <string>Temperature in the Arctic can go as low as -45 degrees Celsius. Igloos made of snow and ice are the only reason why people can live there; they can increase the temperature up to a confortable temperature of 16 degrees.</string>
 
     <!-- LVL 9 -->
     <key>TITLE_LVL9_COMPLETED</key>
@@ -224,11 +236,18 @@ This image is wrong; they moved around the territory and only used caves occasio
     <string>PERFECTION 12</string>
     <key>DESCR_LVL12_PERFECT</key>
     <string>Complete mission 12 with a score of 3 stars</string>
-    
+    <key>TITLE_LVL12_NOPOWERS</key>
+    <string>DO THEY HAVE GILLS?</string>
+    <key>DESCR_LVL12_NOPOWERS</key>
+    <string>Complete mission 12 without boosts</string>
+ 
     <key>ACH_LVL12_2</key>
     <string>Most population in Himalaya practice Buddishm. Believers of this religion are supposed to burn their deaths, but where are you supposed to find wood at at height of 4.000 meters?
 
 They practice a different ritual called Sky Burial: corpses are placed on a mountaintop, where they are consumed by scanvenging birds such as vultures.</string>
+
+    <key>ACH_LVL12_3</key>
+    <string>How much deep can you go underwater? The Sama-Bajau people can catch a fish at 20 m. deep while keeping their breadth for almost 3 minutes.</string>
 
     <!-- LVL 13 -->
     <key>TITLE_LVL13_COMPLETED</key>
@@ -282,7 +301,7 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     <key>TITLE_LVL17_EVPOINTSLEFT</key>
     <string>UNINTELLIGENT DESIGN</string>
     <key>DESCR_LVL17_EVPOINTSLEFT</key>
-    <string>Complete mission 1 having at least 17 evolution points at the end</string>
+    <string>Complete mission 17 having at least 10 evolution points at the end</string>
   
     <key>ACH_LVL17_2</key>
     <string>Miners working in the island of Java have probably the most dangerous job in the world. They have to work insied the guts of the Lijen volcano to collect sulphur.</string>
