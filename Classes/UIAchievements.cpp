@@ -268,9 +268,23 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
             
             auto contextImage = MenuItemImage::create(resource, resource);// CC_CALLBACK_1(UIAchievements::zoomImageInCallback, this));
             float ratio = std::min(popupBackground->getContentSize().width/contextImage->getContentSize().width, popupBackground->getContentSize().height/contextImage->getContentSize().height);
-            contextImage->setScale(0.7f*ratio);
-            contextImage->setAnchorPoint(Vec2(0.5, 0.0f));
-            contextImage->setPosition(0.5f*popupBackground->getContentSize().width, 0.05f*popupBackground->getContentSize().height);
+            CCLOG("ratio: %f frac width %f height: %f", ratio, popupBackground->getContentSize().width/contextImage->getContentSize().width, popupBackground->getContentSize().height/contextImage->getContentSize().height);
+            
+      
+            // occupy all the screen if no text
+/*            if (textImage != "")
+            {
+                contextImage->setScale(0.7f*ratio);
+                contextImage->setAnchorPoint(Vec2(0.5, 0.0f));
+                contextImage->setPosition(0.5f*popupBackground->getContentSize().width, 0.05f*popupBackground->getContentSize().height);
+            }
+            else
+            {
+            */
+                contextImage->setScale(0.9f*ratio);
+                contextImage->setAnchorPoint(Vec2(0.5, 0.5f));
+                contextImage->setPosition(0.5f*popupBackground->getContentSize().width, 0.5f*popupBackground->getContentSize().height);
+//            }
             
             auto menuContext = Menu::create(contextImage, NULL);
             menuContext->setPosition(0, 0);
@@ -281,9 +295,19 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
                 auto textLabel = Label::createWithTTF(LocalizedString::create(textImage.c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
                 textLabel->setColor(Color3B(216, 229, 235));
                 textLabel->setMaxLineWidth(0.9f*popupBackground->getContentSize().width);
-                textLabel->setAnchorPoint(Vec2(0.5, 1.0));
-                textLabel->setPosition(Vec2(0.5f*popupBackground->getContentSize().width, 0.95*popupBackground->getContentSize().height));
+                textLabel->setAnchorPoint(Vec2(0.5, 0.0));
+                textLabel->setPosition(Vec2(0.5f*popupBackground->getContentSize().width, 0.05*popupBackground->getContentSize().height));
 
+                auto labelBorder = DrawNode::create();
+                float marginWidth = 0.02f*textLabel->getContentSize().width;
+                float marginHeight = 0.02f*textLabel->getContentSize().height;
+                Vec2 margin(marginWidth, marginHeight);
+                Vec2 origin(textLabel->getBoundingBox().origin - margin);
+                Vec2 end(textLabel->getBoundingBox().origin + textLabel->getBoundingBox().size + margin);
+                labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.7f));
+                labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
+
+                popupBackground->addChild(labelBorder);
                 popupBackground->addChild(textLabel);
             }
         }

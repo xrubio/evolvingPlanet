@@ -2375,7 +2375,7 @@ void UIGameplayMap::setMessage( const Message * message )
         
         const Rect & contents = label->getBoundingBox();
         const Rect & ownContents = nextLabel->getBoundingBox();
-        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-20-(ownContents.size.height/2)));
+        nextLabel->setPosition(Vec2(contents.getMaxX()-(ownContents.size.width/2), contents.getMinY()-0.02f*label->getContentSize().height-(ownContents.size.height/2)));
         
         label->setVisible(true);    
         labelBorder->setVisible(true);   
@@ -2383,8 +2383,12 @@ void UIGameplayMap::setMessage( const Message * message )
 
     }
 
-    Vec2 origin(label->getBoundingBox().origin - Vec2(20.0f, 20.0f));
-    Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + Vec2(20.0f, 20.0f));
+    float marginWidth = 0.02f*label->getContentSize().width;
+    float marginHeight = 0.02f*label->getContentSize().height;
+    Vec2 margin(marginWidth, marginHeight);
+
+    Vec2 origin(label->getBoundingBox().origin - margin);
+    Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + margin);
     labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));
     labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
 
