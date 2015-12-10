@@ -96,6 +96,11 @@ The Tubu live in an African region called Ténéré, the country of emptiness. T
     <string>PERFECTION 5</string>
     <key>DESCR_LVL5_PERFECT</key>
     <string>Complete mission 5 with a score of 3 stars</string>
+   
+    <key>ACH_LVL5_2</key>
+    <string>Kepler-1138 is an exoplanet. Exoplanet means external solar planet: a planet that orbits a star other than the Sun. Over 2000 exoplanets have been discovered, most of them by the Kepler space telescope since its launch by NASA in 2009.</string>
+
+
 
 
     <!-- LVL 6 -->
