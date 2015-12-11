@@ -304,8 +304,8 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
                 Vec2 margin(marginWidth, marginHeight);
                 Vec2 origin(textLabel->getBoundingBox().origin - margin);
                 Vec2 end(textLabel->getBoundingBox().origin + textLabel->getBoundingBox().size + margin);
-                labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.7f));
-                labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
+                labelBorder->drawSolidRect(origin, end, Color4F(Color4B(42,52,55,180)));
+                labelBorder->drawRect(origin, end, Color4F(Color4B(55,83,101,255)));
 
                 popupBackground->addChild(labelBorder);
                 popupBackground->addChild(textLabel);

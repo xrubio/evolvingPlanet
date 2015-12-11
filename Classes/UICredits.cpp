@@ -380,35 +380,28 @@ void UICredits::specialThanks2(Layout* layout)
     layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //THANKS 2
+    auto credits = Sprite::create("misc/logos.png");
+    credits->setPosition(0.5f*popupBackground->getContentSize().width, 0.5f*popupBackground->getContentSize().height);
+    popupBackground->addChild(credits);
     
-    auto configLabel = Label::createWithTTF(LocalizedString::create("SUPPORT"), "fonts/BebasNeue.otf", 70* GameData::getInstance()->getRaConversion()); 
-    configLabel->setColor(Color3B(255, 255, 255));
-    configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
-    popupBackground->addChild(configLabel);
+    auto supportLabel = Label::createWithTTF(LocalizedString::create("SUPPORT"), "fonts/BebasNeue.otf", 60* GameData::getInstance()->getRaConversion()); 
+    supportLabel->setColor(Color3B(255, 255, 255));
+    supportLabel->setAnchorPoint(Vec2(0, 0.5));
+    supportLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.93f*popupBackground->getContentSize().height));
+    popupBackground->addChild(supportLabel);
 
-    auto recercaixa = Sprite::create("misc/recercaixa.png");
-    auto bsc = Sprite::create("misc/bsc.png");
-    auto micinn = Sprite::create("misc/micinn.png");
-
-    auto poweredLabel = Label::createWithTTF(LocalizedString::create("POWERED"), "fonts/BebasNeue.otf", 70* GameData::getInstance()->getRaConversion()); 
+    auto poweredLabel = Label::createWithTTF(LocalizedString::create("POWERED"), "fonts/BebasNeue.otf", 60* GameData::getInstance()->getRaConversion()); 
     poweredLabel->setColor(Color3B(255, 255, 255));
     poweredLabel->setAnchorPoint(Vec2(0, 0.5));
-    poweredLabel->setPosition(Vec2(0.2f * popupBackground->getContentSize().width, 0.1f*popupBackground->getContentSize().height));
+    poweredLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.35f*popupBackground->getContentSize().height));
     popupBackground->addChild(poweredLabel);
-
-    auto cocos = Sprite::create("misc/cocos.png");
-
-    recercaixa->setPosition(0.3f*popupBackground->getContentSize().width, 0.6f*popupBackground->getContentSize().height);
-    bsc->setPosition(0.7f*popupBackground->getContentSize().width, 0.6f*popupBackground->getContentSize().height);
-    micinn->setPosition(0.5f*popupBackground->getContentSize().width, 0.4f*popupBackground->getContentSize().height);
-
-    cocos->setPosition(0.7f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height);
-
-    popupBackground->addChild(recercaixa);
-    popupBackground->addChild(bsc);
-    popupBackground->addChild(micinn);
-    popupBackground->addChild(cocos);
+    
+    auto wikimediaLabel = Label::createWithTTF(LocalizedString::create("CONTENT_WIKIMEDIA"), "fonts/BebasNeue.otf", 60* GameData::getInstance()->getRaConversion()); 
+    wikimediaLabel->setColor(Color3B(255, 255, 255));
+    wikimediaLabel->setAnchorPoint(Vec2(0, 0.5));
+    wikimediaLabel->setMaxLineWidth(0.15f*popupBackground->getContentSize().width);
+    wikimediaLabel->setPosition(Vec2(0.7f * popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    popupBackground->addChild(wikimediaLabel);
 
 }
 

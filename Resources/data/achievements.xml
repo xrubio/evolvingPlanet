@@ -305,7 +305,7 @@
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
-        <RESOURCE TYPE="TXT">ACH_LVL9_3</RESOURCE>
+        <RESOURCE TYPE="IMG" TXT="ACH_LVL9_3">achievements/skyscrapper.jpg</RESOURCE>
     </SIGNIFIER>
 </ACHIEVEMENT>
 

@@ -171,6 +171,8 @@ Tap the logo to know more about SimulPast!</string>
     <key>SUPPORT</key>
     <string>With the support of</string>    
     <key>POWERED</key>
-    <string>Evolving Planet is powered by</string> 
+    <string>Powered by</string> 
+    <key>CONTENT_WIKIMEDIA</key>
+    <string>Additional content by</string> 
 </dict>
 </plist>
