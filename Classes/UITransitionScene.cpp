@@ -71,7 +71,7 @@ bool UITransitionScene::init()
     imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
     imageUnlocked->setOpacity(0.0f);
     imageUnlocked->setName("imageUnlocked");
-    int diff = (visibleSize.height - imageUnlocked->getContentSize().height);
+    int diff = (visibleSize.height - imageUnlocked->getContentSize().height)/2;
     this->addChild(imageUnlocked);
 
     auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());   
@@ -79,7 +79,7 @@ bool UITransitionScene::init()
     storyLine->setMaxLineWidth(0.6f*visibleSize.width);
     storyLine->setAnchorPoint(Vec2(0.0, 0.0));
     storyLine->enableShadow();
-    storyLine->setPosition(Vec2(0.05f*visibleSize.width, diff));
+    storyLine->setPosition(Vec2(0.05f*visibleSize.width, 2*storyLine->getContentSize().height/3+diff));
     storyLine->setOpacity(0);
     storyLine->setName("text");
  

@@ -96,7 +96,7 @@ bool UIStoryGallery::init()
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
 
-            int diff = (visibleSize.height - image->getContentSize().height);
+            int diff = (visibleSize.height - image->getContentSize().height)/2;
             layout->addChild(image);
             
             auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
@@ -104,7 +104,7 @@ bool UIStoryGallery::init()
             storyLine->setMaxLineWidth(0.6f*visibleSize.width);
             storyLine->setAnchorPoint(Vec2(0.0, 0.0));
             storyLine->enableShadow();
-            storyLine->setPosition(Vec2(0.05f*visibleSize.width, diff));
+            storyLine->setPosition(Vec2(0.05f*visibleSize.width, 2*storyLine->getContentSize().height/3+diff));
             
             layout->addChild(storyLine);
         }
