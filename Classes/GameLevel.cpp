@@ -934,7 +934,7 @@ void GameLevel::act(void)
     
     CCLOG("%d %d", _depletedVector.size(), _restoredVector.size());
     
-    //DISCOVER ACHIEVEMENT
+    //DISCOVERY ACHIEVEMENT
     if (_inGameAchievement != nullptr)
     {
         bool completed = false;

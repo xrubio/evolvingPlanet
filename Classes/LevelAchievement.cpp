@@ -27,7 +27,67 @@
 
 #include "LevelAchievement.h"
 
-LevelAchievement::LevelAchievement(string icon, string resource, string goalType, int level, bool completed, bool occult) : Achievement(icon, resource, goalType, level, completed, occult)
+LevelAchievement::LevelAchievement(const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed, bool occult) : Achievement(icon, resource, goalType, level, completed, occult)
 {
+}
+
+bool LevelAchievement::checkAchievement(const std::string & typeAch, int level)
+{
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() == level)
+    {
+        if (typeAch == "Accomplished")
+        {
+            if (GameData::getInstance()->getLevelScore(level) > 0)
+            {
+                _completed = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+        if (typeAch == "Perfect")
+        {
+            if (GameData::getInstance()->getLevelScore(level) == 3)
+            {
+                _completed = true;
+                return true;
+            }
+        }
+        else if (typeAch == "EPsLeft")
+        {
+            if (GameLevel::getInstance()->getEvolutionPoints() >= _variable)
+            {
+                _completed = true;
+                return true;
+            }
+        }
+        else if (typeAch == "NoBoosts")
+        {
+            if (GameLevel::getInstance()->getPowersUsed() == false)
+            {
+                _completed = true;
+                return true;
+            }
+        }
+    
+    return false;
+}
+
+bool LevelAchievement::checkInGameAchievement( const std::string & typeAch, int level, int agentColorCode)
+{
+    if (typeAch == "Discovery")
+    {
+            // as soon as one agent completes the achievement then stop checks
+            // achievement is completed if the agent is within the color coded zone for the achievement
+            if(agentColorCode == _variable)
+            {
+                _completed = true;
+                return true;
+            }
+    }
+    return false;
 }
 

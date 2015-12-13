@@ -33,20 +33,14 @@
 class ProgressAchievement : public Achievement
 {
 public:
-    ProgressAchievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
+    ProgressAchievement(const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed = false, bool occult = false);
     
     // TODO implement this method
-    bool checkAchievement(string typeAch, int level)
-    {
-        return false;
-    }
-    
-    bool checkInGameAchievement(string typeAch, int level, int agentColorCode)
-    {
-        return false;
-    }
+    bool checkAchievement(const std::string & typeAch, int level);
+    bool checkInGameAchievement(const std::string & typeAch, int level, int agentColorCode);
 
 private:
     int numGames;
 };
 #endif /* defined(__simulplay__ProgressAchievement__) */
+

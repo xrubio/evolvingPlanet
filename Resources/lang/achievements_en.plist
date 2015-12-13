@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
     <!-- LVL 1 -->
-	<key>TITLE_LVL1_COMPLETED</key>
+	<key>TITLE_LVL1_Accomplished</key>
 	<string>ROOKIE</string>
-	<key>DESCR_LVL1_COMPLETED</key>
+	<key>DESCR_LVL1_Accomplished</key>
 	<string>Complete mission 1</string>
-	<key>TITLE_LVL1_PERFECT</key>
-	<string>PERFECTION 1</string>
-	<key>DESCR_LVL1_PERFECT</key>
+	<key>TITLE_LVL1_Perfect</key>
+	<string>PerfectION 1</string>
+	<key>DESCR_LVL1_Perfect</key>
 	<string>Complete mission 1 with a score of 3 stars</string>
-    <key>TITLE_LVL1_EVPOINTSLEFT</key>
+    <key>TITLE_LVL1_EPsLeft</key>
     <string>LEFTOVERS</string>
-    <key>DESCR_LVL1_EVPOINTSLEFT</key>
+    <key>DESCR_LVL1_EPsLeft</key>
     <string>Complete mission 1 having at least 10 evolution points at the end</string>
 
 
@@ -27,17 +27,17 @@ An exoplanet is a planet that orbits a star other than the Sun. Over 2000 exopla
 The oldest species were called Australopithecines. They already walked in two legs, and it seems that this property allowed them very important for their success. They managed to live in a diversity of environments, from forests to savannah.</string>
 
     <!-- LVL 2 -->
-    <key>TITLE_LVL2_COMPLETED</key>
+    <key>TITLE_LVL2_Accomplished</key>
     <string>GETTING USED TO</string>
-    <key>DESCR_LVL2_COMPLETED</key>
+    <key>DESCR_LVL2_Accomplished</key>
     <string>Complete mission 2</string>
-    <key>TITLE_LVL2_PERFECT</key>
-    <string>PERFECTION 2</string>
-    <key>DESCR_LVL2_PERFECT</key>
+    <key>TITLE_LVL2_Perfect</key>
+    <string>PerfectION 2</string>
+    <key>DESCR_LVL2_Perfect</key>
     <string>Complete mission 2 with a score of 3 stars</string>
-    <key>TITLE_LVL2_DISCOVER</key>
+    <key>TITLE_LVL2_Discovery</key>
     <string>WRONG WAY</string>
-    <key>DESCR_LVL2_DISCOVER</key>
+    <key>DESCR_LVL2_Discovery</key>
     <string>Move through the river</string>
 
     <key>ACH_LVL2_2</key>
@@ -47,17 +47,17 @@ The oldest species were called Australopithecines. They already walked in two le
 Culture is a powerful tool, and thanks to it we populate the entire surface of the planet.</string>
 
     <!-- LVL 3 -->
-    <key>TITLE_LVL3_COMPLETED</key>
+    <key>TITLE_LVL3_Accomplished</key>
     <string>BOOSTED</string>
-    <key>DESCR_LVL3_COMPLETED</key>
+    <key>DESCR_LVL3_Accomplished</key>
     <string>Complete mission 3</string>
-    <key>TITLE_LVL3_PERFECT</key>
-    <string>PERFECTION 3</string>
-    <key>DESCR_LVL3_PERFECT</key>
+    <key>TITLE_LVL3_Perfect</key>
+    <string>PerfectION 3</string>
+    <key>DESCR_LVL3_Perfect</key>
     <string>Complete mission 3 with a score of 3 stars</string>
-    <key>TITLE_LVL3_EVPOINTSLEFT</key>
+    <key>TITLE_LVL3_EPsLeft</key>
     <string>THE HARD WAY</string>
-    <key>DESCR_LVL3_EVPOINTSLEFT</key>
+    <key>DESCR_LVL3_EPsLeft</key>
     <string>Complete mission 3 having at least 10 evolution points at the end</string>
 
     <key>ACH_LVL3_2</key>
@@ -70,17 +70,17 @@ Her crew included a young man called Charles Darwin. The data he collected durin
 It did not increase again in Western societies until the XXth century.</string>
     
     <!-- LVL 4 -->
-    <key>TITLE_LVL4_COMPLETED</key>
+    <key>TITLE_LVL4_Accomplished</key>
     <string>INTRODUCING TECH</string>
-    <key>DESCR_LVL4_COMPLETED</key>
+    <key>DESCR_LVL4_Accomplished</key>
     <string>Complete mission 4</string>
-    <key>TITLE_LVL4_PERFECT</key>
-    <string>PERFECTION 4</string>
-    <key>DESCR_LVL4_PERFECT</key>
+    <key>TITLE_LVL4_Perfect</key>
+    <string>PerfectION 4</string>
+    <key>DESCR_LVL4_Perfect</key>
     <string>Complete mission 4 with a score of 3 stars</string>
-    <key>TITLE_LVL4_NOPOWERS</key>
+    <key>TITLE_LVL4_NoBoosts</key>
     <string>TECH NERD</string>
-    <key>DESCR_LVL4_NOPOWERS</key>
+    <key>DESCR_LVL4_NoBoosts</key>
     <string>Complete mission 4 without boosts</string>
 
     <key>ACH_LVL4_2</key>
@@ -94,17 +94,17 @@ For this reason it is not surprising that hominins started using language during
 One of the most important physicists of the XXth century</string>
         
     <!-- LVL 5 -->
-    <key>TITLE_LVL5_COMPLETED</key>
+    <key>TITLE_LVL5_Accomplished</key>
     <string>GETTING AWAY</string>
-    <key>DESCR_LVL5_COMPLETED</key>
+    <key>DESCR_LVL5_Accomplished</key>
     <string>Complete mission 5</string>
-    <key>TITLE_LVL5_PERFECT</key>
-    <string>PERFECTION 5</string>
-    <key>DESCR_LVL5_PERFECT</key>
+    <key>TITLE_LVL5_Perfect</key>
+    <string>PerfectION 5</string>
+    <key>DESCR_LVL5_Perfect</key>
     <string>Complete mission 5 with a score of 3 stars</string>
-    <key>TITLE_LVL5_DISCOVER</key>
+    <key>TITLE_LVL5_Discovery</key>
     <string>You are not the first one</string>
-    <key>DESCR_LVL5_DISCOVER</key>
+    <key>DESCR_LVL5_Discovery</key>
     <string>Reach the north-eastern part of the map</string>
  
     <key>ACH_LVL5_2</key>
@@ -115,17 +115,17 @@ Three of the most interesting are the movie "Quest for Fire" by Jean-Jacques Ann
     <string>Christoper Columbus famous voyage from 1492 was not the first contact between Europeans and Americans. Several viking expeditions reached Northern America during the Xth century.</string>
 
     <!-- LVL 6 -->
-    <key>TITLE_LVL6_COMPLETED</key>
+    <key>TITLE_LVL6_Accomplished</key>
     <string>INFLUENCER</string>
-    <key>DESCR_LVL6_COMPLETED</key>
+    <key>DESCR_LVL6_Accomplished</key>
     <string>Complete mission 6</string>
-    <key>TITLE_LVL6_PERFECT</key>
-    <string>PERFECTION 6</string>
-    <key>DESCR_LVL6_PERFECT</key>
+    <key>TITLE_LVL6_Perfect</key>
+    <string>PerfectION 6</string>
+    <key>DESCR_LVL6_Perfect</key>
     <string>Complete mission 6 with a score of 3 stars</string>
-    <key>TITLE_LVL6_EVPOINTSLEFT</key>
+    <key>TITLE_LVL6_EPsLeft</key>
     <string>Culture vs Nurture</string>
-    <key>DESCR_LVL6_EVPOINTSLEFT</key>
+    <key>DESCR_LVL6_EPsLeft</key>
     <string>Complete mission 6 having at least 10 evolution points at the end</string>
  
 
@@ -137,17 +137,17 @@ They are not our ancestors, so this genetic share was caused by both species coe
 
 
     <!-- LVL 7 -->
-    <key>TITLE_LVL7_COMPLETED</key>
+    <key>TITLE_LVL7_Accomplished</key>
     <string>CALL TO ARMS</string>
-    <key>DESCR_LVL7_COMPLETED</key>
+    <key>DESCR_LVL7_Accomplished</key>
     <string>Complete mission 7</string>
-    <key>TITLE_LVL7_PERFECT</key>
-    <string>PERFECTION 7</string>
-    <key>DESCR_LVL7_PERFECT</key>
+    <key>TITLE_LVL7_Perfect</key>
+    <string>PerfectION 7</string>
+    <key>DESCR_LVL7_Perfect</key>
     <string>Complete mission 7 with a score of 3 stars</string>
-    <key>TITLE_LVL7_DISCOVER</key>
+    <key>TITLE_LVL7_Discovery</key>
     <string>THE WORLD ON HORSEBACK</string>
-    <key>DESCR_LVL7_DISCOVER</key>
+    <key>DESCR_LVL7_Discovery</key>
     <string>Cross the mountain range through the northern pass</string>
 
     <key>ACH_LVL7_2</key>
@@ -159,17 +159,17 @@ They are not our ancestors, so this genetic share was caused by both species coe
 These are words from a Mongol horse rider whom was said to be "born in the saddle". Mongols are nomads living in the steppe, where their culture is centered around horses.</string>
 
     <!-- LVL 8 -->
-    <key>TITLE_LVL8_COMPLETED</key>
+    <key>TITLE_LVL8_Accomplished</key>
     <string>THE CROSSING</string>
-    <key>DESCR_LVL8_COMPLETED</key>
+    <key>DESCR_LVL8_Accomplished</key>
     <string>Complete mission 8</string>
-    <key>TITLE_LVL8_PERFECT</key>
-    <string>PERFECTION 8</string>
-    <key>DESCR_LVL8_PERFECT</key>
+    <key>TITLE_LVL8_Perfect</key>
+    <string>PerfectION 8</string>
+    <key>DESCR_LVL8_Perfect</key>
     <string>Complete mission 8 with a score of 3 stars</string>
-    <key>TITLE_LVL8_EVPOINTSLEFT</key>
+    <key>TITLE_LVL8_EPsLeft</key>
     <string>Ice and Fire</string>
-    <key>DESCR_LVL8_EVPOINTSLEFT</key>
+    <key>DESCR_LVL8_EPsLeft</key>
     <string>Complete mission 8 having at least 10 evolution points at the end</string>
  
     <key>ACH_LVL8_2</key>
@@ -179,17 +179,17 @@ Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the s
     <string>Temperature in the Arctic can go as low as -45 degrees Celsius. Igloos made of snow and ice are the only reason why people can live there; they can increase the temperature up to a confortable 16 degrees.</string>
 
     <!-- LVL 9 -->
-    <key>TITLE_LVL9_COMPLETED</key>
+    <key>TITLE_LVL9_Accomplished</key>
     <string>JOINING FORCES</string>
-    <key>DESCR_LVL9_COMPLETED</key>
+    <key>DESCR_LVL9_Accomplished</key>
     <string>Complete mission 9</string>
-    <key>TITLE_LVL9_PERFECT</key>
-    <string>PERFECTION 9</string>
-    <key>DESCR_LVL9_PERFECT</key>
+    <key>TITLE_LVL9_Perfect</key>
+    <string>PerfectION 9</string>
+    <key>DESCR_LVL9_Perfect</key>
     <string>Complete mission 9 with a score of 3 stars</string>
-    <key>TITLE_LVL9_NOPOWERS</key>
+    <key>TITLE_LVL9_NoBoosts</key>
     <string>Easy Peasy</string>
-    <key>DESCR_LVL9_NOPOWERS</key>
+    <key>DESCR_LVL9_NoBoosts</key>
     <string>Complete mission 9 without using Boosts</string>
 
     <key>ACH_LVL9_2</key>
@@ -201,17 +201,17 @@ Understanding the extinction of Neanderthals could help us understand the risks 
     <string>Some of the workers depicted in this famous photograph are Mohawk Indians. During the late XIXth century they became valued skilled workers for being able to work at very high altitudes.</string>
 
     <!-- LVL 10 -->
-    <key>TITLE_LVL10_COMPLETED</key>
+    <key>TITLE_LVL10_Accomplished</key>
     <string>FIND A WAY</string>
-    <key>DESCR_LVL10_COMPLETED</key>
+    <key>DESCR_LVL10_Accomplished</key>
     <string>Complete mission 10</string>
-    <key>TITLE_LVL10_PERFECT</key>
-    <string>PERFECTION 10</string>
-    <key>DESCR_LVL10_PERFECT</key>
+    <key>TITLE_LVL10_Perfect</key>
+    <string>PerfectION 10</string>
+    <key>DESCR_LVL10_Perfect</key>
     <string>Complete mission 10 with a score of 3 stars</string>
-    <key>TITLE_LVL10_NOPOWERS</key>
+    <key>TITLE_LVL10_NoBoosts</key>
     <string>HALF WAY</string>
-    <key>DESCR_LVL10_NOPOWERS</key>
+    <key>DESCR_LVL10_NoBoosts</key>
     <string>Complete mission 10 without boosts</string>
  
     <key>ACH_LVL10_2</key>
@@ -223,13 +223,13 @@ Understanding the extinction of Neanderthals could help us understand the risks 
 
 He is one of the most renowned astrophysicists and science communicators.</string>
     <!-- LVL 11 -->
-    <key>TITLE_LVL11_COMPLETED</key>
+    <key>TITLE_LVL11_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL11_COMPLETED</key>
+    <key>DESCR_LVL11_Accomplished</key>
     <string>Complete mission 11</string>
-    <key>TITLE_LVL11_PERFECT</key>
-    <string>PERFECTION 11</string>
-    <key>DESCR_LVL11_PERFECT</key>
+    <key>TITLE_LVL11_Perfect</key>
+    <string>PerfectION 11</string>
+    <key>DESCR_LVL11_Perfect</key>
     <string>Complete mission 11 with a score of 3 stars</string>
  
     <key>ACH_LVL11_2</key>
@@ -238,17 +238,17 @@ He is one of the most renowned astrophysicists and science communicators.</strin
 This image is wrong; they moved around the territory and only used caves occasionally as a refuge. Paintings in caves have just better chance to be preserved after thousands of years.</string>
   
     <!-- LVL 12 -->
-    <key>TITLE_LVL12_COMPLETED</key>
+    <key>TITLE_LVL12_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL12_COMPLETED</key>
+    <key>DESCR_LVL12_Accomplished</key>
     <string>Complete mission 12</string>
-    <key>TITLE_LVL12_PERFECT</key>
-    <string>PERFECTION 12</string>
-    <key>DESCR_LVL12_PERFECT</key>
+    <key>TITLE_LVL12_Perfect</key>
+    <string>PerfectION 12</string>
+    <key>DESCR_LVL12_Perfect</key>
     <string>Complete mission 12 with a score of 3 stars</string>
-    <key>TITLE_LVL12_NOPOWERS</key>
+    <key>TITLE_LVL12_NoBoosts</key>
     <string>DO THEY HAVE GILLS?</string>
-    <key>DESCR_LVL12_NOPOWERS</key>
+    <key>DESCR_LVL12_NoBoosts</key>
     <string>Complete mission 12 without boosts</string>
  
     <key>ACH_LVL12_2</key>
@@ -260,57 +260,57 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     <string>How much deep can you go underwater? The Sama-Bajau people can catch a fish at 20 m. deep while keeping their breadth for almost 3 minutes.</string>
 
     <!-- LVL 13 -->
-    <key>TITLE_LVL13_COMPLETED</key>
+    <key>TITLE_LVL13_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL13_COMPLETED</key>
+    <key>DESCR_LVL13_Accomplished</key>
     <string>Complete mission 13</string>
-    <key>TITLE_LVL13_PERFECT</key>
-    <string>PERFECTION 13</string>
-    <key>DESCR_LVL13_PERFECT</key>
+    <key>TITLE_LVL13_Perfect</key>
+    <string>PerfectION 13</string>
+    <key>DESCR_LVL13_Perfect</key>
     <string>Complete mission 13 with a score of 3 stars</string>
     
     <!-- LVL 14 -->
-    <key>TITLE_LVL14_COMPLETED</key>
+    <key>TITLE_LVL14_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL14_COMPLETED</key>
+    <key>DESCR_LVL14_Accomplished</key>
     <string>Complete mission 14</string>
-    <key>TITLE_LVL14_PERFECT</key>
-    <string>PERFECTION 14</string>
-    <key>DESCR_LVL14_PERFECT</key>
+    <key>TITLE_LVL14_Perfect</key>
+    <string>PerfectION 14</string>
+    <key>DESCR_LVL14_Perfect</key>
     <string>Complete mission 14 with a score of 3 stars</string>
     
     <!-- LVL 15 -->
-    <key>TITLE_LVL15_COMPLETED</key>
+    <key>TITLE_LVL15_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL15_COMPLETED</key>
+    <key>DESCR_LVL15_Accomplished</key>
     <string>Complete mission 15</string>
-    <key>TITLE_LVL15_PERFECT</key>
-    <string>PERFECTION 15</string>
-    <key>DESCR_LVL15_PERFECT</key>
+    <key>TITLE_LVL15_Perfect</key>
+    <string>PerfectION 15</string>
+    <key>DESCR_LVL15_Perfect</key>
     <string>Complete mission 15 with a score of 3 stars</string>
     
     <!-- LVL 16 -->
-    <key>TITLE_LVL16_COMPLETED</key>
+    <key>TITLE_LVL16_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL16_COMPLETED</key>
+    <key>DESCR_LVL16_Accomplished</key>
     <string>Complete mission 16</string>
-    <key>TITLE_LVL16_PERFECT</key>
-    <string>PERFECTION 16</string>
-    <key>DESCR_LVL16_PERFECT</key>
+    <key>TITLE_LVL16_Perfect</key>
+    <string>PerfectION 16</string>
+    <key>DESCR_LVL16_Perfect</key>
     <string>Complete mission 16 with a score of 3 stars</string>
     
     <!-- LVL 17 -->
-    <key>TITLE_LVL17_COMPLETED</key>
+    <key>TITLE_LVL17_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL17_COMPLETED</key>
+    <key>DESCR_LVL17_Accomplished</key>
     <string>Complete mission 17</string>
-    <key>TITLE_LVL17_PERFECT</key>
-    <string>PERFECTION 17</string>
-    <key>DESCR_LVL17_PERFECT</key>
+    <key>TITLE_LVL17_Perfect</key>
+    <string>PerfectION 17</string>
+    <key>DESCR_LVL17_Perfect</key>
     <string>Complete mission 17 with a score of 3 stars</string>
-    <key>TITLE_LVL17_EVPOINTSLEFT</key>
+    <key>TITLE_LVL17_EPsLeft</key>
     <string>UNINTELLIGENT DESIGN</string>
-    <key>DESCR_LVL17_EVPOINTSLEFT</key>
+    <key>DESCR_LVL17_EPsLeft</key>
     <string>Complete mission 17 having at least 10 evolution points at the end</string>
   
     <key>ACH_LVL17_2</key>
@@ -320,37 +320,37 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     <string>Some people say that Intelligent Design (ID) is a theory as good as Evolution to explain life. However, evolution is a scientific theory while ID is a religious argument lacking empirical support and does not offer any explanation that could be tested.</string>
     
     <!-- LVL 18 -->
-    <key>TITLE_LVL18_COMPLETED</key>
+    <key>TITLE_LVL18_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL18_COMPLETED</key>
+    <key>DESCR_LVL18_Accomplished</key>
     <string>Complete mission 18</string>
-    <key>TITLE_LVL18_PERFECT</key>
-    <string>PERFECTION 18</string>
-    <key>DESCR_LVL18_PERFECT</key>
+    <key>TITLE_LVL18_Perfect</key>
+    <string>PerfectION 18</string>
+    <key>DESCR_LVL18_Perfect</key>
     <string>Complete mission 18 with a score of 3 stars</string>
     
     <!-- LVL 19 -->
-    <key>TITLE_LVL19_COMPLETED</key>
+    <key>TITLE_LVL19_Accomplished</key>
     <string></string>
-    <key>DESCR_LVL19_COMPLETED</key>
+    <key>DESCR_LVL19_Accomplished</key>
     <string>Complete mission 19</string>
-    <key>TITLE_LVL19_PERFECT</key>
-    <string>PERFECTION 19</string>
-    <key>DESCR_LVL19_PERFECT</key>
+    <key>TITLE_LVL19_Perfect</key>
+    <string>PerfectION 19</string>
+    <key>DESCR_LVL19_Perfect</key>
     <string>Complete mission 19 with a score of 3 stars</string>
     
     <!-- LVL 20 -->
-    <key>TITLE_LVL20_COMPLETED</key>
+    <key>TITLE_LVL20_Accomplished</key>
     <string>Humans go home!</string>
-    <key>DESCR_LVL20_COMPLETED</key>
+    <key>DESCR_LVL20_Accomplished</key>
     <string>Complete mission 20</string>
-    <key>TITLE_LVL20_PERFECT</key>
+    <key>TITLE_LVL20_Perfect</key>
     <string>That's no moon</string>
-    <key>DESCR_LVL20_PERFECT</key>
+    <key>DESCR_LVL20_Perfect</key>
     <string>Complete mission 20 with a score of 3 stars</string>
-    <key>TITLE_LVL20_NOPOWERS</key>
+    <key>TITLE_LVL20_NoBoosts</key>
     <string>TOP GAMER</string>
-    <key>DESCR_LVL20_NOPOWERS</key>
+    <key>DESCR_LVL20_NoBoosts</key>
     <string>Complete mission 20 without boosts</string>
     
     <key>ACH_LVL20_2</key>

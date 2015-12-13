@@ -24,7 +24,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>1</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -34,7 +34,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>1</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -44,7 +44,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>1</LEVEL>
-        <GOAL TYPE="EVPOINTSLEFT">10</GOAL>
+        <GOAL TYPE="EPsLeft">10</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -56,7 +56,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>2</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -66,7 +66,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>2</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -76,7 +76,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>2</LEVEL>
-        <GOAL TYPE="DISCOVER">50</GOAL>
+        <GOAL TYPE="Discovery">50</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -88,7 +88,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>3</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -98,7 +98,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>3</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -108,7 +108,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>3</LEVEL>
-        <GOAL TYPE="EVPOINTSLEFT">10</GOAL>
+        <GOAL TYPE="EPsLeft">10</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -120,7 +120,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>4</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -130,7 +130,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>4</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -140,7 +140,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>4</LEVEL>
-        <GOAL TYPE="NOPOWERS"/>
+        <GOAL TYPE="NoBoosts"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -152,7 +152,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>5</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -162,7 +162,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>5</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -172,7 +172,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>5</LEVEL>
-        <GOAL TYPE="DISCOVER">50</GOAL>
+        <GOAL TYPE="Discovery">50</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -184,7 +184,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>6</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -194,7 +194,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>6</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -204,7 +204,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>6</LEVEL>
-        <GOAL TYPE="EVPOINTSLEFT">10</GOAL>
+        <GOAL TYPE="EPsLeft">10</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -216,7 +216,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>7</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -226,7 +226,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>7</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -236,7 +236,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>7</LEVEL>
-        <GOAL TYPE="DISCOVER">50</GOAL>
+        <GOAL TYPE="Discovery">50</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -248,7 +248,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>8</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -258,7 +258,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>8</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -268,7 +268,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>8</LEVEL>
-        <GOAL TYPE="EVPOINTSLEFT">10</GOAL>
+        <GOAL TYPE="EPsLeft">10</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -281,7 +281,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>9</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -291,7 +291,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>9</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -301,7 +301,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>9</LEVEL>
-        <GOAL TYPE="NOPOWERS"/>
+        <GOAL TYPE="NoBoosts"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -313,7 +313,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>10</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -323,7 +323,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>10</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -333,7 +333,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>10</LEVEL>
-        <GOAL TYPE="NOPOWERS"/>
+        <GOAL TYPE="NoBoosts"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -345,7 +345,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>11</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -355,7 +355,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>11</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -367,7 +367,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>12</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -377,7 +377,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>12</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -387,7 +387,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>12</LEVEL>
-        <GOAL TYPE="NOPOWERS"/>
+        <GOAL TYPE="NoBoosts"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -399,7 +399,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>13</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -409,7 +409,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>13</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -421,7 +421,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>14</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -431,7 +431,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>14</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -443,7 +443,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>15</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -453,7 +453,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>15</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -465,7 +465,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>16</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -475,7 +475,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>16</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -487,7 +487,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>17</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -497,7 +497,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>17</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -507,7 +507,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>17</LEVEL>
-        <GOAL TYPE="EVPOINTSLEFT">10</GOAL>
+        <GOAL TYPE="EPsLeft">10</GOAL>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -518,7 +518,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>18</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -528,7 +528,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>18</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -540,7 +540,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>19</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -550,7 +550,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>19</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -562,7 +562,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>20</LEVEL>
-        <GOAL TYPE="COMPLETED"/>
+        <GOAL TYPE="Accomplished"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -572,7 +572,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>20</LEVEL>
-        <GOAL TYPE="PERFECT"/>
+        <GOAL TYPE="Perfect"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>
@@ -582,7 +582,7 @@
 <ACHIEVEMENT TYPE="LEVEL">
     <COMPLETION_LOGIC>
         <LEVEL>20</LEVEL>
-        <GOAL TYPE="NOPOWERS"/>
+        <GOAL TYPE="NoBoosts"/>
     </COMPLETION_LOGIC>
     <SIGNIFIER>
         <ICON></ICON>

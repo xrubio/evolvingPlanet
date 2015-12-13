@@ -26,8 +26,22 @@
 //
 
 #include "ProgressAchievement.h"
+#include <cocos2d.h>
 
-ProgressAchievement::ProgressAchievement(string icon, string resource, string goalType, int level, bool completed, bool occult) : Achievement(icon, resource, goalType, level, completed, occult)
+ProgressAchievement::ProgressAchievement(const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed, bool occult) : Achievement(icon, resource, goalType, level, completed, occult)
 {
 }
+
+bool ProgressAchievement::checkAchievement(const std::string & typeAch, int level)
+{
+    CCLOG("ProgressAchievement::checkAchievement not implemented yet");
+    return false;
+}
+
+bool ProgressAchievement::checkInGameAchievement(const std::string & typeAch, int level, int agentColorCode)
+{
+    CCLOG("ProgressAchievement::checkInGameAchievement not implemented yet");
+    return false;
+}
+
 

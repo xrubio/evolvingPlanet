@@ -359,7 +359,7 @@ void GameData::loadAchievements(void)
             key = to_string(level) + "_" + goalType;
             
             auto ach = new LevelAchievement(icon, resource, goalType, level, UserDefault::getInstance()->getBoolForKey(key.c_str()), false);
-            if (goalType == "EVPOINTSLEFT" or goalType == "DISCOVER")
+            if (goalType == "EPsLeft" or goalType == "Discovery")
             {
                 ach->setVariable(stoi(logic.child_value("GOAL")));
             }

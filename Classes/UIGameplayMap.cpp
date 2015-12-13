@@ -613,7 +613,7 @@ bool UIGameplayMap::init()
     bottomFrame->addChild(attrMenu, 1, 100000);
 
     //CHECK IF THERE IS ANY IN-GAME ACHIEVEMENT (achievement num 3 of the corresponding level)
-    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).size() > 2 and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "DISCOVER" and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getCompleted() == false)
+    if (GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).size() > 2 and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getGoalType() == "Discovery" and GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2)->getCompleted() == false)
     {
         GameLevel::getInstance()->setInGameAchievement(GameData::getInstance()->getAchievements(GameLevel::getInstance()->getNumLevel()).at(2));
     }
@@ -1820,7 +1820,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
             text = LocalizedString::create("GOAL_FAIL_AFTER");
         }
         else if (mode == NoAgentsLeft) {
-            text = LocalizedString::create("ALL_AGENTS_DIED");
+            text = LocalizedString::create("ALL_BOTS_DIED");
         }
 
         auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());

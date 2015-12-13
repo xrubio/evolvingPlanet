@@ -130,7 +130,7 @@ bool UIConfiguration::init()
     popupBackground->addChild(menuLanguage, 10);
     
     Vector<MenuItem*> colorItems;
-    auto colorLabel = Label::createWithTTF(LocalizedString::create("AGENT_COLOR"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    auto colorLabel = Label::createWithTTF(LocalizedString::create("BOT_COLOR"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     colorLabel->setColor(Color3B(72, 108, 118));
     colorLabel->setAnchorPoint(Vec2(1, 0.5));
     colorLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));

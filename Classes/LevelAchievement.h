@@ -36,7 +36,7 @@
 class LevelAchievement : public Achievement {
 
 public:
-    LevelAchievement(string icon, string resource, string goalType, int level, bool completed = false, bool occult = false);
+    LevelAchievement( const std::string & icon, const std::string & resource, const std::string & goalType, int level, bool completed = false, bool occult = false);
     
     int getVariable()
     {
@@ -48,68 +48,8 @@ public:
         _variable = v;
     };
     
-    // TODO implement this method
-    bool checkAchievement(string typeAch, int level)
-    {
-        if (GameData::getInstance()->getFirstTimeLevelCompleted() == level)
-        {
-            if (typeAch == "COMPLETED")
-            {
-                if (GameData::getInstance()->getLevelScore(level) > 0)
-                {
-                    _completed = true;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-            if (typeAch == "PERFECT")
-            {
-                if (GameData::getInstance()->getLevelScore(level) == 3)
-                {
-                    _completed = true;
-                    return true;
-                }
-            }
-            else if (typeAch == "EVPOINTSLEFT")
-            {
-                if (GameLevel::getInstance()->getEvolutionPoints() >= _variable)
-                {
-                    _completed = true;
-                    return true;
-                }
-            }
-            else if (typeAch == "NOPOWERS")
-            {
-                if (GameLevel::getInstance()->getPowersUsed() == false)
-                {
-                    _completed = true;
-                    return true;
-                }
-            }
-        
-        return false;
-    }
-    
-    bool checkInGameAchievement(string typeAch, int level, int agentColorCode)
-    {
-        if (typeAch == "DISCOVER")
-        {
-                // as soon as one agent completes the achievement then stop checks
-                // achievement is completed if the agent is within the color coded zone for the achievement
-                if(agentColorCode == _variable)
-                {
-                    _completed = true;
-                    return true;
-                }
-        }
-        
-        return false;
-        
-    }
+    bool checkAchievement( const std::string & typeAch, int level);
+    bool checkInGameAchievement( const std::string & typeAch, int level, int agentColorCode);
     
     //evPoints or color of discover zone
     int _variable;

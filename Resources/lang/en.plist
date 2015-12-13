@@ -131,7 +131,7 @@
 archaeological data suggests</string>
 	<key>GOAL_FAIL_AFTER</key>
 	<string>Mission failed: You have not reached the goal on time</string>
-	<key>ALL_AGENTS_DIED</key>
+	<key>ALL_Bots_DIED</key>
 	<string>All bots died</string>
 	<key>CONTINUE</key>
 	<string>CONTINUE</string>
