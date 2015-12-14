@@ -37,6 +37,7 @@ public:
 
     int getGoalAmount(void);
     void setGoalAmount(int goalAm);
+    int getResourceType(void);
 
     bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const

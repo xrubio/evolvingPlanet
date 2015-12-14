@@ -302,13 +302,13 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(mapPopup);
 
     vector<string> goalTypes = loader.getGoalTypes("level" + to_string(tag));
-
+    
     // three types of goals
     std::vector<int> numGoals;
     numGoals.push_back(0);
     numGoals.push_back(0);
     numGoals.push_back(0);
-
+    
     for (size_t i = 0; i < goalTypes.size(); i++)
     {
         if(goalTypes.at(i)=="Dispersal")
@@ -340,7 +340,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
     iconLevel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
     popupBackground->addChild(iconLevel);
-
+    
     if(numGoals.at(Dispersal)>0)
     {
         auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Dispersal)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
@@ -350,7 +350,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         numGoalsLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
         popupBackground->addChild(numGoalsLabel);
     }
-
+    
     if(numGoals.at(Population)==0)
     {
         goalPath = "gui/goals/PopulationGoal0.png";
@@ -372,8 +372,8 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         numGoalsLabel->setPosition(Vec2(0.15f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
         popupBackground->addChild(numGoalsLabel);
     }
-
-   
+    
+    
     if(numGoals.at(Resources)==0)
     {
         goalPath = "gui/goals/ResourcesGoal0.png";
@@ -387,16 +387,16 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     iconLevel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
     popupBackground->addChild(iconLevel);
     if(numGoals.at(Resources)>0)
-    {
-        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Resources)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
-        numGoalsLabel->setColor(Color3B(216, 229, 235));
-        numGoalsLabel->enableShadow();
-        numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
-        numGoalsLabel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
-        popupBackground->addChild(numGoalsLabel);
+        {
+            auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Resources)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+            numGoalsLabel->setColor(Color3B(216, 229, 235));
+            numGoalsLabel->enableShadow();
+            numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
+            numGoalsLabel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+            popupBackground->addChild(numGoalsLabel);
     }
-
-    std::stringstream achStr;    
+    
+    std::stringstream achStr;
     int numCompleted = 0;
     int numAchievements = 0;
 
@@ -408,7 +408,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
             numCompleted++;
         }
     }
-         
+
     achStr << numCompleted << " " << LocalizedString::create("OF") << " " << numAchievements << " " << LocalizedString::create("ACH_EARNED");
     auto textAchievements = Label::createWithTTF(achStr.str(), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
     textAchievements->setColor(Color3B(216, 229, 235));

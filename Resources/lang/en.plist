@@ -173,11 +173,11 @@ Tap the logo to know more about SimulPast!</string>
     <key>POWERED</key>
     <string>Powered by</string> 
     <key>CONTENT_WIKIMEDIA</key>
-    <string>Additional content by</string> 
+    <string>Additional content by</string>
     
     <key>OF</key>
-    <string>of</string> 
+    <string>of</string>
     <key>ACH_EARNED</key>
-    <string>achievements earned</string> 
+    <string>achievements earned</string>
 </dict>
 </plist>

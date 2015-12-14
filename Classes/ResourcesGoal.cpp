@@ -42,6 +42,11 @@ void ResourcesGoal::setGoalAmount(int goalAm)
     goalAmount = goalAm;
 }
 
+int ResourcesGoal::getResourceType(void)
+{
+    return _resourceType;
+}
+
 bool ResourcesGoal::checkGoal(int type, Agent* agent)
 {
     if(type!=agentType)

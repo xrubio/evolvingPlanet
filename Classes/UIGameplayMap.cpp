@@ -309,6 +309,7 @@ bool UIGameplayMap::init()
         //Set Checkpoint Area
         if(goal->getGoalType()!= Dispersal)
         {
+            //do nothing
             continue;
         }
         DispersalGoal * expansionGoal = (DispersalGoal*)(goal);
@@ -357,18 +358,8 @@ bool UIGameplayMap::init()
         int y = (int)(float((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0) + (centerY * float(GameData::getInstance()->getResourcesMargin() / 320.0)));
         
         auto area = Sprite::create("gui/CheckpointArea.png");
-        if(i == 0)
-        {
-            auto blink = Blink::create(2, 2);
-            auto repeatBlink = RepeatForever::create(blink);
-            area->setColor(Color3B::WHITE);
-            area->runAction(repeatBlink);
-        }
-        else
-        {
-            area->setColor(Color3B::RED);
-            area->setOpacity(0);
-        }
+        area->setColor(Color3B::RED);
+        area->setOpacity(0);
         area->setPosition(x, y);
         area->setTag(400 + int(i));
         gameplayMap->addChild(area, 3);
@@ -498,18 +489,6 @@ bool UIGameplayMap::init()
     labelCounterGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
-    
-    /*auto goal = DrawNode::create();
-    graphicBackground->addChild(goal);
-    float height = float(1000)/float(2000) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
-    
-    // Space the verticies out evenly across the screen for the wave.
-    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
-
-    for (int i = 35; i < 45; i++)
-    {
-        goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 12, Color4F::RED);
-    }*/
     
     ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
     auto populationNode = new WaveNode();
@@ -644,8 +623,37 @@ bool UIGameplayMap::init()
             labelInfluenced->setName("labelInfluence");
             labelInfluenced->setOpacity(0);
             gameplayMap->addChild(labelInfluenced);
-            i = GameLevel::getInstance()->getModifiableAttr().size();
+            i = int(GameLevel::getInstance()->getModifiableAttr().size());
         }
+    }
+    
+    //SET FIRST GOAL ON MAP
+    auto goal = DrawNode::create();
+    graphicBackground->addChild(goal);
+    goal->setName("goal");
+    auto firstGoal = GameLevel::getInstance()->getGoals().at(0);
+    if(firstGoal->getGoalType() == Resources)
+    {
+        auto goalCollection = (ResourcesGoal*)firstGoal;
+
+        float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+        
+        // Space the verticies out evenly across the screen for the wave.
+        float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+        
+        for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
+        {
+            goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::RED);
+        }
+    }
+    else
+    {
+        auto area = (Sprite*)gameplayMap->getChildByTag(400);
+        area->setOpacity(255);
+        auto blink = Blink::create(2, 2);
+        auto repeatBlink = RepeatForever::create(blink);
+        area->setColor(Color3B::WHITE);
+        area->runAction(repeatBlink);
     }
     
     createTutorialGUI();
@@ -1458,18 +1466,19 @@ void UIGameplayMap::removeFingerSpot(Ref* pSender)
 }
 
 void UIGameplayMap::changeGraphicCallback(Ref* pSender)
-{
+{    
     auto graphicBackground = (MenuItem*) pSender;
     auto graphicLabel = (Label*)this->getChildByName("graphicLabel");
     auto graphicCounterLabel = (Label*)this->getChildByName("graphicCounterLabel");
     string name;
     for (size_t i = 0; i < graphicBackground->getChildren().size(); i++)
     {
-        if ((name = graphicBackground->getChildren().at(i)->getName()) != "")
+        if ((name = graphicBackground->getChildren().at(i)->getName()) != "" and name != "goal")
         {
             i = graphicBackground->getChildren().size();
         }
     }
+    
     if (name == "population")
     {
         graphicBackground->removeChild(waveNodes.at(0));
@@ -1611,9 +1620,44 @@ bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)
 void UIGameplayMap::moveGoalPopup(int index)
 {
     Goal * goal = GameLevel::getInstance()->getGoals().at(index);
-    if(goal->getGoalType() != Dispersal)
+    if(goal->getGoalType() == Resources)
     {
-        CCLOG("goal not dispersal, not implemented TODO");
+        auto goalCollection = (ResourcesGoal*)goal;
+        CCLOG("goal not expansion, not implemented TODO");
+        
+        //PAINT TRANSPARENT
+        auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
+        auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
+        
+        float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+        
+        // Space the verticies out evenly across the screen for the wave.
+        float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+        
+        for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
+        {
+            goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::BLUE);
+        }
+        
+        
+        //PAINT GOAL
+        if (index!=(GameLevel::getInstance()->getGoals().size()-1))
+        {
+        
+        goalCollection = (ResourcesGoal*) GameLevel::getInstance()->getGoals().at(index+1);
+        
+        height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+        
+        // Space the verticies out evenly across the screen for the wave.
+        vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+        
+        for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
+        {
+            goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::RED);
+        }
+        }
+        
+        
         return;
     }
 

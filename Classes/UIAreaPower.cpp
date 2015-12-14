@@ -37,7 +37,7 @@ UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
     auto button = Sprite::create("gui/boosts/" + p->getName() + "Button" + ".png");
     button->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     icon->addChild(button, 2, 0);
-    auto actionTimer = ProgressTimer::create(Sprite::create("gui/" + p->getName() + "ActionButton" + ".png"));
+    auto actionTimer = ProgressTimer::create(Sprite::create("gui/boosts/" + p->getName() + "ActionButton" + ".png"));
     actionTimer->setPosition(icon->getContentSize().width / 2, icon->getContentSize().height / 2);
     actionTimer->setType(ProgressTimer::Type::RADIAL);
     actionTimer->setPercentage(100.0);

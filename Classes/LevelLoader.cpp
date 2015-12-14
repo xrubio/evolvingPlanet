@@ -41,7 +41,7 @@
 
 #include "cocos2d.h"
 
-void LevelLoader::loadXmlFile(string filename)
+void LevelLoader::loadXmlFile(const std::string & filename)
 {
 
     string dir = "levels/";
@@ -227,14 +227,12 @@ void LevelLoader::loadXmlFile(string filename)
         int averageTime = atoi(goals.child("AVERAGE").child_value());
         int desviation2Star = atoi(goals.child("DESVIATION_2_STAR").child_value());
         int desviation3Star = atoi(goals.child("DESVIATION_3_STAR").child_value());
-        if (type == "Dispersal")
-        {
+        if (type == "Dispersal") {
             int color = atoi(goals.child("COLOR_ZONE").child_value());
             auto eg = new DispersalGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color);
             GameLevel::getInstance()->addGoal(eg);
         }
-        else if (type == "Resources")
-        {
+        else if (type == "Resources") {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
             int resourceType;
             if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "WOOD", 4) == 0)
@@ -298,12 +296,10 @@ vector<string> LevelLoader::getGoalTypes(const std::string & filename)
 
     vector<string> goalTypes;
     xml_node goals = doc.child("GOALS").child("GOAL");
-    while (goals != nullptr)
-    {
+    while (goals != nullptr) {
         string type = goals.attribute("TYPE_GOAL").value();
         goalTypes.push_back(type);
         goals = goals.next_sibling("GOAL");
     }
     return goalTypes;
 }
-

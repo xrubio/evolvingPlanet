@@ -40,7 +40,7 @@ class LevelLoader {
 public:
     LevelLoader(){};
 
-    void loadXmlFile(string filename);
+    void loadXmlFile(const std::string & filename);
     string getLevelFileMap(const std::string & filename);
     vector<string> getGoalTypes(const std::string & filename);
 
