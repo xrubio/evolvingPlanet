@@ -41,8 +41,8 @@ public:
     LevelLoader(){};
 
     void loadXmlFile(string filename);
-    string getLevelFileMap(string filename);
-    vector<string> getGoalTypes(string filename);
+    string getLevelFileMap(const std::string & filename);
+    vector<string> getGoalTypes(const std::string & filename);
 
 private:
     xml_document doc;

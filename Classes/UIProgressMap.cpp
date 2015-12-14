@@ -302,14 +302,98 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(mapPopup);
 
     vector<string> goalTypes = loader.getGoalTypes("level" + to_string(tag));
+
+    // three types of goals
+    std::vector<int> numGoals;
+    numGoals.push_back(0);
+    numGoals.push_back(0);
+    numGoals.push_back(0);
+
     for (size_t i = 0; i < goalTypes.size(); i++)
     {
-        std::stringstream iconStr;
-        iconStr << "gui/goals/"+goalTypes.at(i)+"Goal.png";
-        auto iconLevel = Sprite::create(iconStr.str());
-        iconLevel->setAnchorPoint(Vec2(1, 0.75));
-        iconLevel->setPosition(Vec2(mapPopup->getPosition().x + mapPopup->getBoundingBox().size.width - ((iconLevel->getContentSize().width * i) + (iconLevel->getContentSize().width / 10) * i), mapPopup->getPosition().y - (mapPopup->getBoundingBox().size.height / 2)));
-        popupBackground->addChild(iconLevel);
+        if(goalTypes.at(i)=="Dispersal")
+        {
+            numGoals.at(Dispersal) += 1;
+        }
+        else if(goalTypes.at(i)=="Population")
+        {
+            numGoals.at(Population) += 1;
+        }
+        // Resources
+        else
+        {
+            numGoals.at(Resources) += 1;
+        }
+    }
+
+    // three types of goals
+    std::string goalPath;
+    if(numGoals.at(Dispersal)==0)
+    {
+        goalPath = "gui/goals/DispersalGoal0.png";
+    }
+    else
+    {
+        goalPath = "gui/goals/DispersalGoal.png";
+    }
+    auto iconLevel = Sprite::create(goalPath);
+    iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
+    iconLevel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    popupBackground->addChild(iconLevel);
+
+    if(numGoals.at(Dispersal)>0)
+    {
+        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Dispersal)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+        numGoalsLabel->setColor(Color3B(216, 229, 235));
+        numGoalsLabel->enableShadow();
+        numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
+        numGoalsLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+        popupBackground->addChild(numGoalsLabel);
+    }
+
+    if(numGoals.at(Population)==0)
+    {
+        goalPath = "gui/goals/PopulationGoal0.png";
+    }
+    else
+    {
+        goalPath = "gui/goals/PopulationGoal.png";
+    }
+    iconLevel = Sprite::create(goalPath);
+    iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
+    iconLevel->setPosition(Vec2(0.15f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    popupBackground->addChild(iconLevel);
+    if(numGoals.at(Population)>0)
+    {
+        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Population)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+        numGoalsLabel->setColor(Color3B(216, 229, 235));
+        numGoalsLabel->enableShadow();
+        numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
+        numGoalsLabel->setPosition(Vec2(0.15f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+        popupBackground->addChild(numGoalsLabel);
+    }
+
+   
+    if(numGoals.at(Resources)==0)
+    {
+        goalPath = "gui/goals/ResourcesGoal0.png";
+    }
+    else
+    {
+        goalPath = "gui/goals/ResourcesGoal.png";
+    }
+    iconLevel = Sprite::create(goalPath);
+    iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
+    iconLevel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    popupBackground->addChild(iconLevel);
+    if(numGoals.at(Resources)>0)
+    {
+        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Resources)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+        numGoalsLabel->setColor(Color3B(216, 229, 235));
+        numGoalsLabel->enableShadow();
+        numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
+        numGoalsLabel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+        popupBackground->addChild(numGoalsLabel);
     }
 
     std::stringstream achStr;    

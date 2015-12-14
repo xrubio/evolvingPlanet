@@ -257,7 +257,7 @@ void LevelLoader::loadXmlFile(string filename)
     }
 }
 
-string LevelLoader::getLevelFileMap(string filename)
+string LevelLoader::getLevelFileMap(const std::string & filename)
 {
     string dir = "levels/";
 
@@ -278,7 +278,7 @@ string LevelLoader::getLevelFileMap(string filename)
     return doc.child_value("FILE_MAP");
 }
 
-vector<string> LevelLoader::getGoalTypes(string filename)
+vector<string> LevelLoader::getGoalTypes(const std::string & filename)
 {
     string dir = "levels/";
 
@@ -298,12 +298,12 @@ vector<string> LevelLoader::getGoalTypes(string filename)
 
     vector<string> goalTypes;
     xml_node goals = doc.child("GOALS").child("GOAL");
-    while (goals != nullptr) {
+    while (goals != nullptr)
+    {
         string type = goals.attribute("TYPE_GOAL").value();
-        if (std::find(goalTypes.begin(), goalTypes.end(), type) == goalTypes.end()) {
-            goalTypes.push_back(type);
-        }
+        goalTypes.push_back(type);
         goals = goals.next_sibling("GOAL");
     }
     return goalTypes;
 }
+
