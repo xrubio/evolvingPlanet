@@ -34,8 +34,8 @@
 #include "Kill.h"
 #include "AreaPower.h"
 #include "UIGameplayMap.h"
-#include "ExpansionGoal.h"
-#include "CollectionGoal.h"
+#include "DispersalGoal.h"
+#include "ResourcesGoal.h"
 #include "Power.h"
 #include "Influence.h"
 
@@ -227,12 +227,14 @@ void LevelLoader::loadXmlFile(string filename)
         int averageTime = atoi(goals.child("AVERAGE").child_value());
         int desviation2Star = atoi(goals.child("DESVIATION_2_STAR").child_value());
         int desviation3Star = atoi(goals.child("DESVIATION_3_STAR").child_value());
-        if (type == "Expansion") {
+        if (type == "Dispersal")
+        {
             int color = atoi(goals.child("COLOR_ZONE").child_value());
-            auto eg = new ExpansionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color);
+            auto eg = new DispersalGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, color);
             GameLevel::getInstance()->addGoal(eg);
         }
-        else if (type == "Collection") {
+        else if (type == "Resources")
+        {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
             int resourceType;
             if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "WOOD", 4) == 0)
@@ -247,7 +249,7 @@ void LevelLoader::loadXmlFile(string filename)
             {
                 resourceType = Stone;
             }
-            auto cg = new CollectionGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount, resourceType);
+            auto cg = new ResourcesGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount, resourceType);
             GameLevel::getInstance()->addGoal(cg);
         }
         i++;

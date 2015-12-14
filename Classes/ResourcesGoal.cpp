@@ -18,82 +18,57 @@
  */
 
 //
-//  ExpansionGoal.cpp
+//  ResourcesGoal.cpp
 //  simulplay
 //
 //  Created by Guillem Laborda on 20/10/14.
 //
 //
 
-#include "ExpansionGoal.h"
+#include "ResourcesGoal.h"
 #include "UIGameplayMap.h"
 
-ExpansionGoal::ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color) : Goal(agType, min, max, average, des2, des3), colorZone(color), minDistanceToGoal(99999)
+ResourcesGoal::ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType) : Goal(agType, min, max, average, des2, des3), goalAmount(goalAm), _resourceType(resourceType)
 {
 }
 
-int ExpansionGoal::getColorZone(void)
+int ResourcesGoal::getGoalAmount(void)
 {
-    return colorZone;
+    return goalAmount;
 }
 
-void ExpansionGoal::setColorZone(int color)
+void ResourcesGoal::setGoalAmount(int goalAm)
 {
-    colorZone = color;
+    goalAmount = goalAm;
 }
 
-int ExpansionGoal::getMinDistanceToGoal(void)
-{
-    return minDistanceToGoal;
-}
-
-void ExpansionGoal::setMinDistanceToGoal(int dis)
-{
-    minDistanceToGoal = dis;
-}
-
-Position ExpansionGoal::getCenterArea(void)
-{
-    return centerArea;
-}
-
-void ExpansionGoal::setCenterArea(int x, int y)
-{
-    centerArea.setPosition(x, y);
-}
-
-bool ExpansionGoal::checkGoal(int type, Agent* agent)
+bool ResourcesGoal::checkGoal(int type, Agent* agent)
 {
     if(type!=agentType)
     {
         return false;
     }
     
-    
-  
     int timeSteps = int(Timing::getInstance()->getTimeStep());
-    // goal is completed if the agent is within the color coded zone for the goal
-    int agentColorCode = GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(1, agent->getPosition().getX(), agent->getPosition().getY());
-    if(agentColorCode != colorZone)
-    { 
-        // goal failed due to time (timeStep was the last one, and agents did not arrive
-        if (timeSteps >= maxTime)
-        {
-            GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
-        }
+    // goal failed due to time
+    if (timeSteps > maxTime) {
+        GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
         return false;
     }
-
-    // the agent arrived before it had to be within the color coded goal zone
+    
+    if (Agent::_resourcesPool.at(type).at(_resourceType)<goalAmount)
+    {
+        return false;
+    }
+    
+    // resources collected they had to be
     if (minTime > timeSteps)
     {
         GameLevel::getInstance()->setFinishedGame(GoalFailBefore);
         return false;
     }
-
-    completed = true;
     
-    // compute deviation
+    completed = true;
     int diff = std::abs(averageTime-timeSteps);
     if(diff<=desviation3Star)
     {

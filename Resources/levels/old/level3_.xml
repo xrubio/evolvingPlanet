@@ -94,7 +94,7 @@
     <ACTION>Die</ACTION>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>70</MIN>
         <MAX>90</MAX>
@@ -103,7 +103,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>110</MIN>
         <MAX>130</MAX>
@@ -112,7 +112,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>180</MIN>
         <MAX>200</MAX>

@@ -30,7 +30,6 @@
 #include "Power.h"
 #include "AreaPower.h"
 #include "GameData.h"
-#include "ExpansionGoal.h"
 #include "ProgressAchievement.h"
 #include "LevelAchievement.h"
 

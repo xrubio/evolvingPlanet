@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NUM_LEVEL>1</NUM_LEVEL>
-<NAME_LEVEL>Expansion</NAME_LEVEL>
+<NAME_LEVEL>Dispersal</NAME_LEVEL>
 <FILE_MAP>Level1</FILE_MAP>
 <AGENTS_PIXEL_SIZE>3</AGENTS_PIXEL_SIZE>
 <EVPOINTS_FREQ>3</EVPOINTS_FREQ>
@@ -35,7 +35,7 @@
 <ACTIONS>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>40</MIN>
         <MAX>90</MAX>

@@ -32,8 +32,9 @@
 
 enum GoalType
 {
-    Collection = 0,
-    Expansion = 1
+    Dispersal = 0,
+    Population = 1,
+    Resources = 2
 };
 
 class Goal {

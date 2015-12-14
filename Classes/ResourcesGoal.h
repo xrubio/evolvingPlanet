@@ -18,22 +18,22 @@
  */
 
 //
-//  CollectionGoal.h
+//  ResourcesGoal.h
 //  simulplay
 //
 //  Created by Guillem Laborda on 20/10/14.
 //
 //
 
-#ifndef __simulplay__CollectionGoal__
-#define __simulplay__CollectionGoal__
+#ifndef __simulplay__ResourcesGoal__
+#define __simulplay__ResourcesGoal__
 
 #include "Goal.h"
 
-class CollectionGoal : public Goal {
+class ResourcesGoal : public Goal {
 
 public:
-    CollectionGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType);
+    ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType);
 
     int getGoalAmount(void);
     void setGoalAmount(int goalAm);
@@ -41,7 +41,7 @@ public:
     bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
     {
-        return Collection;
+        return Resources;
     }
     
 private:
@@ -49,5 +49,5 @@ private:
     int _resourceType;
 };
 
-#endif /* defined(__simulplay__CollectionGoal__) */
+#endif /* defined(__simulplay__ResourcesGoal__) */
 

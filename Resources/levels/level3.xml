@@ -51,7 +51,7 @@
 <ACTIONS>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>25</MIN>
         <MAX>45</MAX>
@@ -60,7 +60,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>65</MIN>
         <MAX>85</MAX>
@@ -69,7 +69,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>90</MIN>
         <MAX>110</MAX>
@@ -78,7 +78,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>13</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>112</MIN>
         <MAX>132</MAX>
@@ -87,7 +87,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>14</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>134</MIN>
         <MAX>154</MAX>

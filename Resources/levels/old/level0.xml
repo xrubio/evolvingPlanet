@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <NUM_LEVEL>0</NUM_LEVEL>
-<NAME_LEVEL>Expansion</NAME_LEVEL>
+<NAME_LEVEL>Dispersal</NAME_LEVEL>
 <FILE_MAP>Level0</FILE_MAP>
 <AGENTS MAX_ALL="NO">
     <AGENT TYPE="0">
@@ -44,7 +44,7 @@
     <ACTION>Die</ACTION>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>30</MIN>
         <MAX>50</MAX>
@@ -53,7 +53,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>65</MIN>
         <MAX>80</MAX>
@@ -62,7 +62,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>95</MIN>
         <MAX>110</MAX>

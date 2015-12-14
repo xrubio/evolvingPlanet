@@ -31,8 +31,8 @@
 #include "LocalizedString.h"
 #include "UIGlobalPower.h"
 #include "UIAreaPower.h"
-#include "CollectionGoal.h"
-#include "ExpansionGoal.h"
+#include "ResourcesGoal.h"
+#include "DispersalGoal.h"
 #include "Timing.h"
 #include "LevelLoader.h"
 #include "Message.h"
@@ -152,7 +152,7 @@ bool UIGameplayMap::init()
     //RESOURCES MAP (IF ANY)
     for(size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
     {
-        if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Collection)
+        if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
         {
             resourcesMap = true;
         }
@@ -292,12 +292,12 @@ bool UIGameplayMap::init()
     {
         Goal * goal = GameLevel::getInstance()->getGoals().at(i);
         //Set Checkpoint Area
-        if(goal->getGoalType()!= Expansion)
+        if(goal->getGoalType()!= Dispersal)
         {
             CCLOG("Goal type still not implemented TODO");
             continue;
         }
-        ExpansionGoal * expansionGoal = (ExpansionGoal*)(goal);
+        DispersalGoal * expansionGoal = (DispersalGoal*)(goal);
         
         //FIND AREA
         int minX = 479;
@@ -1597,9 +1597,9 @@ bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)
 void UIGameplayMap::moveGoalPopup(int index)
 {
     Goal * goal = GameLevel::getInstance()->getGoals().at(index);
-    if(goal->getGoalType() != Expansion)
+    if(goal->getGoalType() != Dispersal)
     {
-        CCLOG("goal not expansion, not implemented TODO");
+        CCLOG("goal not dispersal, not implemented TODO");
         return;
     }
 

@@ -79,7 +79,7 @@
     <ACTION>Terraform</ACTION>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Collection">
+    <GOAL TYPE_GOAL="Resources">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>25</MIN>
         <MAX>45</MAX>
@@ -89,7 +89,7 @@
         <RESOURCE_TYPE>WOOD</RESOURCE_TYPE>
         <GOAL_AMOUNT>2000</GOAL_AMOUNT>
     </GOAL>
-    <GOAL TYPE_GOAL="Collection">
+    <GOAL TYPE_GOAL="Resources">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>65</MIN>
         <MAX>85</MAX>
@@ -99,7 +99,7 @@
         <RESOURCE_TYPE>WOOD</RESOURCE_TYPE>
         <GOAL_AMOUNT>3600</GOAL_AMOUNT>
     </GOAL>
-    <GOAL TYPE_GOAL="Collection">
+    <GOAL TYPE_GOAL="Resources">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>90</MIN>
         <MAX>110</MAX>

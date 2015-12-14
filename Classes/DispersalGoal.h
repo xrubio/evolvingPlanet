@@ -18,22 +18,22 @@
  */
 
 //
-//  ExpansionGoal.h
+//  DispersalGoal.h
 //  simulplay
 //
 //  Created by Guillem Laborda on 20/10/14.
 //
 //
 
-#ifndef __simulplay__ExpansionGoal__
-#define __simulplay__ExpansionGoal__
+#ifndef __simulplay__DispersalGoal__
+#define __simulplay__DispersalGoal__
 
 #include "Goal.h"
 
-class ExpansionGoal : public Goal {
+class DispersalGoal : public Goal {
 
 public:
-    ExpansionGoal(int agType, int min, int max, int average, int des2, int des3, int color = 0);
+    DispersalGoal(int agType, int min, int max, int average, int des2, int des3, int color = 0);
 
     int getColorZone(void);
     void setColorZone(int color);
@@ -46,7 +46,7 @@ public:
     bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
     {
-        return Expansion;
+        return Dispersal;
     }
 
 private:
@@ -55,4 +55,4 @@ private:
     Position centerArea;
 };
 
-#endif /* defined(__simulplay__ExpansionGoal__) */
+#endif /* defined(__simulplay__DispersalGoal__) */

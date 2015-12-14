@@ -119,7 +119,7 @@
     <ACTION>Influence</ACTION>
 </ACTIONS>
 <GOALS>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>30</MIN>
         <MAX>50</MAX>
@@ -128,7 +128,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>54</MIN>
         <MAX>70</MAX>
@@ -137,7 +137,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>74</MIN>
         <MAX>90</MAX>
@@ -146,7 +146,7 @@
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <COLOR_ZONE>13</COLOR_ZONE>
     </GOAL>
-    <GOAL TYPE_GOAL="Expansion">
+    <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>94</MIN>
         <MAX>110</MAX>

@@ -140,7 +140,7 @@ bool UIAchievements::init()
             list->pushBackCustomItem(model);
             
             std::stringstream iconPathStr;
-            iconPathStr << "gui/Ach" << achs.at(i).at(j)->getGoalType();
+            iconPathStr << "gui/achievements/Ach" << achs.at(i).at(j)->getGoalType();
             if(achs.at(i).at(j)->getCompleted())
             {
                 iconPathStr << "Unlocked.png";

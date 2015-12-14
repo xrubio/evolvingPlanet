@@ -302,19 +302,35 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(mapPopup);
 
     vector<string> goalTypes = loader.getGoalTypes("level" + to_string(tag));
-    for (size_t i = 0; i < goalTypes.size(); i++) {
-        Sprite* iconLevel;
-        if (goalTypes.at(i) == "Expansion") {
-            iconLevel = Sprite::create("gui/ExpansionGoalIcon.png");
-        }
-        else if (goalTypes.at(i) == "Collection") {
-            iconLevel = Sprite::create("gui/CollectionGoalIcon.png");
-        }
+    for (size_t i = 0; i < goalTypes.size(); i++)
+    {
+        std::stringstream iconStr;
+        iconStr << "gui/goals/"+goalTypes.at(i)+"Goal.png";
+        auto iconLevel = Sprite::create(iconStr.str());
         iconLevel->setAnchorPoint(Vec2(1, 0.75));
-        iconLevel->setPosition(Vec2(mapPopup->getPosition().x + mapPopup->getBoundingBox().size.width - ((iconLevel->getContentSize().width * i) + (iconLevel->getContentSize().width / 10) * i),
-            mapPopup->getPosition().y - (mapPopup->getBoundingBox().size.height / 2)));
+        iconLevel->setPosition(Vec2(mapPopup->getPosition().x + mapPopup->getBoundingBox().size.width - ((iconLevel->getContentSize().width * i) + (iconLevel->getContentSize().width / 10) * i), mapPopup->getPosition().y - (mapPopup->getBoundingBox().size.height / 2)));
         popupBackground->addChild(iconLevel);
     }
+
+    std::stringstream achStr;    
+    int numCompleted = 0;
+    int numAchievements = 0;
+
+    for (int j = 0; j < GameData::getInstance()->getAchievements().at(tag).size(); j++)
+    {
+        numAchievements++;
+        if(GameData::getInstance()->getAchievements().at(tag).at(j)->getCompleted() == true)
+        {
+            numCompleted++;
+        }
+    }
+         
+    achStr << numCompleted << " " << LocalizedString::create("OF") << " " << numAchievements << " " << LocalizedString::create("ACH_EARNED");
+    auto textAchievements = Label::createWithTTF(achStr.str(), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+    textAchievements->setColor(Color3B(216, 229, 235));
+    textAchievements->setAnchorPoint(Vec2(0.0, 0.5));
+    textAchievements->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.1f*popupBackground->getContentSize().height));
+    popupBackground->addChild(textAchievements);
 
     auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str(), "text"),
         Size(13 * (popupBackground->getContentSize().width / 25), 6 * (popupBackground->getContentSize().height / 14)),
