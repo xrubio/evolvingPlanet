@@ -318,13 +318,14 @@ bool GameLevel::getDepleted(int x, int y)
     return depletedMap[x][y];
 }
 
-void GameLevel::setDepleted(int x, int y, bool val)
+void GameLevel::setDepletedMap(int x, int y, bool val)
 {
     depletedMap[x][y] = val;
-    if (val)
-    {
-        _depletedVector.push_back(Point(x, y));
-    }
+}
+
+void GameLevel::addDepletedToVector(int x, int y)
+{
+    _depletedVector.push_back(Point(x, y));
 }
 
 std::vector<cocos2d::Point> GameLevel::getRestored(void)
@@ -481,6 +482,7 @@ void GameLevel::playLevel(void)
             paint = true;
             Timing::getInstance()->act = false;  
             CCLOG("%d;%f;%zu;%f", int(Timing::getInstance()->getTimeStep()), Timing::getInstance()->getTimeStep(), _agents.at(0).size(), float(clock() - stepTime) / CLOCKS_PER_SEC);
+            CCLOG("RESOURCES: Mineral %d, Stone %d", Agent::_resourcesPool.at(0).at(1), Agent::_resourcesPool.at(0).at(2));
         }
     }
     
@@ -930,9 +932,7 @@ void GameLevel::act(void)
     {
         regenerate();
     }
-    
-    CCLOG("%d %d", _depletedVector.size(), _restoredVector.size());
-    
+        
     //DISCOVERY ACHIEVEMENT
     if (_inGameAchievement != nullptr)
     {
@@ -1060,6 +1060,7 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
     Agent::_numInfluenced.clear();
     Agent::_numTraded.clear();
     Agent::_resourcesPool.clear();
+    Agent::_resourcesPoolMax.clear();
     _agentAttributes.clear();
     _attributesCost.clear();
     for(size_t i=0; i<numAgents; i++)
@@ -1072,6 +1073,9 @@ void GameLevel::setNumAgentTypes(size_t numAgents)
         vector<int> resources (3, 0);
         Agent::_resourcesPool.push_back(resources);
     }
+    Agent::_resourcesPoolMax.push_back(0);
+    Agent::_resourcesPoolMax.push_back(0);
+    Agent::_resourcesPoolMax.push_back(0);
 }
 
 void GameLevel::checkAchievements(void)

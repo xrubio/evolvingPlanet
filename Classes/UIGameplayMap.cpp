@@ -184,6 +184,21 @@ bool UIGameplayMap::init()
         exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
         exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
         gameplayMap->addChild(exploitedMapSprite, 2);
+        
+        //Save max resources
+        for(int x = 0; x < 480; x++)
+        {
+            for(int y = 1; y <= 320; y++)
+            {
+                int valueAtMap = getValueAtGameplayMap(2,x,y);
+                if (valueAtMap < 4)
+                {
+                    Agent::_resourcesPoolMax.at(valueAtMap)++;
+                }
+            }
+        }
+        
+        CCLOG("MAX RESOURCES: Wood %d, Mineral %d, Stone %d", Agent::_resourcesPoolMax.at(0), Agent::_resourcesPoolMax.at(1), Agent::_resourcesPoolMax.at(2));
     }
 
     GameLevel::getInstance()->setUIGameplayMap(this);
@@ -294,7 +309,6 @@ bool UIGameplayMap::init()
         //Set Checkpoint Area
         if(goal->getGoalType()!= Dispersal)
         {
-            CCLOG("Goal type still not implemented TODO");
             continue;
         }
         DispersalGoal * expansionGoal = (DispersalGoal*)(goal);
@@ -485,7 +499,7 @@ bool UIGameplayMap::init()
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
     
-    auto goal = DrawNode::create();
+    /*auto goal = DrawNode::create();
     graphicBackground->addChild(goal);
     float height = float(1000)/float(2000) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
     
@@ -495,7 +509,7 @@ bool UIGameplayMap::init()
     for (int i = 35; i < 45; i++)
     {
         goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 12, Color4F::RED);
-    }
+    }*/
     
     ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
     auto populationNode = new WaveNode();
@@ -1701,7 +1715,7 @@ void UIGameplayMap::restoreLand(void)
         for (int j = -37; j < 37; j++) {
             float dist = sqrt((i * i) + (j * j));
             if (dist <= radius and posTransformed.x + i >= 0 and posTransformed.x + i < 480 and posTransformed.y + j >= 0 and posTransformed.y + j < 320) {
-                GameLevel::getInstance()->setDepleted(posTransformed.x + i, posTransformed.y + j, false);
+                //GameLevel::getInstance()->setDepleted(posTransformed.x + i, posTransformed.y + j, false);
                 GameLevel::getInstance()->setTerraformed(posTransformed.x + i, posTransformed.y + j, false);
                 //drawExploitedMap(Point(posTransformed.x + i, posTransformed.y + j), Color4B(127, 127, 127, 0), 0);
             }
@@ -2263,9 +2277,9 @@ void UIGameplayMap::update(float delta)
             }
             // TODO everything stopped if _message?
             updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
-            updateWave(1, Agent::_resourcesPool.at(0).at(Wood), 2000, Color4B(0, 249, 105, 255));
-            updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), 2000, Color4B(229, 232, 5, 255));
-            updateWave(3, Agent::_resourcesPool.at(0).at(Stone), 2000, Color4B(225, 144, 57, 255));
+            updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(0, 249, 105, 255));
+            updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+            updateWave(3, Agent::_resourcesPool.at(0).at(Stone), Agent::_resourcesPoolMax.at(Stone), Color4B(225, 144, 57, 255));
             
             pthread_mutex_unlock(&gameLevelMutex);
         }
