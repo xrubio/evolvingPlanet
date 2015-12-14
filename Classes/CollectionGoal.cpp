@@ -55,7 +55,7 @@ bool CollectionGoal::checkGoal(int type, Agent* agent)
         GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
         return false;
     }
-    
+        
     if (Agent::_resourcesPool.at(type).at(_resourceType)<goalAmount)
     {
         return false;

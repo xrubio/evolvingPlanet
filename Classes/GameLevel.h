@@ -147,7 +147,8 @@ public:
     int getAttributeCost(int type, int key);
     void setAttributeCost(int type, int key, int val);
     bool getDepleted(int x, int y);
-    void setDepleted(int x, int y, bool val);
+    void setDepletedMap(int x, int y, bool val);
+    void addDepletedToVector(int x, int y);
     std::vector<cocos2d::Point> getRestored(void);
     bool getTerraformed(int x, int y);
     void setTerraformed(int x, int y, bool val);

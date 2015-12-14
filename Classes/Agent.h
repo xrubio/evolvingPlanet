@@ -53,6 +53,8 @@ public:
     static std::vector<int> _numTraded;
     // pool of resources -> Wood, Mineral, Stone
     static std::vector< std::vector<int> > _resourcesPool;
+    // pool of max resources -> Wood, Mineral, Stone
+    static std::vector<int> _resourcesPoolMax;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);
     ~Agent()
