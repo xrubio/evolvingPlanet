@@ -530,6 +530,33 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
     case 11:
         filename = "level11";
         break;
+    case 12:
+        filename = "level12";
+        break;
+    case 13:
+        filename = "level13";
+        break;
+    case 14:
+        filename = "level14";
+        break;
+    case 15:
+        filename = "level15";
+        break;
+    case 16:
+        filename = "level16";
+        break;
+    case 17:
+        filename = "level17";
+        break;
+    case 18:
+        filename = "level18";
+        break;
+    case 19:
+        filename = "level19";
+        break;
+    case 20:
+        filename = "level20";
+        break;
     default:
         filename = "level1";
         break;

@@ -1620,12 +1620,11 @@ bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)
 void UIGameplayMap::moveGoalPopup(int index)
 {
     Goal * goal = GameLevel::getInstance()->getGoals().at(index);
+    // erase completed goal
     if(goal->getGoalType() == Resources)
     {
         auto goalCollection = (ResourcesGoal*)goal;
-        CCLOG("goal not expansion, not implemented TODO");
         
-        //PAINT TRANSPARENT
         auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
         auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
         
@@ -1638,45 +1637,46 @@ void UIGameplayMap::moveGoalPopup(int index)
         {
             goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::BLUE);
         }
-        
-        
-        //PAINT GOAL
-        if (index!=(GameLevel::getInstance()->getGoals().size()-1))
-        {
-        
-        goalCollection = (ResourcesGoal*) GameLevel::getInstance()->getGoals().at(index+1);
-        
-        height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
-        
-        // Space the verticies out evenly across the screen for the wave.
-        vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
-        
-        for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
-        {
-            goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::RED);
-        }
-        }
-        
-        
-        return;
     }
-
-    auto area = gameplayMap->getChildByTag(400+index);
-    area->stopAllActions();
-    area->setVisible(true);
-    area->setColor(Color3B(223, 211, 39));
-    auto fadeOut = FadeOut::create(2.5);
-    area->runAction(fadeOut);
+    else
+    {
+        auto area = gameplayMap->getChildByTag(400+index);
+        area->stopAllActions();
+        area->setVisible(true);
+        area->setColor(Color3B(223, 211, 39));
+        auto fadeOut = FadeOut::create(2.5);
+        area->runAction(fadeOut);
+    }
 
     // if it's not the last goal, highlight the next one
     if(index!=(GameLevel::getInstance()->getGoals().size()-1))
     {
-        auto nextArea = gameplayMap->getChildByTag(400+index+1);
-        auto blink = Blink::create(2, 2);
-        auto repeatBlink = RepeatForever::create(blink);
-        nextArea->setColor(Color3B::WHITE);
-        nextArea->runAction(repeatBlink);
-        nextArea->setOpacity(255);
+        goal = GameLevel::getInstance()->getGoals().at(index+1);
+        if(goal->getGoalType() == Resources)
+        {
+            auto goalCollection = (ResourcesGoal*) GameLevel::getInstance()->getGoals().at(index+1);
+            auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
+            auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
+            
+            float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+            
+            // Space the verticies out evenly across the screen for the wave.
+            float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+            
+            for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
+            {
+                goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::RED);
+            }
+        }
+        else
+        {
+            auto nextArea = gameplayMap->getChildByTag(400+index+1);
+            auto blink = Blink::create(2, 2);
+            auto repeatBlink = RepeatForever::create(blink);
+            nextArea->setColor(Color3B::WHITE);
+            nextArea->runAction(repeatBlink);
+            nextArea->setOpacity(255);
+        }
     }
 }
 
