@@ -338,7 +338,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     }
     auto iconLevel = Sprite::create(goalPath);
     iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
-    iconLevel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    iconLevel->setPosition(Vec2(0.08f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
     popupBackground->addChild(iconLevel);
     
     if(numGoals.at(Dispersal)>0)
@@ -347,7 +347,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         numGoalsLabel->setColor(Color3B(216, 229, 235));
         numGoalsLabel->enableShadow();
         numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
-        numGoalsLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+        numGoalsLabel->setPosition(Vec2(0.08f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
         popupBackground->addChild(numGoalsLabel);
     }
     
@@ -361,7 +361,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     }
     iconLevel = Sprite::create(goalPath);
     iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
-    iconLevel->setPosition(Vec2(0.15f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    iconLevel->setPosition(Vec2(0.19f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
     popupBackground->addChild(iconLevel);
     if(numGoals.at(Population)>0)
     {
@@ -369,7 +369,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         numGoalsLabel->setColor(Color3B(216, 229, 235));
         numGoalsLabel->enableShadow();
         numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
-        numGoalsLabel->setPosition(Vec2(0.15f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+        numGoalsLabel->setPosition(Vec2(0.19f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
         popupBackground->addChild(numGoalsLabel);
     }
     
@@ -384,7 +384,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     }
     iconLevel = Sprite::create(goalPath);
     iconLevel->setAnchorPoint(Vec2(0.0f, 0.5f));
-    iconLevel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+    iconLevel->setPosition(Vec2(0.3f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
     popupBackground->addChild(iconLevel);
     if(numGoals.at(Resources)>0)
         {
@@ -392,7 +392,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
             numGoalsLabel->setColor(Color3B(216, 229, 235));
             numGoalsLabel->enableShadow();
             numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
-            numGoalsLabel->setPosition(Vec2(0.25f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
+            numGoalsLabel->setPosition(Vec2(0.3f*popupBackground->getContentSize().width, 0.2f*popupBackground->getContentSize().height));
             popupBackground->addChild(numGoalsLabel);
     }
     
@@ -413,7 +413,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     auto textAchievements = Label::createWithTTF(achStr.str(), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
     textAchievements->setColor(Color3B(216, 229, 235));
     textAchievements->setAnchorPoint(Vec2(0.0, 0.5));
-    textAchievements->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.1f*popupBackground->getContentSize().height));
+    textAchievements->setPosition(Vec2(0.08f*popupBackground->getContentSize().width, 0.08f*popupBackground->getContentSize().height));
     popupBackground->addChild(textAchievements);
 
     auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str(), "text"),
@@ -693,7 +693,7 @@ Layout* UIProgressMap::setEpisode1(void)
         auto levelButton = MenuItemImage::create("gui/LevelPointerButton.png", "gui/LevelPointerButtonPressed.png",
                                             CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
         levelButton->setTag(i);
-        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/monofonto.ttf", 38 * GameData::getInstance()->getRaConversion());
         levelLabel->setPosition(levelButton->getContentSize().width/2, levelButton->getContentSize().height/2);
         levelLabel->setHorizontalAlignment(TextHAlignment::LEFT);
         levelButton->addChild(levelLabel);
@@ -829,7 +829,7 @@ Layout* UIProgressMap::setEpisode2(void)
         auto levelButton = MenuItemImage::create("gui/LevelPointerButton.png", "gui/LevelPointerButtonPressed.png",
                                                  CC_CALLBACK_1(UIProgressMap::menuLevelCallback, this));
         levelButton->setTag(i);
-        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+        auto levelLabel = Label::createWithTTF(to_string(i), "fonts/monofonto.ttf", 38 * GameData::getInstance()->getRaConversion());
         levelLabel->setPosition(levelButton->getContentSize().width / 2, levelButton->getContentSize().height / 2);
         levelButton->addChild(levelLabel);
         levelLabel->setColor(Color3B(32, 47, 55));

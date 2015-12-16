@@ -121,12 +121,34 @@ bool UIGameplayMap::init()
 
     string space = " ";
     string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
-    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     levelLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     levelLabel->setColor(Color3B(139, 146, 154));
     levelLabel->setAnchorPoint(Vec2(0, 0.5));
-    levelLabel->setPosition(Vec2(13 * visibleSize.width / 204, 145 * visibleSize.height / 155));
+    levelLabel->setPosition(Vec2(12 * visibleSize.width / 204, 148 * visibleSize.height / 155));
     this->addChild(levelLabel, 5);
+    
+    auto currentGoalLabel = Label::createWithTTF(LocalizedString::create("CURRENT_GOAL")+":", "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
+    currentGoalLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    currentGoalLabel->setColor(Color3B(139, 146, 154));
+    currentGoalLabel->setAnchorPoint(Vec2(0, 0.5));
+    currentGoalLabel->setPosition(Vec2(12 * visibleSize.width / 204, 140 * visibleSize.height / 155));
+    this->addChild(currentGoalLabel, 5);
+    
+    string currGoal = "Dispersal";
+    if (GameLevel::getInstance()->getGoals().at(0)->getGoalType() == Resources)
+    {
+        currGoal = "Resources";
+    }
+    else if (GameLevel::getInstance()->getGoals().at(0)->getGoalType() == Population)
+    {
+        currGoal = "Population";
+    }
+    auto currentGoalSprite = Sprite::create("gui/goals/"+currGoal+"Goal.png");
+    currentGoalSprite->setAnchorPoint(Vec2(0, 0.5));
+    currentGoalSprite->setScale(GameData::getInstance()->getRaWConversion()*0.5f, GameData::getInstance()->getRaHConversion()*0.5f);    currentGoalSprite->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalSprite->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
+    currentGoalSprite->setName("currentGoalSprite");
+    this->addChild(currentGoalSprite, 5);
 
     //QUIT / RETRY
     Vector<MenuItem*> quitRetryVec;
@@ -226,12 +248,12 @@ bool UIGameplayMap::init()
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
     evolutionPointsIcon->setAnchorPoint(Vec2(0.5, 1));
     evolutionPointsIcon->setPosition(3.4 * bottomFrame->getContentSize().width / 13, 4.9 * bottomFrame->getContentSize().height / 6);
-    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
+    evolutionPointsLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getEvolutionPoints()), "fonts/monofonto.ttf", 70 * GameData::getInstance()->getRaConversion());
     evolutionPointsLabel->setAlignment(TextHAlignment::CENTER);
     evolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
     evolutionPointsLabel->setColor(Color3B(216, 229, 235));
     evolutionPointsIcon->addChild(evolutionPointsLabel, 2);
-    restaEvolutionPointsLabel = Label::createWithTTF("- ", "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    restaEvolutionPointsLabel = Label::createWithTTF("- ", "fonts/monofonto.ttf", 60 * GameData::getInstance()->getRaConversion());
     restaEvolutionPointsLabel->setColor(Color3B(211, 197, 0));
     restaEvolutionPointsLabel->setOpacity(0);
     evolutionPointsIcon->addChild(restaEvolutionPointsLabel, 2);
@@ -549,7 +571,7 @@ bool UIGameplayMap::init()
         labelAttRight->setColor(Color3B(216, 229, 236));
         bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
-        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/BebasNeue.otf", 35 * GameData::getInstance()->getRaConversion());
+        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/monofonto.ttf", 30 * GameData::getInstance()->getRaConversion());
         attNumLabel->setColor(Color3B::BLACK);
         attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
         bottomFrame->addChild(attNumLabel, 1, (int(j) + 1) * 1100);
@@ -1677,6 +1699,18 @@ void UIGameplayMap::moveGoalPopup(int index)
             nextArea->runAction(repeatBlink);
             nextArea->setOpacity(255);
         }
+        
+        auto currentGoal = (Sprite*) this->getChildByName("currentGoalSprite");
+        string currGoal = "Dispersal";
+        if (goal->getGoalType() == Resources)
+        {
+            currGoal = "Resources";
+        }
+        else if (goal->getGoalType() == Population)
+        {
+            currGoal = "Population";
+        }
+        currentGoal->setTexture("gui/goals/"+currGoal+"Goal.png");
     }
 }
 
