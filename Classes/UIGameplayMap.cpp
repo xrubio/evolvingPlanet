@@ -148,6 +148,16 @@ bool UIGameplayMap::init()
     currentGoalSprite->setAnchorPoint(Vec2(0, 0.5));
     currentGoalSprite->setScale(GameData::getInstance()->getRaWConversion()*0.5f, GameData::getInstance()->getRaHConversion()*0.5f);    currentGoalSprite->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalSprite->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
     currentGoalSprite->setName("currentGoalSprite");
+    
+    auto goalCompletedSprite = Sprite::create("gui/goals/CompletedGoal.png");
+    auto currentGoalProgress = ProgressTimer::create(goalCompletedSprite);
+    currentGoalProgress->setPosition(Vec2(currentGoalSprite->getContentSize().width / 2, currentGoalSprite->getContentSize().height / 2));
+    currentGoalProgress->setType(ProgressTimer::Type::BAR);
+    currentGoalProgress->setMidpoint(Vec2(0, 0));
+    currentGoalProgress->setBarChangeRate(Vec2(0, 1));
+    currentGoalProgress->setName("currentGoalProgress");
+    currentGoalProgress->setPercentage(100.0);
+    currentGoalSprite->addChild(currentGoalProgress, 5);
     this->addChild(currentGoalSprite, 5);
 
     //QUIT / RETRY
@@ -1711,6 +1721,7 @@ void UIGameplayMap::moveGoalPopup(int index)
             currGoal = "Population";
         }
         currentGoal->setTexture("gui/goals/"+currGoal+"Goal.png");
+        ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(0.0);
     }
 }
 
@@ -2215,9 +2226,9 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
     int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());    
     switch (geometry) {
     default:
-        int k = -GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize();
-        while (k <= GameData::getInstance()->getResourcesWidth()* GameLevel::getInstance()->getAgentPixelSize()) {
-            for (int j = - GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
+        int k = -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+1));
+        while (k <= GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+1)) {
+            for (int j = - GameLevel::getInstance()->getAgentPixelSize() -1; j < GameLevel::getInstance()->getAgentPixelSize() + 2; j++) {
                 if (colour.r == 0)
                 {
                     if (Color3B(exploitedMapTextureData[position + j + k]) == Color3B::BLACK)
@@ -2358,6 +2369,18 @@ void UIGameplayMap::update(float delta)
             updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(0, 249, 105, 255));
             updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
             updateWave(3, Agent::_resourcesPool.at(0).at(Stone), Agent::_resourcesPoolMax.at(Stone), Color4B(225, 144, 57, 255));
+            
+            //UPDATE PROGRESS RESOURCE GOAL
+            int i = 0;
+            while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals().at(i)->getCompleted() == true)
+            {
+                i++;
+            }
+            if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
+            {
+                auto resGoal = ((ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i));
+                ((ProgressTimer*)this->getChildByName("currentGoalSprite")->getChildByName("currentGoalProgress"))->setPercentage(float(Agent::_resourcesPool.at(0).at(resGoal->getResourceType())) / float(resGoal->getGoalAmount()) * 100.0);
+            }
             
             pthread_mutex_unlock(&gameLevelMutex);
         }
