@@ -149,6 +149,9 @@ private:
 
     bool firstPlayFF = true;
     
+    bool _isWood = false;
+    bool _isMineral = false;
+    
     float sqrOfDistanceBetweenPoints(Point p1, Point p2);
     void checkBackgroundLimitsInTheScreen(Point destPoint);
     int getValueAtGameplayMap(int rgb, Point pt);

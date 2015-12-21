@@ -332,12 +332,23 @@ bool UIGameplayMap::init()
     }
 
     //SET GOALS ON MAP
+    int numResources = 1;
     for (size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
     {
         Goal * goal = GameLevel::getInstance()->getGoals().at(i);
         //Set Checkpoint Area
         if(goal->getGoalType()!= Dispersal)
         {
+            if(((ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i))->getResourceType() == Wood and !_isWood)
+            {
+                _isWood = true;
+                numResources++;
+            }
+            if(((ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i))->getResourceType() == Mineral and !_isMineral)
+            {
+                _isMineral = true;
+                numResources++;
+            }
             //do nothing
             continue;
         }
@@ -513,7 +524,7 @@ bool UIGameplayMap::init()
     labelGraphic->setName("graphicLabel");
     this->addChild(labelGraphic);
     
-    auto labelCounterGraphic = Label::createWithTTF("( 1 / 4 )", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto labelCounterGraphic = Label::createWithTTF("( 1 / " + to_string(numResources) + " )", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     labelCounterGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() - (graphicBackground->getBoundingBox().size.height / 2) - (labelCounterGraphic->getBoundingBox().size.height / 2));
     labelCounterGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelCounterGraphic->setName("graphicCounterLabel");
@@ -524,23 +535,29 @@ bool UIGameplayMap::init()
     populationNode->init();
     populationNode->glDrawMode = kDrawLines;
     populationNode->setReadyToDrawDynamicVerts(true);
-    populationNode->setName("population");
+    populationNode->setName("AGENTS");
     graphicBackground->addChild(populationNode, 1, 1);
     waveNodes.push_back(populationNode);
     
-    auto woodNode = new WaveNode();
-    woodNode->init();
-    woodNode->glDrawMode = kDrawLines;
-    woodNode->setReadyToDrawDynamicVerts(true);
-    woodNode->setName("wood");
-    waveNodes.push_back(woodNode);
+    if (_isWood)
+    {
+        auto woodNode = new WaveNode();
+        woodNode->init();
+        woodNode->glDrawMode = kDrawLines;
+        woodNode->setReadyToDrawDynamicVerts(true);
+        woodNode->setName("WOOD");
+        waveNodes.push_back(woodNode);
+    }
     
-    auto mineralNode = new WaveNode();
-    mineralNode->init();
-    mineralNode->glDrawMode = kDrawLines;
-    mineralNode->setReadyToDrawDynamicVerts(true);
-    mineralNode->setName("mineral");
-    waveNodes.push_back(mineralNode);
+    if (_isMineral)
+    {
+        auto mineralNode = new WaveNode();
+        mineralNode->init();
+        mineralNode->glDrawMode = kDrawLines;
+        mineralNode->setReadyToDrawDynamicVerts(true);
+        mineralNode->setName("MINERAL");
+        waveNodes.push_back(mineralNode);
+    }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1500,30 +1517,25 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
         }
     }
     
-    if (name == "population")
+    int i = 0;
+    while (i < waveNodes.size() and waveNodes.at(i)->getName() != name)
     {
-        graphicBackground->removeChild(waveNodes.at(0));
-        graphicBackground->addChild(waveNodes.at(1), 1, 1);
-        agentColor = 1;
-        graphicLabel->setString("WOOD");
-        graphicCounterLabel->setString("( 2 / 3 )");
+        i++;
     }
-    else if (name == "wood")
+    
+    graphicBackground->removeChild(waveNodes.at(i));
+    if (i == waveNodes.size() - 1)
     {
-        graphicBackground->removeChild(waveNodes.at(1));
-        graphicBackground->addChild(waveNodes.at(2), 1, 1);
-        agentColor = 2;
-        graphicLabel->setString("MINERAL");
-        graphicCounterLabel->setString("( 3 / 3 )");
+        i = 0;
     }
-    else if (name == "mineral")
+    else
     {
-        graphicBackground->removeChild(waveNodes.at(2));
-        graphicBackground->addChild(waveNodes.at(0), 1, 1);
-        agentColor = 0;
-        graphicLabel->setString("AGENTS");
-        graphicCounterLabel->setString("( 1 / 3 )");
+        i++;
     }
+    graphicBackground->addChild(waveNodes.at(i), 1, 1);
+    agentColor = i;
+    graphicLabel->setString(waveNodes.at(i)->getName());
+    graphicCounterLabel->setString("( " + to_string(i+1) + " / 3 )");
 }
 
 void UIGameplayMap::skipTutorial(Ref* pSender)
@@ -2356,8 +2368,15 @@ void UIGameplayMap::update(float delta)
             }
             // TODO everything stopped if _message?
             updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
-            updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(0, 249, 105, 255));
-            updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+            
+            if (_isWood)
+            {
+                updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(0, 249, 105, 255));
+            }
+            if (_isMineral)
+            {
+                updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+            }
             
             //UPDATE PROGRESS RESOURCE GOAL
             int i = 0;
