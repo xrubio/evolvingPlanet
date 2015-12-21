@@ -663,10 +663,9 @@ bool UIGameplayMap::init()
         // Space the verticies out evenly across the screen for the wave.
         float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
         
-        for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
-        {
-            goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::RED);
-        }
+        goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+        
+        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
     }
     else
     {
@@ -1670,10 +1669,9 @@ void UIGameplayMap::moveGoalPopup(int index)
         // Space the verticies out evenly across the screen for the wave.
         float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
         
-        for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
-        {
-            goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::BLUE);
-        }
+        goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+        
+        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
     }
     else
     {
