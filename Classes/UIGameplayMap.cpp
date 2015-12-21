@@ -156,7 +156,7 @@ bool UIGameplayMap::init()
     currentGoalProgress->setMidpoint(Vec2(0, 0));
     currentGoalProgress->setBarChangeRate(Vec2(0, 1));
     currentGoalProgress->setName("currentGoalProgress");
-    currentGoalProgress->setPercentage(100.0);
+    currentGoalProgress->setPercentage(0.0);
     currentGoalSprite->addChild(currentGoalProgress, 5);
     this->addChild(currentGoalSprite, 5);
 
@@ -1931,7 +1931,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
         titleLabel->setPosition(9 * window->getContentSize().width / 18, 4 * window->getContentSize().height / 10);
         window->addChild(titleLabel);
 
-        auto textLabel = Label::createWithTTF(text, "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+        auto textLabel = Label::createWithTTF(text, "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
         textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
         textLabel->setAlignment(TextHAlignment::CENTER);
         window->addChild(textLabel);
@@ -2226,9 +2226,9 @@ void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
     int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());    
     switch (geometry) {
     default:
-        int k = -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+1));
-        while (k <= GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+1)) {
-            for (int j = - GameLevel::getInstance()->getAgentPixelSize() -1; j < GameLevel::getInstance()->getAgentPixelSize() + 2; j++) {
+        int k = -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+2));
+        while (k <= GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+2)) {
+            for (int j = - GameLevel::getInstance()->getAgentPixelSize() -2; j < GameLevel::getInstance()->getAgentPixelSize() + 3; j++) {
                 if (colour.r == 0)
                 {
                     if (Color3B(exploitedMapTextureData[position + j + k]) == Color3B::BLACK)
@@ -2262,7 +2262,7 @@ void UIGameplayMap::createTutorialGUI()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     // TUTORIAL MESSAGES
-    auto messageLabel = Label::createWithTTF("no message", "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+    auto messageLabel = Label::createWithTTF("no message", "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
     messageLabel->setName("tutorial");
     messageLabel->setColor(Color3B(230, 230, 230));
     messageLabel->enableShadow();
@@ -2270,7 +2270,7 @@ void UIGameplayMap::createTutorialGUI()
     messageLabel->setVisible(false);
     messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     
-    auto messageNextLabel = Label::createWithTTF("", "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+    auto messageNextLabel = Label::createWithTTF("", "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
     messageNextLabel->setName("tutorialNext");
     messageNextLabel->setColor(Color3B(210, 210, 210));
     messageNextLabel->setMaxLineWidth(300);
@@ -2295,7 +2295,7 @@ void UIGameplayMap::createTutorialGUI()
     skipWindow->setOpacity(0);
     skipWindow->setVisible(false);
     
-    auto skipLabel = Label::createWithTTF("SKIP", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto skipLabel = Label::createWithTTF(LocalizedString::create("SKIP"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     skipLabel->setPosition(Vec2(skipWindow->getContentSize().width / 2, skipWindow->getContentSize().height / 2));
     skipLabel->setColor(Color3B(139, 146, 154));
     skipWindow->addChild(skipLabel);

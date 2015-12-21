@@ -175,5 +175,7 @@ Tap the logo to know more about SimulPast!</string>
 	<string>achievements earned</string>
 	<key>CURRENT_GOAL</key>
 	<string>CURRENT GOAL</string>
+	<key>SKIP</key>
+	<string>SKIP</string>
 </dict>
 </plist>

@@ -113,7 +113,13 @@ de lo que sugieren los datos arqueológicos</string>
 	<string>INTRODUCCIÓN</string>
 	<key>CONTEXT_TITLE_DEPLOYMENT</key>
 	<string>DESARROLLO</string>
+    <key>OF</key>
+    <string>de</string>
+    <key>ACH_EARNED</key>
+    <string>logros cumplidos</string>
 	<key>CURRENT_GOAL</key>
 	<string>OBJETIVO</string>
+	<key>SKIP</key>
+	<string>SALTAR</string>
 </dict>
 </plist>

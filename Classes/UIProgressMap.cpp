@@ -343,7 +343,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     
     if(numGoals.at(Dispersal)>0)
     {
-        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Dispersal)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Dispersal)), "fonts/arial.ttf", 40* GameData::getInstance()->getRaConversion());
         numGoalsLabel->setColor(Color3B(216, 229, 235));
         numGoalsLabel->enableShadow();
         numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -365,7 +365,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(iconLevel);
     if(numGoals.at(Population)>0)
     {
-        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Population)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+        auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Population)), "fonts/arial.ttf", 40* GameData::getInstance()->getRaConversion());
         numGoalsLabel->setColor(Color3B(216, 229, 235));
         numGoalsLabel->enableShadow();
         numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -388,7 +388,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(iconLevel);
     if(numGoals.at(Resources)>0)
         {
-            auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Resources)), "fonts/arial_rounded_mt_bold.ttf", 40* GameData::getInstance()->getRaConversion());
+            auto numGoalsLabel = Label::createWithTTF(to_string(numGoals.at(Resources)), "fonts/arial.ttf", 40* GameData::getInstance()->getRaConversion());
             numGoalsLabel->setColor(Color3B(216, 229, 235));
             numGoalsLabel->enableShadow();
             numGoalsLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -410,10 +410,10 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     }
 
     achStr << numCompleted << " " << LocalizedString::create("OF") << " " << numAchievements << " " << LocalizedString::create("ACH_EARNED");
-    auto textAchievements = Label::createWithTTF(achStr.str(), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+    auto textAchievements = Label::createWithTTF(achStr.str(), "fonts/arial.ttf", 30 * GameData::getInstance()->getRaConversion());
     textAchievements->setColor(Color3B(216, 229, 235));
-    textAchievements->setAnchorPoint(Vec2(0.0, 0.5));
-    textAchievements->setPosition(Vec2(0.08f*popupBackground->getContentSize().width, 0.08f*popupBackground->getContentSize().height));
+    textAchievements->setAnchorPoint(Vec2(0.5, 0.5));
+    textAchievements->setPosition(Vec2((0.08f * popupBackground->getContentSize().width) + (mapPopup->getBoundingBox().size.width*0.5f), 0.08f*popupBackground->getContentSize().height));
     popupBackground->addChild(textAchievements);
 
     auto briefText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("BRIEF_LEVEL_" + to_string(tag)).c_str(), "text"),
