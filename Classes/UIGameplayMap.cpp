@@ -87,7 +87,7 @@ bool UIGameplayMap::init()
     gameplayMap->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     gameplayMap->setName("gameplayMap");
     this->addChild(gameplayMap, 0);
-    
+  
     //HOTSPOT
     gameplayMapHotSpot = new Image();
     gameplayMapHotSpot->initWithImageFile("mapsBase/"+GameLevel::getInstance()->getMapFilename()+hotSpotsBase+ext);
@@ -140,22 +140,25 @@ bool UIGameplayMap::init()
     Director::getInstance()->getTextureCache()->addImage("gui/goals/DispersalGoal.png");
     Director::getInstance()->getTextureCache()->addImage("gui/goals/PopulationGoal.png");
 
-    auto currentGoalSprite = Sprite::create(getGoalIcon(GameLevel::getInstance()->getGoals().at(0)));
-    currentGoalSprite->setAnchorPoint(Vec2(0, 0.5));
-    currentGoalSprite->setScale(GameData::getInstance()->getRaWConversion()*0.5f, GameData::getInstance()->getRaHConversion()*0.5f);    currentGoalSprite->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalSprite->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
-    currentGoalSprite->setName("currentGoalSprite");
-  
+    auto currentGoalImg = MenuItemImage::create(getGoalIcon(GameLevel::getInstance()->getGoals().at(0)), getGoalIcon(GameLevel::getInstance()->getGoals().at(0)));
+    currentGoalImg->setAnchorPoint(Vec2(0, 0.5));
+    currentGoalImg->setScale(GameData::getInstance()->getRaWConversion()*0.5f, GameData::getInstance()->getRaHConversion()*0.5f);    currentGoalImg->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalImg->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
+    currentGoalImg->setName("currentGoalImg");
+    Menu* goalMenu = Menu::create(currentGoalImg, NULL);
+    goalMenu->setName("currentGoalMenu");
+    goalMenu->setPosition(Vec2(0, 0));
+ 
     
     auto goalCompletedSprite = Sprite::create("gui/goals/CompletedGoal.png");
     auto currentGoalProgress = ProgressTimer::create(goalCompletedSprite);
-    currentGoalProgress->setPosition(Vec2(currentGoalSprite->getContentSize().width / 2, currentGoalSprite->getContentSize().height / 2));
+    currentGoalProgress->setPosition(Vec2(currentGoalImg->getContentSize().width / 2, currentGoalImg->getContentSize().height / 2));
     currentGoalProgress->setType(ProgressTimer::Type::BAR);
     currentGoalProgress->setMidpoint(Vec2(0, 0));
     currentGoalProgress->setBarChangeRate(Vec2(0, 1));
     currentGoalProgress->setName("currentGoalProgress");
     currentGoalProgress->setPercentage(0.0);
-    currentGoalSprite->addChild(currentGoalProgress, 5);
-    this->addChild(currentGoalSprite, 5);
+    currentGoalImg->addChild(currentGoalProgress, 5);
+    this->addChild(goalMenu, 2);
 
     //QUIT / RETRY
     Vector<MenuItem*> quitRetryVec;
@@ -229,6 +232,13 @@ bool UIGameplayMap::init()
         
         CCLOG("MAX RESOURCES: Wood %d, Mineral %d", Agent::_resourcesPoolMax.at(0), Agent::_resourcesPoolMax.at(1));
     }
+
+    // information map
+    _infoMap = Sprite::create("maps/info/"+GameLevel::getInstance()->getMapFilename()+".png");
+    _infoMap->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
+    _infoMap->setName("infoMap");
+    _infoMap->setOpacity(0);
+    gameplayMap->addChild(_infoMap, 2);
 
     GameLevel::getInstance()->setUIGameplayMap(this);
 
@@ -1284,7 +1294,7 @@ void UIGameplayMap::attributeSelectionCallback(Ref* pSender)
         }
     }
 }
-
+    
 void UIGameplayMap::quitCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
@@ -1725,8 +1735,8 @@ void UIGameplayMap::moveGoalPopup(int index)
             nextArea->setOpacity(255);
         }
         
-        auto currentGoal = (Sprite*) this->getChildByName("currentGoalSprite");
-        currentGoal->setTexture(getGoalIcon(goal));
+        auto currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
+        currentGoal->setNormalImage(Sprite::create(getGoalIcon(goal)));
         ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(0.0);
     }
 }
@@ -2365,7 +2375,20 @@ void UIGameplayMap::update(float delta)
                 labelInfluenced->setString(to_string(Agent::_numInfluenced.at(0)));
                 labelInfluenced->setPosition(Vec2(x, y));
                 labelInfluenced->runAction(Sequence::create(FadeIn::create(0.1), MoveBy::create(0.2, Vec2(0, 5.0)), FadeOut::create(0.1), NULL));
+            }   
+            
+                
+            MenuItemImage * currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
+            if(currentGoal->isSelected())
+            {
+                //make your jelly action effect run here
+                _infoMap->setOpacity(255);
             }
+            else
+            {
+                _infoMap->setOpacity(0);
+            }
+
             // TODO everything stopped if _message?
             updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
             
@@ -2375,7 +2398,16 @@ void UIGameplayMap::update(float delta)
             }
             if (_isMineral)
             {
-                updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+                // 2 resources
+                if(_isWood)
+                {
+                    updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+                }
+                // just mineral
+                else
+                {
+                    updateWave(1, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+                }
             }
             
             //UPDATE PROGRESS RESOURCE GOAL
@@ -2387,7 +2419,8 @@ void UIGameplayMap::update(float delta)
             if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
             {
                 auto resGoal = ((ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i));
-                ((ProgressTimer*)this->getChildByName("currentGoalSprite")->getChildByName("currentGoalProgress"))->setPercentage(float(Agent::_resourcesPool.at(0).at(resGoal->getResourceType())) / float(resGoal->getGoalAmount()) * 100.0);
+                MenuItemImage * currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
+                ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(float(Agent::_resourcesPool.at(0).at(resGoal->getResourceType())) / float(resGoal->getGoalAmount()) * 100.0);
             }
             
             pthread_mutex_unlock(&gameLevelMutex);

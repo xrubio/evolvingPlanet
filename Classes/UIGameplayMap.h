@@ -93,6 +93,8 @@ public:
 
 private:
     Sprite* gameplayMap;
+    // information diagrams for the map
+    Sprite * _infoMap;
     Image* gameplayMapHotSpot;
     //Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;

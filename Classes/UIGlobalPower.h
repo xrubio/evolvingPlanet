@@ -34,9 +34,9 @@ class UIGlobalPower : public UIPower {
 public:
     UIGlobalPower(Power* p = 0);
     
-    void onTouchesBegan(Point touchLocation);
+    void onTouchesBegan(const Point & touchLocation);
     void onTouchesMoved(Touch* touchLocation);
-    bool onTouchesEnded(Point touchLocation);
+    bool onTouchesEnded(const Point & touchLocation);
     void update(float delta);
 };
 

@@ -65,7 +65,7 @@ Sprite* UIAreaPower::getArea(void)
     return area;
 }
 
-void UIAreaPower::onTouchesBegan(Point touchLocation)
+void UIAreaPower::onTouchesBegan(const Point & touchLocation)
 {
     // do nothing if it's working or there are not enough EPs
     if(power->isActivated() or disabled == true)
@@ -98,7 +98,7 @@ void UIAreaPower::onTouchesMoved(Touch* touchLocation)
     }
 }
 
-bool UIAreaPower::onTouchesEnded(Point touchLocation)
+bool UIAreaPower::onTouchesEnded(const Point & touchLocation)
 {
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (clicked) {

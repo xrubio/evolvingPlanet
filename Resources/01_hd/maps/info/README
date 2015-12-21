@@ -1,0 +1,17 @@
+
+how to create the mapHint:
+
+1. Open map from artwork hd
+2. Create a layer using Background map and scale it to map 1
+3. For each color select zone and paint it with appropiate color:
+    - Resource Mineral: 167/167/167
+    - Resource Wood: 68/103/42
+    - Impassable: 82/82/82
+    - Desert: 233/255/113
+    - Terraforming:
+    - Forest: 0/179/49
+
+4. Apply Gaussian Blur to layer with size 30
+5. Remove other layers
+6. Set transparency to 70
+

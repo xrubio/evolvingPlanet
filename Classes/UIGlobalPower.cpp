@@ -56,7 +56,7 @@ UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
     icon->addChild(active, 100);
 }
 
-void UIGlobalPower::onTouchesBegan(Point touchLocation)
+void UIGlobalPower::onTouchesBegan(const Point & touchLocation)
 {
     // do nothing if it's working or there are not enough EPs
     if(power->isActivated() or disabled == true)
@@ -79,7 +79,7 @@ void UIGlobalPower::onTouchesMoved(Touch* touchLocation)
 {
 }
 
-bool UIGlobalPower::onTouchesEnded(Point touchLocation)
+bool UIGlobalPower::onTouchesEnded(const Point & touchLocation)
 {
     icon->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     if (GameLevel::getInstance()->getUIGameplayMap()->selectSpriteForTouch(icon, touchLocation) and clicked)

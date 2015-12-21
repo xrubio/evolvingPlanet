@@ -47,9 +47,9 @@ public:
     void setClicked(bool b);
     Sprite* getIcon(void);
 
-    virtual void onTouchesBegan(Point touchLocation) = 0;
+    virtual void onTouchesBegan(const Point & touchLocation) = 0;
     virtual void onTouchesMoved(Touch* touchLocation) = 0;
-    virtual bool onTouchesEnded(Point touchLocation) = 0;
+    virtual bool onTouchesEnded(const Point & touchLocation) = 0;
     virtual void update(float delta) = 0;
     
     bool disabled = false;
