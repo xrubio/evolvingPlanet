@@ -119,7 +119,13 @@ del que suggereixen les dades arqueològiques</string>
 	<string>INTRODUCCIÓ</string>
 	<key>CONTEXT_TITLE_DEPLOYMENT</key>
 	<string>DESENVOLUPAMENT</string>
+    <key>OF</key>
+    <string>de</string>
+    <key>ACH_EARNED</key>
+    <string>fites assolides</string>
 	<key>CURRENT_GOAL</key>
 	<string>OBJECTIU</string>
+	<key>SKIP</key>
+	<string>SALTAR</string>
 </dict>
 </plist>

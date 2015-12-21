@@ -75,7 +75,7 @@ bool UIGoals::init()
     hexagonButtonLevel1->setEnabled(false);
     this->addChild(hexagonButtonLevel1, 1);
     
-    auto title = Label::createWithTTF(LocalizedString::create("GOALS"), "fonts/arial_rounded_mt_bold.ttf", 180);
+    auto title = Label::createWithTTF(LocalizedString::create("GOALS"), "fonts/arial.ttf", 180);
     title->setPosition(Vec2(visibleSize.width / 2,
         visibleSize.height - ((visibleSize.height / 8))));
     //this->addChild(title, 1);
@@ -129,7 +129,7 @@ bool UIGoals::init()
     layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
     layoutContextIntroduction->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
-    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "Arial Rounded MT Bold", 50 * GameData::getInstance()->getRaConversion());
+    auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel()) + "_INTRO").c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "fonts/arial.ttf", 50 * GameData::getInstance()->getRaConversion());
     contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     contextIntroduction->setScaleX(GameData::getInstance()->getRaWConversion());
@@ -348,7 +348,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     featuresLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(featuresLabel);
     
-    auto attributesLabel = Label::createWithTTF(LocalizedString::create("ATTRIBUTES"), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
+    auto attributesLabel = Label::createWithTTF(LocalizedString::create("ATTRIBUTES"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     attributesLabel->setPosition(Vec2(6 * visibleSize.width / 42, 22 * visibleSize.height / 31));
     attributesLabel->setColor(Color3B::WHITE);
     attributesLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -363,7 +363,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         std::string attributeLine = LocalizedString::create(attributeName.c_str()) + " - " +  LocalizedString::create(descriptionName.c_str());
 
         //ATRIBUT MODIFICABLE
-        auto attLabel = Label::createWithTTF(attributeLine, "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
+        auto attLabel = Label::createWithTTF(attributeLine, "fonts/arial.ttf", 50 * GameData::getInstance()->getRaConversion());
         attLabel->setPosition(Vec2(7 * visibleSize.width / 42, (20 - (i * 2)) * visibleSize.height / 31));
         attLabel->setColor(Color3B(211, 230, 236));
         attLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -372,7 +372,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         layout->addChild(attLabel);
     }
     
-    auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/arial_rounded_mt_bold.ttf", 60 * GameData::getInstance()->getRaConversion());
+    auto powersLabel = Label::createWithTTF(LocalizedString::create("POWERS"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     powersLabel->setPosition(Vec2(6 * visibleSize.width / 42, 13 * visibleSize.height / 31));
     powersLabel->setColor(Color3B::WHITE);
     powersLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -386,7 +386,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         layout->addChild(power->getIcon());
 
         std::string boostLine = "DESCRIPTION_"+GameLevel::getInstance()->getPowers().at(i)->getName();
-        auto powerLabel = Label::createWithTTF(LocalizedString::create(boostLine.c_str()), "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
+        auto powerLabel = Label::createWithTTF(LocalizedString::create(boostLine.c_str()), "fonts/arial.ttf", 50 * GameData::getInstance()->getRaConversion());
         powerLabel->setPosition(Vec2(11 * visibleSize.width / 42, (10 - (i * 4)) * visibleSize.height / 31));
         powerLabel->setColor(Color3B(211, 230, 236));
         powerLabel->setAnchorPoint(Vec2(0, 0.5));
@@ -397,7 +397,7 @@ void UIGoals::setLevelGoals(Layout* layout)
     //POWERS NOT AVAILABLE
     if( GameLevel::getInstance()->getPowers().size() == 0)
     {
-        auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/arial_rounded_mt_bold.ttf", 70 * GameData::getInstance()->getRaConversion());
+        auto powersNotAvailableLabel = Label::createWithTTF(LocalizedString::create("NOT_AVAILABLE"), "fonts/arial.ttf", 70 * GameData::getInstance()->getRaConversion());
         powersNotAvailableLabel->setPosition(Vec2(7 * visibleSize.width / 42, 10 * visibleSize.height / 31));
         powersNotAvailableLabel->setColor(Color3B::GRAY);
         powersNotAvailableLabel->setAnchorPoint(Vec2(0, 0.5));

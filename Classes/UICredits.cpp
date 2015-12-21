@@ -207,13 +207,13 @@ void UICredits::simulpast(Layout* layout)
     
     //SIMULPAST
     
-    auto configLabel = Label::createWithTTF(LocalizedString::create("SIMULPAST_TITLE"), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("SIMULPAST_TITLE"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
-    configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
+    configLabel->setAnchorPoint(Vec2(0.5, 0.5));
+    configLabel->setPosition(Vec2(0.5f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
         
-    auto simulText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("SIMULPAST_TEXT"), Size(0.9f*popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height), TextHAlignment::LEFT, "fonts/arial_rounded_mt_bold.ttf", 45 * GameData::getInstance()->getRaConversion());
+    auto simulText = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create("SIMULPAST_TEXT"), Size(0.9f*popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height), TextHAlignment::LEFT, "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
     simulText->setColorSpaceHolder(Color3B(216, 229, 235));
     simulText->setAnchorPoint(Vec2(0, 0.5));
     simulText->setPosition(Vec2(0.05f * popupBackground->getContentSize().width, 0.5f * popupBackground->getContentSize().height));
@@ -230,7 +230,7 @@ void UICredits::simulpast(Layout* layout)
 
 void UICredits::createGroup( const std::string & groupName, float x, float y, Sprite * background)
 {
-    auto label = Label::createWithTTF(LocalizedString::create(groupName.c_str()), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    auto label = Label::createWithTTF(LocalizedString::create(groupName.c_str()), "fonts/BebasNeue.otf", 65 * GameData::getInstance()->getRaConversion());
     label->setColor(Color3B(216, 229, 235));
     label->setAnchorPoint(Vec2(0, 0.5));
     label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
@@ -240,7 +240,7 @@ void UICredits::createGroup( const std::string & groupName, float x, float y, Sp
 
 void UICredits::createName( const std::string & name, float x, float y, Sprite * background)
 {   
-    auto label = Label::createWithTTF(name, "fonts/arial_rounded_mt_bold.ttf", 50 * GameData::getInstance()->getRaConversion());
+    auto label = Label::createWithTTF(name, "fonts/arial.ttf", 45 * GameData::getInstance()->getRaConversion());
     label->setColor(Color3B(216, 229, 235));
     label->setAnchorPoint(Vec2(0, 0.5));
     label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
@@ -257,10 +257,10 @@ void UICredits::murphysToastStudios(Layout* layout)
     layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //MURPHYS TOAST
-    auto configLabel = Label::createWithTTF(LocalizedString::create("MURPHY"), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("MURPHY"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
-    configLabel->setAnchorPoint(Vec2(0, 0.5));
-    configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
+    configLabel->setAnchorPoint(Vec2(0.5, 0.5));
+    configLabel->setPosition(Vec2(0.5f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
     popupBackground->addChild(configLabel);
 
     // first column
@@ -298,7 +298,7 @@ void UICredits::murphysToastStudios(Layout* layout)
 
 void UICredits::createAcknowledgment( const std::string & name, float x, float y, Sprite * background)
 {   
-    auto label = Label::createWithTTF(name, "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+    auto label = Label::createWithTTF(name, "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
     label->setColor(Color3B(216, 229, 235));
     label->setAnchorPoint(Vec2(0, 0.5));
     label->setPosition(Vec2(x * background->getContentSize().width, y * background->getContentSize().height));
@@ -346,7 +346,7 @@ void UICredits::specialThanks1(Layout* layout)
     
     //THANKS 1
     
-    auto configLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_THANKS"), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
+    auto configLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_THANKS"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
     configLabel->setAnchorPoint(Vec2(0, 0.5));
     configLabel->setPosition(Vec2(0.36f * popupBackground->getContentSize().width, 0.9f*popupBackground->getContentSize().height));
