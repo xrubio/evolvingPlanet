@@ -32,7 +32,7 @@ ResourcesGoal::ResourcesGoal(int agType, int min, int max, int average, int des2
 {
 }
 
-int ResourcesGoal::getGoalAmount(void)
+int ResourcesGoal::getGoalAmount(void) const
 {
     return goalAmount;
 }
@@ -42,7 +42,7 @@ void ResourcesGoal::setGoalAmount(int goalAm)
     goalAmount = goalAm;
 }
 
-int ResourcesGoal::getResourceType(void)
+int ResourcesGoal::getResourceType(void) const
 {
     return _resourceType;
 }

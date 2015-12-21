@@ -49,7 +49,7 @@ void Trade::execute(Agent* agent)
         if(GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and (typeCpu =GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()) != type)
         {
             //calculate which resource take
-            float total = Agent::_resourcesPool.at(typeCpu).at(Wood) + Agent::_resourcesPool.at(typeCpu).at(Mineral) + Agent::_resourcesPool.at(typeCpu).at(Stone);
+            float total = Agent::_resourcesPool.at(typeCpu).at(Wood) + Agent::_resourcesPool.at(typeCpu).at(Mineral);
             float pWood = float(Agent::_resourcesPool.at(typeCpu).at(Wood)) / total;
             float pMineral = float(Agent::_resourcesPool.at(typeCpu).at(Mineral)) / total;
             
@@ -60,13 +60,9 @@ void Trade::execute(Agent* agent)
             {
                 resourceTaken = Wood;
             }
-            else if (prob < pWood + pMineral)
-            {
-                resourceTaken = Mineral;
-            }
             else
             {
-                resourceTaken = Stone;
+                resourceTaken = Mineral;
             }
             
             //check if the poblation has resources

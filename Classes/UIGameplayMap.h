@@ -123,7 +123,7 @@ private:
     std::vector<Vec2*> *numAgentsEvolutionPoints;
     PointArray *numAgentsEvolution;
     int indexAgentsEvolution = 0;
-    // 0 = population, 1 = wood, 2 = mineral, 3 = stone
+    // 0 = population, 1 = wood, 2 = mineral
     vector<WaveNode*> waveNodes;
 
     Label* timeSteps;
@@ -189,6 +189,9 @@ private:
     void restoreGameplayMap(void);
     void updateAttributesButtons(void);
 
+
+    // return the path to the goal icon depending on type and resourceType
+    std::string getGoalIcon( const Goal * goal ) const;
 public:
     // tutorial related methods
     void setMessage(const Message * message);

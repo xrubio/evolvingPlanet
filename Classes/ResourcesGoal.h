@@ -35,9 +35,9 @@ class ResourcesGoal : public Goal {
 public:
     ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType);
 
-    int getGoalAmount(void);
+    int getGoalAmount(void) const;
     void setGoalAmount(int goalAm);
-    int getResourceType(void);
+    int getResourceType(void) const;
 
     bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const

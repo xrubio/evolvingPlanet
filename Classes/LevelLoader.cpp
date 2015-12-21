@@ -243,10 +243,6 @@ void LevelLoader::loadXmlFile(const std::string & filename)
             {
                 resourceType = Mineral;
             }
-            else if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "STONE", 5) == 0)
-            {
-                resourceType = Stone;
-            }
             auto cg = new ResourcesGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount, resourceType);
             GameLevel::getInstance()->addGoal(cg);
         }

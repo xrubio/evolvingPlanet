@@ -37,8 +37,7 @@ using namespace std;
 enum Resources
 {
     Wood = 0,
-    Mineral = 1,
-    Stone = 2
+    Mineral = 1
 };
 
 class Agent {
@@ -51,9 +50,9 @@ public:
     static std::vector<int> _numInfluenced;
     // number of agents that can trade resources on a given time step
     static std::vector<int> _numTraded;
-    // pool of resources -> Wood, Mineral, Stone
+    // pool of resources -> Wood, Mineral
     static std::vector< std::vector<int> > _resourcesPool;
-    // pool of max resources -> Wood, Mineral, Stone
+    // pool of max resources -> Wood, Mineral
     static std::vector<int> _resourcesPoolMax;
 
     Agent(int i = 0, int lf = 0, int t = 0, int posx = 0, int posy = 0);

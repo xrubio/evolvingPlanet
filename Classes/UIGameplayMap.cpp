@@ -135,19 +135,16 @@ bool UIGameplayMap::init()
     currentGoalLabel->setPosition(Vec2(12 * visibleSize.width / 204, 140 * visibleSize.height / 155));
     this->addChild(currentGoalLabel, 5);
     
-    string currGoal = "Dispersal";
-    if (GameLevel::getInstance()->getGoals().at(0)->getGoalType() == Resources)
-    {
-        currGoal = "Resources";
-    }
-    else if (GameLevel::getInstance()->getGoals().at(0)->getGoalType() == Population)
-    {
-        currGoal = "Population";
-    }
-    auto currentGoalSprite = Sprite::create("gui/goals/"+currGoal+"Goal.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/goals/ResourcesMineralGoal.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/goals/ResourcesWoodGoal.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/goals/DispersalGoal.png");
+    Director::getInstance()->getTextureCache()->addImage("gui/goals/PopulationGoal.png");
+
+    auto currentGoalSprite = Sprite::create(getGoalIcon(GameLevel::getInstance()->getGoals().at(0)));
     currentGoalSprite->setAnchorPoint(Vec2(0, 0.5));
     currentGoalSprite->setScale(GameData::getInstance()->getRaWConversion()*0.5f, GameData::getInstance()->getRaHConversion()*0.5f);    currentGoalSprite->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalSprite->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
     currentGoalSprite->setName("currentGoalSprite");
+  
     
     auto goalCompletedSprite = Sprite::create("gui/goals/CompletedGoal.png");
     auto currentGoalProgress = ProgressTimer::create(goalCompletedSprite);
@@ -223,14 +220,14 @@ bool UIGameplayMap::init()
             for(int y = 1; y <= 320; y++)
             {
                 int valueAtMap = getValueAtGameplayMap(2,x,y);
-                if (valueAtMap < 4)
+                if (valueAtMap < 3)
                 {
                     Agent::_resourcesPoolMax.at(valueAtMap)++;
                 }
             }
         }
         
-        CCLOG("MAX RESOURCES: Wood %d, Mineral %d, Stone %d", Agent::_resourcesPoolMax.at(0), Agent::_resourcesPoolMax.at(1), Agent::_resourcesPoolMax.at(2));
+        CCLOG("MAX RESOURCES: Wood %d, Mineral %d", Agent::_resourcesPoolMax.at(0), Agent::_resourcesPoolMax.at(1));
     }
 
     GameLevel::getInstance()->setUIGameplayMap(this);
@@ -544,13 +541,6 @@ bool UIGameplayMap::init()
     mineralNode->setReadyToDrawDynamicVerts(true);
     mineralNode->setName("mineral");
     waveNodes.push_back(mineralNode);
-    
-    auto stoneNode = new WaveNode();
-    stoneNode->init();
-    stoneNode->glDrawMode = kDrawLines;
-    stoneNode->setReadyToDrawDynamicVerts(true);
-    stoneNode->setName("stone");
-    waveNodes.push_back(stoneNode);
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1517,7 +1507,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
         graphicBackground->addChild(waveNodes.at(1), 1, 1);
         agentColor = 1;
         graphicLabel->setString("WOOD");
-        graphicCounterLabel->setString("( 2 / 4 )");
+        graphicCounterLabel->setString("( 2 / 3 )");
     }
     else if (name == "wood")
     {
@@ -1525,23 +1515,15 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
         graphicBackground->addChild(waveNodes.at(2), 1, 1);
         agentColor = 2;
         graphicLabel->setString("MINERAL");
-        graphicCounterLabel->setString("( 3 / 4 )");
+        graphicCounterLabel->setString("( 3 / 3 )");
     }
     else if (name == "mineral")
     {
         graphicBackground->removeChild(waveNodes.at(2));
-        graphicBackground->addChild(waveNodes.at(3), 1, 1);
-        agentColor = 3;
-        graphicLabel->setString("STONE");
-        graphicCounterLabel->setString("( 4 / 4 )");
-    }
-    else if (name == "stone")
-    {
-        graphicBackground->removeChild(waveNodes.at(3));
         graphicBackground->addChild(waveNodes.at(0), 1, 1);
         agentColor = 0;
         graphicLabel->setString("AGENTS");
-        graphicCounterLabel->setString("( 1 / 4 )");
+        graphicCounterLabel->setString("( 1 / 3 )");
     }
 }
 
@@ -1649,6 +1631,29 @@ bool UIGameplayMap::selectSpriteForTouch(Node* sprite, Point touchLocation)
     return sprite->getBoundingBox().containsPoint(touchLocation);
 }
 
+std::string UIGameplayMap::getGoalIcon( const Goal * goal ) const
+{
+    string currGoal = "Dispersal";
+    if (goal->getGoalType() == Resources)
+    {
+        auto goalResources = (ResourcesGoal*)goal;
+        if(goalResources->getResourceType()==Wood)
+        {
+            currGoal = "ResourcesWood";
+        }
+        // mineral
+        else
+        {
+            currGoal = "ResourcesMineral";
+        }
+    }
+    else if (goal->getGoalType() == Population)
+    {
+        currGoal = "Population";
+    }
+    return "gui/goals/"+currGoal+"Goal.png";
+}
+
 void UIGameplayMap::moveGoalPopup(int index)
 {
     Goal * goal = GameLevel::getInstance()->getGoals().at(index);
@@ -1711,16 +1716,7 @@ void UIGameplayMap::moveGoalPopup(int index)
         }
         
         auto currentGoal = (Sprite*) this->getChildByName("currentGoalSprite");
-        string currGoal = "Dispersal";
-        if (goal->getGoalType() == Resources)
-        {
-            currGoal = "Resources";
-        }
-        else if (goal->getGoalType() == Population)
-        {
-            currGoal = "Population";
-        }
-        currentGoal->setTexture("gui/goals/"+currGoal+"Goal.png");
+        currentGoal->setTexture(getGoalIcon(goal));
         ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(0.0);
     }
 }
@@ -2079,10 +2075,6 @@ void UIGameplayMap::updateAgents(void)
             case 2:
                 color = Color4B(229, 232, 5, 255);
                 break;
-            //stone
-            case 3:
-                color = Color4B(225, 144, 57, 255);
-                break;
             //normal
             default:
                 switch ((*it)->getType()) {
@@ -2368,7 +2360,6 @@ void UIGameplayMap::update(float delta)
             updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
             updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(0, 249, 105, 255));
             updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
-            updateWave(3, Agent::_resourcesPool.at(0).at(Stone), Agent::_resourcesPoolMax.at(Stone), Color4B(225, 144, 57, 255));
             
             //UPDATE PROGRESS RESOURCE GOAL
             int i = 0;
