@@ -142,7 +142,8 @@ bool UIGameplayMap::init()
 
     auto currentGoalImg = MenuItemImage::create(getGoalIcon(GameLevel::getInstance()->getGoals().at(0)), getGoalIcon(GameLevel::getInstance()->getGoals().at(0)));
     currentGoalImg->setAnchorPoint(Vec2(0, 0.5));
-    currentGoalImg->setScale(GameData::getInstance()->getRaWConversion()*0.5f, GameData::getInstance()->getRaHConversion()*0.5f);    currentGoalImg->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalImg->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
+    currentGoalImg->setScale(GameData::getInstance()->getRaWConversion()*0.6f, GameData::getInstance()->getRaHConversion()*0.6f);
+    currentGoalImg->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalImg->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
     currentGoalImg->setName("currentGoalImg");
     Menu* goalMenu = Menu::create(currentGoalImg, NULL);
     goalMenu->setName("currentGoalMenu");
@@ -2651,7 +2652,7 @@ void UIGameplayMap::updateLegend(bool visible)
     
     // update position
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    getChildByName("legend")->setPosition(0.05f*visibleSize.width, 0.2f*visibleSize.height);
+    getChildByName("legend")->setPosition(0.05f*visibleSize.width, 0.25f*visibleSize.height);
 
     // if visible==true and not currently visible
     if(!_infoMap->isVisible())
@@ -2669,7 +2670,7 @@ void UIGameplayMap::createLegendEntries()
     int heightOffset = 0.0f;
     for(size_t i=0;i <GameLevel::getInstance()->getLegendSize(); i++)
     {
-        auto newEntry = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->getLegendName(i).c_str()), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+        auto newEntry = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->getLegendName(i).c_str()), "fonts/arial_rounded_mt_bold.ttf", 45 * GameData::getInstance()->getRaConversion());
         newEntry->setAnchorPoint(Vec2(0.0, 0.0));
         newEntry->setColor(GameLevel::getInstance()->getLegendColor(i));
         newEntry->setPosition(0.0f, heightOffset);
