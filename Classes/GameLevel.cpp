@@ -60,12 +60,12 @@ void GameLevel::setUIGameplayMap(UIGameplayMap* gmplmap)
     gameplayMap = gmplmap;
 }
 
-string GameLevel::getMapFilename(void)
+const std::string & GameLevel::getMapFilename() const
 {
     return mapFilename;
 }
 
-void GameLevel::setMapFilename(string filename)
+void GameLevel::setMapFilename(const std::string & filename)
 {
     mapFilename = filename;
 }
@@ -552,7 +552,9 @@ void GameLevel::resetLevel(void)
     _depletedVector.clear();
     _restoredVector.clear();
     _terraformedVector.clear();
-        
+
+    _legendNames.clear();
+    _legendColors.clear();
 }
 
 void GameLevel::createLevel(void)

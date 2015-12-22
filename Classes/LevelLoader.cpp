@@ -39,7 +39,7 @@
 #include "Power.h"
 #include "Influence.h"
 
-#include "cocos2d.h"
+#include <cocos2d.h>
 
 void LevelLoader::loadXmlFile(const std::string & filename)
 {
@@ -63,8 +63,19 @@ void LevelLoader::loadXmlFile(const std::string & filename)
     //NUM_LEVEL
     GameLevel::getInstance()->setNumLevel(atoi(doc.child_value("NUM_LEVEL")));
     //NAME_LEVEL
-    //FILE_MAP
-    GameLevel::getInstance()->setMapFilename(doc.child_value("FILE_MAP"));
+    //MAP
+    xml_node mapInfo = doc.child("MAP");
+    CCLOG("file: %s", mapInfo.attribute("FILE").value());
+    GameLevel::getInstance()->setMapFilename(mapInfo.attribute("FILE").value());
+    mapInfo = mapInfo.child("LEGEND").child("ENTRY");
+    while(mapInfo != nullptr)
+    {
+        std::string entryName = mapInfo.attribute("NAME").value();
+        cocos2d::Color3B entryColor(mapInfo.attribute("R").as_int(), mapInfo.attribute("G").as_int(), mapInfo.attribute("B").as_int()); 
+        GameLevel::getInstance()->addEntryToLegend(entryName, entryColor);
+        mapInfo = mapInfo.next_sibling("ENTRY");
+    }
+
     //AGENTS_PIXEL_SIZE
     GameLevel::getInstance()->setAgentPixelSize(atoi(doc.child_value("AGENTS_PIXEL_SIZE")));
     //EVPOINTS_FREQ
@@ -269,7 +280,7 @@ string LevelLoader::getLevelFileMap(const std::string & filename)
     result = doc.load_file(fullPath.c_str());
 #endif
     
-    return doc.child_value("FILE_MAP");
+    return doc.child("MAP").attribute("FILE").value();
 }
 
 vector<string> LevelLoader::getGoalTypes(const std::string & filename)

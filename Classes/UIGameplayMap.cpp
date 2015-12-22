@@ -189,15 +189,8 @@ bool UIGameplayMap::init()
             resourcesMap = true;
         }
     }
-    if (resourcesMap) {
-        /*gameplayMapResources = new Image();
-        gameplayMapResources->initWithImageFile(map + resources + ext);
-        x = 3;
-        if (gameplayMapResources->hasAlpha()) {
-            x = 4;
-        }
-        dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
-        dataGameplayMapResources = gameplayMapResources->getData();*/
+    if (resourcesMap)
+    {
 
         exploitedMapTexture = new Texture2D;
         auto im = new Image();
@@ -237,7 +230,9 @@ bool UIGameplayMap::init()
     _infoMap = Sprite::create("maps/info/"+GameLevel::getInstance()->getMapFilename()+".png");
     _infoMap->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
     _infoMap->setName("infoMap");
-    _infoMap->setOpacity(0);
+    _infoMap->setCascadeOpacityEnabled(true);
+    createLegendEntries();
+    _infoMap->setVisible(false);
     gameplayMap->addChild(_infoMap, 2);
 
     GameLevel::getInstance()->setUIGameplayMap(this);
@@ -2379,15 +2374,7 @@ void UIGameplayMap::update(float delta)
             
                 
             MenuItemImage * currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
-            if(currentGoal->isSelected())
-            {
-                //make your jelly action effect run here
-                _infoMap->setOpacity(255);
-            }
-            else
-            {
-                _infoMap->setOpacity(0);
-            }
+            updateLegend(currentGoal->isSelected());
 
             // TODO everything stopped if _message?
             updateWave(0, int(GameLevel::getInstance()->getAgents().at(0).size()), GameLevel::getInstance()->getMaxAgents().at(0), Color4B(179, 205, 221, 255));
@@ -2610,5 +2597,47 @@ void UIGameplayMap::updateAttributesButtons(void)
             minus->setEnabled(false);
         }
     }
+}
+
+void UIGameplayMap::updateLegend(bool visible)
+{
+    if(!visible && _infoMap->isVisible())
+    {
+        _infoMap->setVisible(visible);
+        getChildByName("legend")->setVisible(visible);
+        return;
+    }
+    
+    // update position
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    getChildByName("legend")->setPosition(0.05f*visibleSize.width, 0.2f*visibleSize.height);
+
+    // if visible==true and not currently visible
+    if(!_infoMap->isVisible())
+    {
+        _infoMap->setVisible(visible);
+        getChildByName("legend")->setVisible(visible);
+    }
+}
+    
+void UIGameplayMap::createLegendEntries()
+{
+    auto node = Node::create();
+    node->setName("legend");
+
+    int heightOffset = 0.0f;
+    for(size_t i=0;i <GameLevel::getInstance()->getLegendSize(); i++)
+    {
+        auto newEntry = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->getLegendName(i).c_str()), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+        newEntry->setAnchorPoint(Vec2(0.0, 0.0));
+        newEntry->setColor(GameLevel::getInstance()->getLegendColor(i));
+        newEntry->setPosition(0.0f, heightOffset);
+        newEntry->enableOutline(Color4B(50,50,50,255), 2);
+
+        heightOffset += newEntry->getContentSize().height;
+        node->addChild(newEntry);
+    }
+    this->addChild(node);
+    updateLegend(false);
 }
 

@@ -82,8 +82,9 @@ public:
 
     UIGameplayMap * getUIGameplayMap(void);
     void setUIGameplayMap(UIGameplayMap* gmplmap);
-    string getMapFilename(void);
-    void setMapFilename(string filename);
+    const std::string & getMapFilename(void) const;
+    void setMapFilename(const std::string & filename);
+
     std::vector<int> getMaxAgents(void);
     void setMaxAgents(std::vector<int> max);
     int getMaxAgent(int type);
@@ -199,6 +200,12 @@ public:
     
     void clearRestored(void);
     void clearTerraformedVector(void);
+
+    // add name to legendNames and color to legendColors to display as mapInfo legend
+    void addEntryToLegend( const std::string & name, const cocos2d::Color3B & color) { _legendNames.push_back(name); _legendColors.push_back(color); }
+    size_t getLegendSize() const { return _legendNames.size(); }
+    const std::string & getLegendName(int index) const { return _legendNames.at(index); }
+    const cocos2d::Color3B & getLegendColor(int index) const { return _legendColors.at(index); }
  
 private:
     static GameLevel* gamelevelInstance;
@@ -225,6 +232,10 @@ private:
     std::vector<Act*> actions;
     std::vector<Goal*> goals;
     Agent* _agentsMap[480][320];
+
+    // get legend names and colors for displaying legend of mapInfo
+    std::vector<std::string> _legendNames;
+    std::vector<cocos2d::Color3B> _legendColors;
     
     //completed achievements to show (key words corresponding to title in achievement_lang)
     vector<string> completedAchievements;

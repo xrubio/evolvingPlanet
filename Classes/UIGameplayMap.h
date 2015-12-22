@@ -95,6 +95,10 @@ private:
     Sprite* gameplayMap;
     // information diagrams for the map
     Sprite * _infoMap;
+    // create text and color for legend of _infoMap
+    void createLegendEntries();
+    void updateLegend(bool visible);
+
     Image* gameplayMapHotSpot;
     //Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;
