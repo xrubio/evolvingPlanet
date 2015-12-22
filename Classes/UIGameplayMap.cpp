@@ -673,11 +673,13 @@ bool UIGameplayMap::init()
     
     //SET FIRST GOAL ON MAP
     auto goal = DrawNode::create();
-    graphicBackground->addChild(goal);
     goal->setName("goal");
+    graphicBackground->addChild(goal);
     auto firstGoal = GameLevel::getInstance()->getGoals().at(0);
+    // ONLY POPULATION GOAL
     if(firstGoal->getGoalType() == Resources)
     {
+        /*
         auto goalCollection = (ResourcesGoal*)firstGoal;
 
         float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
@@ -687,7 +689,7 @@ bool UIGameplayMap::init()
         
         goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
         
-        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
+        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));*/
     }
     else
     {
@@ -1537,10 +1539,50 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         i++;
     }
+    string currentName = waveNodes.at(i)->getName();
     graphicBackground->addChild(waveNodes.at(i), 1, 1);
     agentColor = i;
-    graphicLabel->setString(waveNodes.at(i)->getName());
-    graphicCounterLabel->setString("( " + to_string(i+1) + " / 3 )");
+    graphicLabel->setString(currentName);
+    
+    int numResources = 1;
+    if (_isWood)
+    {
+        numResources++;
+    }
+    if (_isMineral)
+    {
+        numResources++;
+    }
+    graphicCounterLabel->setString("( " + to_string(i+1) + " / " + to_string(numResources) + " )");
+    
+    auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
+    goal->clear();
+    
+    i = 0;
+    while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals().at(i)->getCompleted() == true)
+    {
+        i++;
+    }
+    if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
+    {
+        auto goalCollection = (ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i);
+        int graphResource = Wood;
+        if (currentName == "MINERAL")
+        {
+            graphResource = Mineral;
+        }
+        if (goalCollection->getResourceType() == graphResource)
+        {
+            float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+        
+                // Space the verticies out evenly across the screen for the wave.
+            float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+        
+            goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+        
+            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
+        }
+    }
 }
 
 void UIGameplayMap::skipTutorial(Ref* pSender)
@@ -1715,10 +1757,9 @@ void UIGameplayMap::moveGoalPopup(int index)
             // Space the verticies out evenly across the screen for the wave.
             float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
             
-            for (int i = goalCollection->getMinTime(); i < goalCollection->getMaxTime(); i++)
-            {
-                goal->drawPoint(Vec2(vertexHorizontalSpacing * i, height), 5, Color4F::RED);
-            }
+            goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+            
+            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
         }
         else
         {
