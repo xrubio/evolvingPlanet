@@ -49,6 +49,9 @@ public:
 
     vector<int> getLevelsCompleted(void);
     void setLevelsCompleted(vector<int> lvlsCompleted);
+    vector<int> getLevelsFailedForHint(void);
+    void setLevelsFailedForHint(vector<int> lvlsFailedForHint);
+    void setLevelFailedForHint(int lvl);
     vector< vector<Achievement*> > getAchievements(void);
     vector<Achievement*> getAchievements(int i);
     void setAchievements(int i, vector<Achievement*> ach);
@@ -104,6 +107,8 @@ private:
 
     static GameData* gamedataInstance;
     vector<int> levelsCompleted;     //pos = level
+    // if int = 3, show hint
+    vector<int> _levelsFailedForHint;
     //0 = progress achievements, 1-X = level achievements
     vector< vector<Achievement*> > achievements;
     bool gameStarted = false;

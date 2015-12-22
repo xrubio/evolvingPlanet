@@ -60,6 +60,23 @@ void GameData::setLevelsCompleted(vector<int> lvlsCompleted)
     levelsCompleted.swap(lvlsCompleted);
 }
 
+vector<int> GameData::getLevelsFailedForHint(void)
+{
+    return _levelsFailedForHint;
+}
+
+void GameData::setLevelsFailedForHint(vector<int> lvlsFailedForHint)
+{
+    _levelsFailedForHint.swap(lvlsFailedForHint);
+}
+
+void GameData::setLevelFailedForHint(int lvl)
+{
+    _levelsFailedForHint[lvl]++;
+    cocos2d::UserDefault::getInstance()->setIntegerForKey(("failed"+to_string(lvl)).c_str(), _levelsFailedForHint[lvl]);
+    cocos2d::UserDefault::getInstance()->flush();
+}
+
 vector< vector<Achievement*> > GameData::getAchievements(void)
 {
     return achievements;
@@ -394,6 +411,8 @@ void GameData::resetGameProgress(void)
     for (int i = 0; i < levelsCompleted.size(); i++) {
         cocos2d::UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
         levelsCompleted[i] = 0;
+        cocos2d::UserDefault::getInstance()->setIntegerForKey(("failed"+to_string(i)).c_str(), 0);
+        _levelsFailedForHint[i] = 0;
         setTutorial(i+1, true);
     }
     
@@ -410,6 +429,7 @@ void GameData::resetGameProgress(void)
         loadAchievements();
     }
     _firstTimeLevelCompleted = 0;
+    cocos2d::UserDefault::getInstance()->flush();
 }
 
 bool GameData::launchTutorial(int level) const

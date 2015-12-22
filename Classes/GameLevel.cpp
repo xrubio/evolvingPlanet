@@ -552,9 +552,10 @@ void GameLevel::resetLevel(void)
     _depletedVector.clear();
     _restoredVector.clear();
     _terraformedVector.clear();
-
+    
     _legendNames.clear();
     _legendColors.clear();
+        
 }
 
 void GameLevel::createLevel(void)

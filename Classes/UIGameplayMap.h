@@ -75,6 +75,7 @@ public:
     void changeGraphicCallback(Ref* pSender);
     void skipTutorial(Ref* pSender);
     void skipTutorialConfirm(Ref* pSender);
+    void menuHintCallback(Ref* pSender);
 
     int getValueAtGameplayMap(int rgb, int posx, int posy);
     Color4B* getExploitedMapTextureData(void);
@@ -98,7 +99,7 @@ private:
     // create text and color for legend of _infoMap
     void createLegendEntries();
     void updateLegend(bool visible);
-
+    
     Image* gameplayMapHotSpot;
     //Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;

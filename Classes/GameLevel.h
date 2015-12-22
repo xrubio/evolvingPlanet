@@ -84,7 +84,6 @@ public:
     void setUIGameplayMap(UIGameplayMap* gmplmap);
     const std::string & getMapFilename(void) const;
     void setMapFilename(const std::string & filename);
-
     std::vector<int> getMaxAgents(void);
     void setMaxAgents(std::vector<int> max);
     int getMaxAgent(int type);
@@ -200,7 +199,7 @@ public:
     
     void clearRestored(void);
     void clearTerraformedVector(void);
-
+    
     // add name to legendNames and color to legendColors to display as mapInfo legend
     void addEntryToLegend( const std::string & name, const cocos2d::Color3B & color) { _legendNames.push_back(name); _legendColors.push_back(color); }
     size_t getLegendSize() const { return _legendNames.size(); }
@@ -232,7 +231,7 @@ private:
     std::vector<Act*> actions;
     std::vector<Goal*> goals;
     Agent* _agentsMap[480][320];
-
+    
     // get legend names and colors for displaying legend of mapInfo
     std::vector<std::string> _legendNames;
     std::vector<cocos2d::Color3B> _legendColors;

@@ -128,6 +128,24 @@ bool UIGameplayMap::init()
     levelLabel->setPosition(Vec2(12 * visibleSize.width / 204, 148 * visibleSize.height / 155));
     this->addChild(levelLabel, 5);
     
+    if (GameData::getInstance()->getLevelsFailedForHint().at(GameLevel::getInstance()->getNumLevel()) > 2)
+    {
+        auto hintButton = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::menuHintCallback, this), MenuItemImage::create("gui/HintButton.png", "gui/HintButton.png"), MenuItemImage::create("gui/HintButtonPressed.png", "gui/HintButtonPressed.png"), NULL);
+        hintButton->setPosition(Vec2((12 * visibleSize.width / 204) + levelLabel->getBoundingBox().size.width * 1.5, 148 * visibleSize.height / 155));
+        hintButton->setName("hintButton");
+        auto menuHint = Menu::create(hintButton, NULL);
+        menuHint->setName("menuHint");
+        menuHint->setPosition(Vec2::ZERO);
+        this->addChild(menuHint, 5);
+        
+        auto hintBackground = Sprite::create("gui/ConfigurationBackground.png");
+        hintBackground->setScale(0.5);
+        hintBackground->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
+        hintBackground->setName("hintBackground");
+        hintBackground->setVisible(false);
+        this->addChild(hintBackground, 5);
+    }
+    
     auto currentGoalLabel = Label::createWithTTF(LocalizedString::create("CURRENT_GOAL")+":", "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
     currentGoalLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     currentGoalLabel->setColor(Color3B(139, 146, 154));
@@ -190,8 +208,15 @@ bool UIGameplayMap::init()
             resourcesMap = true;
         }
     }
-    if (resourcesMap)
-    {
+    if (resourcesMap) {
+        /*gameplayMapResources = new Image();
+        gameplayMapResources->initWithImageFile(map + resources + ext);
+        x = 3;
+        if (gameplayMapResources->hasAlpha()) {
+            x = 4;
+        }
+        dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
+        dataGameplayMapResources = gameplayMapResources->getData();*/
 
         exploitedMapTexture = new Texture2D;
         auto im = new Image();
@@ -233,8 +258,7 @@ bool UIGameplayMap::init()
     _infoMap->setName("infoMap");
     _infoMap->setCascadeOpacityEnabled(true);
     createLegendEntries();
-    _infoMap->setVisible(false);
-    gameplayMap->addChild(_infoMap, 2);
+    _infoMap->setVisible(false);    gameplayMap->addChild(_infoMap, 2);
 
     GameLevel::getInstance()->setUIGameplayMap(this);
 
@@ -1270,6 +1294,9 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     {
         pauseDarkBackground->setVisible(false);
         GameLevel::getInstance()->play(true);
+        this->getChildByName("hintBackground")->setVisible(false);
+        ((MenuItemToggle*)this->getChildByName("menuHint")->getChildByName("hintButton"))->setSelectedIndex(0);
+
     }
     else
     {
@@ -1616,6 +1643,33 @@ void UIGameplayMap::skipTutorialConfirm(Ref* pSender)
     _eventDispatcher->removeEventListener(_listenerTutorial);
     disableTutorialGUI();
     pauseGame();
+}
+
+void UIGameplayMap::menuHintCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    
+    auto hintButton = (MenuItemToggle*) pSender;
+    if(GameLevel::getInstance()->isPlaying() == false)
+    {
+    }
+    else
+    {
+        pauseGame();
+    }
+    
+    if (hintButton->getSelectedIndex() == 0)
+    {
+        this->getChildByName("hintBackground")->setVisible(false);
+    }
+    else if (hintButton->getSelectedIndex() == 1)
+    {
+        this->getChildByName("hintBackground")->setVisible(true);
+    }
+    
+    hintButton->setSelectedIndex(hintButton->getSelectedIndex());
 }
 
 void UIGameplayMap::createTimingThread(void)
@@ -1988,6 +2042,9 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
         textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
         textLabel->setAlignment(TextHAlignment::CENTER);
         window->addChild(textLabel);
+        
+        //failed vector
+        GameData::getInstance()->setLevelFailedForHint(GameLevel::getInstance()->getNumLevel());
     }
 
     string space = " ";
@@ -1996,7 +2053,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     levelLabel->setColor(Color3B(85, 108, 117));
     levelLabel->setPosition(Vec2(4 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
     window->addChild(levelLabel);
-
+    
     auto continueButton = MenuItemImage::create("gui/ProgressMapPlayButton.png", "gui/ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
     continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
@@ -2661,7 +2718,6 @@ void UIGameplayMap::updateLegend(bool visible)
         getChildByName("legend")->setVisible(visible);
     }
 }
-    
 void UIGameplayMap::createLegendEntries()
 {
     auto node = Node::create();
@@ -2670,9 +2726,9 @@ void UIGameplayMap::createLegendEntries()
     int heightOffset = 0.0f;
     for(size_t i=0;i <GameLevel::getInstance()->getLegendSize(); i++)
     {
-        auto newEntry = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->getLegendName(i).c_str()), "fonts/arial_rounded_mt_bold.ttf", 45 * GameData::getInstance()->getRaConversion());
+        auto newEntry = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->getLegendName(int(i)).c_str()), "fonts/arial.ttf", 45 * GameData::getInstance()->getRaConversion());
         newEntry->setAnchorPoint(Vec2(0.0, 0.0));
-        newEntry->setColor(GameLevel::getInstance()->getLegendColor(i));
+        newEntry->setColor(GameLevel::getInstance()->getLegendColor(int(i)));
         newEntry->setPosition(0.0f, heightOffset);
         newEntry->enableOutline(Color4B(50,50,50,255), 2);
 

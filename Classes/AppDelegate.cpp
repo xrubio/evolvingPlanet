@@ -140,6 +140,13 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     GameData::getInstance()->setLevelsCompleted(levelsCompleted);
     
+    //LOAD LEVELS FAILED
+    vector<int> levelsFailedForHint;
+    for (int i = 0; i < NUM_LEVELS + 1; i++) {
+        levelsFailedForHint.push_back(UserDefault::getInstance()->getIntegerForKey(("failed"+to_string(i)).c_str()));
+    }
+    GameData::getInstance()->setLevelsFailedForHint(levelsFailedForHint);
+    
     // create a scene. it's an autorelease object
     auto scene = UIIntro::createScene();
     // run
