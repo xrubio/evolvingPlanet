@@ -1294,8 +1294,11 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     {
         pauseDarkBackground->setVisible(false);
         GameLevel::getInstance()->play(true);
-        this->getChildByName("hintBackground")->setVisible(false);
-        ((MenuItemToggle*)this->getChildByName("menuHint")->getChildByName("hintButton"))->setSelectedIndex(0);
+        if (GameData::getInstance()->getLevelsFailedForHint().at(GameLevel::getInstance()->getNumLevel()) > 2)
+        {
+            this->getChildByName("hintBackground")->setVisible(false);
+            ((MenuItemToggle*)this->getChildByName("menuHint")->getChildByName("hintButton"))->setSelectedIndex(0);
+        }
 
     }
     else
