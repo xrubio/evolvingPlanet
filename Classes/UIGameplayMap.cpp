@@ -222,23 +222,22 @@ bool UIGameplayMap::init()
         auto im = new Image();
         im->initWithImageFile(map + forest + ext);
         //4 = alpha
-        int x = 3;
-        if (im->hasAlpha()) {
-            x = 4;
-        }
         unsigned char* data = new unsigned char[im->getDataLen() * 4];
         data = im->getData();
         
         exploitedMapTexture->initWithData(exploitedMapTextureData, GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
+                
         for (int i = 0; i < im->getWidth(); i++) {
             for (int j = 0; j < im->getHeight(); j++) {
                 unsigned char* pixel = data + ((int)i + (int)j * im->getWidth()) * 4;
-                exploitedMapTextureData[i + (j * im->getWidth())] = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
+                exploitedMapTextureData[i + (j * int(GameData::getInstance()->getResourcesWidth()))] = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
             }
         }
         exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
         exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
         gameplayMap->addChild(exploitedMapSprite, 2);
+        
+        //exploitedMapTexture->updateWithData(exploitedMapTextureData, 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
         
         //Save max resources
         for(int x = 0; x < 480; x++)
@@ -262,7 +261,8 @@ bool UIGameplayMap::init()
     _infoMap->setName("infoMap");
     _infoMap->setCascadeOpacityEnabled(true);
     createLegendEntries();
-    _infoMap->setVisible(false);    gameplayMap->addChild(_infoMap, 2);
+    _infoMap->setVisible(false);
+    gameplayMap->addChild(_infoMap, 2);
 
     GameLevel::getInstance()->setUIGameplayMap(this);
 
