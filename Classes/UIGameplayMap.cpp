@@ -230,7 +230,7 @@ bool UIGameplayMap::init()
         for (int i = 0; i < im->getWidth(); i++) {
             for (int j = 0; j < im->getHeight(); j++) {
                 unsigned char* pixel = data + ((int)i + (int)j * im->getWidth()) * 4;
-                exploitedMapTextureData[i + (j * int(GameData::getInstance()->getResourcesWidth()))] = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
+                exploitedMapTextureData[i + (j * im->getWidth())] = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
             }
         }
         exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);

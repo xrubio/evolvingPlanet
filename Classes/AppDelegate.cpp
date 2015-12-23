@@ -67,7 +67,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesWidth(2048);
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
-    } else if (screenSize.width > 1356) {
+    } else if (screenSize.width > 1365) {
         CCLOG("\tusing artwork of size 1536 (3:4)");  
         resDirOrders.push_back("02_threeQuarters");
         resDirOrders.push_back("03_twoThirds");
@@ -76,10 +76,10 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesHeight(1152);
         GameData::getInstance()->setResourcesMargin(1024);
     } else if (screenSize.width > 1024) {
-        CCLOG("\tusing artwork of size 1356 (2:3)");
+        CCLOG("\tusing artwork of size 1365 (2:3)");
         resDirOrders.push_back("03_twoThirds");
         resDirOrders.push_back("04_half");
-        GameData::getInstance()->setResourcesWidth(1356);
+        GameData::getInstance()->setResourcesWidth(1365);
         GameData::getInstance()->setResourcesHeight(1017);
         GameData::getInstance()->setResourcesMargin(904);
     } else {
