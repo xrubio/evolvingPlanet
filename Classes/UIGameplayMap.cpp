@@ -222,9 +222,13 @@ bool UIGameplayMap::init()
         auto im = new Image();
         im->initWithImageFile(map + forest + ext);
         //4 = alpha
+        int x = 3;
+        if (im->hasAlpha()) {
+            x = 4;
+        }
         unsigned char* data = new unsigned char[im->getDataLen() * 4];
         data = im->getData();
-
+        
         exploitedMapTexture->initWithData(exploitedMapTextureData, GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
         for (int i = 0; i < im->getWidth(); i++) {
             for (int j = 0; j < im->getHeight(); j++) {
