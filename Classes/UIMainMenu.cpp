@@ -229,19 +229,19 @@ bool UIMainMenu::init()
     auto facebook = MenuItemImage::create("misc/facebook.png", "misc/facebookPressed.png", CC_CALLBACK_1(UIMainMenu::openFacebook, this));
     facebook->setAnchorPoint(Vec2(0, 0.5));
     facebook->setScale(GameData::getInstance()->getRaHConversion());
-    facebook->setPosition(Vec2(0.91f*visibleSize.width, 0.95f*visibleSize.height));
+    facebook->setPosition(Vec2(0.86f*visibleSize.width, 0.93f*visibleSize.height));
     menuButtons.pushBack(facebook);
-
+    
     auto twitter = MenuItemImage::create("misc/twitter.png", "misc/twitterPressed.png", CC_CALLBACK_1(UIMainMenu::openTwitter, this));
     twitter->setAnchorPoint(Vec2(0, 0.5));
     twitter->setScale(GameData::getInstance()->getRaHConversion());
-    twitter->setPosition(Vec2(0.95f*visibleSize.width, 0.95f*visibleSize.height));
+    twitter->setPosition(Vec2(0.92f*visibleSize.width, 0.93f*visibleSize.height));
     menuButtons.pushBack(twitter);
-
+    
     auto web = MenuItemImage::create("misc/browser.png", "misc/browserPressed.png", CC_CALLBACK_1(UIMainMenu::openWeb, this));
     web->setAnchorPoint(Vec2(0, 0.5));
     web->setScale(GameData::getInstance()->getRaHConversion());
-    web->setPosition(Vec2(0.87f*visibleSize.width, 0.95f*visibleSize.height));
+    web->setPosition(Vec2(0.8f*visibleSize.width, 0.93f*visibleSize.height));
     menuButtons.pushBack(web);
 
     auto menu = Menu::createWithArray(menuButtons);
