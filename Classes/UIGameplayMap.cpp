@@ -2280,7 +2280,7 @@ void UIGameplayMap::updateAgents(void)
     }
 }
 
-void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry, Color4B colorBorder)
+void UIGameplayMap::drawAgent(const Point & pos, const Color4B & colour, int geometry, const Color4B & colorBorder)
 {
     int x = (int)(pos.x * GameData::getInstance()->getRowDrawAgentPrecalc());
     int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((pos.y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
@@ -2329,7 +2329,7 @@ void UIGameplayMap::drawAgent(Point pos, Color4B colour, int geometry, Color4B c
     }
 }
 
-void UIGameplayMap::drawExploitedMap(Point pos, Color4B colour, int geometry)
+void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, int geometry)
 {
     /*int x = (int)(pos.x * float(GameData::getInstance()->getResourcesWidth() / 480.0));
     int y = (int)(float((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0) + ((pos.y) * float(GameData::getInstance()->getResourcesMargin() / 320.0)));
