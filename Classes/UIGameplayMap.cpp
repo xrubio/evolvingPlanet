@@ -723,19 +723,18 @@ bool UIGameplayMap::init()
     graphicBackground->addChild(goal);
     auto firstGoal = GameLevel::getInstance()->getGoals().at(0);
     // ONLY POPULATION GOAL
-    if(firstGoal->getGoalType() == Resources)
+    if(firstGoal->getGoalType() == Resources and ((ResourcesGoal*)firstGoal)->getResourceType() == PopulationRes)
     {
-        /*
         auto goalCollection = (ResourcesGoal*)firstGoal;
 
-        float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+        float height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgent(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
         
         // Space the verticies out evenly across the screen for the wave.
         float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
         
         goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
         
-        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));*/
+        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(GameData::getInstance()->getPlayerColor()));
     }
     else
     {
@@ -1619,21 +1618,36 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
     {
         auto goalCollection = (ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i);
-        int graphResource = Wood;
-        if (currentName == "MINERAL")
+        int graphResource = PopulationRes;
+        Color4B colorGoal(GameData::getInstance()->getPlayerColor());
+        if (currentName == "WOOD")
+        {
+            graphResource = Wood;
+            colorGoal = Color4B(0, 249, 105, 255);
+        }
+        else if (currentName == "MINERAL")
         {
             graphResource = Mineral;
+            colorGoal = Color4B(229, 232, 5, 255);
         }
         if (goalCollection->getResourceType() == graphResource)
         {
-            float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+            float height;
+            if (graphResource == PopulationRes)
+            {
+                height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgents().at(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+            }
+            else
+            {
+                height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+            }
         
-                // Space the verticies out evenly across the screen for the wave.
+            // Space the verticies out evenly across the screen for the wave.
             float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
         
             goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
         
-            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
+            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(colorGoal));
         }
     }
 }
@@ -1777,19 +1791,16 @@ std::string UIGameplayMap::getGoalIcon( const Goal * goal ) const
     if (goal->getGoalType() == Resources)
     {
         auto goalResources = (ResourcesGoal*)goal;
+        currGoal = "Population";
         if(goalResources->getResourceType()==Wood)
         {
             currGoal = "ResourcesWood";
         }
         // mineral
-        else
+        else if(goalResources->getResourceType()==Mineral)
         {
             currGoal = "ResourcesMineral";
         }
-    }
-    else if (goal->getGoalType() == Population)
-    {
-        currGoal = "Population";
     }
     return "gui/goals/"+currGoal+"Goal.png";
 }
@@ -1800,19 +1811,10 @@ void UIGameplayMap::moveGoalPopup(int index)
     // erase completed goal
     if(goal->getGoalType() == Resources)
     {
-        auto goalCollection = (ResourcesGoal*)goal;
-        
         auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
         auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
         
-        float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
-        
-        // Space the verticies out evenly across the screen for the wave.
-        float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
-        
-        goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
-        
-        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
+        goal->clear();
     }
     else
     {
@@ -1825,23 +1827,107 @@ void UIGameplayMap::moveGoalPopup(int index)
     }
 
     // if it's not the last goal, highlight the next one
-    if(index!=(GameLevel::getInstance()->getGoals().size()-1))
+    if(index != (GameLevel::getInstance()->getGoals().size()-1))
     {
         goal = GameLevel::getInstance()->getGoals().at(index+1);
         if(goal->getGoalType() == Resources)
         {
-            auto goalCollection = (ResourcesGoal*) GameLevel::getInstance()->getGoals().at(index+1);
             auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
+            auto graphicLabel = (Label*)this->getChildByName("graphicLabel");
+            auto graphicCounterLabel = (Label*)this->getChildByName("graphicCounterLabel");
+            auto collectionGoal = (ResourcesGoal*)goal;
             auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
+            string name;
+            for (size_t i = 0; i < graphicBackground->getChildren().size(); i++)
+            {
+                if ((name = graphicBackground->getChildren().at(i)->getName()) != "" and name != "goal")
+                {
+                    i = graphicBackground->getChildren().size();
+                }
+            }
             
-            float height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+            int i = 0;
+            while (i < waveNodes.size() and waveNodes.at(i)->getName() != name)
+            {
+                i++;
+            }
             
-            // Space the verticies out evenly across the screen for the wave.
-            float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+            graphicBackground->removeChild(waveNodes.at(i));
             
-            goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+            //set new graphic corresponding next goal
             
-            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(Color4B::RED));
+            name = "POPULATION";
+            if (collectionGoal->getResourceType() == Wood)
+            {
+                name = "WOOD";
+            }
+            else if (collectionGoal->getResourceType() == Mineral)
+            {
+                name = "MINERAL";
+            }
+            
+            i = 0;
+            while (i < waveNodes.size() and waveNodes.at(i)->getName() != name)
+            {
+                i++;
+            }
+            
+            graphicBackground->addChild(waveNodes.at(i), 1, 1);
+            agentColor = i;
+            graphicLabel->setString(name);
+            
+            int numResources = 1;
+            if (_isWood)
+            {
+                numResources++;
+            }
+            if (_isMineral)
+            {
+                numResources++;
+            }
+            graphicCounterLabel->setString("( " + to_string(i+1) + " / " + to_string(numResources) + " )");
+            
+            
+            i = 0;
+            while (i < GameLevel::getInstance()->getGoals().size() and GameLevel::getInstance()->getGoals().at(i)->getCompleted() == true)
+            {
+                i++;
+            }
+            if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
+            {
+                auto goalCollection = (ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i);
+                int graphResource = PopulationRes;
+                Color4B colorGoal(GameData::getInstance()->getPlayerColor());
+                if (name == "WOOD")
+                {
+                    graphResource = Wood;
+                    colorGoal = Color4B(0, 249, 105, 255);
+                }
+                else if (name == "MINERAL")
+                {
+                    graphResource = Mineral;
+                    colorGoal = Color4B(229, 232, 5, 255);
+                }
+                if (goalCollection->getResourceType() == graphResource)
+                {
+                    float height;
+                    if (graphResource == PopulationRes)
+                    {
+                        height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgents().at(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+                    }
+                    else
+                    {
+                        height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+                    }
+                    
+                    // Space the verticies out evenly across the screen for the wave.
+                    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+                    
+                    goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+                    
+                    goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(colorGoal));
+                }
+            }
         }
         else
         {
@@ -2533,7 +2619,14 @@ void UIGameplayMap::update(float delta)
             {
                 auto resGoal = ((ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i));
                 MenuItemImage * currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
-                ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(float(Agent::_resourcesPool.at(0).at(resGoal->getResourceType())) / float(resGoal->getGoalAmount()) * 100.0);
+                if (resGoal->getResourceType() == PopulationRes)
+                {
+                    ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(float(GameLevel::getInstance()->getAgents().at(0).size()) / float(resGoal->getGoalAmount()) * 100.0);
+                }
+                else
+                {
+                    ((ProgressTimer*)currentGoal->getChildByName("currentGoalProgress"))->setPercentage(float(Agent::_resourcesPool.at(0).at(resGoal->getResourceType())) / float(resGoal->getGoalAmount()) * 100.0);
+                }
             }
             
             pthread_mutex_unlock(&gameLevelMutex);
