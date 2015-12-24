@@ -60,8 +60,15 @@ bool ResourcesGoal::checkGoal(int type, Agent* agent)
         GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
         return false;
     }
-        
-    if (Agent::_resourcesPool.at(type).at(_resourceType)<goalAmount)
+    
+    if (_resourceType == PopulationRes)
+    {
+        if (GameLevel::getInstance()->getAgents().at(0).size() < goalAmount)
+        {
+            return false;
+        }
+    }
+    else if (Agent::_resourcesPool.at(type).at(_resourceType) < goalAmount)
     {
         return false;
     }

@@ -37,7 +37,8 @@ using namespace std;
 enum Resources
 {
     Wood = 0,
-    Mineral = 1
+    Mineral = 1,
+    PopulationRes = 2
 };
 
 class Agent {

@@ -257,6 +257,11 @@ void LevelLoader::loadXmlFile(const std::string & filename)
             auto cg = new ResourcesGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount, resourceType);
             GameLevel::getInstance()->addGoal(cg);
         }
+        else if (type == "Population") {
+            int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
+            auto cg = new ResourcesGoal(agentType, minTime, maxTime, averageTime, desviation2Star, desviation3Star, goalAmount, PopulationRes);
+            GameLevel::getInstance()->addGoal(cg);
+        }
         i++;
         goals = goals.next_sibling("GOAL");
     }
