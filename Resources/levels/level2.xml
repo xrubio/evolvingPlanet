@@ -5,7 +5,7 @@
 <MAP FILE="Level2">
   <LEGEND>    
     <ENTRY NAME="IMPASSABLE" R="82" G="82" B="82"/>
-    <ENTRY NAME="WOOD" R="0" G="179" B="49"/>
+    <ENTRY NAME="FOREST" R="0" G="179" B="49"/>
   </LEGEND>
 </MAP>
 

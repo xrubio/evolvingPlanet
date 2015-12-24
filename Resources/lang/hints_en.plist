@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>LEVEL1HINT</key>
+    <string>You should increase Resistance and then focus on Mobility.</string>
+	<key>LEVEL2HINT</key>
+	<string>Tap the goal icon to show the features of the map. You should move your population to forests to increase their chance of survival.</string>
+    <key>LEVEL3HINT</key>
+	<string>The werstern zone is a savannah with scarce resources. Increase Resistance before moving there.</string>
+	<key>LEVEL4HINT</key>
+	<string>Increasing technological skills will improve the rest of attributes of your bots.</string>
+	<key>LEVEL5HINT</key>
+	<string>You should avoid the other population. They are far more experienced on warfare than you.</string>
+	<key>LEVEL6HINT</key>
+	<string>The Lovans did not have enough mobility to reach the objectives within the observed time. You need to grow your group by influencing the other bots.</string>
+	<key>LEVEL7HINT</key>
+	<string>You should increase both your population and Warfare skills before meeting the other group.</string>
+	<key>LEVEL8HINT</key>
+	<string>You need a lot of population to cross the desert. Increase Resistance and Influence before entering the eastern part of the map.</string>
+	<key>LEVEL9HINT</key>
+	<string>Increase Reproduction and Technology to survive the first difficult times.</string>
+	<key>LEVEL10HINT</key>
+	<string>Avoid the desert until your Technology is good enough to sustain life there.</string>
+</dict>
+</plist>
+

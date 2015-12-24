@@ -46,59 +46,59 @@ Tutorial::~Tutorial()
 
 void Tutorial::loadMessagesForLevel(const pugi::xml_node & node)
 {
-    int numMessages = node.attribute("numMessages").as_int();
 
-    for(int i=1; i<=numMessages; i++)
+    int numMessage = 1;
+    pugi::xml_node message = node.child("message");
+    while(message != nullptr)
     {
-        pugi::xml_node message = node.child("message");
-        while(message!= nullptr)
+        int id = message.attribute("id").as_int();
+        if(id!=numMessage)
         {
-            int id = message.attribute("id").as_int();
-            if(id!=i)
-            {
-                message = message.next_sibling("message");
-                continue;
-            }
-            std::string trigger = message.attribute("trigger").value();
-            float xPos = message.attribute("x").as_float();
-            float yPos = message.attribute("y").as_float();
-            float lineBreak = message.attribute("lineWidth").as_float();
-            std::string text = LocalizedString::create(message.attribute("text").value(), "tutorial");
-            Message * newMessage = 0;
-            if(trigger=="next")
-            { 
-                newMessage = new MessageNext(text, xPos, yPos, lineBreak);
-            }
-            else if(trigger=="time")
-            {
-                int step = message.attribute("step").as_int();
-                newMessage = new MessageTime(text, xPos, yPos, lineBreak, step);
-            }
-            // post condition to close message (basic behavior is close it if tap)
-            if(!message.attribute("closesWhen").empty())
-            {
-                std::string condition = message.attribute("closesWhen").value();
-                newMessage->setPostCondition(condition);
-                if(condition=="tapButton")
-                {
-                    std::string button = message.attribute("button").value();
-                    newMessage->setPostConditionButtonTap(button);
-                }
-            }
-
-            // add spots (if any)
-            pugi::xml_node spot = message.child("spot");
-            if(spot!= nullptr)
-            {
-                float centerX = spot.attribute("centerX").as_float();
-                float centerY = spot.attribute("centerY").as_float();
-                std::string image = spot.attribute("image").value();
-                newMessage->createSpot(centerX, centerY, image);
-            }
-
-            _messages.push_back(newMessage);
             message = message.next_sibling("message");
+            continue;
         }
+        std::string trigger = message.attribute("trigger").value();
+        float xPos = message.attribute("x").as_float();
+        float yPos = message.attribute("y").as_float();
+        float lineBreak = message.attribute("lineWidth").as_float();
+        std::stringstream textKey;
+        textKey << "LEVEL"<<node.attribute("num").as_int() << "M" << numMessage;
+        std::string text = LocalizedString::create(textKey.str().c_str(), "tutorial");
+        Message * newMessage = 0;
+        if(trigger=="next")
+        { 
+            newMessage = new MessageNext(text, xPos, yPos, lineBreak);
+        }
+        else if(trigger=="time")
+        {
+            int step = message.attribute("step").as_int();
+            newMessage = new MessageTime(text, xPos, yPos, lineBreak, step);
+        }
+        // post condition to close message (basic behavior is close it if tap)
+        if(!message.attribute("closesWhen").empty())
+        {
+            std::string condition = message.attribute("closesWhen").value();
+            newMessage->setPostCondition(condition);
+            if(condition=="tapButton")
+            {
+                std::string button = message.attribute("button").value();
+                newMessage->setPostConditionButtonTap(button);
+            }
+        }
+
+        // add spots (if any)
+        pugi::xml_node spot = message.child("spot");
+        if(spot!= nullptr)
+        {
+            float centerX = spot.attribute("centerX").as_float();
+            float centerY = spot.attribute("centerY").as_float();
+            std::string image = spot.attribute("image").value();
+            newMessage->createSpot(centerX, centerY, image);
+        }
+
+        _messages.push_back(newMessage);
+        message = message.next_sibling("message");
+        numMessage += 1;
     }
 }
 

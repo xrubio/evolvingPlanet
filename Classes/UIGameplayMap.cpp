@@ -131,7 +131,7 @@ bool UIGameplayMap::init()
     if (GameData::getInstance()->getLevelsFailedForHint().at(GameLevel::getInstance()->getNumLevel()) > 2)
     {
         auto hintButton = MenuItemToggle::createWithCallback(CC_CALLBACK_1(UIGameplayMap::menuHintCallback, this), MenuItemImage::create("gui/HintButton.png", "gui/HintButton.png"), MenuItemImage::create("gui/HintButtonPressed.png", "gui/HintButtonPressed.png"), NULL);
-        hintButton->setPosition(Vec2((12 * visibleSize.width / 204) + levelLabel->getBoundingBox().size.width * 1.5, 148 * visibleSize.height / 155));
+        hintButton->setPosition(Vec2(0.25f*visibleSize.width, 0.94f*visibleSize.height));
         hintButton->setName("hintButton");
         auto menuHint = Menu::create(hintButton, NULL);
         menuHint->setName("menuHint");
@@ -139,11 +139,28 @@ bool UIGameplayMap::init()
         this->addChild(menuHint, 5);
         
         auto hintBackground = Sprite::create("gui/ConfigurationBackground.png");
-        hintBackground->setScale(0.5);
-        hintBackground->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.75f));
+        hintBackground->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.3f));
         hintBackground->setName("hintBackground");
         hintBackground->setVisible(false);
         this->addChild(hintBackground, 5);
+
+        std::stringstream str;
+        str << "LEVEL" << GameLevel::getInstance()->getNumLevel() << "HINT";
+        auto hintLabel = Label::createWithTTF(LocalizedString::create(str.str().c_str(), "hints"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+        hintLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        hintLabel->setColor(Color3B(230, 230, 230));
+        hintLabel->setName("hintLabel");
+        hintLabel->setMaxLineWidth(0.4f*visibleSize.width);
+        hintLabel->setVisible(false);
+        hintLabel->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.3f));
+        
+        float ratioWidth = 1.2f*hintLabel->getBoundingBox().size.width/hintBackground->getContentSize().width;
+        float ratioHeight= 1.2f*hintLabel->getBoundingBox().size.height/hintBackground->getContentSize().height;
+
+        CCLOG("back: %f/%f label: %f/%f ratio: %f/%f", hintBackground->getContentSize().width, hintBackground->getContentSize().height, hintLabel->getBoundingBox().size.width, hintLabel->getBoundingBox().size.height, ratioWidth, ratioHeight);
+
+        hintBackground->setScale(ratioWidth, ratioHeight);
+        this->addChild(hintLabel, 5);
     }
     
     auto currentGoalLabel = Label::createWithTTF(LocalizedString::create("CURRENT_GOAL")+":", "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
@@ -1301,6 +1318,7 @@ void UIGameplayMap::togglePlay(Ref* pSender)
         if (GameData::getInstance()->getLevelsFailedForHint().at(GameLevel::getInstance()->getNumLevel()) > 2)
         {
             this->getChildByName("hintBackground")->setVisible(false);
+            this->getChildByName("hintLabel")->setVisible(false);
             ((MenuItemToggle*)this->getChildByName("menuHint")->getChildByName("hintButton"))->setSelectedIndex(0);
         }
 
@@ -1670,10 +1688,12 @@ void UIGameplayMap::menuHintCallback(Ref* pSender)
     if (hintButton->getSelectedIndex() == 0)
     {
         this->getChildByName("hintBackground")->setVisible(false);
+        this->getChildByName("hintLabel")->setVisible(false);
     }
     else if (hintButton->getSelectedIndex() == 1)
     {
         this->getChildByName("hintBackground")->setVisible(true);
+        this->getChildByName("hintLabel")->setVisible(true);
     }
     
     hintButton->setSelectedIndex(hintButton->getSelectedIndex());
@@ -2619,7 +2639,7 @@ void UIGameplayMap::setMessage( const Message * message )
             image->setTexture(spot->_image+".png");
             image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setVisible(true);
-            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(0.9, 70), FadeTo::create(1, 255), nullptr)));
+            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(1, 120), FadeTo::create(1, 255), DelayTime::create(0.5), nullptr)));
         }
         
         const Rect & contents = label->getBoundingBox();
@@ -2638,8 +2658,8 @@ void UIGameplayMap::setMessage( const Message * message )
 
     Vec2 origin(label->getBoundingBox().origin - margin);
     Vec2 end(label->getBoundingBox().origin + label->getBoundingBox().size + margin);
-    labelBorder->drawSolidRect(origin, end, Color4F(0.07f, 0.36f, 0.52f, 0.2f));
-    labelBorder->drawRect(origin, end, Color4F(0.71f, 0.83f, 0.89f, 1.0f));
+    labelBorder->drawSolidRect(origin, end, Color4F(0.77f, 0.6f, 0.95f, 0.3f));
+    labelBorder->drawRect(origin, end, Color4F(0.66f, 0.43f, 0.97f, 1.0f));
 
     auto pauseDarkBackground = this->getChildByName("pauseDarkBackground");
     pauseDarkBackground->setVisible(false);

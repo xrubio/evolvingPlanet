@@ -83,7 +83,7 @@
 	<key>TECHNOLOGY</key>
 	<string>TECHNOLOGY</string>
 	<key>DESCRIPTION_TECHNOLOGY</key>
-	<string>Overall technological skills</string>
+	<string>Improvements on all attributes</string>
 	<key>INFLUENCE</key>
 	<string>INFLUENCE</string>
 	<key>DESCRIPTION_INFLUENCE</key>
@@ -177,5 +177,7 @@ Tap the logo to know more about SimulPast!</string>
 	<string>CURRENT GOAL</string>
 	<key>SKIP</key>
 	<string>SKIP</string>
+    <key>BOT_COLOR</key>
+    <string>Bot Color</string>
 </dict>
 </plist>

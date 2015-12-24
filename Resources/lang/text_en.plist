@@ -5,13 +5,13 @@
 	<key>BRIEF_LEVEL_1</key>
 	<string>Campaign day 1
 
-We will use bots to replicate Lovan history. They are a mixture of advanced bioengineering and artificial intelligence that has been fitted to recreate the extinct species.
+We will use bots to replicate Lovan history. They are a mixture of advanced bioengineering and artificial intelligence designed to resemble the extinct species.
 
 The team is waiting for your orders to start the mission.</string>
 	<key>CONTEXT_LEVEL_1_INTRO</key>
-	<string>Professor, my name is Dr. Ada Walker and I'm the leader of the xenoarchaeological team. We will assist you to understand what happened here using bots.  
+	<string>Professor, my name is Dr. Rosalind Lovelace and I'm the leader of the xenoarchaeological team. We will assist you to understand what happened here using bots.  
 
-    We deployed the bots in the zone where the first Lovan fossils were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
+We deployed the bots in the zone where the first Lovan fossils were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
 
 	<key>BRIEF_LEVEL_2</key>
 	<string>Campaign day 7
@@ -27,7 +27,7 @@ The bots are responding to our commands. We need them to disperse to the rest of
 
 The bots are ready to emulate the colonization of arid zones beyond their usual forest habitats.</string>
 	<key>CONTEXT_LEVEL_3_INTRO</key>
-	<string>Similarities between Lovan beginnings and human beings are surprising...will we find the same pattern in the entire galaxy?
+	<string>Similarities between Lovan and human origins are surprising...it's our closest match in the entire galaxy.
 
 I won't be extremely helpful here; we know that hominins spread throghout the entire planet Earth, but we are not sure why.
 
@@ -41,7 +41,7 @@ Dr. Walker is not convinced of the previous results so we will try a different i
 
 I want to try a different approach; what if we provide the bots with improved technology?
 
-They should be able to achieve the goals within expected time if they combine fire with stone tools...yeah, I think this should work better!</string>
+They should be able to achieve the goals within expected time if they combine fire with stone tools...yeah, I think this will work!</string>
 	<key>BRIEF_LEVEL_5</key>
 	<string>Campaign day 16
 
