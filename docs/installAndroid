@@ -32,3 +32,13 @@ $ cocos run -s . -p android -m release
 o debug:
 $ cocos run -s . -p android
 
+
+# enable virtualization
+check:
+http://nigam.biz/cocos2dx/md___users_nigamshah__library__developer_cocos2d-x-2_81_84_tools_android-emulator-_r_e_a_d_m_e.html
+If you create an AVD called prova:
+
+command:
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ANDROID_SDK_ROOT/tools/lib/
+emulator-x86 -verbose -avd prova -gpu on
+
