@@ -56,7 +56,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     auto screenSize = glview->getFrameSize();
     CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
-    // folders: 2048 (1:1), 1536 (3/4), 1356 (2:3) i 1024 (1:2)
+    // folders: 2048 (1:1), 1536 (3/4), 1365 (2:3) i 1024 (1:2)
 
     if (screenSize.width > 1536) {
         CCLOG("\tusing artwork of size 2048 (1:1)");
@@ -80,8 +80,8 @@ bool AppDelegate::applicationDidFinishLaunching()
         resDirOrders.push_back("03_twoThirds");
         resDirOrders.push_back("04_half");
         GameData::getInstance()->setResourcesWidth(1365);
-        GameData::getInstance()->setResourcesHeight(1017);
-        GameData::getInstance()->setResourcesMargin(904);
+        GameData::getInstance()->setResourcesHeight(1024);
+        GameData::getInstance()->setResourcesMargin(910);
     } else {
         CCLOG("\tusing artwork of size 1024 (1:2)");
         resDirOrders.push_back("04_half");
@@ -123,11 +123,6 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     GameData::getInstance()->setRaWConversion(visibleSize.width / GameData::getInstance()->getResourcesWidth());
     GameData::getInstance()->setRaHConversion(visibleSize.height / GameData::getInstance()->getResourcesHeight());
-    /*GameData::getInstance()->setHeightProportionalResolution((Director::getInstance()->getVisibleSize().width / 480.0) * 320.0);
-    GameData::getInstance()->setRowDrawAgentPrecalc(Director::getInstance()->getVisibleSize().width / 480.0);
-    GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((Director::getInstance()->getVisibleSize().height -
-                                                              GameData::getInstance()->getHeightProportionalResolution()) / 2.0);
-    GameData::getInstance()->setColumnDrawAgentPrecalc(GameData::getInstance()->getHeightProportionalResolution() / 320.0);*/
     GameData::getInstance()->setHeightProportionalResolution((GameData::getInstance()->getResourcesWidth() / 480.0) * 320.0);
     GameData::getInstance()->setRowDrawAgentPrecalc(GameData::getInstance()->getResourcesWidth() / 480.0);
     GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0);
