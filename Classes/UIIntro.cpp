@@ -124,12 +124,37 @@ void UIIntro::update(float delta)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     if (((VideoPlayer*)this->getChildByName("video")) != nullptr and((VideoPlayer*)this->getChildByName("video"))->isPlaying() == false)
     {
-        //this->removeChild(((VideoPlayer*)this->getChildByName("video")));
+        this->removeChild(((VideoPlayer*)this->getChildByName("video")));
+        /*_eventDispatcher->removeEventListener(_listener);
+        auto scene = UIMainMenu::createScene();
+        Director::getInstance()->replaceScene(scene);*/
+        auto camaraBack = Sprite::create("misc/CamaraBack.jpg");
+        camaraBack->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
+        camaraBack->setScale(GameData::getInstance()->getRaHConversion());
+        this->addChild(camaraBack);
+        
+        auto camaraFront = ProgressTimer::create(Sprite::create("misc/CamaraFront.png"));
+        camaraFront->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
+        camaraFront->setPercentage(0.0);
+        camaraFront->setName("camaraFront");
+        camaraFront->setScale(GameData::getInstance()->getRaHConversion());
+        this->addChild(camaraFront);
+        
+        ProgressFromTo* radialTimer = ProgressFromTo::create(2.5, 0, 100);
+        camaraFront->setMidpoint(Vec2(0, 0));
+        camaraFront->setBarChangeRate(Vec2(0, 1));
+        camaraFront->setType(ProgressTimer::Type::BAR);
+        camaraFront->runAction(radialTimer);
+        
+    }
+    
+    if (this->getChildByName("camaraFront") != nullptr and this->getChildByName("camaraFront")->getNumberOfRunningActions()==0)
+    {
         _eventDispatcher->removeEventListener(_listener);
         auto scene = UIMainMenu::createScene();
         Director::getInstance()->replaceScene(scene);
-        
     }
+    
 # else
     Node * logo = this->getChildByName("logo");
     if(logo->getNumberOfRunningActions()==0)
