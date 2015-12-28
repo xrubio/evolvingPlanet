@@ -20,7 +20,7 @@ def resizeImage( fileName, originalPath, pathToResizedImage, resolution):
 
 def main():
     # base is resolution 2048x1536 (ipad air)
-    listResolutions = {'02_threeQuarters':3/4, '03_twoThirds':2/3, '04_half':1/2}
+    listResolutions = {'02_threeQuarters':3/4, '03_fifthEights':5/8, '04_half':1/2}
     baseDir = '01_hd'
 
 
