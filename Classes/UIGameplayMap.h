@@ -78,7 +78,6 @@ public:
     void menuHintCallback(Ref* pSender);
 
     int getValueAtGameplayMap(int rgb, int posx, int posy);
-    Color4B* getExploitedMapTextureData(void);
 
     bool isInBoostResistanceArea(int posx, int posy);
     void restoreLand(void);
@@ -142,11 +141,11 @@ private:
 
     int agentColor = 0;
 
-    Color4B* agentsTextureData = new Color4B[int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight())];
+    std::vector<Color4B> _agentsTextureData;
     Texture2D* agentsTexture;
     Sprite* agentsSprite;
 
-    Color4B* exploitedMapTextureData = new Color4B[int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight())];
+    std::vector<Color4B> _exploitedMapTextureData;
     Texture2D* exploitedMapTexture;
     Sprite* exploitedMapSprite;
 

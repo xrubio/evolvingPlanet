@@ -61,27 +61,21 @@ bool AppDelegate::applicationDidFinishLaunching()
     if (screenSize.width > 1536) {
         CCLOG("\tusing artwork of size 2048 (1:1)");
         resDirOrders.push_back("01_hd");
-        resDirOrders.push_back("02_threeQuarters");
-        resDirOrders.push_back("03_twoThirds");
-        resDirOrders.push_back("04_half");
         GameData::getInstance()->setResourcesWidth(2048);
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
-    } else if (screenSize.width > 1365) {
+    } else if (screenSize.width > 1280) {
         CCLOG("\tusing artwork of size 1536 (3:4)");  
         resDirOrders.push_back("02_threeQuarters");
-        resDirOrders.push_back("03_twoThirds");
-        resDirOrders.push_back("04_half");
         GameData::getInstance()->setResourcesWidth(1536);
         GameData::getInstance()->setResourcesHeight(1152);
         GameData::getInstance()->setResourcesMargin(1024);
     } else if (screenSize.width > 1024) {
-        CCLOG("\tusing artwork of size 1365 (2:3)");
-        resDirOrders.push_back("03_twoThirds");
-        resDirOrders.push_back("04_half");
-        GameData::getInstance()->setResourcesWidth(1365);
-        GameData::getInstance()->setResourcesHeight(1024);
-        GameData::getInstance()->setResourcesMargin(910);
+        CCLOG("\tusing artwork of size 1280 (5:8)");
+        resDirOrders.push_back("03_fifthEights");
+        GameData::getInstance()->setResourcesWidth(1280);
+        GameData::getInstance()->setResourcesHeight(960);
+        GameData::getInstance()->setResourcesMargin(853);
     } else {
         CCLOG("\tusing artwork of size 1024 (1:2)");
         resDirOrders.push_back("04_half");
