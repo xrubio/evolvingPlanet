@@ -251,20 +251,31 @@ bool UIGameplayMap::init()
         exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
         gameplayMap->addChild(exploitedMapSprite, 2);
         
-        //Save max resources
+        /********** FOR LEVEL CONFIGURATION ***********/
+        //max resources
+        int wood = 0;
+        int mineral = 0;
         for(int x = 0; x < 480; x++)
         {
             for(int y = 1; y <= 320; y++)
             {
                 int valueAtMap = getValueAtGameplayMap(2,x,y);
-                if (valueAtMap < 3)
+                if (valueAtMap == 0)
                 {
-                    Agent::_resourcesPoolMax.at(valueAtMap)++;
+                    wood++;
+                }
+                else if (valueAtMap == 1)
+                {
+                    mineral++;
                 }
             }
         }
-        
-        CCLOG("MAX RESOURCES: Wood %d, Mineral %d", Agent::_resourcesPoolMax.at(0), Agent::_resourcesPoolMax.at(1));
+        CCLOG("MAX RESOURCES MAP: Wood %d, Mineral %d", wood, mineral);
+        /********** FOR LEVEL CONFIGURATION ***********/
+
+        string filename = "level" + to_string(GameLevel::getInstance()->getNumLevel());
+        LevelLoader loader;
+        loader.loadMaxResources(filename);
     }
     else
     {

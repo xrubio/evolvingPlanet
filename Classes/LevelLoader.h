@@ -43,6 +43,7 @@ public:
     void loadXmlFile(const std::string & filename);
     string getLevelFileMap(const std::string & filename);
     vector<string> getGoalTypes(const std::string & filename);
+    void loadMaxResources(const std::string & filename);
 
 private:
     xml_document doc;

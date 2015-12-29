@@ -324,3 +324,39 @@ vector<string> LevelLoader::getGoalTypes(const std::string & filename)
     }
     return goalTypes;
 }
+
+void LevelLoader::loadMaxResources(const std::string & filename)
+{
+    string dir = "levels/";
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    dir = "";
+#endif
+    
+    string ext = ".xml";
+    string fullPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(dir + filename + ext);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    ssize_t tmpSize;
+    const char* xmlData = (const char *)FileUtils::getInstance()->getFileData(fullPath.c_str(), "r", &tmpSize);
+    result = doc.load(xmlData);
+#else
+    result = doc.load_file(fullPath.c_str());
+#endif
+    
+    xml_node mapInfo = doc.child("MAP");
+    mapInfo = mapInfo.child("LEGEND").child("ENTRY");
+    while(mapInfo != nullptr)
+    {
+        std::string entryName = mapInfo.attribute("NAME").value();
+        //MAXIMUM RESOURCES
+        if (entryName == "WOOD")
+        {
+            Agent::_resourcesPoolMax.at(0) = (mapInfo.attribute("MAXIMUM").as_int());
+        }
+        else if (entryName == "MINERAL")
+        {
+            Agent::_resourcesPoolMax.at(1) = (mapInfo.attribute("MAXIMUM").as_int());
+        }
+        mapInfo = mapInfo.next_sibling("ENTRY");
+    }
+}
