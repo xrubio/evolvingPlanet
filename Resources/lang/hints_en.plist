@@ -13,7 +13,7 @@
 	<key>LEVEL5HINT</key>
 	<string>You should avoid the other population. They are far more experienced on warfare than you.</string>
 	<key>LEVEL6HINT</key>
-	<string>The Lovans did not have enough mobility to reach the objectives within the observed time. You need to grow your group by influencing the other bots.</string>
+	<string>The Lovans did not have enough reproduction rate to reach this population size within the observed time. The new Influence boost can be used to convince bots from other groups to join yours.</string>
 	<key>LEVEL7HINT</key>
 	<string>You should increase both your population and Warfare skills before meeting the other group.</string>
 	<key>LEVEL8HINT</key>

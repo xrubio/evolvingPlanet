@@ -83,5 +83,11 @@ You will use a new tool in this mission.</string>
 You need to tap and drag towards the zone you wish to improve your bots.</string>
 	<key>LEVEL3M7</key>
 	<string>Boosts have a cooldown period so use them wisely. Good luck!</string>
+
+    <key>LEVEL6M1</key>
+    <string>The second Goal of this mission checks the size of your group</string>
+    <key>LEVEL6M2</key>
+    <string>You need to reach the size highlighted in red here within the assigned time span.</string>
 </dict>
 </plist>
+

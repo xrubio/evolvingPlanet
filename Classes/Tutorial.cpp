@@ -126,6 +126,7 @@ bool Tutorial::loadTutorial()
     while(level!= nullptr)
     {
         int num = stoi(level.attribute("num").value());
+        CCLOG("level: %d", num);
         if(numLevel==num)
         {
             CCLOG("level: %i found!", numLevel);

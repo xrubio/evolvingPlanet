@@ -53,7 +53,7 @@
 </level>
 
 <level num="2">
-    <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0" text="LEVEL2M1">
+    <message id="1" x="0.5" y="0.4" lineWidth="0.4" trigger="time" step="0">
         <spot image="tutorial/tTime" centerX="0.535" centerY="0.938"/>
     </message>
     <message id="2" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M2">
@@ -64,19 +64,27 @@
     </message>
 </level>
 
-<level num="3" numMessages="9">
-    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0" text="LEVEL3M1">
+
+<level num="3">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0">
         <spot image="tutorial/tBoostsArea" centerX="0.11" centerY="0.08"/>
     </message>        
-    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M2"/>
-    <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M3"/>
-    <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M4"/>
-    <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M5" closesWhen="tapButton" button="power0">
+    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+    <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+    <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+    <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next" closesWhen="tapButton" button="power0">
         <spot image="tutorial/tBoost" centerX="0.068" centerY="0.075"/>
     </message>        
-    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M7">
+    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
         <spot image="tutorial/tBoost" centerX="0.167" centerY="0.075"/>
     </message>        
-    <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="next" text="LEVEL3M9"/>
+    <message id="7" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+</level>
+
+<level num="6">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0"/>
+    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
+        <spot image="tutorial/tPopSize" centerX="0.92" centerY="0.08"/>
+    </message>        
 </level>
 
