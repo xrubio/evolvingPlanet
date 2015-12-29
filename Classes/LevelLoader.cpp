@@ -254,7 +254,7 @@ void LevelLoader::loadXmlFile(const std::string & filename)
         }
         else if (type == "Resources") {
             int goalAmount = atoi(goals.child("GOAL_AMOUNT").child_value());
-            int resourceType;
+            Resource resourceType;
             if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "WOOD", 4) == 0)
             {
                 resourceType = Wood;

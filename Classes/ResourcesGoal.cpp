@@ -28,7 +28,7 @@
 #include "ResourcesGoal.h"
 #include "UIGameplayMap.h"
 
-ResourcesGoal::ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType) : Goal(agType, min, max, average, des2, des3), goalAmount(goalAm), _resourceType(resourceType)
+ResourcesGoal::ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, const Resource & resourceType) : Goal(agType, min, max, average, des2, des3), goalAmount(goalAm), _resourceType(resourceType)
 {
 }
 
@@ -42,7 +42,7 @@ void ResourcesGoal::setGoalAmount(int goalAm)
     goalAmount = goalAm;
 }
 
-int ResourcesGoal::getResourceType(void) const
+Resource ResourcesGoal::getResourceType(void) const
 {
     return _resourceType;
 }
@@ -97,3 +97,4 @@ bool ResourcesGoal::checkGoal(int type, Agent* agent)
     CCLOG("goal completed in step: %d average: %d diff: %d 3star: %d 2star: %d final score: %d", timeSteps, averageTime, diff, desviation3Star, desviation2Star, score);
     return true;
 }
+

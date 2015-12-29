@@ -33,11 +33,11 @@
 class ResourcesGoal : public Goal {
 
 public:
-    ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, int resourceType);
+    ResourcesGoal(int agType, int min, int max, int average, int des2, int des3, int goalAm, const Resource & resourceType);
 
     int getGoalAmount(void) const;
     void setGoalAmount(int goalAm);
-    int getResourceType(void) const;
+    Resource getResourceType(void) const;
 
     bool checkGoal(int type, Agent* agent);
     GoalType getGoalType() const
@@ -47,7 +47,7 @@ public:
     
 private:
     int goalAmount;
-    int _resourceType;
+    Resource _resourceType;
 };
 
 #endif /* defined(__simulplay__ResourcesGoal__) */

@@ -724,18 +724,21 @@ bool UIGameplayMap::init()
     graphicBackground->addChild(goal);
     auto firstGoal = GameLevel::getInstance()->getGoals().at(0);
     // ONLY POPULATION GOAL
-    if(firstGoal->getGoalType() == Resources and ((ResourcesGoal*)firstGoal)->getResourceType() == PopulationRes)
+    if(firstGoal->getGoalType() == Resources)
     {
-        auto goalCollection = (ResourcesGoal*)firstGoal;
+        if(((ResourcesGoal*)firstGoal)->getResourceType() == PopulationRes)
+        {
+            auto goalCollection = (ResourcesGoal*)firstGoal;
 
-        float height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgent(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
-        
-        // Space the verticies out evenly across the screen for the wave.
-        float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
-        
-        goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
-        
-        goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(GameData::getInstance()->getPlayerColor()));
+            float height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgent(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+            
+            // Space the verticies out evenly across the screen for the wave.
+            float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+            
+            goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
+            
+            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(GameData::getInstance()->getPlayerColor()));
+        }
     }
     else
     {

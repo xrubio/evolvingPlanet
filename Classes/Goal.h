@@ -37,6 +37,13 @@ enum GoalType
     Resources = 2
 };
 
+enum Resource
+{
+    Wood = 0,
+    Mineral = 1,
+    PopulationRes = 2
+};
+
 class Goal {
 
 public:
