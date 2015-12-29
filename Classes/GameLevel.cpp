@@ -621,7 +621,7 @@ void GameLevel::generateInitialAgents(int type)
         _agentsPool.at(type).pop_front();
         a->setId(idCounter);
         // mean of 150, but each agent is slightly different
-        a->setLife(cocos2d::RandomHelper::random_int(125,175));
+        a->setLife(cocos2d::RandomHelper::random_int(0,175));
         a->setType(type);
         a->setPosition(posx, posy);
         a->copyValues(type);

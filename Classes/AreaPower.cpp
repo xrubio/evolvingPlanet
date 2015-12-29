@@ -36,7 +36,6 @@ void AreaPower::setArea( const Vec2 & center, float radius )
 {
     _center = center;
     _radius = _center.y - radius; 
-    CCLOG("center: %f/%f radius: %f", _center.x, _center.y, _radius);
 }
 
 bool AreaPower::isInRadius( const Position & position ) const
