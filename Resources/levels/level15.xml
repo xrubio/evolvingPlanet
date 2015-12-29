@@ -93,13 +93,13 @@
         <COST>2</COST>
         <COOLDOWN>15</COOLDOWN>
         <DURATION>3</DURATION>
-        <TYPE TYPE_NAME="Global"/>
+        <EXTENT value="Global"/>
     </POWER>
     <POWER NAME="WarfareBoost">
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
-        <TYPE TYPE_NAME="Global"/>
+        <EXTENT value="Global"/>
     </POWER>
 </POWERS>
 <ACTIONS>

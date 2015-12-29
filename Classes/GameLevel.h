@@ -118,8 +118,7 @@ public:
     // sets the attribute value at k to v for level i
     void setValueAtLevel(int attr, int level, float value);
 
-    std::vector<Power*> getPowers(void);
-    void setPowers(std::vector<Power*> p);
+    const std::vector<Power*> & getPowers(void) const;
     void addPower(Power* p);
     void deletePower(int i);
     std::vector<std::list<Agent*> > getAgents(void);
@@ -206,6 +205,11 @@ public:
     const std::string & getLegendName(int index) const { return _legendNames.at(index); }
     const cocos2d::Color3B & getLegendColor(int index) const { return _legendColors.at(index); }
  
+    // checks if a Power type is currently in effect
+    bool powerIsInEffect( const PowerType & type ) const;
+    // checks if an AreaPower type is in effect in pos
+    bool powerIsInRadius( const PowerType & type, const Position & pos ) const;
+
 private:
     static GameLevel* gamelevelInstance;
     UIGameplayMap* gameplayMap;

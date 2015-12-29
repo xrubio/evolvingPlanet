@@ -155,8 +155,6 @@ bool UIGameplayMap::init()
         float ratioWidth = 1.2f*hintLabel->getBoundingBox().size.width/hintBackground->getContentSize().width;
         float ratioHeight= 1.2f*hintLabel->getBoundingBox().size.height/hintBackground->getContentSize().height;
 
-        CCLOG("back: %f/%f label: %f/%f ratio: %f/%f", hintBackground->getContentSize().width, hintBackground->getContentSize().height, hintLabel->getBoundingBox().size.width, hintLabel->getBoundingBox().size.height, ratioWidth, ratioHeight);
-
         hintBackground->setScale(ratioWidth, ratioHeight);
         this->addChild(hintLabel, 5);
     }
@@ -367,15 +365,15 @@ bool UIGameplayMap::init()
             pos.x = powerButtons.at(i - 1)->getIcon()->getPosition().x + (4 * visibleSize.width / 204) + powerButtons.at(i - 1)->getIcon()->getBoundingBox().size.width;
             pos.y = powerButtons.at(i - 1)->getIcon()->getPosition().y;
         }
-
-        if (pws.at(i)->getType() == "Global")
+        
+        if(pws.at(i)->isGlobal())
         {
             powerButtons.push_back(new UIGlobalPower(pws.at(i)));
             powerButtons.at(i)->setPosition(pos.x, pos.y);
             powerButtons.at(i)->getIcon()->setName("power"+std::to_string(i));
             this->addChild(powerButtons.at(i)->getIcon(), 3);
         }
-        else if (pws.at(i)->getType() == "Area")
+        else
         {
             powerButtons.push_back(new UIAreaPower(pws.at(i)));
             powerButtons.at(i)->setPosition(pos.x, pos.y);
@@ -589,7 +587,7 @@ bool UIGameplayMap::init()
     populationNode->init();
     populationNode->glDrawMode = kDrawLines;
     populationNode->setReadyToDrawDynamicVerts(true);
-    populationNode->setName("AGENTS");
+    populationNode->setName("POPULATION");
     graphicBackground->addChild(populationNode, 1, 1);
     waveNodes.push_back(populationNode);
     
@@ -1870,7 +1868,7 @@ void UIGameplayMap::moveGoalPopup(int index)
             }
             
             i = 0;
-            while (i < waveNodes.size() and waveNodes.at(i)->getName() != name)
+            while(waveNodes.at(i)->getName() != name)
             {
                 i++;
             }
@@ -1994,42 +1992,6 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, int posx, int posy)
     loc.y = 320 - loc.y;
     return getValueAtGameplayMap(rgb, loc);
 }
-
-bool UIGameplayMap::isInBoostResistanceArea(int posx, int posy)
-{
-    int i = 0;
-    while(powerButtons.at(i)->getPower()->getId() != ResistanceBoost)
-    {
-        i++;
-    }
-    Vec2 center = ((UIAreaPower*)powerButtons.at(i))->getArea()->getPosition();
-    float radius = center.y - ((UIAreaPower*)powerButtons.at(i))->getArea()->getBoundingBox().getMinY();
-    return (abs(center.distance(Vec2(posx, posy))) <= radius);
-}
-
-void UIGameplayMap::restoreLand(void)
-{
-    int i = 0;
-    while (powerButtons.at(i)->getPower()->getId() != RestoreLand) {
-        i++;
-    }
-    float radius = 37.0; //((UIAreaPower*)powerButtons.at(i))->getScale();
-    Point pos = ((UIAreaPower*)powerButtons.at(i))->getArea()->getPosition();
-    Point posTransformed;
-    posTransformed.x = pos.x / float(GameData::getInstance()->getResourcesWidth() / 480.0),
-    posTransformed.y = ((pos.y - ((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2)) / float(GameData::getInstance()->getResourcesMargin() / 320.0));
-    for (int i = -37; i < 37; i++) {
-        for (int j = -37; j < 37; j++) {
-            float dist = sqrt((i * i) + (j * j));
-            if (dist <= radius and posTransformed.x + i >= 0 and posTransformed.x + i < 480 and posTransformed.y + j >= 0 and posTransformed.y + j < 320) {
-                //GameLevel::getInstance()->setDepleted(posTransformed.x + i, posTransformed.y + j, false);
-                GameLevel::getInstance()->setTerraformed(posTransformed.x + i, posTransformed.y + j, false);
-                //drawExploitedMap(Point(posTransformed.x + i, posTransformed.y + j), Color4B(127, 127, 127, 0), 0);
-            }
-        }
-    }
-}
-
 
 int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt)
 {

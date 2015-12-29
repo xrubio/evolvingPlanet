@@ -39,6 +39,10 @@ void Reproduce::execute(Agent* agent)
     }
   
     int mobility = agent->getValue(eMobility);
+    if(GameLevel::getInstance()->powerIsInEffect(MobilityBoost) and GameLevel::getInstance()->powerIsInRadius(MobilityBoost, agent->getPosition()))
+    {
+        mobility = GameLevel::getInstance()->getValueAtLevel(eMobility, 5);
+    }
     cocos2d::Rect area = GameLevel::getInstance()->getArea(agent->getPosition(), mobility);
 
     int maxIterations = 30;

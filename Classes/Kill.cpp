@@ -32,6 +32,10 @@
 void Kill::execute(Agent* agent)
 {
     float probKill = agent->getValue(eWarfare);
+    if(agent->getType()==0 and GameLevel::getInstance()->powerIsInEffect(WarfareBoost))
+    {
+        probKill = GameLevel::getInstance()->getValueAtLevel(eWarfare, 5);
+    }
     if(cocos2d::RandomHelper::random_real(0.0f, 1.0f)>= probKill)
     {
         return;

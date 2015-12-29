@@ -27,7 +27,7 @@
 
 #include "Power.h"
 
-Power::Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost) : name(name), id(id), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), type(t), cost(_cost), _activated(false)
+Power::Power( const std::string & name, const PowerType & type, float c, float dur, float _cost) : name(name), _type(type), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), cost(_cost), _activated(false)
 {
 }
 
@@ -37,9 +37,9 @@ const string & Power::getName() const
     return name;
 }
 
-const PowerId & Power::getId() const
+const PowerType & Power::getType() const
 {
-    return id;
+    return _type;
 }
 
 float Power::getCooldown(void) const
@@ -82,15 +82,18 @@ void Power::decreaseDurationLeft(float d)
     _lastDurationLeft = _durationLeft;
     _durationLeft -= d;
 }
-
-string Power::getType(void)
+    
+bool Power::isInEffect() const
 {
-    return type;
-}
-
-void Power::setType(string t)
-{
-    type = t;
+    if(!_activated)
+    {
+        return false;
+    }
+    if(_durationLeft>0)
+    {
+        return true;
+    }
+    return false;
 }
 
 float Power::getCost(void)

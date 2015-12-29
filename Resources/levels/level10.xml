@@ -108,15 +108,13 @@
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
-        <TYPE TYPE_NAME="Global"/>
+        <EXTENT value="Global"/>
     </POWER>
     <POWER NAME="ResistanceBoost">
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
-        <TYPE TYPE_NAME="Area">
-            <RADIUS>20</RADIUS>
-        </TYPE>
+        <EXTENT value="Area" radius="20"/>
     </POWER>
 </POWERS>
 <ACTIONS>

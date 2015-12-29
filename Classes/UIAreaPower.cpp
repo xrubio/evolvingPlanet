@@ -27,6 +27,7 @@
 
 #include "UIAreaPower.h"
 #include "UIGameplayMap.h"
+#include "AreaPower.h"
 
 #include <audio/include/SimpleAudioEngine.h>
 
@@ -113,6 +114,8 @@ bool UIAreaPower::onTouchesEnded(const Point & touchLocation)
             active->setVisible(true);
             cooldownTimer->setPercentage(100.0);
             clicked = false;
+            auto * p = (AreaPower*)power;
+            p->setArea(area->getPosition(), area->getBoundingBox().getMinY());
             return true;
         }
         else
@@ -127,7 +130,7 @@ bool UIAreaPower::onTouchesEnded(const Point & touchLocation)
 void UIAreaPower::update(float delta)
 {
     // area is not visible if not clicked and not activated
-    if (clicked == false and power->getDurationLeft()<=0)
+    if (clicked == false and !power->isInEffect())
     {
         area->setVisible(false);
     }
@@ -156,7 +159,7 @@ void UIAreaPower::update(float delta)
     }
 
     // in effect
-    if(power->getDurationLeft() > 0)
+    if(power->isInEffect())
     {
         ProgressTimer* actionTimer = (ProgressTimer*)icon->getChildByTag(1);
         actionTimer->setPercentage((power->getDurationLeft() / power->getDuration()) * 100.0);

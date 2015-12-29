@@ -163,34 +163,43 @@ void LevelLoader::loadXmlFile(const std::string & filename)
     xml_node pws = doc.child("POWERS").child("POWER");
     while (pws != nullptr) {
         string nameString = pws.attribute("NAME").value();
-        PowerId id = NoPower;
+        PowerType type = NoPower;
         if (nameString == "ReproductionBoost")
         {
-            id = ReproductionBoost;
+            type = ReproductionBoost;
         }
         else if (nameString == "ResistanceBoost")
         {
-            id = ResistanceBoost;
+            type = ResistanceBoost;
         }
-        else if (nameString == "RecollectionBoost")
+        else if (nameString == "MobilityBoost")
         {
-            id = RecollectionBoost;
+            type = MobilityBoost;
         }
-        else if (nameString == "RestoreLand")
+        else if (nameString == "WarfareBoost")
         {
-            id = RestoreLand;
+            type = WarfareBoost;
+        }
+        else if(nameString=="InfluenceBoost")
+        {
+            type = InfluenceBoost;
+        }
+        else
+        {
+            CCLOG("ERROR, boost %s not implemented", nameString.c_str());
         }
         float cost = atoi(pws.child("COST").child_value());
         int cooldown = atoi(pws.child("COOLDOWN").child_value());
         int duration = atoi(pws.child("DURATION").child_value());
-        string type = pws.child("TYPE").attribute("TYPE_NAME").value();
-        if (type == "Global") {
-            auto p = new Power(nameString, id, cooldown, duration, type, cost);
+        string extent = pws.child("EXTENT").attribute("value").value();
+        if (extent== "Global") {
+            auto p = new Power(nameString, type, cooldown, duration, cost);
             GameLevel::getInstance()->addPower(p);
         }
-        else if (type == "Area") {
-            float radius = atof(pws.child("TYPE").child("RADIUS").child_value());
-            auto ap = new AreaPower(nameString, id, cooldown, duration, type, cost, radius);
+        // Area
+        else
+        {
+            auto ap = new AreaPower(nameString, type, cooldown, duration, cost);
             GameLevel::getInstance()->addPower(ap);
         }
         pws = pws.next_sibling("POWER");

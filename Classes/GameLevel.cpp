@@ -179,14 +179,9 @@ void GameLevel::setValueAtLevel(int attr, int level, float value)
     _attributesLevels.at(attr).at(level) = value;
 }
 
-std::vector<Power*> GameLevel::getPowers(void)
+const std::vector<Power*> & GameLevel::getPowers(void) const
 {
     return powers;
-}
-
-void GameLevel::setPowers(std::vector<Power*> p)
-{
-    powers.swap(p);
 }
 
 void GameLevel::addPower(Power* p)
@@ -655,6 +650,25 @@ public:
     }
 };
 
+
+bool GameLevel::powerIsInEffect( const PowerType & type ) const
+{
+    for(size_t i = 0; i < getPowers().size(); i++)
+    {
+        Power * power = getPowers().at(i);
+        if(getPowers().at(i)->getType()!=type)
+        {
+            continue;
+        }
+        if(power->isInEffect())
+        {
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+
 void GameLevel::computeInfluenced( int type )
 {
     // definir número d'agents que han de crear-se
@@ -664,16 +678,7 @@ void GameLevel::computeInfluenced( int type )
     // InfluenceBoost only affects user's population
     if(type==0)
     {
-        Power* p = nullptr;
-        for (size_t i = 0; i < getPowers().size(); i++)
-        {
-            if (getPowers().at(i)->getId() != InfluenceBoost)
-            {
-                continue;
-            }
-            p = getPowers().at(i);
-        }
-        if (p != nullptr and p->getDurationLeft() > 0)
+        if(powerIsInEffect(InfluenceBoost))
         {
             probInfluence = getValueAtLevel(eInfluence, 5);
         }
@@ -683,6 +688,23 @@ void GameLevel::computeInfluenced( int type )
     // check diff between current agents and max agents, and see if it's lower than newAgents
     int value = min(newAgents, int(getMaxAgent(type)-_agents.at(type).size()));
     Agent::_numInfluenced.at(type) = RandomHelper::random_int(int(value*0.5f), value);
+}
+
+bool GameLevel::powerIsInRadius( const PowerType & type, const Position & pos ) const
+{
+
+    for(size_t i = 0; i < getPowers().size(); i++)
+    {
+        Power * power = getPowers().at(i);
+        if(getPowers().at(i)->getType()!=type)
+        {
+            continue;
+        }
+
+        AreaPower * areaPower = (AreaPower*)power;
+        return areaPower->isInRadius(pos);
+    }
+    return false;
 }
 
 void GameLevel::computeTraded(int type)
@@ -703,19 +725,11 @@ void GameLevel::computeOffspring( int type )
     size_t numAgents = _agents.at(type).size();
     float probReproduction = getValueAtLevel(eReproduction, _agentAttributes.at(type).at(eReproduction));
 
+
     // ReproductionBoost only affects user's population
     if(type==0)
     {
-        Power* p = nullptr;
-        for (size_t i = 0; i < getPowers().size(); i++)
-        {
-            if (getPowers().at(i)->getId() != ReproductionBoost)
-            {
-                continue;
-            }
-            p = getPowers().at(i);
-        }
-        if (p != nullptr and p->getDurationLeft() > 0)
+        if(powerIsInEffect(ReproductionBoost))
         {
             probReproduction = getValueAtLevel(eReproduction, 5);
         }
@@ -821,25 +835,13 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
 
     float harm = gameplayMap->getValueAtGameplayMap(0, agent->getPosition().getX(), agent->getPosition().getY());
     float resistance = agent->getValue(eResistance);
-
+    
     //Mirar al mapa de poders de GameLevel si hi es, sino no fer la accio
     if(agent->getType()==0)
     {
-        Power* p = nullptr;
-        for (size_t i = 0; i < getPowers().size(); i++)
+        if(powerIsInEffect(ResistanceBoost) and powerIsInRadius(ResistanceBoost, agent->getPosition()))
         {
-            if(getPowers().at(i)->getId() != ResistanceBoost)
-            {
-                continue;
-            }
-           p = getPowers().at(i);
-        }
-        if(p != nullptr and p->getDurationLeft() > 0)
-        {
-            if (gameplayMap->isInBoostResistanceArea(agent->getPosition().getX() * float(GameData::getInstance()->getResourcesWidth() / 480.0), ((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2) + (agent->getPosition().getY() * float(GameData::getInstance()->getResourcesMargin() / 320.0))))
-            {
-                resistance = getValueAtLevel(eResistance, 5);
-            }
+            resistance = getValueAtLevel(eResistance, 5);
         }
     }
 

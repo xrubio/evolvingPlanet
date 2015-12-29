@@ -32,12 +32,12 @@
 
 using namespace std;
 
-enum PowerId
+enum PowerType
 {
    ReproductionBoost = 0,
    ResistanceBoost = 1,
-   RecollectionBoost = 2,
-   RestoreLand = 3,
+   MobilityBoost = 2,
+   WarfareBoost = 3,
    InfluenceBoost = 4,
    NoPower = -1
 };
@@ -45,14 +45,14 @@ enum PowerId
 class Power
 {
     string name;
-    PowerId id;
+    PowerType _type;
 
 public:
-    Power( const std::string & name, const PowerId & id, float c, float dur, const std::string & t, float _cost);
+    Power( const std::string & name, const PowerType & type, float c, float dur, float _cost);
     virtual ~Power(){}
 
     const string & getName() const;
-    const PowerId & getId() const;
+    const PowerType & getType() const;
     float getCooldown(void) const;
     void setCooldown(float c);
     float getDuration(void) const;
@@ -66,15 +66,16 @@ public:
     void decreaseDurationLeft(float d);
     float getLastDurationLeft() const { return _lastDurationLeft; }
 
-    string getType(void);
-    void setType(string t);
     float getCost(void);
     void setCost(float c);
 
     // a power is activated if it has been pressed and is either in effect or in cooldown 
     void activate();
     bool isActivated() const { return _activated; }
+    bool isInEffect() const;
 
+    // redefined in AreaPower
+    virtual bool isGlobal() const { return true; }
 protected:
     float _cooldown;
     float _duration;
@@ -85,7 +86,7 @@ protected:
     // used to identify transitions from cooldown to available
     float _lastCooldownLeft;
 
-    string type;
+//    string type;
     float cost;
     bool _activated;
     

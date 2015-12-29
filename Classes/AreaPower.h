@@ -29,17 +29,23 @@
 #define __simulplay__AreaPower__
 
 #include "Power.h"
+#include "Position.h"
+#include <cocos2d.h>
+
+using cocos2d::Vec2;
 
 class AreaPower : public Power {
 
 public:
-    AreaPower( const std::string & name, const PowerId & id, float c, float dur, string t, float cost, float rad);
+    AreaPower( const std::string & name, const PowerType & type, float c, float dur, float cost);
+    bool isInRadius( const Position & position ) const;
+    void setArea( const Vec2 & center, float radius );
 
-    float getRadius(void);
-    void setRadius(float r);
+    bool isGlobal() const { return false; }
 
 private:
-    float radius;
+    float _radius;
+    Vec2 _center;
 };
 
 #endif /* defined(__simulplay__AreaPower__) */

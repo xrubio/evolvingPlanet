@@ -79,8 +79,6 @@ public:
 
     int getValueAtGameplayMap(int rgb, int posx, int posy);
 
-    bool isInBoostResistanceArea(int posx, int posy);
-    void restoreLand(void);
     inline void updateAgents(void);
     virtual void update(float delta);
     bool selectSpriteForTouch(Node* sprite, Point p);

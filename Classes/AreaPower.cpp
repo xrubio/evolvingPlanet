@@ -26,19 +26,23 @@
 //
 
 #include "AreaPower.h"
+#include "GameData.h"
 
-AreaPower::AreaPower( const std::string & name, const PowerId & id, float c, float dur, string t, float cost, float rad) : Power(name, id, c, dur, t, cost)
+AreaPower::AreaPower( const std::string & name, const PowerType & type, float c, float dur, float cost) : Power(name, type, c, dur, cost), _radius(0.0f), _center(0.0f, 0.0f)
 {
-
-    radius = rad;
 }
 
-float AreaPower::getRadius(void)
+void AreaPower::setArea( const Vec2 & center, float radius )
 {
-    return radius;
+    _center = center;
+    _radius = _center.y - radius; 
+    CCLOG("center: %f/%f radius: %f", _center.x, _center.y, _radius);
 }
 
-void AreaPower::setRadius(float r)
+bool AreaPower::isInRadius( const Position & position ) const
 {
-    radius = r;
+    float x = float(position.getX()) * float(GameData::getInstance()->getResourcesWidth() / 480.0);
+    float y = (GameData::getInstance()->getResourcesHeight()-GameData::getInstance()->getResourcesMargin())/2.0f + (position.getY()*float(GameData::getInstance()->getResourcesMargin()/320.0));
+    return (abs(_center.distance(Vec2(x, y))) <= _radius);
 }
+

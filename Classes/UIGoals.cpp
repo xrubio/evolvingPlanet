@@ -329,7 +329,7 @@ void UIGoals::zoomImageOutCallback(Ref* pSender)
 
 UIPower * UIGoals::createPower(int i)
 {
-    if (GameLevel::getInstance()->getPowers().at(i)->getType() == "Global")
+    if(GameLevel::getInstance()->getPowers().at(i)->isGlobal())
     {
         return new UIGlobalPower(GameLevel::getInstance()->getPowers().at(i));
     }
