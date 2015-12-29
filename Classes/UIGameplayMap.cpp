@@ -570,7 +570,7 @@ bool UIGameplayMap::init()
     menuGraphic->setName("menuGraphic");
     this->addChild(menuGraphic, 1);
     
-    auto labelGraphic = Label::createWithTTF("AGENTS", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto labelGraphic = Label::createWithTTF("POPULATION", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     labelGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() + (graphicBackground->getBoundingBox().size.height / 2) + (labelGraphic->getBoundingBox().size.height / 2));
     labelGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelGraphic->setName("graphicLabel");
@@ -723,24 +723,12 @@ bool UIGameplayMap::init()
     goal->setName("goal");
     graphicBackground->addChild(goal);
     auto firstGoal = GameLevel::getInstance()->getGoals().at(0);
-    // ONLY POPULATION GOAL
+    
     if(firstGoal->getGoalType() == Resources)
     {
-        if(((ResourcesGoal*)firstGoal)->getResourceType() == PopulationRes)
-        {
-            auto goalCollection = (ResourcesGoal*)firstGoal;
-
-            float height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgent(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
-            
-            // Space the verticies out evenly across the screen for the wave.
-            float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
-            
-            goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
-            
-            goal->drawSegment(Vec2(vertexHorizontalSpacing * goalCollection->getMinTime(), height), Vec2(vertexHorizontalSpacing * goalCollection->getMaxTime(), height), 3, Color4F(GameData::getInstance()->getPlayerColor()));
-        }
+        moveGoalPopup(-1);
     }
-    else
+    else if (firstGoal->getGoalType() == Dispersal)
     {
         auto area = (Sprite*)gameplayMap->getChildByTag(400);
         area->setOpacity(255);
@@ -1811,25 +1799,29 @@ std::string UIGameplayMap::getGoalIcon( const Goal * goal ) const
 
 void UIGameplayMap::moveGoalPopup(int index)
 {
-    Goal * goal = GameLevel::getInstance()->getGoals().at(index);
-    // erase completed goal
-    if(goal->getGoalType() == Resources)
+    Goal * goal;
+    if (index >= 0)
     {
-        auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
-        auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
-        
-        goal->clear();
+        goal = GameLevel::getInstance()->getGoals().at(index);
+        // erase completed goal
+        if(goal->getGoalType() == Resources)
+        {
+            auto graphicBackground = (MenuItem*)(this->getChildByName("menuGraphic")->getChildByName("graphicBackground"));
+            auto goal = (DrawNode*) graphicBackground->getChildByName("goal");
+            
+            goal->clear();
+        }
+        else
+        {
+            auto area = gameplayMap->getChildByTag(400+index);
+            area->stopAllActions();
+            area->setVisible(true);
+            area->setColor(Color3B(223, 211, 39));
+            auto fadeOut = FadeOut::create(2.5);
+            area->runAction(fadeOut);
+        }
     }
-    else
-    {
-        auto area = gameplayMap->getChildByTag(400+index);
-        area->stopAllActions();
-        area->setVisible(true);
-        area->setColor(Color3B(223, 211, 39));
-        auto fadeOut = FadeOut::create(2.5);
-        area->runAction(fadeOut);
-    }
-
+    
     // if it's not the last goal, highlight the next one
     if(index != (GameLevel::getInstance()->getGoals().size()-1))
     {

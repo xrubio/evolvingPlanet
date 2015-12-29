@@ -96,7 +96,7 @@ bool UIIntro::init()
     _listener->onTouchBegan = CC_CALLBACK_2(UIIntro::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithFixedPriority(_listener, -1);
 
-    this->scheduleUpdate();
+    this->schedule(SEL_SCHEDULE(&UIIntro::update), 1.3);
     
     return true;
 }
@@ -109,10 +109,27 @@ bool UIIntro::onTouchesBegan(Touch* touch, Event* event)
 
     if (((VideoPlayer*)this->getChildByName("video")) != nullptr)
     {
-        CCLOG("TAP");
         return true;
     }
 # endif
+    
+    //SKIP ANIMATION
+    if (this->getChildByName("camaraFront") != nullptr)
+    {
+        this->getChildByName("camaraFront")->stopAllActions();
+        this->getChildByName("camaraDoor")->stopAllActions();
+        this->getChildByName("camaraBack")->stopAllActions();
+        this->getChildByName("camaraHexagon")->stopAllActions();
+        
+        this->getChildByName("camaraFront")->runAction(FadeOut::create(0.5));
+        this->getChildByName("camaraDoor")->runAction(FadeOut::create(0.5));
+        this->getChildByName("camaraBack")->runAction(FadeOut::create(0.5));
+        this->getChildByName("camaraHexagon")->runAction(FadeOut::create(0.5));
+
+        _eventDispatcher->removeEventListener(_listener);
+        auto scene = UIMainMenu::createScene();
+        Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
+    }
 
     return true;
 }
@@ -122,10 +139,13 @@ void UIIntro::runIntro()
     auto camaraBack = Sprite::create("misc/CamaraBack.jpg");
     camaraBack->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
     camaraBack->setScale(GameData::getInstance()->getRaHConversion());
+    camaraBack->setName("camaraBack");
     this->addChild(camaraBack, 0);
     
     auto camaraHexagon = Sprite::create("misc/CamaraHexagon.png");
     camaraHexagon->setPosition(Vec2(9 * Director::getInstance()->getVisibleSize().width / 19,  6 * Director::getInstance()->getVisibleSize().height / 11));
+    camaraHexagon->setName("camaraHexagon");
+    camaraHexagon->setScale(GameData::getInstance()->getRaHConversion());
     this->addChild(camaraHexagon, 1);
     camaraHexagon->runAction(Sequence::create(Spawn::create(Repeat::create(RotateBy::create(0.3, -270), 3), ScaleTo::create(0.9, 1.5), NULL),Spawn::create(Repeat::create(RotateBy::create(0.25, 360), 4), ScaleTo::create(1.0, 0.5), NULL), FadeOut::create(0.5), NULL));
     
@@ -151,6 +171,7 @@ void UIIntro::runIntro()
     
     auto camaraDoor = Sprite::create("misc/CamaraDoor.png");
     camaraDoor->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, 0));//5*Director::getInstance()->getVisibleSize().height/24));
+    camaraDoor->setScale(GameData::getInstance()->getRaHConversion());
     camaraDoor->setOpacity(0);
     camaraDoor->setAnchorPoint(Vec2(0.5, 0.66));
     camaraDoor->setName("camaraDoor");
