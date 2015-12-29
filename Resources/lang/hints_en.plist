@@ -7,7 +7,7 @@
 	<key>LEVEL2HINT</key>
 	<string>Tap the goal icon to show the features of the map. You should move your population to forests to increase their chance of survival.</string>
     <key>LEVEL3HINT</key>
-	<string>The werstern zone is a savannah with scarce resources. Increase Resistance before moving there.</string>
+	<string>Increasing resistance is critical to avoid extinction at the beginning of this mission.</string>
 	<key>LEVEL4HINT</key>
 	<string>Increasing technological skills will improve the rest of attributes of your bots.</string>
 	<key>LEVEL5HINT</key>
