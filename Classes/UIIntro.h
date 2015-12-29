@@ -40,7 +40,8 @@ public:
     
     bool onTouchesBegan(Touch* touch, Event* event);
     
-    virtual void update(float delta);
+    void update(float delta);
+    void runIntro();
             
     CREATE_FUNC(UIIntro);
     
