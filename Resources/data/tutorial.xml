@@ -88,3 +88,17 @@
     </message>        
 </level>
 
+<level num="11">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0"/>
+    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
+        <spot image="tutorial/tMineral" centerX="0.5" centerY="0.5"/>
+    </message>        
+    <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
+        <spot image="tutorial/tWood" centerX="0.5" centerY="0.5"/>
+    </message>        
+    <message id="4" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+    <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
+        <spot image="tutorial/tPopSize" centerX="0.92" centerY="0.08"/>
+    </message>     
+</level>
+
