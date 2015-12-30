@@ -1638,15 +1638,15 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
             float height;
             if (graphResource == PopulationRes)
             {
-                height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgents().at(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+                height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgents().at(0)) * graphicBackground->getContentSize().height;
             }
             else
             {
-                height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+                height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height;
             }
         
             // Space the verticies out evenly across the screen for the wave.
-            float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+            float vertexHorizontalSpacing = graphicBackground->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
         
             goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
         
@@ -1920,15 +1920,15 @@ void UIGameplayMap::moveGoalPopup(int index)
                     float height;
                     if (graphResource == PopulationRes)
                     {
-                        height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgents().at(0)) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+                        height = float(goalCollection->getGoalAmount())/float(GameLevel::getInstance()->getMaxAgents().at(0)) * graphicBackground->getContentSize().height;
                     }
                     else
                     {
-                        height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+                        height = float(goalCollection->getGoalAmount())/float(Agent::_resourcesPoolMax.at(goalCollection->getResourceType())) * graphicBackground->getContentSize().height;
                     }
                     
                     // Space the verticies out evenly across the screen for the wave.
-                    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+                    float vertexHorizontalSpacing = graphicBackground->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
                     
                     goal->drawSegment(Vec2(vertexHorizontalSpacing, height), Vec2(vertexHorizontalSpacing * GameLevel::getInstance()->getGoals().at(GameLevel::getInstance()->getGoals().size() - 1)->getMaxTime(), height), 1, Color4F(Color4B(115, 148, 155, 200)));
                     
