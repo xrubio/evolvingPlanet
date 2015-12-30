@@ -8,7 +8,7 @@ how to create the mapHint:
     - Resource Wood: 68/103/42
     - Impassable: 82/82/82
     - Desert: 233/255/113
-    - Terraforming:
+    - Arable: 209/108/67
     - Forest: 0/179/49
 
 4. Apply Gaussian Blur to layer with size 30
