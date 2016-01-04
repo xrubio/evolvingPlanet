@@ -136,7 +136,7 @@ bool UIGameplayMap::init()
         menuHint->setPosition(Vec2::ZERO);
         this->addChild(menuHint, 5);
         
-        auto hintBackground = Sprite::create("gui/ConfigurationBackground.png");
+        auto hintBackground = Sprite::create("gui/EmptyBackground.png");
         hintBackground->setPosition(Vec2(visibleSize.width * 0.5f, visibleSize.height * 0.3f));
         hintBackground->setName("hintBackground");
         hintBackground->setVisible(false);

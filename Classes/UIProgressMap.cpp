@@ -497,7 +497,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->runAction(seqShowPopup);
 
     //PAINT TROPHY
-    if (score == 3) {
+    if (numCompleted == 3) {
         auto trophy = Sprite::create("gui/TrophyIcon.png");
         trophy->setPosition(Vec2(22 * (popupBackground->getContentSize().width / 25), 12 * (popupBackground->getContentSize().height / 14)));
         popupBackground->addChild(trophy);

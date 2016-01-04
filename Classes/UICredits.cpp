@@ -199,7 +199,7 @@ void UICredits::menuArrowNextCallback(Ref* pSender)
 void UICredits::simulpast(Layout* layout)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    auto popupBackground = Sprite::create("gui/EmptyBackground.png");
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
@@ -250,7 +250,7 @@ void UICredits::createName( const std::string & name, float x, float y, Sprite *
 void UICredits::murphysToastStudios(Layout* layout)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    auto popupBackground = Sprite::create("gui/EmptyBackground.png");
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
@@ -338,7 +338,7 @@ void UICredits::loadAcknowledgements()
 void UICredits::specialThanks1(Layout* layout)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    auto popupBackground = Sprite::create("gui/EmptyBackground.png");
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
@@ -373,7 +373,7 @@ void UICredits::specialThanks1(Layout* layout)
 void UICredits::specialThanks2(Layout* layout)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    auto popupBackground = Sprite::create("gui/ConfigurationBackground.png");
+    auto popupBackground = Sprite::create("gui/EmptyBackground.png");
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);

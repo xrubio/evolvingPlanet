@@ -88,7 +88,6 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
     <string>The first Goal of this mission checks the size of your group</string>
     <key>LEVEL6M2</key>
     <string>You need to reach the size highlighted in red here within the assigned time span.</string>
-</dict>
 
     <key>LEVEL11M1</key>
     <string>You will need to collect different resources to pass this mission.</string>
@@ -100,5 +99,7 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
     <string>You collect resources by moving to these zones and increasing your Exploitation attribute.</string>
     <key>LEVEL11M5</key>
     <string>You can tap here to cycle through the needed amount of resources.</string>
+</dict>
+
 </plist>
 
