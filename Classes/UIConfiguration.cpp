@@ -136,35 +136,35 @@ bool UIConfiguration::init()
     colorLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(colorLabel);
     
-    auto redButton = MenuItemImage::create("gui/redAgentColor.png", "gui/redAgentColorPressed.png", "gui/redAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
-    redButton->setName("red");
-    redButton->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
-    colorItems.pushBack(redButton);
+    auto lightblueButton = MenuItemImage::create("gui/LightblueAgentColor.png", "gui/LightblueAgentColorPressed.png", "gui/LightblueAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    lightblueButton->setName("lightblue");
+    lightblueButton->setPosition(Vec2(11 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(lightblueButton);
     
-    auto greenButton = MenuItemImage::create("gui/greenAgentColor.png", "gui/greenAgentColorPressed.png", "gui/greenAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
-    greenButton->setName("green");
-    greenButton->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
-    colorItems.pushBack(greenButton);
+    auto darkblueButton = MenuItemImage::create("gui/DarkblueAgentColor.png", "gui/DarkblueAgentColorPressed.png", "gui/DarkblueAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    darkblueButton->setName("darkblue");
+    darkblueButton->setPosition(Vec2(15 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(darkblueButton);
     
-    auto blueButton = MenuItemImage::create("gui/blueAgentColor.png", "gui/blueAgentColorPressed.png", "gui/blueAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
-    blueButton->setName("blue");
-    blueButton->setPosition(Vec2(19 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
-    colorItems.pushBack(blueButton);
+    auto whiteButton = MenuItemImage::create("gui/WhiteAgentColor.png", "gui/WhiteAgentColorPressed.png", "gui/WhiteAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    whiteButton->setName("white");
+    whiteButton->setPosition(Vec2(19 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
+    colorItems.pushBack(whiteButton);
     
-    auto purpleButton = MenuItemImage::create("gui/purpleAgentColor.png", "gui/purpleAgentColorPressed.png", "gui/purpleAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
+    auto purpleButton = MenuItemImage::create("gui/PurpleAgentColor.png", "gui/PurpleAgentColorPressed.png", "gui/PurpleAgentColorPressed.png", CC_CALLBACK_1(UIConfiguration::colorCallback, this));
     purpleButton->setName("purple");
     purpleButton->setPosition(Vec2(23 * popupBackground->getContentSize().width / 28, 8 * popupBackground->getContentSize().height / 16));
     colorItems.pushBack(purpleButton);
     
     string color = GameData::getInstance()->getPlayerColorString();
-    if (color == "red") {
-        redButton->setEnabled(false);
+    if (color == "lightblue") {
+        lightblueButton->setEnabled(false);
     }
-    else if (color == "green") {
-        greenButton->setEnabled(false);
+    else if (color == "darkblue") {
+        darkblueButton->setEnabled(false);
     }
-    else if (color == "blue") {
-        blueButton->setEnabled(false);
+    else if (color == "white") {
+        whiteButton->setEnabled(false);
     }
     else if (color == "purple") {
         purpleButton->setEnabled(false);

@@ -1626,12 +1626,12 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
         if (currentName == "WOOD")
         {
             graphResource = Wood;
-            colorGoal = Color4B(0, 249, 105, 255);
+            colorGoal = Color4B(103, 222, 31, 255);
         }
         else if (currentName == "MINERAL")
         {
             graphResource = Mineral;
-            colorGoal = Color4B(229, 232, 5, 255);
+            colorGoal = Color4B(241, 200, 10, 255);
         }
         if (goalCollection->getResourceType() == graphResource)
         {
@@ -1908,12 +1908,12 @@ void UIGameplayMap::moveGoalPopup(int index)
                 if (name == "WOOD")
                 {
                     graphResource = Wood;
-                    colorGoal = Color4B(0, 249, 105, 255);
+                    colorGoal = Color4B(103, 222, 31, 255);
                 }
                 else if (name == "MINERAL")
                 {
                     graphResource = Mineral;
-                    colorGoal = Color4B(229, 232, 5, 255);
+                    colorGoal = Color4B(241, 200, 10, 255);
                 }
                 if (goalCollection->getResourceType() == graphResource)
                 {
@@ -2262,20 +2262,20 @@ void UIGameplayMap::updateAgents(void)
             switch (agentColor) {
             //wood
             case 1:
-                color = Color4B(0, 249, 105, 255);
+                color = Color4B(103, 222, 31, 255);
                 break;
             //mineral
             case 2:
-                color = Color4B(229, 232, 5, 255);
+                color = Color4B(241, 200, 10, 255);
                 break;
             //normal
             default:
                 switch ((*it)->getType()) {
                 case 1:
-                    color = Color4B(0, 248, 251, (*it)->getLife() * (255 / 175));
+                    color = Color4B(251, 54, 26, (*it)->getLife() * (255 / 175));
                     break;
                 case 2:
-                    color = Color4B(210, 214, 47, (*it)->getLife() * (255 / 175));
+                    color = Color4B(249, 255, 0, (*it)->getLife() * (255 / 175));
                     break;
                 case 3:
                     color = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
@@ -2290,10 +2290,10 @@ void UIGameplayMap::updateAgents(void)
             Color4B colorBorder;
             switch ((*it)->getType()) {
                 case 1:
-                    colorBorder = Color4B(0, 248, 251, (*it)->getLife() * (255 / 175));
+                    colorBorder = Color4B(251, 54, 26, (*it)->getLife() * (255 / 175));
                     break;
                 case 2:
-                    colorBorder = Color4B(210, 214, 47, (*it)->getLife() * (255 / 175));
+                    colorBorder = Color4B(249, 255, 0, (*it)->getLife() * (255 / 175));
                     break;
                 case 3:
                     colorBorder = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
@@ -2563,19 +2563,19 @@ void UIGameplayMap::update(float delta)
             
             if (_isWood)
             {
-                updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(0, 249, 105, 255));
+                updateWave(1, Agent::_resourcesPool.at(0).at(Wood), Agent::_resourcesPoolMax.at(Wood), Color4B(103, 222, 31, 255));
             }
             if (_isMineral)
             {
                 // 2 resources
                 if(_isWood)
                 {
-                    updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+                    updateWave(2, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(241, 200, 10, 255));
                 }
                 // just mineral
                 else
                 {
-                    updateWave(1, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(229, 232, 5, 255));
+                    updateWave(1, Agent::_resourcesPool.at(0).at(Mineral), Agent::_resourcesPoolMax.at(Mineral), Color4B(241, 200, 10, 255));
                 }
             }
             

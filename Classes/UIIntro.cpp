@@ -70,7 +70,7 @@ bool UIIntro::init()
     }*/
 
 // video player only for ios/android    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
     VideoPlayer *p = VideoPlayer::create();
     p->setFileName("audio/logo_02.mp4");
@@ -82,14 +82,21 @@ bool UIIntro::init()
     this->addChild(p, 1);
 
 // at least show the logo    
-#else
+#else*/
     auto logo = Sprite::create("misc/murphy.png");
     logo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));   
     logo->setName("logo");
     logo->setOpacity(0);
-    logo->runAction(Sequence::create(FadeIn::create(1.5f), FadeOut::create(1.0f), nullptr));
+    logo->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(0.7), FadeOut::create(0.5f), nullptr));
     this->addChild(logo);
-#endif
+//#endif
+    
+    //load gallery images to cache
+    for (int i = 1; i < 21; i++)
+    {
+        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari"+to_string(i)+".jpg", CC_CALLBACK_1(UIIntro::doNothing, this));
+    }
+
     
     _listener = EventListenerTouchOneByOne::create();
     _listener->setSwallowTouches(true);
@@ -105,13 +112,13 @@ bool UIIntro::onTouchesBegan(Touch* touch, Event* event)
 {
     
 // video player only for ios/android    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
     if (((VideoPlayer*)this->getChildByName("video")) != nullptr)
     {
         return true;
     }
-# endif
+# endif*/
     
     //SKIP ANIMATION
     if (this->getChildByName("camaraFront") != nullptr)
@@ -184,7 +191,7 @@ void UIIntro::update(float delta)
 {
     
 // video player only for ios/android    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto * video = (VideoPlayer*)(this->getChildByName("video"));
     if(video and !video->isPlaying())
     {
@@ -192,7 +199,7 @@ void UIIntro::update(float delta)
         runIntro();
         return;
     }
-# else
+# else*/
     Node * logo = this->getChildByName("logo");
     if(logo and logo->getNumberOfRunningActions()==0)
     {
@@ -200,7 +207,7 @@ void UIIntro::update(float delta)
         runIntro();
         return;
     }
-#endif
+//#endif
 
     auto * camaraFront = this->getChildByName("camaraFront");
     auto * camaraDoor = this->getChildByName("camaraDoor");
@@ -210,5 +217,10 @@ void UIIntro::update(float delta)
         auto scene = UIMainMenu::createScene();
         Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
     }
+}
+
+void UIIntro::doNothing(bool b)
+{
+    
 }
 

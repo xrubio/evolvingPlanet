@@ -291,43 +291,43 @@ cocos2d::Color3B GameData::getPlayerColor(void)
 
 string GameData::getPlayerColorString(void)
 {
-    if (_playerColor.r == 255)
+    if (_playerColor.r == 63)
     {
-        return "red";
+        return "lightblue";
     }
-    else if (_playerColor.r == 16)
+    else if (_playerColor.r == 84)
     {
-        return "blue";
+        return "darkblue";
     }
-    else if (_playerColor.r == 198)
+    else if (_playerColor.r == 255)
+    {
+        return "white";
+    }
+    else if (_playerColor.r == 165)
     {
         return "purple";
     }
-    else if (_playerColor.r == 43)
-    {
-        return "green";
-    }
     
-    return "red";
+    return "lightblue";
 }
 
 void GameData::setPlayerColor(string c)
 {
-    if (c == "red")
+    if (c == "lightblue")
     {
-        _playerColor = Color3B(255, 4, 4);
+        _playerColor = Color3B(63, 239, 250);
     }
-    else if (c == "blue")
+    else if (c == "darkblue")
     {
-        _playerColor = Color3B(16, 102, 243);
+        _playerColor = Color3B(84, 169, 247);
+    }
+    else if (c == "white")
+    {
+        _playerColor = Color3B(255, 255, 255);
     }
     else if (c == "purple")
     {
-        _playerColor = Color3B(198, 0, 210);
-    }
-    else if (c == "green")
-    {
-        _playerColor = Color3B(43, 255, 65);
+        _playerColor = Color3B(165, 59, 175);
     }
 }
 

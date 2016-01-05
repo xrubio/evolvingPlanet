@@ -3,7 +3,7 @@
 <NAME_LEVEL>Recollection</NAME_LEVEL>
 <MAP FILE="Level17">
   <LEGEND>
-    <ENTRY NAME="WOOD" R="68" G="103" B="42"/>
+      <ENTRY NAME="WOOD" R="103" G="222" B="31" MAXIMUM="5000"/>
     <ENTRY NAME="ARABLE" R="209" G="108" B="67"/>
   </LEGEND>
 </MAP>

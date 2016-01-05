@@ -49,6 +49,8 @@ private:
 
     EventListenerTouchOneByOne* _listener;
     
+    void doNothing(bool b);
+    
 };
 
 #endif /* defined(__simulplay__UIIntro__) */
