@@ -119,7 +119,7 @@ void UITransitionScene::onTouchesBegan(const vector<Touch*>& touches, Event* eve
         if (stoppedAnimation or allActionsFinished()) {
             auto scene = UIProgressMap::createScene();
             auto transition = TransitionFade::create(1.0f, scene);
-            Director::getInstance()->replaceScene(transition);
+            Director::getInstance()->popScene();
         }
         else {
             endActions();

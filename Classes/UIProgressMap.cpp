@@ -120,7 +120,9 @@ bool UIProgressMap::init()
     
     pages->addPage(setEpisode1());
     pages->addPage(setEpisode2());
-
+    
+    pages->setCurPageIndex(GameData::getInstance()->getCurrentEra());
+    
     //RESET INITIAL CONFIG
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
     
@@ -594,6 +596,8 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
     LevelLoader loader;
     loader.loadXmlFile(filename);
 
+    GameData::getInstance()->setCurrentEra(int(pages->getCurPageIndex()));
+    
     auto scene = UIGoals::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);

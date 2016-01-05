@@ -81,6 +81,9 @@ public:
     void setColumnDrawAgentPrecalc(float c);
     int getFirstTimeLevelCompleted(void);
     void setFirstTimeLevelCompleted(int l);
+    int getCurrentEra(void);
+    void setCurrentEra(int i);
+
     int getNextScene(void);
     void setNextScene(int s);
     
@@ -123,6 +126,7 @@ private:
     float columnOffsetDrawAgentPrecalc;
     float columnDrawAgentPrecalc;
     int _firstTimeLevelCompleted = 0;
+    int _currentEra = 0;
     int nextScene = 0;
     float resourcesHeight;
     float resourcesWidth;

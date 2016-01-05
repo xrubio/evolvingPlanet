@@ -234,6 +234,16 @@ void GameData::setFirstTimeLevelCompleted(int l)
     _firstTimeLevelCompleted = l;
 }
 
+int GameData::getCurrentEra(void)
+{
+    return _currentEra;
+}
+
+void GameData::setCurrentEra(int i)
+{
+    _currentEra = i;
+}
+
 int GameData::getNextScene(void)
 {
     return nextScene;
