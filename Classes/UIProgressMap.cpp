@@ -128,29 +128,39 @@ bool UIProgressMap::init()
     
     //ANIMATION OF COMPLETED LEVEL AND UNLOCKING NEW LEVEL
     int ftlc;
-    if ((ftlc = GameData::getInstance()->getFirstTimeLevelCompleted()) > 0)
+    if ((ftlc = GameData::getInstance()->getFirstTimeLevelCompleted()) > 0 and ftlc < 21)
     {
-        if (ftlc != 10 or ftlc != 20)
-        {
-            //STAR ANIMATION
-            auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc));
+        GameData::getInstance()->setCurrentLevel(ftlc + 1);
 
-            auto star1 = (Sprite*)(pointerLevel->getChildByName("star1"));
-            auto scalePlus1 = ScaleTo::create(0.4, 1.7);
-            auto scaleMinus1 = ScaleTo::create(0.4, 1);
-            star1->runAction(Sequence::create(DelayTime::create(1), scalePlus1, scaleMinus1, NULL));
+        //STAR ANIMATION
+        auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc));
+
+        auto star1 = (Sprite*)(pointerLevel->getChildByName("star1"));
+        auto scalePlus1 = ScaleTo::create(0.4, 1.7);
+        auto scaleMinus1 = ScaleTo::create(0.4, 1);
+        star1->runAction(Sequence::create(DelayTime::create(1), scalePlus1, scaleMinus1, NULL));
             
-            auto star2 = (Sprite*)(pointerLevel->getChildByName("star2"));
-            auto scalePlus2 = ScaleTo::create(0.4, 1.7);
-            auto scaleMinus2 = ScaleTo::create(0.4, 1);
-            star2->runAction(Sequence::create(DelayTime::create(1.4), scalePlus2, scaleMinus2, NULL));
-            
-            auto star3 = (Sprite*)(pointerLevel->getChildByName("star3"));
-            auto scalePlus3 = ScaleTo::create(0.4, 1.7);
-            auto scaleMinus3 = ScaleTo::create(0.4, 1);
-            star3->runAction(Sequence::create(DelayTime::create(1.8), scalePlus3, scaleMinus3, NULL));
-            
-            
+        auto star2 = (Sprite*)(pointerLevel->getChildByName("star2"));
+        auto scalePlus2 = ScaleTo::create(0.4, 1.7);
+        auto scaleMinus2 = ScaleTo::create(0.4, 1);
+        star2->runAction(Sequence::create(DelayTime::create(1.4), scalePlus2, scaleMinus2, NULL));
+        
+        auto star3 = (Sprite*)(pointerLevel->getChildByName("star3"));
+        auto scalePlus3 = ScaleTo::create(0.4, 1.7);
+        auto scaleMinus3 = ScaleTo::create(0.4, 1);
+        star3->runAction(Sequence::create(DelayTime::create(1.8), scalePlus3, scaleMinus3, NULL));
+        
+        float delayTime = 2;
+        
+        if (ftlc == 10)
+        {
+            //ADD PAGE SECOND ERA AND THEN SCROLL
+            pages->setCurPageIndex(1);
+            delayTime = 2.2;
+        }
+        
+        if (ftlc < 20)
+        {
             //POINTER LEVEL UNLOCKED ANIMATION
             auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
             
@@ -158,7 +168,8 @@ bool UIProgressMap::init()
             pointerNextLevel->setPositionY(visibleSize.height * 1.5);
             auto fall = MoveTo::create(0.6, pos);
             auto fallEase = EaseBackOut::create(fall);
-            pointerNextLevel->runAction(Sequence::create(DelayTime::create(2), fallEase, NULL));
+            pointerNextLevel->runAction(Sequence::create(DelayTime::create(delayTime), fallEase, RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerNextLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerNextLevel->getContentSize().width*0.5)), NULL)), NULL));
+            
             
             /*auto dropActionLevelButton = MoveBy::create(1.5, Vec2(0, 5));
             auto easeDropActionLevelButton = EaseOut::create(dropActionLevelButton, 1);
@@ -167,12 +178,15 @@ bool UIProgressMap::init()
             auto seqDrop = Sequence::create(easeDropActionLevelButton, easeDropActionLevelButton2, NULL);
             auto actionRep = RepeatForever::create(seqDrop);
             pointerNextLevel->runAction(actionRep);*/
-            
         }
-        
+    
         //RESET FIRST TIME COMPLETED LEVEL FLAG
         GameData::getInstance()->setFirstTimeLevelCompleted(0);
     }
+    
+    auto pointerCurrentLevel = (MenuItem*)(pages->getPage(GameData::getInstance()->getCurrentLevel()/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(GameData::getInstance()->getCurrentLevel()));
+    pointerCurrentLevel->runAction(RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerCurrentLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerCurrentLevel->getContentSize().width*0.5)), NULL)));
+    
     
     auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
                                                "gui/ProgressMapHexagonLevelOff.png");

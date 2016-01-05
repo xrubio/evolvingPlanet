@@ -137,6 +137,16 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     GameData::getInstance()->setLevelsFailedForHint(levelsFailedForHint);
     
+    for (int i = 1; i < levelsCompleted.size(); i++)
+    {
+        if (levelsCompleted.at(i) == 0)
+        {
+            GameData::getInstance()->setCurrentLevel(i);
+            GameData::getInstance()->setCurrentEra(i / 11);
+            i = int(levelsCompleted.size());
+        }
+    }
+    
     // create a scene. it's an autorelease object
     auto scene = UIIntro::createScene();
     // run

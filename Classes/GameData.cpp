@@ -244,6 +244,16 @@ void GameData::setCurrentEra(int i)
     _currentEra = i;
 }
 
+int GameData::getCurrentLevel(void)
+{
+    return _currentLevel;
+}
+
+void GameData::setCurrentLevel(int i)
+{
+    _currentLevel = i;
+}
+
 int GameData::getNextScene(void)
 {
     return nextScene;
