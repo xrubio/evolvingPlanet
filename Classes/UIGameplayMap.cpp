@@ -2608,7 +2608,7 @@ void UIGameplayMap::update(float delta)
             timeBar->setPercentage(value);
             if (value > 99.4)
             {
-                timeBorderBar->setVisible(false);;
+                timeBorderBar->getChildByName("degradateTime")->setVisible(false);
             }
 
             timeBorderBar->getChildByName("degradateTime")->setPositionX(timeBorderBar->getContentSize().width * (value/100.0f));

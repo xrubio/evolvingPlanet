@@ -262,19 +262,19 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
             zoneTimer->setScale(1.0);
             break;
         case 11:
-            zoneTimer->setScale(0.6);
-            break;
-        case 12:
             zoneTimer->setScale(0.7);
             break;
+        case 12:
+            zoneTimer->setScale(0.75);
+            break;
         case 13:
-            zoneTimer->setScale(0.8);
+            zoneTimer->setScale(0.75);
             break;
         case 14:
-            zoneTimer->setScale(0.6);
+            zoneTimer->setScale(0.8);
             break;
         case 15:
-            zoneTimer->setScale(0.8);
+            zoneTimer->setScale(0.55);
             break;
         case 16:
             zoneTimer->setScale(0.6);
@@ -286,10 +286,10 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
             zoneTimer->setScale(0.6);
             break;
         case 19:
-            zoneTimer->setScale(0.7);
+            zoneTimer->setScale(0.65);
             break;
         case 20:
-            zoneTimer->setScale(1.3);
+            zoneTimer->setScale(0.7);
             break;
         default:
             zoneTimer->setScale(1.0);
@@ -869,73 +869,73 @@ Layout* UIProgressMap::setEpisode2(void)
         
         switch (i) {
             case 11: {
-                levelButton->setPosition(155 * progressMap->getContentSize().width / 204, 90 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(155 * progressMap->getContentSize().width / 204, 87 * progressMap->getContentSize().height / 155);
                 
                 shadow->setPosition(Vec2(155 * progressMap->getContentSize().width / 204,
-                                         (90 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                                         (87 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 12: {
-                levelButton->setPosition(132 * progressMap->getContentSize().width / 204, 75 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(130 * progressMap->getContentSize().width / 204, 78 * progressMap->getContentSize().height / 155);
                 
-                shadow->setPosition(Vec2(132 * progressMap->getContentSize().width / 204,
-                                         (75 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                shadow->setPosition(Vec2(130 * progressMap->getContentSize().width / 204,
+                                         (78 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 13: {
-                levelButton->setPosition(108 * progressMap->getContentSize().width / 204, 86 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(106 * progressMap->getContentSize().width / 204, 86 * progressMap->getContentSize().height / 155);
                 
-                shadow->setPosition(Vec2(108 * progressMap->getContentSize().width / 204,
+                shadow->setPosition(Vec2(106 * progressMap->getContentSize().width / 204,
                                          (86 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 14: {
-                levelButton->setPosition(78 * progressMap->getContentSize().width / 204, 83 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(78 * progressMap->getContentSize().width / 204, 84 * progressMap->getContentSize().height / 155);
                 
                 shadow->setPosition(Vec2(78 * progressMap->getContentSize().width / 204,
-                                         (83 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                                         (84 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 15: {
+                levelButton->setPosition(48 * progressMap->getContentSize().width / 204, 102 * progressMap->getContentSize().height / 155);
+                
+                shadow->setPosition(Vec2(48 * progressMap->getContentSize().width / 204,
+                                         (102 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                break;
+            }
+            case 16: {
                 levelButton->setPosition(83 * progressMap->getContentSize().width / 204, 105 * progressMap->getContentSize().height / 155);
                 
                 shadow->setPosition(Vec2(83 * progressMap->getContentSize().width / 204,
                                          (105 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
-            case 16: {
-                levelButton->setPosition(65 * progressMap->getContentSize().width / 204, 93 * progressMap->getContentSize().height / 155);
-                
-                shadow->setPosition(Vec2(65 * progressMap->getContentSize().width / 204,
-                                         (93 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
-                break;
-            }
             case 17: {
-                levelButton->setPosition(57 * progressMap->getContentSize().width / 204, 69 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(56 * progressMap->getContentSize().width / 204, 75 * progressMap->getContentSize().height / 155);
                 
-                shadow->setPosition(Vec2(57 * progressMap->getContentSize().width / 204,
-                                         (69 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                shadow->setPosition(Vec2(56 * progressMap->getContentSize().width / 204,
+                                         (75 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 18: {
-                levelButton->setPosition(91 * progressMap->getContentSize().width / 204, 67 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(88 * progressMap->getContentSize().width / 204, 67 * progressMap->getContentSize().height / 155);
                 
-                shadow->setPosition(Vec2(91 * progressMap->getContentSize().width / 204,
+                shadow->setPosition(Vec2(88 * progressMap->getContentSize().width / 204,
                                          (67 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 19: {
-                levelButton->setPosition(112 * progressMap->getContentSize().width / 204, 63 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(104 * progressMap->getContentSize().width / 204, 58 * progressMap->getContentSize().height / 155);
                 
-                shadow->setPosition(Vec2(112 * progressMap->getContentSize().width / 204,
-                                         (63 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                shadow->setPosition(Vec2(104 * progressMap->getContentSize().width / 204,
+                                         (58 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
             case 20: {
-                levelButton->setPosition(127 * progressMap->getContentSize().width / 204, 98 * progressMap->getContentSize().height / 155);
+                levelButton->setPosition(165 * progressMap->getContentSize().width / 204, 48 * progressMap->getContentSize().height / 155);
                 
-                shadow->setPosition(Vec2(127 * progressMap->getContentSize().width / 204,
-                                         (98 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
+                shadow->setPosition(Vec2(165 * progressMap->getContentSize().width / 204,
+                                         (48 * progressMap->getContentSize().height / 155) - (levelButton->getContentSize().height / 1.5)));
                 break;
             }
                 
