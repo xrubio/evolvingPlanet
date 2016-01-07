@@ -51,20 +51,24 @@ void Trade::execute(Agent* agent)
             //calculate which resource take
             float total = Agent::_resourcesPool.at(typeCpu).at(Wood) + Agent::_resourcesPool.at(typeCpu).at(Mineral);
             float pWood = float(Agent::_resourcesPool.at(typeCpu).at(Wood)) / total;
-            float pMineral = float(Agent::_resourcesPool.at(typeCpu).at(Mineral)) / total;
-            
             float prob = cocos2d::RandomHelper::random_real(0.0f, 1.0f);
-            int resourceTaken;
+            Resource resourceTaken;
 
             if (prob < pWood)
             {
                 resourceTaken = Wood;
             }
+            // not wood, mineral
             else
             {
                 resourceTaken = Mineral;
             }
-            
+           
+            // check if the resource to take is already at maximum
+            if(Agent::_resourcesPool.at(type).at(resourceTaken)>Agent::_resourcesPoolMax.at(resourceTaken))
+            {
+                return;
+            }
             //check if the poblation has resources
             if (Agent::_resourcesPool.at(typeCpu).at(resourceTaken) > 0)
             {
@@ -79,3 +83,4 @@ void Trade::execute(Agent* agent)
         maxIterations--;
     }
 }
+
