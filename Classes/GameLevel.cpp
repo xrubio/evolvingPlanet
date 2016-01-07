@@ -477,7 +477,10 @@ void GameLevel::playLevel(void)
             paint = true;
             Timing::getInstance()->act = false;  
             CCLOG("%d;%f;%zu;%f", int(Timing::getInstance()->getTimeStep()), Timing::getInstance()->getTimeStep(), _agents.at(0).size(), float(clock() - stepTime) / CLOCKS_PER_SEC);
-            CCLOG("RESOURCES: Wood %d, Mineral %d", Agent::_resourcesPool.at(0).at(0), Agent::_resourcesPool.at(0).at(1));
+            for(int i=0; i<Agent::_resourcesPool.size(); i++)
+            {
+                CCLOG("type %d: popsize: %d wood %d, mineral %d", i, int(_agents.at(i).size()), Agent::_resourcesPool.at(i).at(0), Agent::_resourcesPool.at(i).at(1));
+            }
         }
     }
     
