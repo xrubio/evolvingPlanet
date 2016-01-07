@@ -1272,7 +1272,7 @@ void UIGameplayMap::menuBackCallback(Ref* pSender)
     GameLevel::getInstance()->play(false);
     GameData::getInstance()->setGameStarted(false);
     
-    if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel())
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel() or GameData::getInstance()->getFirstTimeLevelCompleted() == 21)
     {
         auto scene = UITransitionScene::createScene();
         auto transition = TransitionFade::create(0.2f, scene);
@@ -2166,6 +2166,130 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     this->addChild(window, 10);
 }
 
+void UIGameplayMap::createEndGameWindowLevel20(const LevelState & mode)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto background = Sprite::create("gui/EndedGameBackground.png");
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    this->addChild(background, 9);
+    
+    auto window = Sprite::create("gui/EndedGameWindow.png");
+    window->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    window->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    string title;
+    string text;
+    
+    if (mode == Success or mode == NoAgentsLeft) {
+        //success
+        title = LocalizedString::create("LEVEL_COMPLETED");
+        int score = GameData::getInstance()->getLevelScore(GameLevel::getInstance()->getNumLevel());
+
+        if (mode == NoAgentsLeft)
+        {
+            score = GameData::getInstance()->getLevelScore(GameLevel::getInstance()->getNumLevel() + 1);
+            //set level 20 score to 1 if all bots died
+            if (score == 0)
+            {
+                GameData::getInstance()->setLevelScore(GameLevel::getInstance()->getNumLevel() + 1, 1);
+                score = 1;
+            }
+            text = LocalizedString::create("ALL_BOTS_LEVEL_20_DIED");
+        }
+        else
+        {
+            text = LocalizedString::create("CONGRATULATIONS");
+        }
+        int starCount = 0;
+        while (starCount < 3) {
+            if (starCount < score) {
+                auto starFull = Sprite::create("gui/StarFull.png");
+                starFull->setPosition(((starCount * 3) + 10) * window->getContentSize().width / 18,
+                                      5 * window->getContentSize().height / 10);
+                window->addChild(starFull);
+            }
+            else {
+                auto starEmpty = Sprite::create("gui/StarEmpty.png");
+                starEmpty->setPosition(((starCount * 3) + 10) * window->getContentSize().width / 18,
+                                       5 * window->getContentSize().height / 10);
+                window->addChild(starEmpty);
+            }
+            starCount++;
+        }
+        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 120 * GameData::getInstance()->getRaConversion());
+        titleLabel->setColor(Color3B(255, 255, 255));
+        titleLabel->setPosition(5 * window->getContentSize().width / 18, 5 * window->getContentSize().height / 10);
+        window->addChild(titleLabel);
+        // turn off tutorial for successful levels
+        GameData::getInstance()->setTutorial(GameLevel::getInstance()->getNumLevel(), false);
+    }
+    else {
+        //game over
+        title = LocalizedString::create("GAME_OVER");
+        
+        if (mode == GoalFailBefore) {
+            text = LocalizedString::create("GOAL_FAIL_BEFORE");
+        }
+        else if (mode == GoalFailAfter) {
+            text = LocalizedString::create("GOAL_FAIL_AFTER");
+        }
+        
+        auto titleLabel = Label::createWithTTF(title, "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+        titleLabel->setColor(Color3B(255, 255, 255));
+        titleLabel->setPosition(9 * window->getContentSize().width / 18, 4 * window->getContentSize().height / 10);
+        window->addChild(titleLabel);
+        
+        auto textLabel = Label::createWithTTF(text, "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+        textLabel->setPosition(9 * window->getContentSize().width / 18, 6 * window->getContentSize().height / 10);
+        textLabel->setAlignment(TextHAlignment::CENTER);
+        window->addChild(textLabel);
+        
+        //failed vector
+        GameData::getInstance()->setLevelFailedForHint(GameLevel::getInstance()->getNumLevel());
+    }
+    
+    string space = " ";
+    string lvl = LocalizedString::create("LEVEL") + space + to_string(GameLevel::getInstance()->getNumLevel());
+    auto levelLabel = Label::createWithTTF(lvl, "fonts/BebasNeue.otf", 120 * GameData::getInstance()->getRaConversion());
+    levelLabel->setColor(Color3B(85, 108, 117));
+    levelLabel->setPosition(Vec2(4 * window->getContentSize().width / 18, 8.5 * window->getContentSize().height / 10));
+    window->addChild(levelLabel);
+    
+    auto continueButton = MenuItemImage::create("gui/ProgressMapPlayButton.png", "gui/ProgressMapPlayButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::menuBackCallback, this));
+    continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
+    auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    continueLabel->setColor(Color3B(205, 202, 207));
+    continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
+    continueButton->addChild(continueLabel);
+    auto continueMenu = Menu::createWithItem(continueButton);
+    continueMenu->setPosition(0, 0);
+    window->addChild(continueMenu);
+    
+    auto retryButton = MenuItemImage::create("gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGameplayMap::retryOkCallback, this));
+    retryButton->setPosition(4 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
+    auto retryLabel = Label::createWithTTF(LocalizedString::create("RETRY"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    retryLabel->setColor(Color3B(205, 202, 207));
+    retryLabel->setPosition(retryButton->getContentSize().width / 2, retryButton->getContentSize().height / 2);
+    retryButton->addChild(retryLabel);
+    auto retryMenu = Menu::createWithItem(retryButton);
+    retryMenu->setPosition(0, 0);
+    window->addChild(retryMenu);
+    
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() == GameLevel::getInstance()->getNumLevel() or GameData::getInstance()->getFirstTimeLevelCompleted() == 21)
+    {
+        retryButton->setVisible(false);
+        continueButton->setPositionX(window->getContentSize().width / 2);
+    }
+    
+    //delete wave nodes
+    this->getChildByName("menuGraphic")->getChildByName("graphicBackground")->removeAllChildren();
+    ((MenuItem*)this->getChildByName("timeMenu")->getChildByName("playToggle"))->setEnabled(false);
+    
+    this->addChild(window, 10);
+
+}
+
+
 void UIGameplayMap::createAchievementWindow(void)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -2647,7 +2771,15 @@ void UIGameplayMap::update(float delta)
 
         evolutionPointsLabel->setString(to_string(GameLevel::getInstance()->getEvolutionPoints()));
 
-        createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
+        if (GameLevel::getInstance()->getNumLevel() == 20)
+        {
+            createEndGameWindowLevel20(GameLevel::getInstance()->getFinishedGame());
+
+        }
+        else
+        {
+            createEndGameWindow(GameLevel::getInstance()->getFinishedGame());
+        }
         
         //HAS COMPLETED ANY ACHIEVEMENT
         if (GameLevel::getInstance()->getCompletedAchievements().size() > 0)

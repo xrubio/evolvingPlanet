@@ -170,6 +170,7 @@ private:
     void setAttributesToInitialAgents(void);
 
     void createEndGameWindow(const LevelState & mode);
+    void createEndGameWindowLevel20(const LevelState & mode);
     void createAchievementWindow(void);
     void createInGameAchievementWindow(Achievement *ach);
 

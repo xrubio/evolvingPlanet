@@ -86,20 +86,28 @@ bool UIStoryGallery::init()
     pages->setPosition(Point(0, 0));
     //pages->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
     
-    for (int i = 1; i < 21; i++)
+    for (int i = 1; i < NUM_LEVELS + 1; i++)
     {
         auto layout = Layout::create();
         // unlocked
         //if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
         {
-            auto image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
+            Sprite* image;
+            if (i == 21)
+            {
+                image = Sprite::create("art/Escenari20_2.jpg");
+            }
+            else
+            {
+                image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
+            }
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
 
             int diff = (visibleSize.height - image->getContentSize().height)/2;
             layout->addChild(image);
             
-            auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());
+            auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(i) + "_STORY").c_str(), "text"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
             storyLine->setColor(Color3B(216, 229, 235));
             storyLine->setMaxLineWidth(0.6f*visibleSize.width);
             storyLine->setAnchorPoint(Vec2(0.0, 0.0));
@@ -110,7 +118,15 @@ bool UIStoryGallery::init()
         }
         /*else
         {
-            auto image = Sprite::create("art/locked/Escenari"+to_string(i)+".jpg");
+            Sprite* image;
+            if (i == 21)
+            {
+                image = Sprite::create("art/Escenari20_2.jpg");
+            }
+            else
+            {
+                image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
+            }
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);

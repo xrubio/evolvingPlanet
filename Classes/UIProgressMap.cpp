@@ -128,12 +128,19 @@ bool UIProgressMap::init()
     
     //ANIMATION OF COMPLETED LEVEL AND UNLOCKING NEW LEVEL
     int ftlc;
-    if ((ftlc = GameData::getInstance()->getFirstTimeLevelCompleted()) > 0 and ftlc < 21)
+    if ((ftlc = GameData::getInstance()->getFirstTimeLevelCompleted()) > 0 and ftlc < 22)
     {
-        GameData::getInstance()->setCurrentLevel(ftlc + 1);
+        if (ftlc < 21)
+        {
+            GameData::getInstance()->setCurrentLevel(ftlc + 1);
+        }
+        else if (ftlc == 21)
+        {
+            GameData::getInstance()->setCurrentLevel(ftlc);
+        }
 
         //STAR ANIMATION
-        auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc));
+        auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc));
 
         auto star1 = (Sprite*)(pointerLevel->getChildByName("star1"));
         auto scalePlus1 = ScaleTo::create(0.4, 1.7);
@@ -481,6 +488,10 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     popupBackground->addChild(playMenu);
 
     int score =  GameData::getInstance()->getLevelScore(tag);
+    if (tag == 20)
+    {
+        score = max(GameData::getInstance()->getLevelScore(tag), GameData::getInstance()->getLevelScore(21));
+    }
     CCLOG("SCORE: %i", score);
     for (int i = 1; i < 4; i++) {
         string starFile;
@@ -986,6 +997,10 @@ Layout* UIProgressMap::setEpisode2(void)
 void UIProgressMap::setStars(int level, MenuItemImage* levelButton)
 {
         int score = GameData::getInstance()->getLevelScore(level);
+        if (level == 20)
+        {
+            score = max(GameData::getInstance()->getLevelScore(level), GameData::getInstance()->getLevelScore(21));
+        }
         for (int i = 1; i < 4; i++) {
             string starFile;
             //Estrella plena

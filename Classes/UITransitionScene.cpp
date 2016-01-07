@@ -55,7 +55,13 @@ bool UITransitionScene::init()
     else
     {
     
-    auto image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
+        Sprite * image;
+        if (GameData::getInstance()->getFirstTimeLevelCompleted() == 21)
+        {
+            image = Sprite::create("art/locked/Escenari20_2.jpg");
+        }
+        
+    image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     image->setScale(visibleSize.width / image->getContentSize().width);
     this->addChild(image);
@@ -74,7 +80,7 @@ bool UITransitionScene::init()
     int diff = (visibleSize.height - imageUnlocked->getContentSize().height)/2;
     this->addChild(imageUnlocked);
 
-    auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial_rounded_mt_bold.ttf", 40 * GameData::getInstance()->getRaConversion());   
+    auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
     storyLine->setColor(Color3B(216, 229, 235));
     storyLine->setMaxLineWidth(0.6f*visibleSize.width);
     storyLine->setAnchorPoint(Vec2(0.0, 0.0));

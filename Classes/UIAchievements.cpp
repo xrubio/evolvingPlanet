@@ -299,7 +299,7 @@ void UIAchievements::showAchievement(Ref* pSender, ui::Widget::TouchEventType aT
             
             if (textImage != "")
             {
-                auto textLabel = Label::createWithTTF(LocalizedString::create(textImage.c_str(), "achievements"), "fonts/arial_rounded_mt_bold.ttf", 30 * GameData::getInstance()->getRaConversion());
+                auto textLabel = Label::createWithTTF(LocalizedString::create(textImage.c_str(), "achievements"), "fonts/arial.ttf", 30 * GameData::getInstance()->getRaConversion());
                 textLabel->setColor(Color3B(216, 229, 235));
                 textLabel->setMaxLineWidth(0.9f*popupBackground->getContentSize().width);
                 textLabel->setAnchorPoint(Vec2(0.5, 0.0));
