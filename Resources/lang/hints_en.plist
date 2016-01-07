@@ -23,8 +23,9 @@
 	<key>LEVEL10HINT</key>
 	<string>Avoid the desert until your Technology is good enough to sustain life there.</string>
     <key>LEVEL11HINT</key>
-	<string>The exploitation rate depends on the skills of your group and its size. Forests regenerate over time so you should avoid its overexploitation by decreasing this rate or moving to other zones.</string>
-    
+	<string>The exploitation rate depends on the skills of your group and its size. Forests regenerate over time so you should avoid its overexploitation by limiting this rate or moving to other zones.</string>
+    <key>LEVEL12HINT</key>
+	<string>Everything you need is in the forest so avoid moving outside these regions.</string>
     <key>LEVEL13HINT</key>
 	<string>You will probably need wood from the two forests to reach the goal. Your population should try to reach the eastern one before the other agents overexploit the region.</string>
 
