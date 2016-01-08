@@ -1692,25 +1692,30 @@ void UIGameplayMap::menuHintCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    
+
     auto hintButton = (MenuItemToggle*) pSender;
-    if(GameLevel::getInstance()->isPlaying() == false)
-    {
-    }
-    else
-    {
-        pauseGame();
-    }
-    
     if (hintButton->getSelectedIndex() == 0)
     {
         this->getChildByName("hintBackground")->setVisible(false);
         this->getChildByName("hintLabel")->setVisible(false);
+        //RESUME STATE
+        if (_playingBeforeHintPressed == true)
+        {
+            //play
+            ((MenuItemToggle*)this->getChildByName("timeMenu")->getChildByName("playToggle"))->setSelectedIndex(1);
+            togglePlay(this->getChildByName("timeMenu")->getChildByName("playToggle"));
+        }
     }
     else if (hintButton->getSelectedIndex() == 1)
     {
         this->getChildByName("hintBackground")->setVisible(true);
         this->getChildByName("hintLabel")->setVisible(true);
+        //SAVE STATE
+        _playingBeforeHintPressed = GameLevel::getInstance()->isPlaying();
+        if(GameLevel::getInstance()->isPlaying() == true)
+        {
+            pauseGame();
+        }
     }
     
     hintButton->setSelectedIndex(hintButton->getSelectedIndex());
