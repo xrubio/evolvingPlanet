@@ -28,6 +28,12 @@
 	<string>Everything you need is in the forest so avoid moving outside these regions.</string>
     <key>LEVEL13HINT</key>
 	<string>You will probably need wood from the two forests to reach the goal. Your population should try to reach the eastern one before the other agents overexploit the region.</string>
+    <key>LEVEL14HINT</key>
+	<string>Your low exploitation rate can be balanced with multiple strategies. You can use a population boost, eliminate the competition or join forces with them.</string>
+    <key>LEVEL15HINT</key>
+	<string></string>
+    <key>LEVEL16HINT</key>
+	<string>Keep your population in the forest as long as possible. This zone has better survival rates than the open landscape.</string>
 
 </dict>
 </plist>
