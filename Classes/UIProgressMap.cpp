@@ -352,7 +352,16 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     mapPopup->setScale(0.21);
     mapPopup->setAnchorPoint(Vec2(0, 0.5));
     mapPopup->setPosition(Vec2(2 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14)));
-    popupBackground->addChild(mapPopup);
+    popupBackground->addChild(mapPopup, 1);
+    
+    if (tag > 10 and tag < 20)
+    {
+        auto mapForestPopup = Sprite::create("maps/"+loader.getLevelFileMap("level" + to_string(tag)) + "Forest.png");
+        mapForestPopup->setScale(0.21);
+        mapForestPopup->setAnchorPoint(Vec2(0, 0.5));
+        mapForestPopup->setPosition(Vec2(2 * (popupBackground->getContentSize().width / 25), 7 * (popupBackground->getContentSize().height / 14)));
+        popupBackground->addChild(mapForestPopup, 2);
+    }
 
     vector<string> goalTypes = loader.getGoalTypes("level" + to_string(tag));
     

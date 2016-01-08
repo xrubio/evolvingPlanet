@@ -214,12 +214,9 @@ bool UIGameplayMap::init()
     this->addChild(quitRetryMenu, 10);
 
     //RESOURCES MAP (IF ANY)
-    for(size_t i = 0; i < GameLevel::getInstance()->getGoals().size(); i++)
+    if (GameLevel::getInstance()->getNumLevel() > 10 and GameLevel::getInstance()->getNumLevel() < 20)
     {
-        if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
-        {
-            resourcesMap = true;
-        }
+        resourcesMap = true;
     }
     if (resourcesMap) {
         /*gameplayMapResources = new Image();
