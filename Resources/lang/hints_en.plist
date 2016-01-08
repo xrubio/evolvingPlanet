@@ -34,7 +34,10 @@
 	<string>Most mineral will already be harvested before you arrive to the mountain. Try to exchange your wood for the other group's mineral.</string>
     <key>LEVEL16HINT</key>
 	<string>Keep your population in the forest as long as possible. This zone has better survival rates than the open landscape.</string>
-
+    <key>LEVEL17HINT</key>
+	<string>You shouldn't try to move towards the forest until you are sure your population is strong enough to survive the migration. You also need a lot of wood so allow the forest to regenerate while moving away from overexploited zones.</string>
+    <key>LEVEL18HINT</key>
+	<string>Technology affects every other aspect of your culture, including terraformation and exploitation.</string>
 </dict>
 </plist>
 
