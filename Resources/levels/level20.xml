@@ -3,7 +3,7 @@
 <NAME_LEVEL>Recollection</NAME_LEVEL>
 <MAP FILE="Level20">
     <LEGEND>
-        <ENTRY NAME="IMPASSABLE" R="82" G="82" B="82"/>
+      <ENTRY NAME="IMPASSABLE" R="0" G="0" B="0" A="204"/>
     </LEGEND>
 </MAP>
 <AGENTS_PIXEL_SIZE>2</AGENTS_PIXEL_SIZE>

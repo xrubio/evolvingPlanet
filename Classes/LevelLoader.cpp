@@ -71,7 +71,7 @@ void LevelLoader::loadXmlFile(const std::string & filename)
     while(mapInfo != nullptr)
     {
         std::string entryName = mapInfo.attribute("NAME").value();
-        cocos2d::Color3B entryColor(mapInfo.attribute("R").as_int(), mapInfo.attribute("G").as_int(), mapInfo.attribute("B").as_int());
+        cocos2d::Color4B entryColor(mapInfo.attribute("R").as_int(), mapInfo.attribute("G").as_int(), mapInfo.attribute("B").as_int(), mapInfo.attribute("A").as_int());
         GameLevel::getInstance()->addEntryToLegend(entryName, entryColor);
         mapInfo = mapInfo.next_sibling("ENTRY");
     }
@@ -360,3 +360,4 @@ void LevelLoader::loadMaxResources(const std::string & filename)
         mapInfo = mapInfo.next_sibling("ENTRY");
     }
 }
+

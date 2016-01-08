@@ -2950,7 +2950,7 @@ void UIGameplayMap::createLegendEntries()
     {
         auto newEntry = Label::createWithTTF(LocalizedString::create(GameLevel::getInstance()->getLegendName(int(i)).c_str()), "fonts/arial.ttf", 45 * GameData::getInstance()->getRaConversion());
         newEntry->setAnchorPoint(Vec2(0.0, 0.0));
-        newEntry->setColor(GameLevel::getInstance()->getLegendColor(int(i)));
+        newEntry->setTextColor(GameLevel::getInstance()->getLegendColor(int(i)));
         newEntry->setPosition(0.0f, heightOffset);
         newEntry->enableOutline(Color4B(50,50,50,255), 2);
 

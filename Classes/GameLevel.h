@@ -200,10 +200,10 @@ public:
     void clearTerraformedVector(void);
     
     // add name to legendNames and color to legendColors to display as mapInfo legend
-    void addEntryToLegend( const std::string & name, const cocos2d::Color3B & color) { _legendNames.push_back(name); _legendColors.push_back(color); }
+    void addEntryToLegend( const std::string & name, const cocos2d::Color4B & color) { _legendNames.push_back(name); _legendColors.push_back(color); }
     size_t getLegendSize() const { return _legendNames.size(); }
     const std::string & getLegendName(int index) const { return _legendNames.at(index); }
-    const cocos2d::Color3B & getLegendColor(int index) const { return _legendColors.at(index); }
+    const cocos2d::Color4B & getLegendColor(int index) const { return _legendColors.at(index); }
  
     // checks if a Power type is currently in effect
     bool powerIsInEffect( const PowerType & type ) const;
@@ -238,7 +238,7 @@ private:
     
     // get legend names and colors for displaying legend of mapInfo
     std::vector<std::string> _legendNames;
-    std::vector<cocos2d::Color3B> _legendColors;
+    std::vector<cocos2d::Color4B> _legendColors;
     
     //completed achievements to show (key words corresponding to title in achievement_lang)
     vector<string> completedAchievements;
