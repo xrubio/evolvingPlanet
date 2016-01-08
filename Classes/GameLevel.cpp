@@ -471,7 +471,7 @@ void GameLevel::playLevel(void)
             pthread_mutex_lock(&gameplayMap->gameLevelMutex);
             act();
             pthread_mutex_unlock(&gameplayMap->gameLevelMutex);
-            if(int(Timing::getInstance()->getTimeStep()) % evolutionPointsFreq == 0) {
+            if(int(Timing::getInstance()->getTimeStep()) % evolutionPointsFreq == evolutionPointsFreq - 1) {
                 evolutionPoints++;
             }
             paint = true;
