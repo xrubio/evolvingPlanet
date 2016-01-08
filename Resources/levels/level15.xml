@@ -3,8 +3,8 @@
 <NAME_LEVEL>Recollection</NAME_LEVEL>
 <MAP FILE="Level15">
   <LEGEND>
-      <ENTRY NAME="MINERAL" R="241" G="200" B="10" A="153" MAXIMUM="2000"/>
-      <ENTRY NAME="WOOD" R="103" G="222" B="31" A="153" MAXIMUM="5000"/>
+      <ENTRY NAME="MINERAL" R="241" G="200" B="10" A="153" MAXIMUM="2700"/>
+      <ENTRY NAME="WOOD" R="103" G="222" B="31" A="153" MAXIMUM="2200"/>
       <ENTRY NAME="IMPASSABLE" R="0" G="0" B="0" A="204"/>
   </LEGEND>
 </MAP>
@@ -12,61 +12,55 @@
 <EVPOINTS_FREQ>3</EVPOINTS_FREQ>
 <ATTRIBUTES_CONFIG>
     <ATTRIBUTE NAME="REPRODUCTION">
-        <VALUES>0.1,0.2,0.25,0.3,0.35,0.4</VALUES>
+        <VALUES>0.1,0.16,0.19,0.22,0.25,0.4</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="RESISTANCE">
-        <VALUES>1,1.35,1.6,1.7,1.8,2</VALUES>
+        <VALUES>1,1.35,1.5,1.7,1.8,2</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="MOBILITY">
         <VALUES>5,7,9,11,13,15</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="EXPLOITATION" REGENERATION="30">
-        <VALUES>0.1,0.2,0.3,0.4,0.5,0.6</VALUES>
+        <VALUES>0,0.02,0.05,0.1,0.2,0.4</VALUES>
+    </ATTRIBUTE>
+    <ATTRIBUTE NAME="TECHNOLOGY">
+        <VALUES>1,1.1,1.2,1.3,1.4,1.5</VALUES>
     </ATTRIBUTE>
     <ATTRIBUTE NAME="TRADE">
-        <VALUES>0,0.1,0.2,0.3,0.4,1.0</VALUES>
-    </ATTRIBUTE>
-    <ATTRIBUTE NAME="INFLUENCE">
-        <VALUES>0,0.1,0.2,0.3,0.4,1.0</VALUES>
-    </ATTRIBUTE>
-    <ATTRIBUTE NAME="WARFARE">
-        <VALUES>0,0.1,0.2,0.3,0.4,1.0</VALUES>
+        <VALUES>0,0.2,0.4,0.6,0.8,1.0</VALUES>
     </ATTRIBUTE>
 </ATTRIBUTES_CONFIG>
 <AGENTS MAX_ALL="NO" NUMTYPES="2">
     <AGENT TYPE="0">
-        <NUM_INITIAL_AGENTS>300</NUM_INITIAL_AGENTS>
+        <NUM_INITIAL_AGENTS>200</NUM_INITIAL_AGENTS>
         <MAX_AGENTS>600</MAX_AGENTS>
         <ATTRIBUTES>
-            <ATTRIBUTE NAME="REPRODUCTION" GUI="1">
+            <ATTRIBUTE NAME="REPRODUCTION">
+                <INITIAL_VALUE>2</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="MOBILITY">
+                <INITIAL_VALUE>3</INITIAL_VALUE>
+            </ATTRIBUTE>
+            <ATTRIBUTE NAME="TECHNOLOGY" GUI="1">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="MOBILITY" GUI="2">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+            <ATTRIBUTE NAME="EXPLOITATION" GUI="0">
+                <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="EXPLOITATION">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
-            </ATTRIBUTE>
-            <ATTRIBUTE NAME="TRADE" GUI="0">
+            <ATTRIBUTE NAME="TRADE" GUI="2">
                 <INITIAL_VALUE>0</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
                 <INITIAL_VALUE>2</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="INFLUENCE" GUI="1">
-                <INITIAL_VALUE>0</INITIAL_VALUE>
-            </ATTRIBUTE>
-            <ATTRIBUTE NAME="WARFARE">
-                <INITIAL_VALUE>0</INITIAL_VALUE>
-            </ATTRIBUTE>
         </ATTRIBUTES>
     </AGENT>
     <AGENT TYPE="1">
-        <NUM_INITIAL_AGENTS>300</NUM_INITIAL_AGENTS>
+        <NUM_INITIAL_AGENTS>400</NUM_INITIAL_AGENTS>
         <MAX_AGENTS>600</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>3</INITIAL_VALUE>
+                <INITIAL_VALUE>4</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
                 <INITIAL_VALUE>3</INITIAL_VALUE>
@@ -78,25 +72,25 @@
                 <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="RESISTANCE">
-                <INITIAL_VALUE>2</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
-            <ATTRIBUTE NAME="INFLUENCE">
-                <INITIAL_VALUE>2</INITIAL_VALUE>
-            </ATTRIBUTE>
-            <ATTRIBUTE NAME="WARFARE">
-                <INITIAL_VALUE>2</INITIAL_VALUE>
-            </ATTRIBUTE>
-        </ATTRIBUTES>
+        </ATTRIBUTES>   
+        <DIRECTIONS>
+            <DIRECTION>
+                <STEP>0</STEP>
+                <POSITION X="350" Y="55"/>
+            </DIRECTION>          
+        </DIRECTIONS>
     </AGENT>
 </AGENTS>
-<POWERS>
-    <POWER NAME="ReproductionBoost">
+<POWERS>    
+    <POWER NAME="MobilityBoost">
         <COST>2</COST>
-        <COOLDOWN>15</COOLDOWN>
-        <DURATION>3</DURATION>
-        <EXTENT value="Global"/>
-    </POWER>
-    <POWER NAME="WarfareBoost">
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>5</DURATION>
+        <EXTENT value="Area" radius="20"/>
+    </POWER>      
+    <POWER NAME="ReproductionBoost">
         <COST>2</COST>
         <COOLDOWN>20</COOLDOWN>
         <DURATION>5</DURATION>
@@ -106,37 +100,27 @@
 <ACTIONS>
     <ACTION>Exploit</ACTION>
     <ACTION>Trade</ACTION>
-    <ACTION>Kill</ACTION>
-    <ACTION>Influence</ACTION>
 </ACTIONS>
 <GOALS>
     <GOAL TYPE_GOAL="Resources">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>10</MIN>
-        <MAX>85</MAX>
-        <AVERAGE>70</AVERAGE>
+        <MIN>40</MIN>
+        <MAX>60</MAX>
+        <AVERAGE>50</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <RESOURCE_TYPE>WOOD</RESOURCE_TYPE>
-        <GOAL_AMOUNT>100</GOAL_AMOUNT>
+        <GOAL_AMOUNT>2000</GOAL_AMOUNT>
     </GOAL>
     <GOAL TYPE_GOAL="Resources">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>145</MIN>
-        <MAX>175</MAX>
-        <AVERAGE>160</AVERAGE>
+        <MIN>92</MIN>
+        <MAX>108</MAX>
+        <AVERAGE>100</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <RESOURCE_TYPE>MINERAL</RESOURCE_TYPE>
-        <GOAL_AMOUNT>100</GOAL_AMOUNT>
-    </GOAL>
-    <GOAL TYPE_GOAL="Population">
-        <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>195</MIN>
-        <MAX>215</MAX>
-        <AVERAGE>205</AVERAGE>
-        <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
-        <GOAL_AMOUNT>100</GOAL_AMOUNT>
+        <GOAL_AMOUNT>2500</GOAL_AMOUNT>
     </GOAL>
 </GOALS>
+
