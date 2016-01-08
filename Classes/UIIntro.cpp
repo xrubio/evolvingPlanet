@@ -87,7 +87,7 @@ bool UIIntro::init()
     logo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));   
     logo->setName("logo");
     logo->setOpacity(0);
-    logo->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(0.7), FadeOut::create(0.5f), nullptr));
+    logo->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(1.4), FadeOut::create(0.3f), nullptr));
     this->addChild(logo);
 //#endif
     
