@@ -38,6 +38,10 @@
 	<string>You shouldn't try to move towards the forest until you are sure your population is strong enough to survive the migration. You also need a lot of wood so allow the forest to regenerate while moving away from overexploited zones.</string>
     <key>LEVEL18HINT</key>
 	<string>Technology affects every other aspect of your culture, including terraformation and exploitation.</string>
+    <key>LEVEL19HINT</key>
+	<string>The enemy is powerful. You shouldn't try to reach the goal until your skills are good enough to face it.</string>
+    <key>LEVEL20HINT</key>
+	<string>You cannot fail this mission.</string>
 </dict>
 </plist>
 
