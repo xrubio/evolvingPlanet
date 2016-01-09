@@ -76,9 +76,9 @@
 <GOALS>
     <GOAL TYPE_GOAL="Population">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>40</MIN>
-        <MAX>56</MAX>
-        <AVERAGE>48</AVERAGE>
+        <MIN>38</MIN>
+        <MAX>54</MAX>
+        <AVERAGE>46</AVERAGE>
         <DESVIATION_2_STAR>3</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
         <GOAL_AMOUNT>700</GOAL_AMOUNT>
