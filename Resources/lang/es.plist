@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>START</key>
-	<string>EMPEZAR</string>
+	<string>INICIO</string>
+    <key>EXIT</key>
+	<string>Salir</string>
 	<key>NEW_GAME</key>
-	<string>NUEVA PARTIDA</string>
+	<string>NUEVO</string>
 	<key>BACK</key>
 	<string>VOLVER</string>
 	<key>RESET</key>
@@ -13,11 +15,11 @@
 	<key>PAUSE</key>
 	<string>PAUSA</string>
 	<key>SET_ATTRIBUTES</key>
-	<string>CONFIGURA LOS AGENTES ANTES DE EMPEZAR</string>
+	<string>CONFIGURA TUS BOTS ANTES DE EMPEZAR</string>
 	<key>WARNING</key>
 	<string>ALERTA</string>
 	<key>WARNING_TEXT</key>
-	<string>EMPEZAR UNA NUEVA PARTID ABORRARÁ TODO TU PROGRESO</string>
+	<string>EMPEZAR UNA NUEVA PARTIDA ELIMINARÁ TU PROGRESO</string>
 	<key>LEVEL</key>
 	<string>MISIÓN</string>
 	<key>OPTIONS</key>
@@ -34,18 +36,18 @@
 	<string>HISTORIA</string>
 	<key>GOALS</key>
 	<string>OBJETIVOS</string>
-	<key>ERA</key>
-	<string>ERA</string>
-	<key>FIRST</key>
-	<string>PRIMERA</string>
-	<key>SECOND</key>
-	<string>SEGUNDA</string>
+	<key>FIRSTERA</key>
+	<string>Expansión</string>
+	<key>SECONDERA</key>
+	<string>Conquista</string>
 	<key>QUIT_QUESTION</key>
 	<string>SALIR ?</string>
 	<key>RETRY_QUESTION</key>
-	<string>REPETIR ?</string>
+	<string>REINTENTAR ?</string>
+    <key>RETRY</key>
+	<string>Reintentar</string>
 	<key>AGENTS</key>
-	<string>Agentes</string>
+	<string>Bots</string>
 	<key>TAP_TO_UNLOCK</key>
 	<string>TOCA PARA DESBLOQUEAR</string>
 	<key>TAP_TO_CONTINUE</key>
@@ -53,73 +55,136 @@
 	<key>PASS_MISSION</key>
 	<string>COMPLETA LA MISIÓN </string>
 	<key>TO_UNLOCK_STORY</key>
-	<string> PARA DESBLOQUEAR ESTA HISTORIA</string>
+	<string> PARA DESBLOQUEAR LA HISTORIA</string>
 	<key>LIFE</key>
 	<string>VIDA</string>
-	<key>REPRODUCTION</key>
-	<string>REPRODUCCIÓN</string>
-	<key>MOBILITY</key>
-	<string>MOVILIDAD</string>
-	<key>RESISTANCE</key>
-	<string>RESISTENCIA</string>
-	<key>TECHNOLOGY</key>
-	<string>TECNOLOGÍA</string>
-	<key>RECOLLECTION</key>
-	<string>RECOLECCIÓN</string>
-	<key>SUSTAINABILITY</key>
-	<string>SOSTENIBILIDAD</string>
-	<key>ADAPTATION</key>
-	<string>ADAPTACIÓN</string>
-	<key>CULTURAL_INFLUENCE</key>
-	<string>INFL CULTURAL</string>
-	<key>HOSTILITY</key>
-	<string>HOSTILIDAD</string>
-	<key>EVOLUTION_POINTS</key>
-	<string>PUNTOS DE EVOLUCIÓN</string>
 	<key>LEVEL_FEATURES</key>
-	<string>CARACTERÍSTICAS DE LA MISIÓN</string>
+	<string>HABILIDADES</string>
 	<key>ATTRIBUTES</key>
 	<string>ATRIBUTOS</string>
 	<key>POWERS</key>
-	<string>PODERES</string>
+	<string>IMPULSOS</string>
 	<key>NOT_AVAILABLE</key>
-	<string>NO DISPONIBLES EN ESTA MISIÓN</string>
+	<string>NO DISPONIBLE EN ESTA MISIÓN</string>
+    
+	<key>REPRODUCTION</key>
+	<string>REPRODUCCIÓN</string>
+    <key>DESCRIPTION_REPRODUCTION</key>
+	<string>Tasa de fertilidad</string>
+	<key>MOBILITY</key>
+	<string>MOVILIDAD</string>	
+    <key>DESCRIPTION_MOBILITY</key>
+	<string>Alcance de interacción</string>
+	<key>RESISTANCE</key>
+	<string>RESISTENCIA</string>
+    <key>DESCRIPTION_RESISTANCE</key>
+	<string>Aguante en entornos severos</string>
+	<key>TECHNOLOGY</key>
+	<string>TECNOLOGÍA</string>	
+    <key>DESCRIPTION_TECHNOLOGY</key>
+	<string>Mejoras en todas tus habilidades</string>
+	<key>INFLUENCE</key>
+	<string>INFLUENCIA</string>
+	<key>DESCRIPTION_INFLUENCE</key>
+	<string>Convence a otros bots de unirse a tu grupo</string>
+	<key>WARFARE</key>
+	<string>GUERRA</string>
+	<key>DESCRIPTION_WARFARE</key>
+	<string>Letalidad en combate</string>
+    <key>EXPLOITATION</key>
+	<string>EXPLOTACIÓN</string>
+	<key>DESCRIPTION_EXPLOITATION</key>
+	<string>Tasa de recolección de madera y minerales</string>
+    <key>TRADE</key>
+	<string>COMERCIO</string>
+	<key>DESCRIPTION_TRADE</key>
+	<string>Habilidades de intercambio con otros grupos</string>
+    <key>TERRAFORM</key>
+	<string>TERRAFORMACIÓN</string>
+	<key>DESCRIPTION_TERRAFORM</key>
+	<string>Capacidad para moldear el entorno a tu beneficio</string>
+
+	<key>DESCRIPTION_MobilityBoost</key>
+	<string>Movilidad</string>
+	<key>DESCRIPTION_ReproductionBoost</key>
+	<string>Reproducción</string>
+	<key>DESCRIPTION_ResistanceBoost</key>
+	<string>Resistencia</string>
+	<key>DESCRIPTION_InfluenceBoost</key>
+	<string>Influencia</string>
+	<key>DESCRIPTION_WarfareBoost</key>
+	<string>Guerra</string>
+
+	<key>EVOLUTION_POINTS</key>
+	<string>PUNTOS DE EVOLUCIÓN</string>
+	<key>COST</key>
+	<string>Coste</string>
 	<key>MUSIC</key>
-	<string>MÚSICA</string>
+	<string>Música y Sonido</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
-	<key>ON</key>
-	<string>On</string>
-	<key>OFF</key>
-	<string>Off</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLETADO</string>
 	<key>GAME_OVER</key>
-	<string>FALLADO</string>
+	<string>FRACASO</string>
 	<key>CONGRATULATIONS</key>
-	<string>¡Enhorabuena!</string>
+	<string>Enhorabuena!</string>
 	<key>GOAL_FAIL_BEFORE</key>
-	<string>Misión fallida: Tu población ha alcanzado el objetivo antes 
-de lo que sugieren los datos arqueológicos</string>
-	<key>GOAL_NO_AFTER</key>
-	<string>Misión fallida: No has alcanzado el objetivo a tiempo</string>
-	<key>ALL_AGENTS_DIED</key>
-	<string>Han muerto todos los agentes</string>
+	<string>Misión fracasada: Tu población ha alcanzado el objetivo antes 
+de lo sugerido por los datos arqueológicos</string>
+	<key>GOAL_FAIL_AFTER</key>
+	<string>Misión fracadasada: No has alcanzado el objetivo a tiempo</string>
+	<key>ALL_BOTS_DIED</key>
+	<string>Han muerto todos los bots</string>
 	<key>CONTINUE</key>
 	<string>CONTINUAR</string>
 	<key>PLAY</key>
 	<string>JUGAR</string>
-	<key>CONTEXT_TITLE_INTRO</key>
-	<string>INTRODUCCIÓN</string>
-	<key>CONTEXT_TITLE_DEPLOYMENT</key>
-	<string>DESARROLLO</string>
-    <key>OF</key>
-    <string>de</string>
-    <key>ACH_EARNED</key>
-    <string>logros cumplidos</string>
+
+	<key>MURPHY</key>
+	<string>Murphy&apos;s Toast Games</string>
+	<key>DIRECTOR</key>
+	<string>Director de Juego y Líder del Proyecto</string>
+	<key>LEAD_PROGRAMMER</key>
+	<string>Programador Líder</string>
+	<key>ADDITIONAL_PROGRAMMING</key>
+	<string>Programación adicional</string>
+	<key>ART</key>
+	<string>Arte</string>
+	<key>UI</key>
+	<string>Interfaz de Usuario</string>
+	<key>STORY_CONTENT</key>
+	<string>Historia y contenidos</string>
+	<key>SIMULPAST_TITLE</key>
+	<string>El Proyecto SimulPast</string>
+    
+	<key>SIMULPAST_TEXT</key>
+	<string>Evolving Planet no existiría sin un proyecto de investigación llamado SimulPast.
+    
+SimulPast está rompiendo las barreras entre Ciencias y Humanidades para entender nuestros orígenes, nuestro presente y nuestro futuro. En él Arqueólogos, Informáticos, Antropólogos y otros expertos crean simulaciones que mejoran nuestro conocimiento del pasado.
+
+Evolving Planet explora esta nueva manera de hacer Ciencia. Serás parte del equipo de investigación que estudia una especie similar a la humana a través de conceptos como evolución, tecnología y dispersión.
+
+Toca el logo para conocer más sobre SimulPast!</string>
+
+	<key>SPECIAL_THANKS</key>
+	<string>Especial Agradecimiento</string>
+	<key>SUPPORT</key>
+	<string>Con el apoyo de</string>
+	<key>POWERED</key>
+	<string>Desarrollado con</string>
+	<key>CONTENT_WIKIMEDIA</key>
+	<string>Contenido adicional por</string>
+
+	<key>OF</key>
+	<string>de</string>
+	<key>ACH_EARNED</key>
+	<string>logros alcanzados</string>
 	<key>CURRENT_GOAL</key>
-	<string>OBJETIVO</string>
+	<string>OBJETIVO ACTUAL</string>
 	<key>SKIP</key>
 	<string>SALTAR</string>
+    <key>BOT_COLOR</key>
+    <string>Color de bot</string>
 </dict>
 </plist>

@@ -5,15 +5,15 @@
     <key>LEVEL1HINT</key>
     <string>You should increase Resistance and then focus on Mobility.</string>
 	<key>LEVEL2HINT</key>
-	<string>Tap the goal icon to show the features of the map. You should move your population to forests to increase their chance of survival.</string>
+	<string>Press the goal icon to show the features of the map. You should move your population to forests to increase their chance of survival.</string>
     <key>LEVEL3HINT</key>
-	<string>Increasing resistance is critical to avoid extinction at the beginning of this mission.</string>
+	<string>Strengthen Resistance. It is critical to avoid extinction at the beginning of this mission.</string>
 	<key>LEVEL4HINT</key>
-	<string>Increasing technological skills will improve the rest of attributes of your bots.</string>
+	<string>Increasing your technological skills will improve the rest of attributes of your bots.</string>
 	<key>LEVEL5HINT</key>
-	<string>You should avoid the other population. They are far more experienced on warfare than you.</string>
+	<string>You should avoid the other population. They are far more experienced on Warfare than you.</string>
 	<key>LEVEL6HINT</key>
-	<string>The Lovans did not have enough reproduction rate to reach this population size within the observed time. The new Influence boost can be used to convince bots from other groups to join yours.</string>
+	<string>Lovans did not have enough reproduction rate to reach the recorded population size within the defined time. The new Influence boost can be used to convince bots from other groups to join yours.</string>
 	<key>LEVEL7HINT</key>
 	<string>You should increase both your population and Warfare skills before meeting the other group.</string>
 	<key>LEVEL8HINT</key>
@@ -23,13 +23,13 @@
 	<key>LEVEL10HINT</key>
 	<string>Avoid the desert until your Technology is good enough to sustain life there.</string>
     <key>LEVEL11HINT</key>
-	<string>The exploitation rate depends on the skills of your group and its size. Forests regenerate over time so you should avoid its overexploitation by limiting this rate or moving to other zones.</string>
+	<string>The Exploitation rate depends on the skills and of your group. Forests regenerate over time so you should avoid its overexploitation by limiting this rate or moving to other zones.</string>
     <key>LEVEL12HINT</key>
 	<string>Everything you need is in the forest so avoid moving outside these regions.</string>
     <key>LEVEL13HINT</key>
-	<string>You will probably need wood from the two forests to reach the goal. Your population should try to reach the eastern one before the other agents overexploit the region.</string>
+	<string>You will need wood from the two forests to reach the goal. Your population should try to reach the eastern one before the other agents overexploit the region.</string>
     <key>LEVEL14HINT</key>
-	<string>Your low exploitation rate can be balanced with multiple strategies. You can use a population boost, eliminate the competition or join forces with them.</string>
+	<string>Your low Exploitation rate can be balanced with multiple strategies. You can use a population boost, eliminate the competition or join forces with them.</string>
     <key>LEVEL15HINT</key>
 	<string>Most mineral will already be harvested before you arrive to the mountain. Try to exchange your wood for the other group's mineral.</string>
     <key>LEVEL16HINT</key>
@@ -37,7 +37,7 @@
     <key>LEVEL17HINT</key>
 	<string>You shouldn't try to move towards the forest until you are sure your population is strong enough to survive the migration. You also need a lot of wood so allow the forest to regenerate while moving away from overexploited zones.</string>
     <key>LEVEL18HINT</key>
-	<string>Technology affects every other aspect of your culture, including terraformation and exploitation.</string>
+	<string>Technology affects every other aspect of your culture, including Terraform and Exploitation.</string>
     <key>LEVEL19HINT</key>
 	<string>The enemy is powerful. You shouldn't try to reach the goal until your skills are good enough to face it.</string>
     <key>LEVEL20HINT</key>

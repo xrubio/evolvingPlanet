@@ -19,7 +19,7 @@
 	<key>WARNING</key>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>
-	<string>STARTING A NEW GAME WILL ERASE ALL YOUR PROGRESS</string>
+	<string>STARTING A NEW GAME WILL DELETE YOUR PROGRESS</string>
 	<key>LEVEL</key>
 	<string>MISSION</string>
 	<key>OPTIONS</key>
@@ -66,10 +66,11 @@
 	<string>BOOSTS</string>
 	<key>NOT_AVAILABLE</key>
 	<string>NOT AVAILABLE IN THIS MISSION</string>
+
 	<key>REPRODUCTION</key>
 	<string>REPRODUCTION</string>
 	<key>DESCRIPTION_REPRODUCTION</key>
-	<string>Fertility rate of your bots</string>
+	<string>Fertility rate</string>
 	<key>MOBILITY</key>
 	<string>MOBILITY</string>
 	<key>DESCRIPTION_MOBILITY</key>
@@ -113,13 +114,8 @@
 	<string>Influence</string>
 	<key>DESCRIPTION_WarfareBoost</key>
 	<string>Warfare</string>
-	<key>RECOLLECTION</key>
-	<string>RECOLLECTION</string>
-	<key>SUSTAINABILITY</key>
-	<string>SUSTAINABILITY</string>
-	<key>ADAPTATION</key>
-	<string>ADAPTATION</string>
-	<key>EVOLUTION_POINTS</key>
+	
+    <key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
 	<key>COST</key>
 	<string>Cost</string>
@@ -127,10 +123,6 @@
 	<string>Music &amp; Sound</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
-	<key>ON</key>
-	<string>On</string>
-	<key>OFF</key>
-	<string>Off</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLETED</string>
 	<key>GAME_OVER</key>
@@ -142,7 +134,7 @@
 archaeological data suggests</string>
 	<key>GOAL_FAIL_AFTER</key>
 	<string>Mission failed: You have not reached the goal on time</string>
-	<key>ALL_Bots_DIED</key>
+	<key>ALL_BOTS_DIED</key>
 	<string>All bots died</string>
 	<key>CONTINUE</key>
 	<string>CONTINUE</string>
@@ -169,7 +161,7 @@ archaeological data suggests</string>
     
 Simulpast is breaking the barriers between Science and Humanities to learn about our origins, our present and our future. Archaeologists, Computer Scientists, Anthropologists and other experts use computer simulation to improve our understanding of the past.
 
-Evolving Planet explores this new way of doing science. You are part of the scientist team studying a species similar to humans through concepts such as evolution, technology, and dispersal.
+Evolving Planet explores this new way of doing Science. You will be part of the research team studying a species similar to humans through concepts such as evolution, technology, and dispersal.
 
 Tap the logo to know more about SimulPast!</string>
 	<key>SPECIAL_THANKS</key>
