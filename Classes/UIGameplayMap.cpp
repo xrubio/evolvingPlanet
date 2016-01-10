@@ -661,6 +661,7 @@ bool UIGameplayMap::init()
         minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
         minusAttButton->setTag(int(j) + 10);
         minusAttButton->setEnabled(false);
+        minusAttButton->setVisible(false);
         minusAttButton->setName("minus"+labelAttRight->getString());
         attributesButtons.pushBack(minusAttButton);
 
@@ -2381,19 +2382,19 @@ void UIGameplayMap::updateAgents(void)
     Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();
     for (int i = int(agentsDomain.size()) - 1; i >= 0 ; i--)
     {
-        int resourcesPainted = 0;
+        //int resourcesPainted = 0;
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {
             Color4B color;
             switch (agentColor) {
             //wood
-            case 1:
+            /*case 1:
                 color = Color4B(103, 222, 31, 255);
                 break;
             //mineral
             case 2:
                 color = Color4B(241, 200, 10, 255);
-                break;
+                break;*/
             //normal
             default:
                 switch ((*it)->getType()) {
@@ -2413,7 +2414,7 @@ void UIGameplayMap::updateAgents(void)
                 break;
             }
             
-            Color4B colorBorder;
+            /*Color4B colorBorder;
             switch ((*it)->getType()) {
                 case 1:
                     colorBorder = Color4B(251, 54, 26, (*it)->getLife() * (255 / 175));
@@ -2448,10 +2449,10 @@ void UIGameplayMap::updateAgents(void)
                 }
             }
             else
-            {
+            {*/
                 drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
   
-            }
+            //}
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
             }
@@ -2519,7 +2520,18 @@ void UIGameplayMap::drawAgent(const Point & pos, const Color4B & colour, int geo
         int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
         while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
             for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
+                if (k == -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize())) and (j == - GameLevel::getInstance()->getAgentPixelSize() or j == GameLevel::getInstance()->getAgentPixelSize()))
+                {
+                    continue;
+                }
+                else if (k == GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()) and (j == - GameLevel::getInstance()->getAgentPixelSize() or j == GameLevel::getInstance()->getAgentPixelSize()))
+                {
+                    continue;
+                }
+                else
+                {
                 _agentsTextureData.at(position + j + k) = colour;
+                }
             }
             k += GameData::getInstance()->getResourcesWidth();
         }
@@ -2542,8 +2554,20 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
     switch (geometry) {
     default:
         int k = -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+2));
+            
         while (k <= GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+2)) {
-            for (int j = - GameLevel::getInstance()->getAgentPixelSize() -2; j < GameLevel::getInstance()->getAgentPixelSize() + 3; j++) {
+            for (int j = - GameLevel::getInstance()->getAgentPixelSize()-2; j < GameLevel::getInstance()->getAgentPixelSize() + 3; j++) {
+                //circle
+                if (k == -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+2)) and (j == - GameLevel::getInstance()->getAgentPixelSize()-2 or j == GameLevel::getInstance()->getAgentPixelSize() + 2))
+                {
+                        continue;
+                }
+                else if (k == GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()+2) and (j == - GameLevel::getInstance()->getAgentPixelSize()-2 or j == GameLevel::getInstance()->getAgentPixelSize() + 2))
+                {
+                        continue;
+                }
+                else
+                {
                 if (colour.r == 0)
                 {
                     if(_exploitedMapTextureData.at(position + j + k) == Color4B::BLACK)
@@ -2557,7 +2581,7 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
                 }
                 else
                 {
-                    if(_exploitedMapTextureData.at(position + j + k).a != 0)
+                    if(_exploitedMapTextureData.at(position + j + k).a < 5 or _exploitedMapTextureData.at(position + j + k) == Color4B::BLACK)
                     {
                         _exploitedMapTextureData.at(position + j + k).a = 1;
                     }
@@ -2565,6 +2589,7 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
                     {
                         _exploitedMapTextureData.at(position + j + k).a = 255;
                     }
+                }
                 }
             }
             k += GameData::getInstance()->getResourcesWidth();
