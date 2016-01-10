@@ -56,7 +56,7 @@ UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
     active->setOpacity(50);
     icon->addChild(active, 100);
     area = Sprite::create("gui/BoostResistanceArea.png");
-    area->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    area->setScale(GameData::getInstance()->getRaWConversion());
     area->setOpacity(100);
     area->setVisible(false);
 }
