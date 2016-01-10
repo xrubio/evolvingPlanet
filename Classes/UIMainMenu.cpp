@@ -267,23 +267,7 @@ bool UIMainMenu::init()
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
-    Director::getInstance()->getTextureCache()->addImage("gui/Clouds3.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/Clouds2.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/Clouds1.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/StarFullMini.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/StarEmptyMini.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapDarkBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMapPopupBackground.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/StarFull.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/StarEmpty.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButton.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonPressed.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/LevelPointerButtonShadow.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/ZoneAreaLevel.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/Loading.png");
-        
+    
     return true;
 }
 
@@ -368,26 +352,6 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
-    
-            auto visibleSize = Director::getInstance()->getVisibleSize();
-            auto loading = Sprite::create("gui/Loading.png");
-            loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
-            loading->setScale(GameData::getInstance()->getRaHConversion());
-            loading->setName("loading");
-            loading->setVisible(true);
-            this->addChild(loading, 500);
-            loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
-        
-        /*Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari1.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari2.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari3.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari4.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari5.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari6.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari7.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari8.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari9.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
-        Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));*/
         
         auto scene = UIStoryGallery::createScene();
         auto transition = TransitionFade::create(0.5f, scene);

@@ -54,7 +54,7 @@ bool UIProgressMap::init()
     }
     
     Director::getInstance()->setAnimationInterval(1.0 / 60);
-    setLoadingAnimation(false);
+    //setLoadingAnimation(false);
     //Alliberar memòria
     //SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
     //Director::getInstance()->getTextureCache()->removeUnusedTextures();
@@ -241,7 +241,7 @@ void UIProgressMap::menuBackCallback(Ref* pSender)
 
 void UIProgressMap::menuLevelCallback(Ref* pSender)
 {
-    setLoadingAnimation(true);
+    //setLoadingAnimation(true);
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
@@ -546,7 +546,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
         trophy->runAction(Sequence::create(DelayTime::create(0.5), trophySpawn, NULL));
     }
     
-    setLoadingAnimation(false);
+    //setLoadingAnimation(false);
 }
 
 void UIProgressMap::proceedLevelCallback(Ref* pSender)
@@ -554,7 +554,7 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
-    setLoadingAnimation(true);
+    //setLoadingAnimation(true);
     auto pMenuItem = (MenuItem*)(pSender);
     int tag = pMenuItem->getTag();
 

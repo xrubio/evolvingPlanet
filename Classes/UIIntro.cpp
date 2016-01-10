@@ -97,7 +97,23 @@ bool UIIntro::init()
     {
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari"+to_string(i)+".jpg", CC_CALLBACK_1(UIIntro::doNothing, this));
     }
-
+    
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/Clouds3.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/Clouds2.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/Clouds1.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/StarFullMini.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/StarEmptyMini.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ZoneAreaLevel.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMapDarkBackground.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMapPopupBackground.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/StarFull.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/StarEmpty.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/LevelPointerButton.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/LevelPointerButtonPressed.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/LevelPointerButtonShadow.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ZoneAreaLevel.png", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap1Background.jpg", CC_CALLBACK_1(UIIntro::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap2Background.jpg", CC_CALLBACK_1(UIIntro::doNothing, this));
     
     _listener = EventListenerTouchOneByOne::create();
     _listener->setSwallowTouches(true);

@@ -55,7 +55,6 @@ public:
 
 private:
     bool stoppedAnimation = false;
-    bool loading = false;
 
     void endActions(void);
     bool allActionsFinished(void);
