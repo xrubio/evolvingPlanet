@@ -82,7 +82,7 @@ bool UIProgressMap::init()
     eraWindow->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     eraWindow->setName("eraWindow");
     
-    auto eraLabel = Label::createWithTTF(LocalizedString::create("FIRST")+" "+LocalizedString::create("ERA"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    auto eraLabel = Label::createWithTTF(LocalizedString::create("FIRSTERA"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     eraLabel->setPosition(eraWindow->getContentSize().width / 2, eraWindow->getContentSize().height / 2);
     eraLabel->setColor(Color3B(137, 146, 155));
     eraLabel->setName("eraLabel");
@@ -682,22 +682,6 @@ void UIProgressMap::menuEraCallback(Ref* pSender)
             pages->scrollToPage(currentPage + 1);
         }
     }
-    
-    /*if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(1) != NULL)
-    {
-        pages->scrollToPage(1);
-        auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
-        label->setString(LocalizedString::create("SECOND") + " " + LocalizedString::create("ERA"));
-        arrowNext->setVisible(false);
-        arrowPrev->setVisible(true);
-    }
-    else if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(11) != NULL)
-    {
-        pages->scrollToPage(0);
-
-        arrowNext->setVisible(true);
-        arrowPrev->setVisible(false);
-    }*/
 }
 
 Layout* UIProgressMap::setEpisode1(void)
@@ -706,7 +690,7 @@ Layout* UIProgressMap::setEpisode1(void)
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
     auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
-    label->setString(LocalizedString::create("FIRST") + " " + LocalizedString::create("ERA"));
+    label->setString(LocalizedString::create("FIRSTERA"));
     
     auto progressMap = Sprite::create("gui/ProgressMap1Background.jpg");
     progressMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
@@ -1038,14 +1022,14 @@ void UIProgressMap::update(float delta)
         {
             arrowPrev->setVisible(true);
             arrowNext->setVisible(false);
-            label->setString(LocalizedString::create("SECOND") + " " + LocalizedString::create("ERA"));
+            label->setString(LocalizedString::create("SECONDERA"));
             break;
         }
         default:
         {
             arrowPrev->setVisible(false);
             arrowNext->setVisible(true);
-            label->setString(LocalizedString::create("FIRST") + " " + LocalizedString::create("ERA"));
+            label->setString(LocalizedString::create("FIRSTERA"));
             break;
         }
     }

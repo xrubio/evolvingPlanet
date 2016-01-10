@@ -8,7 +8,7 @@
 We will use bots to replicate Lovan history. They are a mixture of advanced bioengineering and artificial intelligence designed to resemble the extinct species.
 
 The team is waiting for your orders to start the mission.</string>
-	<key>CONTEXT_LEVEL_1_INTRO</key>
+	<key>CONTEXT_LEVEL_1</key>
 	<string>Professor, my name is Dr. Rosalind Lovelace and I'm the leader of the xenoarchaeological team. We will assist you to understand what happened here using bots.  
 
 We deployed the bots in the zone where the first Lovan fossils were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
@@ -17,7 +17,7 @@ We deployed the bots in the zone where the first Lovan fossils were found. The e
 	<string>Campaign day 7
 
 The bots are responding to our commands. We need them to disperse to the rest of the peninsula where they started.</string>
-	<key>CONTEXT_LEVEL_2_INTRO</key>
+	<key>CONTEXT_LEVEL_2</key>
 	<string>The success of Lovans allowed them to populate several other ecosystems.
     
     In a similar way our first ancestors flourished throughout much of sub-Saharan Africa using different food sources, from hunting to gathering edible plants.</string>
@@ -26,7 +26,7 @@ The bots are responding to our commands. We need them to disperse to the rest of
 	<string>Campaign day 10
 
 The bots are ready to emulate the colonization of arid zones beyond their usual forest habitats.</string>
-	<key>CONTEXT_LEVEL_3_INTRO</key>
+	<key>CONTEXT_LEVEL_3</key>
 	<string>Similarities between Lovan and human origins are surprising...it's our closest match in the entire galaxy.
 
 I won't be extremely helpful here; we know that hominins spread throghout the entire planet Earth, but we are not sure why.
@@ -36,8 +36,8 @@ Let's start with population increase and see where do we go from here.</string>
 	<string>Campaign day 11
 
 Dr. Walker is not convinced of the previous results so we will try a different idea.</string>
-	<key>CONTEXT_LEVEL_4_INTRO</key>
-	<string>Last reports suggest that the Lovan dispersion was way faster than we achieved last mission.
+	<key>CONTEXT_LEVEL_4</key>
+	<string>Last reports suggest that Lovan dispersion was way faster than we achieved last mission.
 
 I want to try a different approach; what if we provide the bots with improved technology?
 
@@ -46,7 +46,7 @@ They should be able to achieve the goals within expected time if they combine fi
 	<string>Campaign day 16
 
 Lovans found other species as they colonized this world. For this mission we have deployed different bots to replicate the existance of these other groups.</string>
-	<key>CONTEXT_LEVEL_5_INTRO</key>
+	<key>CONTEXT_LEVEL_5</key>
 	<string>We will have interaction with several other species during this archaeological expedition.
 
 This planet was not only populated by Lovans, as Earth was not a Sapiens-only club. We shared Eurasia with Neanderthals during 5.000 years. They were also hominins, quite similar to us in any aspect, including technology, culture and even language.
@@ -60,7 +60,7 @@ They disappeared as a species over 30.000 years ago; however, based on what our 
 We discovered that one of the species present in this planet disappeared after contacting Lovans.
 
 Mission control wants to test if they hybridized and became somehow a single species.</string>
-	<key>CONTEXT_LEVEL_6_INTRO</key>
+	<key>CONTEXT_LEVEL_6</key>
 	<string>This situation raises a lot of complex questions.
     
     One hypothesis about the extinction of Neanderthals suggests that they were absorbed by the Cro-Magnon population by a mix of cultural influence and hybridation...
@@ -71,7 +71,7 @@ Mission control wants to test if they hybridized and became somehow a single spe
 
     We found another extinct species. There are clear evidences of conflict with Lovans so for this mission your bots will be able to fight.
     </string>
-	<key>CONTEXT_LEVEL_7_INTRO</key>
+	<key>CONTEXT_LEVEL_7</key>
 	<string>And I thought that they were good kids...we discovered a bunch of skeletons with clear signs of violence. 
 
     Violence is not uncommon when different species compete for the same resources. This conflict becomes scarier as social organization and technology increase. Humans have experience on this regard; we almost killed ourselves in the XXth century. I wonder if this could caused the Lovan extinction...
@@ -82,7 +82,7 @@ Lovans wiped out this species while they invaded their territory, so our bots wi
 	<string>Campaign day 23
 
 Climate drastically changed through Lovan dispersal. Here the species had to cross a vast zone while resources were rapidly decreasing.</string>
-	<key>CONTEXT_LEVEL_8_INTRO</key>
+	<key>CONTEXT_LEVEL_8</key>
 	<string>Hunting and gathering are pretty decent way of living. Ok, you rely on wildlife to survive, but you are more flexible than farmers. Plus, you work less hours!
 
     On the other hand you migrate if resources become scarce.
@@ -93,7 +93,7 @@ Climate drastically changed through Lovan dispersal. Here the species had to cro
 	<string>Campaign day 25
 
 Looks like this planet was a crowded place. For this mission you will have to face two species simultaneously.</string>
-	<key>CONTEXT_LEVEL_9_INTRO</key>
+	<key>CONTEXT_LEVEL_9</key>
 	<string>It seems that you'll find both competition and cooperation here. 
 
 I think that we face here a situation where Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest ones, and once your group is large enough deal with the rest of objectives.</string>
@@ -104,7 +104,7 @@ I think that we face here a situation where Lovans allied with one of the groups
 This mission completes the Lovan dispersal. They proved their adaptive capacity populating the planet from pole to pole.
 
 However, evidence is scarce in this last zone so we are not sure what happened.</string>
-	<key>CONTEXT_LEVEL_10_INTRO</key>
+	<key>CONTEXT_LEVEL_10</key>
 	<string>I have some bad news...we don't have a clue why Lovans were successful in this region.
     
 The uncertainty is killing me, but this is science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.
@@ -112,11 +112,112 @@ The uncertainty is killing me, but this is science! We accept an explanation unt
 Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other bots.</string>
     
     <key>BRIEF_LEVEL_11</key>
+    <string>Lovans groups bloomed over Kepler-1138. Increased population fostered the development of new technologies and further exploitation of the vast resources of the planet.</string>
+    <key>CONTEXT_LEVEL_11</key>
     <string>Campaign day 41
         
-    </string>
-    <key>CONTEXT_LEVEL_11_INTRO</key>
-    <string>Exploitation</string>
+    The Lovans exploited any available resource in their environment to improve their survival chances. This would include obsidian and minerals to develop tools and wood for building better housing among other elements.
+
+    We have deployed these two resources in this mission to understand if Lovans exploited the planet in a similar way than humans did on Earth.</string>
+
+    <key>BRIEF_LEVEL_12</key>
+    <string>Natural resources are shared by all the individuals living in the same landscape.
+    
+    This creates tensions between groups when all of them looked for the same finite resource.</string>
+    <key>CONTEXT_LEVEL_12</key>
+    <string>Campaign day 44
+    
+    Food, wood, minerals...nothing is infinite so this availability limits how much population can live in a particular place. This threshold creates competition dynamics between individuals such as the one we observed in this area.
+
+    Your bots will need to gain control of this forest from a different group. You have many paths to achieve this mission: influence, warfare, mobility...?</string>
+
+    <key>BRIEF_LEVEL_13</key>
+    <string>Competition is not the only consequence of resource exploitation. We have found evidence of trade between Lovans and a different group in this area.
+    
+They exchanged minerals and wood, and this redistribution of goods benefited both populations</string>
+    <key>CONTEXT_LEVEL_13</key>
+    <string>Campaign day 50
+
+This is fascinating, it seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading any sort of good since their beginnings, and it seems that Lovans were not different in this regard. Your bots will need to learn the complexities of trading before you can pass this mission successfully.</string>
+        
+    <key>BRIEF_LEVEL_14</key>
+    <string>Trade contacts is one of the ways that populations influence each other. Lovans got some allies in order to control the mineral resources in one of the richest areas of the planet.</string>
+    <key>CONTEXT_LEVEL_14</key>
+    <string>Campaign day 53
+    
+The exchange of goods is not only about stuff. For example, on Earth obsidian only can be found in a few places, and it travels hundreds of kilometers to the places where it has been found by archaeologists.
+
+Trade needs communication between individuals. They not only share goods: they also exchanged ideas. It seems that Lovans joined forces with another group to dominate this crucial resource in the mountains depicted in this mission, thus fostering their dominance over the entire region.</string>
+
+    <key>BRIEF_LEVEL_15</key>
+    <string>Lovan conquest of the planet was based on several attributes: from exploitation skills to technological development and cultural influence.
+    
+In this case they managed to control the resources of a large region at an astonishing pace.</string>
+    <key>CONTEXT_LEVEL_15</key>
+    <string>Campaign day 60
+    
+We are now certain that the Lovan success was partially based on their negotiation skills. Their strong culture left an imprint on other groups, and some evidence suggests that they were excellent traders.
+
+If we want to match the dates of dispersal here your bots will need to collect a diversity of goods by using a combination of technical and social skills.</string>
+
+    <key>BRIEF_LEVEL_16</key>
+    <string>Lovans gradually learned how to shape their environment.
+    
+This would increase their population size to limits beyond what hunter-gatherer lifestyles could sustain.</string>
+    <key>CONTEXT_LEVEL_16</key>
+    <string>Campaign day 70
+
+The domestication of plants and animals radically altered human culture on our native planet. Farming and herding allowed us to generate larger amounts of food, thus increasing our population size.
+
+This complex process is called Neolithic transition, and it seems that we have found a similar process here.</string>
+
+    <key>BRIEF_LEVEL_17</key>
+    <string>An increase in population size often brings an intensive use of the environment.
+    
+In this region Lovans combined terraforming with large scale exploitation of a large forest. They managed to avoid destroying this rich region but we are not sure how.</string>
+    <key>CONTEXT_LEVEL_17</key>
+    <string>Campaign day 74
+    
+Initial farming communities cannot rely exclusively on their plants and animals. The environment provided lots of food and other goods, so why would you discard them?
+
+But here comes the catch: more food means more people. This can lead to overexploitation of the environment and generate a situation where everybody loses.
+
+Lovans managed to avoid this tragedy of the commons, as humans did at the beginning of the XXIst century.</string>
+
+    <key>BRIEF_LEVEL_18</key>
+    <string>It seems that we found the tipping point of Lovan existence.
+    
+A series of droughts decreased resource availability up to the point where groups started to compete against each other.</string>
+    <key>CONTEXT_LEVEL_18</key>
+    <string>Campaign day 79
+    
+Our analysis suggest that rapidly deteriorating environmental conditions triggered large-scale conflicts between groups.
+
+Our mission here is to understand the link between climate change and conflict as resource became scarce. You can try different options here, but be aware that overexploitation is a possible scenario here that you need to avoid by all means, including confrontation.</string>
+
+    <key>BRIEF_LEVEL_19</key>
+    <string>The diminishing population struggled to survive in the deteriorated environment.
+    
+These are the last steps of Lovans: they disappeared along the other groups as the entire population collapsed in a series of neverending violent conflicts.</string>
+    <key>CONTEXT_LEVEL_19</key>
+    <string>Campaign day 87
+    
+Here we are, after so many challenges: this is the end of this fascinating story. The lack of arable lands for the existing population generated several wars. The few chances they got were ruined as groups threw at each other's throats.
+
+Lovans did survive for some decades, though. We are examining the last conflict they were involved. You will need to increase their population by terraforming before another population invades the zone. Be aware that the desperate situation made groups extremely aggressive, so no cultural influence was possible at this step.</string>
+
+    <key>BRIEF_LEVEL_20</key>
+    <string>Good job, the experiment is finished!
+    
+However, something unexpected happened. Bots should have disappeared after the last mission, but they are still there. Let's disable the remaining bots and go home!</string>
+    <key>CONTEXT_LEVEL_20</key>
+    <string>Campaign day 90
+    
+I don't know how to explain this: the bots ignored our last orders and went looking for some land where they can still survive, despite the collapse of the rest of the planet.
+
+We are supposed to kill all of them, as the expedition is finished. This would be scientifically correct, but think about it: if they are as sentient as I suspect this would technically be a genocide.
+
+You cannot fail this mission: either you finish the story again, or you give Lovans another chance. It's your choice, Professor.</string>
 
 	<key>LEVEL_1_STORY</key>
 	<string>Who are we? Who created us?</string>
@@ -162,22 +263,22 @@ Let's explore this last dispersal by trying different approaches. You can make t
     <key>DATE_LEVEL_11</key>
     <string>6.000 BE</string>
     <key>DATE_LEVEL_12</key>
-    <string>1 BE</string>
+    <string>5000 BE</string>
     <key>DATE_LEVEL_13</key>
-    <string>1 BE</string>
+    <string>3600 BE</string>
     <key>DATE_LEVEL_14</key>
-    <string>1 BE</string>
+    <string>2500 BE</string>
     <key>DATE_LEVEL_15</key>
-    <string>1 BE</string>
+    <string>1700 BE</string>
     <key>DATE_LEVEL_16</key>
-    <string>1 BE</string>
+    <string>1000 BE</string>
     <key>DATE_LEVEL_17</key>
-    <string>1 BE</string>
+    <string>500 BE</string>
     <key>DATE_LEVEL_18</key>
-    <string>1 BE</string>
+    <string>200 BE</string>
     <key>DATE_LEVEL_19</key>
-    <string>1 BE</string>
+    <string>45 BE</string>
     <key>DATE_LEVEL_20</key>
-    <string>1 BE</string>
+    <string>0 BE</string>
 </dict>
 </plist>

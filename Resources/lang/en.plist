@@ -36,12 +36,10 @@
 	<string>STORY</string>
 	<key>GOALS</key>
 	<string>GOALS</string>
-	<key>ERA</key>
-	<string>ERA</string>
-	<key>FIRST</key>
-	<string>FIRST</string>
-	<key>SECOND</key>
-	<string>SECOND</string>
+	<key>FIRSTERA</key>
+	<string>Dispersal</string>
+	<key>SECONDERA</key>
+	<string>Conquest</string>
 	<key>QUIT_QUESTION</key>
 	<string>QUIT ?</string>
 	<key>RETRY_QUESTION</key>
@@ -92,6 +90,19 @@
 	<string>WARFARE</string>
 	<key>DESCRIPTION_WARFARE</key>
 	<string>Lethality in combat</string>
+    <key>EXPLOITATION</key>
+	<string>EXPLOITATION</string>
+	<key>DESCRIPTION_EXPLOITATION</key>
+	<string>Harvesting skills for wood and minerals</string>
+    <key>TRADE</key>
+	<string>TRADE</string>
+	<key>DESCRIPTION_TRADE</key>
+	<string>Exchange abilities with other groups</string>
+    <key>TERRAFORM</key>
+	<string>TERRAFORM</string>
+	<key>DESCRIPTION_TERRAFORM</key>
+	<string>Shape the environment to your benefit</string>
+
 	<key>DESCRIPTION_MobilityBoost</key>
 	<string>Mobility</string>
 	<key>DESCRIPTION_ReproductionBoost</key>
