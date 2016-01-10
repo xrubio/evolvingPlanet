@@ -98,7 +98,21 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
     <key>LEVEL11M4</key>
     <string>You collect resources by moving to these zones and increasing your Exploitation attribute.</string>
     <key>LEVEL11M5</key>
-    <string>You can tap here to cycle through the needed amount of resources.</string>
+    <string>You can tap here to cycle through the needed amount of resources.</string> 
+    
+    <key>LEVEL13M1</key>
+    <string>You have a new attribute for this mission: Trade.</string>
+    <key>LEVEL13M2</key>
+    <string>If you develop this skill your bots will be able to exchange one resource for goods owned by nearby groups.</string>
+    <key>LEVEL13M3</key>
+    <string>You won't be able to collect enough minerals before the time is up, so you will need the attribute to pass this mission.</string>
+
+    <key>LEVEL16M1</key>
+    <string>We have integrated all domestication techniques under the concept of Terraforming.</string>
+    <key>LEVEL16M2</key>
+    <string>This zone here is rich enough to be transformed into cultivated lands by increasing this skill.</string>
+    <key>LEVEL16M3</key>
+    <string>Your population will thrive in this environment, but you need to reach the zone before this can happen.</string>
 </dict>
 
 </plist>

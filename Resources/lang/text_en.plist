@@ -134,11 +134,13 @@ Let's explore this last dispersal by trying different approaches. You can make t
     <key>BRIEF_LEVEL_13</key>
     <string>Competition is not the only consequence of resource exploitation. We have found evidence of trade between Lovans and a different group in this area.
     
-They exchanged minerals and wood, and this redistribution of goods benefited both populations</string>
+They exchanged minerals and wood; this redistribution of goods benefited both populations.</string>
     <key>CONTEXT_LEVEL_13</key>
     <string>Campaign day 50
 
-This is fascinating, it seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading any sort of good since their beginnings, and it seems that Lovans were not different in this regard. Your bots will need to learn the complexities of trading before you can pass this mission successfully.</string>
+This is fascinating, it seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading any sort of good since their beginnings, and it seems that Lovans were not different in this regard.
+
+Your bots will need to learn the complexities of trading before you can pass this mission successfully.</string>
         
     <key>BRIEF_LEVEL_14</key>
     <string>Trade contacts is one of the ways that populations influence each other. Lovans got some allies in order to control the mineral resources in one of the richest areas of the planet.</string>

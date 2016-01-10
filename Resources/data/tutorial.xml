@@ -102,3 +102,17 @@
     </message>     
 </level>
 
+<level num="13">
+    <message id="1" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="0"/>
+    <message id="2" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+    <message id="3" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
+</level>
+
+<level num="16">
+    <message id="1" x="0.6" y="0.7" lineWidth="0.4" trigger="time" step="0"/>
+    <message id="2" x="0.6" y="0.7" lineWidth="0.4" trigger="next">
+        <spot image="tutorial/tTerraform" centerX="0.5" centerY="0.5"/>
+    </message>
+    <message id="3" x="0.6" y="0.7" lineWidth="0.4" trigger="next"/>
+</level>
+
