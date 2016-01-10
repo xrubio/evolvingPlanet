@@ -389,7 +389,6 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari9.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation, this));
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari10.png", CC_CALLBACK_1(UIMainMenu::setLoadingAnimation,this));*/
         
-        //GameData::getInstance()->setNextScene(Story);
         auto scene = UIStoryGallery::createScene();
         auto transition = TransitionFade::create(0.5f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -504,7 +503,7 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(2)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     this->getChildByTag(3)->stopAllActions();
     this->getChildByTag(3)->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    this->getChildByTag(3)->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaWConversion());
+    this->getChildByTag(3)->setScale(GameData::getInstance()->getRaHConversion());
     p->resetSystem();
     this->getChildByTag(4)->stopAllActions();
     this->getChildByTag(4)->setOpacity(255);

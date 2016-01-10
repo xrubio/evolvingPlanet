@@ -87,7 +87,8 @@ bool UIIntro::init()
     logo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));   
     logo->setName("logo");
     logo->setOpacity(0);
-    logo->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(1.4), FadeOut::create(0.3f), nullptr));
+    logo->setScale(GameData::getInstance()->getRaWConversion());
+    logo->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(1.7), FadeOut::create(0.3f), nullptr));
     this->addChild(logo);
 //#endif
     
@@ -145,14 +146,14 @@ void UIIntro::runIntro()
 {
     auto camaraBack = Sprite::create("misc/CamaraBack.jpg");
     camaraBack->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
-    camaraBack->setScale(GameData::getInstance()->getRaHConversion());
+    camaraBack->setScale(GameData::getInstance()->getRaWConversion());
     camaraBack->setName("camaraBack");
     this->addChild(camaraBack, 0);
     
     auto camaraHexagon = Sprite::create("misc/CamaraHexagon.png");
     camaraHexagon->setPosition(Vec2(9 * Director::getInstance()->getVisibleSize().width / 19,  6 * Director::getInstance()->getVisibleSize().height / 11));
     camaraHexagon->setName("camaraHexagon");
-    camaraHexagon->setScale(GameData::getInstance()->getRaHConversion());
+    camaraHexagon->setScale(GameData::getInstance()->getRaWConversion());
     this->addChild(camaraHexagon, 1);
     camaraHexagon->runAction(Sequence::create(Spawn::create(Repeat::create(RotateBy::create(0.3, -270), 3), ScaleTo::create(0.9, 1.5), NULL),Spawn::create(Repeat::create(RotateBy::create(0.25, 360), 4), ScaleTo::create(1.0, 0.5), NULL), FadeOut::create(0.5), NULL));
     
@@ -160,7 +161,7 @@ void UIIntro::runIntro()
     camaraFront->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
     camaraFront->setPercentage(0.0);
     camaraFront->setName("camaraFront");
-    camaraFront->setScale(GameData::getInstance()->getRaHConversion());
+    camaraFront->setScale(GameData::getInstance()->getRaWConversion());
     this->addChild(camaraFront, 1);
     
     auto radialTimer = ProgressFromTo::create(3.0, 0, 66);
@@ -175,10 +176,11 @@ void UIIntro::runIntro()
     auto moveParticle = MoveTo::create(5.0, Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 4));
     this->addChild(particleSmoke, 5);
     particleSmoke->runAction(moveParticle);
+    particleSmoke->setScale(GameData::getInstance()->getRaWConversion());
     
     auto camaraDoor = Sprite::create("misc/CamaraDoor.png");
     camaraDoor->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, 0));//5*Director::getInstance()->getVisibleSize().height/24));
-    camaraDoor->setScale(GameData::getInstance()->getRaHConversion());
+    camaraDoor->setScale(GameData::getInstance()->getRaWConversion());
     camaraDoor->setOpacity(0);
     camaraDoor->setAnchorPoint(Vec2(0.5, 0.66));
     camaraDoor->setName("camaraDoor");

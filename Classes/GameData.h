@@ -85,9 +85,6 @@ public:
     void setCurrentEra(int i);
     int getCurrentLevel(void);
     void setCurrentLevel(int i);
-
-    int getNextScene(void);
-    void setNextScene(int s);
     
     float getResourcesHeight(void);
     void setResourcesHeight(int r);
@@ -130,7 +127,6 @@ private:
     int _firstTimeLevelCompleted = 0;
     int _currentEra = 0;
     int _currentLevel = 0;
-    int nextScene = 0;
     float resourcesHeight;
     float resourcesWidth;
     float resourcesMargin;

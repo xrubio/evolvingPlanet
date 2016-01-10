@@ -254,16 +254,6 @@ void GameData::setCurrentLevel(int i)
     _currentLevel = i;
 }
 
-int GameData::getNextScene(void)
-{
-    return nextScene;
-}
-
-void GameData::setNextScene(int s)
-{
-    nextScene = s;
-}
-
 float GameData::getResourcesHeight(void)
 {
     return resourcesHeight;
@@ -449,6 +439,9 @@ void GameData::resetGameProgress(void)
         loadAchievements();
     }
     _firstTimeLevelCompleted = 0;
+    _currentEra = 0;
+    _currentLevel = 1;
+    
     cocos2d::UserDefault::getInstance()->flush();
 }
 

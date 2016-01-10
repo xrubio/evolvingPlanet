@@ -125,7 +125,7 @@ void UITransitionScene::onTouchesBegan(const vector<Touch*>& touches, Event* eve
         if (stoppedAnimation or allActionsFinished()) {
             auto scene = UIProgressMap::createScene();
             auto transition = TransitionFade::create(1.0f, scene);
-            Director::getInstance()->popScene();
+            Director::getInstance()->replaceScene(transition);
         }
         else {
             endActions();
@@ -171,30 +171,9 @@ void UITransitionScene::setLoadingAnimation(bool b)
 void UITransitionScene::update(float delta)
 {
 
-    if (GameData::getInstance()->getNextScene() < 0 or ((clock() - float(updateTimeToLoadScene)) / CLOCKS_PER_SEC) <= 0.2)
+    if (((clock() - float(updateTimeToLoadScene)) / CLOCKS_PER_SEC) <= 0.2)
     {
         return;
     }
-
-    Scene *scene;
-    TransitionFade *transition;
-    switch (GameData::getInstance()->getNextScene())
-    {
-        case Story:
-        {
-            scene = UIStoryGallery::createScene();
-            transition = TransitionFade::create(0.5f, scene);
-            break;
-        }
-            
-        default:
-        {
-            scene = UIMainMenu::createScene();
-            transition = TransitionFade::create(0.5f, scene);
-            break;
-        }
-    }
-    GameData::getInstance()->setNextScene(-1);
-    Director::getInstance()->replaceScene(transition);
 }
 
