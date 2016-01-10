@@ -97,15 +97,15 @@
     <ACTION>Kill</ACTION>
     <ACTION>Influence</ACTION>
 </ACTIONS>
-<GOALS>
-    <GOAL TYPE_GOAL="Dispersal">
+<GOALS> 
+    <GOAL TYPE_GOAL="Population">
         <AGENT_TYPE>0</AGENT_TYPE>
         <MIN>10</MIN>
         <MAX>26</MAX>
         <AVERAGE>18</AVERAGE>
         <DESVIATION_2_STAR>4</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
-        <COLOR_ZONE>11</COLOR_ZONE>
+        <GOAL_AMOUNT>550</GOAL_AMOUNT>
     </GOAL>
     <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
