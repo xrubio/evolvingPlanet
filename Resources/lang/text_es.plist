@@ -14,4 +14,48 @@ Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran u
 	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
 	<string>En todo caso, vamos a empezar por el principio; los bots van a ser desplegados en esta primera zona con evidencias de XXX. Queremos examinar cómo se dispersaron desde esta península al resto del continente.</string>
 </dict>
+
+	<key>LEVEL_1_STORY</key>
+	<string>Quiénes somos? Quién nos creó?</string>
+    <key>LEVEL_2_STORY</key>
+	<string>Encontraremos nuestro destino en la montaña de fuego</string>
+    <key>LEVEL_3_STORY</key>
+	<string>Somos los señores del fuego. Somos los Zho'll</string>
+    <key>LEVEL_4_STORY</key>
+	<string>Los Guías nos dieron fuego y piedra para dominar este mundo</string>
+    <key>LEVEL_5_STORY</key>
+	<string>No temeremos a nadie ni a nada</string>
+    <key>LEVEL_6_STORY</key>
+	<string>Necesitamos a los Guías? Los Zho'll controlan esta tierra!</string>
+    <key>LEVEL_7_STORY</key>
+	<string>Pero no estamos solos...</string>
+    <key>LEVEL_8_STORY</key>
+	<string>Los Guías nos vigilan y proveen por nosotros</string>
+    <key>LEVEL_9_STORY</key>
+	<string>Los Zho'll triunfarán donde otros fallaron</string>
+    <key>LEVEL_10_STORY</key>
+	<string>Este es nuestro mundo. Viviremos donde nos plazca</string>
+    <key>LEVEL_11_STORY</key>
+	<string>El símbolo de los Guías apunta hacia su morada</string>
+    <key>LEVEL_12_STORY</key>
+	<string>El planeta entero sabrá que los Guías nos vigilan</string>
+    <key>LEVEL_13_STORY</key>
+	<string>Podemos comerciar minerales por todo lo que deseamos</string>
+    <key>LEVEL_14_STORY</key>
+	<string>Que nuestras almas se reúnan con los Guías</string>
+    <key>LEVEL_15_STORY</key>
+	<string>El mundo entero es nuestro hogar</string>
+    <key>LEVEL_16_STORY</key>
+	<string>Daremos una vida mejor a nuestra descendencia</string>
+    <key>LEVEL_17_STORY</key>
+	<string>Los Zho'll son los amos de este mundo, de sus plantas y animales</string>
+    <key>LEVEL_18_STORY</key>
+	<string>Nuestros campos yacen muertos. Por qué nos castigan los Guías?</string>
+    <key>LEVEL_19_STORY</key>
+	<string>No queremos ser olvidados. Este es nuestro mundo!</string>
+    <key>LEVEL_20_STORY</key>
+	<string>Somos los Zho'll. Somos los amos de nuestro destino</string>
+    <key>LEVEL_21_STORY</key>
+	<string>Misión completada. Volvamos a casa!</string>
 </plist>
+

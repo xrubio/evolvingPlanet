@@ -224,23 +224,46 @@ You cannot fail this mission: either you finish the story again, or you give Lov
 	<key>LEVEL_1_STORY</key>
 	<string>Who are we? Who created us?</string>
     <key>LEVEL_2_STORY</key>
-	<string>Our destiny is to arrive to the mountain of fire</string>
+	<string>We will find our destiny in the mountain of fire</string>
     <key>LEVEL_3_STORY</key>
 	<string>We are the masters of fire. We are the Zho'll</string>
     <key>LEVEL_4_STORY</key>
-	<string>Fire and stone are our tools. With the help of our Guides we will conquer this world.</string>
+	<string>The Guides gave us fire and stone to conquer this world</string>
     <key>LEVEL_5_STORY</key>
-	<string>We will not be afraid of anyone or anything.</string>
+	<string>We will not be afraid of anyone or anything</string>
     <key>LEVEL_6_STORY</key>
-	<string>The Guides watch us and provide for us</string>
-    <key>LEVEL_7_STORY</key>
 	<string>Do we need the Guides? The Zho'll already own this land!</string>
-    <key>LEVEL_8_STORY</key>
+    <key>LEVEL_7_STORY</key>
 	<string>But we are not alone...</string>
+    <key>LEVEL_8_STORY</key>
+	<string>The Guides watch us and provide for us</string>
     <key>LEVEL_9_STORY</key>
-	<string>The Zho'll will succeed where others failed.</string>
+	<string>The Zho'll will succeed where others failed</string>
     <key>LEVEL_10_STORY</key>
-	<string>Why do we have to obey the Guides and move again?</string>
+	<string>This is our world. We will live wherever we want</string>
+    <key>LEVEL_11_STORY</key>
+	<string>The symbol of the Guides points towards their home</string>
+    <key>LEVEL_12_STORY</key>
+	<string>The entire planet will know that the Guides watch us</string>
+    <key>LEVEL_13_STORY</key>
+	<string>We can trade minerals for anything</string>
+    <key>LEVEL_14_STORY</key>
+	<string>Let our souls be with the Guides</string>
+    <key>LEVEL_15_STORY</key>
+	<string>This entire world is our home</string>
+    <key>LEVEL_16_STORY</key>
+	<string>We will make a better life for our offspring</string>
+    <key>LEVEL_17_STORY</key>
+	<string>Zho'll are masters of this world, its plants and its animals</string>
+    <key>LEVEL_18_STORY</key>
+	<string>Our crops are dead. Why are the Guides punishing us?</string>
+    <key>LEVEL_19_STORY</key>
+	<string>We don't want to be forgotten. This is our world!</string>
+    <key>LEVEL_20_STORY</key>
+	<string>We are the Zho'll. We are the masters of our destiny</string>
+    <key>LEVEL_21_STORY</key>
+	<string>Mission accomplished. Let's go back home!</string>
+
     <!-- dates -->
     <key>DATE_LEVEL_1</key>
     <string>1 million years BE (Before Extinction)</string>
