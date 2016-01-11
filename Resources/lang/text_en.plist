@@ -211,13 +211,13 @@ Lovans did survive for some decades, though. We are examining the last conflict 
     <key>BRIEF_LEVEL_20</key>
     <string>Good job, the experiment is finished!
     
-However, something unexpected happened. Bots should have disappeared after the last mission, but they are still there. Let's disable the remaining bots and go home!</string>
+However, something unexpected happened. Bots should have disappeared after the last mission, but they are still there. You must disable the remaining bots before leaving Kepler.</string>
     <key>CONTEXT_LEVEL_20</key>
     <string>Campaign day 90
     
-I don't know how to explain this: the bots ignored our last orders and went looking for some land where they can still survive, despite the collapse of the rest of the planet.
+I don't know how to explain this: the bots ignored our last orders and are currently looking for some land where they can still survive.
 
-We are supposed to kill all of them, as the expedition is finished. This would be scientifically correct, but think about it: if they are as sentient as I suspect this would technically be a genocide.
+We got our final results and technically we should destroy them before leaving this planet. I don't know what you feel, but more than finishing an experiment it seems more like a genocide to me.
 
 You cannot fail this mission: either you finish the story again, or you give Lovans another chance. It's your choice, Professor.</string>
 
