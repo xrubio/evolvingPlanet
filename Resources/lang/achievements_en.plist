@@ -7,22 +7,22 @@
 	<string>ROOKIE</string>
 	<key>DESCR_LVL1_Accomplished</key>
 	<string>Complete mission 1</string>
+
 	<key>TITLE_LVL1_Perfect</key>
-	<string>PerfectION 1</string>
+	<string>OUT THERE</string>
 	<key>DESCR_LVL1_Perfect</key>
 	<string>Complete mission 1 with a score of 3 stars</string>
-    <key>TITLE_LVL1_EPsLeft</key>
-    <string>LEFTOVERS</string>
-    <key>DESCR_LVL1_EPsLeft</key>
-    <string>Complete mission 1 having at least 10 evolution points at the end</string>
-
-
     <key>ACH_LVL1_2</key>
     <string>Evolving Planet story unfolds in an imaginary exoplanet called Kepler-1138.
 
 An exoplanet is a planet that orbits a star other than the Sun. Over 2000 exoplanets have been discovered, most of them by the Kepler space telescope since its launch by NASA in 2009.</string>
-   <key>ACH_LVL1_3</key>
-   <string>The first human ancestors appeared 4 million yeas ago in the forests of East Africa.
+
+    <key>TITLE_LVL1_EPsLeft</key>
+    <string>LEFTOVERS</string>
+    <key>DESCR_LVL1_EPsLeft</key>
+    <string>Complete mission 1 having at least 10 evolution points at the end</string>
+    <key>ACH_LVL1_3</key>
+    <string>The first human ancestors appeared 4 million yeas ago in the forests of East Africa.
 
 The oldest species were called Australopithecines. They already walked in two legs, and it seems that this property allowed them very important for their success. They managed to live in a diversity of environments, from forests to savannah.</string>
 
@@ -31,17 +31,18 @@ The oldest species were called Australopithecines. They already walked in two le
     <string>GETTING USED TO</string>
     <key>DESCR_LVL2_Accomplished</key>
     <string>Complete mission 2</string>
+
     <key>TITLE_LVL2_Perfect</key>
-    <string>PerfectION 2</string>
+    <string>ANCESTORS</string>
     <key>DESCR_LVL2_Perfect</key>
     <string>Complete mission 2 with a score of 3 stars</string>
+    <key>ACH_LVL2_2</key>
+    <string>Australopithecus, Homo Habilis or Homo Neanderthal were different species of hominins. They were quite diverse, but all of them shared being bipeds, having small teeth and big brains. Homo Sapiens is the only surviving hominin.</string>
+
     <key>TITLE_LVL2_Discovery</key>
     <string>WRONG WAY</string>
     <key>DESCR_LVL2_Discovery</key>
     <string>Move through the river</string>
-
-    <key>ACH_LVL2_2</key>
-    <string>Australopithecus, Homo Habilis or Homo Neanderthal were different species of hominins. They were quite diverse, but all of them shared being bipeds, having small teeth and big brains. Homo Sapiens is the only surviving hominin.</string>
     <key>ACH_LVL2_3</key>
     <string>The Tubu live in an African region called Ténéré, the country of emptiness. The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.
 Culture is a powerful tool, and thanks to it we populate the entire surface of the planet.</string>
@@ -51,19 +52,19 @@ Culture is a powerful tool, and thanks to it we populate the entire surface of t
     <string>BOOSTED</string>
     <key>DESCR_LVL3_Accomplished</key>
     <string>Complete mission 3</string>
+
     <key>TITLE_LVL3_Perfect</key>
-    <string>PerfectION 3</string>
+    <string>THE VOYAGE</string>
     <key>DESCR_LVL3_Perfect</key>
     <string>Complete mission 3 with a score of 3 stars</string>
-    <key>TITLE_LVL3_EPsLeft</key>
-    <string>THE HARD WAY</string>
-    <key>DESCR_LVL3_EPsLeft</key>
-    <string>Complete mission 3 having at least 10 evolution points at the end</string>
-
     <key>ACH_LVL3_2</key>
     <string>The british ship HMS Beagle left Plymouth in 1831 towards South America. She returned to Europe 5 years later after circumnavigating the Earth.
 Her crew included a young man called Charles Darwin. The data he collected during the voyage was crucial to develop his theory of evolution by natural selection.</string>
 
+    <key>TITLE_LVL3_EPsLeft</key>
+    <string>THE HARD WAY</string>
+    <key>DESCR_LVL3_EPsLeft</key>
+    <string>Complete mission 3 having at least 10 evolution points at the end</string>
     <key>ACH_LVL3_3</key>
     <string>The first pregnancy for women in current hunter-gatherer societies is around 19 years. This was probably the case for people living in all the planet until the adoption of sedentary lifestyles such as farming made it decrease.
 
@@ -74,21 +75,22 @@ It did not increase again in Western societies until the XXth century.</string>
     <string>INTRODUCING TECH</string>
     <key>DESCR_LVL4_Accomplished</key>
     <string>Complete mission 4</string>
+
     <key>TITLE_LVL4_Perfect</key>
-    <string>PerfectION 4</string>
+    <string>SPEAKING OF</string>
     <key>DESCR_LVL4_Perfect</key>
     <string>Complete mission 4 with a score of 3 stars</string>
-    <key>TITLE_LVL4_NoBoosts</key>
-    <string>TECH NERD</string>
-    <key>DESCR_LVL4_NoBoosts</key>
-    <string>Complete mission 4 without boosts</string>
-
     <key>ACH_LVL4_2</key>
     <string>Our ancestors started using tools 2 million ago. This technology was not an isolated innovation, as other cultural traits need to be present in order to learn and transmit this knowledge.
     
 For this reason it is not surprising that hominins started using language during the same period.</string>
-   <key>ACH_LVL4_3</key>
-   <string>"Science is the belief in the ignorance of experts."
+
+    <key>TITLE_LVL4_NoBoosts</key>
+    <string>TECH NERD</string>
+    <key>DESCR_LVL4_NoBoosts</key>
+    <string>Complete mission 4 without boosts</string>
+    <key>ACH_LVL4_3</key>
+    <string>"Science is the belief in the ignorance of experts."
              Richard Feynman
 
 One of the most important physicists of the XXth century</string>
@@ -98,19 +100,20 @@ One of the most important physicists of the XXth century</string>
     <string>GETTING AWAY</string>
     <key>DESCR_LVL5_Accomplished</key>
     <string>Complete mission 5</string>
+
     <key>TITLE_LVL5_Perfect</key>
-    <string>PerfectION 5</string>
+    <string>COEXISTENCE</string>
     <key>DESCR_LVL5_Perfect</key>
     <string>Complete mission 5 with a score of 3 stars</string>
-    <key>TITLE_LVL5_Discovery</key>
-    <string>You are not the first one</string>
-    <key>DESCR_LVL5_Discovery</key>
-    <string>Reach the north-eastern part of the map</string>
- 
     <key>ACH_LVL5_2</key>
     <string>The more we know about Neanderthals the more we see the striking similarities between them and us. This interest has not only generated scientific debate but also several fiction works.
     
 Three of the most interesting are the movie "Quest for Fire" by Jean-Jacques Annaud, the historical novel "The Clan of the Cave Bear" by J.M. Auel and the science-fiction trilogy "The Neanderthal Parallax", by Robert J. Sawyer.</string>
+
+    <key>TITLE_LVL5_Discovery</key>
+    <string>You are not the first one</string>
+    <key>DESCR_LVL5_Discovery</key>
+    <string>Reach the north-eastern part of the map</string>
     <key>ACH_LVL5_3</key>
     <string>Christoper Columbus famous voyage from 1492 was not the first contact between Europeans and Americans. Several viking expeditions reached Northern America during the Xth century.</string>
 
@@ -119,40 +122,41 @@ Three of the most interesting are the movie "Quest for Fire" by Jean-Jacques Ann
     <string>INFLUENCER</string>
     <key>DESCR_LVL6_Accomplished</key>
     <string>Complete mission 6</string>
+
     <key>TITLE_LVL6_Perfect</key>
-    <string>PerfectION 6</string>
+    <string>COMMON ANCESTOR</string>
     <key>DESCR_LVL6_Perfect</key>
     <string>Complete mission 6 with a score of 3 stars</string>
+    <key>ACH_LVL6_2</key>
+    <string>Recent advances in biology demonstrate that part of our genetic information comes from Neanderthals.
+They are not our ancestors, so this genetic share was caused by both species coexisting and interbreeding in Europe 35.000 years ago.</string>
+
     <key>TITLE_LVL6_EPsLeft</key>
     <string>Culture vs Nurture</string>
     <key>DESCR_LVL6_EPsLeft</key>
     <string>Complete mission 6 having at least 10 evolution points at the end</string>
- 
-
-    <key>ACH_LVL6_2</key>
-    <string>Recent advances in biology demonstrate that part of our genetic information comes from Neanderthals.
-They are not our ancestors, so this genetic share was caused by both species coexisting and interbreeding in Europe 35.000 years ago.</string>
     <key>ACH_LVL6_3</key>
     <string>Culture is not property of humans. Apes, dolphins and orcas show complex cultural traits such as tools and language. However, the pace at which we learn and create new ideas makes us quite unique.</string>
 
-
     <!-- LVL 7 -->
     <key>TITLE_LVL7_Accomplished</key>
-    <string>CALL TO ARMS</string>
+    <string>INCOMPETENT</string>
     <key>DESCR_LVL7_Accomplished</key>
     <string>Complete mission 7</string>
+    <key>ACH_LVL7_1</key>
+    <string></string>
+
     <key>TITLE_LVL7_Perfect</key>
-    <string>PerfectION 7</string>
+    <string>CALL TO ARMS</string>
     <key>DESCR_LVL7_Perfect</key>
     <string>Complete mission 7 with a score of 3 stars</string>
+    <key>ACH_LVL7_2</key>
+    <string>The first evidences of warfare are currently dated around 13.000 years ago. Conflict scenes are depicted in several cave paintings, and archaeologists have also found several bodies embedding arrowheads.</string>
+    
     <key>TITLE_LVL7_Discovery</key>
     <string>THE WORLD ON HORSEBACK</string>
     <key>DESCR_LVL7_Discovery</key>
     <string>Cross the mountain range through the northern pass</string>
-
-    <key>ACH_LVL7_2</key>
-    <string>The first evidences of warfare are currently dated around 13.000 years ago. Conflict scenes are depicted in several cave paintings, and archaeologists have also found several bodies embedding arrowheads.</string>
-
     <key>ACH_LVL7_3</key>
     <string>"I feel alive when I ride my horse"
     
@@ -163,18 +167,19 @@ These are words from a Mongol horse rider whom was said to be "born in the saddl
     <string>THE CROSSING</string>
     <key>DESCR_LVL8_Accomplished</key>
     <string>Complete mission 8</string>
+
     <key>TITLE_LVL8_Perfect</key>
-    <string>PerfectION 8</string>
+    <string>THE NORTH</string>
     <key>DESCR_LVL8_Perfect</key>
     <string>Complete mission 8 with a score of 3 stars</string>
+    <key>ACH_LVL8_2</key>
+    <string>One of the first documentaries ever made tried to explain to Western people how was hunter-gatherer life.
+Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the struggle for survival of a family of Inuit living in the Arctic under extreme conditions.</string>
+
     <key>TITLE_LVL8_EPsLeft</key>
     <string>Ice and Fire</string>
     <key>DESCR_LVL8_EPsLeft</key>
     <string>Complete mission 8 having at least 10 evolution points at the end</string>
- 
-    <key>ACH_LVL8_2</key>
-    <string>One of the first documentaries ever made tried to explain to Western people how was hunter-gatherer life.
-Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the struggle for survival of a family of Inuit living in the Arctic under extreme conditions.</string>
     <key>ACH_LVL8_3</key>
     <string>Temperature in the Arctic can go as low as -45 degrees Celsius. Igloos made of snow and ice are the only reason why people can live there; they can increase the temperature up to a confortable 16 degrees.</string>
 
@@ -183,20 +188,20 @@ Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the s
     <string>JOINING FORCES</string>
     <key>DESCR_LVL9_Accomplished</key>
     <string>Complete mission 9</string>
+
     <key>TITLE_LVL9_Perfect</key>
-    <string>PerfectION 9</string>
+    <string>DUST TO DUST</string>
     <key>DESCR_LVL9_Perfect</key>
     <string>Complete mission 9 with a score of 3 stars</string>
-    <key>TITLE_LVL9_NoBoosts</key>
-    <string>Easy Peasy</string>
-    <key>DESCR_LVL9_NoBoosts</key>
-    <string>Complete mission 9 without using Boosts</string>
-
     <key>ACH_LVL9_2</key>
     <string>Conflict with Sapiens? Climate change? Competition for resources? We don't know why Neanderthals became extinct and we are fascinated about it.
 
 Understanding the extinction of Neanderthals could help us understand the risks we currently face.</string>
 
+    <key>TITLE_LVL9_NoBoosts</key>
+    <string>Easy Peasy</string>
+    <key>DESCR_LVL9_NoBoosts</key>
+    <string>Complete mission 9 without using Boosts</string>
     <key>ACH_LVL9_3</key>
     <string>Some of the workers depicted in this famous photograph are Mohawk Indians. During the late XIXth century they became valued skilled workers for being able to work at very high altitudes.</string>
 
@@ -205,57 +210,63 @@ Understanding the extinction of Neanderthals could help us understand the risks 
     <string>FIND A WAY</string>
     <key>DESCR_LVL10_Accomplished</key>
     <string>Complete mission 10</string>
+
     <key>TITLE_LVL10_Perfect</key>
-    <string>PerfectION 10</string>
+    <string>A TOAST?</string>
     <key>DESCR_LVL10_Perfect</key>
     <string>Complete mission 10 with a score of 3 stars</string>
+    <key>ACH_LVL10_2</key>
+    <string>This is the first draft of our logo! It was born in a bar, as other good ideas</string>
+
     <key>TITLE_LVL10_NoBoosts</key>
     <string>HALF WAY</string>
     <key>DESCR_LVL10_NoBoosts</key>
     <string>Complete mission 10 without boosts</string>
- 
-    <key>ACH_LVL10_2</key>
-    <string>This is the first draft of our logo! It was born in a bar, as other good ideas</string>
-
     <key>ACH_LVL10_3</key>
     <string>“The good thing about science is that it's true whether or not you believe in it.”
             Neil deGrasse Tyson
 
 He is one of the most renowned astrophysicists and science communicators.</string>
+
     <!-- LVL 11 -->
     <key>TITLE_LVL11_Accomplished</key>
     <string></string>
     <key>DESCR_LVL11_Accomplished</key>
     <string>Complete mission 11</string>
+
     <key>TITLE_LVL11_Perfect</key>
-    <string>PerfectION 11</string>
+    <string>CAVEMEN</string>
     <key>DESCR_LVL11_Perfect</key>
     <string>Complete mission 11 with a score of 3 stars</string>
- 
     <key>ACH_LVL11_2</key>
     <string>The finding of several cave paintings created the wrong idea that our ancestors lived in caves.
     
 This image is wrong; they moved around the territory and only used caves occasionally as a refuge. Paintings in caves have just better chance to be preserved after thousands of years.</string>
-  
+ 
+    <key>TITLE_LVL11_NoBoosts</key>
+    <string>???</string>
+    <key>DESCR_LVL11_NoBoosts</key>
+    <string>Complete mission 11 without boosts</string>
+
     <!-- LVL 12 -->
     <key>TITLE_LVL12_Accomplished</key>
     <string></string>
     <key>DESCR_LVL12_Accomplished</key>
     <string>Complete mission 12</string>
+
     <key>TITLE_LVL12_Perfect</key>
-    <string>PerfectION 12</string>
+    <string>THE ROOF OF THE WORLD</string>
     <key>DESCR_LVL12_Perfect</key>
     <string>Complete mission 12 with a score of 3 stars</string>
-    <key>TITLE_LVL12_NoBoosts</key>
-    <string>DO THEY HAVE GILLS?</string>
-    <key>DESCR_LVL12_NoBoosts</key>
-    <string>Complete mission 12 without boosts</string>
- 
     <key>ACH_LVL12_2</key>
     <string>Most population in Himalaya practice Buddishm. Believers of this religion are supposed to burn their deaths, but where are you supposed to find wood at at height of 4.000 meters?
 
 They practice a different ritual called Sky Burial: corpses are placed on a mountaintop, where they are consumed by scanvenging birds such as vultures.</string>
 
+    <key>TITLE_LVL12_NoBoosts</key>
+    <string>DO THEY HAVE GILLS?</string>
+    <key>DESCR_LVL12_NoBoosts</key>
+    <string>Complete mission 12 without boosts</string>
     <key>ACH_LVL12_3</key>
     <string>How much deep can you go underwater? The Sama-Bajau people can catch a fish at 20 m. deep while keeping their breadth for almost 3 minutes.</string>
 
@@ -264,99 +275,178 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     <string></string>
     <key>DESCR_LVL13_Accomplished</key>
     <string>Complete mission 13</string>
+
     <key>TITLE_LVL13_Perfect</key>
-    <string>PerfectION 13</string>
+    <string>PERFECTION 13</string>
     <key>DESCR_LVL13_Perfect</key>
     <string>Complete mission 13 with a score of 3 stars</string>
-    
+
+    <key>TITLE_LVL13_EPsLeft</key>
+    <string></string>
+    <key>DESCR_LVL13_EPsLeft</key>
+    <string>Complete mission 13 having at least 10 evolution points at the end</string>
+
     <!-- LVL 14 -->
     <key>TITLE_LVL14_Accomplished</key>
     <string></string>
     <key>DESCR_LVL14_Accomplished</key>
     <string>Complete mission 14</string>
+
     <key>TITLE_LVL14_Perfect</key>
-    <string>PerfectION 14</string>
+    <string>PERFECTION 14</string>
     <key>DESCR_LVL14_Perfect</key>
     <string>Complete mission 14 with a score of 3 stars</string>
-    
+
+    <key>TITLE_LVL14_NoBoosts</key>
+    <string></string>
+    <key>DESCR_LVL14_NoBoosts</key>
+    <string>Complete mission 14 without boosts</string>
+
     <!-- LVL 15 -->
     <key>TITLE_LVL15_Accomplished</key>
     <string></string>
     <key>DESCR_LVL15_Accomplished</key>
     <string>Complete mission 15</string>
+
     <key>TITLE_LVL15_Perfect</key>
-    <string>PerfectION 15</string>
+    <string>PERFECTION 15</string>
     <key>DESCR_LVL15_Perfect</key>
     <string>Complete mission 15 with a score of 3 stars</string>
     
+    <key>TITLE_LVL15_Discovery</key>
+    <string></string>
+    <key>DESCR_LVL15_Discovery</key>
+    <string>Reach to the northern area of the forest</string>
+
     <!-- LVL 16 -->
     <key>TITLE_LVL16_Accomplished</key>
-    <string></string>
+    <string>FIRST FARMERS</string>
     <key>DESCR_LVL16_Accomplished</key>
     <string>Complete mission 16</string>
+    <key>ACH_LVL16_1</key>
+    <string>The Neolithic transition is the switch from a lifestyle based on hunting and gathering to a different one based on farming and herding.
+    
+This domestication did not only affect plants and animals, but also the humans. It radically transformed their culture, including their diet, mobility and communication.</string>
+
     <key>TITLE_LVL16_Perfect</key>
-    <string>PerfectION 16</string>
+    <string>TIMES ARE CHANGING</string>
     <key>DESCR_LVL16_Perfect</key>
     <string>Complete mission 16 with a score of 3 stars</string>
+    <key>ACH_LVL16_2</key>
+    <string>Climate is constantly changing. Archaeologists in the Orkney islands have found evidence of wheat cultivation thousands of years ago in the famous site of Skara Brae.
     
+Temperatures fell until this was not longer possible. However, rapid climate change generated by humans could change this in the next decades.</string>
+ 
+    <key>TITLE_LVL16_NoBoosts</key>
+    <string>KLAATU BARADA NIKTO</string>
+    <key>DESCR_LVL16_NoBoosts</key>
+    <string>Complete mission 16 without boosts</string>    
+    <key>ACH_LVL16_3</key>
+    <string>Do you use Mozilla Firefox? Type 'about:robots' in the address bar to see a cool Easter Egg!</string>
+ 
     <!-- LVL 17 -->
     <key>TITLE_LVL17_Accomplished</key>
-    <string></string>
+    <string>I, ROBOT</string>
     <key>DESCR_LVL17_Accomplished</key>
     <string>Complete mission 17</string>
+    <key>ACH_LVL17_1</key>
+    <string>Your bots have a positronic brain following the 3 Robot Laws introduced by Isaac Asimov in 1942:
+
+    1. A robot may not injure a human being or, through inaction, allow a human being to come to harm.
+    2. A robot must obey the orders given it by human beings except where such orders would conflict with the First Law.
+    3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Laws."</string>
+
     <key>TITLE_LVL17_Perfect</key>
-    <string>PerfectION 17</string>
+    <string>HARD WORK</string>
     <key>DESCR_LVL17_Perfect</key>
-    <string>Complete mission 17 with a score of 3 stars</string>
+    <string>Complete mission 17 with a score of 3 stars</string> 
+    <key>ACH_LVL17_2</key>
+    <string>Miners working in the island of Java have probably the most dangerous job in the world. They have to work insied the guts of the Lijen volcano to collect sulphur.</string>
+
     <key>TITLE_LVL17_EPsLeft</key>
     <string>UNINTELLIGENT DESIGN</string>
     <key>DESCR_LVL17_EPsLeft</key>
     <string>Complete mission 17 having at least 10 evolution points at the end</string>
-  
-    <key>ACH_LVL17_2</key>
-    <string>Miners working in the island of Java have probably the most dangerous job in the world. They have to work insied the guts of the Lijen volcano to collect sulphur.</string>
-
     <key>ACH_LVL17_3</key>
     <string>Some people say that Intelligent Design (ID) is a theory as good as Evolution to explain life. However, evolution is a scientific theory while ID is a religious argument lacking empirical support and does not offer any explanation that could be tested.</string>
     
     <!-- LVL 18 -->
     <key>TITLE_LVL18_Accomplished</key>
-    <string></string>
+    <string>AN INCONVENIENT TRUTH</string>
     <key>DESCR_LVL18_Accomplished</key>
     <string>Complete mission 18</string>
+    <key>ACH_LVL18_1</key>
+    <string>The Intergovernmental Panel on Climate Change (IPCC) was created by the United Nations to study Climate Change.
+    
+It has collected evidence from thousands of studies to show the dangerous effects of human activity on the planet.</string>
+
     <key>TITLE_LVL18_Perfect</key>
-    <string>PerfectION 18</string>
-    <key>DESCR_LVL18_Perfect</key>
-    <string>Complete mission 18 with a score of 3 stars</string>
-    
-    <!-- LVL 19 -->
-    <key>TITLE_LVL19_Accomplished</key>
-    <string></string>
-    <key>DESCR_LVL19_Accomplished</key>
-    <string>Complete mission 19</string>
-    <key>TITLE_LVL19_Perfect</key>
-    <string>PerfectION 19</string>
-    <key>DESCR_LVL19_Perfect</key>
-    <string>Complete mission 19 with a score of 3 stars</string>
-    
-    <!-- LVL 20 -->
-    <key>TITLE_LVL20_Accomplished</key>
-    <string>Humans go home!</string>
-    <key>DESCR_LVL20_Accomplished</key>
-    <string>Complete mission 20</string>
-    <key>TITLE_LVL20_Perfect</key>
     <string>That's no moon</string>
-    <key>DESCR_LVL20_Perfect</key>
-    <string>Complete mission 20 with a score of 3 stars</string>
-    <key>TITLE_LVL20_NoBoosts</key>
-    <string>TOP GAMER</string>
-    <key>DESCR_LVL20_NoBoosts</key>
-    <string>Complete mission 20 without boosts</string>
-    
-    <key>ACH_LVL20_2</key>
+    <key>DESCR_LVL18_Perfect</key>
+    <string>Complete mission 18 with a score of 3 stars</string>    
+    <key>ACH_LVL18_2</key>
     <string>The moon landing conspiracy suggests that the mission was filmed by directory Stanley Kubrick on Earth.
 In reality this director and NASA only shared cameras. Some scenes of his movie Barry Lindon were filmed using just candlelight, thanks to a camera model owned by the space agency.</string>
 
+    <key>TITLE_LVL18_Discovery</key>
+    <string>CURIOSITY</string>
+    <key>DESCR_LVL18_Discovery</key>
+    <string>Reach the eastern peninsula</string>
+    <key>ACH_LVL18_3</key>
+    <string>"I am one of those who think like Nobel, that humanity will draw more good than evil from new discoveries."
+            Marie Sklodowska Curie
+
+    This Polish scientist is the only person with 2 Nobel Prizes in different disciplines (1903 in Physics, 1911 in Chemistry). Her genius contributed to improve our knowledge on radioactivity.</string>
+
+    <!-- LVL 19 -->
+    <key>TITLE_LVL19_Accomplished</key>
+    <string>COLLAPSING</string>
+    <key>DESCR_LVL19_Accomplished</key>
+    <string>Complete mission 19</string>
+    <key>ACH_LVL19_1</key>
+    <string>The Mayan society was one of the most technically advanced society of Mesoamerica.
+    
+Its decline is one of the most thrilling mysteries of current archaeology.</string>
+
+    <key>TITLE_LVL19_Perfect</key>
+    <string>LITTLE BOY</string>
+    <key>DESCR_LVL19_Perfect</key>
+    <string>Complete mission 19 with a score of 3 stars</string>
+    <key>ACH_LVL19_2</key>
+    <string>This bomb was called Little Boy. A US Air Force bomber thrown it over the Japanese city of Hiroshima the 6th of August of 1945.
+    
+The first atomic bomb caused thousands of death and transformed warfare forever.</string>
+    
+    <key>TITLE_LVL19_EPsLeft</key>
+    <string>FAT MAN</string>
+    <key>DESCR_LVL19_EPsLeft</key>
+    <string>Complete mission 19 having at least 10 evolution points at the end</string>
+    <key>ACH_LVL19_3</key>
+    <string>The second half of the XXth century was dominated by the so-called Cold War between United States and the Soviet Union.
+    
+During 40 years the world was on the verge of an atomic war that would probably ended with the human species.</string>
+
+    <!-- LVL 20 -->
+    <key>TITLE_LVL20_Accomplished</key>
+    <string>LIFE FINDS A WAY</string>
+    <key>DESCR_LVL20_Accomplished</key>
+    <string>Complete mission 20</string>
+    <key>ACH_LVL20_1</key>
+    <string>This sheep was Dolly, and in 1996 she became the first mammal ever cloned.
+    
+Animal clonation was imagined years before in the book and movie Jurassic Park, where dinosaurs lived again thanks to scientific discovery.</string>
+
+    <key>TITLE_LVL20_Perfect</key>
+    <string>HUMANS GO HOME!</string>
+    <key>DESCR_LVL20_Perfect</key>
+    <string>Complete mission 20 with a score of 3 stars</string>
+    <key>ACH_LVL20_2</key>
+    <string>The impact of human colonization of another planet was famously depicted by Ray Bradbury in his Martian Chronicles.</string>
+
+    <key>TITLE_LVL20_NoBoosts</key>
+    <string>TOP GAMER</string>
+    <key>DESCR_LVL20_NoBoosts</key>
+    <string>Complete mission 20 without boosts</string>    
     <key>ACH_LVL20_3</key>
     <string>“We are star stuff which has taken its destiny into its own hands.”
             Carl Sagan
