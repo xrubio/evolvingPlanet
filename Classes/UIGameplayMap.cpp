@@ -179,7 +179,13 @@ bool UIGameplayMap::init()
     Menu* goalMenu = Menu::create(currentGoalImg, NULL);
     goalMenu->setName("currentGoalMenu");
     goalMenu->setPosition(Vec2(0, 0));
- 
+    
+    auto goalsCompletedLabel = Label::createWithTTF("", "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    goalsCompletedLabel->setPosition(Vec2(visibleSize.width / 2, 2 * visibleSize.height / 3));
+    goalsCompletedLabel->setTextColor(Color4B(216, 229, 235, 200));
+    goalsCompletedLabel->setOpacity(0);
+    goalsCompletedLabel->setName("goalsCompletedLabel");
+    this->addChild(goalsCompletedLabel, 5);
     
     auto goalCompletedSprite = Sprite::create("gui/goals/CompletedGoal.png");
     auto currentGoalProgress = ProgressTimer::create(goalCompletedSprite);
@@ -1834,6 +1840,11 @@ void UIGameplayMap::moveGoalPopup(int index)
             auto fadeOut = FadeOut::create(2.5);
             area->runAction(fadeOut);
         }
+        
+        auto goalsCompletedLabel = (Label*)this->getChildByName("goalsCompletedLabel");
+        goalsCompletedLabel->setString(to_string(index+1) + " " + LocalizedString::create("OF") + " " + to_string(GameLevel::getInstance()->getGoals().size()) + " " + LocalizedString::create("GOALS_COMPLETED"));
+        goalsCompletedLabel->setOpacity(0);
+        goalsCompletedLabel->runAction(Sequence::create(FadeTo::create(1.0, 200), DelayTime::create(0.8), FadeTo::create(1.0, 0), NULL));
     }
     
     // if it's not the last goal, highlight the next one
@@ -1948,6 +1959,9 @@ void UIGameplayMap::moveGoalPopup(int index)
             nextArea->runAction(repeatBlink);
             nextArea->setOpacity(255);
         }
+        
+        // X / Y GOALS COMPLETED
+        
         
         auto currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
         currentGoal->setNormalImage(Sprite::create(getGoalIcon(goal)));

@@ -13,8 +13,7 @@ Las primeras evidencias de seres humanos se han documentado en el este de Africa
 Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran una mezcla de cazadores, recolectores y carroñeros, más o menos como nuestros antecesores.</string>
 	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
 	<string>En todo caso, vamos a empezar por el principio; los bots van a ser desplegados en esta primera zona con evidencias de XXX. Queremos examinar cómo se dispersaron desde esta península al resto del continente.</string>
-</dict>
-
+    
 	<key>LEVEL_1_STORY</key>
 	<string>Quiénes somos? Quién nos creó?</string>
     <key>LEVEL_2_STORY</key>
@@ -57,5 +56,6 @@ Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran u
 	<string>Somos los Zho'll. Somos los amos de nuestro destino</string>
     <key>LEVEL_21_STORY</key>
 	<string>Misión completada. Volvamos a casa!</string>
+</dict>
 </plist>
 

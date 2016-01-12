@@ -70,10 +70,10 @@ bool UIIntro::init()
     }*/
 
 // video player only for ios/android    
-/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
     VideoPlayer *p = VideoPlayer::create();
-    p->setFileName("audio/logo_02.mp4");
+    p->setFileName("audio/logo.mp4");
     p->setName("video");
     p->setContentSize(Size(visibleSize.width, visibleSize.height + (3 * visibleSize.height / 10)));
     p->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
@@ -82,7 +82,7 @@ bool UIIntro::init()
     this->addChild(p, 1);
 
 // at least show the logo    
-#else*/
+#else
     auto logo = Sprite::create("misc/murphy.png");
     logo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));   
     logo->setName("logo");
@@ -90,7 +90,7 @@ bool UIIntro::init()
     logo->setScale(GameData::getInstance()->getRaWConversion());
     logo->runAction(Sequence::create(FadeIn::create(0.3f), DelayTime::create(1.7), FadeOut::create(0.3f), nullptr));
     this->addChild(logo);
-//#endif
+#endif
     
     //load gallery images to cache
     for (int i = 1; i < 21; i++)
@@ -129,13 +129,13 @@ bool UIIntro::onTouchesBegan(Touch* touch, Event* event)
 {
     
 // video player only for ios/android    
-/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
     if (((VideoPlayer*)this->getChildByName("video")) != nullptr)
     {
         return true;
     }
-# endif*/
+# endif
     
     //SKIP ANIMATION
     if (this->getChildByName("camaraFront") != nullptr)
@@ -209,7 +209,7 @@ void UIIntro::update(float delta)
 {
     
 // video player only for ios/android    
-/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto * video = (VideoPlayer*)(this->getChildByName("video"));
     if(video and !video->isPlaying())
     {
@@ -217,7 +217,7 @@ void UIIntro::update(float delta)
         runIntro();
         return;
     }
-# else*/
+# else
     Node * logo = this->getChildByName("logo");
     if(logo and logo->getNumberOfRunningActions()==0)
     {
@@ -225,7 +225,7 @@ void UIIntro::update(float delta)
         runIntro();
         return;
     }
-//#endif
+#endif
 
     auto * camaraFront = this->getChildByName("camaraFront");
     auto * camaraDoor = this->getChildByName("camaraDoor");
