@@ -654,9 +654,9 @@ bool UIGameplayMap::init()
         labelAttRight->setColor(Color3B(216, 229, 236));
         bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
-        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/monofonto.ttf", 30 * GameData::getInstance()->getRaConversion());
+        auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/monofonto.ttf", 45 * GameData::getInstance()->getRaConversion());
         attNumLabel->setColor(Color3B::BLACK);
-        attNumLabel->setAnchorPoint(Vec2(0.5, 0.5));
+        attNumLabel->setAnchorPoint(Vec2(-3.5, 0.5));
         bottomFrame->addChild(attNumLabel, 1, (int(j) + 1) * 1100);
         
         auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
@@ -664,7 +664,7 @@ bool UIGameplayMap::init()
         
         auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
         minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
+        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.3 * visibleSize.height / 7.5));
         minusAttButton->setTag(int(j) + 10);
         minusAttButton->setEnabled(false);
         minusAttButton->setVisible(false);
@@ -672,7 +672,7 @@ bool UIGameplayMap::init()
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.8 * bottomFrame->getContentSize().height / 2));
+        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.3 * visibleSize.height / 7.5));
         plusAttButton->setTag(int(j) + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
@@ -680,7 +680,7 @@ bool UIGameplayMap::init()
 
         float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
         float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-        int posY = 0.8 * bottomFrame->getContentSize().height / 2;
+        int posY = 0.3 * visibleSize.height / 7.5;
 
         for (int m = 0; m < 5; m++) {
             posX = posX + incX;
@@ -696,9 +696,9 @@ bool UIGameplayMap::init()
             }
             if (m == 2)
             {
-                labelAttRight->setPosition(Vec2(posX, 0.2 * visibleSize.height / 7.5));
-                attNumLabel->setPosition(plusAttButton->getPositionX(), labelAttRight->getPositionY());
-                costBackground->setPosition(attNumLabel->getPositionX(), attNumLabel->getPositionY());
+                labelAttRight->setPosition(Vec2(posX, 0.9 * bottomFrame->getContentSize().height / 2));
+                attNumLabel->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.3 * visibleSize.height / 7.5));
+                costBackground->setPosition(attNumLabel->getPositionX() + 4.0 * attNumLabel->getContentSize().width, attNumLabel->getPositionY());
             }
             tag++;
         }
@@ -1533,6 +1533,7 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i));
     GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i), GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + 1);
     Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
+    l->setAnchorPoint(Vec2(-2.5, 0.5));
     l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i))));
 
     auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) - 1) + (i * 5));
