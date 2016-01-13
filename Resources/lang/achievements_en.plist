@@ -304,20 +304,32 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
 
     <!-- LVL 15 -->
     <key>TITLE_LVL15_Accomplished</key>
-    <string></string>
+    <string>I THINK....</string>
     <key>DESCR_LVL15_Accomplished</key>
     <string>Complete mission 15</string>
+    <key>ACH_LVL15_1</key>
+    <string>A common misconception of evolution assumes that it is directional and progressive.
+
+Nothing further from the real theory: Darwin drafted this tree amongst his notes suggesting the similarities between life and a tree.</string>
 
     <key>TITLE_LVL15_Perfect</key>
-    <string>PERFECTION 15</string>
+    <string>MULTIPLE ORIGINS</string>
     <key>DESCR_LVL15_Perfect</key>
     <string>Complete mission 15 with a score of 3 stars</string>
-    
+    <key>ACH_LVL15_2</key>
+    <string>The domestication of plants and animals is one of the major changes in the history of the human species.
+
+Archaeological evidence suggests that this process happened independently in at least three different places: Middle East, China and Africa.</string>
+
     <key>TITLE_LVL15_Discovery</key>
     <string></string>
     <key>DESCR_LVL15_Discovery</key>
     <string>Reach to the northern area of the forest</string>
+    <key>ACH_LVL15_3</key>
+    <string>“I don't care that they stole my idea . . I care that they don't have any of their own”
+    Nikola Tesla
 
+This brilliant inventor is responsible for the fact that you are able to power this device with electricity.</string>
     <!-- LVL 16 -->
     <key>TITLE_LVL16_Accomplished</key>
     <string>FIRST FARMERS</string>

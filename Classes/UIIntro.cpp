@@ -72,16 +72,16 @@ bool UIIntro::init()
 // video player only for ios/android    
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/toast.mp3");
+//    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/toast.mp3");
 
     VideoPlayer *p = VideoPlayer::create();
-    p->setFileName("audio/logo.mp4");
+    p->setFileName("misc/logo.mp4");
     p->setName("video");
-    p->setContentSize(Size(visibleSize.width, visibleSize.height + (3 * visibleSize.height / 10)));
+    p->setContentSize(Size(visibleSize.width, visibleSize.height)); //, visibleSize.height + (3 * visibleSize.height / 10)));
     p->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     //p->setKeepAspectRatioEnabled(true);
-    p->play();
     this->addChild(p, 1);
+    p->play();
 
 // at least show the logo    
 #else
