@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>LEVEL1HINT</key>
+        <string>Hauries d'incrementar Resistència i després centrar-te en Mobilitat.</string>
+        <key>LEVEL2HINT</key>
+        <string>Mantén apretada la icona d'objectiu per mostrar les característiques del mapa. Hauries de moure la teva població pels boscos per incrementar les probabilitats de supervivència.</string>
+        <key>LEVEL3HINT</key>
+        <string>Reforça la resistència. És crític per evitar l'extinció a l'inici de la missió.</string>
+        <key>LEVEL4HINT</key>
+        <string>Incrementant el nivell tecnològic milloraràs la resta d'atributs dels teus bots.</string>
+        <key>LEVEL5HINT</key>
+        <string>Hauries d'evitar l'altra població. Té molta més experiència en Guerra que tu.</string>
+        <key>LEVEL6HINT</key>
+        <string>Els Lovans no tenen suficient taxa de reproducció per assolir la població registrada en el temps definit. El nou poder d'Influència et pot ajudar a convèncer els bots d'altres grups a unir-se a la teva població.</string>
+        <key>LEVEL7HINT</key>
+        <string>Hauries de fer créixer la teva població i l'atribut de Guerra abans d'enfrentar-te a l'altre grup.</string>
+        <key>LEVEL8HINT</key>
+        <string>Necessites molta població per creuar el desert. Incrementa la Resistència i la Influència abans d'arribar a la part Est del mapa.</string>
+        <key>LEVEL9HINT</key>
+        <string>Incrementa la Reproducció i la Tecnologia per sobreviure durant els difícils temps inicials.</string>
+        <key>LEVEL10HINT</key>
+        <string>Evita el desert fins que la teva Tecnologia sigui prou bona com per sobreviure-hi.</string>
+        <key>LEVEL11HINT</key>
+        <string>La velocitat d'Explotació depèn de les habilitats i mida del teu grup. Els boscos es regeneren amb el temps, així que evita la sobreexplotació limitant dita velocitat o moven-te per altres zones.</string>
+        <key>LEVEL12HINT</key>
+        <string>Tot el que necessites és al bosc, així que evita la resta de regions.</string>
+        <key>LEVEL13HINT</key>
+        <string>Per assolir l'objectiu necessitaràs fusta d'ambos boscos. La teva població hauria d'arribar al màxim abans que altres agents sobreexplotin la regió.</string>
+        <key>LEVEL14HINT</key>
+        <string>La baixa taxa d'Explotació es pot equilibrar amb vàries estratègies. Pots fer servir el poder d'augmentar la població, eliminar la competència o unir-te a ells.</string>
+        <key>LEVEL15HINT</key>
+        <string>La majoria de minerals ja haurà estat recollida abans que arribis a la muntanya. Intenta comerciar la teva fusta pels minerals de l'altre grup.</string>
+        <key>LEVEL16HINT</key>
+        <string>Mantén els teus bots al bosc el màxim que puguis. Aquesta zona té millor taxa de supervivència que les regions obertes.</string>
+        <key>LEVEL17HINT</key>
+        <string>No hauries d'anar al bosc fins que la teva població sigui prou forta com per sobreviure a la migració. També necessites molta fusta, així que deixa que el bosc es regeneri moven-te fora de les zones sobreexplotades.</string>
+        <key>LEVEL18HINT</key>
+        <string>La Tecnologia afecta a tots els altres aspectes de la teva cultura, incloent la Terraformació i l'Explotació.</string>
+        <key>LEVEL19HINT</key>
+        <string>L'enemic és poderós. No hauries d'intentar arribar a l'objectiu fins que les teves habilitats siguin prou fortes com per fer-li front.</string>
+        <key>LEVEL20HINT</key>
+        <string>No pots fallar aquesta missió.</string>
+    </dict>
+</plist>
+

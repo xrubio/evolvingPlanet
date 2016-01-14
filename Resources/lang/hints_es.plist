@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
     <key>LEVEL1HINT</key>
-    <string>Deberías incrementar Resistancia y centrarte después en Mobilidad.</string>
+    <string>Deberías incrementar Resistencia y después centrarte en Movilidad.</string>
 	<key>LEVEL2HINT</key>
-	<string>Manté pulsado el icono de objetivo para mostrar las características del mapa. Deberías mover tu población a selvas para incrementar sus probabilidades de supervivencia.</string>
+	<string>Mantén pulsado el icono de objetivo para mostrar las características del mapa. Deberías mover tu población a selvas para incrementar sus probabilidades de supervivencia.</string>
     <key>LEVEL3HINT</key>
-	<string>Refuerza tu Resistancia. Es crítico para evitar la extinción al inicio de la misión.</string>
+	<string>Refuerza tu Resistencia. Es crítico para evitar la extinción al inicio de la misión.</string>
 	<key>LEVEL4HINT</key>
 	<string>Incrementando tu nivel tecnológico mejorarás el resto de los atributos de tus bots.</string>
 	<key>LEVEL5HINT</key>
 	<string>Deberías evitar la otra población. Tiene mucha más experiencia en Guerra que tú.</string>
 	<key>LEVEL6HINT</key>
-	<string>Los Lovans no tenían suficiente tasa de reproducción para alcanzar el tamaño de población registrado en el tiempo definido. El nuevo impulso de Influencia puede ser usado para convencer bots de otros grupos para que se unan al tuyo.</string>
+	<string>Los Lovans no tienen suficiente tasa de reproducción para alcanzar el tamaño de población registrado en el tiempo definido. El nuevo poder de Influencia puede ser usado para convencer bots de otros grupos para que se unan al tuyo.</string>
 	<key>LEVEL7HINT</key>
 	<string>Deberías engrosar tu población y tu atributo de Guerra antes de enfrentarte al otro grupo.</string>
 	<key>LEVEL8HINT</key>
@@ -23,13 +23,13 @@
 	<key>LEVEL10HINT</key>
 	<string>Evita el desierto hasta que tu Tecnología sea suficientemente buena para sostener vida ahí.</string>
     <key>LEVEL11HINT</key>
-	<string>La velocidad de Explotación depende de lñas habilidades y tamaño de tu grupo. Los bosques se regeneran con el tiempo, así que evita la sobreexplotación limitando esta velocidad o moviéndote a otras zonas.</string>
+	<string>La velocidad de Explotación depende de las habilidades y tamaño de tu grupo. Los bosques se regeneran con el tiempo, así que evita la sobreexplotación limitando esta velocidad o moviéndote a otras zonas.</string>
     <key>LEVEL12HINT</key>
 	<string>Todo lo que necesitas está en el bosque, así que evita las regiones fuera de él.</string>
     <key>LEVEL13HINT</key>
 	<string>Para alcanzar el objetivo vas a necesitar madera de los dos bosques. Tu población debería llegar al límite este antes que los otros agentes sobreexploten la región.</string>
     <key>LEVEL14HINT</key>
-	<string>Tu baja tasa de Explotación se puede equilibrar con múltiples estrategias. Puedes usar el impulso de población, eliminar la competencia o unirte a ellos.</string>
+	<string>Tu baja tasa de Explotación se puede equilibrar con múltiples estrategias. Puedes usar el poder de población, eliminar la competencia o unirte a ellos.</string>
     <key>LEVEL15HINT</key>
 	<string>La mayoría de minerales ya habrá sido recogido antes que llegues a la montaña. Intenta intercambiar tu madera por el mineral del otro grupo.</string>
     <key>LEVEL16HINT</key>
