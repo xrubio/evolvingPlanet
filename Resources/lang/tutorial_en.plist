@@ -11,14 +11,14 @@
 
 	<key>LEVEL1M1</key>
 	<string>Professor, welcome to the Console.
-Cool interface, isn't it? I hope you like it because you&apos;ll spend the next weeks looking at it and drinking coffee.</string>
+Cool interface, isn't it? I hope you like it because you&apos;ll spend the next weeks using it while drinking coffee</string>
 	<key>LEVEL1M2</key>
 	<string>The Console shows you data collected by satellites deployed around the planet.</string>
 	<key>LEVEL1M3</key>
 	<string>The mission takes place within this landscape.
 It is full of features, from the highlighted arid region to forests rich in resources.</string>
     <key>LEVEL1M4</key>
-	<string>You can tap anytime the goal icon to show a summary of the environment.</string>
+	<string>You can press anytime the goal icon to show a summary of the environment.</string>
 	<key>LEVEL1M5</key>
 	<string>These are your bots.
 We have deployed a small initial population in this area.</string>
@@ -62,10 +62,10 @@ Set now the orientation marker within the goal zone.</string>
     <key>LEVEL2M1</key>
 	<string>Some missions have more than one goal as shown in the top of the Console.</string>
 	<key>LEVEL2M2</key>
-	<string>The bright interval shows the time when your population needs to reach the zone according to archaeological evidence.
+	<string>The bright interval shows the time when your population needs to complete the goal, according to archaeological evidence.
 If you arrive before or after this span the mission will fail.</string>
 	<key>LEVEL2M3</key>
-	<string>The best arrival time is marked by the highlighted zone.</string>
+	<string>The best arrival time is highlighted here.</string>
 
     <key>LEVEL3M1</key>
 	<string>Welcome Professor.
@@ -85,9 +85,9 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
 	<string>Boosts have a cooldown period so use them wisely. Good luck!</string>
 
     <key>LEVEL6M1</key>
-    <string>The first Goal of this mission checks the size of your group</string>
+    <string>The first Goal of this mission checks the size of your group.</string>
     <key>LEVEL6M2</key>
-    <string>You need to reach the size highlighted in red here within the assigned time span.</string>
+    <string>You need to reach the size highlighted in this panel within the assigned time span.</string>
 
     <key>LEVEL11M1</key>
     <string>You will need to collect different resources to pass this mission.</string>
@@ -98,21 +98,21 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
     <key>LEVEL11M4</key>
     <string>You collect resources by moving to these zones and increasing your Exploitation attribute.</string>
     <key>LEVEL11M5</key>
-    <string>You can tap here to cycle through the needed amount of resources.</string> 
+    <string>You can tap here to cycle through collected resources and needed amounts.</string> 
     
     <key>LEVEL13M1</key>
     <string>You have a new attribute for this mission: Trade.</string>
     <key>LEVEL13M2</key>
     <string>If you develop this skill your bots will be able to exchange one resource for goods owned by nearby groups.</string>
     <key>LEVEL13M3</key>
-    <string>You won't be able to collect enough minerals before the time is up, so you will need the attribute to pass this mission.</string>
+    <string>You won't be able to collect enough minerals before the time is up, so you will need the attribute to succeed.</string>
 
     <key>LEVEL16M1</key>
     <string>We have integrated all domestication techniques under the concept of Terraforming.</string>
     <key>LEVEL16M2</key>
     <string>This zone here is rich enough to be transformed into cultivated lands by increasing this skill.</string>
     <key>LEVEL16M3</key>
-    <string>Your population will thrive in this environment, but you need to reach the zone before this can happen.</string>
+    <string>Your population will thrive in terraformed zones, but you will need to reach it before this can happen.</string>
 </dict>
 
 </plist>

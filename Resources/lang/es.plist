@@ -102,7 +102,7 @@
     <key>TERRAFORM</key>
 	<string>TERRAFORMACIÓN</string>
 	<key>DESCRIPTION_TERRAFORM</key>
-	<string>Capacidad para moldear el entorno a tu beneficio</string>
+	<string>Modifica el entorno a tu beneficio</string>
 
 	<key>DESCRIPTION_MobilityBoost</key>
 	<string>Movilidad</string>
