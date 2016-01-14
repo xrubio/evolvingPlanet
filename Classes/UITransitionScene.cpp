@@ -56,14 +56,23 @@ bool UITransitionScene::init()
     {
     
         Sprite * image;
+        Sprite * imageUnlocked;
         if (GameData::getInstance()->getFirstTimeLevelCompleted() == 21)
         {
             image = Sprite::create("art/locked/Escenari20_2.jpg");
+            imageUnlocked = Sprite::create("art/Escenari20_2.jpg");
+
+        }
+        else
+        {
+            image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
+            imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
+
         }
         
-    image = Sprite::create("art/locked/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     image->setScale(visibleSize.width / image->getContentSize().width);
+    image->setName("image");
     this->addChild(image);
     
     auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
@@ -72,7 +81,6 @@ bool UITransitionScene::init()
     unlockLabel->setName("unlockLabel");
     this->addChild(unlockLabel);
 
-    auto imageUnlocked = Sprite::create("art/Escenari"+to_string(GameData::getInstance()->getFirstTimeLevelCompleted())+".jpg");
     imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
     imageUnlocked->setOpacity(0.0f);
@@ -106,6 +114,12 @@ bool UITransitionScene::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     }
     
+    if (GameData::getInstance()->getFirstTimeLevelCompleted() == 21 or GameData::getInstance()->getFirstTimeLevelCompleted() == 20)
+    {
+        _theEnd = true;
+    }
+
+    
     return true;
 }
 
@@ -123,9 +137,32 @@ void UITransitionScene::onTouchesBegan(const vector<Touch*>& touches, Event* eve
     else
     {
         if (stoppedAnimation or allActionsFinished()) {
-            auto scene = UIProgressMap::createScene();
-            auto transition = TransitionFade::create(1.0f, scene);
-            Director::getInstance()->replaceScene(transition);
+            if (_theEnd == false)
+            {
+                auto scene = UIProgressMap::createScene();
+                auto transition = TransitionFade::create(1.0f, scene);
+                Director::getInstance()->replaceScene(transition);
+            }
+            else
+            {
+                //THE END
+                this->getChildByName("imageUnlocked")->runAction(FadeOut::create(0.2));
+                this->getChildByName("text")->runAction(FadeOut::create(0.2));
+                this->getChildByName("unlockLabel")->runAction(FadeOut::create(0.2));
+                this->getChildByName("image")->runAction(FadeOut::create(0.2));
+                
+                Size visibleSize = Director::getInstance()->getVisibleSize();
+                
+                auto theEndLabel = Label::createWithTTF(string(LocalizedString::create("THE_END")), "fonts/BebasNeue.otf", 150 * GameData::getInstance()->getRaConversion());
+                theEndLabel->setTextColor(Color4B(255, 255, 255, 230));
+                theEndLabel->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 5));
+                theEndLabel->setName("theEndLabel");
+                theEndLabel->setOpacity(0);
+                theEndLabel->runAction(FadeIn::create(0.4));
+                this->addChild(theEndLabel);
+                
+                _theEnd = false;
+            }
         }
         else {
             endActions();
@@ -153,27 +190,16 @@ bool UITransitionScene::allActionsFinished(void)
     return false;
 }
 
-void UITransitionScene::setLoadingAnimation(bool b)
-{
-    if (this->getChildByName("loading") == nullptr)
-    {
-        auto visibleSize = Director::getInstance()->getVisibleSize();
-        auto loading = Sprite::create("gui/Loading.png");
-        loading->setPosition(7 * visibleSize.width / 8, visibleSize.height / 8);
-        loading->setScale(GameData::getInstance()->getRaHConversion());
-        loading->setName("loading");
-        loading->setVisible(true);
-        this->addChild(loading, 500);
-        loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
-    }
-}
-
 void UITransitionScene::update(float delta)
 {
 
     if (((clock() - float(updateTimeToLoadScene)) / CLOCKS_PER_SEC) <= 0.2)
     {
         return;
+    }
+    if (unlockedImage == true and this->getChildByName("tapToContinue")->getNumberOfRunningActions() == 0)
+    {
+        this->getChildByName("tapToContinue")->runAction(RepeatForever::create(Blink::create(2, 1)));
     }
 }
 

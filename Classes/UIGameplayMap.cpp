@@ -2076,6 +2076,8 @@ void UIGameplayMap::setAttributesToInitialAgents(void)
 
 void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 {
+    _infoMap->setVisible(false);
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto background = Sprite::create("gui/EndedGameBackground.png");
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -2186,6 +2188,8 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
 
 void UIGameplayMap::createEndGameWindowLevel20(const LevelState & mode)
 {
+    _infoMap->setVisible(false);
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto background = Sprite::create("gui/EndedGameBackground.png");
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -2414,7 +2418,7 @@ void UIGameplayMap::updateAgents(void)
             default:
                 switch ((*it)->getType()) {
                 case 1:
-                    color = Color4B(251, 54, 26, (*it)->getLife() * (255 / 175));
+                    color = Color4B(255, 74, 46, (*it)->getLife() * (255 / 175));
                     break;
                 case 2:
                     color = Color4B(249, 255, 0, (*it)->getLife() * (255 / 175));

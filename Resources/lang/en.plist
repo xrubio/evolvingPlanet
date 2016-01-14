@@ -181,5 +181,7 @@ Tap the logo to know more about SimulPast!</string>
 	<string>GOALS COMPLETED</string>
 	<key>BOT_COLOR</key>
 	<string>Bot Color</string>
+	<key>THE_END</key>
+	<string>THE END</string>
 </dict>
 </plist>

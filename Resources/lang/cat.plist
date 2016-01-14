@@ -181,5 +181,7 @@
         <string>OBJECTIUS ASSOLITS</string>
         <key>BOT_COLOR</key>
         <string>Color del Bot</string>
+        <key>THE_END</key>
+        <string>FI</string>
     </dict>
 </plist>

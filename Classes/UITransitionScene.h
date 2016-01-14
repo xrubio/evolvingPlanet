@@ -48,10 +48,10 @@ private:
     
     void endActions(void);
     bool allActionsFinished(void);
-    void setLoadingAnimation(bool b);
     
     clock_t updateTimeToLoadScene = 0;
     bool loadset = false;
+    bool _theEnd = false;
     
 };
 

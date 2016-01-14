@@ -140,7 +140,7 @@ bool UIProgressMap::init()
         }
 
         //STAR ANIMATION
-        auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc));
+        auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(min(ftlc, 20)));
 
         auto star1 = (Sprite*)(pointerLevel->getChildByName("star1"));
         auto scalePlus1 = ScaleTo::create(0.4, 1.7);
@@ -191,8 +191,11 @@ bool UIProgressMap::init()
         GameData::getInstance()->setFirstTimeLevelCompleted(0);
     }
     
-    auto pointerCurrentLevel = (MenuItem*)(pages->getPage(GameData::getInstance()->getCurrentLevel()/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(GameData::getInstance()->getCurrentLevel()));
-    pointerCurrentLevel->runAction(RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerCurrentLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerCurrentLevel->getContentSize().width*0.5)), NULL)));
+    if (GameData::getInstance()->getCurrentLevel() < 21)
+    {
+        auto pointerCurrentLevel = (MenuItem*)(pages->getPage(GameData::getInstance()->getCurrentLevel()/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(GameData::getInstance()->getCurrentLevel()));
+        pointerCurrentLevel->runAction(RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerCurrentLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerCurrentLevel->getContentSize().width*0.5)), NULL)));
+    }
     
     
     auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",

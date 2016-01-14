@@ -117,7 +117,7 @@ bool UIIntroToast::init()
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap1Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap2Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
 
-    this->schedule(SEL_SCHEDULE(&UIIntroToast::update), 5.0);
+    this->schedule(SEL_SCHEDULE(&UIIntroToast::update), 1.0);
     
     return true;
 }

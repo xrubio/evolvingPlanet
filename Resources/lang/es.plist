@@ -4,7 +4,7 @@
 <dict>
 	<key>START</key>
 	<string>INICIO</string>
-    <key>EXIT</key>
+	<key>EXIT</key>
 	<string>Salir</string>
 	<key>NEW_GAME</key>
 	<string>NUEVO</string>
@@ -44,7 +44,7 @@
 	<string>SALIR ?</string>
 	<key>RETRY_QUESTION</key>
 	<string>REINTENTAR ?</string>
-    <key>RETRY</key>
+	<key>RETRY</key>
 	<string>Reintentar</string>
 	<key>AGENTS</key>
 	<string>Bots</string>
@@ -66,22 +66,21 @@
 	<string>IMPULSOS</string>
 	<key>NOT_AVAILABLE</key>
 	<string>NO DISPONIBLE EN ESTA MISIÓN</string>
-    
 	<key>REPRODUCTION</key>
 	<string>REPRODUCCIÓN</string>
-    <key>DESCRIPTION_REPRODUCTION</key>
+	<key>DESCRIPTION_REPRODUCTION</key>
 	<string>Tasa de fertilidad</string>
 	<key>MOBILITY</key>
-	<string>MOVILIDAD</string>	
-    <key>DESCRIPTION_MOBILITY</key>
+	<string>MOVILIDAD</string>
+	<key>DESCRIPTION_MOBILITY</key>
 	<string>Alcance de interacción</string>
 	<key>RESISTANCE</key>
 	<string>RESISTENCIA</string>
-    <key>DESCRIPTION_RESISTANCE</key>
+	<key>DESCRIPTION_RESISTANCE</key>
 	<string>Aguante en entornos severos</string>
 	<key>TECHNOLOGY</key>
-	<string>TECNOLOGÍA</string>	
-    <key>DESCRIPTION_TECHNOLOGY</key>
+	<string>TECNOLOGÍA</string>
+	<key>DESCRIPTION_TECHNOLOGY</key>
 	<string>Mejoras en todas tus habilidades</string>
 	<key>INFLUENCE</key>
 	<string>INFLUENCIA</string>
@@ -91,19 +90,18 @@
 	<string>GUERRA</string>
 	<key>DESCRIPTION_WARFARE</key>
 	<string>Letalidad en combate</string>
-    <key>EXPLOITATION</key>
+	<key>EXPLOITATION</key>
 	<string>EXPLOTACIÓN</string>
 	<key>DESCRIPTION_EXPLOITATION</key>
 	<string>Tasa de recolección de madera y minerales</string>
-    <key>TRADE</key>
+	<key>TRADE</key>
 	<string>COMERCIO</string>
 	<key>DESCRIPTION_TRADE</key>
 	<string>Habilidades de intercambio con otros grupos</string>
-    <key>TERRAFORM</key>
+	<key>TERRAFORM</key>
 	<string>TERRAFORMACIÓN</string>
 	<key>DESCRIPTION_TERRAFORM</key>
 	<string>Modifica el entorno a tu beneficio</string>
-
 	<key>DESCRIPTION_MobilityBoost</key>
 	<string>Movilidad</string>
 	<key>DESCRIPTION_ReproductionBoost</key>
@@ -114,7 +112,6 @@
 	<string>Influencia</string>
 	<key>DESCRIPTION_WarfareBoost</key>
 	<string>Guerra</string>
-
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTOS DE EVOLUCIÓN</string>
 	<key>COST</key>
@@ -140,7 +137,6 @@ de lo sugerido por los datos arqueológicos</string>
 	<string>CONTINUAR</string>
 	<key>PLAY</key>
 	<string>JUGAR</string>
-
 	<key>MURPHY</key>
 	<string>Murphy&apos;s Toast Games</string>
 	<key>DIRECTOR</key>
@@ -157,7 +153,6 @@ de lo sugerido por los datos arqueológicos</string>
 	<string>Historia y contenidos</string>
 	<key>SIMULPAST_TITLE</key>
 	<string>El Proyecto SimulPast</string>
-    
 	<key>SIMULPAST_TEXT</key>
 	<string>Evolving Planet no existiría sin un proyecto de investigación llamado SimulPast.
     
@@ -166,7 +161,6 @@ SimulPast está rompiendo las barreras entre Ciencias y Humanidades para entende
 Evolving Planet explora esta nueva manera de hacer Ciencia. Serás parte del equipo de investigación que estudia una especie similar a la humana a través de conceptos como evolución, tecnología y dispersión.
 
 Toca el logo para conocer más sobre SimulPast!</string>
-
 	<key>SPECIAL_THANKS</key>
 	<string>Especial Agradecimiento</string>
 	<key>SUPPORT</key>
@@ -175,7 +169,6 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<string>Desarrollado con</string>
 	<key>CONTENT_WIKIMEDIA</key>
 	<string>Contenido adicional por</string>
-
 	<key>OF</key>
 	<string>de</string>
 	<key>ACH_EARNED</key>
@@ -184,7 +177,9 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<string>OBJETIVO ACTUAL</string>
 	<key>SKIP</key>
 	<string>SALTAR</string>
-    <key>BOT_COLOR</key>
-    <string>Color de bot</string>
+	<key>BOT_COLOR</key>
+	<string>Color de bot</string>
+	<key>THE_END</key>
+	<string>FIN</string>
 </dict>
 </plist>
