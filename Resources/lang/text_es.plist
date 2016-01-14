@@ -3,17 +3,224 @@
 <plist version="1.0">
 <dict>
 	<key>BRIEF_LEVEL_1</key>
-	<string>Bienvenido, Comandante. Ya hemos acabado los tests iniciales del sistema y todo está a punto. Podremos desplegar los bots en la superfície del planeta en unas pocas horas.
-Hemos detectado las primeras trazas de esta especie alienígena en una pequeña península, desde la que parece que se expandieron al resto del continente, Sigyn. El equipo espera tus órdenes para empezar la misión!</string>
+	<string>Primer día de campaña
+
+Replicaremos la historia Lovan con bots. Son una mezcla de la bioingeniería avanzada e Inteligencia Artificial diseñada para imitar esta especie extinguida.
+
+El equipo espera tus órdenes para empezar la misión.</string>
 	<key>CONTEXT_LEVEL_1</key>
-	<string>Este inicio me recuerda a nuestros propios orígenes... 
+	<string>Profesor, soy la doctora Rosalind Lovelace y lidero el equipo xenoarqueológica. Te ayudaremos a usar los bots para entender lo que pasó en este planeta.
 
-Las primeras evidencias de seres humanos se han documentado en el este de Africa, hace unos 4 millones de años. Allí, los arqueólogos encontraros una especie llamada Homo Erectus. La informació recogida por nuestras sondas en Hnoss sugiere que Sigyn tenía unas condiciones bastante similares a estos primeros asentamientos... 
+Hemos desplegado a los bots en la zona donde se encontraron los primeros fósiles de Lovan. Este medio ambiente me recuerda a nuestros propios orígenes en África Oriental, ya que nuestros primeros antepasados vivieron en una selva similar a esta, hace 4 millones de años.</string>
 
-Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran una mezcla de cazadores, recolectores y carroñeros, más o menos como nuestros antecesores.</string>
-	<key>CONTEXT_LEVEL_1_DEPLOYMENT</key>
-	<string>En todo caso, vamos a empezar por el principio; los bots van a ser desplegados en esta primera zona con evidencias de XXX. Queremos examinar cómo se dispersaron desde esta península al resto del continente.</string>
+	<key>BRIEF_LEVEL_2</key>
+	<string>Día de campaña 7
+
+Los bots están respondiendo a tus órdenes. Necesitamos que se dispersen hacia el resto de la península donde empezaron.</string>
+	<key>CONTEXT_LEVEL_2</key>
+	<string>El éxito de los Lovans les permitió poblar muchos otros ecosistemas.
+
+    Lo hicieron de manera similar a nuestros ancestros, que florecieron por todo África sub-Sahariana usando diferentes fuentes de alimento, desde la caza a la recolección de plantas comestibles.</string>
+
+	<key>BRIEF_LEVEL_3</key>
+	<string>Día de campaña 10
+
+Los bots están ya a punto para emular la colonización de las zonas áridas, más allá de su habitual hábitat selvático.</string>
+	<key>CONTEXT_LEVEL_3</key>
+	<string>Las similitudes entre los Lovan y los orígenes humanos son sorprendentes...son la especie más parecida a nosotros de toda la galaxia.
+
+Me temo que no seré demasiado útil en esta misión; sabemos que los Lovan se esparcieron por todo el planeta, pero no estamos seguros de cómo lo hicieron.
+
+Vamos a empezar con un incremento de población y ver hacia dónde vamos a partir de aquí.</string>
+	<key>BRIEF_LEVEL_4</key>
+	<string>Día de campaña 11
+
+La Dr. Lovelace no está convencida de los resultados anteriores, así que vamos a probar algo distinto.</string>
+	<key>CONTEXT_LEVEL_4</key>
+	<string>Los últimos informes sugieren que la dispersión Lovan fue mucho más rápida que lo que conseguimos en la última misión.
+
+Quiero probar otra estrategia: que pasaría si les proporcionamos tecnología?
+
+Los bots deberían ser capaces de conseguir llegar a los objetivos en el tiempo estimado, siempre y cuando combinen fuego y herramientas de piedra...vale, creo que esto puede funcionar!</string>
+	<key>BRIEF_LEVEL_5</key>
+	<string>Día de campaña 16
+
+A medida que colonizaron el mundo los Lovan encontraron otras especies. Para esta misión hemos desplegado otros bots que replican la existencia de estos grupos.</string>
+	<key>CONTEXT_LEVEL_5</key>
+	<string>Nuestros bots deberán interactuar con otros grupos durante la expedición arqueológica.
+
+Este planeta no solo estaba poblado por Lovans, del mismo modo que la Tierra no era un club exclusivo para Sapiens. Compartimos Eurasia con los Neandertales durante 5.000 años. Estos homínidos eran bastante parecidos a nosotros en todos los aspectos, incluyendo tecnología, cultura y hasta lenguaje.
+
+Desaparecieron como especie hacia 30.000 años; sin embargo, nuestro ADN nos explica que cada uno de nosotros tiene un pequeño Neandertal dentro de él...y confía en mí, el ADN nunca miente!</string>
+
+    <!-- Influence -->
+    <key>BRIEF_LEVEL_6</key>
+	<string>Día de campaña 17
+
+Hemos descubierto una especie que desapareció del planeta justo después de entrar en contacto con los Lovan.
+
+El control de misión quiere que probemos si los dos grupos hibridaron y de algún modo llegaron a ser una sola especie.</string>
+	<key>CONTEXT_LEVEL_6</key>
+	<string>Este escenario genera un montón de preguntas complejas.
     
+Una hipótesis sobre la extinción de los Neandertales sugiere que fueron absorbidos por la población Cro-Magnon a través de una mezcla de influencia cultural e hibridación.
+
+Vamos a probar aquí esta misma idea.</string>
+    <key>BRIEF_LEVEL_7</key>
+	<string>Día de campaña 20
+
+Hemos encontrado otra especie extinta. Hay evidencia de conflicto con los Lovan así que para esta misión tus bots van a poder luchar.</string>
+	<key>CONTEXT_LEVEL_7</key>
+	<string>Y pensaba que eran buenos chicos...hemos descubierto muchos esqueletos con claras señales de violencia.
+
+La violencia no es rara entre especies compitiendo por los mismos recursos. Este conflicto se hace más terrorífico a medida que la organización social y la tecnología aumentan en complejidad. Los humanos tenemos experiencia en este sentido; casi nos matamos a nosotros mismos durante el siglo XX. Me pregunto si pudiera ser esto lo que causó la extinción Lovan.
+
+En todo caso se cargaron a esta otra especie mientras invadían su territorio, así que nuestros bots van a tener que emular la situación.</string>
+
+    <key>BRIEF_LEVEL_8</key>
+	<string>Día de campaña 23
+
+El clima cambió drásticamente durante la dispersión Lovan. En esta zona tuvieron que cruzar un gran desierto mientras los recursos disponibles se redujeron rápidamente.</string>
+	<key>CONTEXT_LEVEL_8</key>
+	<string>La caza y la recolección son un estilo de vida bastante decente. Vale, vives en base a lo que te da la vida salvaje, pero tu dieta es menos aburrida que si fueras un granjero. Y además, trabajas menos horas!
+
+Por otro lado, debes emigrar cuando los recursos bajan.
+
+En esta misión una larga sequía convirtió una selva verde en un desierto. Los Lovan lo cruzaron mientras otro grupo luchaba por sobrevivir así que vamos a ver cómo fue la competición.</string>
+
+    <key>BRIEF_LEVEL_9</key>
+	<string>Día de campaña 25
+
+Parece que este planeta estaba abarrotado. En esta misión tus bots van a encontrarse a la vez con dos especies.</string>
+	<key>CONTEXT_LEVEL_9</key>
+	<string>Vas a tener que cooperar y competir al mismo tiempo. 
+
+Creo que en este escenario los Lovan se aliaron con uno de los grupo y atacaron al otro. Te recomiendo que intentes influenciar al más cercano, y una vez tu grupo sea suficientemente grande puedes lidiar con el resto de los objetivos.</string>
+
+    <key>BRIEF_LEVEL_10</key>
+	<string>Día de campaña 30
+
+Esta misión completa la dispersión Lovan. Demostraron su capacidad adaptativa poblando el planeta de polo a polo.
+
+Sin embargo, la evidencia es bastante escasa y no sabemos qué paso en esta última zona.</string>
+	<key>CONTEXT_LEVEL_10</key>
+	<string>Tengo malas noticias...no tenemos ni idea de por qué los Lovan tuvieron éxito colonizando esta región.
+
+La incertidumbre me está matando, pero así es la Ciencia! Aceptamos una explicación hasta que otra se ajusta mejor a la evidencia, tan simple como esto.
+
+Vamos a explorar la última dispersión con distintas estrategias. Puedes probar con bots más agresivos, tecnológicamente avanzados o capaces de influenciar a los otros grupos.</string>
+    
+    <key>BRIEF_LEVEL_11</key>
+    <string>Los Lovan florecieron en todo Kepler-1138. El incremento de población promovió el desarrollo de nuevas tecnologías y exploración adicional de los vastos recursos del planeta.</string>
+    <key>CONTEXT_LEVEL_11</key>
+    <string>Día de campaña 41
+        
+Los Lovan explotaron todos los recursos disponibles en su medio ambiente para mejorar sus opciones de supervivencia. Esto incluye obsidiana y minerales útiles para crear herramientas, así como madera como combustible y hacer mejores viviendas.
+
+Hemos desplegado estos dos recursos en esta misión para entender cómo los Lovan explotaron el planeta, de un modo similar a los humanos en la Tierra.</string>
+
+    <key>BRIEF_LEVEL_12</key>
+    <string>Los recursos naturales del entorno se comparten entre todos los individuos que viven en él.
+
+Esto crea tensiones entre grupos cuando distintos grupos compiten por un recurso finito.</string>
+    <key>CONTEXT_LEVEL_12</key>
+    <string>Día de campaña 44
+    
+Comida, madera, minerales...nada es infinito así que las cantidades disponibles definen cuánta población puede vivir en un sitio particular. Este límite genera dinámicas de competición entre individuos, como las que hemos observado en esta área.
+
+Tus bots necesitarán ganar el control de un bosque, en manos de otro grupo. Tienes muchas opciones disponibles para tener éxito: mejorar Influencia, Violencia o quizás Mobilidad?</string>
+
+    <key>BRIEF_LEVEL_13</key>
+    <string>La competición no es la única consecuencia de la explotación de recursos. Hemos encontrado evidencia de comercio entre los Lovans y otros grupos en el área.
+
+Intercambiaron minerales y madera; esta redistribución benefició a ambas poblaciones.    </string>
+    <key>CONTEXT_LEVEL_13</key>
+    <string>Día de campaña 50
+
+Esto es fascinante, parece que nuestros chicos consiguieren minerales en esta región mediante el trueque por madera. Los humanos han comerciado por cualquier cosa desde sus inicios, y los Lovans no fueron distintos al respecto.
+
+Tus bots necesitan aprender las complejidades del comercio antes de superar esta misión.</string>
+        
+    <key>BRIEF_LEVEL_14</key>
+    <string>El comercio es una de las actividades que potencian el contacto entre poblaciones. Los Lovan se aliaron con otro grupo para controlar los recursos minerales de una de las áreas más ricas del planeta.</string>
+    <key>CONTEXT_LEVEL_14</key>
+    <string>Día de campaña 53
+    
+El intercambio de bienes no sólo tiene que ver con cosas. Por ejemplo, en la Tiera la obsidiana sólo se encuentra en algunos sitios, y por lo tanto viaja cientos de quilómetros hasta los lugares en los que los arqueólogos la han encontrado.
+
+El comercio necesita comunicación entre individuos. No sólo comparten bienes: también comparten ideas. Parece que los Lovan y otro grupo unieron sus fuerzas para controlar la obsidiana presente en una cadena montañosa. Esto promovió su control sobre la región entera.</string>
+
+    <key>BRIEF_LEVEL_15</key>
+    <string>La conquista Lovan del planeta tiene varias causas: desde sus capacidades de explotación al desarrollo tecnológico y la influencia cultural.
+
+En este caso fueroni capaces de controlar los recursos de una región grande a una velocidad impresionante.</string>
+    <key>CONTEXT_LEVEL_15</key>
+    <string>Día de campaña 60
+    
+Estamos ahora seguros que el éxito de los Lovan se basó en parte en sus habilidades negociadoras. Su cultura dejó una fuerta impresión en los otros grupos, y diversas evidencias sugieren que también eran excelentos comerciantes.
+
+Si queremos ajustarnos a las fechas de dispersión en esta zona necesitamos que tus bots adquieran múltiples recursos con una combinación de capacidades sociales y técnicas.</string>
+
+    <key>BRIEF_LEVEL_16</key>
+    <string>Los Lovans aprendieron gradualmente a transformar su medio ambiente.
+
+Esto incrementó su población más allá de los números que el sistema de caza y recolección podía mantener.</string>
+    <key>CONTEXT_LEVEL_16</key>
+    <string>Día de campaña 70
+
+La domesticación de plantas y animales cambió radicalmente la cultura humana en nuestro planeta natal. Agricultura y pastoreo nos permitieron generar mucha más comida, y por lo tanto el tamaño de la población aumentó.
+
+Este complejo proceso se llama Neolítico, y parece que hemos encontrado aquí una situación similar.</string>
+
+    <key>BRIEF_LEVEL_17</key>
+    <string>Un incremento de población a menudo comporta un uso más intensivo del entorno.
+    
+En esta región los Lovan combinaron Terraformación con Explotación a gran escala de un bosque. Pese a ello, consigueron evitar sobreexplotar las riquezas de esta región.</string>
+
+    <key>CONTEXT_LEVEL_17</key>
+    <string>Día de campaña 74
+
+Las primeras comunidades agricultoras no consumían solo sus rebaños y plantaciones. El medio ambiente proporcionaba mucha más comida y otros bienes, así que por qué los deberían descartar?
+
+Pero esto tiene un coste: más comida implica más gente. Esto puede generar la sobreexplotación del entorno y generar una situación donde todo el mundo pierde.
+
+Los Lovan consigueron evitar este problema, más o menos como los humanos hicimos a inicios del siglo XXI.</string>
+
+    <key>BRIEF_LEVEL_18</key>
+    <string>Parece que hemos hallado el punto de inflexión de la existencia de los Lovan.
+
+Una serie de sequías bajaron la disponibilidad de recursos hasta el punto que los distintos grupos empezaros a competir entre ellos.</string>
+    <key>CONTEXT_LEVEL_18</key>
+    <string>Día de campaña 79
+
+Nuestro análisis sugiere que las condiciones ambientales rápidamente se deterioraron, desencadenando conflictos entre grupos a gran escala.
+
+Nuestra misión aquí es entender la relación entre cambio climático y conflicto, a medida que los recursos se hacían escasos. Puedes intentar distintas opciones, pero ten en cuenta que la sobreexplotación puede conducir a un aumento de las confrontaciones.</string>
+
+    <key>BRIEF_LEVEL_19</key>
+    <string>La población menguante intentó sobrevivir en un medio ambiente muy deteriorado.
+
+Estos son los últimos latidos de los Lovan: desaparecieron junto con el resto de grupos a medida que la población colapsaba en una serie de interminables conflictos bélicos.</string>
+    <key>CONTEXT_LEVEL_19</key>
+    <string>Día de campaña 87
+    
+Aquí nos encontramos, después de tantos desafíos: es el final de esta historia fascinante. La falta de tierras cultivables generó muchas guerras. Las pocas posibilidades que tenía la población restante se malograron cuando los grupos se atacaron los unos a los otros.
+
+Pese a todo, los Lovan sobrevivieron algunos décadas más. Estudiaremos el último conflicto en el que se vieron involucrados. Necesitarás incrementar tu población mediante Terraformación antes que otro gruipo invada la zona. Ten en cuenta que esta situación desesperada generó grupos extremadamente agresivos, así que no hay Influencia cultural posible en esta misión.</string>
+
+    <key>BRIEF_LEVEL_20</key>
+    <string>Buen trabajo, el experimento ha finalizado!
+    
+Sin embargo, ha pasado algo inesperado. Los Bots deberían haber desaparecido después de la última misión, pero aún están ahí. Deberías inhabilitarlos antes que dejamos Kepler.</string>
+    <key>CONTEXT_LEVEL_20</key>
+    <string>Día de campaña 90
+    
+No sé cómo explicar esto: los bots ignoraron nuestras últimas órdenes y ahora mismo estçan buscando por algún territorio dónde aún puedan sobrevivir.
+
+Ya tenemos nuestros resultados finales, y técnicamente deberíamos destruir los bots que quedan antes de dejar el planeta. No sé cómo lo ves, pero más que finalizar un experimento me da más la sensación de cometer un genocidio.
+
+No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lovan una nueva oportunidad. Profesor, esta es tu elección.</string>
+
 	<key>LEVEL_1_STORY</key>
 	<string>Quiénes somos? Quién nos creó?</string>
     <key>LEVEL_2_STORY</key>
@@ -56,6 +263,48 @@ Me pregunto cómo sobrevivían en este entorno; lo más probable es que fueran u
 	<string>Somos los Zho'll. Somos los amos de nuestro destino</string>
     <key>LEVEL_21_STORY</key>
 	<string>Misión completada. Volvamos a casa!</string>
+
+    <!-- dates -->
+    <key>DATE_LEVEL_1</key>
+    <string>1 millón de años AE (Antes de la Extinción)</string>
+    <key>DATE_LEVEL_2</key>
+    <string>300.000 AE</string>
+    <key>DATE_LEVEL_3</key>
+    <string>70.000 AE</string>
+    <key>DATE_LEVEL_4</key>
+    <string>70.000 AE</string>
+    <key>DATE_LEVEL_5</key>
+    <string>30.000 AE</string>
+    <key>DATE_LEVEL_6</key>
+    <string>25.000 AE</string>
+    <key>DATE_LEVEL_7</key>
+    <string>22.000 AE</string>
+    <key>DATE_LEVEL_8</key>
+    <string>15.000 AE</string>
+    <key>DATE_LEVEL_9</key>
+    <string>10.000 AE</string>
+    <key>DATE_LEVEL_10</key>
+    <string>8.000 AE</string>
+    <key>DATE_LEVEL_11</key>
+    <string>6.000 AE</string>
+    <key>DATE_LEVEL_12</key>
+    <string>5000 AE</string>
+    <key>DATE_LEVEL_13</key>
+    <string>3600 AE</string>
+    <key>DATE_LEVEL_14</key>
+    <string>2500 AE</string>
+    <key>DATE_LEVEL_15</key>
+    <string>1700 AE</string>
+    <key>DATE_LEVEL_16</key>
+    <string>1000 AE</string>
+    <key>DATE_LEVEL_17</key>
+    <string>500 AE</string>
+    <key>DATE_LEVEL_18</key>
+    <string>200 AE</string>
+    <key>DATE_LEVEL_19</key>
+    <string>45 AE</string>
+    <key>DATE_LEVEL_20</key>
+    <string>0 AE</string>
 </dict>
 </plist>
 
