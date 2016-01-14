@@ -7,7 +7,7 @@
         <key>EXIT</key>
         <string>Sortir</string>
         <key>NEW_GAME</key>
-        <string>NOVA PARTIDA</string>
+        <string>NOU</string>
         <key>BACK</key>
         <string>TORNAR</string>
         <key>RESET</key>
@@ -37,7 +37,7 @@
         <key>GOALS</key>
         <string>OBJECTIUS</string>
         <key>FIRSTERA</key>
-        <string>Dispersió</string>
+        <string>Expansió</string>
         <key>SECONDERA</key>
         <string>Conquesta</string>
         <key>QUIT_QUESTION</key>
@@ -117,7 +117,7 @@
         <key>COST</key>
         <string>Cost</string>
         <key>MUSIC</key>
-        <string>MÚSICA</string>
+        <string>MÚSICA I SO</string>
         <key>SPECIAL_EFFECTS</key>
         <string>SFX</string>
         <key>LEVEL_COMPLETED</key>
@@ -180,7 +180,7 @@
         <key>GOALS_COMPLETED</key>
         <string>OBJECTIUS ASSOLITS</string>
         <key>BOT_COLOR</key>
-        <string>Color del Bot</string>
+        <string>Color dels Bots</string>
         <key>THE_END</key>
         <string>FI</string>
     </dict>

@@ -3,181 +3,308 @@
 <plist version="1.0">
     <dict>
         <key>BRIEF_LEVEL_1</key>
-        <string>Dia 1 de campanya
+        <string>Primer dia de campanya
             
-Farem servir bots per reproduir la història dels Lovan. Són una barreja de bioenginyeria avançada i intel·ligència artificial equipada per recrear les espècies extingides.
+            Replicaremos la historia Lovan con bots. Son una mezcla de la bioingeniería avanzada e Inteligencia Artificial diseñada para imitar esta especie extinguida.
             
-L&apos;equip està esperant les teves ordres per començar la missió.</string>
-        <key>CONTEXT_LEVEL_1_INTRO</key>
-        <string>        Professor, soc la Dr. Ada Walker, líder de l'equip de xenoarqueologia. Ens encarregarem d&apos;ajudar-te a entendre que va passar aquí gràcies a l&apos;ús dels bots.
+            El equipo espera tus órdenes para empezar la misión.</string>
+        <key>CONTEXT_LEVEL_1</key>
+        <string>Profesor, soy la doctora Rosalind Lovelace y lidero el equipo xenoarqueológico. Te ayudaremos a usar los bots para entender lo que pasó en este planeta.
             
-        Hem desplegat els bots on es van trobar els primers fòssils de Lovan. L&apos;entorn em recorda els nostres propis orígens a l&apos;est d&apos;Àfrica, un bosc similar on van viure els nostres ancestres fa 4 milions d&apos;anys.</string>
+            Hemos desplegado a los bots en la zona donde se encontraron los primeros fósiles de Lovan. Este medio ambiente me recuerda a nuestros propios orígenes en África Oriental, ya que nuestros primeros antepasados vivieron en una selva similar a esta, hace 4 millones de años.</string>
         
         <key>BRIEF_LEVEL_2</key>
-        <string>Campaign day 7
+        <string>Dia de campanya 7
             
-            The bots are responding to our commands. We need them to disperse to the rest of the peninsula where they started.</string>
-        <key>CONTEXT_LEVEL_2_INTRO</key>
-        <string>The success of Lovans allowed them to populate several other ecosystems.
+            Los bots están respondiendo a tus órdenes. Necesitamos que se dispersen hacia el resto de la península donde empezaron.</string>
+        <key>CONTEXT_LEVEL_2</key>
+        <string>El éxito de los Lovans les permitió poblar muchos otros ecosistemas.
             
-            In a similar way our first ancestors flourished throughout much of sub-Saharan Africa using different food sources, from hunting to gathering edible plants.</string>
+            Lo hicieron de manera similar a nuestros ancestros, que florecieron por todo África sub-Sahariana usando diferentes fuentes de alimento, desde la caza a la recolección de plantas comestibles.</string>
         
         <key>BRIEF_LEVEL_3</key>
-        <string>Campaign day 10
+        <string>Dia de campanya 10
             
-            The bots are ready to emulate the colonization of arid zones beyond their usual forest habitats.</string>
-        <key>CONTEXT_LEVEL_3_INTRO</key>
-        <string>Similarities between Lovan beginnings and human beings are surprising...will we find the same pattern in the entire galaxy?
+            Los bots están ya a punto para emular la colonización de las zonas áridas, más allá de su habitual hábitat selvático.</string>
+        <key>CONTEXT_LEVEL_3</key>
+        <string>Las similitudes entre los Lovan y los orígenes humanos son sorprendentes...son la especie más parecida a nosotros de toda la galaxia.
             
-            I won't be extremely helpful here; we know that hominins spread throghout the entire planet Earth, but we are not sure why.
+            Me temo que no seré demasiado útil en esta misión; sabemos que los Lovan se esparcieron por todo el planeta, pero no estamos seguros de cómo lo hicieron.
             
-            Let's start with population increase and see where do we go from here.</string>
+            Vamos a empezar con un incremento de población y ver hacia dónde vamos a partir de aquí.</string>
         <key>BRIEF_LEVEL_4</key>
-        <string>Campaign day 11
+        <string>Dia de campanya 11
             
-            Dr. Walker is not convinced of the previous results so we will try a different idea.</string>
-        <key>CONTEXT_LEVEL_4_INTRO</key>
-        <string>Last reports suggest that the Lovan dispersion was way faster than we achieved last mission.
+            La Dr. Lovelace no está convencida de los resultados anteriores, así que vamos a probar algo distinto.</string>
+        <key>CONTEXT_LEVEL_4</key>
+        <string>Los últimos informes sugieren que la dispersión Lovan fue mucho más rápida que lo que conseguimos en la última misión.
             
-            I want to try a different approach; what if we provide the bots with improved technology?
+            Quiero probar otra estrategia: que pasaría si les proporcionamos tecnología?
             
-            They should be able to achieve the goals within expected time if they combine fire with stone tools...yeah, I think this should work better!</string>
+            Los bots deberían ser capaces de conseguir llegar a los objetivos en el tiempo estimado, siempre y cuando combinen fuego y herramientas de piedra...vale, creo que esto puede funcionar!</string>
         <key>BRIEF_LEVEL_5</key>
-        <string>Campaign day 16
+        <string>Dia de campanya 16
             
-            Lovans found other species as they colonized this world. For this mission we have deployed different bots to replicate the existance of these other groups.</string>
-        <key>CONTEXT_LEVEL_5_INTRO</key>
-        <string>We will have interaction with several other species during this archaeological expedition.
+            A medida que colonizaron el mundo los Lovan encontraron otras especies. Para esta misión hemos desplegado otros bots que replican la existencia de estos grupos.</string>
+        <key>CONTEXT_LEVEL_5</key>
+        <string>Nuestros bots deberán interactuar con otros grupos durante la expedición arqueológica.
             
-            This planet was not only populated by Lovans, as Earth was not a Sapiens-only club. We shared Eurasia with Neanderthals during 5.000 years. They were also hominins, quite similar to us in any aspect, including technology, culture and even language.
+            Este planeta no solo estaba poblado por Lovans, del mismo modo que la Tierra no era un club exclusivo para Sapiens. Compartimos Eurasia con los Neandertales durante 5.000 años. Estos homínidos eran bastante parecidos a nosotros en todos los aspectos, incluyendo tecnología, cultura y hasta lenguaje.
             
-            They disappeared as a species over 30.000 years ago; however, based on what our DNA tells us each of us has a small Neanderthal inside...and trust me, DNA never lies!</string>
+            Desaparecieron como especie hacia 30.000 años; sin embargo, nuestro ADN nos explica que cada uno de nosotros tiene un pequeño Neandertal dentro de él...y confía en mí, el ADN nunca miente!</string>
         
         <!-- Influence -->
         <key>BRIEF_LEVEL_6</key>
-        <string>Campaign day 17
+        <string>Dia de campanya 17
             
-            We discovered that one of the species present in this planet disappeared after contacting Lovans.
+            Hemos descubierto una especie que desapareció del planeta justo después de entrar en contacto con los Lovan.
             
-            Mission control wants to test if they hybridized and became somehow a single species.</string>
-        <key>CONTEXT_LEVEL_6_INTRO</key>
-        <string>This situation raises a lot of complex questions.
+            El control de misión quiere que probemos si los dos grupos hibridaron y de algún modo llegaron a ser una sola especie.</string>
+        <key>CONTEXT_LEVEL_6</key>
+        <string>Este escenario genera un montón de preguntas complejas.
             
-            One hypothesis about the extinction of Neanderthals suggests that they were absorbed by the Cro-Magnon population by a mix of cultural influence and hybridation...
+            Una hipótesis sobre la extinción de los Neandertales sugiere que fueron absorbidos por la población Cro-Magnon a través de una mezcla de influencia cultural e hibridación.
             
-            Let's try this idea here.</string>
+            Vamos a probar aquí esta misma idea.</string>
         <key>BRIEF_LEVEL_7</key>
-        <string>Campaign day 20
+        <string>Dia de campanya 20
             
-            We found another extinct species. There are clear evidences of conflict with Lovans so for this mission your bots will be able to fight.
-        </string>
-        <key>CONTEXT_LEVEL_7_INTRO</key>
-        <string>And I thought that they were good kids...we discovered a bunch of skeletons with clear signs of violence.
+            Hemos encontrado otra especie extinta. Hay evidencia de conflicto con los Lovan así que para esta misión tus bots van a poder luchar.</string>
+        <key>CONTEXT_LEVEL_7</key>
+        <string>Y pensaba que eran buenos chicos...hemos descubierto muchos esqueletos con claras señales de violencia.
             
-            Violence is not uncommon when different species compete for the same resources. This conflict becomes scarier as social organization and technology increase. Humans have experience on this regard; we almost killed ourselves in the XXth century. I wonder if this could caused the Lovan extinction...
+            La violencia no es rara entre especies compitiendo por los mismos recursos. Este conflicto se hace más terrorífico a medida que la organización social y la tecnología aumentan en complejidad. Los humanos tenemos experiencia en este sentido; casi nos matamos a nosotros mismos durante el siglo XX. Me pregunto si pudiera ser esto lo que causó la extinción Lovan.
             
-            Lovans wiped out this species while they invaded their territory, so our bots will have to emulate this situation.</string>
+            En todo caso se cargaron a esta otra especie mientras invadian su territorio, así que nuestros bots van a tener que emular la situación.</string>
         
         <key>BRIEF_LEVEL_8</key>
-        <string>Campaign day 23
+        <string>Dia de campanya 23
             
-            Climate drastically changed through Lovan dispersal. Here the species had to cross a vast zone while resources were rapidly decreasing.</string>
-        <key>CONTEXT_LEVEL_8_INTRO</key>
-        <string>Hunting and gathering are pretty decent way of living. Ok, you rely on wildlife to survive, but you are more flexible than farmers. Plus, you work less hours!
+            El clima cambió drásticamente durante la dispersión Lovan. En esta zona tuvieron que cruzar un gran desierto mientras los recursos disponibles se redujeron rápidamente.</string>
+        <key>CONTEXT_LEVEL_8</key>
+        <string>La caza y la recolección son un estilo de vida bastante decente. Vale, vives en base a lo que te da la vida salvaje, pero tu dieta es menos aburrida que si fueras un granjero. Y además, trabajas menos horas!
             
-            On the other hand you migrate if resources become scarce.
+            Por otro lado, debes emigrar cuando los recursos bajan.
             
-            In this mission a long drought converted a green forest into a desert. Lovans crossed the area where another group was struggling for survival so let's see how this competition goes..</string>
+            En esta misión una larga sequía convirtió una selva verde en un desierto. Los Lovan lo cruzaron mientras otro grupo luchaba por sobrevivir así que vamos a ver cómo fue la competición.</string>
         
         <key>BRIEF_LEVEL_9</key>
-        <string>Campaign day 25
+        <string>Dia de campanya 25
             
-            Looks like this planet was a crowded place. For this mission you will have to face two species simultaneously.</string>
-        <key>CONTEXT_LEVEL_9_INTRO</key>
-        <string>It seems that you'll find both competition and cooperation here.
+            Parece que este planeta estaba abarrotado. En esta misión tus bots van a encontrarse a la vez con dos especies.</string>
+        <key>CONTEXT_LEVEL_9</key>
+        <string>Vas a tener que cooperar y competir al mismo tiempo.
             
-            I think that we face here a situation where Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest ones, and once your group is large enough deal with the rest of objectives.</string>
+            Creo que en este escenario los Lovan se aliaron con uno de los grupo y atacaron al otro. Te recomiendo que intentes influenciar al más cercano, y una vez tu grupo sea suficientemente grande puedes lidiar con el resto de los objetivos.</string>
         
         <key>BRIEF_LEVEL_10</key>
-        <string>Campaign day 30
+        <string>Dia de campanya 30
             
-            This mission completes the Lovan dispersal. They proved their adaptive capacity populating the planet from pole to pole.
+            Esta misión completa la dispersión Lovan. Demostraron su capacidad adaptativa poblando el planeta de polo a polo.
             
-            However, evidence is scarce in this last zone so we are not sure what happened.</string>
-        <key>CONTEXT_LEVEL_10_INTRO</key>
-        <string>I have some bad news...we don't have a clue why Lovans were successful in this region.
+            Sin embargo, la evidencia es bastante escasa y no sabemos qué paso en esta última zona.</string>
+        <key>CONTEXT_LEVEL_10</key>
+        <string>Tengo malas noticias...no tenemos ni idea de por qué los Lovan tuvieron éxito colonizando esta región.
             
-            The uncertainty is killing me, but this is science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.
+            La incertidumbre me está matando, pero así es la Ciencia! Aceptamos una explicación hasta que otra se ajusta mejor a la evidencia, tan simple como esto.
             
-            Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other bots.</string>
+            Vamos a explorar la última dispersión con distintas estrategias. Puedes probar con bots más agresivos, tecnológicamente avanzados o capaces de influenciar a los otros grupos.</string>
         
         <key>BRIEF_LEVEL_11</key>
-        <string>Campaign day 41
+        <string>Los Lovan florecieron en todo Kepler-1138. El incremento de población promovió el desarrollo de nuevas tecnologías y exploración adicional de los vastos recursos del planeta.</string>
+        <key>CONTEXT_LEVEL_11</key>
+        <string>Dia de campanya 41
             
-        </string>
-        <key>CONTEXT_LEVEL_11_INTRO</key>
-        <string>Exploitation</string>
+            Los Lovan explotaron todos los recursos disponibles en su medio ambiente para mejorar sus opciones de supervivencia. Esto incluye obsidiana y minerales útiles para crear herramientas, así como madera como combustible y hacer mejores viviendas.
+            
+            Hemos desplegado estos dos recursos en esta misión para entender cómo los Lovan explotaron el planeta, de un modo similar a los humanos en la Tierra.</string>
+        
+        <key>BRIEF_LEVEL_12</key>
+        <string>Los recursos naturales del entorno se comparten entre todos los individuos que viven en él.
+            
+            Esto crea tensiones entre grupos cuando distintos grupos compiten por un recurso finito.</string>
+        <key>CONTEXT_LEVEL_12</key>
+        <string>Dia de campanya 44
+            
+            Comida, madera, minerales...nada es infinito así que las cantidades disponibles definen cuánta población puede vivir en un sitio particular. Este límite genera dinámicas de competición entre individuos, como las que hemos observado en esta área.
+            
+            Tus bots necesitarán ganar el control de un bosque, en manos de otro grupo. Tienes muchas opciones disponibles para tener éxito: mejorar Influencia, Violencia o quizás Mobilidad?</string>
+        
+        <key>BRIEF_LEVEL_13</key>
+        <string>La competición no es la única consecuencia de la explotación de recursos. Hemos encontrado evidencia de comercio entre los Lovans y otros grupos en el área.
+            
+            Intercambiaron minerales y madera; esta redistribución benefició a ambas poblaciones.    </string>
+        <key>CONTEXT_LEVEL_13</key>
+        <string>Dia de campanya 50
+            
+            Esto es fascinante, parece que nuestros chicos consiguieren minerales en esta región mediante el trueque por madera. Los humanos han comerciado por cualquier cosa desde sus inicios, y los Lovans no fueron distintos al respecto.
+            
+            Tus bots necesitan aprender las complejidades del comercio antes de superar esta misión.</string>
+        
+        <key>BRIEF_LEVEL_14</key>
+        <string>El comercio es una de las actividades que potencian el contacto entre poblaciones. Los Lovan se aliaron con otro grupo para controlar los recursos minerales de una de las áreas más ricas del planeta.</string>
+        <key>CONTEXT_LEVEL_14</key>
+        <string>Dia de campanya 53
+            
+            El intercambio de bienes no sólo tiene que ver con cosas. Por ejemplo, en la Tiera la obsidiana sólo se encuentra en algunos sitios, y por lo tanto viaja cientos de quilómetros hasta los lugares en los que los arqueólogos la han encontrado.
+            
+            El comercio necesita comunicación entre individuos. No sólo comparten bienes: también comparten ideas. Parece que los Lovan y otro grupo unieron sus fuerzas para controlar la obsidiana presente en una cadena montañosa. Esto promovió su control sobre la región entera.</string>
+        
+        <key>BRIEF_LEVEL_15</key>
+        <string>La conquista Lovan del planeta tiene varias causas: desde sus capacidades de explotación al desarrollo tecnológico y la influencia cultural.
+            
+            En este caso fueroni capaces de controlar los recursos de una región grande a una velocidad impresionante.</string>
+        <key>CONTEXT_LEVEL_15</key>
+        <string>Dia de campanya 60
+            
+            Estamos ahora seguros que el éxito de los Lovan se basó en parte en sus habilidades negociadoras. Su cultura dejó una fuerta impresión en los otros grupos, y diversas evidencias sugieren que también eran excelentos comerciantes.
+            
+            Si queremos ajustarnos a las fechas de dispersión en esta zona necesitamos que tus bots adquieran múltiples recursos con una combinación de capacidades sociales y técnicas.</string>
+        
+        <key>BRIEF_LEVEL_16</key>
+        <string>Los Lovan aprendieron gradualmente a transformar su medio ambiente.
+            
+            Esto incrementó su población más allá de los números que el sistema de caza y recolección poDia mantener.</string>
+        <key>CONTEXT_LEVEL_16</key>
+        <string>Dia de campanya 70
+            
+            La domesticación de plantas y animales cambió radicalmente la cultura humana en nuestro planeta natal. Agricultura y pastoreo nos permitieron generar mucha más comida, y por lo tanto el tamaño de la población aumentó.
+            
+            Este complejo proceso se llama Neolítico, y parece que hemos encontrado aquí una situación similar.</string>
+        
+        <key>BRIEF_LEVEL_17</key>
+        <string>Un incremento de población a menudo comporta un uso más intensivo del entorno.
+            
+            En esta región los Lovan combinaron Terraformación con Explotación a gran escala de un bosque. Pese a ello, consigueron evitar sobreexplotar las riquezas de esta región.</string>
+        
+        <key>CONTEXT_LEVEL_17</key>
+        <string>Dia de campanya 74
+            
+            Las primeras comunidades agricultoras no consumían solo sus rebaños y plantaciones. El medio ambiente proporcionaba mucha más comida y otros bienes, así que por qué los deberían descartar?
+            
+            Pero esto tiene un coste: más comida implica más gente. Esto puede generar la sobreexplotación del entorno y generar una situación donde todo el mundo pierde.
+            
+            Los Lovan consigueron evitar este problema, más o menos como los humanos hicimos a inicios del siglo XXI.</string>
+        
+        <key>BRIEF_LEVEL_18</key>
+        <string>Parece que hemos hallado el punto de inflexión de la existencia de los Lovan.
+            
+            Una serie de sequías bajaron la disponibilidad de recursos hasta el punto que los distintos grupos empezaros a competir entre ellos.</string>
+        <key>CONTEXT_LEVEL_18</key>
+        <string>Dia de campanya 79
+            
+            Nuestro análisis sugiere que las condiciones ambientales rápidamente se deterioraron, desencadenando conflictos entre grupos a gran escala.
+            
+            Nuestra misión aquí es entender la relación entre cambio climático y conflicto, a medida que los recursos se hacían escasos. Puedes intentar distintas opciones, pero ten en cuenta que la sobreexplotación puede conducir a un aumento de las confrontaciones.</string>
+        
+        <key>BRIEF_LEVEL_19</key>
+        <string>La población menguante intentó sobrevivir en un medio ambiente muy deteriorado.
+            
+            Estos son los últimos latidos de los Lovan: desaparecieron junto con el resto de grupos a medida que la población colapsaba en una serie de interminables conflictos bélicos.</string>
+        <key>CONTEXT_LEVEL_19</key>
+        <string>Dia de campanya 87
+            
+            Aquí nos encontramos, después de tantos desafíos: es el final de esta historia fascinante. La falta de tierras cultivables generó muchas guerras. Las pocas posibilidades que tenía la población restante se malograron cuando los grupos se atacaron los unos a los otros.
+            
+            Pese a todo, los Lovan sobrevivieron algunos décadas más. Estudiaremos el último conflicto en el que se vieron involucrados. Necesitarás incrementar tu población mediante Terraformación antes que otro gruipo invada la zona. Ten en cuenta que esta situación desesperada generó grupos extremadamente agresivos, así que no hay Influencia cultural posible en esta misión.</string>
+        
+        <key>BRIEF_LEVEL_20</key>
+        <string>Buen trabajo, el experimento ha finalizado!
+            
+            Sin embargo, ha pasado algo inesperado. Los Bots deberían haber desaparecido después de la última misión, pero aún están ahí. Deberías inhabilitarlos antes que dejamos Kepler.</string>
+        <key>CONTEXT_LEVEL_20</key>
+        <string>Dia de campanya 90
+            
+            No sé cómo explicar esto: los bots ignoraron nuestras últimas órdenes y ahora mismo estçan buscando por algún territorio dónde aún puedan sobrevivir.
+            
+            Ya tenemos nuestros resultados finales, y técnicamente deberíamos destruir los bots que quedan antes de dejar el planeta. No sé cómo lo ves, pero más que finalizar un experimento me da más la sensación de cometer un genocidio.
+            
+            No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lovan una nueva oportunidad. Profesor, esta es tu elección.</string>
         
         <key>LEVEL_1_STORY</key>
-        <string>Who are we? Who created us?</string>
+        <string>Quiénes somos? Quién nos creó?</string>
         <key>LEVEL_2_STORY</key>
-        <string>Our destiny is to arrive to the mountain of fire</string>
+        <string>Encontraremos nuestro destino en la montaña de fuego</string>
         <key>LEVEL_3_STORY</key>
-        <string>We are the masters of fire. We are the Zho'll</string>
+        <string>Somos los señores del fuego. Somos los Zho'll</string>
         <key>LEVEL_4_STORY</key>
-        <string>Fire and stone are our tools. With the help of our Guides we will conquer this world.</string>
+        <string>Los Guías nos dieron fuego y piedra para dominar este mundo</string>
         <key>LEVEL_5_STORY</key>
-        <string>We will not be afraid of anyone or anything.</string>
+        <string>No temeremos a nadie ni a nada</string>
         <key>LEVEL_6_STORY</key>
-        <string>The Guides watch us and provide for us</string>
+        <string>Necesitamos a los Guías? Los Zho'll controlan esta tierra!</string>
         <key>LEVEL_7_STORY</key>
-        <string>Do we need the Guides? The Zho'll already own this land!</string>
+        <string>Pero no estamos solos...</string>
         <key>LEVEL_8_STORY</key>
-        <string>But we are not alone...</string>
+        <string>Los Guías nos vigilan y proveen por nosotros</string>
         <key>LEVEL_9_STORY</key>
-        <string>The Zho'll will succeed where others failed.</string>
+        <string>Los Zho'll triunfarán donde otros fallaron</string>
         <key>LEVEL_10_STORY</key>
-        <string>Why do we have to obey the Guides and move again?</string>
+        <string>Este es nuestro mundo. Viviremos donde nos plazca</string>
+        <key>LEVEL_11_STORY</key>
+        <string>El símbolo de los Guías apunta hacia su morada</string>
+        <key>LEVEL_12_STORY</key>
+        <string>El planeta entero sabrá que los Guías nos vigilan</string>
+        <key>LEVEL_13_STORY</key>
+        <string>Podemos comerciar minerales por todo lo que deseamos</string>
+        <key>LEVEL_14_STORY</key>
+        <string>Que nuestras almas se reúnan con los Guías</string>
+        <key>LEVEL_15_STORY</key>
+        <string>El mundo entero es nuestro hogar</string>
+        <key>LEVEL_16_STORY</key>
+        <string>Daremos una vida mejor a nuestra descendencia</string>
+        <key>LEVEL_17_STORY</key>
+        <string>Los Zho'll son los amos de este mundo, de sus plantas y animales</string>
+        <key>LEVEL_18_STORY</key>
+        <string>Nuestros campos yacen muertos. Por qué nos castigan los Guías?</string>
+        <key>LEVEL_19_STORY</key>
+        <string>No queremos ser olvidados. Este es nuestro mundo!</string>
+        <key>LEVEL_20_STORY</key>
+        <string>Somos los Zho'll. Somos los amos de nuestro destino</string>
+        <key>LEVEL_21_STORY</key>
+        <string>Misión completada. Volvamos a casa!</string>
+        
         <!-- dates -->
         <key>DATE_LEVEL_1</key>
-        <string>1 million years BE (Before Extinction)</string>
+        <string>1 millón de años AE (Antes de la Extinción)</string>
         <key>DATE_LEVEL_2</key>
-        <string>300.000 BE</string>
+        <string>300.000 AE</string>
         <key>DATE_LEVEL_3</key>
-        <string>70.000 BE</string>
+        <string>70.000 AE</string>
         <key>DATE_LEVEL_4</key>
-        <string>70.000 BE</string>
+        <string>70.000 AE</string>
         <key>DATE_LEVEL_5</key>
-        <string>30.000 BE</string>
+        <string>30.000 AE</string>
         <key>DATE_LEVEL_6</key>
-        <string>25.000 BE</string>
+        <string>25.000 AE</string>
         <key>DATE_LEVEL_7</key>
-        <string>22.000 BE</string>
+        <string>22.000 AE</string>
         <key>DATE_LEVEL_8</key>
-        <string>15.000 BE</string>
+        <string>15.000 AE</string>
         <key>DATE_LEVEL_9</key>
-        <string>10.000 BE</string>
+        <string>10.000 AE</string>
         <key>DATE_LEVEL_10</key>
-        <string>8.000 BE</string>
+        <string>8.000 AE</string>
         <key>DATE_LEVEL_11</key>
-        <string>6.000 BE</string>
+        <string>6.000 AE</string>
         <key>DATE_LEVEL_12</key>
-        <string>1 BE</string>
+        <string>5000 AE</string>
         <key>DATE_LEVEL_13</key>
-        <string>1 BE</string>
+        <string>3600 AE</string>
         <key>DATE_LEVEL_14</key>
-        <string>1 BE</string>
+        <string>2500 AE</string>
         <key>DATE_LEVEL_15</key>
-        <string>1 BE</string>
+        <string>1700 AE</string>
         <key>DATE_LEVEL_16</key>
-        <string>1 BE</string>
+        <string>1000 AE</string>
         <key>DATE_LEVEL_17</key>
-        <string>1 BE</string>
+        <string>500 AE</string>
         <key>DATE_LEVEL_18</key>
-        <string>1 BE</string>
+        <string>200 AE</string>
         <key>DATE_LEVEL_19</key>
-        <string>1 BE</string>
+        <string>45 AE</string>
         <key>DATE_LEVEL_20</key>
-        <string>1 BE</string>
+        <string>0 AE</string>
     </dict>
 </plist>
+

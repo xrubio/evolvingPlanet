@@ -154,7 +154,7 @@ bool UIMainMenu::init()
     extrasButton->setPosition(Vec2((2 * visibleSize.width / 25), startButton->getPositionY() - (1.5 * visibleSize.height / 18)));
     auto extrasLabel = Label::createWithTTF(LocalizedString::create("EXTRAS"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     extrasLabel->setColor(Color3B(219, 234, 241));
-    extrasLabel->setPosition(extrasButton->getContentSize().width / 2, extrasButton->getContentSize().height / 2);
+    extrasLabel->setPosition(1.1*extrasButton->getContentSize().width / 2, extrasButton->getContentSize().height / 2);
     extrasButton->addChild(extrasLabel, 3);
     extrasButton->setScale(GameData::getInstance()->getRaHConversion());
     extrasButton->setCascadeOpacityEnabled(true);
@@ -167,7 +167,7 @@ bool UIMainMenu::init()
     storyButton->setName("story");
     auto storyLabel = Label::createWithTTF(LocalizedString::create("STORY"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
     storyLabel->setColor(Color3B(219, 234, 241));
-    storyLabel->setPosition(storyButton->getContentSize().width / 2, storyButton->getContentSize().height / 2);
+    storyLabel->setPosition(1.1*storyButton->getContentSize().width / 2, storyButton->getContentSize().height / 2);
     storyButton->addChild(storyLabel);
     storyButton->setScale(GameData::getInstance()->getRaHConversion());
     storyButton->setVisible(false);
