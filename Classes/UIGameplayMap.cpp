@@ -664,7 +664,7 @@ bool UIGameplayMap::init()
         
         auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
         minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.3 * visibleSize.height / 7.5));
+        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.34 * visibleSize.height / 7.5));
         minusAttButton->setTag(int(j) + 10);
         minusAttButton->setEnabled(false);
         minusAttButton->setVisible(false);
@@ -672,7 +672,7 @@ bool UIGameplayMap::init()
         attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.3 * visibleSize.height / 7.5));
+        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.34 * visibleSize.height / 7.5));
         plusAttButton->setTag(int(j) + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
@@ -680,7 +680,7 @@ bool UIGameplayMap::init()
 
         float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
         float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-        int posY = 0.3 * visibleSize.height / 7.5;
+        int posY = 0.34 * visibleSize.height / 7.5;
 
         for (int m = 0; m < 5; m++) {
             posX = posX + incX;
@@ -696,8 +696,8 @@ bool UIGameplayMap::init()
             }
             if (m == 2)
             {
-                labelAttRight->setPosition(Vec2(posX, 0.9 * bottomFrame->getContentSize().height / 2));
-                attNumLabel->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.3 * visibleSize.height / 7.5));
+                labelAttRight->setPosition(Vec2(posX, 0.93 * bottomFrame->getContentSize().height / 2));
+                attNumLabel->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.34 * visibleSize.height / 7.5));
                 costBackground->setPosition(attNumLabel->getPositionX() + 4.0 * attNumLabel->getContentSize().width, attNumLabel->getPositionY());
             }
             tag++;
