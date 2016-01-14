@@ -18,7 +18,7 @@
  */
 
 #include "AppDelegate.h"
-#include "UIIntro.h"
+#include "UIIntroToast.h"
 #include "GameData.h"
 #include "LocalizedString.h"
 #include <string>
@@ -148,7 +148,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
     
     // create a scene. it's an autorelease object
-    auto scene = UIIntro::createScene();
+    auto scene = UIIntroToast::createScene();
     // run
     director->runWithScene(scene);
 

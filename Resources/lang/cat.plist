@@ -1,131 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>START</key>
-	<string>COMENÇAR</string>
-	<key>NEW_GAME</key>
-	<string>NOVA PARTIDA</string>
-	<key>BACK</key>
-	<string>TORNAR</string>
-	<key>RESET</key>
-	<string>RESETEJAR</string>
-	<key>PAUSE</key>
-	<string>PAUSA</string>
-	<key>SET_ATTRIBUTES</key>
-	<string>CONFIGURA ELS AGENTS ABANS DE COMENÇAR</string>
-	<key>WARNING</key>
-	<string>ALERTA</string>
-	<key>WARNING_TEXT</key>
-	<string>COMENÇAR UNA NOVA PARTIDA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
-	<key>LEVEL</key>
-	<string>MISSIÓ</string>
-	<key>OPTIONS</key>
-	<string>OPCIONS</string>
-	<key>ACHIEVEMENTS</key>
-	<string>FITES</string>
-	<key>LANGUAGE</key>
-	<string>IDIOMA</string>
-	<key>CREDITS</key>
-	<string>CRÈDITS</string>
-	<key>EXTRAS</key>
-	<string>EXTRES</string>
-	<key>STORY</key>
-	<string>HISTÒRIA</string>
-	<key>GOALS</key>
-	<string>OBJECTIUS</string>
-	<key>ERA</key>
-	<string>ERA</string>
-	<key>FIRST</key>
-	<string>PRIMERA</string>
-	<key>SECOND</key>
-	<string>SEGONA</string>
-	<key>QUIT_QUESTION</key>
-	<string>SORTIR ?</string>
-	<key>RETRY_QUESTION</key>
-	<string>REPETIR ?</string>
-	<key>AGENTS</key>
-	<string>Agents</string>
-	<key>TAP_TO_UNLOCK</key>
-	<string>TOCA PER DESBLOQUEJAR</string>
-	<key>TAP_TO_CONTINUE</key>
-	<string>TOCA PER CONTINUAR</string>
-	<key>PASS_MISSION</key>
-	<string>COMPLETA LA MISSIÓ </string>
-	<key>TO_UNLOCK_STORY</key>
-	<string> PER DESBLOQUEJAR AQUESTA HISTÒRIA</string>
-	<key>LIFE</key>
-	<string>VIDA</string>
-	<key>REPRODUCTION</key>
-	<string>REPRODUCCIÓ</string>
-	<key>MOBILITY</key>
-	<string>MOBILITAT</string>
-	<key>RESISTANCE</key>
-	<string>RESISTÈNCIA</string>
-	<key>TECHNOLOGY</key>
-	<string>TECNOLOGIA</string>
-	<key>RECOLLECTION</key>
-	<string>RECOLECCIÓ</string>
-	<key>SUSTAINABILITY</key>
-	<string>SOSTENIBILITAT</string>
-	<key>ADAPTATION</key>
-	<string>ADAPTACIÓ</string>
-	<key>CULTURAL_INFLUENCE</key>
-	<string>INFL CULTURAL</string>
-	<key>HOSTILITY</key>
-	<string>HOSTILITAT</string>
-	<key>EVOLUTION_POINTS</key>
-	<string>PUNTS D&apos;EVOLUCIÓ</string>
-	<key>LEVEL_FEATURES</key>
-	<string>CARACTERÍSTIQUES DE LA MISSIÓ</string>
-	<key>ATTRIBUTES</key>
-	<string>ATRIBUTS</string>
-	<key>POWERS</key>
-	<string>PODERS</string>
-	<key>NOT_AVAILABLE</key>
-	<string>NO DISPONIBLES EN AQUESTA MISSIÓ</string>
-	<key>GOAL_TEXT_LVL1_1</key>
-	<string>- S&apos;ha d&apos;arribar al punt de control 1 entre 30 i 50 passos de temps</string>
-	<key>GOAL_TEXT_LVL1_2</key>
-	<string>- S&apos;ha d&apos;arribar al punt de control 2 entre 70 i 90 passos de temps</string>
-	<key>GOAL_TEXT_LVL1_3</key>
-	<string>- S&apos;ha d&apos;arribar al punt de control 3 entre 90 i 110 passos de temps</string>
-	<key>MUSIC</key>
-	<string>MÚSICA</string>
-	<key>SPECIAL_EFFECTS</key>
-	<string>SFX</string>
-	<key>ON</key>
-	<string>On</string>
-	<key>OFF</key>
-	<string>Off</string>
-	<key>LEVEL_COMPLETED</key>
-	<string>COMPLET</string>
-	<key>GAME_OVER</key>
-	<string>FALLIT</string>
-	<key>CONGRATULATIONS</key>
-	<string>Enhorabona!</string>
-	<key>GOAL_FAIL_BEFORE</key>
-	<string>Missió fallida: La teva població ha assolit l&apos;objectiu abans 
-del que suggereixen les dades arqueològiques</string>
-	<key>GOAL_FAIL_AFTER</key>
-	<string>Missió fallida: No has aconseguit l&apos;objectiu a temps</string>
-	<key>ALL_AGENTS_DIED</key>
-	<string>Han mort tots els agents</string>
-	<key>CONTINUE</key>
-	<string>CONTINUAR</string>
-	<key>PLAY</key>
-	<string>JUGAR</string>
-	<key>CONTEXT_TITLE_INTRO</key>
-	<string>INTRODUCCIÓ</string>
-	<key>CONTEXT_TITLE_DEPLOYMENT</key>
-	<string>DESENVOLUPAMENT</string>
-    <key>OF</key>
-    <string>de</string>
-    <key>ACH_EARNED</key>
-    <string>fites assolides</string>
-	<key>CURRENT_GOAL</key>
-	<string>OBJECTIU</string>
-	<key>SKIP</key>
-	<string>SALTAR</string>
-</dict>
+    <dict>
+        <key>START</key>
+        <string>COMENÇAR</string>
+        <key>EXIT</key>
+        <string>Sortir</string>
+        <key>NEW_GAME</key>
+        <string>NOVA PARTIDA</string>
+        <key>BACK</key>
+        <string>TORNAR</string>
+        <key>RESET</key>
+        <string>RESETEJAR</string>
+        <key>PAUSE</key>
+        <string>PAUSA</string>
+        <key>SET_ATTRIBUTES</key>
+        <string>CONFIGURA ELS AGENTS ABANS DE COMENÇAR</string>
+        <key>WARNING</key>
+        <string>ALERTA</string>
+        <key>WARNING_TEXT</key>
+        <string>COMENÇAR UNA NOVA PARTIDA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
+        <key>LEVEL</key>
+        <string>MISSIÓ</string>
+        <key>OPTIONS</key>
+        <string>OPCIONS</string>
+        <key>ACHIEVEMENTS</key>
+        <string>FITES</string>
+        <key>LANGUAGE</key>
+        <string>IDIOMA</string>
+        <key>CREDITS</key>
+        <string>CRÈDITS</string>
+        <key>EXTRAS</key>
+        <string>EXTRES</string>
+        <key>STORY</key>
+        <string>HISTÒRIA</string>
+        <key>GOALS</key>
+        <string>OBJECTIUS</string>
+        <key>FIRSTERA</key>
+        <string>Dispersió</string>
+        <key>SECONDERA</key>
+        <string>Conquesta</string>
+        <key>QUIT_QUESTION</key>
+        <string>SORTIR ?</string>
+        <key>RETRY_QUESTION</key>
+        <string>REPETIR ?</string>
+        <key>RETRY</key>
+        <string>Repetir</string>
+        <key>AGENTS</key>
+        <string>Bots</string>
+        <key>TAP_TO_UNLOCK</key>
+        <string>TOCA PER DESBLOQUEJAR</string>
+        <key>TAP_TO_CONTINUE</key>
+        <string>TOCA PER CONTINUAR</string>
+        <key>PASS_MISSION</key>
+        <string>COMPLETA LA MISSIÓ</string>
+        <key>TO_UNLOCK_STORY</key>
+        <string> PER DESBLOQUEJAR AQUESTA HISTÒRIA</string>
+        <key>LIFE</key>
+        <string>VIDA</string>
+        <key>LEVEL_FEATURES</key>
+        <string>HABILITATS</string>
+        <key>ATTRIBUTES</key>
+        <string>ATRIBUTS</string>
+        <key>POWERS</key>
+        <string>PODERS</string>
+        <key>NOT_AVAILABLE</key>
+        <string>NO DISPONIBLES EN AQUESTA MISSIÓ</string>
+        <key>REPRODUCTION</key>
+        <string>REPRODUCCIÓ</string>
+        <key>DESCRIPTION_REPRODUCTION</key>
+        <string>Rati de fertilitat</string>
+        <key>MOBILITY</key>
+        <string>MOBILITAT</string>
+        <key>DESCRIPTION_MOBILITY</key>
+        <string>Rang d'interacció</string>
+        <key>RESISTANCE</key>
+        <string>RESISTÈNCIA</string>
+        <key>DESCRIPTION_RESISTANCE</key>
+        <string>Resistència en entorns durs</string>
+        <key>TECHNOLOGY</key>
+        <string>TECNOLOGIA</string>
+        <key>DESCRIPTION_TECHNOLOGY</key>
+        <string>Millores en tots els atributs</string>
+        <key>INFLUENCE</key>
+        <string>INFLUÈNCIA</string>
+        <key>DESCRIPTION_INFLUENCE</key>
+        <string>Convenç altres bots per unir-se al teu grup</string>
+        <key>WARFARE</key>
+        <string>GUERRA</string>
+        <key>DESCRIPTION_WARFARE</key>
+        <string>Letalitat en combat</string>
+        <key>EXPLOITATION</key>
+        <string>EXPLOTACIÓ</string>
+        <key>DESCRIPTION_EXPLOITATION</key>
+        <string>Habilitats de recol·lectar fusta i minerals</string>
+        <key>TRADE</key>
+        <string>COMERÇ</string>
+        <key>DESCRIPTION_TRADE</key>
+        <string>Habilitats d'intercanvi amb altres grups</string>
+        <key>TERRAFORM</key>
+        <string>TERRAFORMACIÓ</string>
+        <key>DESCRIPTION_TERRAFORM</key>
+        <string>Acondicionar l'entorn pel pròpi benefici</string>
+        <key>DESCRIPTION_MobilityBoost</key>
+        <string>Mobilitat</string>
+        <key>DESCRIPTION_ReproductionBoost</key>
+        <string>Reproducció</string>
+        <key>DESCRIPTION_ResistanceBoost</key>
+        <string>Resistència</string>
+        <key>DESCRIPTION_InfluenceBoost</key>
+        <string>Influència</string>
+        <key>DESCRIPTION_WarfareBoost</key>
+        <string>Guerra</string>
+        <key>EVOLUTION_POINTS</key>
+        <string>PUNTS D&apos;EVOLUCIÓ</string>
+        <key>COST</key>
+        <string>Cost</string>
+        <key>MUSIC</key>
+        <string>MÚSICA</string>
+        <key>SPECIAL_EFFECTS</key>
+        <string>SFX</string>
+        <key>LEVEL_COMPLETED</key>
+        <string>COMPLET</string>
+        <key>GAME_OVER</key>
+        <string>FALLIT</string>
+        <key>CONGRATULATIONS</key>
+        <string>Enhorabona!</string>
+        <key>GOAL_FAIL_BEFORE</key>
+        <string>Missió fallida: La teva població ha assolit l&apos;objectiu abans
+            del que suggereixen les dades arqueològiques</string>
+        <key>GOAL_FAIL_AFTER</key>
+        <string>Missió fallida: No has aconseguit l&apos;objectiu a temps</string>
+        <key>ALL_BOTS_DIED</key>
+        <string>Han mort tots els bots</string>
+        <key>CONTINUE</key>
+        <string>CONTINUAR</string>
+        <key>PLAY</key>
+        <string>JUGAR</string>
+        <key>MURPHY</key>
+        <string>Murphy&apos;s Toast Games</string>
+        <key>DIRECTOR</key>
+        <string>Game Director &amp; Project Lead</string>
+        <key>LEAD_PROGRAMMER</key>
+        <string>Lead Programmer</string>
+        <key>ADDITIONAL_PROGRAMMING</key>
+        <string>Additional programming</string>
+        <key>ART</key>
+        <string>Artwork</string>
+        <key>UI</key>
+        <string>User Interface</string>
+        <key>STORY_CONTENT</key>
+        <string>Story &amp; content</string>
+        <key>SIMULPAST_TITLE</key>
+        <string>El Projecte SimulPast</string>
+        <key>SIMULPAST_TEXT</key>
+        <string>Evolving Planet no hauria existit sense el projecte de recerca SimulPast.
+            
+            SimulPast està trencant les barreres entre la Ciència i les Humanitats per aprendre dels nostres orígens, i del nostre present i futur. Arqueòlegs, Enginyers Informàtics, Antropòlegs i altres experts fan ús de la simulació per ordinador per millorar la comprensió que tenim del passat.
+            
+            Evolving Planet explora aquesta nova manera de fer Ciència. Seràs part d'un equip de recerca que estudia espècies similars als humans mitjançant conceptes com evolució, tecnologia i dispersió.
+            
+            Toca el logo per conèixer més sobre SimulPast!</string>
+        <key>SPECIAL_THANKS</key>
+        <string>Especial Agraïment</string>
+        <key>SUPPORT</key>
+        <string>Amb el suport de</string>
+        <key>POWERED</key>
+        <string>Powered by</string>
+        <key>CONTENT_WIKIMEDIA</key>
+        <string>Contingut addicional per</string>
+        <key>OF</key>
+        <string>de</string>
+        <key>ACH_EARNED</key>
+        <string>fites assolides</string>
+        <key>CURRENT_GOAL</key>
+        <string>OBJECTIU</string>
+        <key>SKIP</key>
+        <string>SALTAR</string>
+        <key>GOALS_COMPLETED</key>
+        <string>OBJECTIUS ASSOLITS</string>
+        <key>BOT_COLOR</key>
+        <string>Color del Bot</string>
+    </dict>
 </plist>

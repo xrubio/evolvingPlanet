@@ -52,7 +52,7 @@ public:
     void menuResetYesCallback(Ref* pSender);
     
     CREATE_FUNC(UIMainMenu);
-
+    
 private:
     bool stoppedAnimation = false;
 
@@ -63,6 +63,7 @@ private:
     void openFacebook( Ref * pSender );
     void openTwitter( Ref * pSender );
     void openWeb( Ref * pSender );
+    
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

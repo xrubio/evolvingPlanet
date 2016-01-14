@@ -33,6 +33,7 @@
 #include "UIStoryGallery.h"
 #include "LocalizedString.h"
 #include "GameData.h"
+#include "UIIntroStory.h"
 #include "UITransitionScene.h"
 
 #include <audio/include/SimpleAudioEngine.h>
@@ -53,8 +54,6 @@ bool UIMainMenu::init()
         return false;
     }
     
-    Director::getInstance()->getTextureCache()->addImage("gui/ProgressMap1Background.jpg");
-
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
     auto background = Sprite::create("gui/MainMenuBackground.png");
@@ -306,13 +305,12 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         else
         {
             GameData::getInstance()->resetGameProgress();
-            auto scene = UIProgressMap::createScene();
-            auto transition = TransitionFade::create(1.0f, scene);
-            Director::getInstance()->replaceScene(transition);
             if (GameData::getInstance()->getSFX() == true) {
                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
             }
-            //ANIMACIO
+            auto scene = UIIntroStory::createScene();
+            auto transition = TransitionFade::create(1.0f, scene);
+            Director::getInstance()->replaceScene(transition);
         }
     }
     else {
@@ -444,10 +442,9 @@ void UIMainMenu::menuResetYesCallback(Ref* pSender)
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     GameData::getInstance()->resetGameProgress();
-    auto scene = UIProgressMap::createScene();
+    auto scene = UIIntroStory::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);
-    //ANIMACIO
 }
 
 void UIMainMenu::endActions(void)

@@ -18,32 +18,29 @@
  */
 
 //
-//  UIIntro.h
+//  UIIntroToast.h
 //  simulplay
 //
 //  Created by Guillem Laborda on 3/12/15.
 //
 //
 
-#ifndef __simulplay__UIIntro__
-#define __simulplay__UIIntro__
+#ifndef __simulplay__UIIntroToast__
+#define __simulplay__UIIntroToast__
 
 #include <cocos2d.h>
 
 using namespace cocos2d;
 
-class UIIntro : public Layer {
+class UIIntroToast : public Layer {
 public:
     static Scene* createScene();
     
     virtual bool init();
-    
-    bool onTouchesBegan(Touch* touch, Event* event);
+                
+    CREATE_FUNC(UIIntroToast);
     
     void update(float delta);
-    void runIntro();
-            
-    CREATE_FUNC(UIIntro);
     
 private:
 
@@ -53,4 +50,4 @@ private:
     
 };
 
-#endif /* defined(__simulplay__UIIntro__) */
+#endif /* defined(__simulplay__UIIntroToast__) */
