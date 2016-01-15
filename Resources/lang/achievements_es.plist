@@ -2,216 +2,555 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- LEVEL 1 -->
-    <key>TITLE_LVL1_COMPLETED</key>
-    <string>ROOKIE</string>
-    <key>DESCR_LVL1_COMPLETED</key>
-    <string>Completa la misión 1</string>
-    <key>TITLE_LVL1_PERFECT</key>
-    <string>PERFECCIÓN 1</string>
-    <key>DESCR_LVL1_PERFECT</key>
-    <string>Completa la misión 1 con una puntuación de 3 estrellas</string>
-    <key>TITLE_LVL1_EVPOINTSLEFT</key>
-    <string>SOBRAS</string>
-    <key>DESCR_LVL1_EVPOINTSLEFT</key>
-    <string>Completa la misión 1 dejando al menos 10 puntos de evolución sin gastar</string>
+    <!-- LVL 1 -->
+	<key>TITLE_LVL1_Accomplished</key>
+	<string>NOVATO</string>
+	<key>DESCR_LVL1_Accomplished</key>
+	<string>Misión 1: Completada</string>
+    <key>ACH_LVL1_1</key>
+    <string>Los primeros ancestros de los humanos aparecieron hace 4 millones de años en las selvas de África Oriental.
+
+Las especies más viejas se llaman Australopitecinos. Ya caminaban erguidos, y parece que esta característica es crucial para explicar su éxito. Vivieron en los más diversos entornos, desde selvas a la savana.</string>
+
+	<key>TITLE_LVL1_Perfect</key>
+	<string>AHÍ FUERA</string>
+	<key>DESCR_LVL1_Perfect</key>
+	<string>Misión 1: Consigue 3 estrellas</string>
+    <key>ACH_LVL1_2</key>
+    <string>La historia de Evolving Planet se desarrolla en un exoplaneta imaginario llamado Kepler-1138.
+
+Un exoplaneta es un planeta que orbita alrededor de una estrella distinta del Sol. Se han descubierto unos 2000 exoplanetas, la mayoría gracias al telescopio espacial Kepler que fue lanzado por la Nasa en 2009.</string>
+
+    <key>TITLE_LVL1_EPsLeft</key>
+    <string>RESERVA</string>
+    <key>DESCR_LVL1_EPsLeft</key>
+    <string>Misión 1: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL1_3</key>
+    <string>
+
+El Homo Sapiens tiene 200.000 años. Apareció en África Oriental, y se movió a otras áreas hace tan sólo 100.000 años.
+
+El resto de la dispersión fue muy rápido: colonizaron casi todo el planeta en 85.000 años.</string>
+
+    <!-- LVL 2 -->
+    <key>TITLE_LVL2_Accomplished</key>
+    <string>COGIENDO CONFIANZA</string>
+    <key>DESCR_LVL2_Accomplished</key>
+    <string>Misión 2: Completada</string>
+    <key>ACH_LVL2_1</key>
+    <string>"Miras a la ciencia como si fuera una invención humana desmoralizante, algo alejado de la vida real, y que debe ser guardada y separada de la existencia diaria. Pero la ciencia y la vida diaria no pueden y no deben estar separadas".
+
+Rosalind Franklin fue parte del equipo que descubrió la estructura del ADN. Su trabajo fue crucial para entender cómo evoluciona la vida.</string>
+
+    <key>TITLE_LVL2_Perfect</key>
+    <string>ANCESTROS</string>
+    <key>DESCR_LVL2_Perfect</key>
+	<string>Misión 2: Consigue 3 estrellas</string>
+    <key>ACH_LVL2_2</key>
+    <string>Australopitecus, Homo Habilis o Homo Neanderthal son distintas especies de homínidos.
     
-    <!-- LEVEL 2 -->
-    <key>TITLE_LVL2_COMPLETED</key>
-    <string>ACOSTUMBRÁNDOTE</string>
-    <key>DESCR_LVL2_COMPLETED</key>
-    <string>Completa la misión 2</string>
-    <key>TITLE_LVL2_PERFECT</key>
-    <string>PERFECCIÓN 2</string>
-    <key>DESCR_LVL2_PERFECT</key>
-    <string>Completa la misión 2 con una puntuación de 3 estrellas</string>
-    <key>TITLE_LVL2_DISCOVER</key>
-    <string>CAMINO ERRÓNEO</string>
-    <key>DESCR_LVL2_DISCOVER</key>
-    <string>Llega a un punto determinado del mapa</string>
+Eran muy distintos, pero todos ellos compartían el hecho de ser bípedos, tener dentaduras pequeñas y grandes cerebros. El Homo Sapiens es el único homínido aún vivo.</string>
+
+    <key>TITLE_LVL2_Discovery</key>
+    <string>CAMINO EQUIVOCADO</string>
+    <key>DESCR_LVL2_Discovery</key>
+    <string>Misión 2: Cruza el río</string>
+    <key>ACH_LVL2_3</key>
+    <string>Los Tubu viven en una región africana llamada Ténéré, el país de la nada. Las mujeres son capaceds de encontrar el único pozo de agua en miles de quilómetros cuadrados tan sólo orientándose a partir de las estrellas y los movimientos de las dunas.
+
+La cultura es una herramienta poderosa, y gracias a ella poblamos la superfície entera del planeta.</string>
+
+    <!-- LVL 3 -->
+    <key>TITLE_LVL3_Accomplished</key>
+    <string>QUÉ EDAD TIENES?</string>
+    <key>DESCR_LVL3_Accomplished</key>
+    <string>Misión 3: Completada</string>
+    <key>ACH_LVL3_1</key>
+    <string>La datación por Radiocarbono revolucionó la arqueología a finales del siglo XX.
+
+Esta técnica permita datar restos materiales encontrados en una excavación, permitiendo de este modo a los investigadores conocer la edad del yacimiento.</string>
+
+    <key>TITLE_LVL3_Perfect</key>
+    <string>EL VIAJE</string>
+    <key>DESCR_LVL3_Perfect</key>
+	<string>Misión 3: Consigue 3 estrellas</string>
+    <key>ACH_LVL3_2</key>
+    <string>El navío británico HMS Beagle dejó Plymoth en 1831 rumbo a Sudamérica. Volvió a Europa 5 años más tarde, después de circumnavegar la Tierra.
+
+Su tripulación incluía un joven llamado Charles Darwin. Los datos recogidos durante el viaje fueron indispensables para desarrollar su teoría de la evolución por selección natural.</string>
+
+    <key>TITLE_LVL3_EPsLeft</key>
+    <string>EL CAMINO DIFÍCIL</string>
+    <key>DESCR_LVL3_EPsLeft</key>
+    <string>Misión 3: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL3_3</key>
+    <string>El primer embarazo en las mujeres de las sociedades cazadoras-recolectoras actuales se da alrededor de los 19 años. Esto es probablemente similar a lo que pasaba antes de la adopción de estilos de vida sedentarios como la agricultura, en los que esta edad se rebajó.
+
+En las sociedades occidentales no subió de nuevo hasta el siglo XX.</string>
     
-    <!-- LEVEL 3 -->
-    <key>TITLE_LVL3_COMPLETED</key>
-    <string>IMPULSADO</string>
-    <key>DESCR_LVL3_COMPLETED</key>
-    <string>Completa la misión 3</string>
-    <key>TITLE_LVL3_PERFECT</key>
-    <string>PERFECCIÓN 3</string>
-    <key>DESCR_LVL3_PERFECT</key>
-    <string>Completa la misión 3 con una puntuación de 3 estrellas</string>
-    <key>TITLE_LVL3_NOPOWERS</key>
-    <string>LA MANERA DIFÍCIL</string>
-    <key>DESCR_LVL3_NOPOWERS</key>
-    <string>Completa la misión 3 sin usar poderes</string>
+    <!-- LVL 4 -->
+    <key>TITLE_LVL4_Accomplished</key>
+    <string>TECNOLOGÍA Y SOCIEDAD</string>
+    <key>DESCR_LVL4_Accomplished</key>
+    <string>Misión 4: Completada</string>
+    <key>ACH_LVL4_1</key>
+    <string>"La principal característica de nuestra era es el cambio, y la literatura debería explorar cómo la gente se adapta a él. La mejor ciencia-ficción hace precisamente esto."
+        David Brin
+
+Una de las bases de la ciencia-ficción es la especulación sobre el impacto de los avances tecnológicos en la sociedad. Algunos de los mejores ejemplos son las novelas "Yo, Robot" (Isaac Asimov) y "Las Estrellas mi Destino" (Alfred Bester), así como la película "Blade Runner" (Ridley Scott).</string>
+
+    <key>TITLE_LVL4_Perfect</key>
+    <string>HABLANDO DEL REY DE ROMA</string>
+    <key>DESCR_LVL4_Perfect</key>
+	<string>Misión 4: Consigue 3 estrellas</string>
+    <key>ACH_LVL4_2</key>
+    <string>Nuestros ancestros empezaron a usar herramientas hace 2 millones de años. Esta tecnología no fue una innovación aislada, ya que otros elementos culturales debían estar presentes para garantizar la transmisión del conocimiento.
+   
+Por este motivo no es sorprendente que los homínidos empezaran a hablar durante la misma época.</string>
+
+    <key>TITLE_LVL4_NoBoosts</key>
+    <string>TECH NERD</string>
+    <key>DESCR_LVL4_NoBoosts</key>
+    <string>Misión 4: Pásala sin aumentos</string>
+    <key>ACH_LVL4_3</key>
+    <string>"La Ciencia es la creencia en la ignorancia de los expertos."
+             Richard Feynman
+
+Uno de los físicos más importantes del siglo XX.</string>
+        
+    <!-- LVL 5 -->
+    <key>TITLE_LVL5_Accomplished</key>
+    <string>IRSE LEJOS</string>
+    <key>DESCR_LVL5_Accomplished</key>
+    <string>Misión 5: Completada</string>
+    <key>ACH_LVL5_1</key>
+    <string>El primer proyecto conectando el Atlántico y el Pacífico a través de Panamá fue encargado por el emperador Carlos I en 1534.
     
-    <!-- LEVEL 4 -->
-    <key>TITLE_LVL4_COMPLETED</key>
-    <string>INTRODUCIENDO TECNOLOGÍA</string>
-    <key>DESCR_LVL4_COMPLETED</key>
-    <string>Completa la misión 4</string>
-    <key>TITLE_LVL4_PERFECT</key>
-    <string>PERFECCIÓN 4</string>
-    <key>DESCR_LVL4_PERFECT</key>
-    <string>Completa la misión 4 con una puntuación de 3 estrellas</string>
+Sin embargo, problemas técnicos y económicos frenaron la iniciativa hasta su construcción final en 1914 por EEUU y Panamá.</string>
+
+    <key>TITLE_LVL5_Perfect</key>
+    <string>COEXISTENCIA</string>
+    <key>DESCR_LVL5_Perfect</key>
+	<string>Misión 5: Consigue 3 estrellas</string>
+    <key>ACH_LVL5_2</key>
+    <string>Cuanto más sabemos de los Neandertales más nos damos cuenta de nuestro enorme parecido. Este interés no sólo ha generate debates científicos pero también muchas obras de ficción.
+
+Tres de las más interesantes son la película "En Busca del Fuego" de Jean-Jacques Annaud, la novela histórica "El Clan del Oso Cavernario" de J.M. Auel y la trilogía de ciencia-ficción "El Paralaje Neandertal" de Robert J. Sawyer.</string>
+
+    <key>TITLE_LVL5_Discovery</key>
+    <string>No eres el primero</string>
+    <key>DESCR_LVL5_Discovery</key>
+    <string>Misión 5: Llega a la región Noreste</string>
+    <key>ACH_LVL5_3</key>
+    <string>El famoso viaje de Cristóbal Colón en 1492 no supuso el primer contacto entre Europeos y Americanos. Muchas expediciones vikingas llegaron a América del Norte ya durante el siglo X.</string>
+
+    <!-- LVL 6 -->
+    <key>TITLE_LVL6_Accomplished</key>
+    <string>ANCESTRO COMÚN</string>
+    <key>DESCR_LVL6_Accomplished</key>
+    <string>Misión 6: Completada</string>
+    <key>ACH_LVL6_1</key>
+    <string>Los últimos avances en biología han demostrado que parte de nuestra información genética procede de los Neandertales.
     
-    <!-- LEVEL 5 -->
-    <key>TITLE_LVL5_COMPLETED</key>
-    <string>HUYENDO</string>
-    <key>DESCR_LVL5_COMPLETED</key>
-    <string>Completa la misión 5</string>
-    <key>TITLE_LVL5_PERFECT</key>
-    <string>PERFECCIÓN 5</string>
-    <key>DESCR_LVL5_PERFECT</key>
-    <string>Completa la misión 5 con una puntuación de 3 estrellas</string>
+Ellos no son nuestros ancestros, así que esta compartición de genes fue causado por la coexistencia y mestizaje entre las 2 especies hace 35.000 años en Europa.</string>
+
+    <key>TITLE_LVL6_Perfect</key>
+    <string>CULPA A TUS PRIMOS</string>
+    <key>DESCR_LVL6_Perfect</key>
+	<string>Misión 6: Consigue 3 estrellas</string>
+    <key>ACH_LVL6_2</key>
+    <string>Investigaciones recientes sugieren que las alergias que padecemos en la actualidad son producidas por 3 genes heredados de los Neandertales a través de la hibridación.</string>
+
+    <key>TITLE_LVL6_EPsLeft</key>
+    <string>Cultura vs Natura</string>
+    <key>DESCR_LVL6_EPsLeft</key>
+    <string>Misión 6: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL6_3</key>
+    <string>La cultura no es propiedad de los humanos. Simios, delfines y orcas muestran complejos rasgos culturales como el uso de herramientas y lenguaje. Sin embargo, la velocidad a la que nosotros aprendemos y generamos nuevas ideas nos hace bastante únicos.</string>
+
+    <!-- LVL 7 -->
+    <key>TITLE_LVL7_Accomplished</key>
+    <string>INCOMPETENTE</string>
+    <key>DESCR_LVL7_Accomplished</key>
+    <string>Misión 7: Completada</string>
+    <key>ACH_LVL7_1</key>
+    <string>"La violencia es el último refugio del incompetente."
+    Isaac Asimov
     
-    <!-- LEVEL 6 -->
-    <key>TITLE_LVL6_COMPLETED</key>
-    <string>INFLUENCIADOR</string>
-    <key>DESCR_LVL6_COMPLETED</key>
-    <string>Completa la misión 6</string>
-    <key>TITLE_LVL6_PERFECT</key>
-    <string>PERFECCIÓN 6</string>
-    <key>DESCR_LVL6_PERFECT</key>
-    <string>Completa la misión 6 con una puntuación de 3 estrellas</string>
+Novelista, humanista, científico, profesor, comunicador...Asimov es una de las mentes más versátiles y brillantes del siglo XX. Obras como la trilogía de la "Fundación" y "Yo, Robot" han marcado la manera en la que pensamos sobre nuestro futuro.</string>
+
+    <key>TITLE_LVL7_Perfect</key>
+    <string>LLAMADA A LAS ARMAS</string>
+    <key>DESCR_LVL7_Perfect</key>
+	<string>Misión 7: Consigue 3 estrellas</string>
+    <key>ACH_LVL7_2</key>
+    <string>Las primeras evidencias bélicas están datadas hace 13.000 años. Numerosas pinturas rupestres muestran escenas de guerra, mientras que los arqueólogos han encontrado muchos esqueletos conteniendo flechas.</string>
     
-    <!-- LEVEL 7 -->
-    <key>TITLE_LVL7_COMPLETED</key>
-    <string>A LAS ARMAS</string>
-    <key>DESCR_LVL7_COMPLETED</key>
-    <string>Completa la misión 7</string>
-    <key>TITLE_LVL7_PERFECT</key>
-    <string>PERFECCIÓN 7</string>
-    <key>DESCR_LVL7_PERFECT</key>
-    <string>Completa la misión 7 con una puntuación de 3 estrellas</string>
+    <key>TITLE_LVL7_Discovery</key>
+    <string>EL MUNDO A CABALLO</string>
+    <key>DESCR_LVL7_Discovery</key>
+    <string>Misión 7: Cruza el paso norteño</string>
+    <key>ACH_LVL7_3</key>
+    <string>"Me siento vivo cuando viajo en mi caballo"
     
-    <!-- LEVEL 8 -->
-    <key>TITLE_LVL8_COMPLETED</key>
-    <string>LA TRAVESÍA</string>
-    <key>DESCR_LVL8_COMPLETED</key>
-    <string>Completa la misión 8</string>
-    <key>TITLE_LVL8_PERFECT</key>
-    <string>PERFECCIÓN 8</string>
-    <key>DESCR_LVL8_PERFECT</key>
-    <string>Completa la misión 8 con una puntuación de 3 estrellas</string>
+Estas son las palabras de un jinete Mongol, que según la tradición "nacían en la silla de montar". Los Mongoles son nómadas de la estepa, donde su cultura está centrada alrededor del caballo.</string>
+
+    <!-- LVL 8 -->
+    <key>TITLE_LVL8_Accomplished</key>
+    <string>RAPA NUI</string>
+    <key>DESCR_LVL8_Accomplished</key>
+    <string>Misión 8: Completada</string>
+    <key>ACH_LVL8_1</key>
+    <string>Estas enormes cabezas de piedra se llaman Moais, y se han descubierto en la Isla de Pascua, en el océano Pacífico.
     
-    <!-- LEVEL 9 -->
-    <key>TITLE_LVL9_COMPLETED</key>
-    <string>UNIENDO FUERZAS</string>
-    <key>DESCR_LVL9_COMPLETED</key>
-    <string>Completa la misión 9</string>
-    <key>TITLE_LVL9_PERFECT</key>
-    <string>PERFECCIÓN 9</string>
-    <key>DESCR_LVL9_PERFECT</key>
-    <string>Completa la misión 9 con una puntuación de 3 estrellas</string>
+Sus constructores formaban parte de la cultura Polinesia que colonizó esta zona hace 1000 años. La sobreexplotación de recursos naturales y el contacto con Europeos destruyó a casi toda la población.</string>
+
+    <key>TITLE_LVL8_Perfect</key>
+    <string>EL NORTE RECUERDA</string>
+    <key>DESCR_LVL8_Perfect</key>
+	<string>Misión 8: Consigue 3 estrellas</string>
+    <key>ACH_LVL8_2</key>
+    <string>Uno de los primeros documentales hechos explicaba a los occidentales la vida cazadora-recolectora.
+"Nanuk, el esquimal" fue filmada por Robert J. Flaherty en 1922. Explicaba la lucha por la supervivencia de una familia de Inuit viviendo en las extremas condiciones del Ártico.</string>
+
+    <key>TITLE_LVL8_EPsLeft</key>
+    <string>Hielo y Fuego</string>
+    <key>DESCR_LVL8_EPsLeft</key>
+    <string>Misión 8: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL8_3</key>
+    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglús, hechos de hielo y nieve, son el único motivo por el que hay gente viviendo allí; incrementan la temperatura hasta unos confortables 16 grados.</string>
+
+    <!-- LVL 9 -->
+    <key>TITLE_LVL9_Accomplished</key>
+    <string>MUSIC IS MY RADAR</string>
+    <key>DESCR_LVL9_Accomplished</key>
+    <string>Misión 9: Completada</string>
+    <key>ACH_LVL9_1</key>
+    <string>La música se desarrolló al mismo tiempo que otras expresiones artísticas, como dibujos y joyas.
+
+Esta flauta tiene 43.000 años, y fue encontrada en una cueva de la Alemania meridional llamada Geisenklosterle.</string>
+
+    <key>TITLE_LVL9_Perfect</key>
+    <string>POLVO AL POLVO</string>
+    <key>DESCR_LVL9_Perfect</key>
+	<string>Misión 9: Consigue 3 estrellas</string>
+    <key>ACH_LVL9_2</key>
+    <string>Conflictos con los Sapiens? Cambio climático? Competición por recursos? No sabemos por qué se extinguieron los Neandertales, pero el hecho nos sigue fascinando.
+
+Entender la extinción Nenadertal nos puede ayudar a comprender los peligros a los que nos enfrentamos en la actualidad.</string>
+
+    <key>TITLE_LVL9_NoBoosts</key>
+    <string>Facilísimo</string>
+    <key>DESCR_LVL9_NoBoosts</key>
+    <string>Misión 9: Pásala sin aumentos</string>
+    <key>ACH_LVL9_3</key>
+    <string>Algunos de los trabajadores que salen en esta famosa foto son Indios Mohawk. A finales del siglo XIX eran trabajadores muy valiosos, ya que no tenían miedo de trabajar a grandes alturas.</string>
+
+    <!-- LVL 10 -->
+    <key>TITLE_LVL10_Accomplished</key>
+    <string>A MEDIO CAMINO</string>
+    <key>DESCR_LVL10_Accomplished</key>
+    <string>Misión 10: Completada</string>
+    <key>ACH_LVL10_1</key>
+    <string>“Lo bueno de la ciencia es que es verdadera, tanto si crees en ella como si no.”
+            Neil deGrasse Tyson
+
+Es uno de los más renombrados astrofísicos y divulgadores de la Ciencia.</string>
+
+    <key>TITLE_LVL10_Perfect</key>
+    <string>Una tostada?</string>
+    <key>DESCR_LVL10_Perfect</key>
+	<string>Misión 10: Consigue 3 estrellas</string>
+    <key>ACH_LVL10_2</key>
+    <string>Este es el primer boceto de nuestro logo! Surgió en un bar, como tantas otras buenas cosas.</string>
+
+    <key>TITLE_LVL10_NoBoosts</key>
+    <string>DE SUEÑOS Y CIUDADES</string>
+    <key>DESCR_LVL10_NoBoosts</key>
+    <string>Misión 10: Pásala sin aumentos</string>
+    <key>ACH_LVL10_3</key>
+    <string>"Cuando vimos tantas ciudades y poblados construídos en el agua y en tierra nos maravillamos (...) algunos de nuestros soldados llegaron a preguntarse si las cosas que veíamos eran un sueño."
     
-    <!-- LEVEL 10 -->
-    <key>TITLE_LVL10_COMPLETED</key>
-    <string>ENCUENTRA EL MODO</string>
-    <key>DESCR_LVL10_COMPLETED</key>
-    <string>Completa la misión 10</string>
-    <key>TITLE_LVL10_PERFECT</key>
-    <string>PERFECCIÓN 10</string>
-    <key>DESCR_LVL10_PERFECT</key>
-    <string>Completa la misión 10 con una puntuación de 3 estrellas</string>
+Estas son las palabras de Bernal Díaz del Castillo sobre Tenochtitklan, capital de los aztecas. Participó como soldado en la conquista de México por Hernán Cortés durante 1519.</string>
     
-    <!-- LEVEL 11 -->
-    <key>TITLE_LVL11_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL11_COMPLETED</key>
-    <string>Completa la misión 11</string>
-    <key>TITLE_LVL11_PERFECT</key>
-    <string>PERFECCIÓN 11</string>
-    <key>DESCR_LVL11_PERFECT</key>
-    <string>Completa la misión 11 con una puntuación de 3 estrellas</string>
+    <!-- LVL 11 -->
+    <key>TITLE_LVL11_Accomplished</key>
+    <string>UNA TRAGEDIA COMÚN</string>
+    <key>DESCR_LVL11_Accomplished</key>
+    <string>Misión 11: Completada</string>
+    <key>ACH_LVL11_1</key>
+    <string>Imagina que vas a pescar cada día como mucha otra gente. Te das cuenta que el número de capturas va bajando así que deberías parar de pescar. Sin embargo, el resto de gente no para, así que por qué deberías ser tú el único pasando hambre?
+
+Esta situación se llama la tragedia de los comunes, y explica por qué existe la sobreexplotación. Tan sólo se puede resolver coordinando a toda la comunidad.</string>
+
+    <key>TITLE_LVL11_Perfect</key>
+    <string>HOMBRES DE LAS CAVERNAS</string>
+    <key>DESCR_LVL11_Perfect</key>
+	<string>Misión 11: Consigue 3 estrellas</string>
+    <key>ACH_LVL11_2</key>
+    <string>El hallazgo de numerosas pinturas rupestres en cuevas ha generado la idea equivocada que nuestros antepasados vivían en ellas.
+
+Este tópico es incorrecto: se movían alrededor del territorio y sólo usaban las cuevas como refugio de manera ocasional. Las pinturas en cuevas simplemente tienen más posibilidades de preservarse después de miles de años.</string>
+ 
+    <key>TITLE_LVL11_NoBoosts</key>
+    <string>CAPAS DE INFORMACIÓN</string>
+    <key>DESCR_LVL11_NoBoosts</key>
+    <string>Misión 11: Pásala sin aumentos</string>
+    <key>ACH_LVL11_3</key>
+    <string>La estratigrafía es uno de los conceptos clave en la arqueología actual.
     
-    <!-- LEVEL 12 -->
-    <key>TITLE_LVL12_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL12_COMPLETED</key>
-    <string>Completa la misión 12</string>
-    <key>TITLE_LVL12_PERFECT</key>
-    <string>PERFECCIÓN 12</string>
-    <key>DESCR_LVL12_PERFECT</key>
-    <string>Completa la misión 12 con una puntuación de 3 estrellas</string>
+Ves en este perfil capas horizontales de distintos colores? Cada una de ellas pertenece a un período temporal dinstinto. Cuanto más profundas están, más viejas son.</string>
+
+    <!-- LVL 12 -->
+    <key>TITLE_LVL12_Accomplished</key>
+    <string>MÁS MADERA!</string>
+    <key>DESCR_LVL12_Accomplished</key>
+    <string>Misión 12: Completada</string>
+    <key>ACH_LVL12_1</key>
+    <string>La madera es uno de los recursos naturales más usados.
     
-    <!-- LEVEL 13 -->
-    <key>TITLE_LVL13_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL13_COMPLETED</key>
-    <string>Completa la misión 13</string>
-    <key>TITLE_LVL13_PERFECT</key>
-    <string>PERFECCIÓN 13</string>
-    <key>DESCR_LVL13_PERFECT</key>
-    <string>Completa la misión 13 con una puntuación de 3 estrellas</string>
+Combustible, construcción de casas, barcos...la sobreexplotación casi destruyó la mayoría de bosques europeos.
+
+Si visitas ahora mismo cualquier país europeo vas a ver más árboles que los que hubo ahí en cualquier otro momento de los últimos 2.000 años.</string>
+
+    <key>TITLE_LVL12_Perfect</key>
+    <string>EL TECHO DEL MUNDO</string>
+    <key>DESCR_LVL12_Perfect</key>
+	<string>Misión 12: Consigue 3 estrellas</string>
+    <key>ACH_LVL12_2</key>
+    <string>La mayoría de la población del Himalaya es Budista. Los practicantes de esta religión deberían quemar a sus muertos, pero dónde se supone que vas a encontrar madera a 4.000 metros de altura?
+
+Practican un ritual distinto llamado Entierro Celestial: los cuerpos se depositan en un pico, dónde son consumidos por aves carroñeros como los buitres.</string>
+
+    <key>TITLE_LVL12_NoBoosts</key>
+    <string>TIENES AGALLAS?</string>
+    <key>DESCR_LVL12_NoBoosts</key>
+    <string>Misión 12: Pásala sin aumentos</string>
+    <key>ACH_LVL12_3</key>
+    <string>A qué profundidad bajo el agua puedes llegar? Los Sama-Bajau pueden capturar un pez a 20 m. de profundidad mientras aguantan la respiración por casi 3 minutos.</string>
+
+    <!-- LVL 13 -->
+    <key>TITLE_LVL13_Accomplished</key>
+    <string>UN MUNDO AZUL</string>
+    <key>DESCR_LVL13_Accomplished</key>
+    <string>Misión 13: Completada</string>
+    <key>ACH_LVL13_1</key>
+    <string>Esta roca se llama lapislazuli. Sólo se puede encontrar en Afganistán, pero los arqueólogos la han hallado en arte dew todo el mundo. Es evidencia de comercio a larga distancia.
+
+Por ejemplo, las cejas de la famosa máscara funeral de Tutankhamon están hechas de este material.</string>
+
+    <key>TITLE_LVL13_Perfect</key>
+    <string>LA LARGA SENDA</string>
+    <key>DESCR_LVL13_Perfect</key>
+	<string>Misión 13: Consigue 3 estrellas</string>
+    <key>ACH_LVL13_2</key>
+    <string>La Ruta de la Seda es una de las redes de comercio más famosas de la Historia.
+
+Su actividad empezó hace 2.000 años, y conectó toda Eurasia, desde el Mediterráneo a China oriental. También tenía extensiones hacia África y las islas del Pacífico.</string>
+
+    <key>TITLE_LVL13_EPsLeft</key>
+    <string>DINERO FÁCIL</string>
+    <key>DESCR_LVL13_EPsLeft</key>
+    <string>Misión 13: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL13_3</key>
+    <string>El comercio se ha basado usualmente en el trueque de distintos bienes.
+
+Las monedas se usaron por primera vez hace 3.000 años. Aparecieron simultáneamente en las actuales India, Grecia y Turquía.</string>
+
+    <!-- LVL 14 -->
+    <key>TITLE_LVL14_Accomplished</key>
+    <string>EL HOMBRE DE LAS NIEVES</string>
+    <key>DESCR_LVL14_Accomplished</key>
+    <string>Misión 14: Completada</string>
+    <key>ACH_LVL14_1</key>
+    <string>Este es Ötzi. Fue asesinado hace 5.000 años en los Alpes. Gracias a las bajas temperaturas su cuerpo fue momificado de manera natural.
+
+El estudio de su cuerpo ha proporcionado una cantidad de información incalculable, incluyendo dieta, indumentaria, herramientas y tatuajes.</string>
+
+    <key>TITLE_LVL14_Perfect</key>
+    <string>HERRAMIENTAS DE LAVA</string>
+    <key>DESCR_LVL14_Perfect</key>
+	<string>Misión 14: Consigue 3 estrellas</string>
+    <key>ACH_LVL14_2</key>
+    <string>La obsidiana es uno de los materiales más valiosos de la Prehistoria.
+
+Este cristal volcánico se usó para crear objetos afilados como flechas y cuchillos.</string>
+
+    <key>TITLE_LVL14_NoBoosts</key>
+    <string>LO QUIERES?</string>
+    <key>DESCR_LVL14_NoBoosts</key>
+    <string>Misión 14: Pásala sin aumentos</string>
+    <key>ACH_LVL14_3</key>
+    <string>Los arqueólogos son capaceds de determinar el campo volcánico en el que se formó un fragmento de obsidiana.
     
-    <!-- LEVEL 14 -->
-    <key>TITLE_LVL14_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL14_COMPLETED</key>
-    <string>Completa la misión 14</string>
-    <key>TITLE_LVL14_PERFECT</key>
-    <string>PERFECCIÓN 14</string>
-    <key>DESCR_LVL14_PERFECT</key>
-    <string>Completa la misión 14 con una puntuación de 3 estrellas</string>
+Esta información es muy útil como indicador de comercio prehistórico. Se han hallado objetos de obsidiana a yacimientos situados a miles de quilómetros de su lugar de formación.</string>
+
+    <!-- LVL 15 -->
+    <key>TITLE_LVL15_Accomplished</key>
+    <string>ME PARECE</string>
+    <key>DESCR_LVL15_Accomplished</key>
+    <string>Misión 15: Completada</string>
+    <key>ACH_LVL15_1</key>
+    <string>Una confusíón usual es pensar que la evolución es direccional y progresiva.
     
-    <!-- LEVEL 15 -->
-    <key>TITLE_LVL15_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL15_COMPLETED</key>
-    <string>Completa la misión 15</string>
-    <key>TITLE_LVL15_PERFECT</key>
-    <string>PERFECCIÓN 15</string>
-    <key>DESCR_LVL15_PERFECT</key>
-    <string>Completa la misión 15 con una puntuación de 3 estrellas</string>
+Nada más alejado de la teoría real: Darwin esbozó este árbol entre sus notas, destacando las similitudes entre la vida y su estructura ramificada.</string>
+
+    <key>TITLE_LVL15_Perfect</key>
+    <string>MÚLTIPLES ORÍGENES</string>
+    <key>DESCR_LVL15_Perfect</key>
+	<string>Misión 15: Consigue 3 estrellas</string>
+    <key>ACH_LVL15_2</key>
+    <string>La domesticación de plantas y animales es uno de los mayores cambios en la historia de la especie humana.
+
+La evidencia arqueológica sugiere que este proceso se desarrolló de manera independiente al menos en 3 sitios distintos: Oriente Medio, China y África.</string>
+
+    <key>TITLE_LVL15_Discovery</key>
+    <string>ROBANDO IDEAS</string>
+    <key>DESCR_LVL15_Discovery</key>
+    <string>Misión 15: Muévete a la zona norte del bosque</string>
+    <key>ACH_LVL15_3</key>
+    <string>“No me preocupa que roben mis ideas...me preocupa que no tengan ninguna propia.”
+    Nikola Tesla
+
+Este brillante inventor es el responsable que puedas usar correr este dispositivo mediante electricidad.</string>
+    <!-- LVL 16 -->
+    <key>TITLE_LVL16_Accomplished</key>
+    <string>LOS PRIMEROS GRANJEROS</string>
+    <key>DESCR_LVL16_Accomplished</key>
+    <string>Misión 16: Completada</string>
+    <key>ACH_LVL16_1</key>
+    <string>El Neolítico es la transición entre una vida basada en caza y recolección a otra basada en el cultivo y el pastoreo.
     
-    <!-- LEVEL 16 -->
-    <key>TITLE_LVL16_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL16_COMPLETED</key>
-    <string>Completa la misión 16</string>
-    <key>TITLE_LVL16_PERFECT</key>
-    <string>PERFECCIÓN 16</string>
-    <key>DESCR_LVL16_PERFECT</key>
-    <string>Completa la misión 16 con una puntuación de 3 estrellas</string>
+Esta domesticación no sólo afectó a plantas y animales, sinó también a los humanos. Transformó su cultura, incluyendo la dieta, mobilidad y comunicación.</string>
+
+    <key>TITLE_LVL16_Perfect</key>
+    <string>TIMES ARE CHANGING</string>
+    <key>DESCR_LVL16_Perfect</key>
+	<string>Misión 16: Consigue 3 estrellas</string>
+    <key>ACH_LVL16_2</key>
+    <string>El clima cambia constantemente. Los arqueólogos han encontrado evidencias de cultivo de trigo ocurrido hace miles de años en las islas Orkney, cerca del famoso yacimiento de Skara Brae.
+
+Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin embargo, el rápido cambio climático generado por los humanos podría cambiar esto en las próximas décadas.</string>
+ 
+    <key>TITLE_LVL16_NoBoosts</key>
+    <string>KLAATU BARADA NIKTO</string>
+    <key>DESCR_LVL16_NoBoosts</key>
+    <string>Misión 16: Pásala sin aumentos</string>
+    <key>ACH_LVL16_3</key>
+    <string>Usas Mozilla Firefox? Escribe 'about:robots' en la barra de direcciones para ver un secreto bastante friki!</string>
+ 
+    <!-- LVL 17 -->
+    <key>TITLE_LVL17_Accomplished</key>
+    <string>YO, ROBOT</string>
+    <key>DESCR_LVL17_Accomplished</key>
+    <string>Misión 17: Completada</string>
+    <key>ACH_LVL17_1</key>
+    <string>Tus bots tienen un cerebro positrónico que sigue las 3 Leyes de la Robótica definidas por Isaac Asimov en 1942:
     
-    <!-- LEVEL 17 -->
-    <key>TITLE_LVL17_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL17_COMPLETED</key>
-    <string>Completa la misión 17</string>
-    <key>TITLE_LVL17_PERFECT</key>
-    <string>PERFECCIÓN 17</string>
-    <key>DESCR_LVL17_PERFECT</key>
-    <string>Completa la misión 17 con una puntuación de 3 estrellas</string>
+    1. Un robot no hará daño a un ser humano o, por inacción, permitir que un ser humano sufra daño.
+    2. Un robot debe obedecer las órdenes dadas por los seres humanos, excepto si estas órdenes entrasen en conflicto con la Primera Ley.
+    3. Un robot debe proteger su propia existencia en la medida en que esta protección no entre en conflicto con la Primera o la Segunda Ley.</string>
+
+    <key>TITLE_LVL17_Perfect</key>
+    <string>TRABAJO DIFÍCIL</string>
+    <key>DESCR_LVL17_Perfect</key>
+	<string>Misión 17: Consigue 3 estrellas</string>
+    <key>ACH_LVL17_2</key>
+    <string>Los mineros que trabajan en la isla de Java tienen probablemente el trabajo más peligroso del mundo. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
+
+    <key>TITLE_LVL17_EPsLeft</key>
+    <string>DISEÑO TONTO</string>
+    <key>DESCR_LVL17_EPsLeft</key>
+    <string>Misión 17: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL17_3</key>
+    <string>Algunas personas dicen que el Diseño Inteligente es una teoría tan buena como la Evolución para explicar la vida.
+
+Sin embargo, la Evolución es una teoría científica mientras que el Diseño Inteligente es un razonamiento religioso sin evidencia empírica. No ofrece ninguna explicación que pueda ser comprobada.</string>
     
-    <!-- LEVEL 18 -->
-    <key>TITLE_LVL18_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL18_COMPLETED</key>
-    <string>Completa la misión 18</string>
-    <key>TITLE_LVL18_PERFECT</key>
-    <string>PERFECCIÓN 18</string>
-    <key>DESCR_LVL18_PERFECT</key>
-    <string>Completa la misión 18 con una puntuación de 3 estrellas</string>
+    <!-- LVL 18 -->
+    <key>TITLE_LVL18_Accomplished</key>
+    <string>UNA VERDAD INCÓMODA</string>
+    <key>DESCR_LVL18_Accomplished</key>
+    <string>Misión 18: Completada</string>
+    <key>ACH_LVL18_1</key>
+    <string>El Panel Intergobernamental sobre el Cambio Climático (IPCC) fue creado por las Naciones Unidas para estudiar el cambio climático.
     
-    <!-- LEVEL 19 -->
-    <key>TITLE_LVL19_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL19_COMPLETED</key>
-    <string>Completa la misión 19</string>
-    <key>TITLE_LVL19_PERFECT</key>
-    <string>PERFECCIÓN 19</string>
-    <key>DESCR_LVL19_PERFECT</key>
-    <string>Completa la misión 19 con una puntuación de 3 estrellas</string>
+Ha recogido evidencia de miles de estudios para mostrar los peligrosos efectos que la actividad humana está teniendo en el planeta.</string>
+
+    <key>TITLE_LVL18_Perfect</key>
+    <string>NO ES UNA LUNA</string>
+    <key>DESCR_LVL18_Perfect</key>
+	<string>Misión 18: Consigue 3 estrellas</string>
+    <key>ACH_LVL18_2</key>
+    <string>La conspiración de los alunizajes sugieres que la misión fue grabada por el director Stanley Kubrick en la Tierra.
+De hecho este director y la NASA sólo compartieron cámaras. Gracias al modelo de cámara usado por esta agencia espacial pudo rodar algunas escenas de su película Barry Lindon tan sólo usando la luz de velas.</string>
+
+    <key>TITLE_LVL18_Discovery</key>
+    <string>CURIOSIDAD</string>
+    <key>DESCR_LVL18_Discovery</key>
+    <string>Misión 18: Llega a la península este</string>
+    <key>ACH_LVL18_3</key>
+    <string>"Soy una de essas personas que cree, como Nobel, que la humanidad sacará más cosas buenas que malas de los nuevos descubrimientos."
+            Marie Sklodowska Curie
+
+Esta científica polaca es la única persona que ha ganado 2 Premios Nobel en distintas disciplinas (Física en 1903, Química en 1911). Su genio contribuyó a mejorar nuestro conocimiento de la radioactividad.</string>
+
+    <!-- LVL 19 -->
+    <key>TITLE_LVL19_Accomplished</key>
+    <string>EN CAÍDA LIBRE</string>
+    <key>DESCR_LVL19_Accomplished</key>
+    <string>Misión 19: Completada</string>
+    <key>ACH_LVL19_1</key>
+    <string>Los Maya formaban una de las sociedades tecnológicamente más avanzadas de Mesoamérica.
+
+Su declive es uno de los misterios más apasionantes de la arqueología actual.</string>
+
+    <key>TITLE_LVL19_Perfect</key>
+    <string>LITTLE BOY</string>
+    <key>DESCR_LVL19_Perfect</key>
+	<string>Misión 19: Consigue 3 estrellas</string>
+    <key>ACH_LVL19_2</key>
+    <string>Esta bomba se llamaba Little Boy. Un bombardero de la US Air Force la lanzó sobre la ciudad japonesa de Hiroshima el 6 de agosto de 1945.
     
-    <!-- LEVEL 20 -->
-    <key>TITLE_LVL20_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL20_COMPLETED</key>
-    <string>Completa la misión 20</string>
-    <key>TITLE_LVL20_PERFECT</key>
-    <string>PERFECCIÓN 20</string>
-    <key>DESCR_LVL20_PERFECT</key>
-    <string>Completa la misión 20 con una puntuación de 3 estrellas</string>
-</dict>
+La primera bomba atómica causó miles de muertos y transformó la guerra para siempre.</string>
+    
+    <key>TITLE_LVL19_EPsLeft</key>
+    <string>FAT MAN</string>
+    <key>DESCR_LVL19_EPsLeft</key>
+    <string>Misión 19: Superarla ahorrando 10 EPs</string>
+    <key>ACH_LVL19_3</key>
+    <string>La segunda mitad del siglo XX fue caracterizada por la Guerra Fría entre los Estados Unidos y la Unión Soviética.
+    
+Durante 40 años el mundo vivió al borde de una guerra atómica que probablemente hubiera significado el fin de la especie humana.</string>
+
+    <!-- LVL 20 -->
+    <key>TITLE_LVL20_Accomplished</key>
+    <string>LA VIDA SE ABRE CAMINO</string>
+    <key>DESCR_LVL20_Accomplished</key>
+    <string>Misión 20: Completada</string>
+    <key>ACH_LVL20_1</key>
+    <string>Esta oveja se llamaba Dolly, y en 1996 fue el primer mamífero jamás clonado.
+    
+La clonación animal había sido imaginada años antes en el libro y la película Parque Jurásico, donde los dinosaurios cobraban vida de nuevo gracias a la ingeniería genética.</string>
+
+    <key>TITLE_LVL20_Perfect</key>
+    <string>TOP GAMER</string>
+    <key>DESCR_LVL20_Perfect</key>
+	<string>Misión 20: Consigue 3 estrellas</string>
+    <key>ACH_LVL20_2</key>
+    <string>“Somos polvo de estrellas que ha tomado su destino en sus propias manos.”
+            Carl Sagan
+
+Fue probablemente el mejor divulgador científico que nunca ha existido. Si no conoces tu serie de televisión sobre el Cosmos deja ahora mismo de jugar y ponte a verla!</string>
+
+    <key>TITLE_LVL20_NoBoosts</key>
+    <string>HUMANOS IROS A CASA!</string>
+    <key>DESCR_LVL20_NoBoosts</key>
+    <string>Misión 20: Pásala sin aumentos</string>
+    <key>ACH_LVL20_3</key>
+    <string>La colonización de un sitio poblado por parte de otra cultura casi siempre es un choque dramático.
+    
+El proceso fue satirizado por Ray Bradbury en sus "Crónicas Marcianas", dónde narraba la colonización humana del planeta Rojo.</string>
+
+    </dict>
 </plist>

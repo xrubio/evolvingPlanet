@@ -26,7 +26,7 @@ An exoplanet is a planet that orbits a star other than the Sun. Over 2000 exopla
     <key>DESCR_LVL1_EPsLeft</key>
     <string>Mission 1: Pass saving 10 EPs</string>
     <key>ACH_LVL1_3</key>
-    <string>Homo Sapiens are only 200.000 years old. They appeared in East Africa, and only moved out of it 100.000 years ago.
+    <string>Homo Sapiens is 200.000 years old. They appeared in East Africa, and only moved out of it 100.000 years ago.
     
 The rest of the dispersal was extremely fast: they colonized almost the entire planet in 85.000 years.</string>
 
@@ -47,7 +47,7 @@ Rosalind Franklin was one of the discoverers of the DNA structure. Her research 
     <key>ACH_LVL2_2</key>
     <string>Australopithecus, Homo Habilis or Homo Neanderthal were different species of hominins.
     
-They were quite diverse, but all of them shared being bipeds, having small teeth and big brains. Homo Sapiens is the only surviving hominin.</string>
+They were quite diverse, but all of them shared being bipeds, having small teeth and big brains. Homo Sapiens is the hominin still alife.</string>
 
     <key>TITLE_LVL2_Discovery</key>
     <string>WRONG WAY</string>
@@ -93,16 +93,16 @@ It did not increase again in Western societies until the XXth century.</string>
     <string>"Change is the principal feature of our age and literature should explore how people deal with it. The best science fiction does that, head-on."
         David Brin
 
-Speculation on the impact of technological discovery on human society is one of the basis of Science-Fiction. Some of the best examples are the novels "I, Robot" (Isaac Asimov) and "The Stars my Destination (Alfred Bester) and the movie "Blade Runner" (Ridley Scott).</string>
+Speculation on the impact of technological advances on society is one of the basis of Science-Fiction. Some of the best examples are the novels "I, Robot" (Isaac Asimov) and "The Stars my Destination (Alfred Bester) and the movie "Blade Runner" (Ridley Scott).</string>
 
     <key>TITLE_LVL4_Perfect</key>
-    <string>SPEAKING OF</string>
+    <string>SPEAKING OF THE DEVIL</string>
     <key>DESCR_LVL4_Perfect</key>
 	<string>Mission 4: Achieve 3 stars</string>
     <key>ACH_LVL4_2</key>
-    <string>Our ancestors started using tools 2 million ago. This technology was not an isolated innovation, as other cultural traits need to be present in order to learn and transmit this knowledge.
+    <string>Our ancestors started using tools 2 million ago. This technology was not an isolated innovation, as other cultural traits need to be present in order to communicate this knowledge.
     
-For this reason it is not surprising that hominins started using language during the same period.</string>
+For this reason it is not surprising that hominins started speaking during the same period.</string>
 
     <key>TITLE_LVL4_NoBoosts</key>
     <string>TECH NERD</string>
@@ -112,7 +112,7 @@ For this reason it is not surprising that hominins started using language during
     <string>"Science is the belief in the ignorance of experts."
              Richard Feynman
 
-One of the most important physicists of the XXth century</string>
+One of the most important physicists of the XXth century.</string>
         
     <!-- LVL 5 -->
     <key>TITLE_LVL5_Accomplished</key>
@@ -120,7 +120,7 @@ One of the most important physicists of the XXth century</string>
     <key>DESCR_LVL5_Accomplished</key>
     <string>Mission 5: Complete</string>
     <key>ACH_LVL5_1</key>
-    <string>The first project to connect the Atlantic and the Pacific oceans through Panama was designed in 1534 by the Emperor Charles I.
+    <string>The first project to connect the Atlantic and the Pacific oceans through Panama was ordered by the Emperor Charles I in 1534.
     
 However, technical and economical limits stopped any initiative until its construction in 1914 by the US and Panama.</string>
 
@@ -146,9 +146,8 @@ Three of the most interesting are the movie "Quest for Fire" by Jean-Jacques Ann
     <key>DESCR_LVL6_Accomplished</key>
     <string>Mission 6: Complete</string>
     <key>ACH_LVL6_1</key>
-    <string>Recent advances in biology demonstrate that part of our genetic information comes from Neanderthals.
+    <string>Advances in biology demonstrate that part of our genetic information comes from Neanderthals.
 They are not our ancestors, so this genetic share was caused by both species coexisting and interbreeding in Europe 35.000 years ago.</string>
-
 
     <key>TITLE_LVL6_Perfect</key>
     <string>BLAME YOUR COUSINS</string>
@@ -197,17 +196,17 @@ These are words from a Mongol horse rider whom was said to be "born in the saddl
     <key>DESCR_LVL8_Accomplished</key>
     <string>Mission 8: Complete</string>
     <key>ACH_LVL8_1</key>
-    <string>This huge stone heads are called Moais, and they are located in the Easter island in the Pacific ocean.
+    <string>This huge stone heads are called Moais, and they were discovered in the Easter island in the Pacific ocean.
     
-This thriving culture was part of the Polynesian people that settled this zone 1000 years ago. Overexploitation of natural resources and contact with Europeans almost destroyed the entire population.</string>
+Their builders were part of the Polynesian people that colonized this zone 1000 years ago. Overexploitation of natural resources and contact with Europeans almost destroyed the entire population.</string>
 
     <key>TITLE_LVL8_Perfect</key>
-    <string>THE NORTH</string>
+    <string>THE NORTH REMEMBERS</string>
     <key>DESCR_LVL8_Perfect</key>
 	<string>Mission 8: Achieve 3 stars</string>
     <key>ACH_LVL8_2</key>
     <string>One of the first documentaries ever made tried to explain to Western people how was hunter-gatherer life.
-Nanook of the North was filmed by Robert J. Flaherty in 1922. It explained the struggle for survival of a family of Inuit living in the Arctic under extreme conditions.</string>
+"Nanook of the North" was filmed by Robert J. Flaherty in 1922. It explained the struggle for survival of a family of Inuit living in the Arctic under extreme conditions.</string>
 
     <key>TITLE_LVL8_EPsLeft</key>
     <string>Ice and Fire</string>
@@ -258,7 +257,7 @@ He is one of the most renowned astrophysicists and science communicators.</strin
     <key>DESCR_LVL10_Perfect</key>
 	<string>Mission 10: Achieve 3 stars</string>
     <key>ACH_LVL10_2</key>
-    <string>This is the first draft of our logo! It was born in a bar, as other good ideas</string>
+    <string>This is the first draft of our logo! It was born in a bar, as other good ideas.</string>
 
     <key>TITLE_LVL10_NoBoosts</key>
     <string>DREAMS AND CITIES</string>
@@ -267,7 +266,7 @@ He is one of the most renowned astrophysicists and science communicators.</strin
     <key>ACH_LVL10_3</key>
     <string>"When we saw so many cities and villages built in the water and other great towns on dry land we were amazed (...) some of our soldiers even asked whether the things that we saw were not a dream?"
     
-These are words about Tenochtitlan, capital of the aztecs, from Bernal Díaz del Castillo, a soldier who participated in the conquer of Mexico with Hernán Cortés in 1519.</string>
+These words were written Bernal Díaz del Castillo referring to Tenochtitlan, capital of the aztecs. He was a soldier during the conquest of Mexico by Hernán Cortés in 1519.</string>
     
     <!-- LVL 11 -->
     <key>TITLE_LVL11_Accomplished</key>
@@ -275,18 +274,18 @@ These are words about Tenochtitlan, capital of the aztecs, from Bernal Díaz del
     <key>DESCR_LVL11_Accomplished</key>
     <string>Mission 11: Complete</string>
     <key>ACH_LVL11_1</key>
-    <string>Imagine that you go fishing every day, like many other people. You realize that the number of fishes is decreasing so you should stop. However, if the rest of the people will not stop, why would you be the only one starving?
+    <string>Imagine that you go fishing every day, like many other people. You realize that the number of catches is decreasing so you should stop fishing. However, if the rest of the people will not stop, why would you be the only one starving?
 
-This is called the tragedy of the commons, and it's the explanation of overexploitation. It can only be solved by the community as a whole.</string>
+This situation is called the tragedy of the commons, and it explains why overexploitation exists. It can only be solved by coordinating the whole community.</string>
 
     <key>TITLE_LVL11_Perfect</key>
     <string>CAVEMEN</string>
     <key>DESCR_LVL11_Perfect</key>
 	<string>Mission 11: Achieve 3 stars</string>
     <key>ACH_LVL11_2</key>
-    <string>The finding of several cave paintings created the wrong idea that our ancestors lived in caves.
+    <string>The finding of several cave paintings created the wrong idea that our ancestors lived inside them.
     
-This image is wrong; they moved around the territory and only used caves occasionally as a refuge. Paintings in caves have just better chance to be preserved after thousands of years.</string>
+This topic is not correct; they moved around the territory and only used caves occasionally as a refuge. Paintings in caves have just better chance to be preserved after thousands of years.</string>
  
     <key>TITLE_LVL11_NoBoosts</key>
     <string>LAYERS OF INFORMATION</string>
@@ -295,7 +294,7 @@ This image is wrong; they moved around the territory and only used caves occasio
     <key>ACH_LVL11_3</key>
     <string>Stratigraphy is one of the key concepts in current archeology.
     
-Do you see different horizontal colored layers in this cut? Each one of them is a different context or period. The deeper they go, the older they are.</string>
+Do you see different horizontal colored layers in this cut? Each one of them belongs to a different temporal period. The deeper they go, the older they are.</string>
 
     <!-- LVL 12 -->
     <key>TITLE_LVL12_Accomplished</key>
@@ -307,7 +306,7 @@ Do you see different horizontal colored layers in this cut? Each one of them is 
     
 Fuel, housing, ships...overexploitation almost destroyed the majority of European forests.
     
-If you visit a European country now you will see more trees than in any moment of the last 2000 years.</string>
+If you visit a European country now you will see more trees than in any other moment of the last 2.000 years.</string>
 
     <key>TITLE_LVL12_Perfect</key>
     <string>THE ROOF OF THE WORLD</string>
@@ -331,21 +330,21 @@ They practice a different ritual called Sky Burial: corpses are placed on a moun
     <key>DESCR_LVL13_Accomplished</key>
     <string>Mission 13: Complete</string>
     <key>ACH_LVL13_1</key>
-    <string>This rock is called lapis lazuli. It can only be mined in Afghanistan, but archaeologists have found it in art from all the world as a major evidence of long-range trade.
+    <string>This rock is called lapis lazuli. It can only be mined in Afghanistan, but archaeologists have found it in art from all over the world. This is evidence of long-range trade.
     
-For example, the famous Tutankhamon's funeral mask has lapis lazuli in its eyebrows.</string>
+For example, the eyebros of the famous Tutankhamon's funeral mask are made of this material.</string>
 
     <key>TITLE_LVL13_Perfect</key>
     <string>THE LONG WAY</string>
     <key>DESCR_LVL13_Perfect</key>
 	<string>Mission 13: Achieve 3 stars</string>
     <key>ACH_LVL13_2</key>
-    <string>The Silk Road is one of the most famous trade routes in human history.
+    <string>The Silk Road is one of the most famous trade routes in History.
     
-It started its activity 2000 years ago, and connected the whole Eurasia, from Europe to Eastern Asia. It also had extensions towards Africa and the Pacific islands.</string>
+It started its activity 2.000 years ago, and connected the whole Eurasia, from the Mediterranean to Eastern China. It also had extensions towards Africa and the Pacific islands.</string>
 
     <key>TITLE_LVL13_EPsLeft</key>
-    <string>MONEY!</string>
+    <string>EASY MONEY</string>
     <key>DESCR_LVL13_EPsLeft</key>
     <string>Mission 13: Pass saving 10 EPs</string>
     <key>ACH_LVL13_3</key>
@@ -359,7 +358,7 @@ The first coins were probably used 3000 years ago. They simultaneously appeared 
     <key>DESCR_LVL14_Accomplished</key>
     <string>Mission 14: Complete</string>
     <key>ACH_LVL14_1</key>
-    <string>This is Ötzi. He was killed 5000 years ago in the Alps, and thanks to the extreme cold temperatures his body was naturally transformed into a mummy.
+    <string>This is Ötzi. He was killed 5.000 years ago in the Alps. The cold temperatures naturally transformed his body into a mummy.
     
 The study of his body has provided an enormous amount of information, including diet, clothes, tools and tatoos.</string>
 
@@ -383,13 +382,13 @@ This is an excellent indicator of prehistoric trade. Obsidian objects have been 
 
     <!-- LVL 15 -->
     <key>TITLE_LVL15_Accomplished</key>
-    <string>I THINK....</string>
+    <string>I THINK</string>
     <key>DESCR_LVL15_Accomplished</key>
     <string>Mission 15: Complete</string>
     <key>ACH_LVL15_1</key>
     <string>A common misconception of evolution assumes that it is directional and progressive.
 
-Nothing further from the real theory: Darwin drafted this tree amongst his notes suggesting the similarities between life and a tree.</string>
+Nothing further from the real theory: Darwin drafted this tree amongst his notes highlighting the similarities between life and its branched structure.</string>
 
     <key>TITLE_LVL15_Perfect</key>
     <string>MULTIPLE ORIGINS</string>
@@ -415,7 +414,7 @@ This brilliant inventor is responsible for the fact that you are able to power t
     <key>DESCR_LVL16_Accomplished</key>
     <string>Mission 16: Complete</string>
     <key>ACH_LVL16_1</key>
-    <string>The Neolithic transition is the switch from a lifestyle based on hunting and gathering to a different one based on farming and herding.
+    <string>The Neolithic is the transition from a lifestyle based on hunting and gathering to a different one based on farming and herding.
     
 This domestication did not only affect plants and animals, but also the humans. It radically transformed their culture, including their diet, mobility and communication.</string>
 
@@ -424,16 +423,16 @@ This domestication did not only affect plants and animals, but also the humans. 
     <key>DESCR_LVL16_Perfect</key>
 	<string>Mission 16: Achieve 3 stars</string>
     <key>ACH_LVL16_2</key>
-    <string>Climate is constantly changing. Archaeologists in the Orkney islands have found evidence of wheat cultivation thousands of years ago in the famous site of Skara Brae.
+    <string>Climate is constantly changing. Archaeologists have found evidence of wheat cultivation thousands of years ago in the Orkney islands, near the famous site of Skara Brae.
     
-Temperatures fell until this was not longer possible. However, rapid climate change generated by humans could change this in the next decades.</string>
+Temperatures decreased over the years until this was not longer possible. However, rapid climate change generated by humans could change this in the next decades.</string>
  
     <key>TITLE_LVL16_NoBoosts</key>
     <string>KLAATU BARADA NIKTO</string>
     <key>DESCR_LVL16_NoBoosts</key>
     <string>Mission 16: Complete without boosts</string>
     <key>ACH_LVL16_3</key>
-    <string>Do you use Mozilla Firefox? Type 'about:robots' in the address bar to see a cool Easter Egg!</string>
+    <string>Do you use Mozilla Firefox? Type 'about:robots' in the address bar to see a geek Easter Egg!</string>
  
     <!-- LVL 17 -->
     <key>TITLE_LVL17_Accomplished</key>
@@ -445,23 +444,23 @@ Temperatures fell until this was not longer possible. However, rapid climate cha
 
     1. A robot may not injure a human being or, through inaction, allow a human being to come to harm.
     2. A robot must obey the orders given it by human beings except where such orders would conflict with the First Law.
-    3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Laws."</string>
+    3. A robot must protect its own existence as long as such protection does not conflict with the First or Second Laws.</string>
 
     <key>TITLE_LVL17_Perfect</key>
     <string>HARD WORK</string>
     <key>DESCR_LVL17_Perfect</key>
 	<string>Mission 17: Achieve 3 stars</string>
     <key>ACH_LVL17_2</key>
-    <string>Miners working in the island of Java have probably the most dangerous job in the world. They have to work insied the guts of the Lijen volcano to collect sulphur.</string>
+    <string>Miners working in the island of Java have probably the most dangerous job in the world. They have to work inside the guts of the Lijen volcano to collect sulphur.</string>
 
     <key>TITLE_LVL17_EPsLeft</key>
-    <string>UNINTELLIGENT DESIGN</string>
+    <string>SILLY DESIGN</string>
     <key>DESCR_LVL17_EPsLeft</key>
     <string>Mission 17: Pass saving 10 EPs</string>
     <key>ACH_LVL17_3</key>
-    <string>Some people say that Intelligent Design (ID) is a theory as good as Evolution to explain life.
+    <string>Some people affirm that Intelligent Design is a theory as good as Evolution to explain life.
     
-However, evolution is a scientific theory while ID is a religious argument lacking empirical support and does not offer any explanation that could be tested.</string>
+However, Evolution is a scientific theory while Intelligent Design is a religious argument lacking empirical support and does not offer any explanation that could be tested.</string>
     
     <!-- LVL 18 -->
     <key>TITLE_LVL18_Accomplished</key>
@@ -469,7 +468,7 @@ However, evolution is a scientific theory while ID is a religious argument lacki
     <key>DESCR_LVL18_Accomplished</key>
     <string>Mission 18: Complete</string>
     <key>ACH_LVL18_1</key>
-    <string>The Intergovernmental Panel on Climate Change (IPCC) was created by the United Nations to study Climate Change.
+    <string>The Intergovernmental Panel on Climate Change (IPCC) was created by the United Nations to study climate change.
     
 It has collected evidence from thousands of studies to show the dangerous effects of human activity on the planet.</string>
 
@@ -478,7 +477,7 @@ It has collected evidence from thousands of studies to show the dangerous effect
     <key>DESCR_LVL18_Perfect</key>
 	<string>Mission 18: Achieve 3 stars</string>
     <key>ACH_LVL18_2</key>
-    <string>The moon landing conspiracy suggests that the mission was filmed by directory Stanley Kubrick on Earth.
+    <string>The moon landing conspiracy suggests that the mission was filmed by director Stanley Kubrick on Earth.
 In reality this director and NASA only shared cameras. Some scenes of his movie Barry Lindon were filmed using just candlelight, thanks to a camera model owned by the space agency.</string>
 
     <key>TITLE_LVL18_Discovery</key>
@@ -493,11 +492,11 @@ This Polish scientist is the only person with 2 Nobel Prizes in different discip
 
     <!-- LVL 19 -->
     <key>TITLE_LVL19_Accomplished</key>
-    <string>COLLAPSING</string>
+    <string>FREE FALL</string>
     <key>DESCR_LVL19_Accomplished</key>
     <string>Mission 19: Complete</string>
     <key>ACH_LVL19_1</key>
-    <string>The Mayan society was one of the most technically advanced society of Mesoamerica.
+    <string>The Mayans were one of the most technically advanced society of Mesoamerica.
     
 Its decline is one of the most thrilling mysteries of current archaeology.</string>
 
@@ -527,7 +526,7 @@ During 40 years the world was on the verge of an atomic war that would probably 
     <key>ACH_LVL20_1</key>
     <string>This sheep was Dolly, and in 1996 she became the first mammal ever cloned.
     
-Animal clonation was imagined years before in the book and movie Jurassic Park, where dinosaurs lived again thanks to scientific discovery.</string>
+Animal clonation was imagined years before in the book and movie Jurassic Park, where dinosaurs lived again thanks to genetic engineering.</string>
 
     <key>TITLE_LVL20_Perfect</key>
     <string>TOP GAMER</string>
@@ -544,7 +543,9 @@ He was probably the best science communicator that has ever lived. If you don't 
     <key>DESCR_LVL20_NoBoosts</key>
     <string>Mission 20: Complete without boosts</string>
     <key>ACH_LVL20_3</key>
-    <string>The impact of human colonization of another planet was famously depicted by Ray Bradbury in his Martian Chronicles.</string>
+    <string>The colonization of a populated place by another culture is often a dramatic clash.
+    
+This process was satirized by Ray Bradbury in his "Martian Chronicles", where he described the human colonization of the Red planet.</string>
     
     </dict>
 </plist>
