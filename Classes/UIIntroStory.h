@@ -44,6 +44,8 @@ public:
     
 private:
     void createTextBoxes(void);
+    void createTextBoxes2(void);
+    void createTextBoxes3(void);
     
 };
 

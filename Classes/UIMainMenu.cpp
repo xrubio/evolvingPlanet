@@ -629,7 +629,7 @@ void UIMainMenu::createTextBoxes(void)
     this->addChild(messageLabel, 10);
     this->addChild(labelBorder, 10);
     
-    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), FadeOut::create(0.1), NULL));
-    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.5), RemoveSelf::create(), NULL));
+    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(2.1), FadeOut::create(0.2), NULL));
+    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(2.3), RemoveSelf::create(), NULL));
 }
 

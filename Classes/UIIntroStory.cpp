@@ -36,7 +36,7 @@ bool UIIntroStory::init()
     camaraHexagon->setName("camaraHexagon");
     camaraHexagon->setScale(GameData::getInstance()->getRaWConversion());
     this->addChild(camaraHexagon, 1);
-    camaraHexagon->runAction(Sequence::create(Spawn::create(Repeat::create(RotateBy::create(0.3, -270), 3), ScaleTo::create(0.9, 1.5), NULL),Spawn::create(Repeat::create(RotateBy::create(0.25, 360), 4), ScaleTo::create(1.0, 0.5), NULL), FadeOut::create(0.5), NULL));
+    camaraHexagon->runAction(Sequence::create(DelayTime::create(3.0), Spawn::create(Repeat::create(RotateBy::create(0.3, -270), 3), ScaleTo::create(0.9, 1.5), NULL),Spawn::create(Repeat::create(RotateBy::create(0.25, 360), 4), ScaleTo::create(1.0, 0.5), NULL), FadeOut::create(0.5), NULL));
     
     auto camaraFront = ProgressTimer::create(Sprite::create("misc/CamaraFront.png"));
     camaraFront->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
@@ -50,13 +50,13 @@ bool UIIntroStory::init()
     camaraFront->setMidpoint(Vec2(0, 0));
     camaraFront->setBarChangeRate(Vec2(0, 1));
     camaraFront->setType(ProgressTimer::Type::BAR);
-    camaraFront->runAction(Sequence::create(DelayTime::create(1.3), radialTimer, radialTimer2, NULL));
+    camaraFront->runAction(Sequence::create(DelayTime::create(3.0), DelayTime::create(1.3), radialTimer, radialTimer2, NULL));
     
     auto particleSmoke = ParticleSystemQuad::create("audio/CamaraParticle.plist");
     particleSmoke->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, 0.0));
     auto moveParticle = MoveTo::create(5.0, Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 4));
     this->addChild(particleSmoke, 5);
-    particleSmoke->runAction(moveParticle);
+    particleSmoke->runAction(Sequence::create(DelayTime::create(3.0), moveParticle, NULL));
     particleSmoke->setScale(GameData::getInstance()->getRaWConversion());
     
     auto camaraDoor = Sprite::create("misc/CamaraDoor.png");
@@ -67,20 +67,30 @@ bool UIIntroStory::init()
     camaraDoor->setName("camaraDoor");
     this->addChild(camaraDoor, 3);
     auto moveDoor = Spawn::create(FadeIn::create(1.5), MoveTo::create(3.0, Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height * 0.66)), NULL);
-    camaraDoor->runAction(Sequence::create(DelayTime::create(1.3), moveDoor, NULL));
+    camaraDoor->runAction(Sequence::create(DelayTime::create(3.0), DelayTime::create(1.3), moveDoor, NULL));
+    
+    auto transport = Sprite::create("misc/Transport.jpg");
+    transport->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
+    transport->setOpacity(0);
+    transport->setScale(GameData::getInstance()->getRaWConversion());
+    transport->setName("transport");
+    this->addChild(transport, 5);
+    
+    transport->runAction(Sequence::create(DelayTime::create(3.0), DelayTime::create(5.0), FadeIn::create(1.0), DelayTime::create(6.0), NULL));
     
     createTextBoxes();
+    createTextBoxes2();
+    createTextBoxes3();
     
-    this->schedule(SEL_SCHEDULE(&UIIntroStory::update), 4.0);
+    this->schedule(SEL_SCHEDULE(&UIIntroStory::update), 2.0);
     
     return true;
 }
 
 void UIIntroStory::update(float delta)
 {
-    auto * camaraFront = this->getChildByName("camaraFront");
-    auto * camaraDoor = this->getChildByName("camaraDoor");
-    if(camaraFront and camaraFront->getNumberOfRunningActions() == 0 and camaraDoor and camaraDoor->getNumberOfRunningActions()==0)
+    auto transport = this->getChildByName("transport");
+    if(transport->getNumberOfRunningActions() == 0)
     {
         auto scene = UIProgressMap::createScene();
         Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
@@ -91,7 +101,7 @@ void UIIntroStory::createTextBoxes(void)
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto messageLabel = Label::createWithTTF(LocalizedString::create("BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
-    messageLabel->setName("tutorial");
+    //messageLabel->setName("tutorial");
     messageLabel->setColor(Color3B(230, 230, 230));
     messageLabel->enableShadow();
     messageLabel->setMaxLineWidth(800);
@@ -109,7 +119,7 @@ void UIIntroStory::createTextBoxes(void)
     Vec2 end(messageLabel->getBoundingBox().origin + messageLabel->getBoundingBox().size + margin);
     
     auto labelBorder = DrawNode::create();
-    labelBorder->setName("labelBorderTutorial");
+    //labelBorder->setName("labelBorderTutorial");
     labelBorder->drawSolidRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 0.3f));
     labelBorder->drawRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
     labelBorder->setOpacity(0);
@@ -117,6 +127,74 @@ void UIIntroStory::createTextBoxes(void)
     this->addChild(messageLabel, 10);
     this->addChild(labelBorder, 10);
     
-    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), NULL));
-    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), NULL));
+    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), FadeOut::create(0.1), NULL));
+    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), RemoveSelf::create(), NULL));
+}
+
+void UIIntroStory::createTextBoxes2(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto messageLabel = Label::createWithTTF(LocalizedString::create("BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+    //messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->enableShadow();
+    messageLabel->setMaxLineWidth(800);
+    messageLabel->setOpacity(0);
+    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Vec2 position = Vec2(visibleSize.width*0.8, visibleSize.height*0.3);
+    messageLabel->setPosition(position);
+    
+    float marginWidth = 0.02f*messageLabel->getContentSize().width;
+    float marginHeight = 0.02f*messageLabel->getContentSize().height;
+    Vec2 margin(marginWidth, marginHeight);
+    
+    Vec2 origin(messageLabel->getBoundingBox().origin - margin);
+    Vec2 end(messageLabel->getBoundingBox().origin + messageLabel->getBoundingBox().size + margin);
+    
+    auto labelBorder = DrawNode::create();
+    //labelBorder->setName("labelBorderTutorial");
+    labelBorder->drawSolidRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 0.3f));
+    labelBorder->drawRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
+    labelBorder->setOpacity(0);
+    
+    this->addChild(messageLabel, 10);
+    this->addChild(labelBorder, 10);
+    
+    messageLabel->runAction(Sequence::create(DelayTime::create(5.0), Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), FadeOut::create(0.1), NULL));
+    labelBorder->runAction(Sequence::create(DelayTime::create(3.0), Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), RemoveSelf::create(), NULL));
+}
+
+void UIIntroStory::createTextBoxes3(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto messageLabel = Label::createWithTTF(LocalizedString::create("BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+    //messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->enableShadow();
+    messageLabel->setMaxLineWidth(800);
+    messageLabel->setOpacity(0);
+    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Vec2 position = Vec2(visibleSize.width*0.8, visibleSize.height*0.8);
+    messageLabel->setPosition(position);
+    
+    float marginWidth = 0.02f*messageLabel->getContentSize().width;
+    float marginHeight = 0.02f*messageLabel->getContentSize().height;
+    Vec2 margin(marginWidth, marginHeight);
+    
+    Vec2 origin(messageLabel->getBoundingBox().origin - margin);
+    Vec2 end(messageLabel->getBoundingBox().origin + messageLabel->getBoundingBox().size + margin);
+    
+    auto labelBorder = DrawNode::create();
+    //labelBorder->setName("labelBorderTutorial");
+    labelBorder->drawSolidRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 0.3f));
+    labelBorder->drawRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
+    labelBorder->setOpacity(0);
+    
+    this->addChild(messageLabel, 10);
+    this->addChild(labelBorder, 10);
+    
+    messageLabel->runAction(Sequence::create(DelayTime::create(7.0), Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), NULL));
+    labelBorder->runAction(Sequence::create(DelayTime::create(7.0), Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), NULL));
 }
