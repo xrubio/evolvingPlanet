@@ -3,7 +3,7 @@
 <plist version="1.0">
     <dict>
         <key>START</key>
-        <string>COMENÇAR</string>
+        <string>INICIAR</string>
         <key>EXIT</key>
         <string>Sortir</string>
         <key>NEW_GAME</key>
@@ -19,7 +19,7 @@
         <key>WARNING</key>
         <string>ALERTA</string>
         <key>WARNING_TEXT</key>
-        <string>COMENÇAR UNA NOVA PARTIDA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
+        <string>INICIAR UNA NOVA PARTIDA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
         <key>LEVEL</key>
         <string>MISSIÓ</string>
         <key>OPTIONS</key>
@@ -183,6 +183,26 @@ Toca el logo per conèixer més sobre SimulPast!</string>
         <string>Color dels Bots</string>
         <key>THE_END</key>
         <string>LA FI</string>
+
+        <key>ARID</key>
+        <string>ÀRID</string>
+        <key>IMPASSABLE</key>
+        <string>IMPASSABLE</string>
+        <key>MINERAL</key>
+        <string>MINERAL</string>
+        <key>WOOD</key>
+        <string>FUSTA</string>
+        <key>OBSIDIAN</key>
+        <string>OBSIDIANA</string>
+        <key>ARABLE</key>
+        <string>CULTIVABLE</string>
+        <key>FOREST</key>
+        <string>SELVA</string>
+        <key>SAVANNAH</key>
+        <string>SABANA</string>
+        <key>DESERT</key>
+        <string>DESERT</string>
+
     </dict>
 </plist>
 

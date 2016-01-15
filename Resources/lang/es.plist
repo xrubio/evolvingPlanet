@@ -183,5 +183,24 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<string>Color de los bots</string>
 	<key>THE_END</key>
 	<string>EL FIN</string>
+
+    <key>ARID</key>
+	<string>ÁRIDO</string>
+    <key>IMPASSABLE</key>
+	<string>IMPASABLE</string>
+    <key>MINERAL</key>
+	<string>MINERAL</string>
+    <key>WOOD</key>
+	<string>MADERA</string>
+    <key>OBSIDIAN</key>
+	<string>OBSIDIANA</string>
+    <key>ARABLE</key>
+	<string>CULTIVABLE</string>
+    <key>FOREST</key>
+	<string>SELVA</string>
+    <key>SAVANNAH</key>
+	<string>SABANA</string>
+    <key>DESERT</key>
+	<string>DESIERTO</string>
 </dict>
 </plist>

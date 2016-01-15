@@ -183,5 +183,24 @@ Tap the logo to know more about SimulPast!</string>
 	<string>Bot Color</string>
 	<key>THE_END</key>
 	<string>THE END</string>
+
+    <key>ARID</key>
+	<string>ARID</string>
+    <key>IMPASSABLE</key>
+	<string>IMPASSABLE</string>
+    <key>MINERAL</key>
+	<string>MINERAL</string>
+    <key>WOOD</key>
+	<string>WOOD</string>
+    <key>OBSIDIAN</key>
+	<string>OBSIDIAN</string>
+    <key>ARABLE</key>
+	<string>ARABLE</string>
+    <key>FOREST</key>
+	<string>FOREST</string>
+    <key>SAVANNAH</key>
+	<string>SAVANNAH</string>
+    <key>DESERT</key>
+	<string>DESERT</string>
 </dict>
 </plist>

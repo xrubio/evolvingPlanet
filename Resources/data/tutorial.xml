@@ -6,7 +6,7 @@
         <spot image="tutorial/tArid01" centerX="0.5" centerY="0.5"/>
     </message>
     <message id="4" x="0.5" y="0.6" lineWidth="0.5" trigger="next">
-        <spot image="tutorial/tGoalIcon" centerX="0.197" centerY="0.9"/>
+        <spot image="tutorial/tGoalIcon" centerX="0.216" centerY="0.906"/>
     </message>        
     <message id="5" x="0.5" y="0.6" lineWidth="0.5" trigger="next">
         <spot image="tutorial/tCircle" centerX="0.16" centerY="0.7"/>
@@ -23,22 +23,22 @@
         <spot image="tutorial/tEvoTrack" centerX="0.56" centerY="0.07"/>
     </message>        
     <message id="11" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusMOBILITY">
-        <spot image="tutorial/tEvoPlus" centerX="0.442" centerY="0.067"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.442" centerY="0.031"/>
     </message>
     <message id="12" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
-        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.067"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.031"/>
     </message>
     <message id="13" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">   
-        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.067"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.031"/>
     </message>
     <message id="14" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusREPRODUCTION">
-        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.067"/>
+        <spot image="tutorial/tEvoPlus" centerX="0.6225" centerY="0.031"/>
     </message>
     <message id="15" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
-        <spot  image="tutorial/tEvoPlus" centerX="0.8035" centerY="0.067"/>
+        <spot  image="tutorial/tEvoPlus" centerX="0.8035" centerY="0.031"/>
     </message>
     <message id="16" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusRESISTANCE">
-        <spot   image="tutorial/tEvoPlus" centerX="0.8035" centerY="0.067"/>
+        <spot   image="tutorial/tEvoPlus" centerX="0.8035" centerY="0.031"/>
     </message>
     <message id="17" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="timeMenu/playToggle">
         <spot image="tutorial/tPlay" centerX="0.9" centerY="0.93"/>

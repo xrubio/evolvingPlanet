@@ -76,7 +76,7 @@ En aquesta missió farem servir una eina nova.</string>
 	<key>LEVEL3M3</key>
 	<string>Els de l'equip els anomenem Augments.</string>
 	<key>LEVEL3M4</key>
-	<string>Pots gastar EvoPointsd per tal d'activar-los i incrementar temporalment un atribut.</string>
+	<string>Pots activar un Augment gastant EvoPoints per tal d'incrementar temporalment un atribut.</string>
 	<key>LEVEL3M5</key>
 	<string>El primer potencia la Reproducció. Activa'l ara.</string>
 	<key>LEVEL3M6</key>
@@ -86,7 +86,7 @@ Necessites pressionar-lo i arrastar l'àrea fins la zona en la que vulguis millo
 	<string>Els Augments tenen un període de recàrrega, així que fes-los servir amb moderació. Bona sort!</string>
 
     <key>LEVEL6M1</key>
-    <string>El primer objetiu d'aquesta missió comprova la mida del teu grup.</string>
+    <string>El primer objectiu d'aquesta missió comprova la mida del teu grup.</string>
     <key>LEVEL6M2</key>
     <string>Necessites arrivar a la mida destacada en aquest panell dins el temps assignat.</string>
 
