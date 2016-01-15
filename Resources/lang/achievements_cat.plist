@@ -2,216 +2,557 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
     <!-- LEVEL 1 -->
-    <key>TITLE_LVL1_COMPLETED</key>
-    <string>ROOKIE</string>
-    <key>DESCR_LVL1_COMPLETED</key>
-    <string>Completa la missió 1</string>
-    <key>TITLE_LVL1_PERFECT</key>
-    <string>PERFECCIÓ 1</string>
-    <key>DESCR_LVL1_PERFECT</key>
-    <string>Completa la missió 1 amb una puntuació de 3 estrelles</string>
-    <key>TITLE_LVL1_EVPOINTSLEFT</key>
-    <string>SOBRES</string>
-    <key>DESCR_LVL1_EVPOINTSLEFT</key>
-    <string>Completa la missió 1 deixant al menys 10 punts d'evolució sense fer servir</string>
+    <key>TITLE_LVL1_Accomplished</key>
+	<string>TENDRE</string>
+	<key>DESCR_LVL1_Accomplished</key>
+	<string>Missió 1: Acomplerta</string>
+    <key>ACH_LVL1_1</key>
+    <string>Els primers avantpassats dels humans van aparèixer fa 4 milions d'anys a les selves de l'Àfrica oriental.
+
+Les espècies més antigas s'anomenen Australopitecins. Ja caminaven de peu, i sembla que aquesta característica és crucial per explicar el seu èxit. Podien viure en els més diversos entorns, des de la selva a la sabana.</string>
+
+	<key>TITLE_LVL1_Perfect</key>
+	<string>ALLÀ FORA</string>
+	<key>DESCR_LVL1_Perfect</key>
+	<string>Missió 1: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL1_2</key>
+    <string>La història d'Evolving Planet es desenvolupa en un exoplaneta imaginari anomenat Kepler-1138.
+
+Un exoplaneta és un planta que orbita al voltant d'una estrella diferent del Sol. S'han descobert uns 2.000 exoplanetes, la majoria gràcies al telescopi espacial Kepler llençat per la NASA al 2009.</string>
+
+    <key>TITLE_LVL1_EPsLeft</key>
+    <string>RESERVA</string>
+    <key>DESCR_LVL1_EPsLeft</key>
+    <string>Missió 1: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL1_3</key>
+    <string>
+
+L'Homo Sapiens té uns 200.000 anys. Va aparèixer a l'Àfrica Oriental, i es va desplaçar a altres àrees fa tan sols 100.000 anys.
+
+La resta de la dispersió va ser molt més ràpida: van colonitzar gairebé tot el planeta en tan sols 85.000 anys.</string>
+
+    <!-- LVL 2 -->
+    <key>TITLE_LVL2_Accomplished</key>
+    <string>AGAFANT CONFIANÇA</string>
+    <key>DESCR_LVL2_Accomplished</key>
+    <string>Missió 2: Acomplerta</string>
+    <key>ACH_LVL2_1</key>
+    <string>"Veus la ciència com si fos una invenció humana desmoralitzant, allunyada de la vida real, i que hja de ser amagada i separada de l'existència diària. Però la ciència i la vida diària no poden i no haurien d'estar separades".
+
+Rosalind Franklin va ser part de l'equip que va descobrir l'estructura de l'ADN. El seu treball va ser indispensable per a entendre com evoluciona la vida.</string>
+
+    <key>TITLE_LVL2_Perfect</key>
+    <string>AVANTPASSATS</string>
+    <key>DESCR_LVL2_Perfect</key>
+	<string>Missió 2: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL2_2</key>
+    <string>Australopitecus, Homo Habilis o Homo Neanderthal van ser distintes espècies d'homínids.
     
-    <!-- LEVEL 2 -->
-    <key>TITLE_LVL2_COMPLETED</key>
-    <string>ACOSTUMANT-TE</string>
-    <key>DESCR_LVL2_COMPLETED</key>
-    <string>Completa la missió 2</string>
-    <key>TITLE_LVL2_PERFECT</key>
-    <string>PERFECCIÓ 2</string>
-    <key>DESCR_LVL2_PERFECT</key>
-    <string>Completa la missió 2 amb una puntuació de 3 estrelles</string>
-    <key>TITLE_LVL2_DISCOVER</key>
-    <string>CAMÍ ERRONI</string>
-    <key>DESCR_LVL2_DISCOVER</key>
-    <string>Arriba a un punt determinat del mapa</string>
+Eren força diferents, però totes elles compartien el fet de ser bípedes, tenir dentadures petites i grans cervells. L'Homo Sapiens és l'únic homínid encara viu.</string>
+
+    <key>TITLE_LVL2_Discovery</key>
+    <string>CAMÍ ERRAT</string>
+    <key>DESCR_LVL2_Discovery</key>
+    <string>Missió 2: Creua el riu</string>
+    <key>ACH_LVL2_3</key>
+    <string>Els Tubu viuen en una regió africana anomenada Ténéré, "el país del no-res". Les dones són capaces de trobar l'únic pou amb aigua en miles de quilòmetres quadrats orientant-se tant sols amb les estrelles i el moviment de les dunes.
     
-    <!-- LEVEL 3 -->
-    <key>TITLE_LVL3_COMPLETED</key>
-    <string>IMPULSAT</string>
-    <key>DESCR_LVL3_COMPLETED</key>
-    <string>Completa la missió 3</string>
-    <key>TITLE_LVL3_PERFECT</key>
-    <string>PERFECCIÓ 3</string>
-    <key>DESCR_LVL3_PERFECT</key>
-    <string>Completa la missió 3 amb una puntuació de 3 estrelles</string>
-    <key>TITLE_LVL3_NOPOWERS</key>
-    <string>LA MANERA DIFÍCIL</string>
-    <key>DESCR_LVL3_NOPOWERS</key>
-    <string>Completa la missió 3 sense fer servir poders</string>
+La cultura és una poderosa eina, i gràcies a ella poblem la superfície sencera del planeta.</string>
+
+    <!-- LVL 3 -->
+    <key>TITLE_LVL3_Accomplished</key>
+    <string>QUINA EDAT TENS?</string>
+    <key>DESCR_LVL3_Accomplished</key>
+    <string>Missió 3: Acomplerta</string>
+    <key>ACH_LVL3_1</key>
+    <string>La datació por Radiocarboni va revolucionar l'arqueologia a finals del segle XX.
+
+Aquesta tècnica permet datar restes orgàniques trobades en una excavació. Això permet als investigadors conèixer l'edat del jaciment.</string>
+
+    <key>TITLE_LVL3_Perfect</key>
+    <string>EL VIATGE</string>
+    <key>DESCR_LVL3_Perfect</key>
+	<string>Missió 3: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL3_2</key>
+    <string>El vaixel britànic HMS Beagle va salper el 1831 de Plymouth rumb a Sudamérica. Va tornar a Europa 5 anys més tard, després de circumnavegar la Terra.
+
+Entre la seva tripulació hi havia un jove anomenat Charles Darwin. Les dades recollides durant el viatge van ser primordials per a que desenvolupés la seva teoria de l'evolució per selecció natural.</string>
+
+    <key>TITLE_LVL3_EPsLeft</key>
+    <string>EL CAMÍ DIFÍCIL</string>
+    <key>DESCR_LVL3_EPsLeft</key>
+    <string>Missió 3: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL3_3</key>
+    <string>El primer embaràs entre dones de societats caçadores-recol·lectores actuals és al voltant dels 19 anys. Això és probablement similar al que passava abans de l'adopció d'estils de vida més sedentaris com l'agricultura, quan aquesta edat es va rebaixar.
+
+A les societats occidentals no va tornar a pujar fins al segle XX.</string>
     
-    <!-- LEVEL 4 -->
-    <key>TITLE_LVL4_COMPLETED</key>
-    <string>INTRODUINT TECNOLOGIA</string>
-    <key>DESCR_LVL4_COMPLETED</key>
-    <string>Completa la missió 4</string>
-    <key>TITLE_LVL4_PERFECT</key>
-    <string>PERFECCIÓ 4</string>
-    <key>DESCR_LVL4_PERFECT</key>
-    <string>Completa la missió 4 amb una puntuació de 3 estrelles</string>
+    <!-- LVL 4 -->
+    <key>TITLE_LVL4_Accomplished</key>
+    <string>TECNOLOGIA I SOCIETAT</string>
+    <key>DESCR_LVL4_Accomplished</key>
+    <string>Missió 4: Acomplerta</string>
+    <key>ACH_LVL4_1</key>
+    <string>"La principal característica del nostre temps és el canvi, i la literatura hauria d'explorar com la gent s'ajusta a ell. La millor ciència-ficció fa exactament això."
+        David Brin
+
+Una de les bases de la ciència-ficció és l'especulació sobre l'impacte dels avenços tecnològics en la societat. Alguns dels millors exemples són les novel·les "Jo, Robot" (Isaac Asimov) i "Les Estrelles el meu Destí" (Alfred Bester), o la pel·lícula "Blade Runner" (Ridley Scott).</string>
+
+    <key>TITLE_LVL4_Perfect</key>
+    <string>PARLANT DEL REI DE ROMA</string>
+    <key>DESCR_LVL4_Perfect</key>
+	<string>Missió 4: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL4_2</key>
+    <string>Els nostres avantpassats can començar a fer servir eines fa 2 milions d'anys. No va ser una innovació aïllada, ja que requeria d'altres elements culturals per tal de garantir la transmissió del coneixement.
+
+Per aquest motiu no és sorprenent que els homínids comencessin a parlar durant el mateix període.</string>
+
+    <key>TITLE_LVL4_NoBoosts</key>
+    <string>TECH NERD</string>
+    <key>DESCR_LVL4_NoBoosts</key>
+    <string>Missió 4: Supera-la sense Augments</string>
+    <key>ACH_LVL4_3</key>
+    <string>"La Ciència és la creença en la ignorància dels experts."
+             Richard Feynman
+
+Un dels físics més importants del segle XX.</string>
+        
+    <!-- LVL 5 -->
+    <key>TITLE_LVL5_Accomplished</key>
+    <string>MARXAR LLUNY</string>
+    <key>DESCR_LVL5_Accomplished</key>
+    <string>Missió 5: Acomplerta</string>
+    <key>ACH_LVL5_1</key>
+    <string>El primer projecte per a connectar l'Atlàntic i el Pacífic a través de Panamà el va encarregar l'emperador Carles I al 1534.
     
-    <!-- LEVEL 5 -->
-    <key>TITLE_LVL5_COMPLETED</key>
-    <string>FUGINT</string>
-    <key>DESCR_LVL5_COMPLETED</key>
-    <string>Completa la missió 5</string>
-    <key>TITLE_LVL5_PERFECT</key>
-    <string>PERFECCIÓ 5</string>
-    <key>DESCR_LVL5_PERFECT</key>
-    <string>Completa la missió 5 amb una puntuació de 3 estrelles</string>
+Malgrat tot, problemes tècnics i econòmics van frenar la iniciativa fins la seva construcció final al 1914 per EEUU i Panamà.</string>
+
+    <key>TITLE_LVL5_Perfect</key>
+    <string>COEXISTÈNCIA</string>
+    <key>DESCR_LVL5_Perfect</key>
+	<string>Missió 5: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL5_2</key>
+    <string>Contra més sabem dels Neandertals més ens adonem de la nostra semblança. Aquest interès no només ha generat debats científics, sinó també moltes obres de ficció.
+
+Tres de les més interessants són el film "A la Recerca del Foc" de Jean-Jacques Annaud, la novel·la històrica "El Clan de l'Ós Cavernari" de J.M. Auel i la trilogia de ciència-ficció "La Paral·laxi Neandertal" de Robert J. Sawyer.</string>
+
+    <key>TITLE_LVL5_Discovery</key>
+    <string>No ets el primer</string>
+    <key>DESCR_LVL5_Discovery</key>
+    <string>Missió 5: Arriva a la regió Nord-Est</string>
+    <key>ACH_LVL5_3</key>
+    <string>El cèlebre viatge de Cristófor Colom al 1942 no va ser el primer contacte entre Europeus i Americans. Nombroses expedicions vikingues van arribar a Amèrica del Nord durant el segle X.</string>
+
+    <!-- LVL 6 -->
+    <key>TITLE_LVL6_Accomplished</key>
+    <string>AVANTPASSAT COMÚ</string>
+    <key>DESCR_LVL6_Accomplished</key>
+    <string>Missió 6: Acomplerta</string>
+    <key>ACH_LVL6_1</key>
+    <string>Els últims avenços en biologia han demostrat que part de la nostra informació genètica prové dels Neandertals.
+
+No són els nostres avantpassats, així que aquesta compartició de gens va ser causada per la coexistència i el mestissatge entre les 2 espècies fa 35.000 anys a Europa.</string>
+
+    <key>TITLE_LVL6_Perfect</key>
+    <string>LA CULPA ÉS DELS COSINS</string>
+    <key>DESCR_LVL6_Perfect</key>
+	<string>Missió 6: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL6_2</key>
+    <string>Recerca recent suggereix que les al·lèrgies que patim a diari són produïdes per 3 gens heretats dels Neandertals a través d'hibridació.</string>
+
+    <key>TITLE_LVL6_EPsLeft</key>
+    <string>Cultura vs Natura</string>
+    <key>DESCR_LVL6_EPsLeft</key>
+    <string>Missió 6: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL6_3</key>
+    <string>La cultura no és només propietat dels humans. Simis, dofins i orques mostren complexos trets culturals com poden ser l'ús d'eines i llenguatge. Tot i aixì, la velocitat a la que nosaltres aprenem i generem noves idees ens fa força únics.</string>
+
+    <!-- LVL 7 -->
+    <key>TITLE_LVL7_Accomplished</key>
+    <string>INCOMPETENT</string>
+    <key>DESCR_LVL7_Accomplished</key>
+    <string>Missió 7: Acomplerta</string>
+    <key>ACH_LVL7_1</key>
+    <string>"La violència es l'últim refugi de l'incompetent."
+    Isaac Asimov
     
-    <!-- LEVEL 6 -->
-    <key>TITLE_LVL6_COMPLETED</key>
-    <string>INFLUENCIADOR</string>
-    <key>DESCR_LVL6_COMPLETED</key>
-    <string>Completa la missió 6</string>
-    <key>TITLE_LVL6_PERFECT</key>
-    <string>PERFECCIÓ 6</string>
-    <key>DESCR_LVL6_PERFECT</key>
-    <string>Completa la missió 6 amb una puntuació de 3 estrelles</string>
+Novel·lista, humanista, científic, professor, comunicador...Asimov és una de les ments més versàtils i brillants del segle XX. Obres com la trilogia de la "Fundació" i "Jo, Robot" han marcat la manera amb la que pensem sobre el nostre futur.</string>
+
+    <key>TITLE_LVL7_Perfect</key>
+    <string>CRIDA A LES ARMES</string>
+    <key>DESCR_LVL7_Perfect</key>
+	<string>Missió 7: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL7_2</key>
+    <string>Les primeres evidències bèl·liques están datades al voltant dels 13.000 anys. Nombroses pintures rupestres mostren escenes de combat, y els arqueòlegs també han trobat esquelets del mateix període amb puntes de fletxa incrustades.</string>
     
-    <!-- LEVEL 7 -->
-    <key>TITLE_LVL7_COMPLETED</key>
-    <string>A LES ARMES</string>
-    <key>DESCR_LVL7_COMPLETED</key>
-    <string>Completa la missió 7</string>
-    <key>TITLE_LVL7_PERFECT</key>
-    <string>PERFECCIÓ 7</string>
-    <key>DESCR_LVL7_PERFECT</key>
-    <string>Completa la missió 7 amb una puntuació de 3 estrelles</string>
+    <key>TITLE_LVL7_Discovery</key>
+    <string>EL MÓN A CAVALL</string>
+    <key>DESCR_LVL7_Discovery</key>
+    <string>Missió 7: Atravessa el pas del nord</string>
+    <key>ACH_LVL7_3</key>
+    <string>"Em sento viu quan pujo al meu cavall"
     
-    <!-- LEVEL 8 -->
-    <key>TITLE_LVL8_COMPLETED</key>
-    <string>LA TRAVESSA</string>
-    <key>DESCR_LVL8_COMPLETED</key>
-    <string>Completa la missió 8</string>
-    <key>TITLE_LVL8_PERFECT</key>
-    <string>PERFECCIÓ 8</string>
-    <key>DESCR_LVL8_PERFECT</key>
-    <string>Completa la missió 8 amb una puntuació de 3 estrelles</string>
+Aquestes són les paraules d'un genet Mongol, que segons la tradició     
+Estas son las palabras de un jinete Mongol, que según la tradición "han nascut a la sella de muntar". Els Mongols són nòmades de l'estepa, i la seva cultura està centrada al voltant del cavall.</string>
+
+    <!-- LVL 8 -->
+    <key>TITLE_LVL8_Accomplished</key>
+    <string>RAPA NUI</string>
+    <key>DESCR_LVL8_Accomplished</key>
+    <string>Missió 8: Acomplerta</string>
+    <key>ACH_LVL8_1</key>
+    <string>Aquests enormes caps de pedra s'anomenen Moais, i s'han descobert a la illa de Pasqua, a l'oceà Pacífic.
+
+Els seus constructors formaven part de la cultura polinèsia que va colonitzar aquesta zona fa 1.000 anys. La sobreexplotació i el contacte amb els Europeus va gairebé aniquilar la població.</string>
+
+    <key>TITLE_LVL8_Perfect</key>
+    <string>EL NORD RECORDA</string>
+    <key>DESCR_LVL8_Perfect</key>
+	<string>Missió 8: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL8_2</key>
+    <string>Un dels primers documentals mai fets explicava als occidentals la vida caçadora-recol·lectora.
+"Nanuk, l'esquimal" va ser filmada per Robert J. Flaherty al 1922. Narrava la lluita per la supervivència d'una família d'Innuit vivint sota les extremes condicions de l'Àrtic.</string>
+
+    <key>TITLE_LVL8_EPsLeft</key>
+    <string>Gel i Foc</string>
+    <key>DESCR_LVL8_EPsLeft</key>
+    <string>Missió 8: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL8_3</key>
+    <string>La temperatura a l'Àrtic pot baixar fins als -45 graus Celsius. Els iglús, fets de neu i gel, són l'únic motiu pel qual hi pot haver humans vivint en aquesta zona; incrementen la tempratura fins a uns confortables 16 graus.</string>
+
+    <!-- LVL 9 -->
+    <key>TITLE_LVL9_Accomplished</key>
+    <string>MUSIC IS MY RADAR</string>
+    <key>DESCR_LVL9_Accomplished</key>
+    <string>Missió 9: Acomplerta</string>
+    <key>ACH_LVL9_1</key>
+    <string>La música es va desenvolupar al mateix temps que altres expressions artístiques, com el dibuix i les joies.
+
+Aquesta flauta té 43.000 anys, i va ser trobada en una cova de l'Alemanya meridional anomenada Geisenklosterle.</string>
+
+    <key>TITLE_LVL9_Perfect</key>
+    <string>POLS AL POLS</string>
+    <key>DESCR_LVL9_Perfect</key>
+	<string>Missió 9: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL9_2</key>
+    <string>Conflicte amb els Sapiens? Canvi climàtic? Competició per recursos? os con los Sapiens? Desconeixem la causa de l'extinció Neandertal, i això ens segueix fascinant.
+
+Entendre aquest fet ens ajudaria a comprendre els perills als que ens enfrontem en l'actualitat.</string>
+
+    <key>TITLE_LVL9_NoBoosts</key>
+    <string>Molt fàcil</string>
+    <key>DESCR_LVL9_NoBoosts</key>
+    <string>Missió 9: Supera-la sense Augments</string>
+    <key>ACH_LVL9_3</key>
+    <string>Alguns dels trebalaldors que surten en aquesta famosa foto són Indis Mohawk. A finals del segle XIX eren treballadors molt preciats, ja que no tenien por a treballar a grans altures.</string>
+
+    <!-- LVL 10 -->
+    <key>TITLE_LVL10_Accomplished</key>
+    <string>A MIG CAMÍ</string>
+    <key>DESCR_LVL10_Accomplished</key>
+    <string>Missió 10: Acomplerta</string>
+    <key>ACH_LVL10_1</key>
+    <string>“La cosa bona de la ciència és que és certa, tant si creus en ella com si no.”
+            Neil deGrasse Tyson
+
+És un dels més famosos astrofísics i divulgadors de la Ciència.</string>
+
+    <key>TITLE_LVL10_Perfect</key>
+    <string>Una torrada?</string>
+    <key>DESCR_LVL10_Perfect</key>
+	<string>Missió 10: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL10_2</key>
+    <string>Aquest és el primer esbós del nostre logo! Va sorgir en un bar, com tantes altres coses bones.</string>
+
+    <key>TITLE_LVL10_NoBoosts</key>
+    <string>DE SOMNIS I CIUTATS</string>
+    <key>DESCR_LVL10_NoBoosts</key>
+    <string>Missió 10: Supera-la sense Augments</string>
+    <key>ACH_LVL10_3</key>
+    <string>"Quan vam veure tantes ciutats i pobles construïts a l'aigua i a terra ens vam meravellar (...) alguns dels nostres soldats van arribar a preguntar-se si les coses que estàvem veient eren un somni."
+   
+Aquestes són les paraules de Bernal Díaz del Castillo sobre Tenochtitklan, capital dels azteques. Va participar com a soldat en la conquesta de Mèxic per Hernàn Cortés al 1519.</string>
     
-    <!-- LEVEL 9 -->
-    <key>TITLE_LVL9_COMPLETED</key>
-    <string>UNINT FORCES</string>
-    <key>DESCR_LVL9_COMPLETED</key>
-    <string>Completa la missió 9</string>
-    <key>TITLE_LVL9_PERFECT</key>
-    <string>PERFECCIÓ 9</string>
-    <key>DESCR_LVL9_PERFECT</key>
-    <string>Completa la missió 9 amb una puntuació de 3 estrelles</string>
+    <!-- LVL 11 -->
+    <key>TITLE_LVL11_Accomplished</key>
+    <string>UN TRAGEDIA COMUNA</string>
+    <key>DESCR_LVL11_Accomplished</key>
+    <string>Missió 11: Acomplerta</string>
+    <key>ACH_LVL11_1</key>
+    <string>Imagina que ets un pescador a una vila marinera. Te n'adones que el número de captures va baixant, així que convindria no pescar durant un temps. El problema és que la resta de pescadors no paren, així que per què hauries tu de ser l'únic passant gana?
+
+Aquesta situació s'anomena tragèdia dels comuns, i explica per què existeix la sobreexplotació. Només es pot evitar coordinant a tota la comunitat.</string>
+
+    <key>TITLE_LVL11_Perfect</key>
+    <string>HOMBRES DE LAS CAVERNAS</string>
+    <key>DESCR_LVL11_Perfect</key>
+	<string>Missió 11: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL11_2</key>
+    <string>La descoberta de nombroses pintures rupestres en covas ha generat la idea equivocada que els nostres avantpassats vivien en elles.
+
+Aquest tòpic és incorrecte: es movien al voltant del territori, i només feien servir les coves com a refugi de manera ocasional. Les pintures en cova simplement tenen més possibilitats de conservar-se després de milers d'anys.</string>
+ 
+    <key>TITLE_LVL11_NoBoosts</key>
+    <string>CAPES D'INFORMACIÓ</string>
+    <key>DESCR_LVL11_NoBoosts</key>
+    <string>Missió 11: Supera-la sense Augments</string>
+    <key>ACH_LVL11_3</key>
+    <string>L'estratigrafía és un dels conceptes claus en l'arqueologia actual.
+
+Veus en aquest perfil capes horitzontals de diferents colors? Cadascuna d'elles ens parla d'un període temporal diferent. Contra més profunditat tenen, més antigues són.</string>
+
+    <!-- LVL 12 -->
+    <key>TITLE_LVL12_Accomplished</key>
+    <string>MÉS FUSTA!</string>
+    <key>DESCR_LVL12_Accomplished</key>
+    <string>Missió 12: Acomplerta</string>
+    <key>ACH_LVL12_1</key>
+    <string>La fusta és un dels recursos naturals més emprats.
+
+Combustible, construcció de casas, vaixells...la sobreexplotació va gairebé destruïr la majoria de boscos europeus.
+
+Si visites ara mateix qualsevol país europeu veuràs més arbres que els que hi va haver allà en qualsevol altre moment dels últims 2.000 anys</string>
+
+    <key>TITLE_LVL12_Perfect</key>
+    <string>EL SOSTRE DEL MÓN</string>
+    <key>DESCR_LVL12_Perfect</key>
+	<string>Missió 12: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL12_2</key>
+    <string>La majoria de la població de l'Himalàia és Budista. Els practicants d'aquesta religió haurien de cremar els seus morts, però a on pots trobar fusta si vius a 4.000 metres d'alçada?
+
+Practiquen un ritual diferent anomenat Enterrament Celestial: els cossos són dipositats en un cim, a on són consumits per aus carronyaires com els voltors.</string>
+
+    <key>TITLE_LVL12_NoBoosts</key>
+    <string>TENS GANYES?</string>
+    <key>DESCR_LVL12_NoBoosts</key>
+    <string>Missió 12: Supera-la sense Augments</string>
+    <key>ACH_LVL12_3</key>
+    <string>A quina profunditat pots arribar sota l'aigua? Els Sama-Bajau poden capturar un peix a 20 m. de profunditat mentre aguanten la respiració gairebé 3 minuts seguits.</string>
+
+    <!-- LVL 13 -->
+    <key>TITLE_LVL13_Accomplished</key>
+    <string>UN MÓN BLAU</string>
+    <key>DESCR_LVL13_Accomplished</key>
+    <string>Missió 13: Acomplerta</string>
+    <key>ACH_LVL13_1</key>
+    <string>Aquesta roca s'anomena lapislàtzuli. Només es pot trobar l'Afganistan, però ha aparegut en jaciments arqueològics de tot el món. És evidència de comerç a llarga distància.
+
+Per exemple, les celles de la famosa màscara de Tutankhamon estan fetes d'aquest material.</string>
+
+    <key>TITLE_LVL13_Perfect</key>
+    <string>LA LLARGA MARXA</string>
+    <key>DESCR_LVL13_Perfect</key>
+	<string>Missió 13: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL13_2</key>
+    <string>La Ruta de la Seda és una de les xarxes comercials més famoses de la Història.
+
+La seva activitat va començar fa 2.000 anys, i va connectar tota Euràsia, des del Mediterrani a la Xina oriental. També va tenir extensions cap a Àfrica i les illes del Pacífic.</string>
+
+    <key>TITLE_LVL13_EPsLeft</key>
+    <string>DINER FÀCIL</string>
+    <key>DESCR_LVL13_EPsLeft</key>
+    <string>Missió 13: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL13_3</key>
+    <string>El comerç s'ha basat normalment en la barata entre diferents béns.
+
+Les monedes es van fer servir per primer cop fa 3.000 anys. Van aparèixer simultàniament a les actuals Índia, Grècia i Turquia.</string>
+
+    <!-- LVL 14 -->
+    <key>TITLE_LVL14_Accomplished</key>
+    <string>EL HOMBRE DE LAS NIEVES</string>
+    <key>DESCR_LVL14_Accomplished</key>
+    <string>Missió 14: Acomplerta</string>
+    <key>ACH_LVL14_1</key>
+    <string>Este es Ötzi. Fue asesinado hace 5.000 años en los Alpes. Gracias a las bajas temperaturas su cuerpo fue momificado de manera natural.
+
+El estudio de su cuerpo ha proporcionado una cantidad de información incalculable, incluyendo dieta, indumentaria, herramientas y tatuajes.</string>
+
+    <key>TITLE_LVL14_Perfect</key>
+    <string>HERRAMIENTAS DE LAVA</string>
+    <key>DESCR_LVL14_Perfect</key>
+	<string>Missió 14: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL14_2</key>
+    <string>La obsidiana es uno de los materiales más valiosos de la Prehistoria.
+
+Este cristal volcánico se usó para crear objetos afilados como flechas y cuchillos.</string>
+
+    <key>TITLE_LVL14_NoBoosts</key>
+    <string>LO QUIERES?</string>
+    <key>DESCR_LVL14_NoBoosts</key>
+    <string>Missió 14: Supera-la sense Augments</string>
+    <key>ACH_LVL14_3</key>
+    <string>Los arqueólogos son capaceds de determinar el campo volcánico en el que se formó un fragmento de obsidiana.
     
-    <!-- LEVEL 10 -->
-    <key>TITLE_LVL10_COMPLETED</key>
-    <string>TROBA LA MANERA</string>
-    <key>DESCR_LVL10_COMPLETED</key>
-    <string>Completa la missió 10</string>
-    <key>TITLE_LVL10_PERFECT</key>
-    <string>PERFECCIÓ 10</string>
-    <key>DESCR_LVL10_PERFECT</key>
-    <string>Completa la missió 10 amb una puntuació de 3 estrelles</string>
+Esta información es muy útil como indicador de comercio prehistórico. Se han hallado objetos de obsidiana a yacimientos situados a miles de quilómetros de su lugar de formación.</string>
+
+    <!-- LVL 15 -->
+    <key>TITLE_LVL15_Accomplished</key>
+    <string>ME PARECE</string>
+    <key>DESCR_LVL15_Accomplished</key>
+    <string>Missió 15: Acomplerta</string>
+    <key>ACH_LVL15_1</key>
+    <string>Una confusíón usual es pensar que la evolución es direccional y progresiva.
     
-    <!-- LEVEL 11 -->
-    <key>TITLE_LVL11_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL11_COMPLETED</key>
-    <string>Completa la missió 11</string>
-    <key>TITLE_LVL11_PERFECT</key>
-    <string>PERFECCIÓ 11</string>
-    <key>DESCR_LVL11_PERFECT</key>
-    <string>Completa la missió 11 amb una puntuació de 3 estrelles</string>
+Nada más alejado de la teoría real: Darwin esbozó este árbol entre sus notas, destacando las similitudes entre la vida y su estructura ramificada.</string>
+
+    <key>TITLE_LVL15_Perfect</key>
+    <string>MÚLTIPLES ORÍGENES</string>
+    <key>DESCR_LVL15_Perfect</key>
+	<string>Missió 15: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL15_2</key>
+    <string>La domesticación de plantas y animales es uno de los mayores cambios en la historia de la especie humana.
+
+La evidencia arqueológica sugiere que este proceso se desarrolló de manera independiente al menos en 3 sitios distintos: Oriente Medio, China y África.</string>
+
+    <key>TITLE_LVL15_Discovery</key>
+    <string>ROBANDO IDEAS</string>
+    <key>DESCR_LVL15_Discovery</key>
+    <string>Missió 15: Mou-te a la zona nord del bosc</string>
+    <key>ACH_LVL15_3</key>
+    <string>“No me preocupa que roben mis ideas...me preocupa que no tengan ninguna propia.”
+    Nikola Tesla
+
+Este brillante inventor es el responsable que puedas usar correr este dispositivo mediante electricidad.</string>
+    <!-- LVL 16 -->
+    <key>TITLE_LVL16_Accomplished</key>
+    <string>LOS PRIMEROS GRANJEROS</string>
+    <key>DESCR_LVL16_Accomplished</key>
+    <string>Missió 16: Acomplerta</string>
+    <key>ACH_LVL16_1</key>
+    <string>El Neolítico es la transición entre una vida basada en caza y recolección a otra basada en el cultivo y el pastoreo.
     
-    <!-- LEVEL 12 -->
-    <key>TITLE_LVL12_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL12_COMPLETED</key>
-    <string>Completa la missió 12</string>
-    <key>TITLE_LVL12_PERFECT</key>
-    <string>PERFECCIÓ 12</string>
-    <key>DESCR_LVL12_PERFECT</key>
-    <string>Completa la missió 12 amb una puntuació de 3 estrelles</string>
+Esta domesticación no sólo afectó a plantas y animales, sinó también a los humanos. Transformó su cultura, incluyendo dieta, movilidad y comunicación.</string>
+
+    <key>TITLE_LVL16_Perfect</key>
+    <string>TIMES ARE CHANGING</string>
+    <key>DESCR_LVL16_Perfect</key>
+	<string>Missió 16: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL16_2</key>
+    <string>El clima cambia constantemente. Los arqueólogos han encontrado evidencias de cultivo de trigo ocurrido hace miles de años en las islas Orkney, cerca del famoso yacimiento de Skara Brae.
+
+Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin embargo, el rápido cambio climático generado por los humanos podría cambiar esto en las próximas décadas.</string>
+ 
+    <key>TITLE_LVL16_NoBoosts</key>
+    <string>KLAATU BARADA NIKTO</string>
+    <key>DESCR_LVL16_NoBoosts</key>
+    <string>Missió 16: Supera-la sense Augments</string>
+    <key>ACH_LVL16_3</key>
+    <string>Usas Mozilla Firefox? Escribe 'about:robots' en la barra de direcciones para ver un secreto bastante friki!</string>
+ 
+    <!-- LVL 17 -->
+    <key>TITLE_LVL17_Accomplished</key>
+    <string>YO, ROBOT</string>
+    <key>DESCR_LVL17_Accomplished</key>
+    <string>Missió 17: Acomplerta</string>
+    <key>ACH_LVL17_1</key>
+    <string>Tus bots tienen un cerebro positrónico que sigue las 3 Leyes de la Robótica definidas por Isaac Asimov en 1942:
     
-    <!-- LEVEL 13 -->
-    <key>TITLE_LVL13_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL13_COMPLETED</key>
-    <string>Completa la missió 13</string>
-    <key>TITLE_LVL13_PERFECT</key>
-    <string>PERFECCIÓ 13</string>
-    <key>DESCR_LVL13_PERFECT</key>
-    <string>Completa la missió 13 amb una puntuació de 3 estrelles</string>
+    1. Un robot no hará daño a un ser humano o, por inacción, permitir que un ser humano sufra daño.
+    2. Un robot debe obedecer las órdenes dadas por los seres humanos, excepto si estas órdenes entrasen en conflicto con la Primera Ley.
+    3. Un robot debe proteger su propia existencia en la medida en que esta protección no entre en conflicto con la Primera o la Segunda Ley.</string>
+
+    <key>TITLE_LVL17_Perfect</key>
+    <string>TRABAJO DIFÍCIL</string>
+    <key>DESCR_LVL17_Perfect</key>
+	<string>Missió 17: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL17_2</key>
+    <string>Los mineros que trabajan en la isla de Java tienen probablemente el trabajo más peligroso del mundo. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
+
+    <key>TITLE_LVL17_EPsLeft</key>
+    <string>DISEÑO TONTO</string>
+    <key>DESCR_LVL17_EPsLeft</key>
+    <string>Missió 17: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL17_3</key>
+    <string>Algunas personas dicen que el Diseño Inteligente es una teoría tan buena como la Evolución para explicar la vida.
+
+Sin embargo, la Evolución es una teoría científica mientras que el Diseño Inteligente es un razonamiento religioso sin evidencia empírica. No ofrece ninguna explicación que pueda ser comprobada.</string>
     
-    <!-- LEVEL 14 -->
-    <key>TITLE_LVL14_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL14_COMPLETED</key>
-    <string>Completa la missió 14</string>
-    <key>TITLE_LVL14_PERFECT</key>
-    <string>PERFECCIÓ 14</string>
-    <key>DESCR_LVL14_PERFECT</key>
-    <string>Completa la missió 14 amb una puntuació de 3 estrelles</string>
+    <!-- LVL 18 -->
+    <key>TITLE_LVL18_Accomplished</key>
+    <string>UNA VERDAD INCÓMODA</string>
+    <key>DESCR_LVL18_Accomplished</key>
+    <string>Missió 18: Acomplerta</string>
+    <key>ACH_LVL18_1</key>
+    <string>El Panel Intergobernamental sobre el Cambio Climático (IPCC) fue creado por las Naciones Unidas para estudiar el cambio climático.
     
-    <!-- LEVEL 15 -->
-    <key>TITLE_LVL15_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL15_COMPLETED</key>
-    <string>Completa la missió 15</string>
-    <key>TITLE_LVL15_PERFECT</key>
-    <string>PERFECCIÓ 15</string>
-    <key>DESCR_LVL15_PERFECT</key>
-    <string>Completa la missió 15 amb una puntuació de 3 estrelles</string>
+Ha recogido evidencia de miles de estudios para mostrar los peligrosos efectos que la actividad humana está teniendo en el planeta.</string>
+
+    <key>TITLE_LVL18_Perfect</key>
+    <string>NO ES UNA LUNA</string>
+    <key>DESCR_LVL18_Perfect</key>
+	<string>Missió 18: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL18_2</key>
+    <string>La conspiración de los alunizajes sugieres que la misión fue grabada por el director Stanley Kubrick en la Tierra.
+De hecho este director y la NASA sólo compartieron cámaras. Gracias al modelo de cámara usado por esta agencia espacial pudo rodar algunas escenas de su película Barry Lindon tan sólo usando la luz de velas.</string>
+
+    <key>TITLE_LVL18_Discovery</key>
+    <string>CURIOSIDAD</string>
+    <key>DESCR_LVL18_Discovery</key>
+    <string>Missió 18: Arriba a la península est</string>
+    <key>ACH_LVL18_3</key>
+    <string>"Soy una de essas personas que cree, como Nobel, que la humanidad sacará más cosas buenas que malas de los nuevos descubrimientos."
+            Marie Sklodowska Curie
+
+Esta científica polaca es la única persona que ha ganado 2 Premios Nobel en distintas disciplinas (Física en 1903, Química en 1911). Su genio contribuyó a mejorar nuestro conocimiento de la radioactividad.</string>
+
+    <!-- LVL 19 -->
+    <key>TITLE_LVL19_Accomplished</key>
+    <string>EN CAÍDA LIBRE</string>
+    <key>DESCR_LVL19_Accomplished</key>
+    <string>Missió 19: Acomplerta</string>
+    <key>ACH_LVL19_1</key>
+    <string>Los Maya formaban una de las sociedades tecnológicamente más avanzadas de Mesoamérica.
+
+Su declive es uno de los misterios más apasionantes de la arqueología actual.</string>
+
+    <key>TITLE_LVL19_Perfect</key>
+    <string>LITTLE BOY</string>
+    <key>DESCR_LVL19_Perfect</key>
+	<string>Missió 19: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL19_2</key>
+    <string>Esta bomba se llamaba Little Boy. Un bombardero de la US Air Force la lanzó sobre la ciudad japonesa de Hiroshima el 6 de agosto de 1945.
     
-    <!-- LEVEL 16 -->
-    <key>TITLE_LVL16_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL16_COMPLETED</key>
-    <string>Completa la missió 16</string>
-    <key>TITLE_LVL16_PERFECT</key>
-    <string>PERFECCIÓ 16</string>
-    <key>DESCR_LVL16_PERFECT</key>
-    <string>Completa la missió 16 amb una puntuació de 3 estrelles</string>
+La primera bomba atómica causó miles de muertos y transformó la guerra para siempre.</string>
     
-    <!-- LEVEL 17 -->
-    <key>TITLE_LVL17_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL17_COMPLETED</key>
-    <string>Completa la missió 17</string>
-    <key>TITLE_LVL17_PERFECT</key>
-    <string>PERFECCIÓ 17</string>
-    <key>DESCR_LVL17_PERFECT</key>
-    <string>Completa la missió 17 amb una puntuació de 3 estrelles</string>
+    <key>TITLE_LVL19_EPsLeft</key>
+    <string>FAT MAN</string>
+    <key>DESCR_LVL19_EPsLeft</key>
+    <string>Missió 19: Passar-la estalviant 10 EPs</string>
+    <key>ACH_LVL19_3</key>
+    <string>La segunda mitad del siglo XX fue caracterizada por la Guerra Fría entre los Estados Unidos y la Unión Soviética.
     
-    <!-- LEVEL 18 -->
-    <key>TITLE_LVL18_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL18_COMPLETED</key>
-    <string>Completa la missió 18</string>
-    <key>TITLE_LVL18_PERFECT</key>
-    <string>PERFECCIÓ 18</string>
-    <key>DESCR_LVL18_PERFECT</key>
-    <string>Completa la missió 18 amb una puntuació de 3 estrelles</string>
+Durante 40 años el mundo vivió al borde de una guerra atómica que probablemente hubiera significado el fin de la especie humana.</string>
+
+    <!-- LVL 20 -->
+    <key>TITLE_LVL20_Accomplished</key>
+    <string>LA VIDA SE ABRE CAMINO</string>
+    <key>DESCR_LVL20_Accomplished</key>
+    <string>Missió 20: Acomplerta</string>
+    <key>ACH_LVL20_1</key>
+    <string>Esta oveja se llamaba Dolly, y en 1996 fue el primer mamífero jamás clonado.
     
-    <!-- LEVEL 19 -->
-    <key>TITLE_LVL19_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL19_COMPLETED</key>
-    <string>Completa la missió 19</string>
-    <key>TITLE_LVL19_PERFECT</key>
-    <string>PERFECCIÓ 19</string>
-    <key>DESCR_LVL19_PERFECT</key>
-    <string>Completa la missió 19 amb una puntuació de 3 estrelles</string>
+La clonación animal había sido imaginada años antes en el libro y la película Parque Jurásico, donde los dinosaurios cobraban vida de nuevo gracias a la ingeniería genética.</string>
+
+    <key>TITLE_LVL20_Perfect</key>
+    <string>TOP GAMER</string>
+    <key>DESCR_LVL20_Perfect</key>
+	<string>Missió 20: Aconsegueix 3 estrelles</string>
+    <key>ACH_LVL20_2</key>
+    <string>“Somos polvo de estrellas que ha tomado su destino en sus propias manos.”
+            Carl Sagan
+
+Fue probablemente el mejor divulgador científico que nunca ha existido. Si no conoces tu serie de televisión sobre el Cosmos deja ahora mismo de jugar y ponte a verla!</string>
+
+    <key>TITLE_LVL20_NoBoosts</key>
+    <string>HUMANOS IROS A CASA!</string>
+    <key>DESCR_LVL20_NoBoosts</key>
+    <string>Missió 20: Supera-la sense Augments</string>
+    <key>ACH_LVL20_3</key>
+    <string>La colonización de un sitio poblado por parte de otra cultura casi siempre es un choque dramático.
     
-    <!-- LEVEL 20 -->
-    <key>TITLE_LVL20_COMPLETED</key>
-    <string></string>
-    <key>DESCR_LVL20_COMPLETED</key>
-    <string>Completa la missió 20</string>
-    <key>TITLE_LVL20_PERFECT</key>
-    <string>PERFECCIÓ 20</string>
-    <key>DESCR_LVL20_PERFECT</key>
-    <string>Completa la missió 20 amb una puntuació de 3 estrelles</string>
+El proceso fue satirizado por Ray Bradbury en sus "Crónicas Marcianas", dónde narraba la colonización humana del planeta Rojo.</string>
 </dict>
 </plist>
+
