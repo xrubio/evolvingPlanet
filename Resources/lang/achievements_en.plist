@@ -19,7 +19,7 @@ The oldest species were called Australopithecines. They already walked in two le
     <key>ACH_LVL1_2</key>
     <string>Evolving Planet story unfolds in an imaginary exoplanet called Kepler-1138.
 
-An exoplanet is a planet that orbits a star other than the Sun. Over 2000 exoplanets have been discovered, most of them by the Kepler space telescope since its launch by NASA in 2009.</string>
+An exoplanet is a planet that orbits a star other than the Sun. Over 2.000 exoplanets have been discovered, most of them by the Kepler space telescope since its launch by NASA in 2009.</string>
 
     <key>TITLE_LVL1_EPsLeft</key>
     <string>LEFTOVERS</string>
@@ -54,7 +54,7 @@ They were quite diverse, but all of them shared being bipeds, having small teeth
     <key>DESCR_LVL2_Discovery</key>
     <string>Mission 2: Move through the river</string>
     <key>ACH_LVL2_3</key>
-    <string>The Tubu live in an African region called Ténéré, the country of emptiness. The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.
+    <string>The Tubu live in an African region called Ténéré, "the country of emptiness". The women are able to find the only water well in thousands of squared kilometers with the only orientation of dune movement and the stars.
 Culture is a powerful tool, and thanks to it we populate the entire surface of the planet.</string>
 
     <!-- LVL 3 -->
@@ -142,7 +142,7 @@ Three of the most interesting are the movie "Quest for Fire" by Jean-Jacques Ann
 
     <!-- LVL 6 -->
     <key>TITLE_LVL6_Accomplished</key>
-    <string>COMMON ANCESTOR</string>
+    <string>SAME PARENTS</string>
     <key>DESCR_LVL6_Accomplished</key>
     <string>Mission 6: Complete</string>
     <key>ACH_LVL6_1</key>
@@ -198,7 +198,7 @@ These are words from a Mongol horse rider whom was said to be "born in the saddl
     <key>ACH_LVL8_1</key>
     <string>This huge stone heads are called Moais, and they were discovered in the Easter island in the Pacific ocean.
     
-Their builders were part of the Polynesian people that colonized this zone 1000 years ago. Overexploitation of natural resources and contact with Europeans almost destroyed the entire population.</string>
+Their builders were part of the Polynesian people that colonized this zone 1.000 years ago. Overexploitation and contact with Europeans almost anihilated the population.</string>
 
     <key>TITLE_LVL8_Perfect</key>
     <string>THE NORTH REMEMBERS</string>
@@ -274,7 +274,7 @@ These words were written Bernal Díaz del Castillo referring to Tenochtitlan, ca
     <key>DESCR_LVL11_Accomplished</key>
     <string>Mission 11: Complete</string>
     <key>ACH_LVL11_1</key>
-    <string>Imagine that you go fishing every day, like many other people. You realize that the number of catches is decreasing so you should stop fishing. However, if the rest of the people will not stop, why would you be the only one starving?
+    <string>Imagine that you are a fisher in a seaside town. You realize that the number of catches is decreasing so you should stop fishing for a while. However, if the rest of the people will not stop, why would you be the only one starving?
 
 This situation is called the tragedy of the commons, and it explains why overexploitation exists. It can only be solved by coordinating the whole community.</string>
 

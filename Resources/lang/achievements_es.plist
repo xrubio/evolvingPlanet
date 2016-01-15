@@ -8,9 +8,9 @@
 	<key>DESCR_LVL1_Accomplished</key>
 	<string>Misión 1: Completada</string>
     <key>ACH_LVL1_1</key>
-    <string>Los primeros ancestros de los humanos aparecieron hace 4 millones de años en las selvas de África Oriental.
+    <string>Los primeros antepasados de los humanos aparecieron hace 4 millones de años en las selvas de África Oriental.
 
-Las especies más viejas se llaman Australopitecinos. Ya caminaban erguidos, y parece que esta característica es crucial para explicar su éxito. Vivieron en los más diversos entornos, desde selvas a la savana.</string>
+Las especies más antiguas se llaman Australopitecinos. Ya caminaban erguidos, y parece que esta característica es crucial para explicar su éxito. Vivieron en los más diversos entornos, desde la selva a la sabana.</string>
 
 	<key>TITLE_LVL1_Perfect</key>
 	<string>AHÍ FUERA</string>
@@ -19,7 +19,7 @@ Las especies más viejas se llaman Australopitecinos. Ya caminaban erguidos, y p
     <key>ACH_LVL1_2</key>
     <string>La historia de Evolving Planet se desarrolla en un exoplaneta imaginario llamado Kepler-1138.
 
-Un exoplaneta es un planeta que orbita alrededor de una estrella distinta del Sol. Se han descubierto unos 2000 exoplanetas, la mayoría gracias al telescopio espacial Kepler que fue lanzado por la Nasa en 2009.</string>
+Un exoplaneta es un planeta que orbita alrededor de una estrella distinta del Sol. Se han descubierto unos 2.000 exoplanetas, la mayoría gracias al telescopio espacial Kepler que fue lanzado por la Nasa en 2009.</string>
 
     <key>TITLE_LVL1_EPsLeft</key>
     <string>RESERVA</string>
@@ -43,20 +43,20 @@ El resto de la dispersión fue muy rápido: colonizaron casi todo el planeta en 
 Rosalind Franklin fue parte del equipo que descubrió la estructura del ADN. Su trabajo fue crucial para entender cómo evoluciona la vida.</string>
 
     <key>TITLE_LVL2_Perfect</key>
-    <string>ANCESTROS</string>
+    <string>ANTEPASADOS</string>
     <key>DESCR_LVL2_Perfect</key>
 	<string>Misión 2: Consigue 3 estrellas</string>
     <key>ACH_LVL2_2</key>
-    <string>Australopitecus, Homo Habilis o Homo Neanderthal son distintas especies de homínidos.
+    <string>Australopitecus, Homo Habilis o Homo Neanderthal fueron distintas especies de homínidos.
     
-Eran muy distintos, pero todos ellos compartían el hecho de ser bípedos, tener dentaduras pequeñas y grandes cerebros. El Homo Sapiens es el único homínido aún vivo.</string>
+Eran muy diferentes, pero todas ellas compartían el hecho de ser bípedos, tener dentaduras pequeñas y grandes cerebros. El Homo Sapiens es el único homínido aún vivo.</string>
 
     <key>TITLE_LVL2_Discovery</key>
     <string>CAMINO EQUIVOCADO</string>
     <key>DESCR_LVL2_Discovery</key>
     <string>Misión 2: Cruza el río</string>
     <key>ACH_LVL2_3</key>
-    <string>Los Tubu viven en una región africana llamada Ténéré, el país de la nada. Las mujeres son capaceds de encontrar el único pozo de agua en miles de quilómetros cuadrados tan sólo orientándose a partir de las estrellas y los movimientos de las dunas.
+    <string>Los Tubu viven en una región africana llamada Ténéré, "el país de la nada". Las mujeres son capaces de encontrar el único pozo de agua en miles de quilómetros cuadrados tan sólo orientándose a partir de las estrellas y los movimientos de las dunas.
 
 La cultura es una herramienta poderosa, y gracias a ella poblamos la superfície entera del planeta.</string>
 
@@ -68,14 +68,14 @@ La cultura es una herramienta poderosa, y gracias a ella poblamos la superfície
     <key>ACH_LVL3_1</key>
     <string>La datación por Radiocarbono revolucionó la arqueología a finales del siglo XX.
 
-Esta técnica permita datar restos materiales encontrados en una excavación, permitiendo de este modo a los investigadores conocer la edad del yacimiento.</string>
+Esta técnica permita datar materiales orgánicos encontrados en una excavación, permitiendo de este modo a los investigadores conocer la edad del yacimiento.</string>
 
     <key>TITLE_LVL3_Perfect</key>
     <string>EL VIAJE</string>
     <key>DESCR_LVL3_Perfect</key>
 	<string>Misión 3: Consigue 3 estrellas</string>
     <key>ACH_LVL3_2</key>
-    <string>El navío británico HMS Beagle dejó Plymoth en 1831 rumbo a Sudamérica. Volvió a Europa 5 años más tarde, después de circumnavegar la Tierra.
+    <string>El navío británico HMS Beagle dejó Plymouth en 1831 rumbo a Sudamérica. Volvió a Europa 5 años más tarde, después de circumnavegar la Tierra.
 
 Su tripulación incluía un joven llamado Charles Darwin. Los datos recogidos durante el viaje fueron indispensables para desarrollar su teoría de la evolución por selección natural.</string>
 
@@ -104,14 +104,14 @@ Una de las bases de la ciencia-ficción es la especulación sobre el impacto de 
     <key>DESCR_LVL4_Perfect</key>
 	<string>Misión 4: Consigue 3 estrellas</string>
     <key>ACH_LVL4_2</key>
-    <string>Nuestros ancestros empezaron a usar herramientas hace 2 millones de años. Esta tecnología no fue una innovación aislada, ya que otros elementos culturales debían estar presentes para garantizar la transmisión del conocimiento.
+    <string>Nuestros antepasados empezaron a usar herramientas hace 2 millones de años. No fue una innovación aislada, ya que otros elementos culturales debían estar presentes para garantizar la transmisión del conocimiento.
    
 Por este motivo no es sorprendente que los homínidos empezaran a hablar durante la misma época.</string>
 
     <key>TITLE_LVL4_NoBoosts</key>
     <string>TECH NERD</string>
     <key>DESCR_LVL4_NoBoosts</key>
-    <string>Misión 4: Pásala sin aumentos</string>
+    <string>Misión 4: Pásala sin Aumentos</string>
     <key>ACH_LVL4_3</key>
     <string>"La Ciencia es la creencia en la ignorancia de los expertos."
              Richard Feynman
@@ -124,7 +124,7 @@ Uno de los físicos más importantes del siglo XX.</string>
     <key>DESCR_LVL5_Accomplished</key>
     <string>Misión 5: Completada</string>
     <key>ACH_LVL5_1</key>
-    <string>El primer proyecto conectando el Atlántico y el Pacífico a través de Panamá fue encargado por el emperador Carlos I en 1534.
+    <string>El primer proyecto para conectar el Atlántico y el Pacífico a través de Panamá fue encargado por el emperador Carlos I en 1534.
     
 Sin embargo, problemas técnicos y económicos frenaron la iniciativa hasta su construcción final en 1914 por EEUU y Panamá.</string>
 
@@ -146,13 +146,13 @@ Tres de las más interesantes son la película "En Busca del Fuego" de Jean-Jacq
 
     <!-- LVL 6 -->
     <key>TITLE_LVL6_Accomplished</key>
-    <string>ANCESTRO COMÚN</string>
+    <string>PADRES COMUNES</string>
     <key>DESCR_LVL6_Accomplished</key>
     <string>Misión 6: Completada</string>
     <key>ACH_LVL6_1</key>
     <string>Los últimos avances en biología han demostrado que parte de nuestra información genética procede de los Neandertales.
     
-Ellos no son nuestros ancestros, así que esta compartición de genes fue causado por la coexistencia y mestizaje entre las 2 especies hace 35.000 años en Europa.</string>
+No son nuestros antepasados, así que esta compartición de genes fue causado por la coexistencia y mestizaje entre las 2 especies hace 35.000 años en Europa.</string>
 
     <key>TITLE_LVL6_Perfect</key>
     <string>CULPA A TUS PRIMOS</string>
@@ -166,7 +166,7 @@ Ellos no son nuestros ancestros, así que esta compartición de genes fue causad
     <key>DESCR_LVL6_EPsLeft</key>
     <string>Misión 6: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL6_3</key>
-    <string>La cultura no es propiedad de los humanos. Simios, delfines y orcas muestran complejos rasgos culturales como el uso de herramientas y lenguaje. Sin embargo, la velocidad a la que nosotros aprendemos y generamos nuevas ideas nos hace bastante únicos.</string>
+    <string>La cultura no es tan sólo propiedad de los humanos. Simios, delfines y orcas muestran complejos rasgos culturales como el uso de herramientas y lenguaje. Sin embargo, la velocidad a la que nosotros aprendemos y generamos nuevas ideas nos hace bastante únicos.</string>
 
     <!-- LVL 7 -->
     <key>TITLE_LVL7_Accomplished</key>
@@ -184,7 +184,7 @@ Novelista, humanista, científico, profesor, comunicador...Asimov es una de las 
     <key>DESCR_LVL7_Perfect</key>
 	<string>Misión 7: Consigue 3 estrellas</string>
     <key>ACH_LVL7_2</key>
-    <string>Las primeras evidencias bélicas están datadas hace 13.000 años. Numerosas pinturas rupestres muestran escenas de guerra, mientras que los arqueólogos han encontrado muchos esqueletos conteniendo flechas.</string>
+    <string>Las primeras evidencias bélicas están datadas hace 13.000 años. Numerosas pinturas rupestres muestran escenas de combate, y los arqueólogos también han encontrado esqueletos con puntas de flecha incrustadas.</string>
     
     <key>TITLE_LVL7_Discovery</key>
     <string>EL MUNDO A CABALLO</string>
@@ -193,7 +193,7 @@ Novelista, humanista, científico, profesor, comunicador...Asimov es una de las 
     <key>ACH_LVL7_3</key>
     <string>"Me siento vivo cuando viajo en mi caballo"
     
-Estas son las palabras de un jinete Mongol, que según la tradición "nacían en la silla de montar". Los Mongoles son nómadas de la estepa, donde su cultura está centrada alrededor del caballo.</string>
+Estas son las palabras de un jinete Mongol, que según la tradición "han nacido en la silla de montar". Los Mongoles son nómadas de la estepa,  y su cultura está centrada alrededor del caballo.</string>
 
     <!-- LVL 8 -->
     <key>TITLE_LVL8_Accomplished</key>
@@ -203,7 +203,7 @@ Estas son las palabras de un jinete Mongol, que según la tradición "nacían en
     <key>ACH_LVL8_1</key>
     <string>Estas enormes cabezas de piedra se llaman Moais, y se han descubierto en la Isla de Pascua, en el océano Pacífico.
     
-Sus constructores formaban parte de la cultura Polinesia que colonizó esta zona hace 1000 años. La sobreexplotación de recursos naturales y el contacto con Europeos destruyó a casi toda la población.</string>
+Sus constructores formaban parte de la cultura polinesia que colonizó esta zona hace 1.000 años. La sobreexplotación y el contacto con Europeos casi aniquiló a la población.</string>
 
     <key>TITLE_LVL8_Perfect</key>
     <string>EL NORTE RECUERDA</string>
@@ -211,14 +211,14 @@ Sus constructores formaban parte de la cultura Polinesia que colonizó esta zona
 	<string>Misión 8: Consigue 3 estrellas</string>
     <key>ACH_LVL8_2</key>
     <string>Uno de los primeros documentales hechos explicaba a los occidentales la vida cazadora-recolectora.
-"Nanuk, el esquimal" fue filmada por Robert J. Flaherty en 1922. Explicaba la lucha por la supervivencia de una familia de Inuit viviendo en las extremas condiciones del Ártico.</string>
+"Nanuk, el esquimal" fue filmada por Robert J. Flaherty en 1922. Narraba la lucha por la supervivencia de una familia de Inuit viviendo en las extremas condiciones del Ártico.</string>
 
     <key>TITLE_LVL8_EPsLeft</key>
     <string>Hielo y Fuego</string>
     <key>DESCR_LVL8_EPsLeft</key>
     <string>Misión 8: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL8_3</key>
-    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglús, hechos de hielo y nieve, son el único motivo por el que hay gente viviendo allí; incrementan la temperatura hasta unos confortables 16 grados.</string>
+    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglús, hechos de hielo y nieve, son el único motivo por los humanos pueden vivir en esta zona; incrementan la temperatura hasta unos confortables 16 grados.</string>
 
     <!-- LVL 9 -->
     <key>TITLE_LVL9_Accomplished</key>
@@ -235,14 +235,14 @@ Esta flauta tiene 43.000 años, y fue encontrada en una cueva de la Alemania mer
     <key>DESCR_LVL9_Perfect</key>
 	<string>Misión 9: Consigue 3 estrellas</string>
     <key>ACH_LVL9_2</key>
-    <string>Conflictos con los Sapiens? Cambio climático? Competición por recursos? No sabemos por qué se extinguieron los Neandertales, pero el hecho nos sigue fascinando.
+    <string>Conflicto con los Sapiens? Cambio climático? Competición por recursos? Desconocemos la causa de la extinción Neandertal, y esto nos sigue fascinando.
 
-Entender la extinción Nenadertal nos puede ayudar a comprender los peligros a los que nos enfrentamos en la actualidad.</string>
+Entender este hecho nos ayudaría a comprender los peligros a los que nos enfrentamos en la actualidad.</string>
 
     <key>TITLE_LVL9_NoBoosts</key>
     <string>Facilísimo</string>
     <key>DESCR_LVL9_NoBoosts</key>
-    <string>Misión 9: Pásala sin aumentos</string>
+    <string>Misión 9: Pásala sin Aumentos</string>
     <key>ACH_LVL9_3</key>
     <string>Algunos de los trabajadores que salen en esta famosa foto son Indios Mohawk. A finales del siglo XIX eran trabajadores muy valiosos, ya que no tenían miedo de trabajar a grandes alturas.</string>
 
@@ -267,7 +267,7 @@ Es uno de los más renombrados astrofísicos y divulgadores de la Ciencia.</stri
     <key>TITLE_LVL10_NoBoosts</key>
     <string>DE SUEÑOS Y CIUDADES</string>
     <key>DESCR_LVL10_NoBoosts</key>
-    <string>Misión 10: Pásala sin aumentos</string>
+    <string>Misión 10: Pásala sin Aumentos</string>
     <key>ACH_LVL10_3</key>
     <string>"Cuando vimos tantas ciudades y poblados construídos en el agua y en tierra nos maravillamos (...) algunos de nuestros soldados llegaron a preguntarse si las cosas que veíamos eran un sueño."
     
@@ -279,12 +279,12 @@ Estas son las palabras de Bernal Díaz del Castillo sobre Tenochtitklan, capital
     <key>DESCR_LVL11_Accomplished</key>
     <string>Misión 11: Completada</string>
     <key>ACH_LVL11_1</key>
-    <string>Imagina que vas a pescar cada día como mucha otra gente. Te das cuenta que el número de capturas va bajando así que deberías parar de pescar. Sin embargo, el resto de gente no para, así que por qué deberías ser tú el único pasando hambre?
+    <string>Imagina que eres pescador en una villa marinera. Te das cuenta que el número de capturas va bajando así que deberías parar de pescar por un tiempo. Sin embargo, el resto de pescadores no para, así que por qué deberías ser tú el único pasando hambre?
 
-Esta situación se llama la tragedia de los comunes, y explica por qué existe la sobreexplotación. Tan sólo se puede resolver coordinando a toda la comunidad.</string>
+Esta situación se llama la tragedia de los comunes, y explica por qué existe la sobreexplotación. Tan sólo se puede evitar coordinando a toda la comunidad.</string>
 
     <key>TITLE_LVL11_Perfect</key>
-    <string>HOMBRES DE LAS CAVERNAS</string>
+    <string>HOME DE LES CAVERNES</string>
     <key>DESCR_LVL11_Perfect</key>
 	<string>Misión 11: Consigue 3 estrellas</string>
     <key>ACH_LVL11_2</key>
@@ -295,11 +295,11 @@ Este tópico es incorrecto: se movían alrededor del territorio y sólo usaban l
     <key>TITLE_LVL11_NoBoosts</key>
     <string>CAPAS DE INFORMACIÓN</string>
     <key>DESCR_LVL11_NoBoosts</key>
-    <string>Misión 11: Pásala sin aumentos</string>
+    <string>Misión 11: Pásala sin Aumentos</string>
     <key>ACH_LVL11_3</key>
     <string>La estratigrafía es uno de los conceptos clave en la arqueología actual.
     
-Ves en este perfil capas horizontales de distintos colores? Cada una de ellas pertenece a un período temporal dinstinto. Cuanto más profundas están, más viejas son.</string>
+Ves en este perfil capas horizontales de distintos colores? Cada una de ellas nos habla de un período temporal distinto. Cuanto más profundas están, más viejas son.</string>
 
     <!-- LVL 12 -->
     <key>TITLE_LVL12_Accomplished</key>
@@ -325,7 +325,7 @@ Practican un ritual distinto llamado Entierro Celestial: los cuerpos se deposita
     <key>TITLE_LVL12_NoBoosts</key>
     <string>TIENES AGALLAS?</string>
     <key>DESCR_LVL12_NoBoosts</key>
-    <string>Misión 12: Pásala sin aumentos</string>
+    <string>Misión 12: Pásala sin Aumentos</string>
     <key>ACH_LVL12_3</key>
     <string>A qué profundidad bajo el agua puedes llegar? Los Sama-Bajau pueden capturar un pez a 20 m. de profundidad mientras aguantan la respiración por casi 3 minutos.</string>
 
@@ -335,7 +335,7 @@ Practican un ritual distinto llamado Entierro Celestial: los cuerpos se deposita
     <key>DESCR_LVL13_Accomplished</key>
     <string>Misión 13: Completada</string>
     <key>ACH_LVL13_1</key>
-    <string>Esta roca se llama lapislazuli. Sólo se puede encontrar en Afganistán, pero los arqueólogos la han hallado en arte dew todo el mundo. Es evidencia de comercio a larga distancia.
+    <string>Esta roca se llama lapislazuli. Sólo se puede encontrar en Afganistán, pero los arqueólogos la han hallado en arte de todo el mundo. Es evidencia de comercio a larga distancia.
 
 Por ejemplo, las cejas de la famosa máscara funeral de Tutankhamon están hechas de este material.</string>
 
@@ -344,7 +344,7 @@ Por ejemplo, las cejas de la famosa máscara funeral de Tutankhamon están hecha
     <key>DESCR_LVL13_Perfect</key>
 	<string>Misión 13: Consigue 3 estrellas</string>
     <key>ACH_LVL13_2</key>
-    <string>La Ruta de la Seda es una de las redes de comercio más famosas de la Historia.
+    <string>La Ruta de la Seda es una de las redes comerciales más famosas de la Historia.
 
 Su actividad empezó hace 2.000 años, y conectó toda Eurasia, desde el Mediterráneo a China oriental. También tenía extensiones hacia África y las islas del Pacífico.</string>
 
@@ -379,7 +379,7 @@ Este cristal volcánico se usó para crear objetos afilados como flechas y cuchi
     <key>TITLE_LVL14_NoBoosts</key>
     <string>LO QUIERES?</string>
     <key>DESCR_LVL14_NoBoosts</key>
-    <string>Misión 14: Pásala sin aumentos</string>
+    <string>Misión 14: Pásala sin Aumentos</string>
     <key>ACH_LVL14_3</key>
     <string>Los arqueólogos son capaceds de determinar el campo volcánico en el que se formó un fragmento de obsidiana.
     
@@ -435,7 +435,7 @@ Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin 
     <key>TITLE_LVL16_NoBoosts</key>
     <string>KLAATU BARADA NIKTO</string>
     <key>DESCR_LVL16_NoBoosts</key>
-    <string>Misión 16: Pásala sin aumentos</string>
+    <string>Misión 16: Pásala sin Aumentos</string>
     <key>ACH_LVL16_3</key>
     <string>Usas Mozilla Firefox? Escribe 'about:robots' en la barra de direcciones para ver un secreto bastante friki!</string>
  
@@ -546,7 +546,7 @@ Fue probablemente el mejor divulgador científico que nunca ha existido. Si no c
     <key>TITLE_LVL20_NoBoosts</key>
     <string>HUMANOS IROS A CASA!</string>
     <key>DESCR_LVL20_NoBoosts</key>
-    <string>Misión 20: Pásala sin aumentos</string>
+    <string>Misión 20: Pásala sin Aumentos</string>
     <key>ACH_LVL20_3</key>
     <string>La colonización de un sitio poblado por parte de otra cultura casi siempre es un choque dramático.
     
