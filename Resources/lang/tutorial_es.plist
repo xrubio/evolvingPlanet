@@ -11,9 +11,9 @@
 
 	<key>LEVEL1M1</key>
 	<string>Profesor, bienvenido a la Consola.
-La interfaz es molona no? Espero que te guste porque vas a gastar las próximas semanas usándola mientras bebes café.</string>
+La interfaz es molona no? Espero que te guste porque tu vida en las próximas semanas va a consistir en usarla mientras consumes café.</string>
 	<key>LEVEL1M2</key>
-	<string>La Consola muestra los datos recogidos por los satélites desplegados alrededor del planeta.</string>
+	<string>La Consola muestra los datos recogidos por satélites desplegados alrededor del planeta.</string>
 	<key>LEVEL1M3</key>
 	<string>La misión tiene lugar en este paisaje.
 Está lleno de accidentes, desde la región árida destacada a selvas ricas en recursos.</string>
@@ -36,18 +36,18 @@ Aprieta dos veces en cualquier parte del mapa para sugerir la dirección de disp
 	<string>La segunda es el control de evolución.
 Empiezas con 10 EvoPoints, e irás recibiendo puntos adicionales durante la misión.</string>
 	<key>LEVEL1M11</key>
-	<string>Los EvoPuntos se pueden usar para incrementar los 3 atributos.
-Aprieta aquí para gastar 1 EvoPoint y mejorar la Mobilidad al nivel 2.</string>
+	<string>Los EvoPoints se pueden usar para incrementar 3 de los atributos de tus bots.
+Aprieta aquí para gastar 1 EvoPoint y mejorar la Movilidad al nivel 2.</string>
 	<key>LEVEL1M12</key>
-	<string>La Reproducción controla la fertilidad de tus bots. 
+	<string>La Reproducción controla la fertilidad de los bots. 
 Súbela al nivel 2</string>
 	<key>LEVEL1M13</key>
-	<string>Cada cambio en un atributo cuesta 1 EvoPoint adicional, coste destacado en amarillo.
+	<string>Cada cambio en un atributo cuesta 1 EvoPoint más, como se indica en amarillo.
 Súbelo al 3.</string>
 	<key>LEVEL1M14</key>
 	<string>Aprieta otra vez para fijar Reproducción a 4.</string>
 	<key>LEVEL1M15</key>
-	<string>Incrementando Resistencia mejoras las habilidades de supervivencia de tus bots.
+	<string>Incrementando Resistencia mejoras la supervivencia de tus bots.
 Gasta el resto en este atributo.</string>
 	<key>LEVEL1M16</key>
 	<string>Usa los restantes 2 EvoPoints en incrementar Resistencia de nuevo.</string>
@@ -62,7 +62,7 @@ Coloca ahora el marcador de orientación en la zona del objetivo.</string>
     <key>LEVEL2M1</key>
 	<string>Algunas misiones tienes más de un objetivo, como se muestra en la zona superior de la Consola.</string>
 	<key>LEVEL2M2</key>
-	<string>El intervalo brillante muestra el tiempo en el que tu población debe llegar al objetivo según la evidencia arqueológica.
+	<string>La zona brillante muestra el intervalo de tiempo en el que tu población debe llegar al objetivo, según la evidencia arqueológica.
 Si llegas antes o después de este intervalo la misión fracasará.</string>
 	<key>LEVEL2M3</key>
 	<string>El mejor tiempo de llegada está destacado así.</string>
@@ -80,7 +80,7 @@ En esta misión usaremos una herramienta nueva.</string>
 	<string>El primero potencia la Reproducción. Actívalo ahora.</string>
 	<key>LEVEL3M6</key>
 	<string>El segundo Aumento sube la Resistencia, y tiene un área de efecto.
-Necesitas presinarlo y arrastrar el área hacia la zona en la que quieras mejorar a tus bots.</string>
+Necesitas presionarlo y arrastrar el área hacia la zona en la que quieras mejorar a tus bots.</string>
 	<key>LEVEL3M7</key>
 	<string>Los Aumentos tiene un período de recarga, así que úsalos con moderación. Buena suerte!</string>
 
@@ -94,11 +94,11 @@ Necesitas presinarlo y arrastrar el área hacia la zona en la que quieras mejora
     <key>LEVEL11M2</key>
     <string>Esta montaña está llena de minerales útiles para tu grupo.</string>
     <key>LEVEL11M3</key>
-    <string>Este bosque puede generar mucha madera.</string>
+    <string>Este bosque puede proporcionar mucha madera.</string>
     <key>LEVEL11M4</key>
     <string>Recoges recursos moviéndote a estas zones e incrementando el atributo de Explotación.</string>
     <key>LEVEL11M5</key>
-    <string>Toca este panel para navegar a través de los distintos recursos recogidos y niveles requeridos..</string> 
+    <string>Toca este panel para navegar a través de los distintos recursos recogidos y niveles requeridos.</string> 
     
     <key>LEVEL13M1</key>
     <string>En esta misión dispones de un nuevo atributo: Comercio.</string>

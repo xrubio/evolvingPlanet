@@ -62,7 +62,7 @@ Set now the orientation marker within the goal zone.</string>
     <key>LEVEL2M1</key>
 	<string>Some missions have more than one goal as shown in the top of the Console.</string>
 	<key>LEVEL2M2</key>
-	<string>The bright interval shows the time when your population needs to complete the goal, according to archaeological evidence.
+	<string>The bright zone shows the time interval when your population needs to complete the goal, according to archaeological evidence.
 If you arrive before or after this span the mission will fail.</string>
 	<key>LEVEL2M3</key>
 	<string>The best arrival time is highlighted here.</string>
@@ -94,7 +94,7 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
     <key>LEVEL11M2</key>
     <string>This mountain has plenty of minerals useful for your group.</string>
     <key>LEVEL11M3</key>
-    <string>This forest has plenty of wood.</string>
+    <string>This forest can provide plenty of wood.</string>
     <key>LEVEL11M4</key>
     <string>You collect resources by moving to these zones and increasing your Exploitation attribute.</string>
     <key>LEVEL11M5</key>

@@ -2,147 +2,118 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-        <key>NEXT_MESSAGE_BUTTON</key>
-        <string>Toca el botó senyalat</string>
-        <key>NEXT_MESSAGE_SPOT</key>
-        <string>Toca dos cops per col.locar el marcador</string>
-        <key>NEXT_MESSAGE_TAP</key>
-        <string>Toca per continuar</string>
-        <key>LEVEL1M1</key>
-        <string>Benvingut a la Consola, Professor.
-Maca la interfície, eh? Espero que t&apos;agradi ja que durant les pròximes setmanes la tindràs davant.</string>
-        <key>LEVEL1M2</key>
-        <string>La Consola t&apos;ensenya dades recollides per satèl.lits desplegats al voltant del planeta.</string>
-        <key>LEVEL1M3</key>
-        <string>La missió transcorre en aquest paisatge.
-Pots fer zoom pessigant la pantalla i pots desplaçar el mapa deslliçant-hi el dit.</string>
-        <key>LEVEL1M4</key>
-        <string>El paisatge té moltes caraterístiques diferents.
-Aquest hexàgon, per exemple, és una muntanya.</string>
-        <key>LEVEL1M5</key>
-        <string>Aquesta zona àrida quasi no té vegetació. No és una zona còmoda on viure-hi.</string>
-        <key>LEVEL1M6</key>
-        <string>Viure en aquestes zones és més difícil degut a que els recursos són més escassos.</string>
-        <key>LEVEL1M7</key>
-        <string>L&apos;entorn no és sempre tan perillós. La supervivència és més senzilla en boscos com aquest.</string>
-        <key>LEVEL1M8</key>
-        <string>La Consola t&apos;indica els bots com a puntets puntets.
+
+	<key>NEXT_MESSAGE_BUTTON</key>
+	<string>Apreta el botó destacat</string>
+	<key>NEXT_MESSAGE_SPOT</key>
+	<string>Toca dos cops per col·locar el marcador</string>
+	<key>NEXT_MESSAGE_TAP</key>
+	<string>Toca per a continuar</string>
+
+	<key>LEVEL1M1</key>
+	<string>Professor, benvingut a la Consola.
+La interfície és xula oi? Espero que t'agradi perquè la teva vida durant les properes setmanes consistirà en fer-la servir mentre consumeixes cafè.</string>
+	<key>LEVEL1M2</key>
+	<string>La Consola mostra les dades recollides per satèl·lits desplegats al voltant del planeta.</string>
+	<key>LEVEL1M3</key>
+	<string>La missió té lloc en aquest paisatge.
+Està ple d'accidents, des de regions àrides com la destacada a selves riques en recursos.</string>
+    <key>LEVEL1M4</key>
+	<string>Pots pressionar la icona d'objectiu en qualsevol moment per a mostrar un resum de l'entorn.</string>
+	<key>LEVEL1M5</key>
+	<string>Aquests són els teus bots.
 Hem desplegat una petita població inicial en aquesta zona.</string>
-        <key>LEVEL1M9</key>
-        <string>Aquesta primera missió tracta la dispersió.
-Els teus bots han d&apos;arribar a l&apos;hexàgon que parpadeja baix a la dreta.</string>
-        <key>LEVEL1M10</key>
-        <string>Hauràs de supervisar que els bots arriben durant la forquilla de temps marcada gràcies a les restes arqueològiques que s&apos;han trobat.
-Com més precís, millor.</string>
-        <key>LEVEL1M11</key>
-        <string>Toca el Play per veure que fan els bots.</string>
-        <key>LEVEL1M12</key>
-        <string>Els bots es mouen, reprodueixen i moren sense la teva intervenció.
-Hem desenvolupat algunes eines per poder-los guiar i assolir els objectius de la missió.</string>
-        <key>LEVEL1M13</key>
-        <string>La primera és el marcador d&apos;orientació.
-Toca dos cops a qualsevol lloc del mapa per suggerir una direcció de dispersió de la teva població.</string>
-        <key>LEVEL1M14</key>
-        <string>La segona és el rastrejador d&apos;evolució.
-Comences amb 10 EvoPoints. N&apos;aniràs acumulant més durant el transcurs la missió.</string>
-        <key>LEVEL1M15</key>
-        <string>Els EvoPoints es fan servir per incrementar tres atributs.
-Toca el botó senyalat per gastar 1 EvoPoint i millorar la Mobilitat a nivell 2.</string>
-        <key>LEVEL1M16</key>
-        <string>La Reproducció controla la fertilitat del teus bots.
-Millora&apos;l fins al nivell 2.</string>
-        <key>LEVEL1M17</key>
-        <string>Cada canvi d&apos;un atribut costa 1 EvoPoint adicional, ho veuràs en groc.
-Incrementa la Reproducció fins al nivell 3.</string>
-        <key>LEVEL1M18</key>
-        <string>Toca un altre cop per incrementar l&apos;atribut fins al nivell 4.</string>
-        <key>LEVEL1M19</key>
-        <string>Augmentant la Resistència millores les habilitats de supervivència dels teus bots.
-Gasta el que et queda amb aquest atribut.</string>
-        <key>LEVEL1M20</key>
-        <string>Fes servir els 2 darrers EvoPoints per tornar a incrementar la Resistència.</string>
-        <key>LEVEL1M21</key>
-        <string>Desplegament finalitzat! Observem si els bots sobreviuen amb aquesta configuració.</string>
-        <key>LEVEL1M22</key>
-        <string>Aquest panell t&apos;ensenya com s&apos;incrementa la població.
-Posa el marcador d&apos;orientació a la zona de l&apos;objectiu.</string>
-        <key>LEVEL1M23</key>
-        <string>Com pots veure, has rebut EvoPoints addicionals.</string>
-        <key>LEVEL1M24</key>
-        <string>Et recomano incrementar la Resistència i després centrar-te amb la Mobilitat.
-Bona sort!</string>
-        <key>LEVEL2M1</key>
-        <string>Some missions have more than one goal as shown in the top of the Console.</string>
-        <key>LEVEL2M2</key>
-        <string>You have to arrive to each goal within the bright interval.
-            If you arrive before or after this span the mission will fail.</string>
-        <key>LEVEL2M3</key>
-        <string>The best arrival time is marked by the highlighted zone.</string>
-        <key>LEVEL2M4</key>
-        <string>A final note: regions like this mountain range are too hostile to your bots, so they cannot live there.</string>
-        <key>LEVEL3M1</key>
-        <string>Welcome Professor.
-            You will use a new tool in this mission.</string>
-        <key>LEVEL3M2</key>
-        <string>The technical term is Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits.</string>
-        <key>LEVEL3M3</key>
-        <string>The team just call them Boosts.</string>
-        <key>LEVEL3M4</key>
-        <string>They use EvoPoints to temporally increase an attribute.</string>
-        <key>LEVEL3M5</key>
-        <string>You got two Boosts for this mission. The first one increases Reproduction.
-            Tap it now.</string>
-        <key>LEVEL3M6</key>
-        <string>Please don&apos;t ask how did we achieve this baby boom...</string>
-        <key>LEVEL3M7</key>
-        <string>The second Boost increases Resistance, and it has an area of effect.
-            You need to tap and drag towards the zone you wish to improve your bots.</string>
-        <key>LEVEL3M8</key>
-        <string>You will need these boosts to cross the savanna where the last evidence was found.</string>
-        <key>LEVEL3M9</key>
-        <string>Boosts have a cooldown period so use them wisely.
-            Good luck!</string>
-        <key>LEVEL4M1</key>
-        <string>We need to replicate this dispersal using a shorter time.</string>
-        <key>LEVEL4M2</key>
-        <string>We have replaced Reproduction for Technology.</string>
-        <key>LEVEL4M3</key>
-        <string>You improve the rest of attributes by increasing the technological skill of your bots.
-            Good luck!</string>
-        <key>LEVEL5M1</key>
-        <string>Welcome Professor. The zone around this river was populated before our arrival.</string>
-        <key>LEVEL5M2</key>
-        <string>Interaction between population will range from trade and cultural exchange to open conflict. It is often a mix of everything.</string>
-        <key>LEVEL5M3</key>
-        <string>This first contact was not really peaceful. Overpopulation forced both groups to compete for these arid zones.</string>
-        <key>LEVEL5M4</key>
-        <string>You should avoid the other population. They are far more experience on warfare than you.
-            Good luck!</string>
-        <key>LEVEL6M1</key>
-        <string>Welcome Professor. In this mission we will influence the other group of bots</string>
-        <key>LEVEL6M2</key>
-        <string>The Lovans did not have enough mobility to reach the objectives within the observed time.</string>
-        <key>LEVEL6M3</key>
-        <string>Sudden increases in mobility will be replicated by this Boost</string>
-        <key>LEVEL6M4</key>
-        <string>We have also added another attribute called Influence</string>
-        <key>LEVEL6M5</key>
-        <string>Superior mobility and cultural influence should do he trick.
-            Good luck!</string>
-        <key>LEVEL7M1</key>
-        <string>Lovans engaged on warfare against these poor little blue bots...</string>
-        <key>LEVEL7M2</key>
-        <string>We need to replicate this so you will use the attribute Warfare.</string>
-        <key>LEVEL7M3</key>
-        <string>Both populations will try to disperse to the richer zones displayed here.
-            Good luck!</string>
-        <key>LEVEL9M1</key>
-        <string>We have here a peculiar situation...your population will get involved with two radically different species.</string>
-        <key>LEVEL9M2</key>
-        <string>One of the groups is extremely aggresive...</string>
-        <key>LEVEL9M3</key>
-        <string>...and the other one has a strong cultural influence.</string>
-        <key>LEVEL9M4</key>
-        <string>You have here a couple of new Boosts to use. Good luck!</string>
+	<key>LEVEL1M6</key>
+	<string>Aquesta primera missió té un objectiu de dispersió.
+Hauries de dur els teus bots fins a l'hexàgon parpellejant situat a baix a la dreta.</string>
+	<key>LEVEL1M7</key>
+	<string>Pressiona el botó de Play per veure el que estan fent els teus bots.</string>
+	<key>LEVEL1M8</key>
+	<string>Els bots es mouen, reprodueixen i moren de manera independent, però disposes d'algunes eines per tal de guiar-los.</string>
+	<key>LEVEL1M9</key>
+	<string>La primera és el marcador d'orientació.
+Toca dos cops qualsevol zona del mapa per tal de suggerir la direcció de dispersió.</string>
+	<key>LEVEL1M10</key>
+	<string>La segona és el control d'evolució.
+Comences amb 10 EvoPoints, i aniràs rebent punts addicionals durant la missió.</string>
+	<key>LEVEL1M11</key>
+	<string>Els EvoPoints es poden fer servir per a incrementar 3 dels atributs dels teus bots.
+Apreta aquí per tal de gastar 1 EvoPoint i millorar la Mobilitat al nivell 2.</string>
+	<key>LEVEL1M12</key>
+	<string>La Reproducció controla la fertilitat dels bots.
+Puja-la a nivell 2</string>
+	<key>LEVEL1M13</key>
+	<string>Cada canvi en un atribut costa 1 EvoPoint addicional, en un atributo cuesta 1 EvoPoint més, com s'indica en groc.
+Puja'l a 3.</string>
+	<key>LEVEL1M14</key>
+	<string>Apreta de nou per fixar la Reproducció a 4.</string>
+	<key>LEVEL1M15</key>
+	<string>Si incrementes Resistència millores la supervivència dels teus bots.
+Gasta la resta en aquest atribut.</string>
+	<key>LEVEL1M16</key>
+	<string>Fes servir els 2 EvoPoints que manquen per tal d'incrementar de nou la Resistència.</string>
+	<key>LEVEL1M17</key>
+	<string>Desplegament finalitzat! Anem a veure si els teus bots sobreviuen amb aquests atributs.</string>
+	<key>LEVEL1M18</key>
+	<string>Aquest panell mostra com va augmentant la teva població.
+Situa ara el marcador d'orientació a la zona de l'objectiu.</string>
+	<key>LEVEL1M19</key>
+	<string>Com pots veure has rebut EvoPoints addicionals. Bona Sort</string>
+
+    <key>LEVEL2M1</key>
+	<string>Algunes missions tenen més d'un objectiu, com es mostra a la part superior de la Consola.</string>
+	<key>LEVEL2M2</key>
+	<string>La zona brillant mostra l'interval de temps en què la teva població ha d'assolir l'objectiu, segons l'evidència arqueològica.
+Si arribes abans o després la missió fracassarà.</string>
+	<key>LEVEL2M3</key>
+	<string>El millor temps d'arribada està destacat aquí.</string>
+
+    <key>LEVEL3M1</key>
+	<string>Benvingut, Professor.
+En aquesta missió farem servir una eina nova.</string>
+	<key>LEVEL3M2</key>
+	<string>La definició tècnica és Augmentació Temporal d'Atributs de Població Basat en Elements Culturals.</string>
+	<key>LEVEL3M3</key>
+	<string>Els de l'equip els anomenem Augments.</string>
+	<key>LEVEL3M4</key>
+	<string>Pots gastar EvoPointsd per tal d'activar-los i incrementar temporalment un atribut.</string>
+	<key>LEVEL3M5</key>
+	<string>El primer potencia la Reproducció. Activa'l ara.</string>
+	<key>LEVEL3M6</key>
+	<string>El segon Augment puja la Resistència, i té una àrea d'efecte.
+Necessites pressionar-lo i arrastar l'àrea fins la zona en la que vulguis millorar els bots</string>
+	<key>LEVEL3M7</key>
+	<string>Els Augments tenen un període de recàrrega, així que fes-los servir amb moderació. Bona sort!</string>
+
+    <key>LEVEL6M1</key>
+    <string>El primer objetiu d'aquesta missió comprova la mida del teu grup.</string>
+    <key>LEVEL6M2</key>
+    <string>Necessites arrivar a la mida destacada en aquest panell dins el temps assignat.</string>
+
+    <key>LEVEL11M1</key>
+    <string>Necessitaràs reunir diversos recursos per tal de tenir èxit en aquesta missió.</string>
+    <key>LEVEL11M2</key>
+    <string>Aquesta muntanya conté nombrosos minerals útils per al teu grup.</string>
+    <key>LEVEL11M3</key>
+    <string>Aquest bost pot proporcionar molta fusta.</string>
+    <key>LEVEL11M4</key>
+    <string>Reculls recursos movent-te a aquestes zones, tot millorant l'atribut d'Explotació.</string>
+    <key>LEVEL11M5</key>
+    <string>Toca aquest panell per tal de navegar entre els diferents recursos recollits i nivells requerits.</string> 
+    
+    <key>LEVEL13M1</key>
+    <string>En aquesta missió disposes d'un nou atribut: Comerç.</string>
+    <key>LEVEL13M2</key>
+    <string>Si desenvolupes aquesta habilitat els teus bots podran intercanviar un recurs per béns recollits per altres grups.</string>
+    <key>LEVEL13M3</key>
+    <string>No pots recollir suficients minerals a temps, així que necessitaràs aquesta habilitat per tal de tenir èxit.</string>
+
+    <key>LEVEL16M1</key>
+    <string>Hem integrat totes les tècniques de domesticació sota el concepte de Terraformació.</string>
+    <key>LEVEL16M2</key>
+    <string>La zona destacada és suficientement rica per tal de ser transformada en terres cultivables mitjançant aquest atribut.</string>
+    <key>LEVEL16M3</key>
+    <string>La teva població prosperarà en una zona terraformada, però abans cal que arribis a ella.</string>
+
     </dict>
 </plist>
