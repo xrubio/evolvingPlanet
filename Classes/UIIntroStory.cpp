@@ -9,6 +9,7 @@
 #include "UIIntroStory.h"
 #include "GameData.h"
 #include "UIProgressMap.h"
+#include "LocalizedString.h"
 
 Scene* UIIntroStory::createScene()
 {
@@ -68,6 +69,8 @@ bool UIIntroStory::init()
     auto moveDoor = Spawn::create(FadeIn::create(1.5), MoveTo::create(3.0, Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height * 0.66)), NULL);
     camaraDoor->runAction(Sequence::create(DelayTime::create(1.3), moveDoor, NULL));
     
+    createTextBoxes();
+    
     this->schedule(SEL_SCHEDULE(&UIIntroStory::update), 4.0);
     
     return true;
@@ -82,4 +85,38 @@ void UIIntroStory::update(float delta)
         auto scene = UIProgressMap::createScene();
         Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
     }
+}
+
+void UIIntroStory::createTextBoxes(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto messageLabel = Label::createWithTTF(LocalizedString::create("BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+    messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->enableShadow();
+    messageLabel->setMaxLineWidth(800);
+    messageLabel->setOpacity(0);
+    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Vec2 position = Vec2(visibleSize.width*0.15, visibleSize.height*0.8);
+    messageLabel->setPosition(position);
+    
+    float marginWidth = 0.02f*messageLabel->getContentSize().width;
+    float marginHeight = 0.02f*messageLabel->getContentSize().height;
+    Vec2 margin(marginWidth, marginHeight);
+    
+    Vec2 origin(messageLabel->getBoundingBox().origin - margin);
+    Vec2 end(messageLabel->getBoundingBox().origin + messageLabel->getBoundingBox().size + margin);
+    
+    auto labelBorder = DrawNode::create();
+    labelBorder->setName("labelBorderTutorial");
+    labelBorder->drawSolidRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 0.3f));
+    labelBorder->drawRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
+    labelBorder->setOpacity(0);
+    
+    this->addChild(messageLabel, 10);
+    this->addChild(labelBorder, 10);
+    
+    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), NULL));
+    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), NULL));
 }

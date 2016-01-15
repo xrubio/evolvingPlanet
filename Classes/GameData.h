@@ -96,6 +96,9 @@ public:
     cocos2d::Color3B getPlayerColor(void);
     string getPlayerColorString(void);
     void setPlayerColor(string c);
+    
+    bool getAnimationSpace(void);
+    void setAnimationSpace(bool b);
 
     void loadAchievements(void);
     void resetGameProgress(void);
@@ -131,6 +134,7 @@ private:
     float resourcesWidth;
     float resourcesMargin;
     cocos2d::Color3B _playerColor = cocos2d::Color3B(255, 4, 4);
+    bool _animationSpace = true;
 
 };
 

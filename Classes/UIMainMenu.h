@@ -64,6 +64,9 @@ private:
     void openTwitter( Ref * pSender );
     void openWeb( Ref * pSender );
     
+    void createSpaceAnimation(void);
+    void createTextBoxes(void);
+    
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

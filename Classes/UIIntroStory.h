@@ -41,7 +41,10 @@ public:
     CREATE_FUNC(UIIntroStory);
     
     void update(float delta);
-        
+    
+private:
+    void createTextBoxes(void);
+    
 };
 
 #endif /* defined(__simulplay__UIIntroStory__) */

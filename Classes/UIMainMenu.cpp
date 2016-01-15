@@ -55,60 +55,6 @@ bool UIMainMenu::init()
     }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    
-    auto background = Sprite::create("gui/MainMenuBackground.png");
-    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    this->addChild(background, 0);
-
-    auto title = Sprite::create("gui/MainMenuTitle.png");
-    title->setAnchorPoint(Vec2(0, 0.5));
-    title->setPosition(Vec2((2 * visibleSize.width / 25), (12 * visibleSize.height / 18)));
-    title->setOpacity(0);
-    title->setScale(GameData::getInstance()->getRaHConversion());
-    auto fadeTitle = FadeIn::create(2.0);
-    auto titleDelay = DelayTime::create(4.0);
-    auto titleSeq = Sequence::create(titleDelay, fadeTitle, NULL);
-    title->runAction(titleSeq);
-    this->addChild(title, 5, 0);
-
-    auto planet1 = Sprite::create("gui/MainMenuBackgroundPlanet1.png");
-    planet1->setPosition(Vec2((3 * visibleSize.width / 25),
-        (7 * visibleSize.height / 18)));
-    planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    auto movePlanet1 = MoveTo::create(4, Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    auto moveEasePlanet1 = EaseInOut::create(movePlanet1, 1);
-    planet1->runAction(moveEasePlanet1);
-    this->addChild(planet1, 2, 1);
-
-    auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
-    planet2->setPosition(Vec2((15 * visibleSize.width / 25),
-        (13 * visibleSize.height / 18)));
-    planet2->setScale(GameData::getInstance()->getRaHConversion());
-    auto movePlanet2 = MoveTo::create(4.8, Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    auto moveEasePlanet2 = EaseBackOut::create(movePlanet2);
-    planet2->runAction(moveEasePlanet2);
-    this->addChild(planet2, 1, 2);
-
-    auto spaceship = Sprite::create("gui/MainMenuBackgroundSpaceship.png");
-    spaceship->setPosition(Vec2((visibleSize.width / 3), (visibleSize.height / 2)));
-    spaceship->setScale(0);
-    auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaHConversion());
-    auto moveSpaceship = MoveTo::create(3.0, Vec2((visibleSize.width / 2),
-                                                 (visibleSize.height / 2)));
-    auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 5);
-    auto spaceshipDelay = DelayTime::create(1);
-    auto spaceshipSpawn = Spawn::create(moveEaseSpaceship, scaleSpaceship, NULL);
-    auto spaceshipSeq = Sequence::create(spaceshipDelay, spaceshipSpawn, NULL);
-
-    spaceship->runAction(spaceshipSeq);
-    this->addChild(spaceship, 5, 3);
-
-    auto particlesSpaceship = ParticleSun::create();
-    particlesSpaceship->setGravity(Vec2(0, 0));
-    //16,12
-    particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
-    spaceship->addChild(particlesSpaceship, -1, 1);
 
     Vector<cocos2d::MenuItem*> menuButtons;
 
@@ -246,12 +192,56 @@ bool UIMainMenu::init()
     auto menu = Menu::createWithArray(menuButtons);
     menu->setName("menu");
     menu->setPosition(Vec2(0, 0));
-    menu->setOpacity(0);
-    auto fadeMenu = FadeIn::create(2.0);
-    auto menuDelay = DelayTime::create(4.4);
-    auto menuSeq = Sequence::create(menuDelay, fadeMenu, NULL);
-    menu->runAction(menuSeq);
     this->addChild(menu, 5, 4);
+
+    if (GameData::getInstance()->getAnimationSpace() == true)
+    {
+        createSpaceAnimation();
+    
+        menu->setOpacity(0);
+        auto fadeMenu = FadeIn::create(2.0);
+        auto menuDelay = DelayTime::create(4.4);
+        auto menuSeq = Sequence::create(menuDelay, fadeMenu, NULL);
+        menu->runAction(menuSeq);
+        GameData::getInstance()->setAnimationSpace(false);
+    }
+    else
+    {
+        Size visibleSize = Director::getInstance()->getVisibleSize();
+        
+        auto background = Sprite::create("gui/MainMenuBackground.png");
+        background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        this->addChild(background, 0);
+        
+        auto title = Sprite::create("gui/MainMenuTitle.png");
+        title->setAnchorPoint(Vec2(0, 0.5));
+        title->setPosition(Vec2((2 * visibleSize.width / 25), (12 * visibleSize.height / 18)));
+        title->setScale(GameData::getInstance()->getRaHConversion());
+        this->addChild(title, 5, 0);
+        
+        auto planet1 = Sprite::create("gui/MainMenuBackgroundPlanet1.png");
+        planet1->setPosition(Vec2((visibleSize.width / 2),(visibleSize.height / 2)));
+        planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+        this->addChild(planet1, 2, 1);
+        
+        auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
+        planet2->setPosition(Vec2((visibleSize.width / 2),(visibleSize.height / 2)));
+        planet2->setScale(GameData::getInstance()->getRaHConversion());
+        this->addChild(planet2, 1, 2);
+        
+        auto spaceship = Sprite::create("gui/MainMenuBackgroundSpaceship.png");
+        spaceship->setPosition(Vec2((visibleSize.width / 2), (visibleSize.height / 2)));
+        spaceship->setScale(GameData::getInstance()->getRaHConversion());
+        this->addChild(spaceship, 5, 3);
+        
+        auto particlesSpaceship = ParticleSun::create();
+        particlesSpaceship->setGravity(Vec2(0, 0));
+        //16,12
+        particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
+        spaceship->addChild(particlesSpaceship, -1, 1);
+        stoppedAnimation = true;
+    }
 
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
@@ -470,7 +460,11 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(4)->setOpacity(255);
     this->getChildByName("menu")->getChildByName("extras")->stopAllActions();
     this->getChildByName("menu")->getChildByName("extras")->setOpacity(255);
-
+    this->getChildByName("tutorial")->setVisible(false);
+    if (this->getChildByName("labelBorderTutorial") != nullptr)
+    {
+        this->getChildByName("labelBorderTutorial")->setVisible(false);
+    }
 }
 
 bool UIMainMenu::allActionsFinished(void)
@@ -542,5 +536,100 @@ void UIMainMenu::openTwitter( Ref * pSender )
 void UIMainMenu::openWeb( Ref * pSender )
 {
     Application::getInstance()->openURL("http://evolvingplanetgame.com");    
+}
+
+void UIMainMenu::createSpaceAnimation(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    auto background = Sprite::create("gui/MainMenuBackground.png");
+    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    this->addChild(background, 0);
+    
+    auto title = Sprite::create("gui/MainMenuTitle.png");
+    title->setAnchorPoint(Vec2(0, 0.5));
+    title->setPosition(Vec2((2 * visibleSize.width / 25), (12 * visibleSize.height / 18)));
+    title->setOpacity(0);
+    title->setScale(GameData::getInstance()->getRaHConversion());
+    auto fadeTitle = FadeIn::create(2.0);
+    auto titleDelay = DelayTime::create(4.0);
+    auto titleSeq = Sequence::create(titleDelay, fadeTitle, NULL);
+    title->runAction(titleSeq);
+    this->addChild(title, 5, 0);
+    
+    auto planet1 = Sprite::create("gui/MainMenuBackgroundPlanet1.png");
+    planet1->setPosition(Vec2((3 * visibleSize.width / 25),
+                              (7 * visibleSize.height / 18)));
+    planet1->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    auto movePlanet1 = MoveTo::create(4, Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    auto moveEasePlanet1 = EaseInOut::create(movePlanet1, 1);
+    planet1->runAction(moveEasePlanet1);
+    this->addChild(planet1, 2, 1);
+    
+    auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
+    planet2->setPosition(Vec2((15 * visibleSize.width / 25),
+                              (13 * visibleSize.height / 18)));
+    planet2->setScale(GameData::getInstance()->getRaHConversion());
+    auto movePlanet2 = MoveTo::create(4.8, Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    auto moveEasePlanet2 = EaseBackOut::create(movePlanet2);
+    planet2->runAction(moveEasePlanet2);
+    this->addChild(planet2, 1, 2);
+    
+    auto spaceship = Sprite::create("gui/MainMenuBackgroundSpaceship.png");
+    spaceship->setPosition(Vec2((visibleSize.width / 3), (visibleSize.height / 2)));
+    spaceship->setScale(0);
+    auto scaleSpaceship = ScaleTo::create(3.0, GameData::getInstance()->getRaHConversion());
+    auto moveSpaceship = MoveTo::create(3.0, Vec2((visibleSize.width / 2),
+                                                  (visibleSize.height / 2)));
+    auto moveEaseSpaceship = EaseInOut::create(moveSpaceship, 5);
+    auto spaceshipDelay = DelayTime::create(1);
+    auto spaceshipSpawn = Spawn::create(moveEaseSpaceship, scaleSpaceship, NULL);
+    auto spaceshipSeq = Sequence::create(spaceshipDelay, spaceshipSpawn, NULL);
+    
+    spaceship->runAction(spaceshipSeq);
+    this->addChild(spaceship, 5, 3);
+    
+    auto particlesSpaceship = ParticleSun::create();
+    particlesSpaceship->setGravity(Vec2(0, 0));
+    //16,12
+    particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
+    spaceship->addChild(particlesSpaceship, -1, 1);
+    
+    createTextBoxes();
+}
+
+void UIMainMenu::createTextBoxes(void)
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto messageLabel = Label::createWithTTF(LocalizedString::create("BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+    messageLabel->setName("tutorial");
+    messageLabel->setColor(Color3B(230, 230, 230));
+    messageLabel->enableShadow();
+    messageLabel->setMaxLineWidth(800);
+    messageLabel->setOpacity(0);
+    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    
+    Vec2 position = Vec2(visibleSize.width*0.85, visibleSize.height*0.2);
+    messageLabel->setPosition(position);
+    
+    float marginWidth = 0.02f*messageLabel->getContentSize().width;
+    float marginHeight = 0.02f*messageLabel->getContentSize().height;
+    Vec2 margin(marginWidth, marginHeight);
+    
+    Vec2 origin(messageLabel->getBoundingBox().origin - margin);
+    Vec2 end(messageLabel->getBoundingBox().origin + messageLabel->getBoundingBox().size + margin);
+    
+    auto labelBorder = DrawNode::create();
+    labelBorder->setName("labelBorderTutorial");
+    labelBorder->drawSolidRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 0.3f));
+    labelBorder->drawRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
+    labelBorder->setOpacity(0);
+    
+    this->addChild(messageLabel, 10);
+    this->addChild(labelBorder, 10);
+    
+    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.4), FadeOut::create(0.1), NULL));
+    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(1.5), RemoveSelf::create(), NULL));
 }
 

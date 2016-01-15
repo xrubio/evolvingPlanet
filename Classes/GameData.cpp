@@ -331,6 +331,16 @@ void GameData::setPlayerColor(string c)
     }
 }
 
+bool GameData::getAnimationSpace(void)
+{
+    return _animationSpace;
+}
+
+void GameData::setAnimationSpace(bool b)
+{
+    _animationSpace = b;
+}
+
 void GameData::loadAchievements(void)
 {
     string dir = "data/";
