@@ -63,7 +63,7 @@
 	<key>ATTRIBUTES</key>
 	<string>ATRIBUTOS</string>
 	<key>POWERS</key>
-	<string>IMPULSOS</string>
+	<string>AUMENTOS</string>
 	<key>NOT_AVAILABLE</key>
 	<string>NO DISPONIBLE EN ESTA MISIÓN</string>
 	<key>REPRODUCTION</key>
@@ -77,7 +77,7 @@
 	<key>RESISTANCE</key>
 	<string>RESISTENCIA</string>
 	<key>DESCRIPTION_RESISTANCE</key>
-	<string>Aguante en entornos severos</string>
+	<string>Aguante en entornos hostiles</string>
 	<key>TECHNOLOGY</key>
 	<string>TECNOLOGÍA</string>
 	<key>DESCRIPTION_TECHNOLOGY</key>
@@ -162,7 +162,7 @@ Evolving Planet explora esta nueva manera de hacer Ciencia. Serás parte del equ
 
 Toca el logo para conocer más sobre SimulPast!</string>
 	<key>SPECIAL_THANKS</key>
-	<string>Especial Agradecimiento</string>
+	<string>Agradecimientos</string>
 	<key>SUPPORT</key>
 	<string>Con el apoyo de</string>
 	<key>POWERED</key>
@@ -176,10 +176,12 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<key>CURRENT_GOAL</key>
 	<string>OBJETIVO ACTUAL</string>
 	<key>SKIP</key>
-	<string>SALTAR</string>
+	<string>SALTAR</string>     
+    <key>GOALS_COMPLETED</key>
+    <string>OBJECTIVOS CONSEGUIDOS</string>
 	<key>BOT_COLOR</key>
 	<string>Color de los bots</string>
 	<key>THE_END</key>
-	<string>FIN</string>
+	<string>EL FIN</string>
 </dict>
 </plist>

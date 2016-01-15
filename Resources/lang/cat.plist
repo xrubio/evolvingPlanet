@@ -15,7 +15,7 @@
         <key>PAUSE</key>
         <string>PAUSA</string>
         <key>SET_ATTRIBUTES</key>
-        <string>CONFIGURA ELS AGENTS ABANS DE COMENÇAR</string>
+        <string>CONFIGURA ELS BOTS ABANS DE COMENÇAR</string>
         <key>WARNING</key>
         <string>ALERTA</string>
         <key>WARNING_TEXT</key>
@@ -55,7 +55,7 @@
         <key>PASS_MISSION</key>
         <string>COMPLETA LA MISSIÓ</string>
         <key>TO_UNLOCK_STORY</key>
-        <string> PER DESBLOQUEJAR AQUESTA HISTÒRIA</string>
+        <string>PER DESBLOQUEJAR AQUESTA HISTÒRIA</string>
         <key>LIFE</key>
         <string>VIDA</string>
         <key>LEVEL_FEATURES</key>
@@ -63,21 +63,21 @@
         <key>ATTRIBUTES</key>
         <string>ATRIBUTS</string>
         <key>POWERS</key>
-        <string>PODERS</string>
+        <string>AUGMENTS</string>
         <key>NOT_AVAILABLE</key>
         <string>NO DISPONIBLES EN AQUESTA MISSIÓ</string>
         <key>REPRODUCTION</key>
         <string>REPRODUCCIÓ</string>
         <key>DESCRIPTION_REPRODUCTION</key>
-        <string>Rati de fertilitat</string>
+        <string>Taxa de fertilitat</string>
         <key>MOBILITY</key>
         <string>MOBILITAT</string>
         <key>DESCRIPTION_MOBILITY</key>
-        <string>Rang d'interacció</string>
+        <string>Abast d'interacció</string>
         <key>RESISTANCE</key>
         <string>RESISTÈNCIA</string>
         <key>DESCRIPTION_RESISTANCE</key>
-        <string>Resistència en entorns durs</string>
+        <string>Resistència en entorns hostils</string>
         <key>TECHNOLOGY</key>
         <string>TECNOLOGIA</string>
         <key>DESCRIPTION_TECHNOLOGY</key>
@@ -93,7 +93,7 @@
         <key>EXPLOITATION</key>
         <string>EXPLOTACIÓ</string>
         <key>DESCRIPTION_EXPLOITATION</key>
-        <string>Habilitats de recol·lectar fusta i minerals</string>
+        <string>Taxa de recol·lecció de fusta i minerals</string>
         <key>TRADE</key>
         <string>COMERÇ</string>
         <key>DESCRIPTION_TRADE</key>
@@ -101,7 +101,7 @@
         <key>TERRAFORM</key>
         <string>TERRAFORMACIÓ</string>
         <key>DESCRIPTION_TERRAFORM</key>
-        <string>Acondicionar l'entorn pel pròpi benefici</string>
+        <string>Modifica l'entorn al teu benefici</string>
         <key>DESCRIPTION_MobilityBoost</key>
         <string>Mobilitat</string>
         <key>DESCRIPTION_ReproductionBoost</key>
@@ -142,31 +142,31 @@
         <key>DIRECTOR</key>
         <string>Game Director &amp; Project Lead</string>
         <key>LEAD_PROGRAMMER</key>
-        <string>Lead Programmer</string>
+        <string>Programador en cap</string>
         <key>ADDITIONAL_PROGRAMMING</key>
-        <string>Additional programming</string>
+        <string>Programació addicional</string>
         <key>ART</key>
-        <string>Artwork</string>
+        <string>Art</string>
         <key>UI</key>
-        <string>User Interface</string>
+        <string>Interfície d'Usuari</string>
         <key>STORY_CONTENT</key>
-        <string>Story &amp; content</string>
+        <string>Historia y continguts</string>
         <key>SIMULPAST_TITLE</key>
         <string>El Projecte SimulPast</string>
         <key>SIMULPAST_TEXT</key>
         <string>Evolving Planet no hauria existit sense el projecte de recerca SimulPast.
             
-            SimulPast està trencant les barreres entre la Ciència i les Humanitats per aprendre dels nostres orígens, i del nostre present i futur. Arqueòlegs, Enginyers Informàtics, Antropòlegs i altres experts fan ús de la simulació per ordinador per millorar la comprensió que tenim del passat.
+SimulPast està trencant les barreres entre la Ciència i les Humanitats per tal d'entendre els nostres orígens, el nostre present i futur. Arqueòlegs, Informàtics, Antropòlegs i altres experts fan ús de la simulació per ordinador per millorar la comprensió que tenim del passat.
             
-            Evolving Planet explora aquesta nova manera de fer Ciència. Seràs part d'un equip de recerca que estudia espècies similars als humans mitjançant conceptes com evolució, tecnologia i dispersió.
+Evolving Planet explora aquesta nova manera de fer Ciència. Seràs part d'un equip de recerca que estudia espècies similars als humans mitjançant conceptes com evolució, tecnologia i dispersió.
             
-            Toca el logo per conèixer més sobre SimulPast!</string>
+Toca el logo per conèixer més sobre SimulPast!</string>
         <key>SPECIAL_THANKS</key>
-        <string>Especial Agraïment</string>
+        <string>Agraïments</string>
         <key>SUPPORT</key>
         <string>Amb el suport de</string>
         <key>POWERED</key>
-        <string>Powered by</string>
+        <string>Creat amb</string>
         <key>CONTENT_WIKIMEDIA</key>
         <string>Contingut addicional per</string>
         <key>OF</key>
@@ -174,7 +174,7 @@
         <key>ACH_EARNED</key>
         <string>fites assolides</string>
         <key>CURRENT_GOAL</key>
-        <string>OBJECTIU</string>
+        <string>OBJECTIU ACTUAL</string>
         <key>SKIP</key>
         <string>SALTAR</string>
         <key>GOALS_COMPLETED</key>
@@ -182,6 +182,7 @@
         <key>BOT_COLOR</key>
         <string>Color dels Bots</string>
         <key>THE_END</key>
-        <string>FI</string>
+        <string>LA FI</string>
     </dict>
 </plist>
+

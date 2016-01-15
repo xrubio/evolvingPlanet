@@ -13,7 +13,7 @@
 	<key>LEVEL5HINT</key>
 	<string>Deberías evitar la otra población. Tiene mucha más experiencia en Guerra que tú.</string>
 	<key>LEVEL6HINT</key>
-	<string>Los Lovans no tienen suficiente tasa de reproducción para alcanzar el tamaño de población registrado en el tiempo definido. El nuevo poder de Influencia puede ser usado para convencer bots de otros grupos para que se unan al tuyo.</string>
+	<string>Los Lovan no tienen suficiente tasa de reproducción para alcanzar el tamaño de población registrado en el tiempo definido. El nuevo poder de Influencia puede ser usado para convencer bots de otros grupos para que se unan al tuyo.</string>
 	<key>LEVEL7HINT</key>
 	<string>Deberías engrosar tu población y tu atributo de Guerra antes de enfrentarte al otro grupo.</string>
 	<key>LEVEL8HINT</key>
@@ -27,9 +27,9 @@
     <key>LEVEL12HINT</key>
 	<string>Todo lo que necesitas está en el bosque, así que evita las regiones fuera de él.</string>
     <key>LEVEL13HINT</key>
-	<string>Para alcanzar el objetivo vas a necesitar madera de los dos bosques. Tu población debería llegar al límite este antes que los otros agentes sobreexploten la región.</string>
+	<string>Para alcanzar el objetivo vas a necesitar madera de los dos bosques. Tu población debería llegar al límite oriental antes que los otros agentes sobreexploten la región.</string>
     <key>LEVEL14HINT</key>
-	<string>Tu baja tasa de Explotación se puede equilibrar con múltiples estrategias. Puedes usar el poder de población, eliminar la competencia o unirte a ellos.</string>
+	<string>Tu baja tasa de Explotación se puede equilibrar con múltiples estrategias. Puedes aumentar el tamaño de tu población, eliminar la competencia o unirte a ellos.</string>
     <key>LEVEL15HINT</key>
 	<string>La mayoría de minerales ya habrá sido recogido antes que llegues a la montaña. Intenta intercambiar tu madera por el mineral del otro grupo.</string>
     <key>LEVEL16HINT</key>
