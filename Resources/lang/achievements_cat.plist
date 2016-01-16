@@ -11,7 +11,7 @@
     <key>ACH_LVL1_1</key>
     <string>Els primers avantpassats dels humans van aparèixer fa 4 milions d'anys a les selves de l'Àfrica oriental.
 
-Les espècies més antigas s'anomenen Australopitecins. Ja caminaven de peu, i sembla que aquesta característica és crucial per explicar el seu èxit. Podien viure en els més diversos entorns, des de la selva a la sabana.</string>
+Les espècies més antigues s'anomenen Australopitecins. Ja caminaven de peu, i sembla que aquesta característica és crucial per explicar el seu èxit. Podien viure en els més diversos entorns, des de la selva a la sabana.</string>
 
 	<key>TITLE_LVL1_Perfect</key>
 	<string>ALLÀ FORA</string>
@@ -286,7 +286,7 @@ Aquestes són les paraules de Bernal Díaz del Castillo sobre Tenochtitklan, cap
 Aquesta situació s'anomena tragèdia dels comuns, i explica per què existeix la sobreexplotació. Només es pot evitar coordinant a tota la comunitat.</string>
 
     <key>TITLE_LVL11_Perfect</key>
-    <string>HOMBRES DE LAS CAVERNAS</string>
+    <string>HOMES DE LES CAVERNES</string>
     <key>DESCR_LVL11_Perfect</key>
 	<string>Missió 11: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL11_2</key>
@@ -361,198 +361,200 @@ Les monedes es van fer servir per primer cop fa 3.000 anys. Van aparèixer simul
 
     <!-- LVL 14 -->
     <key>TITLE_LVL14_Accomplished</key>
-    <string>EL HOMBRE DE LAS NIEVES</string>
+    <string>L'HOME DE LES NEUS</string>
     <key>DESCR_LVL14_Accomplished</key>
     <string>Missió 14: Acomplerta</string>
     <key>ACH_LVL14_1</key>
-    <string>Este es Ötzi. Fue asesinado hace 5.000 años en los Alpes. Gracias a las bajas temperaturas su cuerpo fue momificado de manera natural.
-
-El estudio de su cuerpo ha proporcionado una cantidad de información incalculable, incluyendo dieta, indumentaria, herramientas y tatuajes.</string>
+    <string>Aquest és Ötzi. Va ser assassinat fa 5.000 anys als Alps. Gràcies a les baixes temperatures el seu cos va ser momificat de manera natural.
+    
+L'estudi de les seves restes ha proporcionat una quantitat d'informació increïble, incloent dieta, indumentària, eines i tatuatges.</string>
 
     <key>TITLE_LVL14_Perfect</key>
-    <string>HERRAMIENTAS DE LAVA</string>
+    <string>EINES DE LAVA</string>
     <key>DESCR_LVL14_Perfect</key>
 	<string>Missió 14: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL14_2</key>
-    <string>La obsidiana es uno de los materiales más valiosos de la Prehistoria.
-
-Este cristal volcánico se usó para crear objetos afilados como flechas y cuchillos.</string>
+    <string>La obsidiana és un dels materials més valuosos de la Prehistòria.
+    
+Aquest cristall volcànic es pot servir per a crear objectes molt afilats com puntes de fletxa i ganivets.</string>
 
     <key>TITLE_LVL14_NoBoosts</key>
-    <string>LO QUIERES?</string>
+    <string>HO VOLS?</string>
     <key>DESCR_LVL14_NoBoosts</key>
     <string>Missió 14: Supera-la sense Augments</string>
     <key>ACH_LVL14_3</key>
-    <string>Los arqueólogos son capaceds de determinar el campo volcánico en el que se formó un fragmento de obsidiana.
-    
-Esta información es muy útil como indicador de comercio prehistórico. Se han hallado objetos de obsidiana a yacimientos situados a miles de quilómetros de su lugar de formación.</string>
+    <string>Els arqueòlegs poden determinar el camp volcànic a on es va crear un fragment d'obsidiana.
+
+Aquesta informació és molt útil com a indicador de comerç prehistòric. S'han descobert objectes d'obsidiana a jaciments situats a milers de quilòmetres del seu lloc de formació.</string>
 
     <!-- LVL 15 -->
     <key>TITLE_LVL15_Accomplished</key>
-    <string>ME PARECE</string>
+    <string>EM SEMBLA</string>
     <key>DESCR_LVL15_Accomplished</key>
     <string>Missió 15: Acomplerta</string>
     <key>ACH_LVL15_1</key>
-    <string>Una confusíón usual es pensar que la evolución es direccional y progresiva.
-    
-Nada más alejado de la teoría real: Darwin esbozó este árbol entre sus notas, destacando las similitudes entre la vida y su estructura ramificada.</string>
+    <string>Una confusió freqüent és pensar que l'evolució és direccional i progressiva.
+
+Res més lluny del que realment es proposa: Darwin va esbossar aquest arbre entre les seves notes, tot destacant les semblançes entre la vida i un estructurada ramificada</string>
 
     <key>TITLE_LVL15_Perfect</key>
-    <string>MÚLTIPLES ORÍGENES</string>
+    <string>MÚLTIPLES ORÍGENS</string>
     <key>DESCR_LVL15_Perfect</key>
 	<string>Missió 15: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL15_2</key>
-    <string>La domesticación de plantas y animales es uno de los mayores cambios en la historia de la especie humana.
+    <string>La domesticació de plantes i animals és un dels canvis més importants en la història de l'espècie humana.
 
-La evidencia arqueológica sugiere que este proceso se desarrolló de manera independiente al menos en 3 sitios distintos: Oriente Medio, China y África.</string>
+L'evidència arqueològica suggereix que aquest procés es va desenvolupar de manera independent com a mínim en 3 llocs diferents: Orient Mitjà, la Xina i Àfrica.</string>
+
 
     <key>TITLE_LVL15_Discovery</key>
-    <string>ROBANDO IDEAS</string>
+    <string>ROBANT IDEES</string>
     <key>DESCR_LVL15_Discovery</key>
     <string>Missió 15: Mou-te a la zona nord del bosc</string>
     <key>ACH_LVL15_3</key>
-    <string>“No me preocupa que roben mis ideas...me preocupa que no tengan ninguna propia.”
+    <string>“No em preocupa que robin les meves idees...em preocupa més que no en tinguin cap de pròpia.”
     Nikola Tesla
 
-Este brillante inventor es el responsable que puedas usar correr este dispositivo mediante electricidad.</string>
+Aquest brillant inventor és responsable que puguis fer funcionar aquest dispositiu mitjançant electricitat.</string>
     <!-- LVL 16 -->
     <key>TITLE_LVL16_Accomplished</key>
-    <string>LOS PRIMEROS GRANJEROS</string>
+    <string>ELS PRIMERS GRANGERS</string>
     <key>DESCR_LVL16_Accomplished</key>
     <string>Missió 16: Acomplerta</string>
     <key>ACH_LVL16_1</key>
-    <string>El Neolítico es la transición entre una vida basada en caza y recolección a otra basada en el cultivo y el pastoreo.
-    
-Esta domesticación no sólo afectó a plantas y animales, sinó también a los humanos. Transformó su cultura, incluyendo dieta, movilidad y comunicación.</string>
+    <string>El Neolític és la transició entre una vida basada en caça i recol·lecció, i una altra fonamentada en el cultiu i el pasturatge.
+
+Aquestas domesticació no sols va afectar a plantes i animals, sinó també als humans. Va transformar la seva cultura, incloent dieta, mobilitat i comunicació.</string>
 
     <key>TITLE_LVL16_Perfect</key>
-    <string>TIMES ARE CHANGING</string>
+    <string>ELS TEMPS ESTAN CANVIANT</string>
     <key>DESCR_LVL16_Perfect</key>
 	<string>Missió 16: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL16_2</key>
-    <string>El clima cambia constantemente. Los arqueólogos han encontrado evidencias de cultivo de trigo ocurrido hace miles de años en las islas Orkney, cerca del famoso yacimiento de Skara Brae.
+    <string>El clima canvia constantment. Els arqueòlegs han trobat evidències de cultiu de blat fa milers d'anys en les illes Orkney, al nord d'Escòcia.
 
-Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin embargo, el rápido cambio climático generado por los humanos podría cambiar esto en las próximas décadas.</string>
+Amb els anys les temperatures van anar baixant fins que ja no va ser possible. D'altra banda, el ràpid canvi climàtic generats pels humans podria canviar aquesta situació en les properes dècades.</string>
  
     <key>TITLE_LVL16_NoBoosts</key>
     <string>KLAATU BARADA NIKTO</string>
     <key>DESCR_LVL16_NoBoosts</key>
     <string>Missió 16: Supera-la sense Augments</string>
     <key>ACH_LVL16_3</key>
-    <string>Usas Mozilla Firefox? Escribe 'about:robots' en la barra de direcciones para ver un secreto bastante friki!</string>
+    <string>Fas servir Mozilla Firefox? Escriu 'about:robots' a la barra de direccions per a veure un secret força friki!</string>
  
     <!-- LVL 17 -->
     <key>TITLE_LVL17_Accomplished</key>
-    <string>YO, ROBOT</string>
+    <string>JO, ROBOT</string>
     <key>DESCR_LVL17_Accomplished</key>
     <string>Missió 17: Acomplerta</string>
     <key>ACH_LVL17_1</key>
-    <string>Tus bots tienen un cerebro positrónico que sigue las 3 Leyes de la Robótica definidas por Isaac Asimov en 1942:
+    <string>Els teus bots tenen un cervell positrònic que segueix les 3 Lleis de la Robòtica definides per Isaac Asimov al 1942:
     
-    1. Un robot no hará daño a un ser humano o, por inacción, permitir que un ser humano sufra daño.
-    2. Un robot debe obedecer las órdenes dadas por los seres humanos, excepto si estas órdenes entrasen en conflicto con la Primera Ley.
-    3. Un robot debe proteger su propia existencia en la medida en que esta protección no entre en conflicto con la Primera o la Segunda Ley.</string>
+    1. Un robot no pot fer mal a un ésser humà o, per inacció, permetre que un ésser humà prengui mal.
+    2. Un robot ha d'obeir les ordres dels éssers humans, excepte si entren en conflicte amb la Primera llei.
+    3. Un robot ha de protegir la seva pròpia existència en la mesura que aquesta protecció no entri en conflicte amb la Primera o la Segona llei.</string>
 
     <key>TITLE_LVL17_Perfect</key>
-    <string>TRABAJO DIFÍCIL</string>
+    <string>TREBALL DIFÍCIL</string>
     <key>DESCR_LVL17_Perfect</key>
 	<string>Missió 17: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL17_2</key>
-    <string>Los mineros que trabajan en la isla de Java tienen probablemente el trabajo más peligroso del mundo. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
+    <string>La feina més perillosa del món és probablement la dels miners que treballen a la illa de Java. Baixen a l'interior del volcà Lijen per a recollir sulfur.</string>
 
     <key>TITLE_LVL17_EPsLeft</key>
-    <string>DISEÑO TONTO</string>
+    <string>EL MILLOR ESPECTACLE DEL PLANETA</string>
     <key>DESCR_LVL17_EPsLeft</key>
     <string>Missió 17: Passar-la estalviant 10 EPs</string>
     <key>ACH_LVL17_3</key>
-    <string>Algunas personas dicen que el Diseño Inteligente es una teoría tan buena como la Evolución para explicar la vida.
+    <string>Alguna gent diu que el Disseny Intel·ligent explica la vida tant o millor que la teoria de l'Evolució.
 
-Sin embargo, la Evolución es una teoría científica mientras que el Diseño Inteligente es un razonamiento religioso sin evidencia empírica. No ofrece ninguna explicación que pueda ser comprobada.</string>
+Però això no és així; l'Evolució és una teoria científica mentre que el Disseny Intel·ligent és un raonament religiós. En realitat no ofereix cap explicació que pugui ser contrastada a partir de l'evidència.</string>
     
     <!-- LVL 18 -->
     <key>TITLE_LVL18_Accomplished</key>
-    <string>UNA VERDAD INCÓMODA</string>
+    <string>UNA VERITAT INCÒMODA</string>
     <key>DESCR_LVL18_Accomplished</key>
     <string>Missió 18: Acomplerta</string>
     <key>ACH_LVL18_1</key>
-    <string>El Panel Intergobernamental sobre el Cambio Climático (IPCC) fue creado por las Naciones Unidas para estudiar el cambio climático.
+    <string>El Grup Intergovernamental d'Experts sobre el Canvi Climàtic (IPCC) va ser creat per les Nacions Unides per tal d'estudiar el canvi climàtic.
     
-Ha recogido evidencia de miles de estudios para mostrar los peligrosos efectos que la actividad humana está teniendo en el planeta.</string>
+Ha recollit evidència de milers d'estudis per tal de mostrar els perillosos efectes que l'activitat humana està tenint al planeta.</string>
 
     <key>TITLE_LVL18_Perfect</key>
-    <string>NO ES UNA LUNA</string>
+    <string>NO ÉS UNA LLUNA</string>
     <key>DESCR_LVL18_Perfect</key>
 	<string>Missió 18: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL18_2</key>
-    <string>La conspiración de los alunizajes sugieres que la misión fue grabada por el director Stanley Kubrick en la Tierra.
-De hecho este director y la NASA sólo compartieron cámaras. Gracias al modelo de cámara usado por esta agencia espacial pudo rodar algunas escenas de su película Barry Lindon tan sólo usando la luz de velas.</string>
+    <string>Una llegenda diu que l'arribada a la Lluna va ser en realitat una conspiració, i que de fet la missió va ser un frau dirigit per Stanley Kubrick a la Terra.
+
+En realitat Kubrick i la NASA només van compartir càmeres. Gràcies al model emprat per l'agència espacial es van poder filmar algunes escenes de "Barry Lindon" fent servir només la llum de les espelmes.</string>
 
     <key>TITLE_LVL18_Discovery</key>
-    <string>CURIOSIDAD</string>
+    <string>CURIOSITAT</string>
     <key>DESCR_LVL18_Discovery</key>
     <string>Missió 18: Arriba a la península est</string>
     <key>ACH_LVL18_3</key>
-    <string>"Soy una de essas personas que cree, como Nobel, que la humanidad sacará más cosas buenas que malas de los nuevos descubrimientos."
+    <string>"Sóc una d'aquestes persones que creu, com Nobel, que la humanitat obtindrà dels nous descobriments més coses bones que no pas dolentes."
             Marie Sklodowska Curie
 
-Esta científica polaca es la única persona que ha ganado 2 Premios Nobel en distintas disciplinas (Física en 1903, Química en 1911). Su genio contribuyó a mejorar nuestro conocimiento de la radioactividad.</string>
+Aquesta científica polonesa és la única persona que ha guanyat 2 Premis Nobel en diferents disciplines (Física al 1903, Química al 1911). El seu geni va contribuir a millorar el nostre coneixement de la radioactivitat.</string>
 
     <!-- LVL 19 -->
     <key>TITLE_LVL19_Accomplished</key>
-    <string>EN CAÍDA LIBRE</string>
+    <string>EN CAIGUDA LLIURE</string>
     <key>DESCR_LVL19_Accomplished</key>
     <string>Missió 19: Acomplerta</string>
     <key>ACH_LVL19_1</key>
-    <string>Los Maya formaban una de las sociedades tecnológicamente más avanzadas de Mesoamérica.
+    <string>Els Maia formaven una de les societats tecnològicament més avançades de Mesoamèrica.
 
-Su declive es uno de los misterios más apasionantes de la arqueología actual.</string>
+El seu declivi és un dels misteris més apassionants de l'arqueologia actual.</string>
 
     <key>TITLE_LVL19_Perfect</key>
     <string>LITTLE BOY</string>
     <key>DESCR_LVL19_Perfect</key>
 	<string>Missió 19: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL19_2</key>
-    <string>Esta bomba se llamaba Little Boy. Un bombardero de la US Air Force la lanzó sobre la ciudad japonesa de Hiroshima el 6 de agosto de 1945.
-    
-La primera bomba atómica causó miles de muertos y transformó la guerra para siempre.</string>
+    <string>Aquesta bomba rebia el nom de Little Boy. Un bombarder de la US Air Force la va llençar sobre la ciutat japonesa de Hiroshima el 6 d'agost del 1945.
+
+La primera bomba atòmica va causar milers de morts i va transformar la humanitat per sempre més.</string>
     
     <key>TITLE_LVL19_EPsLeft</key>
     <string>FAT MAN</string>
     <key>DESCR_LVL19_EPsLeft</key>
     <string>Missió 19: Passar-la estalviant 10 EPs</string>
     <key>ACH_LVL19_3</key>
-    <string>La segunda mitad del siglo XX fue caracterizada por la Guerra Fría entre los Estados Unidos y la Unión Soviética.
-    
-Durante 40 años el mundo vivió al borde de una guerra atómica que probablemente hubiera significado el fin de la especie humana.</string>
+    <string>La segona meitat del segle XX es va caracteritzar per la Guerra Freda entre Estats Units i la Unió Soviètica.
+
+Durant 40 anys el món va restar constantment a punt d'una guerra atòmica que probablement hagués significat la fi de l'espècie humana.</string>
 
     <!-- LVL 20 -->
     <key>TITLE_LVL20_Accomplished</key>
-    <string>LA VIDA SE ABRE CAMINO</string>
+    <string>LA VIDA S'OBRE CAMÍ</string>
     <key>DESCR_LVL20_Accomplished</key>
     <string>Missió 20: Acomplerta</string>
     <key>ACH_LVL20_1</key>
-    <string>Esta oveja se llamaba Dolly, y en 1996 fue el primer mamífero jamás clonado.
-    
-La clonación animal había sido imaginada años antes en el libro y la película Parque Jurásico, donde los dinosaurios cobraban vida de nuevo gracias a la ingeniería genética.</string>
+    <string>Aquesta ovella es deia Dolly, i al 1996 va ser el primer mamífer mai clonat.
+   
+La clonació animal havia estat imaginada anys abans en el llibre i la pel·lícula Parc Juràssic, a on els dinousaures tornaven a la vida gràcies a l'enginyeria genètica.</string>
 
     <key>TITLE_LVL20_Perfect</key>
     <string>TOP GAMER</string>
     <key>DESCR_LVL20_Perfect</key>
 	<string>Missió 20: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL20_2</key>
-    <string>“Somos polvo de estrellas que ha tomado su destino en sus propias manos.”
+    <string>“Som pols d'estrelles que ha pres a les seves mans el seu propi destí.”
             Carl Sagan
 
-Fue probablemente el mejor divulgador científico que nunca ha existido. Si no conoces tu serie de televisión sobre el Cosmos deja ahora mismo de jugar y ponte a verla!</string>
+Va ser probablement el millor divulgador científic que mai ha viscut. Si no coneixes la seva sèrie de televisió "Cosmos" deixa ara mateix de jugar i ves a mira-la!</string>
 
     <key>TITLE_LVL20_NoBoosts</key>
-    <string>HUMANOS IROS A CASA!</string>
+    <string>HUMANS TORNEU CASA VOSTRA!</string>
     <key>DESCR_LVL20_NoBoosts</key>
     <string>Missió 20: Supera-la sense Augments</string>
     <key>ACH_LVL20_3</key>
-    <string>La colonización de un sitio poblado por parte de otra cultura casi siempre es un choque dramático.
-    
-El proceso fue satirizado por Ray Bradbury en sus "Crónicas Marcianas", dónde narraba la colonización humana del planeta Rojo.</string>
+    <string>La colonització d'un lloc poblat per part d'una altra cultura és gairebé sempre un xoc dramàtic.
+
+El procés va ser satiritzat per Ray Bradbury a les seves "Cròniques Marcianes", a on narrava la colonització humana del planeta Vermell.</string>
 </dict>
 </plist>
 

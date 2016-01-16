@@ -365,7 +365,7 @@ Las monedas se usaron por primera vez hace 3.000 años. Aparecieron simultáneam
     <key>ACH_LVL14_1</key>
     <string>Este es Ötzi. Fue asesinado hace 5.000 años en los Alpes. Gracias a las bajas temperaturas su cuerpo fue momificado de manera natural.
 
-El estudio de su cuerpo ha proporcionado una cantidad de información incalculable, incluyendo dieta, indumentaria, herramientas y tatuajes.</string>
+El estudio de sus restos ha proporcionado una cantidad de información incalculable, incluyendo dieta, indumentaria, herramientas y tatuajes.</string>
 
     <key>TITLE_LVL14_Perfect</key>
     <string>HERRAMIENTAS DE LAVA</string>
@@ -374,14 +374,14 @@ El estudio de su cuerpo ha proporcionado una cantidad de información incalculab
     <key>ACH_LVL14_2</key>
     <string>La obsidiana es uno de los materiales más valiosos de la Prehistoria.
 
-Este cristal volcánico se usó para crear objetos afilados como flechas y cuchillos.</string>
+Este cristal volcánico se puede para crear objetos muy afilados, como puntas de flecha y cuchillos.</string>
 
     <key>TITLE_LVL14_NoBoosts</key>
     <string>LO QUIERES?</string>
     <key>DESCR_LVL14_NoBoosts</key>
     <string>Misión 14: Pásala sin Aumentos</string>
     <key>ACH_LVL14_3</key>
-    <string>Los arqueólogos son capaceds de determinar el campo volcánico en el que se formó un fragmento de obsidiana.
+    <string>Los arqueólogos pueden determinar el campo volcánico en el que se formó un fragmento de obsidiana.
     
 Esta información es muy útil como indicador de comercio prehistórico. Se han hallado objetos de obsidiana a yacimientos situados a miles de quilómetros de su lugar de formación.</string>
 
@@ -391,9 +391,9 @@ Esta información es muy útil como indicador de comercio prehistórico. Se han 
     <key>DESCR_LVL15_Accomplished</key>
     <string>Misión 15: Completada</string>
     <key>ACH_LVL15_1</key>
-    <string>Una confusíón usual es pensar que la evolución es direccional y progresiva.
+    <string>Una confusíón frecuente és pensar que la evolución es direccional y progresiva.
     
-Nada más alejado de la teoría real: Darwin esbozó este árbol entre sus notas, destacando las similitudes entre la vida y su estructura ramificada.</string>
+Nada más alejado de lo que realmente se propone: Darwin esbozó este árbol entre sus notas, destacando las similitudes entre la vida y su estructura ramificada.</string>
 
     <key>TITLE_LVL15_Perfect</key>
     <string>MÚLTIPLES ORÍGENES</string>
@@ -409,26 +409,26 @@ La evidencia arqueológica sugiere que este proceso se desarrolló de manera ind
     <key>DESCR_LVL15_Discovery</key>
     <string>Misión 15: Muévete a la zona norte del bosque</string>
     <key>ACH_LVL15_3</key>
-    <string>“No me preocupa que roben mis ideas...me preocupa que no tengan ninguna propia.”
+    <string>“No me preocupa que roben mis ideas...me preocupa más que no tengan ninguna propia.”
     Nikola Tesla
 
-Este brillante inventor es el responsable que puedas usar correr este dispositivo mediante electricidad.</string>
+Este brillante inventor es el responsable que puedas hacer funcionar este dispositivo mediante electricidad.</string>
     <!-- LVL 16 -->
     <key>TITLE_LVL16_Accomplished</key>
     <string>LOS PRIMEROS GRANJEROS</string>
     <key>DESCR_LVL16_Accomplished</key>
     <string>Misión 16: Completada</string>
     <key>ACH_LVL16_1</key>
-    <string>El Neolítico es la transición entre una vida basada en caza y recolección a otra basada en el cultivo y el pastoreo.
+    <string>El Neolítico es la transición entre una vida basada en caza y recolección a otra fundamentada en el cultivo y el pastoreo.
     
 Esta domesticación no sólo afectó a plantas y animales, sinó también a los humanos. Transformó su cultura, incluyendo dieta, movilidad y comunicación.</string>
 
     <key>TITLE_LVL16_Perfect</key>
-    <string>TIMES ARE CHANGING</string>
+    <string>LOS TIEMPOS ESTÁN CAMBIANDO</string>
     <key>DESCR_LVL16_Perfect</key>
 	<string>Misión 16: Consigue 3 estrellas</string>
     <key>ACH_LVL16_2</key>
-    <string>El clima cambia constantemente. Los arqueólogos han encontrado evidencias de cultivo de trigo ocurrido hace miles de años en las islas Orkney, cerca del famoso yacimiento de Skara Brae.
+    <string>El clima cambia constantemente. Los arqueólogos han encontrado evidencias de cultivo de trigo ocurrido hace miles de años en las islas Orkney, en el norte de Escocia.
 
 Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin embargo, el rápido cambio climático generado por los humanos podría cambiar esto en las próximas décadas.</string>
  
@@ -456,16 +456,16 @@ Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin 
     <key>DESCR_LVL17_Perfect</key>
 	<string>Misión 17: Consigue 3 estrellas</string>
     <key>ACH_LVL17_2</key>
-    <string>Los mineros que trabajan en la isla de Java tienen probablemente el trabajo más peligroso del mundo. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
+    <string>El trabajo más peligroso del mundo és probablemente el de los mineros que trabajan en la isla de Java. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
 
     <key>TITLE_LVL17_EPsLeft</key>
-    <string>DISEÑO TONTO</string>
+    <string>EL MAYOR ESPECTÁCULO DEL MUNDO</string>
     <key>DESCR_LVL17_EPsLeft</key>
     <string>Misión 17: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL17_3</key>
-    <string>Algunas personas dicen que el Diseño Inteligente es una teoría tan buena como la Evolución para explicar la vida.
+    <string>Algunas personas dicen que el Diseño Inteligente explica la vida mejor que la teoría ade la Evolución.
 
-Sin embargo, la Evolución es una teoría científica mientras que el Diseño Inteligente es un razonamiento religioso sin evidencia empírica. No ofrece ninguna explicación que pueda ser comprobada.</string>
+Sin embargo, la Evolución es una teoría científica mientras que el Diseño Inteligente es un razonamiento religioso. De hecho no ofrece ninguna explicación que pueda ser contrastada en base a evidencia.</string>
     
     <!-- LVL 18 -->
     <key>TITLE_LVL18_Accomplished</key>
@@ -482,15 +482,16 @@ Ha recogido evidencia de miles de estudios para mostrar los peligrosos efectos q
     <key>DESCR_LVL18_Perfect</key>
 	<string>Misión 18: Consigue 3 estrellas</string>
     <key>ACH_LVL18_2</key>
-    <string>La conspiración de los alunizajes sugieres que la misión fue grabada por el director Stanley Kubrick en la Tierra.
-De hecho este director y la NASA sólo compartieron cámaras. Gracias al modelo de cámara usado por esta agencia espacial pudo rodar algunas escenas de su película Barry Lindon tan sólo usando la luz de velas.</string>
+    <string>Una leyenda dice que la llegada a la Luna fue en realidad una conspiración, y que en realidad la misión fue un fraude orquestado por Stanley Kubrick en la Tierra.
+
+En realidad Kubrick y la NASA sólo compartieron cámaras. Gracias al modelo usado por la agencia espacial se pudieron rodar algunas escenas de "Barry Lindon" tan sólo usando la luz de velas.</string>
 
     <key>TITLE_LVL18_Discovery</key>
     <string>CURIOSIDAD</string>
     <key>DESCR_LVL18_Discovery</key>
     <string>Misión 18: Llega a la península este</string>
     <key>ACH_LVL18_3</key>
-    <string>"Soy una de essas personas que cree, como Nobel, que la humanidad sacará más cosas buenas que malas de los nuevos descubrimientos."
+    <string>"Soy una de esas personas que cree, como Nobel, que la humanidad sacará de los nuevos descubrimientos más cosas buenas que malas."
             Marie Sklodowska Curie
 
 Esta científica polaca es la única persona que ha ganado 2 Premios Nobel en distintas disciplinas (Física en 1903, Química en 1911). Su genio contribuyó a mejorar nuestro conocimiento de la radioactividad.</string>
@@ -512,7 +513,7 @@ Su declive es uno de los misterios más apasionantes de la arqueología actual.<
     <key>ACH_LVL19_2</key>
     <string>Esta bomba se llamaba Little Boy. Un bombardero de la US Air Force la lanzó sobre la ciudad japonesa de Hiroshima el 6 de agosto de 1945.
     
-La primera bomba atómica causó miles de muertos y transformó la guerra para siempre.</string>
+La primera bomba atómica causó miles de muertos y transformó la humanidad para siempre.</string>
     
     <key>TITLE_LVL19_EPsLeft</key>
     <string>FAT MAN</string>
@@ -531,7 +532,7 @@ Durante 40 años el mundo vivió al borde de una guerra atómica que probablemen
     <key>ACH_LVL20_1</key>
     <string>Esta oveja se llamaba Dolly, y en 1996 fue el primer mamífero jamás clonado.
     
-La clonación animal había sido imaginada años antes en el libro y la película Parque Jurásico, donde los dinosaurios cobraban vida de nuevo gracias a la ingeniería genética.</string>
+La clonación animal había sido imaginada años antes en el libro y la película Parque Jurásico, donde los dinosaurios volvían a la vida gracias a la ingeniería genética.</string>
 
     <key>TITLE_LVL20_Perfect</key>
     <string>TOP GAMER</string>
@@ -541,7 +542,7 @@ La clonación animal había sido imaginada años antes en el libro y la películ
     <string>“Somos polvo de estrellas que ha tomado su destino en sus propias manos.”
             Carl Sagan
 
-Fue probablemente el mejor divulgador científico que nunca ha existido. Si no conoces tu serie de televisión sobre el Cosmos deja ahora mismo de jugar y ponte a verla!</string>
+Fue probablemente el mejor divulgador científico que nunca ha vivido. Si no conoces su serie de televisión "Cosmos" deja ahora mismo de jugar y ponte a verla!</string>
 
     <key>TITLE_LVL20_NoBoosts</key>
     <string>HUMANOS IROS A CASA!</string>
