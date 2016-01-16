@@ -11,7 +11,7 @@ El equipo espera tus órdenes para empezar la misión.</string>
 	<key>CONTEXT_LEVEL_1</key>
 	<string>Profesor, soy la doctora Rosalind Lovelace y lidero el equipo xenoarqueológico. Te ayudaremos a usar los bots para entender lo que pasó en este planeta.
 
-Hemos desplegado a los bots en la zona donde se encontraron los primeros fósiles de Lovan. Este medio ambiente me recuerda a nuestros propios orígenes en África Oriental, ya que nuestros primeros antepasados vivieron en una selva similar a esta, hace 4 millones de años.</string>
+Hemos desplegado a los bots en la zona donde se encontraron los primeros fósiles de Lovan. Este medio ambiente me recuerda a nuestros propios orígenes en África Oriental. Nuestros primeros antepasados vivieron en una selva similar a esta, hace 4 millones de años.</string>
 
 	<key>BRIEF_LEVEL_2</key>
 	<string>Día de campaña 7
@@ -20,7 +20,7 @@ Los bots están respondiendo a tus órdenes. Necesitamos que se dispersen hacia 
 	<key>CONTEXT_LEVEL_2</key>
 	<string>El éxito de los Lovans les permitió poblar muchos otros ecosistemas.
 
-    Lo hicieron de manera similar a nuestros ancestros, que florecieron por todo África sub-Sahariana usando diferentes fuentes de alimento, desde la caza a la recolección de plantas comestibles.</string>
+Lo hicieron de manera similar a nuestros ancestros, que florecieron por todo África sub-Sahariana usando distintas estrategias, desde la caza a la recolección de plantas comestibles.</string>
 
 	<key>BRIEF_LEVEL_3</key>
 	<string>Día de campaña 10
@@ -41,7 +41,7 @@ La Dr. Lovelace no está convencida de los resultados anteriores, así que vamos
 
 Quiero probar otra estrategia: que pasaría si les proporcionamos tecnología?
 
-Los bots deberían ser capaces de conseguir llegar a los objetivos en el tiempo estimado, siempre y cuando combinen fuego y herramientas de piedra...vale, creo que esto puede funcionar!</string>
+Los bots deberían llegar a los objetivos en el tiempo estimado, siempre y cuando combinen fuego y herramientas de piedra...vale, creo que esto puede funcionar!</string>
 	<key>BRIEF_LEVEL_5</key>
 	<string>Día de campaña 16
 
@@ -61,7 +61,7 @@ Hemos descubierto una especie que desapareció del planeta justo después de ent
 
 El control de misión quiere que probemos si los dos grupos hibridaron y de algún modo llegaron a ser una sola especie.</string>
 	<key>CONTEXT_LEVEL_6</key>
-	<string>Este escenario genera un montón de preguntas complejas.
+	<string>Este escenario plantea un montón de preguntas.
     
 Una hipótesis sobre la extinción de los Neandertales sugiere que fueron absorbidos por la población Cro-Magnon a través de una mezcla de influencia cultural e hibridación.
 
@@ -82,11 +82,11 @@ En todo caso se cargaron a esta otra especie mientras invadían su territorio, a
 
 El clima cambió drásticamente durante la dispersión Lovan. En esta zona tuvieron que cruzar un gran desierto mientras los recursos disponibles se redujeron rápidamente.</string>
 	<key>CONTEXT_LEVEL_8</key>
-	<string>La caza y la recolección son un estilo de vida bastante decente. Vale, vives en base a lo que te da la vida salvaje, pero tu dieta es menos aburrida que si fueras un granjero. Y además, trabajas menos horas!
+	<string>La caza y la recolección son un estilo de vida bastante decente. Vale, dependes de lo que te da la naturaleza, pero tu dieta es menos aburrida que si fueras un granjero. Y además, trabajas menos horas!
 
-Por otro lado, debes emigrar cuando los recursos bajan.
+Por otro lado, tienes que moverte si los recursos escasean.
 
-En esta misión una larga sequía convirtió una selva verde en un desierto. Los Lovan lo cruzaron mientras otro grupo luchaba por sobrevivir así que vamos a ver cómo fue la competición.</string>
+En esta misión una larga sequía convirtió una selva exhuberante en un desierto. Los Lovan lo cruzaron mientras otro grupo luchaba por sobrevivir así que vamos a ver cómo fue la competición.</string>
 
     <key>BRIEF_LEVEL_9</key>
 	<string>Día de campaña 25
@@ -95,20 +95,20 @@ Parece que este planeta estaba abarrotado. En esta misión tus bots van a encont
 	<key>CONTEXT_LEVEL_9</key>
 	<string>Vas a tener que cooperar y competir al mismo tiempo. 
 
-Creo que en este escenario los Lovan se aliaron con uno de los grupo y atacaron al otro. Te recomiendo que intentes influenciar al más cercano, y una vez tu grupo sea suficientemente grande puedes lidiar con el resto de los objetivos.</string>
+Creo que en este escenario los Lovan se aliaron con uno de los grupos para atacar al otro. Te recomiendo que intentes influenciar al más cercano para que, una vez tu grupo sea suficientemente grande, lidies con el resto de objetivos.</string>
 
     <key>BRIEF_LEVEL_10</key>
 	<string>Día de campaña 30
 
 Esta misión completa la dispersión Lovan. Demostraron su capacidad adaptativa poblando el planeta de polo a polo.
 
-Sin embargo, la evidencia es bastante escasa y no sabemos qué paso en esta última zona.</string>
+Sin embargo, la evidencia en esta última zona es bastante escasa y no sabemos qué paso.</string>
 	<key>CONTEXT_LEVEL_10</key>
 	<string>Tengo malas noticias...no tenemos ni idea de por qué los Lovan tuvieron éxito colonizando esta región.
 
-La incertidumbre me está matando, pero así es la Ciencia! Aceptamos una explicación hasta que otra se ajusta mejor a la evidencia, tan simple como esto.
+Vamos a explorar la última dispersión con distintas estrategias. Puedes probar con bots más agresivos, tecnológicamente avanzados o capaces de influenciar a los otros grupos.
 
-Vamos a explorar la última dispersión con distintas estrategias. Puedes probar con bots más agresivos, tecnológicamente avanzados o capaces de influenciar a los otros grupos.</string>
+La incertidumbre me está matando, pero así es la Ciencia! Aceptamos una explicación hasta que otra se ajusta mejor a la evidencia, tan simple como esto.</string>
     
     <key>BRIEF_LEVEL_11</key>
     <string>Los Lovan florecieron en todo Kepler-1138. El incremento de población promovió el desarrollo de nuevas tecnologías y exploración adicional de los vastos recursos del planeta.</string>

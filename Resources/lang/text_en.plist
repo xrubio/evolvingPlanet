@@ -41,7 +41,7 @@ Dr. Lovelace is not convinced of the previous results so we will try a different
 
 I want to try a different approach; what if we provide the bots with technology?
 
-They should be able to achieve the goals within expected time if they combine fire with stone tools...yeah, I think this will work!</string>
+They should be reach the goals within expected time if they combine fire with stone tools...yeah, I think this will work!</string>
 	<key>BRIEF_LEVEL_5</key>
 	<string>Campaign day 16
 
@@ -61,7 +61,7 @@ We discovered that one of the species present in this planet disappeared after c
 
 Mission control wants to test if they hybridized and became somehow a single species.</string>
 	<key>CONTEXT_LEVEL_6</key>
-	<string>This situation raises a lot of complex questions.
+	<string>This situation raises a lot of questions.
     
 One hypothesis about the extinction of Neanderthals suggests that they were absorbed by the Cro-Magnon population by a mix of cultural influence and hybridation.
 
@@ -105,10 +105,10 @@ This mission completes the Lovan dispersal. They proved their adaptive capacity 
 However, evidence is scarce in this last zone so we are not sure what happened.</string>
 	<key>CONTEXT_LEVEL_10</key>
 	<string>I have some bad news...we don't have a clue why Lovans were successful in this region.
-    
-The uncertainty is killing me, but this is Science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.
 
-Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other groups.</string>
+Let's explore this last dispersal by trying different approaches. You can make the bots more aggressive, technologically advanced or capable of influencing other groups.   
+
+The uncertainty is killing me, but this is Science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.</string>
     
     <key>BRIEF_LEVEL_11</key>
     <string>Lovans groups bloomed over Kepler-1138. Increased population fostered the development of new technologies and further exploitation of the vast resources of the planet.</string>
