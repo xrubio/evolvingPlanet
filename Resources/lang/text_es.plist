@@ -111,115 +111,115 @@ Vamos a explorar la última dispersión con distintas estrategias. Puedes probar
 La incertidumbre me está matando, pero así es la Ciencia! Aceptamos una explicación hasta que otra se ajusta mejor a la evidencia, tan simple como esto.</string>
     
     <key>BRIEF_LEVEL_11</key>
-    <string>Los Lovan florecieron en todo Kepler-1138. El incremento de población promovió el desarrollo de nuevas tecnologías y exploración adicional de los vastos recursos del planeta.</string>
-    <key>CONTEXT_LEVEL_11</key>
     <string>Día de campaña 41
         
-Los Lovan explotaron todos los recursos disponibles en su medio ambiente para mejorar sus opciones de supervivencia. Esto incluye obsidiana y minerales útiles para crear herramientas, así como madera como combustible y hacer mejores viviendas.
+Los Lovan florecieron en todo Kepler-1138. El incremento de población promovió el desarrollo de nuevas tecnologías y la explotación de los vastos recursos del planeta.</string>
+    <key>CONTEXT_LEVEL_11</key>
+    <string>Los Lovan explotaron todos los recursos disponibles en su medio ambiente para mejorar sus opciones de supervivencia. Esto incluye obsidiana y minerales útiles para crear herramientas, así como madera como combustible y hacer mejores viviendas.
 
 Hemos desplegado estos dos recursos en esta misión para entender cómo los Lovan explotaron el planeta, de un modo similar a los humanos en la Tierra.</string>
 
     <key>BRIEF_LEVEL_12</key>
-    <string>Los recursos naturales del entorno se comparten entre todos los individuos que viven en él.
-
-Esto crea tensiones entre grupos cuando distintos grupos compiten por un recurso finito.</string>
-    <key>CONTEXT_LEVEL_12</key>
     <string>Día de campaña 44
     
-Comida, madera, minerales...nada es infinito así que las cantidades disponibles definen cuánta población puede vivir en un sitio particular. Este límite genera dinámicas de competición entre individuos, como las que hemos observado en esta área.
+Los recursos naturales de un ecosistema se comparten entre todos los individuos que viven en él.
+
+Esto crea tensiones cuando distintos grupos quieren tener acceso al mismo recurso finito.</string>
+    <key>CONTEXT_LEVEL_12</key>
+    <string>Comida, madera, minerales...nada es infinito así que las cantidades disponibles definen cuánta población puede vivir en un sitio particular. Este límite genera dinámicas de competición entre individuos, como las que hemos observado en esta área.
 
 Tus bots necesitarán ganar el control de un bosque, en manos de otro grupo. Tienes muchas opciones disponibles para tener éxito: mejorar Influencia, Violencia o quizás Movilidad?</string>
 
     <key>BRIEF_LEVEL_13</key>
-    <string>La competición no es la única consecuencia de la explotación de recursos. Hemos encontrado evidencia de comercio entre los Lovans y otros grupos en el área.
-
-Intercambiaron minerales y madera; esta redistribución benefició a ambas poblaciones.    </string>
-    <key>CONTEXT_LEVEL_13</key>
     <string>Día de campaña 50
 
-Esto es fascinante, parece que nuestros chicos consiguieren minerales en esta región mediante el trueque por madera. Los humanos han comerciado por cualquier cosa desde sus inicios, y los Lovans no fueron distintos al respecto.
+La competición no es la única consecuencia de la explotación de recursos. Hemos encontrado evidencia de comercio entre los Lovan y otros grupos.
+
+Intercambiaron minerales y madera; esta redistribución probablemente benefició a ambas poblaciones.</string>
+    <key>CONTEXT_LEVEL_13</key>
+    <string>Esto es fascinante, parece que nuestros chicos consiguieren minerales en esta región mediante el trueque por madera. Los humanos han comerciado por cualquier cosa desde sus inicios, y los Lovan no fueron distintos al respecto.
 
 Tus bots necesitan aprender las complejidades del comercio antes de superar esta misión.</string>
         
     <key>BRIEF_LEVEL_14</key>
-    <string>El comercio es una de las actividades que potencian el contacto entre poblaciones. Los Lovan se aliaron con otro grupo para controlar los recursos minerales de una de las áreas más ricas del planeta.</string>
-    <key>CONTEXT_LEVEL_14</key>
     <string>Día de campaña 53
     
-El intercambio de bienes no sólo tiene que ver con cosas. Por ejemplo, en la Tiera la obsidiana sólo se encuentra en algunos sitios, y por lo tanto viaja cientos de quilómetros hasta los lugares en los que los arqueólogos la han encontrado.
+El comercio es una de las actividades que potencian el contacto entre poblaciones. Los Lovan se aliaron con otro grupo para controlar los recursos minerales de una de las áreas más ricas del planeta.</string>
+    <key>CONTEXT_LEVEL_14</key>
+    <string>El intercambio de bienes no sólo tiene que ver con cosas. El comercio necesita comunicación entre individuos. No sólo se comparten bienes: también se comparten ideas.
 
-El comercio necesita comunicación entre individuos. No sólo comparten bienes: también comparten ideas. Parece que los Lovan y otro grupo unieron sus fuerzas para controlar la obsidiana presente en una cadena montañosa. Esto promovió su control sobre la región entera.</string>
+Parece que los Lovan y otro grupo unieron sus fuerzas para controlar la obsidiana presente en una cadena montañosa. Esto propició su control sobre la región entera.</string>
 
     <key>BRIEF_LEVEL_15</key>
-    <string>La conquista Lovan del planeta tiene varias causas: desde sus capacidades de explotación al desarrollo tecnológico y la influencia cultural.
-
-En este caso fueroni capaces de controlar los recursos de una región grande a una velocidad impresionante.</string>
-    <key>CONTEXT_LEVEL_15</key>
     <string>Día de campaña 60
     
-Estamos ahora seguros que el éxito de los Lovan se basó en parte en sus habilidades negociadoras. Su cultura dejó una fuerta impresión en los otros grupos, y diversas evidencias sugieren que también eran excelentos comerciantes.
+La conquista Lovan del planeta tiene varias causas: desde sus capacidades de explotación al desarrollo tecnológico y la influencia cultural.
+
+En este caso fueron capaces de controlar los recursos de una región grande a una velocidad impresionante.</string>
+    <key>CONTEXT_LEVEL_15</key>
+    <string>Estamos ahora seguros que el éxito de los Lovan se basó en parte en sus habilidades negociadoras. Su cultura dejó una fuerta impresión en los otros grupos, y diversas evidencias sugieren que también eran excelentos comerciantes.
 
 Si queremos ajustarnos a las fechas de dispersión en esta zona necesitamos que tus bots adquieran múltiples recursos con una combinación de capacidades sociales y técnicas.</string>
 
     <key>BRIEF_LEVEL_16</key>
-    <string>Los Lovan aprendieron gradualmente a transformar su medio ambiente.
-
-Esto incrementó su población más allá de los números que el sistema de caza y recolección podía mantener.</string>
-    <key>CONTEXT_LEVEL_16</key>
     <string>Día de campaña 70
 
-La domesticación de plantas y animales cambió radicalmente la cultura humana en nuestro planeta natal. Agricultura y pastoreo nos permitieron generar mucha más comida, y por lo tanto el tamaño de la población aumentó.
+Los Lovan aprendieron gradualmente a transformar su medio ambiente.
+
+Esto incrementó su población más allá de lo que un sistema de caza y recolección puede sostener.</string>
+    <key>CONTEXT_LEVEL_16</key>
+    <string>La domesticación de plantas y animales cambió radicalmente la cultura humana en nuestro planeta natal. Agricultura y pastoreo nos permitieron generar mucha más comida y, por lo tanto, aumentó el tamaño de la población.
 
 Este complejo proceso se llama Neolítico, y parece que hemos encontrado aquí una situación similar.</string>
 
     <key>BRIEF_LEVEL_17</key>
-    <string>Un incremento de población a menudo comporta un uso más intensivo del entorno.
+    <string>Día de campaña 74
+
+Un incremento de población a menudo comporta un uso más intensivo del entorno.
     
 En esta región los Lovan combinaron Terraformación con Explotación a gran escala de un bosque. Pese a ello, consigueron evitar sobreexplotar las riquezas de esta región.</string>
 
     <key>CONTEXT_LEVEL_17</key>
-    <string>Día de campaña 74
+    <string>Las primeras comunidades agricultoras no vivían solo sus rebaños y plantaciones. El medio ambiente proporcionaba mucha comida, así que por qué los deberíasdescartar?
 
-Las primeras comunidades agricultoras no consumían solo sus rebaños y plantaciones. El medio ambiente proporcionaba mucha más comida y otros bienes, así que por qué los deberían descartar?
+Pero esto tiene un coste: la agricultura implica más gente. Esto puede generar la sobreexplotación del entorno y generar una situación donde todo el mundo pierde.
 
-Pero esto tiene un coste: más comida implica más gente. Esto puede generar la sobreexplotación del entorno y generar una situación donde todo el mundo pierde.
-
-Los Lovan consigueron evitar este problema, más o menos como los humanos hicimos a inicios del siglo XXI.</string>
+Los Lovan consigueron evitar este problema, más o menos como los humanos hicimos con la crisis mundial que hubo a mediados del siglo XXI.</string>
 
     <key>BRIEF_LEVEL_18</key>
-    <string>Parece que hemos hallado el punto de inflexión de la existencia de los Lovan.
-
-Una serie de sequías bajaron la disponibilidad de recursos hasta el punto que los distintos grupos empezaros a competir entre ellos.</string>
-    <key>CONTEXT_LEVEL_18</key>
     <string>Día de campaña 79
 
-Nuestro análisis sugiere que las condiciones ambientales rápidamente se deterioraron, desencadenando conflictos entre grupos a gran escala.
+Parece que hemos hallado el punto de inflexión de la existencia de los Lovan.
+
+Una serie de sequías bajaron la disponibilidad de recursos hasta el punto que los distintos grupos empezaron a competir entre ellos.</string>
+    <key>CONTEXT_LEVEL_18</key>
+    <string>Nuestro análisis sugiere que las condiciones ambientales rápidamente se deterioraron, desencadenando conflictos a gran escala.
 
 Nuestra misión aquí es entender la relación entre cambio climático y conflicto, a medida que los recursos se hacían escasos. Puedes intentar distintas opciones, pero ten en cuenta que la sobreexplotación puede conducir a un aumento de las confrontaciones.</string>
 
     <key>BRIEF_LEVEL_19</key>
-    <string>La población menguante intentó sobrevivir en un medio ambiente muy deteriorado.
+    <string>Día de campaña 87
+    
+La población menguante intentó sobrevivir en un medio ambiente muy deteriorado.
 
 Estos son los últimos latidos de los Lovan: desaparecieron junto con el resto de grupos a medida que la población colapsaba en una serie de interminables conflictos bélicos.</string>
     <key>CONTEXT_LEVEL_19</key>
-    <string>Día de campaña 87
-    
-Aquí nos encontramos, después de tantos desafíos: es el final de esta historia fascinante. La falta de tierras cultivables generó muchas guerras. Las pocas posibilidades que tenía la población restante se malograron cuando los grupos se atacaron los unos a los otros.
+    <string>Aquí nos encontramos, después de tantos desafíos: el final de esta historia fascinante. La falta de tierras cultivables generó muchas guerras. Las pocas posibilidades que tenía la población restante se malograron cuando los grupos se atacaron los unos a los otros.
 
-Pese a todo, los Lovan sobrevivieron algunos décadas más. Estudiaremos el último conflicto en el que se vieron involucrados. Necesitarás incrementar tu población mediante Terraformación antes que otro gruipo invada la zona. Ten en cuenta que esta situación desesperada generó grupos extremadamente agresivos, así que no hay Influencia cultural posible en esta misión.</string>
+Pese a todo, los Lovan sobrevivieron algunos décadas más. Estudiaremos el último conflicto en el que se vieron involucrados. Necesitarás incrementar tu población mediante Terraformación antes que otro grupo invada la zona. Ten en cuenta que esta situación desesperada generó grupos extremadamente agresivos, así que la Influencia cultural no es posible en esta misión.</string>
 
     <key>BRIEF_LEVEL_20</key>
-    <string>Buen trabajo, el experimento ha finalizado!
-    
-Sin embargo, ha pasado algo inesperado. Los Bots deberían haber desaparecido después de la última misión, pero aún están ahí. Deberías inhabilitarlos antes que dejamos Kepler.</string>
-    <key>CONTEXT_LEVEL_20</key>
     <string>Día de campaña 90
     
-No sé cómo explicar esto: los bots ignoraron nuestras últimas órdenes y ahora mismo estçan buscando por algún territorio dónde aún puedan sobrevivir.
+Buen trabajo, el experimento ha finalizado!
+    
+Sin embargo, ha pasado algo inesperado. Los bots deberían haber desaparecido después de la última misión, pero aún están ahí. Deberías desactivar la población antes que dejamos Kepler.</string>
+    <key>CONTEXT_LEVEL_20</key>
+    <string>No sé cómo explicar esto: los bots ignoraron nuestras últimas órdenes y ahora mismo están buscando algún territorio dónde poder sobrevivir.
 
 Ya tenemos nuestros resultados finales, y técnicamente deberíamos destruir los bots que quedan antes de dejar el planeta. No sé cómo lo ves, pero más que finalizar un experimento me da más la sensación de cometer un genocidio.
 
-No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lovan una nueva oportunidad. Profesor, esta es tu elección.</string>
+No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lovan una nueva oportunidad. Profesor, es tu decisión.</string>
 
 	<key>LEVEL_1_STORY</key>
 	<string>Quiénes somos? Quién nos creó?</string>

@@ -111,106 +111,106 @@ Let's explore this last dispersal by trying different approaches. You can make t
 The uncertainty is killing me, but this is Science! We accept an explanation until another one proves to be better considering the evidence, as simple as that.</string>
     
     <key>BRIEF_LEVEL_11</key>
-    <string>Lovans groups bloomed over Kepler-1138. Increased population fostered the development of new technologies and further exploitation of the vast resources of the planet.</string>
-    <key>CONTEXT_LEVEL_11</key>
     <string>Campaign day 41
         
-The Lovans exploited any available resource in their environment to improve their survival chances. This would include obsidian and minerals to develop tools and wood for fuel and better housing.
+Lovans groups bloomed over Kepler-1138. Increased population fostered the development of new technologies and further exploitation of the vast resources of the planet.</string>
+    <key>CONTEXT_LEVEL_11</key>
+    <string>The Lovans exploited any available resource in their environment to improve their survival chances. This would include obsidian and minerals to develop tools and wood for fuel and better housing.
 
 We have deployed these two resources in this mission to understand if Lovans exploited the planet in a similar way than humans did on Earth.</string>
 
     <key>BRIEF_LEVEL_12</key>
-    <string>Natural resources are shared by all the individuals living in the same landscape.
+    <string>Campaign day 44
+    
+Natural resources are shared by all the individuals living in the same landscape.
     
 This creates tensions between groups when all of them looked for the same finite resource.</string>
     <key>CONTEXT_LEVEL_12</key>
-    <string>Campaign day 44
-    
-Food, wood, minerals...nothing is infinite so this availability limits how much population can live in a particular place. This threshold creates competition dynamics between individuals such as the one we observed in this area.
+    <string>Food, wood, minerals...nothing is infinite so this availability limits how much population can live in a particular place. This threshold creates competition dynamics between individuals such as the one we observed in this area.
 
 Your bots will need to gain control of this forest from a different group. You have many paths to achieve this mission: increase Influence, Warfare, maybe Mobility?</string>
 
     <key>BRIEF_LEVEL_13</key>
-    <string>Competition is not the only consequence of resource exploitation. We have found evidence of trade between Lovans and a different group in this area.
+    <string>Campaign day 50
+
+Competition is not the only consequence of resource exploitation. We have found evidence of trade between Lovans and a different group in this area.
     
 They exchanged minerals and wood; this redistribution of goods benefited both populations.</string>
     <key>CONTEXT_LEVEL_13</key>
-    <string>Campaign day 50
-
-This is fascinating, it seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading any sort of good since their beginnings, and it seems that Lovans were not different in this regard.
+    <string>This is fascinating, it seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading any sort of good since their beginnings, and it seems that Lovans were not different in this regard.
 
 Your bots will need to learn the complexities of trading before you can pass this mission successfully.</string>
         
     <key>BRIEF_LEVEL_14</key>
-    <string>Trade contacts is one of the ways that populations influence each other. Lovans got some allies in order to control the mineral resources in one of the richest areas of the planet.</string>
-    <key>CONTEXT_LEVEL_14</key>
     <string>Campaign day 53
     
-The exchange of goods is not only about stuff. For example, on Earth obsidian only can be found in a few places, and it travels hundreds of kilometers to the places where it has been found by archaeologists.
+Trade contacts is one of the ways that populations influence each other. Lovans got some allies in order to control the mineral resources in one of the richest areas of the planet.</string>
+    <key>CONTEXT_LEVEL_14</key>
+    <string>The exchange of goods is not only about stuff. Trade requires communication between individuals. They not only share goods: they also share ideas.
 
-Trade needs communication between individuals. They not only share goods: they also share ideas. It seems that Lovans joined forces with another group to control the obsidian present in a mountains range. This event fostered their dominance over the entire region.</string>
+It seems that Lovans joined forces with another group to control the obsidian present in a mountains range. This event fostered their dominance over the entire region.</string>
 
     <key>BRIEF_LEVEL_15</key>
-    <string>Lovan conquest of the planet has several causes: from exploitation skills to technological development and cultural influence.
+    <string>Campaign day 60
+    
+Lovan conquest of the planet has several causes: from exploitation skills to technological development and cultural influence.
     
 In this case they managed to control the resources of a large region at an astonishing pace.</string>
     <key>CONTEXT_LEVEL_15</key>
-    <string>Campaign day 60
-    
-We are now certain that the Lovan success was partially based on their negotiation skills. Their culture left an imprint on other groups, and some evidence suggests that they were excellent traders.
+    <string>We are now certain that the Lovan success was partially based on their negotiation skills. Their culture left an imprint on other groups, and some evidence suggests that they were excellent traders.
 
 If we want to match the dates of dispersal here your bots will need to collect a diversity of goods by using a combination of technical and social skills.</string>
 
     <key>BRIEF_LEVEL_16</key>
-    <string>Lovans gradually learned how to shape their environment.
+    <string>Campaign day 70
+
+Lovans gradually learned how to shape their environment.
     
 This would increase their population size to numbers beyond what hunter-gatherer lifestyles could sustain.</string>
     <key>CONTEXT_LEVEL_16</key>
-    <string>Campaign day 70
-
-The domestication of plants and animals radically altered human culture on our native planet. Farming and herding allowed us to generate larger amounts of food, thus increasing our population size.
+    <string>The domestication of plants and animals radically altered human culture on our native planet. Farming and herding allowed us to generate larger amounts of food, thus increasing our population size.
 
 This complex process is called Neolithic, and it seems that we have found a similar situation here.</string>
 
     <key>BRIEF_LEVEL_17</key>
-    <string>An increase in population size often brings an intensive use of the environment.
+    <string>Campaign day 74
+    
+An increase in population size often brings an intensive use of the environment.
     
 In this region Lovans combined Terraforming with large scale Exploitation of a forest. However, they managed to avoid the overexploitation of this rich region.</string>
     <key>CONTEXT_LEVEL_17</key>
-    <string>Campaign day 74
-    
-Initial farming communities cannot rely exclusively on crops and cattle. The environment provided lots of food and other goods, so why would you discard them?
+    <string>Initial farming communities did not rely exclusively on crops and cattle. The environment still provided lots of food, so why would you discard them?
 
 But here comes the catch: more food means more people. This can lead to overexploitation of the environment and generate a situation where everybody loses.
 
-Lovans managed to avoid this problem, as humans did at the beginning of the XXIst century.</string>
+Lovans managed to solve the issue, as humans managed to do with the world crisis that happened during mid XXIst century.</string>
 
     <key>BRIEF_LEVEL_18</key>
-    <string>It seems that we found the tipping point of Lovan existence.
+    <string>Campaign day 79
+
+It seems that we found the tipping point of Lovan existence.
     
 A series of droughts decreased resource availability up to the point where groups started to compete against each other.</string>
     <key>CONTEXT_LEVEL_18</key>
-    <string>Campaign day 79
-    
-Our analysis suggest that rapidly deteriorating environmental conditions triggered large-scale conflicts between groups.
+    <string>Our analysis suggest that rapidly deteriorating environmental conditions triggered large-scale conflicts.
 
 Our mission here is to understand the link between climate change and conflict as resources became scarce. You can try different options here, but be aware that overexploitation can generate an increase of confrontations</string>
 
     <key>BRIEF_LEVEL_19</key>
-    <string>The diminishing population struggled to survive in the deteriorated environment.
+    <string>Campaign day 87
+    
+The diminishing population struggled to survive in the deteriorated environment.
     
 These are the last steps of Lovans: they disappeared along the other groups as the entire population collapsed in a series of neverending violent conflicts.</string>
     <key>CONTEXT_LEVEL_19</key>
-    <string>Campaign day 87
-    
-Here we are, after so many challenges: the end of this fascinating story. The lack of arable lands generated several wars. The few chances the remaining population had were ruined as groups threw at each other's throats.
+    <string>Here we are, after so many challenges: the end of this fascinating story. The lack of arable lands generated several wars. The few chances the remaining population had were ruined as groups threw at each other's throats.
 
 Lovans did survive for some additional decades, though. We will study the last conflict they were involved. You will need to increase their population by Terraformation before another group invades the zone. Be aware that the desperate situation made groups extremely aggressive, so no cultural influence is possible in this mission.</string>
 
     <key>BRIEF_LEVEL_20</key>
     <string>Good job, the experiment is finished!
     
-However, something unexpected happened. Bots should have disappeared after the last mission, but they are still there. You must disable the remaining bots before leaving Kepler.</string>
+However, something unexpected happened. Bots should have disappeared after the last mission, but they are still there. You must disable the remaining population before leaving Kepler.</string>
     <key>CONTEXT_LEVEL_20</key>
     <string>Campaign day 90
     
