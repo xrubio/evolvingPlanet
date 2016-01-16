@@ -222,47 +222,47 @@
             No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lovan una nueva oportunidad. Profesor, esta es tu elección.</string>
         
         <key>LEVEL_1_STORY</key>
-        <string>Quiénes somos? Quién nos creó?</string>
+        <string>Qui som? Qui ens ha creat?</string>
         <key>LEVEL_2_STORY</key>
-        <string>Encontraremos nuestro destino en la montaña de fuego</string>
+        <string>Trobarem el nostre destí a la muntanya de foc</string>
         <key>LEVEL_3_STORY</key>
-        <string>Somos los señores del fuego. Somos los Zho'll</string>
+        <string>Som els senyors del foc. Som els Zho'll</string>
         <key>LEVEL_4_STORY</key>
-        <string>Los Guías nos dieron fuego y piedra para dominar este mundo</string>
+        <string>Els Guies ens van proporcionar foc i pedra per a que dominem aquest món</string>
         <key>LEVEL_5_STORY</key>
-        <string>No temeremos a nadie ni a nada</string>
+        <string>No tindrem por a res ni a ningú</string>
         <key>LEVEL_6_STORY</key>
-        <string>Necesitamos a los Guías? Los Zho'll controlan esta tierra!</string>
+        <string>Necessitem als Guies? Els Zho'll ja controlen aquesta terra!</string>
         <key>LEVEL_7_STORY</key>
-        <string>Pero no estamos solos...</string>
+        <string>Però no estem sols...</string>
         <key>LEVEL_8_STORY</key>
-        <string>Los Guías nos vigilan y proveen por nosotros</string>
+        <string>Els Guies ens vgilen i proveeixen per a nosaltres</string>
         <key>LEVEL_9_STORY</key>
-        <string>Los Zho'll triunfarán donde otros fallaron</string>
+        <string>Els Zho'll triunfaran a on altres han fracassat</string>
         <key>LEVEL_10_STORY</key>
-        <string>Este es nuestro mundo. Viviremos donde nos plazca</string>
+        <string>Aquest és el nostre món. Viurem allà a on ens plagui</string>
         <key>LEVEL_11_STORY</key>
-        <string>El símbolo de los Guías apunta hacia su morada</string>
+        <string>El símbol dels Guies apunta cap a la seva llar</string>
         <key>LEVEL_12_STORY</key>
-        <string>El planeta entero sabrá que los Guías nos vigilan</string>
+        <string>El planeta sencer sabrà que els Guies ens protegeixen</string>
         <key>LEVEL_13_STORY</key>
-        <string>Podemos comerciar minerales por todo lo que deseamos</string>
+        <string>Podem comerciar minerals per tot allò que desitgem</string>
         <key>LEVEL_14_STORY</key>
-        <string>Que nuestras almas se reúnan con los Guías</string>
+        <string>Que les nostres ànimes es reuneixin amb els Guies</string>
         <key>LEVEL_15_STORY</key>
-        <string>El mundo entero es nuestro hogar</string>
+        <string>El món sencer és la nostra llar</string>
         <key>LEVEL_16_STORY</key>
-        <string>Daremos una vida mejor a nuestra descendencia</string>
+        <string>Donarem una vida millor a la nostra descendència</string>
         <key>LEVEL_17_STORY</key>
-        <string>Los Zho'll son los amos de este mundo, de sus plantas y animales</string>
+        <string>Els Zho'll són els amos d'aquest món, de les seves plantes i animals</string>
         <key>LEVEL_18_STORY</key>
-        <string>Nuestros campos yacen muertos. Por qué nos castigan los Guías?</string>
+        <string>Els nostres camps han mort. Per què se'ns castiga?</string>
         <key>LEVEL_19_STORY</key>
-        <string>No queremos ser olvidados. Este es nuestro mundo!</string>
+        <string>No volem ser oblidats. Aquest és el nostre món!</string>
         <key>LEVEL_20_STORY</key>
-        <string>Somos los Zho'll. Somos los amos de nuestro destino</string>
+        <string>Som els Zho'll. Som els amos del nostre destí</string>
         <key>LEVEL_21_STORY</key>
-        <string>Misión completada. Volvamos a casa!</string>
+        <string>Missió acomplerta. Tornem cap a casa!</string>
         
         <!-- dates -->
         <key>DATE_LEVEL_1</key>
