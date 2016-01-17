@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
+<dict> 
+    <key>INTRO_1</key>
+    <string>Profesor, bienvenido a Kepler-1138</string>
+    <key>INTRO_2</key>
+    <string>Hace 10 años encontramos aquí una especie humanoide ya extinta
+
+Los llamamos Lovan
+
+Tu tarea es descubrir qué pasó en este planeta</string>
+    <key>INTRO_3</key>
+    <string>Hemos integrado el ADN Lovan en nuestros bots
+
+Los primeros especímenes ya están siendo desplegados</string>
+    <key>INTRO_4</key>
+    <string>Estamos a punto para iniciar la primera misión</string>
+
 	<key>START</key>
 	<string>INICIO</string>
 	<key>EXIT</key>

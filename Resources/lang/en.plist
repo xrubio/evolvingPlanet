@@ -5,17 +5,17 @@
     <key>INTRO_1</key>
     <string>Professor, welcome to Kepler-1138</string>
     <key>INTRO_2</key>
-    <string>There was a sentient species in the planet
+    <string>A extinct humanoid species were found here ten years ago
+    
+We called them Lovans
 
-They became extinct thousands of yers ago
-    
-Mission control wants us to understand what happened here.</string>
+Your task is to discover what happened in this planet</string>
     <key>INTRO_3</key>
-    <string>We have combined their DNA with our bots
-    
+    <string>We have integrated Lovan DNA into our bots
+
 The first specimens are now being deployed</string>
     <key>INTRO_4</key>
-    <string>We are ready to start the mission</string>
+    <string>We are ready to start the first mission</string>
 
 	<key>START</key>
 	<string>START</string>
