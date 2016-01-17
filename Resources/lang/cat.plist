@@ -155,7 +155,7 @@ Els primers especímens ja s'estan desplegant</string>
         <key>MURPHY</key>
         <string>Murphy&apos;s Toast Games</string>
         <key>DIRECTOR</key>
-        <string>Game Director &amp; Project Lead</string>
+        <string>Director de Joc &amp; líder del Projecte</string>
         <key>LEAD_PROGRAMMER</key>
         <string>Programador en cap</string>
         <key>ADDITIONAL_PROGRAMMING</key>
@@ -165,7 +165,7 @@ Els primers especímens ja s'estan desplegant</string>
         <key>UI</key>
         <string>Interfície d'Usuari</string>
         <key>STORY_CONTENT</key>
-        <string>Historia y continguts</string>
+        <string>Història i continguts</string>
         <key>SIMULPAST_TITLE</key>
         <string>El Projecte SimulPast</string>
         <key>SIMULPAST_TEXT</key>

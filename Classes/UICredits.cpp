@@ -289,11 +289,10 @@ void UICredits::murphysToastStudios(Layout* layout)
     createGroup("STORY_CONTENT", 0.6f, 0.57f, popupBackground);
     createName("Xavier Rubio-Campillo", 0.63f, 0.51f, popupBackground);
     createName("Jorge Caro", 0.63f, 0.45f, popupBackground);
-    createName("Debora Zurro", 0.63f, 0.39f, popupBackground);
-    createName("Guillem H. Pongiluppi", 0.63f, 0.33f, popupBackground);
+    createName("Guillem H. Pongiluppi", 0.63f, 0.39f, popupBackground);
 
-    createGroup("MUSIC", 0.6f, 0.21f, popupBackground);
-    createName("Guillem Laborda", 0.63f, 0.15f, popupBackground);
+    createGroup("MUSIC", 0.6f, 0.24f, popupBackground);
+    createName("Guillem Laborda", 0.63f, 0.19f, popupBackground);
 }
 
 void UICredits::createAcknowledgment( const std::string & name, float x, float y, Sprite * background)

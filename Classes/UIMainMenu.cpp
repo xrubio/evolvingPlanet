@@ -460,11 +460,6 @@ void UIMainMenu::endActions(void)
     this->getChildByTag(4)->setOpacity(255);
     this->getChildByName("menu")->getChildByName("extras")->stopAllActions();
     this->getChildByName("menu")->getChildByName("extras")->setOpacity(255);
-    this->getChildByName("tutorial")->setVisible(false);
-    if (this->getChildByName("labelBorderTutorial") != nullptr)
-    {
-        this->getChildByName("labelBorderTutorial")->setVisible(false);
-    }
 }
 
 bool UIMainMenu::allActionsFinished(void)
