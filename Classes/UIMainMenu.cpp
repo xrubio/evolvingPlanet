@@ -479,8 +479,8 @@ bool UIMainMenu::allActionsFinished(void)
 void UIMainMenu::createWarningWindow(void)
 {
     auto alertBackground = Sprite::create("gui/ConfigurationAlert.png");
-    alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2,
-                                      Director::getInstance()->getVisibleSize().height / 2));
+    alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
+
     auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     alertLabel->setColor(Color3B(255, 255, 255));
     alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
@@ -488,7 +488,7 @@ void UIMainMenu::createWarningWindow(void)
     
     auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     alertTextLabel->setColor(Color3B(255, 255, 255));
-    alertTextLabel->setMaxLineWidth(325);
+    alertTextLabel->setMaxLineWidth(0.9f*alertBackground->getContentSize().width);
     alertTextLabel->setAlignment(TextHAlignment::CENTER);
     alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertTextLabel);
@@ -595,41 +595,5 @@ void UIMainMenu::createSpaceAnimation(void)
     //16,12
     particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
     spaceship->addChild(particlesSpaceship, -1, 1);
-    
-    createTextBoxes();
-}
-
-void UIMainMenu::createTextBoxes(void)
-{
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    auto messageLabel = Label::createWithTTF(LocalizedString::create("BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
-    messageLabel->setName("tutorial");
-    messageLabel->setColor(Color3B(230, 230, 230));
-    messageLabel->enableShadow();
-    messageLabel->setMaxLineWidth(800);
-    messageLabel->setOpacity(0);
-    messageLabel->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    
-    Vec2 position = Vec2(visibleSize.width*0.85, visibleSize.height*0.2);
-    messageLabel->setPosition(position);
-    
-    float marginWidth = 0.02f*messageLabel->getContentSize().width;
-    float marginHeight = 0.02f*messageLabel->getContentSize().height;
-    Vec2 margin(marginWidth, marginHeight);
-    
-    Vec2 origin(messageLabel->getBoundingBox().origin - margin);
-    Vec2 end(messageLabel->getBoundingBox().origin + messageLabel->getBoundingBox().size + margin);
-    
-    auto labelBorder = DrawNode::create();
-    labelBorder->setName("labelBorderTutorial");
-    labelBorder->drawSolidRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 0.3f));
-    labelBorder->drawRect(origin, end, Color4F(1.0f, 1.0f, 1.0f, 1.0f));
-    labelBorder->setOpacity(0);
-    
-    this->addChild(messageLabel, 10);
-    this->addChild(labelBorder, 10);
-    
-    messageLabel->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(2.1), FadeOut::create(0.2), NULL));
-    labelBorder->runAction(Sequence::create(Spawn::create(FadeIn::create(1.0), MoveBy::create(2.5, Vec2(-visibleSize.width* 0.15, 0)), NULL), DelayTime::create(2.3), RemoveSelf::create(), NULL));
 }
 

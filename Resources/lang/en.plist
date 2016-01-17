@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>INTRO_1</key>
+    <string>Professor, welcome to Kepler-1138</string>
+    <key>INTRO_2</key>
+    <string>There was a sentient species in the planet
+
+They became extinct thousands of yers ago
+    
+Mission control wants us to understand what happened here.</string>
+    <key>INTRO_3</key>
+    <string>We have combined their DNA with our bots
+    
+The first specimens are now being deployed</string>
+    <key>INTRO_4</key>
+    <string>We are ready to start the mission</string>
+
 	<key>START</key>
 	<string>START</string>
 	<key>EXIT</key>

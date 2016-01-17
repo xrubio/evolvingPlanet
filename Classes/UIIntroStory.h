@@ -40,13 +40,12 @@ public:
     
     CREATE_FUNC(UIIntroStory);
     
-    void update(float delta);
+//    void update(float delta);
+    void toMap();
+
     
 private:
-    void createTextBoxes(void);
-    void createTextBoxes2(void);
-    void createTextBoxes3(void);
-    
+    void createAnimatedLabel( const std::string & keyString, const Vec2 & ratioPos, const Vec2 & ratioMove, const float & delay );
 };
 
 #endif /* defined(__simulplay__UIIntroStory__) */
