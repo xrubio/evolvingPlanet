@@ -6,7 +6,7 @@
         <spot image="tutorial/tArid01" centerX="0.5" centerY="0.5"/>
     </message>
     <message id="4" x="0.5" y="0.6" lineWidth="0.5" trigger="next">
-        <spot image="tutorial/tGoalIcon" centerX="0.216" centerY="0.906"/>
+        <spot image="tutorial/tGoalIcon" centerX="0.197" centerY="0.906"/>
     </message>        
     <message id="5" x="0.5" y="0.6" lineWidth="0.5" trigger="next">
         <spot image="tutorial/tCircle" centerX="0.16" centerY="0.7"/>
