@@ -2600,7 +2600,7 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
                 }
                 else
                 {
-                    if(_exploitedMapTextureData.at(position + j + k).a < 5 or _exploitedMapTextureData.at(position + j + k) == Color4B::BLACK)
+                    if(_exploitedMapTextureData.at(position + j + k).a != 0)
                     {
                         _exploitedMapTextureData.at(position + j + k).a = 1;
                     }
