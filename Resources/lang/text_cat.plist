@@ -1,310 +1,288 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>BRIEF_LEVEL_1</key>
-        <string>Primer dia de campanya
+<dict>
+	<key>BRIEF_LEVEL_1</key>
+	<string>Primer dia de campanya
             
 Replicarem la història dels Lovan amb bots. Són una barreja de bioenginyeria avançada i Intel·ligència Artificial dissenyada per imitar aquesta espècie extingida.
             
-L'equip espera les teves ordres per començar la missió.</string>
-        <key>CONTEXT_LEVEL_1</key>
-        <string>Professor, sóc la doctora Rosalind Lovelace i lidero l'equip xenoarqueòlogic. T'ajudarem a fer servir els bots per entendre el que va passar en aquest planeta.
+L&apos;equip espera les teves ordres per començar la missió.</string>
+	<key>CONTEXT_LEVEL_1</key>
+	<string>Professor, sóc la doctora Rosalind Lovelace i lidero l&apos;equip xenoarqueòlogic. T&apos;ajudarem a fer servir els bots per entendre el que va passar en aquest planeta.
             
-Hem desplegat els bots a la zona on es van trobar els primers fòssils de Lovans. Aquest medi ambient em recorda els nostres propis orígens a l'Àfrica Oriental. Els nostres primers avantpassat van viure a una selva similar a aquesta fa 4 milions d'anys.</string>
-        
-        <key>BRIEF_LEVEL_2</key>
-        <string>Dia de campanya 7
+Hem desplegat els bots a la zona on es van trobar els primers fòssils de Lovans. Aquest medi ambient em recorda els nostres propis orígens a l&apos;Àfrica Oriental. Els nostres primers avantpassat van viure a una selva similar a aquesta fa 4 milions d&apos;anys.</string>
+	<key>BRIEF_LEVEL_2</key>
+	<string>Dia de campanya 7
             
 Els bots estan responent a les teves ordres. Necessitem que es dispersin cap a la resta de la península on vam començar.</string>
-        <key>CONTEXT_LEVEL_2</key>
-        <string>L'èxit dels Lovan els va permetre poblar molts altres ecosistemes.
+	<key>CONTEXT_LEVEL_2</key>
+	<string>L&apos;èxit dels Lovan els va permetre poblar molts altres ecosistemes.
             
-Ho van fer de manera similar als nostres avantpassats, que van extendre's per tota l'Àfrica sub-Sahariana amb diverses estratègies, des de la caça a la recol·lecció de plantes comestibles.</string>
-        
-        <key>BRIEF_LEVEL_3</key>
-        <string>Dia de campanya 10
+Ho van fer de manera similar als nostres avantpassats, que van extendre&apos;s per tota l&apos;Àfrica sub-Sahariana amb diverses estratègies, des de la caça a la recol·lecció de plantes comestibles.</string>
+	<key>BRIEF_LEVEL_3</key>
+	<string>Dia de campanya 10
             
 Els bots ja estan apunt per emular la colonització de les zones àrides, més enllà del seu habitual hàbitat selvàtic.</string>
-        <key>CONTEXT_LEVEL_3</key>
-        <string>Les similituds entre els Lovan i els orígens humans son sorprenents... són l'espècie més similar a nosaltres de tota la galàxia.
+	<key>CONTEXT_LEVEL_3</key>
+	<string>Les similituds entre els Lovan i els orígens humans son sorprenents... són l&apos;espècie més similar a nosaltres de tota la galàxia.
             
 Em temo que no seré massa útil en aquesta missió; sabem que els Lovan es van escampar per tot el planeta, però no estem segurs de com ho van fer.
             
-Començarem amb un increment de població i després ja mirarem cap a on anem a partir d'aquí.</string>
-        <key>BRIEF_LEVEL_4</key>
-        <string>Dia de campanya 11
+Començarem amb un increment de població i després ja mirarem cap a on anem a partir d&apos;aquí.</string>
+	<key>BRIEF_LEVEL_4</key>
+	<string>Dia de campanya 11
             
 La Dra. Lovelace no està convençuda dels resultats anteriors, així que provarem de fer les coses de manera diferent.</string>
-        <key>CONTEXT_LEVEL_4</key>
-        <string>Els darrers informes suggereixen que la dispersió dels Lovan va ser molt més ràpida que no pas el que vam aconseguir a la darrera missió.
+	<key>CONTEXT_LEVEL_4</key>
+	<string>Els darrers informes suggereixen que la dispersió dels Lovan va ser molt més ràpida que no pas el que vam aconseguir a la darrera missió.
             
 Vull provar una altra estratègia; que passaria si els hi proporcionem tecnologia?
             
-Els bots haurien d'arribar als objectius en el temps estimat, sempre i quan combinin foc i eines de pedra... val, crec que pot funcionar!</string>
-        <key>BRIEF_LEVEL_5</key>
-        <string>Dia de campanya 16
+Els bots haurien d&apos;arribar als objectius en el temps estimat, sempre i quan combinin foc i eines de pedra... val, crec que pot funcionar!</string>
+	<key>BRIEF_LEVEL_5</key>
+	<string>Dia de campanya 16
             
-A mesura que colonitzaven el món els Lovan es van trobar altres espècies. Per aquesta missió hem desplegat uns altres bots que repliquen l'existència d'aquests grups.</string>
-        <key>CONTEXT_LEVEL_5</key>
-        <string>Els nostres bots hauran d'interactuar amb altres grups durant l'expedició arqueològica.
+A mesura que colonitzaven el món els Lovan es van trobar altres espècies. Per aquesta missió hem desplegat uns altres bots que repliquen l&apos;existència d&apos;aquests grups.</string>
+	<key>CONTEXT_LEVEL_5</key>
+	<string>Els nostres bots hauran d&apos;interactuar amb altres grups durant l&apos;expedició arqueològica.
             
 Aquest planeta no només va ser poblat per Lovans, de la mateixa manera que la Terra no era un club exclusiu per Sapiens. Vam compartir Euràsia amb els Neandertals durant 5.000 anys. Aquests homínids eren bastant similars a nosaltres en tots els aspectes, incloent la tecnologia, cultura, fins i tot llenguatge.
           
-Van desaparèixer com a espècie fa 30.000 anys; no obstant això, el nostre ADN ens explica que cadascú de nosaltres té un petit Neandertal dintre seu... i creu-me, l'ADN no menteix!</string>
-        
-        <!-- Influence -->
-        <key>BRIEF_LEVEL_6</key>
-        <string>Dia de campanya 17
+Van desaparèixer com a espècie fa 30.000 anys; no obstant això, el nostre ADN ens explica que cadascú de nosaltres té un petit Neandertal dintre seu... i creu-me, l&apos;ADN no menteix!</string>
+	<key>BRIEF_LEVEL_6</key>
+	<string>Dia de campanya 17
             
-Hem descobert una espècie que va desaparèixer just després d'entrar en contact amb els Lovan.
+Hem descobert una espècie que va desaparèixer just després d&apos;entrar en contact amb els Lovan.
 
-El control de missió vol que explorem si els dos grups van hibridar-se, esdevenint d'alguna manera la mateixa espècie.</string>
-        <key>CONTEXT_LEVEL_6</key>
-        <string>Aquest escenari planteja moltíssimes preguntes.
+El control de missió vol que explorem si els dos grups van hibridar-se, esdevenint d&apos;alguna manera la mateixa espècie.</string>
+	<key>CONTEXT_LEVEL_6</key>
+	<string>Aquest escenari planteja moltíssimes preguntes.
 
-Una hipòtesis sobre l'extinció dels Neandertals proposa que van ser absorvits per la població Cromanyó a través d'una barreja d'influència cultural i hibridació.
+Una hipòtesis sobre l&apos;extinció dels Neandertals proposa que van ser absorvits per la població Cromanyó a través d&apos;una barreja d&apos;influència cultural i hibridació.
            
 Anem a provar la mateixa idea aquí.</string>
-        <key>BRIEF_LEVEL_7</key>
-        <string>Dia de campanya 20
+	<key>BRIEF_LEVEL_7</key>
+	<string>Dia de campanya 20
             
 Hem trobat una altra espècie extingida. Hi ha evidències de conflicte amb els Lovan així que per aquesta missió els teus bots podran lluitar.</string>
-        <key>CONTEXT_LEVEL_7</key>
-        <string>I jo que pensava que eren bons nois...hem descobert molts esquelets amb senyals clares de violència.
+	<key>CONTEXT_LEVEL_7</key>
+	<string>I jo que pensava que eren bons nois...hem descobert molts esquelets amb senyals clares de violència.
 
-La violència no és extranya entre espècies competint pels mateixos recursos. Aquest conflicte es va fent més terrorífic a mesura que la organització social i la tecnologia augmenten en complexitat. Els humans tenim experiència en això: gairebé ens matem a nosaltres mateixos durant el segle XX. Em pregunto si podria ser exactament això el que va causar l'extinció Lovan
+La violència no és extranya entre espècies competint pels mateixos recursos. Aquest conflicte es va fent més terrorífic a mesura que la organització social i la tecnologia augmenten en complexitat. Els humans tenim experiència en això: gairebé ens matem a nosaltres mateixos durant el segle XX. Em pregunto si podria ser exactament això el que va causar l&apos;extinció Lovan
 
 En aquest cas es van carregar a una altra espècie mentre ocupaven el seu territori, així que els nostres bots hauran de replicar la situació.</string>
-        
-        <key>BRIEF_LEVEL_8</key>
-        <string>Dia de campanya 23
+	<key>BRIEF_LEVEL_8</key>
+	<string>Dia de campanya 23
             
-El clima va variar dràsticament durant la dispersió Lovan. En aquest regió van haver de creuar un desert mentre els recursos disponibles s'anaven reduïnt dràsticament.</string>
-        <key>CONTEXT_LEVEL_8</key>
-        <string>La caça i la recol·lecció són un estil de vida força decent. D'acord, depens del que et dóna la natura, però la teva dieta és menys avorrida que si fossis un pagès. I a sobre, treballes menys hores!
+El clima va variar dràsticament durant la dispersió Lovan. En aquest regió van haver de creuar un desert mentre els recursos disponibles s&apos;anaven reduïnt dràsticament.</string>
+	<key>CONTEXT_LEVEL_8</key>
+	<string>La caça i la recol·lecció són un estil de vida força decent. D&apos;acord, depens del que et dóna la natura, però la teva dieta és menys avorrida que si fossis un pagès. I a sobre, treballes menys hores!
 
-D'altra banda, has de moure't si els recursos escassegen.
+D&apos;altra banda, has de moure&apos;t si els recursos escassegen.
 
 En aquesta missió una llarga sequera va convertir una selva exhuberant en un desert. Els Lovan el van creuar mentre un altre grup lluitava per sobreviure,  així que anem a veure com va desenvolupar-se la competició.</string>
-        
-        <key>BRIEF_LEVEL_9</key>
-        <string>Dia de campanya 25
+	<key>BRIEF_LEVEL_9</key>
+	<string>Dia de campanya 25
             
 Sembla que aquest planeta estava abarrotat. En aquesta missió els teus bots es trobaran a la vegada amb dues espècies diferents.</string>
-        <key>CONTEXT_LEVEL_9</key>
-        <string>Hauràs de cooperar i competir al mateix temps.
+	<key>CONTEXT_LEVEL_9</key>
+	<string>Hauràs de cooperar i competir al mateix temps.
 
-Crec que en aquest escenari els Lovan es van aliar amb un dels grups per a atacar al darrer. Et suggereixo que intentis influenciar al més proper per, un cop el teu grup sigui suficientment gran, afrontar la resta d'objectius.</string>
-        
-        <key>BRIEF_LEVEL_10</key>
-        <string>Dia de campanya 30
+Crec que en aquest escenari els Lovan es van aliar amb un dels grups per a atacar al darrer. Et suggereixo que intentis influenciar al més proper per, un cop el teu grup sigui suficientment gran, afrontar la resta d&apos;objectius.</string>
+	<key>BRIEF_LEVEL_10</key>
+	<string>Dia de campanya 30
             
 Aquesta missió completa la dispersió Lovan. Van demostrar la seva capacitat adaptativa poblan el planeta de pol a pol.
 
-Per desgràcia l'evidència d'aquesta última zona és molt escassa, i no sabem què hi va succeïr.</string>
-        <key>CONTEXT_LEVEL_10</key>
-        <string>Porto males notícies...no tenim ni idea de per què els Lovan van tenir èxit colonitzant aquesta regió.
+Per desgràcia l&apos;evidència d&apos;aquesta última zona és molt escassa, i no sabem què hi va succeïr.</string>
+	<key>CONTEXT_LEVEL_10</key>
+	<string>Porto males notícies...no tenim ni idea de per què els Lovan van tenir èxit colonitzant aquesta regió.
         
-Explorarem la última dispersió amb diferents estratègies. Pots provar amb bots més agressius, tecnològicament avançats o capaços d'influenciar als altres grups.
+Explorarem la última dispersió amb diferents estratègies. Pots provar amb bots més agressius, tecnològicament avançats o capaços d&apos;influenciar als altres grups.
 
-La incertesa m'està matant, però així és la Ciència! Acceptem una explicació fins que en tenim una altra que s'ajusta millor a l'evidència, tan simple com això.</string>
-        
-        <key>BRIEF_LEVEL_11</key>
-        <string>Dia de campanya 41
+La incertesa m&apos;està matant, però així és la Ciència! Acceptem una explicació fins que en tenim una altra que s&apos;ajusta millor a l&apos;evidència, tan simple com això.</string>
+	<key>BRIEF_LEVEL_11</key>
+	<string>Dia de campanya 41
             
-Els Lovan van prosperar al llarg de tot Kepler-1138. L'increment de població va promoure el desenvolupament de noves tecnologies i l'explotació dels vastos recursos del planeta.</string>
-        <key>CONTEXT_LEVEL_11</key>
-        <string>Els Lovan van explotar tots els recursos disponibles al seu entorn per tal de millorar les opcions de supervivència. Això inclou obsidiana i altres minerals útils per a fer eines, així com fusta feta servir de combustible i per crear millors vivendes.
+Els Lovan van prosperar al llarg de tot Kepler-1138. L&apos;increment de població va promoure el desenvolupament de noves tecnologies i l&apos;explotació dels vastos recursos del planeta.</string>
+	<key>CONTEXT_LEVEL_11</key>
+	<string>Els Lovan van explotar tots els recursos disponibles al seu entorn per tal de millorar les opcions de supervivència. Això inclou obsidiana i altres minerals útils per a fer eines, així com fusta feta servir de combustible i per crear millors vivendes.
 
-Hem desplegat en aquesta missió els dos recursos, per tal d'entendre com van explotar el planeta els Lovan, i esbrinar si ho feien de manera similar als humans a la Terra.</string>
-        
-        <key>BRIEF_LEVEL_12</key>
-        <string>Dia de campanya 44
+Hem desplegat en aquesta missió els dos recursos, per tal d&apos;entendre com van explotar el planeta els Lovan, i esbrinar si ho feien de manera similar als humans a la Terra.</string>
+	<key>BRIEF_LEVEL_12</key>
+	<string>Dia de campanya 44
             
-Els recursos naturals d'un ecosistema es comparteixen entre tots els individus que hi viuen.
+Els recursos naturals d&apos;un ecosistema es comparteixen entre tots els individus que hi viuen.
 
 Això crea tensions quan grups diferents volen tenir accés al mateix recurs finit.</string>
-        <key>CONTEXT_LEVEL_12</key>
-        <string>Menjar, fusta, minerals...res és infinit així que aquestes quantitats disponibles defineixen quanta poblacióm pot viure en un indret determinat. Aquest límit genera dinàmiques de competició entre invidivus, com la que hem observat en aquesta àrea.
+	<key>CONTEXT_LEVEL_12</key>
+	<string>Menjar, fusta, minerals...res és infinit així que aquestes quantitats disponibles defineixen quanta poblacióm pot viure en un indret determinat. Aquest límit genera dinàmiques de competició entre invidivus, com la que hem observat en aquesta àrea.
 
-Els teus bots hauran de guanyar el control d'un bosc, que està en mans d'un altre grup. Tens moltes opciones disponibles per tal de tenir èxit: millorar Influència, Violència o potser Movilitat?</string>
-        
-        <key>BRIEF_LEVEL_13</key>
-        <string>Dia de campanya 50
+Els teus bots hauran de guanyar el control d&apos;un bosc, que està en mans d&apos;un altre grup. Tens moltes opciones disponibles per tal de tenir èxit: millorar Influència, Violència o potser Movilitat?</string>
+	<key>BRIEF_LEVEL_13</key>
+	<string>Dia de campanya 50
             
-La competició no és la única conseqüència de l'explotació de recursos. Hem trobat evidència de comerç entre els Lovan i altres grups.
+La competició no és la única conseqüència de l&apos;explotació de recursos. Hem trobat evidència de comerç entre els Lovan i altres grups.
         
 Van intercanviar minerals i fusta: aquesta redistribució probablement va beneficiar a les dues poblacions.</string>
-        <key>CONTEXT_LEVEL_13</key>
-        <string>Això és fascinant, sembla que els nostres nois van aconseguir minerals en aquesta regió mitjançant l'intercanvi per fusta. Els humans van comerciar amb qualsevol cosa des dels seus inici, i els Lovan no van ser diferents en aquest aspecte.
+	<key>CONTEXT_LEVEL_13</key>
+	<string>Això és fascinant, sembla que els nostres nois van aconseguir minerals en aquesta regió mitjançant l&apos;intercanvi per fusta. Els humans van comerciar amb qualsevol cosa des dels seus inici, i els Lovan no van ser diferents en aquest aspecte.
 
 Els teus bots necessiten aprendre les complexitats del comerç abans de superar aquesta missió.</string>
-        
-        <key>BRIEF_LEVEL_14</key>
-        <string>Dia de campanya 53
+	<key>BRIEF_LEVEL_14</key>
+	<string>Dia de campanya 53
             
-El comerç és una de les activitats que potencien el contacte entre poblacions. Els Lovan es van aliar amb un altre grup per tald e controlar els recursos minerals d'una de les àrees més riques del planeta.</string>
-        <key>CONTEXT_LEVEL_14</key>
-        <string>L'intercanvi no només està relacionat amb coses. El comerç requereix de comunicació entre individus. No només es comparteixen béns, sinó també idees.
+El comerç és una de les activitats que potencien el contacte entre poblacions. Els Lovan es van aliar amb un altre grup per tald e controlar els recursos minerals d&apos;una de les àrees més riques del planeta.</string>
+	<key>CONTEXT_LEVEL_14</key>
+	<string>L&apos;intercanvi no només està relacionat amb coses. El comerç requereix de comunicació entre individus. No només es comparteixen béns, sinó també idees.
 
 Sembla que els Lovan i un altre grup van unir forces per tal de controlar la obsidiana present en aquesta serralada. Això va propiciar la conquesta de tota la regió.</string>
-        
-        <key>BRIEF_LEVEL_15</key>
-        <string>Dia de campanya 60
+	<key>BRIEF_LEVEL_15</key>
+	<string>Dia de campanya 60
             
-La conquesta Lovan del planeta va tenir diverses causes: des de les seves capacitats d'explotació al desenvolupament tecnològic i la influència cultural.
+La conquesta Lovan del planeta va tenir diverses causes: des de les seves capacitats d&apos;explotació al desenvolupament tecnològic i la influència cultural.
 
-En aquest cas van ser capaços de controlar els recursos d'una gran regió a una velocitat esfereïdora.</string>
-        <key>CONTEXT_LEVEL_15</key>
-        <string>Ara estem segurs que l'èxit dels Lovan es va deure en part a les seves habilitats negociadores. La seva cultura va deixar una forta petjada en altres grups, i nombrosa evidència suggereix que també eren excel·lents comerciants.
+En aquest cas van ser capaços de controlar els recursos d&apos;una gran regió a una velocitat esfereïdora.</string>
+	<key>CONTEXT_LEVEL_15</key>
+	<string>Ara estem segurs que l&apos;èxit dels Lovan es va deure en part a les seves habilitats negociadores. La seva cultura va deixar una forta petjada en altres grups, i nombrosa evidència suggereix que també eren excel·lents comerciants.
 
 Si volem ajustar-nos a les dates de dispersió en aquesta zona necessitem que els teus bots adquireixin diferents recursos, amb una combinació de capacitats socials i tècniques.</string>
-        
-        <key>BRIEF_LEVEL_16</key>
-        <string>Dia de campanya 70
+	<key>BRIEF_LEVEL_16</key>
+	<string>Dia de campanya 70
             
 Els Lovan van aprendre gradualment a transformar el seu medi ambient.
         
 Això va incrementar la seva població més enllà del que un sistema de caça i recol·lecció pot sostenir.</string>
-        <key>CONTEXT_LEVEL_16</key>
-        <string>La domesticació de plantes i animals va canviar radicalment la cultura humana al nostre planeta natal. Agricultura i pastureig ens van permetre generar molt més menjar i, per tant, va fer augmentar la mida de la població.
+	<key>CONTEXT_LEVEL_16</key>
+	<string>La domesticació de plantes i animals va canviar radicalment la cultura humana al nostre planeta natal. Agricultura i pastureig ens van permetre generar molt més menjar i, per tant, va fer augmentar la mida de la població.
             
-Aquest complex procés s'anomena Neolígic, i sembla que hem trobat aquí una situació similar.</string>
-        
-        <key>BRIEF_LEVEL_17</key>
-        <string>Dia de campanya 74
+Aquest complex procés s&apos;anomena Neolígic, i sembla que hem trobat aquí una situació similar.</string>
+	<key>BRIEF_LEVEL_17</key>
+	<string>Dia de campanya 74
             
-Un increment de població comporta slovint un ús més intensiu de l'enton.
+Un increment de població comporta slovint un ús més intensiu de l&apos;enton.
         
-En aquesta regió els Lovan van combinar Terraformació amb Explotació a gran escala d'un bosc. Malgrat tot, van aconseguir evitar la sobreexplotació de les riqueses de la regió.</string>
-        
-        <key>CONTEXT_LEVEL_17</key>
-        <string>Les primeres comunitats agricultores no vivien tan sols dels seus ramats i cultius. El medi ambient seguia proporcionant molt de menjar, així que per què hauries de descartar-lo?
+En aquesta regió els Lovan van combinar Terraformació amb Explotació a gran escala d&apos;un bosc. Malgrat tot, van aconseguir evitar la sobreexplotació de les riqueses de la regió.</string>
+	<key>CONTEXT_LEVEL_17</key>
+	<string>Les primeres comunitats agricultores no vivien tan sols dels seus ramats i cultius. El medi ambient seguia proporcionant molt de menjar, així que per què hauries de descartar-lo?
 
-Malgrat tot, això té un cost: l'agricultura implica més gent. Això pot generar una sobreexplotació de l'entorn i generar una situació a on tothom hi perd.
+Malgrat tot, això té un cost: l&apos;agricultura implica més gent. Això pot generar una sobreexplotació de l&apos;entorn i generar una situació a on tothom hi perd.
 
 Els Lovan van aconseguir evitar aquest problema, més o menys com els humans van fer amb la crisi mundial succeïda a mitjans del segle XXI.</string>
-        
-        <key>BRIEF_LEVEL_18</key>
-        <string>Dia de campanya 79
+	<key>BRIEF_LEVEL_18</key>
+	<string>Dia de campanya 79
             
-Sembla que hem trobat el punt d'inflexió de l'existència dels Lovan.
+Sembla que hem trobat el punt d&apos;inflexió de l&apos;existència dels Lovan.
         
 Un seguit de sequeres van baixar la disponibilitat de recursos fins al punt que els diferents grupos van començar a competir entre ells.</string>
-        <key>CONTEXT_LEVEL_18</key>
-        <string>Els nostres estudis suggereixen que les condicions ambientals es van deterior ràpidament, desencadenant conflictes de gran escala.
+	<key>CONTEXT_LEVEL_18</key>
+	<string>Els nostres estudis suggereixen que les condicions ambientals es van deterior ràpidament, desencadenant conflictes de gran escala.
             
 La nostra missió aquí és entendre la relació entre canvi climàtic i conflicte a mida que els recursos esdevenen escassos. Pots intentar diverses opcions, però tingues en compte que la sobreexplotació pot conduir a un augment dels enfrontaments.</string>
-        
-        <key>BRIEF_LEVEL_19</key>
-        <string>Dia de campanya 87
+	<key>BRIEF_LEVEL_19</key>
+	<string>Dia de campanya 87
             
 La minvant població va intentar sobreviure en un medi ambient molt deteriorat.
         
-Aquests són els últims batecs dels Lovan: van desaparèixer junt amb la resta de grups a mida que la població col·lapsava durant una sèrie d'interminables conflictes bèl·lics.</string>
-        <key>CONTEXT_LEVEL_19</key>
-        <string>Doncs aquí ens trobem, després de tants reptes: el final d'aquesta fascinant història. La falta de terres cultivables va generar moltes guerres. Les poques possibilitats que tenia la població que quedava van arruïnar-se quan els grups van començar a atacar-se els uns als altres.
+Aquests són els últims batecs dels Lovan: van desaparèixer junt amb la resta de grups a mida que la població col·lapsava durant una sèrie d&apos;interminables conflictes bèl·lics.</string>
+	<key>CONTEXT_LEVEL_19</key>
+	<string>Doncs aquí ens trobem, després de tants reptes: el final d&apos;aquesta fascinant història. La falta de terres cultivables va generar moltes guerres. Les poques possibilitats que tenia la població que quedava van arruïnar-se quan els grups van començar a atacar-se els uns als altres.
             
-Malgrat tot, els Lovan van sobreviure algunes dècades més. Estudiarem l'últim conflicte final en el que es van veure involucrats. Necessites incrementar la població mitjançant Terraformació abans que un altre grup enveixi la zona. Tingues en compte que aquesta situació desesperada va generar grups extremadament agressius, així que la Influència cultural no és possible aquesta missió.</string>
-        
-        <key>BRIEF_LEVEL_20</key>
-        <string>Dia de campanya 90
+Malgrat tot, els Lovan van sobreviure algunes dècades més. Estudiarem l&apos;últim conflicte final en el que es van veure involucrats. Necessites incrementar la població mitjançant Terraformació abans que un altre grup enveixi la zona. Tingues en compte que aquesta situació desesperada va generar grups extremadament agressius, així que la Influència cultural no és possible aquesta missió.</string>
+	<key>BRIEF_LEVEL_20</key>
+	<string>Dia de campanya 90
             
-Bona feina, l'experiment ha finalitzat!
+Bona feina, l&apos;experiment ha finalitzat!
 
-Malgrat tot, ha passat una cosa inesperada. Els bots haurien d'haver desaparegut després de la última missió, però encara sobreviuen. Hauries de desactivar la població abans de deixar Kepler.</string>
-        <key>CONTEXT_LEVEL_20</key>
-        <string>No sé ben bé com explicar això: els bots van ignorar les nostres últimes ordres io ara mateix cerquen un territori que els permeti sobreviure.
+Malgrat tot, ha passat una cosa inesperada. Els bots haurien d&apos;haver desaparegut després de la última missió, però encara sobreviuen. Hauries de desactivar la població abans de deixar Kepler.</string>
+	<key>CONTEXT_LEVEL_20</key>
+	<string>No sé ben bé com explicar això: els bots van ignorar les nostres últimes ordres io ara mateix cerquen un territori que els permeti sobreviure.
 
 Ja tenim els resultats finals, i tècnicament hauríem de destruïr els bots que queden abans de deixar el planeta. No sé com ho veus, però més que acabar un experiment tinc la sensació que estem a punt de cometre un genocidi.
 
 En aquesta missió no pots fracassar: o bé finalitzes la Història de nou, o ara bé dones als Lovan una nova oportunitat. Professor, és la teva decisió.</string>
-        
-        <key>LEVEL_1_STORY</key>
-        <string>Qui som? Qui ens ha creat?</string>
-        <key>LEVEL_2_STORY</key>
-        <string>Trobarem el nostre destí a la muntanya de foc</string>
-        <key>LEVEL_3_STORY</key>
-        <string>Som els senyors del foc. Som els Zho'll</string>
-        <key>LEVEL_4_STORY</key>
-        <string>Els Guies ens van proporcionar foc i pedra per a que dominem aquest món</string>
-        <key>LEVEL_5_STORY</key>
-        <string>No tindrem por a res ni a ningú</string>
-        <key>LEVEL_6_STORY</key>
-        <string>Necessitem als Guies? Els Zho'll ja controlen aquesta terra!</string>
-        <key>LEVEL_7_STORY</key>
-        <string>Però no estem sols...</string>
-        <key>LEVEL_8_STORY</key>
-        <string>Els Guies ens vgilen i proveeixen per a nosaltres</string>
-        <key>LEVEL_9_STORY</key>
-        <string>Els Zho'll triunfaran a on altres han fracassat</string>
-        <key>LEVEL_10_STORY</key>
-        <string>Aquest és el nostre món. Viurem allà a on ens plagui</string>
-        <key>LEVEL_11_STORY</key>
-        <string>El símbol dels Guies apunta cap a la seva llar</string>
-        <key>LEVEL_12_STORY</key>
-        <string>El planeta sencer sabrà que els Guies ens protegeixen</string>
-        <key>LEVEL_13_STORY</key>
-        <string>Podem comerciar minerals per tot allò que desitgem</string>
-        <key>LEVEL_14_STORY</key>
-        <string>Que les nostres ànimes es reuneixin amb els Guies</string>
-        <key>LEVEL_15_STORY</key>
-        <string>El món sencer és la nostra llar</string>
-        <key>LEVEL_16_STORY</key>
-        <string>Donarem una vida millor a la nostra descendència</string>
-        <key>LEVEL_17_STORY</key>
-        <string>Els Zho'll són els amos d'aquest món, de les seves plantes i animals</string>
-        <key>LEVEL_18_STORY</key>
-        <string>Els nostres camps han mort. Per què se'ns castiga?</string>
-        <key>LEVEL_19_STORY</key>
-        <string>No volem ser oblidats. Aquest és el nostre món!</string>
-        <key>LEVEL_20_STORY</key>
-        <string>Som els Zho'll. Som els amos del nostre destí</string>
-        <key>LEVEL_21_STORY</key>
-        <string>Missió acomplerta. Tornem cap a casa!</string>
-        
-        <!-- dates -->
-        <key>DATE_LEVEL_1</key>
-        <string>1 milió d'any AE (Abans de l'Extinció)</string>
-        <key>DATE_LEVEL_2</key>
-        <string>300.000 AE</string>
-        <key>DATE_LEVEL_3</key>
-        <string>70.000 AE</string>
-        <key>DATE_LEVEL_4</key>
-        <string>70.000 AE</string>
-        <key>DATE_LEVEL_5</key>
-        <string>30.000 AE</string>
-        <key>DATE_LEVEL_6</key>
-        <string>25.000 AE</string>
-        <key>DATE_LEVEL_7</key>
-        <string>22.000 AE</string>
-        <key>DATE_LEVEL_8</key>
-        <string>15.000 AE</string>
-        <key>DATE_LEVEL_9</key>
-        <string>10.000 AE</string>
-        <key>DATE_LEVEL_10</key>
-        <string>8.000 AE</string>
-        <key>DATE_LEVEL_11</key>
-        <string>6.000 AE</string>
-        <key>DATE_LEVEL_12</key>
-        <string>5000 AE</string>
-        <key>DATE_LEVEL_13</key>
-        <string>3600 AE</string>
-        <key>DATE_LEVEL_14</key>
-        <string>2500 AE</string>
-        <key>DATE_LEVEL_15</key>
-        <string>1700 AE</string>
-        <key>DATE_LEVEL_16</key>
-        <string>1000 AE</string>
-        <key>DATE_LEVEL_17</key>
-        <string>500 AE</string>
-        <key>DATE_LEVEL_18</key>
-        <string>200 AE</string>
-        <key>DATE_LEVEL_19</key>
-        <string>45 AE</string>
-        <key>DATE_LEVEL_20</key>
-        <string>0 AE</string>
-    </dict>
+	<key>LEVEL_1_STORY</key>
+	<string>Qui som? Qui ens ha creat?</string>
+	<key>LEVEL_2_STORY</key>
+	<string>Trobarem el nostre destí a la muntanya de foc</string>
+	<key>LEVEL_3_STORY</key>
+	<string>Som els senyors del foc. Som els Zho&apos;ll</string>
+	<key>LEVEL_4_STORY</key>
+	<string>Els Guies ens van proporcionar foc i pedra per a que dominem aquest món</string>
+	<key>LEVEL_5_STORY</key>
+	<string>No tindrem por a res ni a ningú</string>
+	<key>LEVEL_6_STORY</key>
+	<string>Necessitem als Guies? Els Zho&apos;ll ja controlen aquesta terra!</string>
+	<key>LEVEL_7_STORY</key>
+	<string>Però no estem sols...</string>
+	<key>LEVEL_8_STORY</key>
+	<string>Els Guies ens vgilen i proveeixen per a nosaltres</string>
+	<key>LEVEL_9_STORY</key>
+	<string>Els Zho&apos;ll triunfaran a on altres han fracassat</string>
+	<key>LEVEL_10_STORY</key>
+	<string>Aquest és el nostre món. Viurem allà a on ens plagui</string>
+	<key>LEVEL_11_STORY</key>
+	<string>El símbol dels Guies apunta cap a la seva llar</string>
+	<key>LEVEL_12_STORY</key>
+	<string>El planeta sencer sabrà que els Guies ens protegeixen</string>
+	<key>LEVEL_13_STORY</key>
+	<string>Podem comerciar minerals per tot allò que desitgem</string>
+	<key>LEVEL_14_STORY</key>
+	<string>Que les nostres ànimes es reuneixin amb els Guies</string>
+	<key>LEVEL_15_STORY</key>
+	<string>El món sencer és la nostra llar</string>
+	<key>LEVEL_16_STORY</key>
+	<string>Donarem una vida millor a la nostra descendència</string>
+	<key>LEVEL_17_STORY</key>
+	<string>Els Zho&apos;ll són els amos d&apos;aquest món, de les seves plantes i animals</string>
+	<key>LEVEL_18_STORY</key>
+	<string>Els nostres camps han mort. Per què se&apos;ns castiga?</string>
+	<key>LEVEL_19_STORY</key>
+	<string>No volem ser oblidats. Aquest és el nostre món!</string>
+	<key>LEVEL_20_STORY</key>
+	<string>Som els Zho&apos;ll. Som els amos del nostre destí</string>
+	<key>LEVEL_21_STORY</key>
+	<string>Missió acomplerta. Tornem cap a casa!</string>
+	<key>DATE_LEVEL_1</key>
+	<string>1 milió d&apos;anys AE (Abans de l&apos;Extinció)</string>
+	<key>DATE_LEVEL_2</key>
+	<string>300.000 AE</string>
+	<key>DATE_LEVEL_3</key>
+	<string>70.000 AE</string>
+	<key>DATE_LEVEL_4</key>
+	<string>70.000 AE</string>
+	<key>DATE_LEVEL_5</key>
+	<string>30.000 AE</string>
+	<key>DATE_LEVEL_6</key>
+	<string>25.000 AE</string>
+	<key>DATE_LEVEL_7</key>
+	<string>22.000 AE</string>
+	<key>DATE_LEVEL_8</key>
+	<string>15.000 AE</string>
+	<key>DATE_LEVEL_9</key>
+	<string>10.000 AE</string>
+	<key>DATE_LEVEL_10</key>
+	<string>8.000 AE</string>
+	<key>DATE_LEVEL_11</key>
+	<string>6.000 AE</string>
+	<key>DATE_LEVEL_12</key>
+	<string>5000 AE</string>
+	<key>DATE_LEVEL_13</key>
+	<string>3600 AE</string>
+	<key>DATE_LEVEL_14</key>
+	<string>2500 AE</string>
+	<key>DATE_LEVEL_15</key>
+	<string>1700 AE</string>
+	<key>DATE_LEVEL_16</key>
+	<string>1000 AE</string>
+	<key>DATE_LEVEL_17</key>
+	<string>500 AE</string>
+	<key>DATE_LEVEL_18</key>
+	<string>200 AE</string>
+	<key>DATE_LEVEL_19</key>
+	<string>45 AE</string>
+	<key>DATE_LEVEL_20</key>
+	<string>0 AE</string>
+</dict>
 </plist>
-

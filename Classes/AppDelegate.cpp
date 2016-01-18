@@ -132,8 +132,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     //LOAD LEVELS FAILED
     vector<int> levelsFailedForHint;
     for (int i = 0; i < NUM_LEVELS + 1; i++) {
-//        levelsFailedForHint.push_back(UserDefault::getInstance()->getIntegerForKey(("failed"+to_string(i)).c_str()));
-        levelsFailedForHint.push_back(10);
+        levelsFailedForHint.push_back(UserDefault::getInstance()->getIntegerForKey(("failed"+to_string(i)).c_str()));
+        //levelsFailedForHint.push_back(10);
     }
     GameData::getInstance()->setLevelsFailedForHint(levelsFailedForHint);
     

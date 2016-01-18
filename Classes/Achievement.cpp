@@ -53,8 +53,8 @@ int Achievement::getLevel() const
 
 bool Achievement::getCompleted() const
 {
-    return true;
-    //return _completed;
+    //return true;
+    return _completed;
 }
 
 bool Achievement::getOccult() const
