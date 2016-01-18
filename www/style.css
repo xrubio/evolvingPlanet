@@ -135,16 +135,11 @@ P
  text-align: center;
 }
 
-.background
-{
-	background-image: url('images/background.jpg');
-}
-
 .backgroundImage {
     background-size: cover;
     background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-position: center center;
+	background-position: bottom center;
     background-image: url("background.png");
     width: 100%;
     position: absolute;
