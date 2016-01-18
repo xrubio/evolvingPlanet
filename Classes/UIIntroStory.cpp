@@ -65,10 +65,11 @@ bool UIIntroStory::init()
     auto messageLabel2 = Label::createWithTTF(LocalizedString::create("INTRO_2"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     messageLabel2->setColor(Color3B(230, 230, 230));
     messageLabel2->enableShadow();
-    messageLabel2->setMaxLineWidth(0.6f*visibleSize.width);
+    messageLabel2->setMaxLineWidth(0.4f*visibleSize.width);
     messageLabel2->setOpacity(0);
+    messageLabel2->setAnchorPoint(Vec2(0.0f, 0.5f));
     messageLabel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    messageLabel2->setPosition(Vec2(0.6f*visibleSize.width, 0.7*visibleSize.height));
+    messageLabel2->setPosition(Vec2(0.5f*visibleSize.width, 0.7*visibleSize.height));
     messageLabel2->runAction(Sequence::create(DelayTime::create(23.0f), FadeIn::create(3.0f), DelayTime::create(5.0f), FadeOut::create(2.0f), NULL));
     this->addChild(messageLabel2);
 
@@ -107,7 +108,7 @@ bool UIIntroStory::init()
     messageLabel4->setMaxLineWidth(0.6f*visibleSize.width);
     messageLabel4->setOpacity(0);
     messageLabel4->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    messageLabel4->setPosition(Vec2(0.3f*transport2->getContentSize().width, 0.45*transport2->getContentSize().height));
+    messageLabel4->setPosition(Vec2(0.6f*transport2->getContentSize().width, 0.3*transport2->getContentSize().height));
     messageLabel4->runAction(Sequence::create(DelayTime::create(43.0f), FadeIn::create(2.0f), DelayTime::create(2.0f), FadeOut::create(2.0f), NULL));
     transport2->addChild(messageLabel4);
 
