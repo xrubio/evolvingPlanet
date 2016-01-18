@@ -45,7 +45,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     }
 
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
@@ -97,7 +97,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setMusic(true);
         GameData::getInstance()->setSFX(true);
         UserDefault::getInstance()->setBoolForKey("firsttimeplaying", true);
-        UserDefault::getInstance()->setStringForKey("playerColor", "red");
+        UserDefault::getInstance()->setStringForKey("playerColor", "lightblue");
     }
     else {
         GameData::getInstance()->setLanguage(lang);
