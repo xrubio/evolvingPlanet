@@ -70,7 +70,7 @@ bool UIIntroStory::init()
     messageLabel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     messageLabel2->setPosition(Vec2(0.6f*visibleSize.width, 0.7*visibleSize.height));
     messageLabel2->runAction(Sequence::create(DelayTime::create(23.0f), FadeIn::create(3.0f), DelayTime::create(5.0f), FadeOut::create(2.0f), NULL));
-    this->addChild(messageLabel2);
+    this->addChild(messageLabel2, 7);
 
     // thid scene: transport at kepler
     auto transport = Sprite::create("misc/intro/transport_cut.jpg");
