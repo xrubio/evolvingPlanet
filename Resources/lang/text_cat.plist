@@ -199,90 +199,92 @@ Malgrat tot, ha passat una cosa inesperada. Els bots haurien d&apos;haver desapa
 	<key>CONTEXT_LEVEL_20</key>
 	<string>No sé ben bé com explicar això: els bots van ignorar les nostres últimes ordres io ara mateix cerquen un territori que els permeti sobreviure.
 
-Ja tenim els resultats finals, i tècnicament hauríem de destruïr els bots que queden abans de deixar el planeta. No sé com ho veus, però més que acabar un experiment tinc la sensació que estem a punt de cometre un genocidi.
+Ja tenim els resultats finals, i tècnicament hauríem de destruïr els bots que queden abans de deixar el planeta. No sé com ho veus, però més que acabar un experiment tinc la sensació que estem a punt de cometre un genocidi.</string>
 
-En aquesta missió no pots fracassar: o bé finalitzes la Història de nou, o ara bé dones als Lovan una nova oportunitat. Professor, és la teva decisió.</string>
-	<key>LEVEL_1_STORY</key>
-	<string>Qui som? Qui ens ha creat?</string>
-	<key>LEVEL_2_STORY</key>
-	<string>Trobarem el nostre destí a la muntanya de foc</string>
-	<key>LEVEL_3_STORY</key>
-	<string>Som els senyors del foc. Som els Zho&apos;ll</string>
-	<key>LEVEL_4_STORY</key>
-	<string>Els Guies ens van proporcionar foc i pedra per a que dominem aquest món</string>
-	<key>LEVEL_5_STORY</key>
-	<string>No tindrem por a res ni a ningú</string>
-	<key>LEVEL_6_STORY</key>
-	<string>Necessitem als Guies? Els Zho&apos;ll ja controlen aquesta terra!</string>
-	<key>LEVEL_7_STORY</key>
-	<string>Però no estem sols...</string>
-	<key>LEVEL_8_STORY</key>
-	<string>Els Guies ens vgilen i proveeixen per a nosaltres</string>
-	<key>LEVEL_9_STORY</key>
-	<string>Els Zho&apos;ll triunfaran a on altres han fracassat</string>
-	<key>LEVEL_10_STORY</key>
-	<string>Aquest és el nostre món. Viurem allà a on ens plagui</string>
-	<key>LEVEL_11_STORY</key>
-	<string>El símbol dels Guies apunta cap a la seva llar</string>
-	<key>LEVEL_12_STORY</key>
-	<string>El planeta sencer sabrà que els Guies ens protegeixen</string>
-	<key>LEVEL_13_STORY</key>
-	<string>Podem comerciar minerals per tot allò que desitgem</string>
-	<key>LEVEL_14_STORY</key>
-	<string>Que les nostres ànimes es reuneixin amb els Guies</string>
-	<key>LEVEL_15_STORY</key>
-	<string>El món sencer és la nostra llar</string>
-	<key>LEVEL_16_STORY</key>
-	<string>Donarem una vida millor a la nostra descendència</string>
-	<key>LEVEL_17_STORY</key>
-	<string>Els Zho&apos;ll són els amos d&apos;aquest món, de les seves plantes i animals</string>
-	<key>LEVEL_18_STORY</key>
-	<string>Els nostres camps han mort. Per què se&apos;ns castiga?</string>
-	<key>LEVEL_19_STORY</key>
-	<string>No volem ser oblidats. Aquest és el nostre món!</string>
-	<key>LEVEL_20_STORY</key>
-	<string>Som els Zho&apos;ll. Som els amos del nostre destí</string>
-	<key>LEVEL_21_STORY</key>
-	<string>Missió acomplerta. Tornem cap a casa!</string>
-	<key>DATE_LEVEL_1</key>
-	<string>1 milió d&apos;anys AE (Abans de l&apos;Extinció)</string>
-	<key>DATE_LEVEL_2</key>
-	<string>300.000 AE</string>
-	<key>DATE_LEVEL_3</key>
-	<string>70.000 AE</string>
-	<key>DATE_LEVEL_4</key>
-	<string>70.000 AE</string>
-	<key>DATE_LEVEL_5</key>
-	<string>30.000 AE</string>
-	<key>DATE_LEVEL_6</key>
-	<string>25.000 AE</string>
-	<key>DATE_LEVEL_7</key>
-	<string>22.000 AE</string>
-	<key>DATE_LEVEL_8</key>
-	<string>15.000 AE</string>
-	<key>DATE_LEVEL_9</key>
-	<string>10.000 AE</string>
-	<key>DATE_LEVEL_10</key>
-	<string>8.000 AE</string>
-	<key>DATE_LEVEL_11</key>
-	<string>6.000 AE</string>
-	<key>DATE_LEVEL_12</key>
-	<string>5000 AE</string>
-	<key>DATE_LEVEL_13</key>
-	<string>3600 AE</string>
-	<key>DATE_LEVEL_14</key>
-	<string>2500 AE</string>
-	<key>DATE_LEVEL_15</key>
-	<string>1700 AE</string>
-	<key>DATE_LEVEL_16</key>
-	<string>1000 AE</string>
-	<key>DATE_LEVEL_17</key>
-	<string>500 AE</string>
-	<key>DATE_LEVEL_18</key>
-	<string>200 AE</string>
-	<key>DATE_LEVEL_19</key>
-	<string>45 AE</string>
-	<key>DATE_LEVEL_20</key>
-	<string>0 AE</string>
-</dict>
+        <key>LEVEL_1_STORY</key>
+        <string>Qui som? Qui ens ha creat?</string>
+        <key>LEVEL_2_STORY</key>
+        <string>Trobarem el nostre destí a la muntanya de foc</string>
+        <key>LEVEL_3_STORY</key>
+        <string>Som els senyors del foc. Som els Zho'll</string>
+        <key>LEVEL_4_STORY</key>
+        <string>Els Guies ens van proporcionar foc i pedra per a que dominem aquest món</string>
+        <key>LEVEL_5_STORY</key>
+        <string>No tindrem por a res ni a ningú</string>
+        <key>LEVEL_6_STORY</key>
+        <string>Necessitem als Guies? Els Zho'll ja controlen aquesta terra!</string>
+        <key>LEVEL_7_STORY</key>
+        <string>Però no estem sols...</string>
+        <key>LEVEL_8_STORY</key>
+        <string>Els Guies ens vgilen i proveeixen per a nosaltres</string>
+        <key>LEVEL_9_STORY</key>
+        <string>Els Zho'll triunfaran a on altres han fracassat</string>
+        <key>LEVEL_10_STORY</key>
+        <string>Aquest és el nostre món. Viurem allà a on ens plagui</string>
+        <key>LEVEL_11_STORY</key>
+        <string>El símbol dels Guies apunta cap a la seva llar</string>
+        <key>LEVEL_12_STORY</key>
+        <string>El planeta sencer sabrà que els Guies ens protegeixen</string>
+        <key>LEVEL_13_STORY</key>
+        <string>Podem comerciar minerals per tot allò que desitgem</string>
+        <key>LEVEL_14_STORY</key>
+        <string>Que les nostres ànimes es reuneixin amb els Guies</string>
+        <key>LEVEL_15_STORY</key>
+        <string>El món sencer és la nostra llar</string>
+        <key>LEVEL_16_STORY</key>
+        <string>Donarem una vida millor a la nostra descendència</string>
+        <key>LEVEL_17_STORY</key>
+        <string>Els Zho'll són els amos d'aquest món, de les seves plantes i animals</string>
+        <key>LEVEL_18_STORY</key>
+        <string>Els nostres camps han mort. Per què se'ns castiga?</string>
+        <key>LEVEL_19_STORY</key>
+        <string>No volem ser oblidats. Aquest és el nostre món!</string>
+        <key>LEVEL_20_STORY</key>
+        <string>Som els Zho'll. Som els amos del nostre destí</string>
+        <key>LEVEL_21_STORY</key>
+        <string>Missió acomplerta. Tornem cap a casa!</string>
+        
+        <!-- dates -->
+        <key>DATE_LEVEL_1</key>
+        <string>1 milió d'anys AE (Abans de l'Extinció)</string>
+        <key>DATE_LEVEL_2</key>
+        <string>300.000 AE</string>
+        <key>DATE_LEVEL_3</key>
+        <string>70.000 AE</string>
+        <key>DATE_LEVEL_4</key>
+        <string>70.000 AE</string>
+        <key>DATE_LEVEL_5</key>
+        <string>30.000 AE</string>
+        <key>DATE_LEVEL_6</key>
+        <string>25.000 AE</string>
+        <key>DATE_LEVEL_7</key>
+        <string>22.000 AE</string>
+        <key>DATE_LEVEL_8</key>
+        <string>15.000 AE</string>
+        <key>DATE_LEVEL_9</key>
+        <string>10.000 AE</string>
+        <key>DATE_LEVEL_10</key>
+        <string>8.000 AE</string>
+        <key>DATE_LEVEL_11</key>
+        <string>6.000 AE</string>
+        <key>DATE_LEVEL_12</key>
+        <string>5000 AE</string>
+        <key>DATE_LEVEL_13</key>
+        <string>3600 AE</string>
+        <key>DATE_LEVEL_14</key>
+        <string>2500 AE</string>
+        <key>DATE_LEVEL_15</key>
+        <string>1700 AE</string>
+        <key>DATE_LEVEL_16</key>
+        <string>1000 AE</string>
+        <key>DATE_LEVEL_17</key>
+        <string>500 AE</string>
+        <key>DATE_LEVEL_18</key>
+        <string>200 AE</string>
+        <key>DATE_LEVEL_19</key>
+        <string>45 AE</string>
+        <key>DATE_LEVEL_20</key>
+        <string>0 AE</string>
+    </dict>
 </plist>
+
