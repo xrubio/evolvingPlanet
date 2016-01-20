@@ -259,7 +259,7 @@ void LevelLoader::loadXmlFile(const std::string & filename)
             {
                 resourceType = Wood;
             }
-            else if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "MINERAL", 7) == 0)
+            else if (strncmp(goals.child("RESOURCE_TYPE").child_value(), "MINERAL", 7) == 0 || strncmp(goals.child("RESOURCE_TYPE").child_value(), "OBSIDIAN", 7))
             {
                 resourceType = Mineral;
             }
@@ -353,7 +353,7 @@ void LevelLoader::loadMaxResources(const std::string & filename)
         {
             Agent::_resourcesPoolMax.at(0) = (mapInfo.attribute("MAXIMUM").as_int());
         }
-        else if (entryName == "MINERAL")
+        else if (entryName == "MINERAL" || entryName == "OBSIDIAN")
         {
             Agent::_resourcesPoolMax.at(1) = (mapInfo.attribute("MAXIMUM").as_int());
         }

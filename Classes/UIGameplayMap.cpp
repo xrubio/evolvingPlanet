@@ -2715,7 +2715,8 @@ void UIGameplayMap::update(float delta)
             }
        
             updateAgents();
-            
+           
+            /*
             if (gameplayMap->getChildByName("labelInfluence") != nullptr and Agent::_numInfluenced.at(0) > 0)
             {
                 int x = (int)(GameLevel::getInstance()->getAgents().at(0).front()->getPosition().getX() * GameData::getInstance()->getRowDrawAgentPrecalc());
@@ -2724,9 +2725,9 @@ void UIGameplayMap::update(float delta)
                 labelInfluenced->setString(to_string(Agent::_numInfluenced.at(0)));
                 labelInfluenced->setPosition(Vec2(x, y));
                 labelInfluenced->runAction(Sequence::create(FadeIn::create(0.1), MoveBy::create(0.2, Vec2(0, 5.0)), FadeOut::create(0.1), NULL));
-            }   
-            
-                
+            } 
+            */
+
             MenuItemImage * currentGoal = (MenuItemImage*)(getChildByName("currentGoalMenu")->getChildByName("currentGoalImg"));
             updateLegend(currentGoal->isSelected());
 
