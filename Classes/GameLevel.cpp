@@ -782,7 +782,7 @@ void GameLevel::checkGoals()
             {
                 finalScore += goals.at(j)->getScore();
             }
-            int averagedScore = int(finalScore/goals.size());
+            int averagedScore = std::floor(0.5f+(finalScore/goals.size()));
             CCLOG("FINAL SCORE: %d", averagedScore);
             GameData::getInstance()->setLevelScore(numLevel, averagedScore);
             _finishedGame = Success;

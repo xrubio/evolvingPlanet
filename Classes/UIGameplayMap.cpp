@@ -718,6 +718,7 @@ bool UIGameplayMap::init()
     }
     
     //INFLUENCE LABEL
+    /*
     for (int i = 0; i < GameLevel::getInstance()->getModifiableAttr().size(); i++)
     {
         if (GameLevel::getInstance()->getModifiableAttr().at(i) == eInfluence)
@@ -732,6 +733,7 @@ bool UIGameplayMap::init()
             i = int(GameLevel::getInstance()->getModifiableAttr().size());
         }
     }
+    */
     
     //SET FIRST GOAL ON MAP
     auto goal = DrawNode::create();
