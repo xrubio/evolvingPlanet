@@ -100,6 +100,7 @@ bool UIProgressMap::init()
     arrowNext->setName("arrowNext");
     arrowNext->setAnchorPoint(Vec2(0, 0.5));
     arrowNext->setPosition(Vec2(eraWindow->getContentSize().width, eraWindow->getContentSize().height / 2));
+    arrowNext->setVisible(false);
     
     Vector<MenuItem*> eraButtonVec;
     eraButtonVec.pushBack(arrowPrev);
@@ -111,6 +112,18 @@ bool UIProgressMap::init()
     
     this->addChild(eraWindow, 5);
     
+    
+    int ftlc = GameData::getInstance()->getFirstTimeLevelCompleted();
+    
+    if (ftlc > 0 and ftlc < 21)
+    {
+        GameData::getInstance()->setCurrentLevel(ftlc + 1);
+    }
+    else if (ftlc == 21)
+    {
+        GameData::getInstance()->setCurrentLevel(ftlc);
+    }
+    
     pages = PageView::create();
     pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->setTouchEnabled(true);
@@ -119,7 +132,10 @@ bool UIProgressMap::init()
     this->addChild(pages);
     
     pages->addPage(setEpisode1());
-    pages->addPage(setEpisode2());
+    if (GameData::getInstance()->getCurrentLevel() > 10)
+    {
+        pages->addPage(setEpisode2());
+    }
     
     pages->setCurPageIndex(GameData::getInstance()->getCurrentEra());
     
@@ -127,18 +143,8 @@ bool UIProgressMap::init()
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
     
     //ANIMATION OF COMPLETED LEVEL AND UNLOCKING NEW LEVEL
-    int ftlc;
-    if ((ftlc = GameData::getInstance()->getFirstTimeLevelCompleted()) > 0 and ftlc < 22)
+    if (ftlc > 0 and ftlc < 22)
     {
-        if (ftlc < 21)
-        {
-            GameData::getInstance()->setCurrentLevel(ftlc + 1);
-        }
-        else if (ftlc == 21)
-        {
-            GameData::getInstance()->setCurrentLevel(ftlc);
-        }
-
         //STAR ANIMATION
         auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(min(ftlc, 20)));
 
@@ -169,7 +175,7 @@ bool UIProgressMap::init()
         if (ftlc < 20)
         {
             //POINTER LEVEL UNLOCKED ANIMATION
-            auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/10)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
+            auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
             
             Vec2 pos = pointerNextLevel->getPosition();
             pointerNextLevel->setPositionY(visibleSize.height * 1.5);
@@ -201,7 +207,7 @@ bool UIProgressMap::init()
     auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
                                                "gui/ProgressMapHexagonLevelOff.png");
     pageIndicator->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    unsigned long int numPages = (GameData::getInstance()->getLevelsCompleted().size() / 12) + 1;
+    unsigned long int numPages = (GameData::getInstance()->getCurrentLevel() / 12) + 1;
     int initialPosX = (visibleSize.width / 2) - ((numPages / 2) * (pageIndicator->getContentSize().width * 3));
     int incrX = (pageIndicator->getContentSize().width * 3);
     for (int i = 0; i < numPages; i++)
@@ -741,7 +747,7 @@ Layout* UIProgressMap::setEpisode1(void)
     cloud1->runAction(RepeatForever::create(seq));
     
     Vector<MenuItem *> levelButtonVec;
-    for (int i = 1; i < 11; i++)
+    for (int i = 1; i <= GameData::getInstance()->getCurrentLevel(); i++)
     {
         //COMPROVAR NIVELLS ACTIVATS
         
@@ -877,7 +883,7 @@ Layout* UIProgressMap::setEpisode2(void)
     cloud2->runAction(RepeatForever::create(seqC2));
     
     Vector<MenuItem *> levelButtonVec;
-    for (int i = 11; i < 21; i++)
+    for (int i = 11; i <= GameData::getInstance()->getCurrentLevel(); i++)
     {
         //COMPROVAR NIVELLS ACTIVATS
         
@@ -970,8 +976,8 @@ Layout* UIProgressMap::setEpisode2(void)
         //temporary for all unlocked levels
         setStars(i, levelButton);
 
-        /*
-        if (nextLevelUnlockedStars == false)
+        
+        /*if (nextLevelUnlockedStars == false)
         {
             setStars(i, levelButton);
             if (GameData::getInstance()->getLevelScore(i) == 0)
@@ -1020,6 +1026,8 @@ void UIProgressMap::update(float delta)
     auto arrowNext = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowNext");
     auto label = (Label*)this->getChildByName("eraWindow")->getChildByName("eraLabel");
 
+    if (GameData::getInstance()->getCurrentLevel() > 10)
+    {
     switch (pages->getCurPageIndex()) {
         case 1:
         {
@@ -1035,6 +1043,7 @@ void UIProgressMap::update(float delta)
             label->setString(LocalizedString::create("FIRSTERA"));
             break;
         }
+    }
     }
     
     for (int i = 0; i < pagesIndicatorVec.size(); i++)

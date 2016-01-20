@@ -90,7 +90,7 @@ bool UIStoryGallery::init()
     {
         auto layout = Layout::create();
         // unlocked
-        //if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
+        if(GameData::getInstance()->getLevelsCompleted().at(i) != 0)
         {
             Sprite* image;
             if (i == 21)
@@ -116,28 +116,28 @@ bool UIStoryGallery::init()
             
             layout->addChild(storyLine);
         }
-        /*else
+        else
         {
             Sprite* image;
             if (i == 21)
             {
-                image = Sprite::create("art/Escenari20_2.jpg");
+                image = Sprite::create("art/locked/Escenari20_2.jpg");
             }
             else
             {
-                image = Sprite::create("art/Escenari"+to_string(i)+".jpg");
+                image = Sprite::create("art/locked/Escenari"+to_string(i)+".jpg");
             }
             image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             image->setScale(visibleSize.width / image->getContentSize().width);
             layout->addChild(image);
 
-            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION")+to_string(i)+LocalizedString::create("TO_UNLOCK_STORY")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION")+" "+to_string(i)+" "+LocalizedString::create("TO_UNLOCK_STORY")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
             unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
             unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             unlockLabel->setName("unlockLabel");
             layout->addChild(unlockLabel);
         }
-        */
+        
         pages->addPage(layout);
     }
 

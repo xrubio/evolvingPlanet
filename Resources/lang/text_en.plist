@@ -208,13 +208,13 @@ These are the last steps of Lovans: they disappeared along the other groups as t
 Lovans did survive for some additional decades, though. We will study the last conflict they were involved. You will need to increase their population by Terraformation before another group invades the zone. Be aware that the desperate situation made groups extremely aggressive, so no cultural influence is possible in this mission.</string>
 
     <key>BRIEF_LEVEL_20</key>
-    <string>Good job, the experiment is finished!
+    <string>Campaign day 90
+    
+Good job, the experiment is finished!
     
 However, something unexpected happened. Bots should have disappeared after the last mission, but they are still there. You must disable the remaining population before leaving Kepler.</string>
     <key>CONTEXT_LEVEL_20</key>
-    <string>Campaign day 90
-    
-I don't know how to explain this: the bots ignored our last orders and are currently looking for some land where they can still survive.
+    <string>I don't know how to explain this: the bots ignored our last orders and are currently looking for some land where they can still survive.
 
 We got our final results and technically we should destroy these last bots before leaving this planet. I don't know what you feel, but more than finishing an experiment it seems more like a genocide to me.
 

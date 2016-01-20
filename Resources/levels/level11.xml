@@ -76,9 +76,9 @@
     </GOAL>   
     <GOAL TYPE_GOAL="Resources">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>110</MIN>
-        <MAX>130</MAX>
-        <AVERAGE>120</AVERAGE>
+        <MIN>120</MIN>
+        <MAX>140</MAX>
+        <AVERAGE>130</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>3</DESVIATION_3_STAR>
         <RESOURCE_TYPE>WOOD</RESOURCE_TYPE>

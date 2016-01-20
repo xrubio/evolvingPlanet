@@ -1,0 +1,17 @@
+
+# run in tablet
+cocos run -s . -p android 
+
+# show logs
+adb logcat | grep cocos
+
+# clean logs
+adb logcat -c
+
+# capture screen
+adb shell screenrecord /sdcard/prova.mp4
+
+# copy captured video to pc
+adb pull /sdcard/prova.mp4 mission6.mp4
+
+

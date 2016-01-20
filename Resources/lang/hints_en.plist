@@ -21,11 +21,11 @@
 	<key>LEVEL9HINT</key>
 	<string>Increase Reproduction and Technology to survive the first difficult times.</string>
 	<key>LEVEL10HINT</key>
-	<string>Avoid the desert until your Technology is good enough to sustain life there.</string>
+	<string>Increase your population by using Influence in the group living in the forest.</string>
     <key>LEVEL11HINT</key>
 	<string>The Exploitation rate depends on the skills and of your group. Forests regenerate over time so you should avoid its overexploitation by limiting this rate or moving to other zones.</string>
     <key>LEVEL12HINT</key>
-	<string>Everything you need is in the forest so avoid moving outside these regions.</string>
+	<string>The forest is not rich enough to maintain both populations. You need to deal with the other group if you want to reach the first goal.</string>
     <key>LEVEL13HINT</key>
 	<string>You will need wood from the two forests to reach the goal. Your population should try to reach the eastern one before the other agents overexploit the region.</string>
     <key>LEVEL14HINT</key>

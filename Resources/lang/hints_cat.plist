@@ -19,13 +19,13 @@
         <key>LEVEL8HINT</key>
         <string>Necessites molta població per creuar el desert. Incrementa la Resistència i la Influència abans d'arribar a la part Est del mapa.</string>
         <key>LEVEL9HINT</key>
-        <string>Incrementa la Reproducció i la Tecnologia per sobreviure durant els difícils temps inicials.</string>
+        <string>Potencia Reproducció i Tecnologia per sobreviure durant els difícils temps inicials.</string>
         <key>LEVEL10HINT</key>
-        <string>Evita el desert fins que la teva Tecnologia sigui prou bona com per a sobreviure-hi.</string>
+        <string>Incrementa la població tot fent servir Influència sobre el grup habitant la selva.</string>
         <key>LEVEL11HINT</key>
         <string>La velocitat d'Explotació depèn de les habilitats i mida del teu grup. Els boscos es regeneren amb el temps, així que evita la sobreexplotació limitant dita velocitat o movent-te a altres zones.</string>
         <key>LEVEL12HINT</key>
-        <string>Tot el que necessites és al bosc, així que evita la resta de regions.</string>
+        <string>El bosc no és tan ric per per mantenir les dues poblacions. Cal que tinguis en compte l'altre grup si vols assolir el primer objectiu.</string>
         <key>LEVEL13HINT</key>
         <string>Per assolir l'objectiu necessitaràs fusta dels dos boscos. La teva població hauria d'arribar al marge oriental abans que altres agents sobreexplotin la regió.</string>
         <key>LEVEL14HINT</key>
