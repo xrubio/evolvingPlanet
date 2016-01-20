@@ -19,13 +19,13 @@
 	<key>LEVEL8HINT</key>
 	<string>Necesitas mucha población para cruzar ese desierto. Incrementa Resistencia e Influencia antes de entrar en la parte Este del mapa.</string>
 	<key>LEVEL9HINT</key>
-	<string>Incrementa Reproducción y Tecnología para sobrevivir durante los difíciles tiempos iniciales.</string>
+	<string>Potencia Reproducción Tecnología para sobrevivir durante los difíciles tiempos iniciales.</string>
 	<key>LEVEL10HINT</key>
-	<string>Evita el desierto hasta que tu Tecnología sea suficientemente buena para sostener vida ahí.</string>
+	<string>Incrementa tu población usando Influencia en el grupo que reside en la selva.</string>
     <key>LEVEL11HINT</key>
 	<string>La velocidad de Explotación depende de las habilidades y tamaño de tu grupo. Los bosques se regeneran con el tiempo, así que evita la sobreexplotación limitando esta velocidad o moviéndote a otras zonas.</string>
     <key>LEVEL12HINT</key>
-	<string>Todo lo que necesitas está en el bosque, así que evita las regiones fuera de él.</string>
+	<string>El bosque no es suficientemente rico para mantener a las dos poblaciones. Deberás lidiar con el otro grupo si quieres alcanzar el primer objectivo.</string>
     <key>LEVEL13HINT</key>
 	<string>Para alcanzar el objetivo vas a necesitar madera de los dos bosques. Tu población debería llegar al límite oriental antes que los otros agentes sobreexploten la región.</string>
     <key>LEVEL14HINT</key>

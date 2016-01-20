@@ -81,13 +81,13 @@
 <POWERS>
     <POWER NAME="ReproductionBoost">
         <COST>2</COST>
-        <COOLDOWN>15</COOLDOWN>
-        <DURATION>3</DURATION>
+        <COOLDOWN>20</COOLDOWN>
+        <DURATION>5</DURATION>
         <EXTENT value="Global"/>
     </POWER> 
     <POWER NAME="MobilityBoost">
         <COST>2</COST>
-        <COOLDOWN>15</COOLDOWN>
+        <COOLDOWN>20</COOLDOWN>
         <DURATION>10</DURATION>
         <EXTENT value="Area" radius="20"/>
     </POWER>
@@ -104,7 +104,7 @@
         <MAX>75</MAX>
         <AVERAGE>65</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <DESVIATION_3_STAR>3</DESVIATION_3_STAR>
         <RESOURCE_TYPE>WOOD</RESOURCE_TYPE>
         <GOAL_AMOUNT>3000</GOAL_AMOUNT>
     </GOAL>
@@ -114,7 +114,7 @@
         <MAX>125</MAX>
         <AVERAGE>115</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
-        <DESVIATION_3_STAR>2</DESVIATION_3_STAR>
+        <DESVIATION_3_STAR>3</DESVIATION_3_STAR>
         <COLOR_ZONE>11</COLOR_ZONE>
     </GOAL>
 </GOALS>
