@@ -140,10 +140,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     for (int i = 1; i < levelsCompleted.size(); i++)
     {
+        CCLOG("level at: %d is %d", i, levelsCompleted.at(i));
         if (levelsCompleted.at(i) == 0)
         {
             GameData::getInstance()->setCurrentLevel(i);
             GameData::getInstance()->setCurrentEra(i / 11);
+            break;
         }
     }
 
