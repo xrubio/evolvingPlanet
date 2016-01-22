@@ -115,7 +115,7 @@ bool UIConfiguration::init()
     languageItems.pushBack(enButton);
 
     string lang = GameData::getInstance()->getLanguage();
-    if (lang == "cat") {
+    if (lang == "ca") {
         catButton->setEnabled(false);
     }
     else if (lang == "es") {
@@ -264,7 +264,7 @@ void UIConfiguration::catFlagCallback(Ref* pSender)
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
 
-    GameData::getInstance()->setLanguage("cat");
+    GameData::getInstance()->setLanguage("ca");
     auto scene = UIConfiguration::createScene();
     Director::getInstance()->replaceScene(scene);
 }

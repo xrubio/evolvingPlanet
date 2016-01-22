@@ -747,7 +747,7 @@ Layout* UIProgressMap::setEpisode1(void)
     cloud1->runAction(RepeatForever::create(seq));
     
     Vector<MenuItem *> levelButtonVec;
-    for (int i = 1; i <= GameData::getInstance()->getCurrentLevel(); i++)
+    for (int i = 1; i <= min(10, GameData::getInstance()->getCurrentLevel()); i++)
     {
         //COMPROVAR NIVELLS ACTIVATS
         
@@ -883,7 +883,7 @@ Layout* UIProgressMap::setEpisode2(void)
     cloud2->runAction(RepeatForever::create(seqC2));
     
     Vector<MenuItem *> levelButtonVec;
-    for (int i = 11; i <= GameData::getInstance()->getCurrentLevel(); i++)
+    for (int i = 11; i <= min(20, GameData::getInstance()->getCurrentLevel()); i++)
     {
         //COMPROVAR NIVELLS ACTIVATS
         
