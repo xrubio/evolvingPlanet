@@ -93,6 +93,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     //Primer cop language = '', agafar del dispositiu per defecte
     string lang = UserDefault::getInstance()->getStringForKey("language");
     if (lang.size() == 0) {
+
         GameData::getInstance()->setLanguage(LocalizedString::getSystemLang());
         GameData::getInstance()->setMusic(true);
         GameData::getInstance()->setSFX(true);

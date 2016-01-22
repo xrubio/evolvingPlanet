@@ -59,8 +59,8 @@ public:
     void setLevelScore(int level, int score);
     bool getGameStarted(void);
     void setGameStarted(bool gameStrtd);
-    string getLanguage(void);
-    void setLanguage(string lang);
+    const std::string & getLanguage(void);
+    void setLanguage(const string & lang);
     bool getMusic(void);
     void setMusic(bool m);
     bool getSFX(void);

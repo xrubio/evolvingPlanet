@@ -68,6 +68,19 @@ string LocalizedString::create(const char* key, const std::string & dir)
 
 const char* LocalizedString::getSystemLang()
 {
+    std::string currentLanguageCode = Application::getInstance()->getCurrentLanguageCode();
+    // by now the only two languages
+    if(currentLanguageCode=="ca")
+    {
+        return "ca";
+    }
+    if(currentLanguageCode=="es")
+    {
+        return "es";
+    }
+    return "en";
+
+    /*
     //getCurrentLanguage -> cat no existeix!!!!
     LanguageType curLanguage = Application::getInstance()->getCurrentLanguage();
 
@@ -87,7 +100,9 @@ const char* LocalizedString::getSystemLang()
     }
 
     return "en";
+    */
 }
+
 LocalizedString::LocalizedString() {}
 
 LocalizedString::~LocalizedString() {}

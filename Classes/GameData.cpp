@@ -124,12 +124,12 @@ void GameData::setGameStarted(bool gameStrtd)
     gameStarted = gameStrtd;
 }
 
-string GameData::getLanguage(void)
+const std::string & GameData::getLanguage(void)
 {
     return language;
 }
 
-void GameData::setLanguage(string lang)
+void GameData::setLanguage(const string & lang)
 {
     language = lang;
 }
