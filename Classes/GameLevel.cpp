@@ -777,12 +777,12 @@ void GameLevel::checkGoals()
         if(goalToCheck==(goals.size()-1))
         {
             // compute final score
-            int finalScore = 0;
+            float finalScore = 0;
             for(size_t j=0; j<goals.size(); j++)
             {
                 finalScore += goals.at(j)->getScore();
             }
-            int averagedScore = std::floor(0.5f+(finalScore/goals.size()));
+            int averagedScore = std::floor(0.5f+(finalScore/float(goals.size())));
             CCLOG("FINAL SCORE: %d", averagedScore);
             GameData::getInstance()->setLevelScore(numLevel, averagedScore);
             _finishedGame = Success;
