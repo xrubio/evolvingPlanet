@@ -144,8 +144,14 @@ bool AppDelegate::applicationDidFinishLaunching()
         {
             GameData::getInstance()->setCurrentLevel(i);
             GameData::getInstance()->setCurrentEra(i / 11);
-            i = int(levelsCompleted.size());
         }
+    }
+
+    // game finished
+    if(levelsCompleted.at(20)>0 && levelsCompleted.at(21)>0)
+    {
+        GameData::getInstance()->setCurrentLevel(21);
+        GameData::getInstance()->setCurrentEra(21 / 11);
     }
     
     // create a scene. it's an autorelease object
