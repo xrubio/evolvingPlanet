@@ -118,15 +118,17 @@ The first specimens are now being deployed</string>
 	<key>DESCRIPTION_TERRAFORM</key>
 	<string>Shape the environment to your benefit</string>
 	<key>DESCRIPTION_MobilityBoost</key>
-	<string>Mobility</string>
+	<string>Mobility (area effect)</string>
 	<key>DESCRIPTION_ReproductionBoost</key>
 	<string>Reproduction</string>
 	<key>DESCRIPTION_ResistanceBoost</key>
-	<string>Resistance</string>
+	<string>Resistance (area effect)</string>
 	<key>DESCRIPTION_InfluenceBoost</key>
 	<string>Influence</string>
 	<key>DESCRIPTION_WarfareBoost</key>
 	<string>Warfare</string>
+    <key>POPULATION</key>
+    <string>Population</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
 	<key>COST</key>

@@ -55,8 +55,10 @@ Gasta el resto en este atributo.</string>
 	<string>Despliegue acabado! Vamos a ver si tus bots sobreviven con estos atributos.</string>
 	<key>LEVEL1M18</key>
 	<string>Este panel muestra cómo tu población va aumentando.
-Coloca ahora el marcador de orientación en la zona del objetivo.</string>
+Necesitarás comprobarlo frecuentemente para evitar colapsos.</string>
 	<key>LEVEL1M19</key>
+    <string>Coloca ahora el marcador de orientación en la zona del objetivo.</string>
+	<key>LEVEL1M20</key>
 	<string>Como puedes ver has recibido EvoPoints adicionales. Buena suerte!</string>
 
     <key>LEVEL2M1</key>

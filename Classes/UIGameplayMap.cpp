@@ -584,7 +584,7 @@ bool UIGameplayMap::init()
     menuGraphic->setName("menuGraphic");
     this->addChild(menuGraphic, 1);
     
-    auto labelGraphic = Label::createWithTTF("POPULATION", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto labelGraphic = Label::createWithTTF(LocalizedString::create("POPULATION"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
     labelGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() + (graphicBackground->getBoundingBox().size.height / 2) + (labelGraphic->getBoundingBox().size.height / 2));
     labelGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     labelGraphic->setName("graphicLabel");

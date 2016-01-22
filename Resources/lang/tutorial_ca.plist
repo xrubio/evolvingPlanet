@@ -56,8 +56,10 @@ Gasta la resta en aquest atribut.</string>
 	<string>Desplegament finalitzat! Anem a veure si els teus bots sobreviuen amb aquests atributs.</string>
 	<key>LEVEL1M18</key>
 	<string>Aquest panell mostra com va augmentant la teva població.
-Situa ara el marcador d'orientació a la zona de l'objectiu.</string>
+Necessites examinar-lo sovint per detectar col·lapses.</string>
 	<key>LEVEL1M19</key>
+    <string>Situa ara el marcador d'orientació a la zona de l'objectiu.</string>
+	<key>LEVEL1M20</key>
 	<string>Com pots veure has rebut EvoPoints addicionals. Bona Sort</string>
 
     <key>LEVEL2M1</key>

@@ -55,8 +55,10 @@ Spend the remanining on this attribute.</string>
 	<string>Deployment finished! Let's see if the bots survive with these traits.</string>
 	<key>LEVEL1M18</key>
 	<string>This panel shows how your population is increasing.
-Set now the orientation marker within the goal zone.</string>
-	<key>LEVEL1M19</key>
+You should often check it to detect collapses</string>
+    <key>LEVEL1M19</key>
+    <string>Set now the orientation marker within the goal zone.</string>
+	<key>LEVEL1M20</key>
 	<string>As you can see here you received additional EvoPoints. Good luck!</string>
 
     <key>LEVEL2M1</key>

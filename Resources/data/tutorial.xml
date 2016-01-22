@@ -43,10 +43,11 @@
     <message id="17" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="tapButton" button="timeMenu/playToggle">
         <spot image="tutorial/tPlay" centerX="0.9" centerY="0.93"/>
     </message>
-    <message id="18" x="0.5" y="0.6" lineWidth="0.5" trigger="time" step="10" closesWhen="spot">
+    <message id="18" x="0.5" y="0.6" lineWidth="0.5" trigger="time" step="10">
         <spot image="tutorial/tPopSize" centerX="0.92" centerY="0.08"/>
     </message>
-    <message id="19" x="0.5" y="0.6" lineWidth="0.5" trigger="next">
+    <message id="19" x="0.5" y="0.6" lineWidth="0.5" trigger="next" closesWhen="spot"/>
+    <message id="20" x="0.5" y="0.6" lineWidth="0.5" trigger="next">
         <spot image="tutorial/tEvoPoints" centerX="0.261" centerY="0.093"/>
     </message>
 </level>

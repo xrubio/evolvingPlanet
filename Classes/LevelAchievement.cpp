@@ -58,7 +58,7 @@ bool LevelAchievement::checkAchievement(const std::string & typeAch, int level)
         }
         else if (typeAch == "EPsLeft")
         {
-            if (GameLevel::getInstance()->getEvolutionPoints() >= _variable)
+            if((GameData::getInstance()->getLevelScore(level) > 0) && (GameLevel::getInstance()->getEvolutionPoints() >= _variable))
             {
                 _completed = true;
                 return true;
@@ -66,7 +66,7 @@ bool LevelAchievement::checkAchievement(const std::string & typeAch, int level)
         }
         else if (typeAch == "NoBoosts")
         {
-            if (GameLevel::getInstance()->getPowersUsed() == false)
+            if((GameData::getInstance()->getLevelScore(level) > 0) && (GameLevel::getInstance()->getPowersUsed() == false))
             {
                 _completed = true;
                 return true;
