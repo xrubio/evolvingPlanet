@@ -2141,7 +2141,7 @@ void UIGameplayMap::createEndGameWindow(const LevelState & mode)
     continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     continueLabel->setColor(Color3B(205, 202, 207));
-    continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
+    continueLabel->setPosition(1.1 * continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
     continueButton->addChild(continueLabel);
     auto continueMenu = Menu::createWithItem(continueButton);
     continueMenu->setPosition(0, 0);
@@ -2473,7 +2473,7 @@ void UIGameplayMap::updateAgents(void)
        
         for (int i = 0; i < GameLevel::getInstance()->getTerraformedVector().size(); i++)
         {
-            drawExploitedMap(Point(GameLevel::getInstance()->getTerraformedVector().at(i).x, GameLevel::getInstance()->getTerraformedVector().at(i).y), Color4B(255, 255, 255, 255));
+            drawExploitedMap(Point(GameLevel::getInstance()->getTerraformedVector().at(i).x, GameLevel::getInstance()->getTerraformedVector().at(i).y), Color4B(0, 0, 0, 0));
         
         }
         GameLevel::getInstance()->clearTerraformedVector();
@@ -2573,7 +2573,7 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
                 {
                 if (colour.r == 0)
                 {
-                    if(_exploitedMapTextureData.at(position + j + k) == Color4B::BLACK)
+                    if(_exploitedMapTextureData.at(position + j + k).a == 255)
                     {
                         _exploitedMapTextureData.at(position + j + k).a = 1;
                     }
@@ -2584,11 +2584,7 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
                 }
                 else
                 {
-                    if(_exploitedMapTextureData.at(position + j + k).a != 0)
-                    {
-                        _exploitedMapTextureData.at(position + j + k).a = 1;
-                    }
-                    else
+                    if(_exploitedMapTextureData.at(position + j + k).a == 1)
                     {
                         _exploitedMapTextureData.at(position + j + k).a = 255;
                     }
