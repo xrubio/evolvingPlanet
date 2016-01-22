@@ -55,7 +55,11 @@ bool UIMainMenu::init()
     }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-
+    auto loading = Sprite::create("gui/Loading.png");
+    loading->setPosition(Vec2(21 * visibleSize.width / 25, 3 * visibleSize.height / 18));
+    loading->setName("loading");
+    loading->setVisible(false);
+    this->addChild(loading, 40);
     Vector<cocos2d::MenuItem*> menuButtons;
 
     if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false)
@@ -257,6 +261,8 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
+    this->scheduleUpdate();
+    
     return true;
 }
 
@@ -340,7 +346,9 @@ void UIMainMenu::menuStoryCallback(Ref* pSender)
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
+        _loading = true;
         
+        update(0);
         auto scene = UIStoryGallery::createScene();
         auto transition = TransitionFade::create(0.5f, scene);
         Director::getInstance()->replaceScene(transition);
@@ -590,5 +598,17 @@ void UIMainMenu::createSpaceAnimation(void)
     //16,12
     particlesSpaceship->setPosition(Vec2(14 * (spaceship->getContentSize().width / 25), 13 * (spaceship->getContentSize().height / 25)));
     spaceship->addChild(particlesSpaceship, -1, 1);
+}
+
+void UIMainMenu::loading(bool b)
+{
+    auto loading = this->getChildByName("loading");
+    loading->setVisible(true);
+}
+
+void UIMainMenu::update(float delta)
+{
+    auto loading = this->getChildByName("loading");
+    loading->setVisible(_loading);
 }
 

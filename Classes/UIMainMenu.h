@@ -53,6 +53,8 @@ public:
     
     CREATE_FUNC(UIMainMenu);
     
+    virtual void update(float delta);
+    
 private:
     bool stoppedAnimation = false;
 
@@ -65,6 +67,10 @@ private:
     void openWeb( Ref * pSender );
     
     void createSpaceAnimation(void);
+    
+    void loading(bool b);
+    
+    bool _loading = false;
 };
 
 #endif /* defined(__simulplay__UIMainMenu__) */

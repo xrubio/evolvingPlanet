@@ -95,7 +95,7 @@ bool UIIntroToast::init()
 #endif
     
     //load gallery images to cache
-    for (int i = 1; i < 21; i++)
+    /*for (int i = 1; i < 21; i++)
     {
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari"+to_string(i)+".jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     }
@@ -115,7 +115,7 @@ bool UIIntroToast::init()
     Director::getInstance()->getTextureCache()->addImageAsync("gui/LevelPointerButtonShadow.png", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ZoneAreaLevel.png", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap1Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap2Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap2Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));*/
 
     this->schedule(SEL_SCHEDULE(&UIIntroToast::update), 1.0);
     
