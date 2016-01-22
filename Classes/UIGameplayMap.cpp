@@ -751,6 +751,13 @@ bool UIGameplayMap::init()
         
     updateAttributesButtons();
     
+    
+    ///TEMP
+    GameLevel::getInstance()->setFinishedGame(Success);
+    GameData::getInstance()->setFirstTimeLevelCompleted(10);
+    ////
+
+    
     this->scheduleUpdate();
     return true;
 }

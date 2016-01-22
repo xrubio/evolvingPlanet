@@ -66,7 +66,9 @@ private:
     Layout* setEpisode2(void);
     void setStars(int level, MenuItemImage* levelButton);
     void setLoadingAnimation(bool visible);
-
+    void toMap();
+    
+    //void unlockEraAnimation();
 
 };
 

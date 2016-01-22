@@ -168,14 +168,21 @@ bool UIProgressMap::init()
         if (ftlc == 10)
         {
             //ADD PAGE SECOND ERA AND THEN SCROLL
-            pages->setCurPageIndex(1);
-            delayTime = 2.2;
+            pages->setCurPageIndex(GameData::getInstance()->getCurrentEra() - 1);
+            pages->runAction(Sequence::create(DelayTime::create(2.6), CallFunc::create(this, callfunc_selector(UIProgressMap::toMap)), NULL));
+            //unlockEraAnimation();
+            delayTime = 2.6;
         }
         
         if (ftlc < 20)
         {
+            int divisor = 10;
+            if (ftlc > 10)
+            {
+                divisor = 11;
+            }
             //POINTER LEVEL UNLOCKED ANIMATION
-            auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
+            auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/divisor)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
             
             Vec2 pos = pointerNextLevel->getPosition();
             pointerNextLevel->setPositionY(visibleSize.height * 1.5);
@@ -207,7 +214,7 @@ bool UIProgressMap::init()
     auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
                                                "gui/ProgressMapHexagonLevelOff.png");
     pageIndicator->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    unsigned long int numPages = (GameData::getInstance()->getCurrentLevel() / 12) + 1;
+    unsigned long int numPages = (GameData::getInstance()->getCurrentLevel() / 11);
     int initialPosX = (visibleSize.width / 2) - ((numPages / 2) * (pageIndicator->getContentSize().width * 3));
     int incrX = (pageIndicator->getContentSize().width * 3);
     for (int i = 0; i < numPages; i++)
@@ -1076,4 +1083,9 @@ void UIProgressMap::setLoadingAnimation(bool visible)
         this->addChild(loading, 500);
         loading->runAction(RepeatForever::create(RotateBy::create(1, 180)));
     }
+}
+
+void UIProgressMap::toMap(void)
+{
+    pages->scrollToPage(1);
 }

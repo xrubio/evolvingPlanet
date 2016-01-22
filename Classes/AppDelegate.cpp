@@ -123,6 +123,16 @@ bool AppDelegate::applicationDidFinishLaunching()
     GameData::getInstance()->setColumnOffsetDrawAgentPrecalc((GameData::getInstance()->getResourcesHeight() - GameData::getInstance()->getResourcesMargin()) / 2.0);
     GameData::getInstance()->setColumnDrawAgentPrecalc(GameData::getInstance()->getResourcesMargin() / 320.0);
 
+    
+    ///////// TEMP
+    for (int i = 0; i < NUM_LEVELS + 1; i++) {
+        UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
+    }
+    for (int i = 0; i < 10; i++) {
+        UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 3);
+    }
+    ////////
+    
     //LOAD LEVELS
     vector<int> levelsCompleted;
     for (int i = 0; i < NUM_LEVELS + 1; i++) {
