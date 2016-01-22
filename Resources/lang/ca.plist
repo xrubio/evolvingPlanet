@@ -197,7 +197,7 @@ Toca el logo per conèixer més sobre SimulPast!</string>
         <key>BOT_COLOR</key>
         <string>Color dels Bots</string>
         <key>THE_END</key>
-        <string>LA FI</string>
+        <string>FI</string>
 
         <key>ARID</key>
         <string>ÀRID</string>
@@ -217,6 +217,14 @@ Toca el logo per conèixer més sobre SimulPast!</string>
         <string>SABANA</string>
         <key>DESERT</key>
         <string>DESERT</string>
+
+        <key>THANKS_PEOPLE</key>
+        <string>...i les nostres famílies, amics i mascotes!</string>
+        <key>THANKS_PLAYER</key>
+        <string>Evolving Planet és una fusió de la nostra passió pels jocs i la ciència.
+Esperem que hagis disfrutat tant jugant-lo com nosaltres fent-lo.
+
+Gràcies!</string>
 
     </dict>
 </plist>

@@ -217,5 +217,14 @@ Tap the logo to know more about SimulPast!</string>
 	<string>SAVANNAH</string>
     <key>DESERT</key>
 	<string>DESERT</string>
+
+    <key>THANKS_PEOPLE</key>
+    <string>...and our families, friends and pets!</string>
+    <key>THANKS_PLAYER</key>
+    <string>Evolving Planet mixes our passion for gaming and science.
+We hope that you enjoyed playing the game as much as we did developing it.
+    
+Thank you!</string>
 </dict>
 </plist>
+

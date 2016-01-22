@@ -29,7 +29,7 @@
 #include "GameData.h"
 #include "LocalizedString.h"
 #include "UIProgressMap.h"
-#include "UIStoryGallery.h"
+#include "UIEndScene.h"
 
 Scene* UITransitionScene::createScene()
 {
@@ -70,48 +70,48 @@ bool UITransitionScene::init()
 
         }
         
-    image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    image->setScale(visibleSize.width / image->getContentSize().width);
-    image->setName("image");
-    this->addChild(image);
-    
-    auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
-    unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
-    unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    unlockLabel->setName("unlockLabel");
-    this->addChild(unlockLabel);
-
-    imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
-    imageUnlocked->setOpacity(0.0f);
-    imageUnlocked->setName("imageUnlocked");
-    int diff = (visibleSize.height - imageUnlocked->getContentSize().height)/2;
-    this->addChild(imageUnlocked);
-
-    auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
-    storyLine->setColor(Color3B(216, 229, 235));
-    storyLine->setMaxLineWidth(0.7f*visibleSize.width);
-    storyLine->setAnchorPoint(Vec2(0.0, 0.0));
-    storyLine->enableShadow();
-    storyLine->setPosition(Vec2(0.05f*visibleSize.width, 2*storyLine->getContentSize().height/3+diff));
-    storyLine->setOpacity(0);
-    storyLine->setName("text");
- 
-    this->addChild(storyLine);
-    
-    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
-    tapToContinue->setAnchorPoint(Vec2(0, 0));
-    tapToContinue->setColor(Color3B::WHITE);
-    tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
-    tapToContinue->setOpacity(0);
-    tapToContinue->setName("tapToContinue");
-    this->addChild(tapToContinue);
-    
-    //tapToContinue->runAction(RepeatForever::create(Blink::create(2, 1)));
+        image->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        image->setScale(visibleSize.width / image->getContentSize().width);
+        image->setName("image");
+        this->addChild(image);
         
-    auto listener = EventListenerTouchAllAtOnce::create();
-    listener->onTouchesBegan = CC_CALLBACK_2(UITransitionScene::onTouchesBegan, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+        auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("TAP_TO_UNLOCK")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+        unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
+        unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        unlockLabel->setName("unlockLabel");
+        this->addChild(unlockLabel);
+
+        imageUnlocked->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        imageUnlocked->setScale(visibleSize.width / imageUnlocked->getContentSize().width);
+        imageUnlocked->setOpacity(0.0f);
+        imageUnlocked->setName("imageUnlocked");
+        int diff = (visibleSize.height - imageUnlocked->getContentSize().height)/2;
+        this->addChild(imageUnlocked);
+
+        auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+        storyLine->setColor(Color3B(216, 229, 235));
+        storyLine->setMaxLineWidth(0.7f*visibleSize.width);
+        storyLine->setAnchorPoint(Vec2(0.0, 0.0));
+        storyLine->enableShadow();
+        storyLine->setPosition(Vec2(0.05f*visibleSize.width, 2*storyLine->getContentSize().height/3+diff));
+        storyLine->setOpacity(0);
+        storyLine->setName("text");
+     
+        this->addChild(storyLine);
+        
+        auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+        tapToContinue->setAnchorPoint(Vec2(0, 0));
+        tapToContinue->setColor(Color3B::WHITE);
+        tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
+        tapToContinue->setOpacity(0);
+        tapToContinue->setName("tapToContinue");
+        this->addChild(tapToContinue);
+        
+        //tapToContinue->runAction(RepeatForever::create(Blink::create(2, 1)));
+            
+        auto listener = EventListenerTouchAllAtOnce::create();
+        listener->onTouchesBegan = CC_CALLBACK_2(UITransitionScene::onTouchesBegan, this);
+        _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     }
     
     if (GameData::getInstance()->getFirstTimeLevelCompleted() == 21 or GameData::getInstance()->getFirstTimeLevelCompleted() == 20)
@@ -145,23 +145,10 @@ void UITransitionScene::onTouchesBegan(const vector<Touch*>& touches, Event* eve
             }
             else
             {
-                //THE END
-                this->getChildByName("imageUnlocked")->runAction(FadeOut::create(0.2));
-                this->getChildByName("text")->runAction(FadeOut::create(0.2));
-                this->getChildByName("unlockLabel")->runAction(FadeOut::create(0.2));
-                this->getChildByName("image")->runAction(FadeOut::create(0.2));
-                
-                Size visibleSize = Director::getInstance()->getVisibleSize();
-                
-                auto theEndLabel = Label::createWithTTF(string(LocalizedString::create("THE_END")), "fonts/BebasNeue.otf", 150 * GameData::getInstance()->getRaConversion());
-                theEndLabel->setTextColor(Color4B(255, 255, 255, 230));
-                theEndLabel->setPosition(Vec2(visibleSize.width / 2, 3 * visibleSize.height / 5));
-                theEndLabel->setName("theEndLabel");
-                theEndLabel->setOpacity(0);
-                theEndLabel->runAction(FadeIn::create(0.4));
-                this->addChild(theEndLabel);
-                
                 _theEnd = false;
+                auto scene = UIEndScene::createScene();
+                auto transition = TransitionFade::create(1.0f, scene);
+                Director::getInstance()->replaceScene(transition);
             }
         }
         else {

@@ -28,7 +28,9 @@
 #ifndef __simulplay__UITransitionScene__
 #define __simulplay__UITransitionScene__
 
-#include "UIMainMenu.h"
+#include <cocos2d.h> 
+
+using namespace cocos2d;
 
 class UITransitionScene : public Layer {
 public:
@@ -56,3 +58,4 @@ private:
 };
 
 #endif /* defined(__simulplay__UITransitionScene__) */
+
