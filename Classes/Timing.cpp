@@ -30,8 +30,6 @@
 
 Timing* Timing::timingInstance = nullptr;
 
-float Timing::_secondsPerStep = 0.8f;
-
 Timing* Timing::getInstance()
 {
     if (!timingInstance) // Only allow one instance of class to be generated.
@@ -46,8 +44,25 @@ double Timing::secs( const timeval & time) const
     return time.tv_sec + double(time.tv_usec)/1000000.0f;
 }
 
+float Timing::getGameSpeed() const
+{
+    switch(GameData::getInstance()->getGameSpeed())
+    {
+        case eSlow:
+            return 1.4f;
+        case eMed:
+            return 1.1f;
+        case eFast:
+            return 0.8f;
+        default:
+            return 0.0f;
+    }
+    return 0.0f;
+}
+
 void Timing::start(void)
 {
+    float secondsPerStep = getGameSpeed();
     _timeStep = 0.0f;
     _lastStepExecuted = -1;
     
@@ -59,7 +74,7 @@ void Timing::start(void)
     gettimeofday(&currentTimePart, nullptr);
     double secsCurrentTimePart = secs(currentTimePart);
 
-    long int interval = int(1000.0f*float(_secondsPerStep)/20.0f);
+    long int interval = int(1000.0f*secondsPerStep/20.0f);
     CCLOG("timing start with interval %ld", interval );
     while (GameLevel::getInstance()->getFinishedGame() == Running)
     {
@@ -82,7 +97,7 @@ void Timing::start(void)
             _lastStepExecuted = int(floor(_timeStep));
         }
 
-        double diff = (secsCurrentTimePart - oldPart)/_secondsPerStep;
+        double diff = (secsCurrentTimePart - oldPart)/secondsPerStep;
         _timeStep += diff;
 
         for (size_t i = 0; i < GameLevel::getInstance()->getPowers().size(); i++)

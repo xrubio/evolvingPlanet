@@ -41,6 +41,13 @@ enum toScene
     Story = 1
 };
 
+enum GameSpeed
+{
+    eSlow = 0,
+    eMed = 1,
+    eFast = 2
+};
+
 #define NUM_LEVELS 21
 
 class GameData {
@@ -65,6 +72,8 @@ public:
     void setMusic(bool m);
     bool getSFX(void);
     void setSFX(bool s);
+    void setGameSpeed(GameSpeed gameSpeed) { _gameSpeed = gameSpeed; }
+    GameSpeed getGameSpeed() const { return _gameSpeed; }
     float getRaConversion(void);
     void setRaConversion(float r);
     float getRaWConversion(void);
@@ -120,6 +129,8 @@ private:
     string language;
     bool music = true;
     bool sfx = true;
+    GameSpeed _gameSpeed = eSlow;
+
     float raConversion = 1.0;
     float raWConversion = 1.0;
     float raHConversion = 1.0;
@@ -135,6 +146,7 @@ private:
     float resourcesMargin;
     cocos2d::Color3B _playerColor = cocos2d::Color3B(255, 4, 4);
     bool _animationSpace = true;
+
 
 };
 

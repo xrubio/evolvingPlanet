@@ -68,6 +68,8 @@ You should often check it to detect collapses</string>
 If you arrive before or after this span the mission will fail.</string>
 	<key>LEVEL2M3</key>
 	<string>The best arrival time is highlighted here.</string>
+	<key>LEVEL2M4</key>
+	<string>If you feel that the game is too slow you can increase its speed in the Options menu. Good luck!.</string>
 
     <key>LEVEL3M1</key>
 	<string>Welcome Professor.

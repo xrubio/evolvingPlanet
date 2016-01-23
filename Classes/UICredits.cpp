@@ -291,7 +291,7 @@ void UICredits::murphysToastStudios(Layout* layout)
     createName("Jorge Caro", 0.63f, 0.45f, popupBackground);
     createName("Guillem H. Pongiluppi", 0.63f, 0.39f, popupBackground);
 
-    createGroup("MUSIC", 0.6f, 0.24f, popupBackground);
+    createGroup("MUSIC_CREDITS", 0.6f, 0.24f, popupBackground);
     createName("Guillem Laborda", 0.63f, 0.19f, popupBackground);
 }
 

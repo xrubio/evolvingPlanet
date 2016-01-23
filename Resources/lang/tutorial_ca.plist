@@ -69,6 +69,8 @@ Necessites examinar-lo sovint per detectar col·lapses.</string>
 Si arribes abans o després la missió fracassarà.</string>
 	<key>LEVEL2M3</key>
 	<string>El millor temps d'arribada està destacat aquí.</string>
+	<key>LEVEL2M4</key>
+	<string>Si creus que el joc va massa lent pots incrementar la velocitat des del menú d'Opcions. Bona sort!</string>
 
     <key>LEVEL3M1</key>
 	<string>Benvingut, Professor.

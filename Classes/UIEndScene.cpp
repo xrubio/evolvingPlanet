@@ -176,7 +176,7 @@ bool UIEndScene::init()
     addName("Guillem H. Pongiluppi", initPos);
     initPos -= offsetJob;
   
-    addJob("MUSIC", initPos);
+    addJob("MUSIC_CREDITS", initPos);
     initPos -= offsetName;
     addName("Guillem Laborda", initPos);
     initPos -= offsetJob;

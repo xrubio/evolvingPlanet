@@ -753,8 +753,10 @@ bool UIGameplayMap::init()
     
     
     ///TEMP
+    /*
     GameLevel::getInstance()->setFinishedGame(Success);
     GameData::getInstance()->setFirstTimeLevelCompleted(10);
+    */
     ////
 
     

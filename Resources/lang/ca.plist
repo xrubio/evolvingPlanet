@@ -133,9 +133,19 @@ Els primers especímens ja s&apos;estan desplegant</string>
 	<key>COST</key>
 	<string>Cost</string>
 	<key>MUSIC</key>
-	<string>MÚSICA I SO</string>
+	<string>MÚSICA</string>
+    <key>MUSIC_CREDITS</key>
+	<string>MÚSICA I SFX</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
+	<key>GAME_SPEED</key>
+	<string>Velocitat del joc</string>
+    <key>SLOW</key>
+    <string>Lenta</string>
+    <key>MEDIUM</key>
+    <string>Mitjana</string>
+    <key>FAST</key>
+    <string>Ràpida</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLET</string>
 	<key>GAME_OVER</key>

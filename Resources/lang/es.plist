@@ -134,9 +134,19 @@ Los primeros especímenes ya están siendo desplegados</string>
 	<key>COST</key>
 	<string>Coste</string>
 	<key>MUSIC</key>
+    <string>Música</string>
+    <key>MUSIC_CREDITS</key>
 	<string>Música y Sonido</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
+	<key>GAME_SPEED</key>
+	<string>Velocidad de juego</string>
+    <key>SLOW</key>
+    <string>Lenta</string>
+    <key>MEDIUM</key>
+    <string>Media</string>
+    <key>FAST</key>
+    <string>Rápida</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLETADO</string>
 	<key>GAME_OVER</key>

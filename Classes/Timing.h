@@ -41,10 +41,9 @@ public:
     bool act = false;
 
     float getTimeStep() const { return _timeStep; }
-
+    float getGameSpeed() const;
 private:
     static Timing* timingInstance;
-    static float _secondsPerStep;
 
     // current time step with decimals
     float _timeStep;

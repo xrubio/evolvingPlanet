@@ -45,6 +45,10 @@ public:
     void musicOffCallback(Ref* pSender);
     void sfxOnCallback(Ref* pSender);
     void sfxOffCallback(Ref* pSender);
+    
+    void speedSlowCallback(Ref* pSender);
+    void speedMediumCallback(Ref* pSender);
+    void speedFastCallback(Ref* pSender);
 
     CREATE_FUNC(UIConfiguration);
 

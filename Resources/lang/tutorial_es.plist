@@ -68,6 +68,8 @@ Necesitarás comprobarlo frecuentemente para evitar colapsos.</string>
 Si llegas antes o después de este intervalo la misión fracasará.</string>
 	<key>LEVEL2M3</key>
 	<string>El mejor tiempo de llegada está destacado así.</string>
+	<key>LEVEL2M4</key>
+	<string>Si notas el juego demasiado lento puedes subir la velocidad en el menú de Opciones. Buena suerte!</string>
 
     <key>LEVEL3M1</key>
 	<string>Bienvenido, Profesor.

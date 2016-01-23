@@ -75,7 +75,8 @@ bool UIConfiguration::init()
     auto backButton = MenuItemImage::create(
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
     backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 1 * popupBackground->getContentSize().height / 16));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
@@ -84,7 +85,7 @@ bool UIConfiguration::init()
     
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
-    popupBackground->addChild(menu, 1, 20);
+    this->addChild(menu, 1);
 
     auto configLabel = Label::createWithTTF(LocalizedString::create("OPTIONS"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));
@@ -178,47 +179,41 @@ bool UIConfiguration::init()
     auto musicLabel = Label::createWithTTF(LocalizedString::create("MUSIC"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     musicLabel->setColor(Color3B(72, 108, 118));
     musicLabel->setAnchorPoint(Vec2(1, 0.5));
-    musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5.5 * popupBackground->getContentSize().height / 16));
+    musicLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(musicLabel);
 
     auto musicOnLabel = MenuItemImage::create("gui/ActiveOff.png", "gui/ActiveOff.png", "gui/ActiveOn.png",
         CC_CALLBACK_1(UIConfiguration::musicOnCallback, this));
-    musicOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
-        5.5 * popupBackground->getContentSize().height / 16)));
+    musicOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOnLabel);
 
     auto musicSeparator = Sprite::create("gui/ConfigurationSeparator.png");
-    musicSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
-        5.5 * popupBackground->getContentSize().height / 16)));
+    musicSeparator->setPosition(Vec2(Vec2(12 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(musicSeparator, 10);
 
     auto musicOffLabel = MenuItemImage::create("gui/InactiveOff.png", "gui/InactiveOff.png", "gui/InactiveOn.png",
         CC_CALLBACK_1(UIConfiguration::musicOffCallback, this));
-    musicOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
-        5.5 * popupBackground->getContentSize().height / 16)));
+    musicOffLabel->setPosition(Vec2(Vec2(13 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(musicOffLabel);
 
     auto sfxLabel = Label::createWithTTF(LocalizedString::create("SPECIAL_EFFECTS"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
     sfxLabel->setColor(Color3B(72, 108, 118));
     sfxLabel->setAnchorPoint(Vec2(1, 0.5));
-    sfxLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 3 * popupBackground->getContentSize().height / 16));
+    sfxLabel->setPosition(Vec2(20 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16));
     popupBackground->addChild(sfxLabel);
 
     auto sfxOnLabel = MenuItemImage::create("gui/ActiveOff.png", "gui/ActiveOff.png", "gui/ActiveOn.png",
         CC_CALLBACK_1(UIConfiguration::sfxOnCallback, this));
-    sfxOnLabel->setPosition(Vec2(Vec2(11 * popupBackground->getContentSize().width / 28,
-        3 * popupBackground->getContentSize().height / 16)));
+    sfxOnLabel->setPosition(Vec2(Vec2(22 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOnLabel);
 
     auto sfxSeparator = Sprite::create("gui/ConfigurationSeparator.png");
-    sfxSeparator->setPosition(Vec2(Vec2(15 * popupBackground->getContentSize().width / 28,
-        3 * popupBackground->getContentSize().height / 16)));
+    sfxSeparator->setPosition(Vec2(Vec2(23 * popupBackground->getContentSize().width / 28, 5* popupBackground->getContentSize().height / 16)));
     popupBackground->addChild(sfxSeparator, 10);
 
     auto sfxOffLabel = MenuItemImage::create("gui/InactiveOff.png", "gui/InactiveOff.png", "gui/InactiveOn.png",
         CC_CALLBACK_1(UIConfiguration::sfxOffCallback, this));
-    sfxOffLabel->setPosition(Vec2(Vec2(19 * popupBackground->getContentSize().width / 28,
-        3 * popupBackground->getContentSize().height / 16)));
+    sfxOffLabel->setPosition(Vec2(Vec2(24 * popupBackground->getContentSize().width / 28, 5 * popupBackground->getContentSize().height / 16)));
     soundItems.pushBack(sfxOffLabel);
 
     if (GameData::getInstance()->getMusic() == true) {
@@ -239,6 +234,64 @@ bool UIConfiguration::init()
     menuSound->setPosition(0, 0);
     popupBackground->addChild(menuSound, 10);
 
+    auto speedLabel = Label::createWithTTF(LocalizedString::create("GAME_SPEED"), "fonts/BebasNeue.otf", 90 * GameData::getInstance()->getRaConversion());
+    speedLabel->setColor(Color3B(72, 108, 118));
+    speedLabel->setAnchorPoint(Vec2(1, 0.5));
+    speedLabel->setPosition(Vec2(8.5 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    popupBackground->addChild(speedLabel);
+ 
+    Vector<MenuItem*> speedItems;
+    
+    auto slowButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedSlowCallback, this));
+    slowButton->setAnchorPoint(Vec2(0, 0.5));
+    slowButton->setScale(2.0f*GameData::getInstance()->getRaHConversion());
+    slowButton->setPosition(Vec2(10 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    slowButton->setName("slowButton");
+    auto slowLabel = Label::createWithTTF(LocalizedString::create("SLOW"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    slowLabel->setColor(Color3B(205, 202, 207));
+    slowLabel->setPosition(slowButton->getContentSize().width / 2, slowButton->getContentSize().height / 2);
+    slowButton->addChild(slowLabel);
+    speedItems.pushBack(slowButton);
+
+    auto mediumButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedMediumCallback, this));
+    mediumButton->setAnchorPoint(Vec2(0, 0.5));
+    mediumButton->setScale(2.0f*GameData::getInstance()->getRaHConversion());
+    mediumButton->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    mediumButton->setName("mediumButton");
+    auto mediumLabel = Label::createWithTTF(LocalizedString::create("MEDIUM"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    mediumLabel->setColor(Color3B(205, 202, 207));
+    mediumLabel->setPosition(mediumButton->getContentSize().width / 2, mediumButton->getContentSize().height / 2);
+    mediumButton->addChild(mediumLabel);
+    speedItems.pushBack(mediumButton);   
+    
+    auto fastButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedFastCallback, this));
+    fastButton->setAnchorPoint(Vec2(0, 0.5));
+    fastButton->setScale(2.0f*GameData::getInstance()->getRaHConversion());
+    fastButton->setPosition(Vec2(22 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    fastButton->setName("fastButton");
+    auto fastLabel = Label::createWithTTF(LocalizedString::create("FAST"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    fastLabel->setColor(Color3B(205, 202, 207));
+    fastLabel->setPosition(fastButton->getContentSize().width / 2, fastButton->getContentSize().height / 2);
+    fastButton->addChild(fastLabel);
+    speedItems.pushBack(fastButton);
+
+    if(GameData::getInstance()->getGameSpeed()==eSlow)
+    {
+        slowButton->setEnabled(false);
+    }
+    else if(GameData::getInstance()->getGameSpeed()==eMed)
+    {
+        mediumButton->setEnabled(false);
+    }
+    else
+    {
+        fastButton->setEnabled(false);
+    }
+
+    auto menuSpeed = Menu::createWithArray(speedItems);
+    menuSpeed->setPosition(0, 0);
+    popupBackground->addChild(menuSpeed, 10);
+
     return true;
 }
 
@@ -251,6 +304,7 @@ void UIConfiguration::menuBackCallback(Ref* pSender)
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
     UserDefault::getInstance()->setStringForKey("playerColor", GameData::getInstance()->getPlayerColorString());
+    UserDefault::getInstance()->setIntegerForKey("gameSpeed", int(GameData::getInstance()->getGameSpeed()));
     UserDefault::getInstance()->flush();
 
     auto scene = UIMainMenu::createScene();
@@ -363,3 +417,56 @@ void UIConfiguration::sfxOffCallback(Ref* pSender)
 
     GameData::getInstance()->setSFX(false);
 }
+
+void UIConfiguration::speedSlowCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    // slow -> med -> fast
+    auto pressed = (MenuItem*)pSender;
+    pressed->setEnabled(false);
+
+    auto menu = pressed->getParent();
+    auto med = (MenuItem*)menu->getChildren().at(1);
+    med->setEnabled(true);
+    auto fast = (MenuItem*)menu->getChildren().at(2);
+    fast->setEnabled(true);
+
+    GameData::getInstance()->setGameSpeed(eSlow);
+}
+
+void UIConfiguration::speedMediumCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }    
+    auto pressed = (MenuItem*)pSender;
+    pressed->setEnabled(false);
+
+    auto menu = pressed->getParent();
+    auto slow = (MenuItem*)menu->getChildren().at(0);
+    slow->setEnabled(true);
+    auto fast = (MenuItem*)menu->getChildren().at(2);
+    fast->setEnabled(true);
+    
+    GameData::getInstance()->setGameSpeed(eMed);
+}
+
+void UIConfiguration::speedFastCallback(Ref* pSender)
+{
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }  
+    auto pressed = (MenuItem*)pSender;
+    pressed->setEnabled(false);
+
+    auto menu = pressed->getParent();
+    auto slow = (MenuItem*)menu->getChildren().at(0);
+    slow->setEnabled(true);
+    auto med = (MenuItem*)menu->getChildren().at(1);
+    med->setEnabled(true);
+
+    GameData::getInstance()->setGameSpeed(eFast);
+}
+

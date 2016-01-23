@@ -62,6 +62,7 @@
     <message id="3" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M3">  
         <spot image="tutorial/tArrowTop" centerX="0.492" centerY="0.91"/>
     </message>
+    <message id="4" x="0.5" y="0.4" lineWidth="0.4" trigger="next" text="LEVEL2M4"/>  
 </level>
 
 

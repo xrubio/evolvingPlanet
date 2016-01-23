@@ -134,9 +134,19 @@ The first specimens are now being deployed</string>
 	<key>COST</key>
 	<string>Cost</string>
 	<key>MUSIC</key>
+    <string>MUSIC</string>
+    <key>MUSIC_CREDITS</key>
 	<string>Music &amp; Sound</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
+	<key>GAME_SPEED</key>
+	<string>Game speed</string>
+    <key>SLOW</key>
+    <string>Slow</string>
+    <key>MEDIUM</key>
+    <string>Medium</string>
+    <key>FAST</key>
+    <string>Fast</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLETED</string>
 	<key>GAME_OVER</key>

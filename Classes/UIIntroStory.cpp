@@ -67,9 +67,9 @@ bool UIIntroStory::init()
     messageLabel2->enableShadow();
     messageLabel2->setMaxLineWidth(0.4f*visibleSize.width);
     messageLabel2->setOpacity(0);
-    messageLabel2->setAnchorPoint(Vec2(0.0f, 0.5f));
+    messageLabel2->setAnchorPoint(Vec2(0.0f, 0.0f));
     messageLabel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    messageLabel2->setPosition(Vec2(0.5f*visibleSize.width, 0.7*visibleSize.height));
+    messageLabel2->setPosition(Vec2(0.5f*visibleSize.width, 0.1f*visibleSize.height));
     messageLabel2->runAction(Sequence::create(DelayTime::create(23.0f), FadeIn::create(3.0f), DelayTime::create(5.0f), FadeOut::create(2.0f), NULL));
     this->addChild(messageLabel2, 7);
 
