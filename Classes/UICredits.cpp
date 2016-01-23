@@ -352,9 +352,9 @@ void UICredits::specialThanks1(Layout* layout)
     popupBackground->addChild(configLabel);
 
    
-    float x = 0.1f;
+    float x = 0.05f;
     float y = 0.8f;
-    float xInterval = 0.3f;
+    float xInterval = 0.25f;
     float yInterval = 0.05f;
 
     for(std::list<std::string>::const_iterator it=_names.begin(); it!=_names.end(); it++)
