@@ -244,7 +244,7 @@ bool UIConfiguration::init()
     
     auto slowButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedSlowCallback, this));
     slowButton->setAnchorPoint(Vec2(0, 0.5));
-    slowButton->setScale(2.0f*GameData::getInstance()->getRaHConversion());
+    slowButton->setScale(1.5f*GameData::getInstance()->getRaHConversion());
     slowButton->setPosition(Vec2(10 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     slowButton->setName("slowButton");
     auto slowLabel = Label::createWithTTF(LocalizedString::create("SLOW"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
@@ -255,7 +255,7 @@ bool UIConfiguration::init()
 
     auto mediumButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedMediumCallback, this));
     mediumButton->setAnchorPoint(Vec2(0, 0.5));
-    mediumButton->setScale(2.0f*GameData::getInstance()->getRaHConversion());
+    mediumButton->setScale(1.5f*GameData::getInstance()->getRaHConversion());
     mediumButton->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     mediumButton->setName("mediumButton");
     auto mediumLabel = Label::createWithTTF(LocalizedString::create("MEDIUM"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
@@ -266,7 +266,7 @@ bool UIConfiguration::init()
     
     auto fastButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedFastCallback, this));
     fastButton->setAnchorPoint(Vec2(0, 0.5));
-    fastButton->setScale(2.0f*GameData::getInstance()->getRaHConversion());
+    fastButton->setScale(1.5f*GameData::getInstance()->getRaHConversion());
     fastButton->setPosition(Vec2(22 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     fastButton->setName("fastButton");
     auto fastLabel = Label::createWithTTF(LocalizedString::create("FAST"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
