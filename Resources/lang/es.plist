@@ -25,8 +25,6 @@ Los primeros especímenes ya están siendo desplegados</string>
 	<string>NUEVO</string>
 	<key>BACK</key>
 	<string>VOLVER</string>
-	<key>RESET</key>
-	<string>RESETEAR</string>
 	<key>PAUSE</key>
 	<string>PAUSA</string>
 	<key>SET_ATTRIBUTES</key>
@@ -157,7 +155,7 @@ Los primeros especímenes ya están siendo desplegados</string>
 	<string>Misión fracasada: Tu población ha alcanzado el objetivo antes 
 de lo sugerido por los datos arqueológicos</string>
 	<key>GOAL_FAIL_AFTER</key>
-	<string>Misión fracadasada: No has alcanzado el objetivo a tiempo</string>
+	<string>Misión fracasada: No has alcanzado el objetivo a tiempo</string>
 	<key>ALL_BOTS_DIED</key>
 	<string>Han muerto todos los bots</string>
 	<key>CONTINUE</key>
@@ -205,7 +203,7 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<key>SKIP</key>
 	<string>SALTAR</string>     
     <key>GOALS_COMPLETED</key>
-    <string>OBJECTIVOS CONSEGUIDOS</string>
+    <string>OBJETIVOS CONSEGUIDOS</string>
 	<key>BOT_COLOR</key>
 	<string>Color de los bots</string>
 	<key>THE_END</key>
@@ -231,7 +229,7 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<string>DESIERTO</string>
 
     <key>THANKS_PEOPLE</key>
-    <string>...y nuestras famílias, amigos y mascotas!</string>
+    <string>...y nuestras familias, amigos y mascotas!</string>
     <key>THANKS_PLAYER</key>
     <string>Evolving Planet fusiona nuestra pasión por los juegos y la ciencia.
 Esperemos que hayas disfrutado jugando tanto como nosotros haciéndolo.

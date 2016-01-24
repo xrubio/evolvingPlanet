@@ -5,7 +5,7 @@
         <key>LEVEL1HINT</key>
         <string>Hauries d'incrementar Resistència i després centrar-te en Mobilitat.</string>
         <key>LEVEL2HINT</key>
-        <string>Mantingues apretada la icona d'objectiu per mostrar les característiques del mapa. Hauries de moure la teva població pels boscos per incrementar les seves probabilitats de supervivència.</string>
+        <string>Mantingues pressionada la icona d'objectiu per mostrar les característiques del mapa. Hauries de moure la teva població pels boscos per incrementar les seves probabilitats de supervivència.</string>
         <key>LEVEL3HINT</key>
         <string>Reforça la Resistència. És crític per evitar l'extinció a l'inici de la missió.</string>
         <key>LEVEL4HINT</key>
@@ -15,7 +15,7 @@
         <key>LEVEL6HINT</key>
         <string>Els Lovan no tenen suficient taxa de reproducció per assolir la mida de població registrada en el temps definit. El nou poder d'Influència et pot ajudar a convèncer els bots d'altres grups a unir-se a la teva població.</string>
         <key>LEVEL7HINT</key>
-        <string>Hauries de fer créixer la teva població i l'atribut de Guerra abans d'enfrentar-te a l'altre grup.</string>
+        <string>Hauries de fer créixer la teva població i l'atribut de Guerra abans d'enfrontar-te a l'altre grup.</string>
         <key>LEVEL8HINT</key>
         <string>Necessites molta població per creuar el desert. Incrementa la Resistència i la Influència abans d'arribar a la part Est del mapa.</string>
         <key>LEVEL9HINT</key>

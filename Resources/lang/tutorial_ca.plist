@@ -4,7 +4,7 @@
     <dict>
 
 	<key>NEXT_MESSAGE_BUTTON</key>
-	<string>Apreta el botó destacat</string>
+	<string>Pressiona el botó destacat</string>
 	<key>NEXT_MESSAGE_SPOT</key>
 	<string>Toca dos cops per col·locar el marcador</string>
 	<key>NEXT_MESSAGE_TAP</key>
@@ -12,7 +12,7 @@
 
 	<key>LEVEL1M1</key>
 	<string>Professor, benvingut a la Consola.
-La interfície és xula oi? Espero que t'agradi perquè la teva vida durant les properes setmanes consistirà en fer-la servir mentre consumeixes cafè.</string>
+La interfície és aula oi? Espero que t'agradi perquè la teva vida durant les properes setmanes consistirà en fer-la servir mentre consumeixes cafè.</string>
 	<key>LEVEL1M2</key>
 	<string>La Consola mostra les dades recollides per satèl·lits desplegats al voltant del planeta.</string>
 	<key>LEVEL1M3</key>
@@ -38,15 +38,15 @@ Toca dos cops qualsevol zona del mapa per tal de suggerir la direcció de disper
 Comences amb 10 EvoPoints, i aniràs rebent punts addicionals durant la missió.</string>
 	<key>LEVEL1M11</key>
 	<string>Els EvoPoints es poden fer servir per a incrementar 3 dels atributs dels teus bots.
-Apreta aquí per tal de gastar 1 EvoPoint i millorar la Mobilitat al nivell 2.</string>
+Prem aquí per tal de gastar 1 EvoPoint i millorar la Mobilitat al nivell 2.</string>
 	<key>LEVEL1M12</key>
 	<string>La Reproducció controla la fertilitat dels bots.
 Puja-la a nivell 2</string>
 	<key>LEVEL1M13</key>
-	<string>Cada canvi en un atribut costa 1 EvoPoint addicional, en un atributo cuesta 1 EvoPoint més, com s'indica en groc.
+	<string>Cada canvi en un atribut costa 1 EvoPoint addicional, com s'indica en groc.
 Puja'l a 3.</string>
 	<key>LEVEL1M14</key>
-	<string>Apreta de nou per fixar la Reproducció a 4.</string>
+	<string>Prem de nou per fixar la Reproducció a 4.</string>
 	<key>LEVEL1M15</key>
 	<string>Si incrementes Resistència millores la supervivència dels teus bots.
 Gasta la resta en aquest atribut.</string>
@@ -85,21 +85,21 @@ En aquesta missió farem servir una eina nova.</string>
 	<string>El primer potencia la Reproducció. Activa'l ara.</string>
 	<key>LEVEL3M6</key>
 	<string>El segon Augment puja la Resistència, i té una àrea d'efecte.
-Necessites pressionar-lo i arrastar l'àrea fins la zona en la que vulguis millorar els bots</string>
+Necessites pressionar-lo i arrastrar l'àrea fins la zona en la que vulguis millorar els bots</string>
 	<key>LEVEL3M7</key>
 	<string>Els Augments tenen un període de recàrrega, així que fes-los servir amb moderació. Bona sort!</string>
 
     <key>LEVEL6M1</key>
     <string>El primer objectiu d'aquesta missió comprova la mida del teu grup.</string>
     <key>LEVEL6M2</key>
-    <string>Necessites arrivar a la mida destacada en aquest panell dins el temps assignat.</string>
+    <string>Necessites arribar a la mida destacada en aquest panell dins el temps assignat.</string>
 
     <key>LEVEL11M1</key>
     <string>Necessitaràs reunir diversos recursos per tal de tenir èxit en aquesta missió.</string>
     <key>LEVEL11M2</key>
     <string>Aquesta muntanya conté nombrosos minerals útils per al teu grup.</string>
     <key>LEVEL11M3</key>
-    <string>Aquest bost pot proporcionar molta fusta.</string>
+    <string>Aquest bosc pot proporcionar molta fusta.</string>
     <key>LEVEL11M4</key>
     <string>Reculls recursos movent-te a aquestes zones, tot millorant l'atribut d'Explotació.</string>
     <key>LEVEL11M5</key>
@@ -115,7 +115,7 @@ Necessites pressionar-lo i arrastar l'àrea fins la zona en la que vulguis millo
     <key>LEVEL16M1</key>
     <string>Hem integrat totes les tècniques de domesticació sota el concepte de Terraformació.</string>
     <key>LEVEL16M2</key>
-    <string>La zona destacada és suficientement rica per tal de ser transformada en terres cultivables mitjançant aquest atribut.</string>
+    <string>La zona destacada és suficientment rica per tal de ser transformada en terres cultivables mitjançant aquest atribut.</string>
     <key>LEVEL16M3</key>
     <string>La teva població prosperarà en una zona terraformada, però abans cal que arribis a ella.</string>
 

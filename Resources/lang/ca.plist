@@ -13,7 +13,7 @@ La teva tasca és descobrir per què van desaparèixer</string>
 	<key>INTRO_3</key>
 	<string>Hem integrat l&apos;ADN Lovan als nostres bots
 
-Els primers especímens ja s&apos;estan desplegant</string>
+Els primers espècimens ja s&apos;estan desplegant</string>
 	<key>INTRO_4</key>
 	<string>Estem a punt per iniciar la primera missió</string>
 	<key>START</key>
@@ -24,8 +24,6 @@ Els primers especímens ja s&apos;estan desplegant</string>
 	<string>NOU</string>
 	<key>BACK</key>
 	<string>TORNAR</string>
-	<key>RESET</key>
-	<string>RESETEJAR</string>
 	<key>PAUSE</key>
 	<string>PAUSA</string>
 	<key>SET_ATTRIBUTES</key>
@@ -231,7 +229,7 @@ Toca el logo per conèixer més sobre SimulPast!</string>
 	<string>...i les nostres famílies, amics i mascotes!</string>
 	<key>THANKS_PLAYER</key>
 	<string>Evolving Planet és una fusió de la nostra passió pels jocs i la ciència.
-Esperem que hagis disfrutat tant jugant-lo com nosaltres fent-lo.
+Esperem que hagis gaudit tant jugant-lo com nosaltres fent-lo.
 
 Gràcies!</string>
 </dict>

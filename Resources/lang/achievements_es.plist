@@ -38,7 +38,7 @@ El resto de la dispersión fue muy rápido: colonizaron casi todo el planeta en 
     <key>DESCR_LVL2_Accomplished</key>
     <string>Misión 2: Completada</string>
     <key>ACH_LVL2_1</key>
-    <string>"Miras a la ciencia como si fuera una invención humana desmoralizante, algo alejado de la vida real, y que debe ser guardada y separada de la existencia diaria. Pero la ciencia y la vida diaria no pueden y no deben estar separadas".
+    <string>"Miras a la ciencia como si fuera una invención humana desmoralizadora, algo alejado de la vida real, y que debe ser guardada y separada de la existencia diaria. Pero la ciencia y la vida diaria no pueden y no deben estar separadas".
 
 Rosalind Franklin fue parte del equipo que descubrió la estructura del ADN. Su trabajo fue crucial para entender cómo evoluciona la vida.</string>
 
@@ -47,7 +47,7 @@ Rosalind Franklin fue parte del equipo que descubrió la estructura del ADN. Su 
     <key>DESCR_LVL2_Perfect</key>
 	<string>Misión 2: Consigue 3 estrellas</string>
     <key>ACH_LVL2_2</key>
-    <string>Australopitecus, Homo Habilis o Homo Neanderthal fueron distintas especies de homínidos.
+    <string>Australopitecus, Homo Habilis o Homo Neandertal fueron distintas especies de homínidos.
     
 Eran muy diferentes, pero todas ellas compartían el hecho de ser bípedos, tener dentaduras pequeñas y grandes cerebros. El Homo Sapiens es el único homínido aún vivo.</string>
 
@@ -58,7 +58,7 @@ Eran muy diferentes, pero todas ellas compartían el hecho de ser bípedos, tene
     <key>ACH_LVL2_3</key>
     <string>Los Tubu viven en una región africana llamada Ténéré, "el país de la nada". Las mujeres son capaces de encontrar el único pozo de agua en miles de quilómetros cuadrados tan sólo orientándose a partir de las estrellas y los movimientos de las dunas.
 
-La cultura es una herramienta poderosa, y gracias a ella poblamos la superfície entera del planeta.</string>
+La cultura es una herramienta poderosa, y gracias a ella poblamos la superficie entera del planeta.</string>
 
     <!-- LVL 3 -->
     <key>TITLE_LVL3_Accomplished</key>
@@ -75,7 +75,7 @@ Esta técnica permita datar materiales orgánicos encontrados en una excavación
     <key>DESCR_LVL3_Perfect</key>
 	<string>Misión 3: Consigue 3 estrellas</string>
     <key>ACH_LVL3_2</key>
-    <string>El navío británico HMS Beagle dejó Plymouth en 1831 rumbo a Sudamérica. Volvió a Europa 5 años más tarde, después de circumnavegar la Tierra.
+    <string>El navío británico HMS Beagle dejó Plymouth en 1831 rumbo a Sudamérica. Volvió a Europa 5 años más tarde, después de circunnavegar la Tierra.
 
 Su tripulación incluía un joven llamado Charles Darwin. Los datos recogidos durante el viaje fueron indispensables para desarrollar su teoría de la evolución por selección natural.</string>
 
@@ -133,7 +133,7 @@ Sin embargo, problemas técnicos y económicos frenaron la iniciativa hasta su c
     <key>DESCR_LVL5_Perfect</key>
 	<string>Misión 5: Consigue 3 estrellas</string>
     <key>ACH_LVL5_2</key>
-    <string>Cuanto más sabemos de los Neandertales más nos damos cuenta de nuestro enorme parecido. Este interés no sólo ha generate debates científicos pero también muchas obras de ficción.
+    <string>Cuanto más sabemos de los Neandertales más nos damos cuenta de nuestro enorme parecido. Este interés no sólo ha generado debates científicos pero también muchas obras de ficción.
 
 Tres de las más interesantes son la película "En Busca del Fuego" de Jean-Jacques Annaud, la novela histórica "El Clan del Oso Cavernario" de J.M. Auel y la trilogía de ciencia-ficción "El Paralaje Neandertal" de Robert J. Sawyer.</string>
 
@@ -218,7 +218,7 @@ Sus constructores formaban parte de la cultura polinesia que colonizó esta zona
     <key>DESCR_LVL8_EPsLeft</key>
     <string>Misión 8: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL8_3</key>
-    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglús, hechos de hielo y nieve, son el único motivo por los humanos pueden vivir en esta zona; incrementan la temperatura hasta unos confortables 16 grados.</string>
+    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglúes, hechos de hielo y nieve, son el único motivo por los humanos pueden vivir en esta zona; incrementan la temperatura hasta unos confortables 16 grados.</string>
 
     <!-- LVL 9 -->
     <key>TITLE_LVL9_Accomplished</key>
@@ -269,7 +269,7 @@ Es uno de los más renombrados astrofísicos y divulgadores de la Ciencia.</stri
     <key>DESCR_LVL10_NoBoosts</key>
     <string>Misión 10: Pásala sin Aumentos</string>
     <key>ACH_LVL10_3</key>
-    <string>"Cuando vimos tantas ciudades y poblados construídos en el agua y en tierra nos maravillamos (...) algunos de nuestros soldados llegaron a preguntarse si las cosas que veíamos eran un sueño."
+    <string>"Cuando vimos tantas ciudades y poblados construidos en el agua y en tierra nos maravillamos (...) algunos de nuestros soldados llegaron a preguntarse si las cosas que veíamos eran un sueño."
     
 Estas son las palabras de Bernal Díaz del Castillo sobre Tenochtitklan, capital de los aztecas. Participó como soldado en la conquista de México por Hernán Cortés durante 1519.</string>
     
@@ -284,7 +284,7 @@ Estas son las palabras de Bernal Díaz del Castillo sobre Tenochtitklan, capital
 Esta situación se llama la tragedia de los comunes, y explica por qué existe la sobreexplotación. Tan sólo se puede evitar coordinando a toda la comunidad.</string>
 
     <key>TITLE_LVL11_Perfect</key>
-    <string>HOME DE LES CAVERNES</string>
+    <string>HOMBRE DE LAS CAVERNAS</string>
     <key>DESCR_LVL11_Perfect</key>
 	<string>Misión 11: Consigue 3 estrellas</string>
     <key>ACH_LVL11_2</key>
@@ -335,7 +335,7 @@ Practican un ritual distinto llamado Entierro Celestial: los cuerpos se deposita
     <key>DESCR_LVL13_Accomplished</key>
     <string>Misión 13: Completada</string>
     <key>ACH_LVL13_1</key>
-    <string>Esta roca se llama lapislazuli. Sólo se puede encontrar en Afganistán, pero los arqueólogos la han hallado en arte de todo el mundo. Es evidencia de comercio a larga distancia.
+    <string>Esta roca se llama lapislázuli. Sólo se puede encontrar en Afganistán, pero los arqueólogos la han hallado en arte de todo el mundo. Es evidencia de comercio a larga distancia.
 
 Por ejemplo, las cejas de la famosa máscara funeral de Tutankhamon están hechas de este material.</string>
 
@@ -391,7 +391,7 @@ Esta información es muy útil como indicador de comercio prehistórico. Se han 
     <key>DESCR_LVL15_Accomplished</key>
     <string>Misión 15: Completada</string>
     <key>ACH_LVL15_1</key>
-    <string>Una confusíón frecuente és pensar que la evolución es direccional y progresiva.
+    <string>Una confusión frecuente es pensar que la evolución es direccional y progresiva.
     
 Nada más alejado de lo que realmente se propone: Darwin esbozó este árbol entre sus notas, destacando las similitudes entre la vida y su estructura ramificada.</string>
 
@@ -421,7 +421,7 @@ Este brillante inventor es el responsable que puedas hacer funcionar este dispos
     <key>ACH_LVL16_1</key>
     <string>El Neolítico es la transición entre una vida basada en caza y recolección a otra fundamentada en el cultivo y el pastoreo.
     
-Esta domesticación no sólo afectó a plantas y animales, sinó también a los humanos. Transformó su cultura, incluyendo dieta, movilidad y comunicación.</string>
+Esta domesticación no sólo afectó a plantas y animales, sino también a los humanos. Transformó su cultura, incluyendo dieta, movilidad y comunicación.</string>
 
     <key>TITLE_LVL16_Perfect</key>
     <string>LOS TIEMPOS ESTÁN CAMBIANDO</string>
@@ -456,14 +456,14 @@ Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin 
     <key>DESCR_LVL17_Perfect</key>
 	<string>Misión 17: Consigue 3 estrellas</string>
     <key>ACH_LVL17_2</key>
-    <string>El trabajo más peligroso del mundo és probablemente el de los mineros que trabajan en la isla de Java. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
+    <string>El trabajo más peligroso del mundo es probablemente el de los mineros que trabajan en la isla de Java. Bajan al interior del volcán Lijen para recoger sulfuro.</string>
 
     <key>TITLE_LVL17_EPsLeft</key>
     <string>EL MAYOR ESPECTÁCULO DEL MUNDO</string>
     <key>DESCR_LVL17_EPsLeft</key>
     <string>Misión 17: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL17_3</key>
-    <string>Algunas personas dicen que el Diseño Inteligente explica la vida mejor que la teoría ade la Evolución.
+    <string>Algunas personas dicen que el Diseño Inteligente explica la vida mejor que la teoría de la Evolución.
 
 Sin embargo, la Evolución es una teoría científica mientras que el Diseño Inteligente es un razonamiento religioso. De hecho no ofrece ninguna explicación que pueda ser contrastada en base a evidencia.</string>
     
@@ -473,7 +473,7 @@ Sin embargo, la Evolución es una teoría científica mientras que el Diseño In
     <key>DESCR_LVL18_Accomplished</key>
     <string>Misión 18: Completada</string>
     <key>ACH_LVL18_1</key>
-    <string>El Panel Intergobernamental sobre el Cambio Climático (IPCC) fue creado por las Naciones Unidas para estudiar el cambio climático.
+    <string>El Panel Intergubernamental sobre el Cambio Climático (IPCC) fue creado por las Naciones Unidas para estudiar el cambio climático.
     
 Ha recogido evidencia de miles de estudios para mostrar los peligrosos efectos que la actividad humana está teniendo en el planeta.</string>
 

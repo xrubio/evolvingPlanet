@@ -48,7 +48,7 @@ Rosalind Franklin va ser part de l'equip que va descobrir l'estructura de l'ADN.
     <key>DESCR_LVL2_Perfect</key>
 	<string>Missió 2: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL2_2</key>
-    <string>Australopitecus, Homo Habilis o Homo Neanderthal van ser distintes espècies d'homínids.
+    <string>Australopitecus, Homo Habilis o Homo Neandertal van ser distintes espècies d'homínids.
     
 Eren força diferents, però totes elles compartien el fet de ser bípedes, tenir dentadures petites i grans cervells. L'Homo Sapiens és l'únic homínid encara viu.</string>
 
@@ -57,7 +57,7 @@ Eren força diferents, però totes elles compartien el fet de ser bípedes, teni
     <key>DESCR_LVL2_Discovery</key>
     <string>Missió 2: Creua el riu</string>
     <key>ACH_LVL2_3</key>
-    <string>Els Tubu viuen en una regió africana anomenada Ténéré, "el país del no-res". Les dones són capaces de trobar l'únic pou amb aigua en miles de quilòmetres quadrats orientant-se tant sols amb les estrelles i el moviment de les dunes.
+    <string>Els Tubu viuen en una regió africana anomenada Ténéré, "el país del no-res". Les dones són capaces de trobar l'únic pou amb aigua en milers de quilòmetres quadrats orientant-se tant sols amb les estrelles i el moviment de les dunes.
     
 La cultura és una poderosa eina, i gràcies a ella poblem la superfície sencera del planeta.</string>
 
@@ -76,7 +76,7 @@ Aquesta tècnica permet datar restes orgàniques trobades en una excavació. Aix
     <key>DESCR_LVL3_Perfect</key>
 	<string>Missió 3: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL3_2</key>
-    <string>El vaixel britànic HMS Beagle va salper el 1831 de Plymouth rumb a Sudamérica. Va tornar a Europa 5 anys més tard, després de circumnavegar la Terra.
+    <string>El vaixell britànic HMS Beagle va salpar el 1831 de Plymouth rumb a Amèrica del Sud. Va tornar a Europa 5 anys més tard, després de circumnavegar la Terra.
 
 Entre la seva tripulació hi havia un jove anomenat Charles Darwin. Les dades recollides durant el viatge van ser primordials per a que desenvolupés la seva teoria de l'evolució per selecció natural.</string>
 
@@ -136,14 +136,14 @@ Malgrat tot, problemes tècnics i econòmics van frenar la iniciativa fins la se
     <key>ACH_LVL5_2</key>
     <string>Contra més sabem dels Neandertals més ens adonem de la nostra semblança. Aquest interès no només ha generat debats científics, sinó també moltes obres de ficció.
 
-Tres de les més interessants són el film "A la Recerca del Foc" de Jean-Jacques Annaud, la novel·la històrica "El Clan de l'Ós Cavernari" de J.M. Auel i la trilogia de ciència-ficció "La Paral·laxi Neandertal" de Robert J. Sawyer.</string>
+Tres de les més interessants són el film "A la Recerca del Foc" de Jean-Jacques Annaud, la novel·la històrica "El Clan de l'Ós de les Cavernes" de J.M. Auel i la trilogia de ciència-ficció "La Paral·laxi Neandertal" de Robert J. Sawyer.</string>
 
     <key>TITLE_LVL5_Discovery</key>
     <string>No ets el primer</string>
     <key>DESCR_LVL5_Discovery</key>
-    <string>Missió 5: Arriva a la regió Nord-Est</string>
+    <string>Missió 5: Arriba a la regió Nord-est</string>
     <key>ACH_LVL5_3</key>
-    <string>El cèlebre viatge de Cristófor Colom al 1942 no va ser el primer contacte entre Europeus i Americans. Nombroses expedicions vikingues van arribar a Amèrica del Nord durant el segle X.</string>
+    <string>El cèlebre viatge de Cristòfor Colom al 1942 no va ser el primer contacte entre Europeus i Americans. Nombroses expedicions víkings van arribar a Amèrica del Nord durant el segle X.</string>
 
     <!-- LVL 6 -->
     <key>TITLE_LVL6_Accomplished</key>
@@ -167,7 +167,7 @@ No són els nostres avantpassats, així que aquesta compartició de gens va ser 
     <key>DESCR_LVL6_EPsLeft</key>
     <string>Missió 6: Passar-la estalviant 10 EPs</string>
     <key>ACH_LVL6_3</key>
-    <string>La cultura no és només propietat dels humans. Simis, dofins i orques mostren complexos trets culturals com poden ser l'ús d'eines i llenguatge. Tot i aixì, la velocitat a la que nosaltres aprenem i generem noves idees ens fa força únics.</string>
+    <string>La cultura no és només propietat dels humans. Simis, dofins i orques mostren complexos trets culturals com poden ser l'ús d'eines i llenguatge. Tot i així, la velocitat a la que nosaltres aprenem i generem noves idees ens fa força únics.</string>
 
     <!-- LVL 7 -->
     <key>TITLE_LVL7_Accomplished</key>
@@ -185,17 +185,16 @@ Novel·lista, humanista, científic, professor, comunicador...Asimov és una de 
     <key>DESCR_LVL7_Perfect</key>
 	<string>Missió 7: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL7_2</key>
-    <string>Les primeres evidències bèl·liques están datades al voltant dels 13.000 anys. Nombroses pintures rupestres mostren escenes de combat, y els arqueòlegs també han trobat esquelets del mateix període amb puntes de fletxa incrustades.</string>
+    <string>Les primeres evidències bèl·liques estan datades al voltant dels 13.000 anys. Nombroses pintures rupestres mostren escenes de combat, y els arqueòlegs també han trobat esquelets del mateix període amb puntes de fletxa incrustades.</string>
     
     <key>TITLE_LVL7_Discovery</key>
     <string>EL MÓN A CAVALL</string>
     <key>DESCR_LVL7_Discovery</key>
-    <string>Missió 7: Atravessa el pas del nord</string>
+    <string>Missió 7: Travessa el pas del nord</string>
     <key>ACH_LVL7_3</key>
     <string>"Em sento viu quan pujo al meu cavall"
     
-Aquestes són les paraules d'un genet Mongol, que segons la tradició     
-Estas son las palabras de un jinete Mongol, que según la tradición "han nascut a la sella de muntar". Els Mongols són nòmades de l'estepa, i la seva cultura està centrada al voltant del cavall.</string>
+Aquestes són les paraules d'un genet Mongol, que segons la tradició "han nascut a la sella de muntar". Els Mongols són nòmades de l'estepa, i la seva cultura està centrada al voltant del cavall.</string>
 
     <!-- LVL 8 -->
     <key>TITLE_LVL8_Accomplished</key>
@@ -220,7 +219,7 @@ Els seus constructors formaven part de la cultura polinèsia que va colonitzar a
     <key>DESCR_LVL8_EPsLeft</key>
     <string>Missió 8: Passar-la estalviant 10 EPs</string>
     <key>ACH_LVL8_3</key>
-    <string>La temperatura a l'Àrtic pot baixar fins als -45 graus Celsius. Els iglús, fets de neu i gel, són l'únic motiu pel qual hi pot haver humans vivint en aquesta zona; incrementen la tempratura fins a uns confortables 16 graus.</string>
+    <string>La temperatura a l'Àrtic pot baixar fins als -45 graus Celsius. Els iglús, fets de neu i gel, són l'únic motiu pel qual hi pot haver humans vivint en aquesta zona; incrementen la temperatura fins a uns confortables 16 graus.</string>
 
     <!-- LVL 9 -->
     <key>TITLE_LVL9_Accomplished</key>
@@ -246,7 +245,7 @@ Entendre aquest fet ens ajudaria a comprendre els perills als que ens enfrontem 
     <key>DESCR_LVL9_NoBoosts</key>
     <string>Missió 9: Supera-la sense Augments</string>
     <key>ACH_LVL9_3</key>
-    <string>Alguns dels trebalaldors que surten en aquesta famosa foto són Indis Mohawk. A finals del segle XIX eren treballadors molt preciats, ja que no tenien por a treballar a grans altures.</string>
+    <string>Alguns dels treballadors que surten en aquesta famosa foto són Indis Mohawk. A finals del segle XIX eren treballadors molt preuats, ja que no tenien por a treballar a grans altures.</string>
 
     <!-- LVL 10 -->
     <key>TITLE_LVL10_Accomplished</key>
@@ -273,11 +272,11 @@ Entendre aquest fet ens ajudaria a comprendre els perills als que ens enfrontem 
     <key>ACH_LVL10_3</key>
     <string>"Quan vam veure tantes ciutats i pobles construïts a l'aigua i a terra ens vam meravellar (...) alguns dels nostres soldats van arribar a preguntar-se si les coses que estàvem veient eren un somni."
    
-Aquestes són les paraules de Bernal Díaz del Castillo sobre Tenochtitklan, capital dels azteques. Va participar com a soldat en la conquesta de Mèxic per Hernàn Cortés al 1519.</string>
+Aquestes són les paraules de Bernal Díaz del Castillo sobre Tenochtitklan, capital dels asteques. Va participar com a soldat en la conquesta de Mèxic per Hernán Cortés al 1519.</string>
     
     <!-- LVL 11 -->
     <key>TITLE_LVL11_Accomplished</key>
-    <string>UN TRAGEDIA COMUNA</string>
+    <string>UNA TRAGÈDIA COMUNA</string>
     <key>DESCR_LVL11_Accomplished</key>
     <string>Missió 11: Acomplerta</string>
     <key>ACH_LVL11_1</key>
@@ -299,7 +298,7 @@ Aquest tòpic és incorrecte: es movien al voltant del territori, i només feien
     <key>DESCR_LVL11_NoBoosts</key>
     <string>Missió 11: Supera-la sense Augments</string>
     <key>ACH_LVL11_3</key>
-    <string>L'estratigrafía és un dels conceptes claus en l'arqueologia actual.
+    <string>La estratigrafia és un dels conceptes claus en l'arqueologia actual.
 
 Veus en aquest perfil capes horitzontals de diferents colors? Cadascuna d'elles ens parla d'un període temporal diferent. Contra més profunditat tenen, més antigues són.</string>
 
@@ -311,7 +310,7 @@ Veus en aquest perfil capes horitzontals de diferents colors? Cadascuna d'elles 
     <key>ACH_LVL12_1</key>
     <string>La fusta és un dels recursos naturals més emprats.
 
-Combustible, construcció de casas, vaixells...la sobreexplotació va gairebé destruïr la majoria de boscos europeus.
+Combustible, construcció de cases, vaixells...la sobreexplotació va gairebé destruir la majoria de boscos europeus.
 
 Si visites ara mateix qualsevol país europeu veuràs més arbres que els que hi va haver allà en qualsevol altre moment dels últims 2.000 anys</string>
 
@@ -395,7 +394,7 @@ Aquesta informació és molt útil com a indicador de comerç prehistòric. S'ha
     <key>ACH_LVL15_1</key>
     <string>Una confusió freqüent és pensar que l'evolució és direccional i progressiva.
 
-Res més lluny del que realment es proposa: Darwin va esbossar aquest arbre entre les seves notes, tot destacant les semblançes entre la vida i un estructurada ramificada</string>
+Res més lluny del que realment es proposa: Darwin va esbossar aquest arbre entre les seves notes, tot destacant les semblances entre la vida i un estructurada ramificada</string>
 
     <key>TITLE_LVL15_Perfect</key>
     <string>MÚLTIPLES ORÍGENS</string>
@@ -424,7 +423,7 @@ Aquest brillant inventor és responsable que puguis fer funcionar aquest disposi
     <key>ACH_LVL16_1</key>
     <string>El Neolític és la transició entre una vida basada en caça i recol·lecció, i una altra fonamentada en el cultiu i el pasturatge.
 
-Aquestas domesticació no sols va afectar a plantes i animals, sinó també als humans. Va transformar la seva cultura, incloent dieta, mobilitat i comunicació.</string>
+Aquestes domesticació no sols va afectar a plantes i animals, sinó també als humans. Va transformar la seva cultura, incloent dieta, mobilitat i comunicació.</string>
 
     <key>TITLE_LVL16_Perfect</key>
     <string>ELS TEMPS ESTAN CANVIANT</string>
@@ -476,7 +475,7 @@ Però això no és així; l'Evolució és una teoria científica mentre que el D
     <key>DESCR_LVL18_Accomplished</key>
     <string>Missió 18: Acomplerta</string>
     <key>ACH_LVL18_1</key>
-    <string>El Grup Intergovernamental d'Experts sobre el Canvi Climàtic (IPCC) va ser creat per les Nacions Unides per tal d'estudiar el canvi climàtic.
+    <string>El Grup Inter-governamental d'Experts sobre el Canvi Climàtic (IPCC) va ser creat per les Nacions Unides per tal d'estudiar el canvi climàtic.
     
 Ha recollit evidència de milers d'estudis per tal de mostrar els perillosos efectes que l'activitat humana està tenint al planeta.</string>
 
@@ -535,7 +534,7 @@ Durant 40 anys el món va restar constantment a punt d'una guerra atòmica que p
     <key>ACH_LVL20_1</key>
     <string>Aquesta ovella es deia Dolly, i al 1996 va ser el primer mamífer mai clonat.
    
-La clonació animal havia estat imaginada anys abans en el llibre i la pel·lícula Parc Juràssic, a on els dinousaures tornaven a la vida gràcies a l'enginyeria genètica.</string>
+La clonació animal havia estat imaginada anys abans en el llibre i la pel·lícula Parc Juràssic, a on els dinosaures tornaven a la vida gràcies a l'enginyeria genètica.</string>
 
     <key>TITLE_LVL20_Perfect</key>
     <string>TOP GAMER</string>
