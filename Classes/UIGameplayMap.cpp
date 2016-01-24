@@ -224,25 +224,28 @@ bool UIGameplayMap::init()
     }
     if (resourcesMap) {
 
-        exploitedMapTexture = new Texture2D;
-        Image * im = new Image();
-        im->initWithImageFile(map + forest + ext);
+        Image im;
+        im.initWithImageFile(map + forest + ext);
         //4 = alpha
-        unsigned char* data = im->getData();
+        unsigned char* data = im.getData();
         
+        _exploitedMapTextureData.clear();
         _exploitedMapTextureData.resize(int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight()));
-        exploitedMapTexture->initWithData(&(_exploitedMapTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
+        _exploitedMapTexture.initWithData(&(_exploitedMapTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
                 
-        for (int i = 0; i < im->getWidth(); i++) {
-            for (int j = 0; j < im->getHeight(); j++) {
-                unsigned char* pixel = data + ((int)i + (int)j * im->getWidth()) * 4;
-                _exploitedMapTextureData.at(i + (j * im->getWidth())) = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
+        for (int i = 0; i < im.getWidth(); i++) {
+            for (int j = 0; j < im.getHeight(); j++) {
+                unsigned char* pixel = data + ((int)i + (int)j * im.getWidth()) * 4;
+                _exploitedMapTextureData.at(i + (j * im.getWidth())) = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
             }
         }
-        delete im;
-        exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
-        exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
-        gameplayMap->addChild(exploitedMapSprite, 2);
+        if(_exploitedMapSprite)
+        {
+            delete _exploitedMapSprite;
+        }
+        _exploitedMapSprite = Sprite::createWithTexture(&_exploitedMapTexture);
+        _exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
+        gameplayMap->addChild(_exploitedMapSprite, 2);
         
         /********** FOR LEVEL CONFIGURATION ***********/
         //max resources
@@ -299,13 +302,16 @@ bool UIGameplayMap::init()
         _agentsTextureData.at(i) = white; // i is an index running from 0 to w*h-1
     }
 
-    agentsTexture = new Texture2D;
-    agentsTexture->initWithData(&(_agentsTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888,
+    _agentsTexture.initWithData(&(_agentsTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888,
         GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
-    agentsSprite = Sprite::createWithTexture(agentsTexture);
-    agentsSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
-    gameplayMap->addChild(agentsSprite, 2);
-    agentsSprite->setCascadeOpacityEnabled(true);
+    if(_agentsSprite)
+    {
+        delete _agentsSprite;
+    }
+    _agentsSprite = Sprite::createWithTexture(&_agentsTexture);
+    _agentsSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
+    gameplayMap->addChild(_agentsSprite, 2);
+    _agentsSprite->setCascadeOpacityEnabled(true);
 
     //EVOLUTION POINTS
     evolutionPointsIcon = Sprite::create("gui/EvolutionPoints.png");
@@ -2047,7 +2053,7 @@ void UIGameplayMap::initializeAgents(void)
             drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
         }
     }
-    agentsTexture->updateWithData(&(_agentsTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
+    _agentsTexture.updateWithData(&(_agentsTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
 }
 
 void UIGameplayMap::setAttributesToInitialAgents(void)
@@ -2464,7 +2470,7 @@ void UIGameplayMap::updateAgents(void)
         }
     }
 
-    agentsTexture->updateWithData(&(_agentsTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
+    _agentsTexture.updateWithData(&(_agentsTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     if (resourcesMap) {
         //restore map
         for (int i = 0; i < GameLevel::getInstance()->getRestored().size(); i++)
@@ -2480,7 +2486,7 @@ void UIGameplayMap::updateAgents(void)
         }
         GameLevel::getInstance()->clearTerraformedVector();
         
-        exploitedMapTexture->updateWithData(&(_exploitedMapTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
+        _exploitedMapTexture.updateWithData(&(_exploitedMapTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
 }
 
