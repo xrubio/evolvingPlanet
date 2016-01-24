@@ -103,6 +103,8 @@ You need to tap and drag towards the zone you wish to improve your bots.</string
     <string>You collect resources by moving to these zones and increasing your Exploitation attribute.</string>
     <key>LEVEL11M5</key>
     <string>You can tap here to cycle through collected resources and needed amounts.</string> 
+    <key>LEVEL11M6</key>
+    <string>Both resources will deplete with exploitation, but if you are careful woods will recover over time.</string> 
     
     <key>LEVEL13M1</key>
     <string>You have a new attribute for this mission: Trade.</string>

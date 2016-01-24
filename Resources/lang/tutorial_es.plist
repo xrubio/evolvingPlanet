@@ -103,6 +103,8 @@ Necesitas presionarlo y arrastrar el área hacia la zona en la que quieras mejor
     <string>Recoges recursos moviéndote a estas zonas e incrementando el atributo de Explotación.</string>
     <key>LEVEL11M5</key>
     <string>Toca este panel para navegar a través de los distintos recursos recogidos y niveles requeridos.</string> 
+    <key>LEVEL11M6</key>
+    <string>Ambos recursos se agotan cuando los explotas, pero si tienes cuidado los bosques se pueden regenerar con el tiempo.</string> 
     
     <key>LEVEL13M1</key>
     <string>En esta misión dispones de un nuevo atributo: Comercio.</string>

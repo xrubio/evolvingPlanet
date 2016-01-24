@@ -35,7 +35,7 @@
         <MAX_AGENTS>600</MAX_AGENTS>
         <ATTRIBUTES>
             <ATTRIBUTE NAME="REPRODUCTION">
-                <INITIAL_VALUE>2</INITIAL_VALUE>
+                <INITIAL_VALUE>3</INITIAL_VALUE>
             </ATTRIBUTE>
             <ATTRIBUTE NAME="MOBILITY">
                 <INITIAL_VALUE>3</INITIAL_VALUE>
@@ -133,27 +133,27 @@
     </GOAL>
     <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>54</MIN>
-        <MAX>70</MAX>
-        <AVERAGE>62</AVERAGE>
+        <MIN>57</MIN>
+        <MAX>73</MAX>
+        <AVERAGE>65</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>3</DESVIATION_3_STAR>
         <COLOR_ZONE>12</COLOR_ZONE>
     </GOAL>
     <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>74</MIN>
-        <MAX>90</MAX>
-        <AVERAGE>82</AVERAGE>
+        <MIN>77</MIN>
+        <MAX>93</MAX>
+        <AVERAGE>85</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>3</DESVIATION_3_STAR>
         <COLOR_ZONE>13</COLOR_ZONE>
     </GOAL>
     <GOAL TYPE_GOAL="Dispersal">
         <AGENT_TYPE>0</AGENT_TYPE>
-        <MIN>94</MIN>
-        <MAX>110</MAX>
-        <AVERAGE>102</AVERAGE>
+        <MIN>97</MIN>
+        <MAX>113</MAX>
+        <AVERAGE>105</AVERAGE>
         <DESVIATION_2_STAR>5</DESVIATION_2_STAR>
         <DESVIATION_3_STAR>3</DESVIATION_3_STAR>
         <COLOR_ZONE>14</COLOR_ZONE>

@@ -107,6 +107,7 @@
     <message id="5" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
         <spot image="tutorial/tPopSize" centerX="0.92" centerY="0.08"/>
     </message>     
+    <message id="6" x="0.5" y="0.6" lineWidth="0.4" trigger="next"/>
 </level>
 
 <level num="13">

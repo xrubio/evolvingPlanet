@@ -104,7 +104,9 @@ Necessites pressionar-lo i arrastrar l'àrea fins la zona en la que vulguis mill
     <string>Reculls recursos movent-te a aquestes zones, tot millorant l'atribut d'Explotació.</string>
     <key>LEVEL11M5</key>
     <string>Toca aquest panell per tal de navegar entre els diferents recursos recollits i nivells requerits.</string> 
-    
+    <key>LEVEL11M6</key>
+    <string>L'explotació esgota els dos recursos, però si tens cura els boscos es regeneraran amb el temps.</string> 
+
     <key>LEVEL13M1</key>
     <string>En aquesta missió disposes d'un nou atribut: Comerç.</string>
     <key>LEVEL13M2</key>
