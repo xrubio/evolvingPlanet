@@ -1,8 +1,59 @@
+
 body
 {
 	background-color: #ebf4f4;
 	margin: 0px;
 	padding: 0px;
+}
+
+.shot1{   
+    width: 100%;
+    height: 100%;
+    background-position: center;
+     background-image: url('shots/story1.jpg');
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.shot2{   
+    width: 100%;
+    height: 100%;
+    background-position: center;
+     background-image: url('shots/story2.jpg');
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.shot3{   
+    width: 100%;
+    height: 100%;
+    background-position: center;
+     background-image: url('shots/map1.jpg');
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.shot4{   
+    width: 100%;
+    height: 100%;
+    background-position: center;
+     background-image: url('shots/map2.jpg');
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+    margin-bottom: 30px;
+}
+
+.shot5{   
+    width: 100%;
+    height: 100%;
+    background-position: center;
+     background-image: url('shots/ui1.jpg');
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+    margin-bottom: 30px;
 }
 
 .award_text_container
@@ -92,10 +143,57 @@ body
 
 .bodytext
 {
-	font-family: Roboto, Helvetica, Arial, sans-serif;
-	font-size: 14pt;
-	line-height: 200%;
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 20pt;
+	line-height: 150%;
+    color: #cccccc;
 	text-transform: none;
+    max-width: 50%;
+    text-align: justify;
+    margin: 0 auto;
+    margin-bottom: 50px;    
+    text-shadow: 1px 1px #222222;
+}
+
+.bodytextCenter
+{
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 20pt;
+	line-height: 150%;
+    color: #cccccc;
+	text-transform: none;
+    max-width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px #222222;
+}
+
+.bodytextLogos
+{
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 12pt;
+	line-height: 150%;
+    color: #cccccc;
+	text-transform: none;
+    max-width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px #222222;
+}
+.bodytextLi
+{
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 14pt;
+	line-height: 150%;
+    color: #cccccc;
+	text-transform: none;
+    max-width: 30%;
+    text-align: justify;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-shadow: 1px 1px #222222;
 }
 
 .highlight
@@ -109,14 +207,18 @@ IMG
 	border: 0px;
 }
 
-P
-{
-	font-family: Montserrat, Helvetica, Arial, sans-serif;
-	font-size: 20pt;
-	color: #222427;
+.slogan
+{   
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 22pt;
 	line-height: 150%;
+    color: #cccccc;
+	text-transform: none;
+    max-width: 50%;
+    text-align: center;
 	text-transform: uppercase;
-	//letter-spacing: 0.05em;
+    margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 .horizontalBullet
@@ -136,16 +238,15 @@ P
 }
 
 .backgroundImage {
-    background-size: cover;
-    background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: bottom center;
-    background-image: url("background.png");
-    width: 100%;
-    position: absolute;
-    top: 0;
+    max-width: 100%;
+    bottom: 0;
     left: 0;
-    min-height: 100%;
+    margin: auto;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-image: url("background2.png");
 }
 
 .pullquote
@@ -206,8 +307,8 @@ A.socialLink:hover
 
 .bigLink
 {
-	text-decoration: none;
-	color: #f15340;
+	text-decoration: underline;
+	color: #ffffff;
 }
 
 A.bigLink:hover
