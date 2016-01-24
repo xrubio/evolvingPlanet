@@ -1120,6 +1120,7 @@ void GameLevel::checkAchievements(void)
 
 void GameLevel::regenerate(void)
 {
+    CCLOG("DEPLETED WOOD: %lu", _depletedVector.size());
     std::random_shuffle(_depletedVector.begin(), _depletedVector.end());
     int init = int(_depletedVector.size()) - 1;
     for (int i = init; i >= 0 and i > init - _regenerationRate; i--)

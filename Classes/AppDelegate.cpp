@@ -127,14 +127,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     
     ///////// TEMP
-    /*
+    
     for (int i = 0; i < NUM_LEVELS + 1; i++) {
         UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 0);
     }
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 20; i++) {
         UserDefault::getInstance()->setIntegerForKey(to_string(i).c_str(), 3);
     }
-    */
+    
     ////////
     
     //LOAD LEVELS

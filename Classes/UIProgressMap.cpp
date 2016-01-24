@@ -171,7 +171,7 @@ bool UIProgressMap::init()
             pages->setCurPageIndex(GameData::getInstance()->getCurrentEra() - 1);
             pages->runAction(Sequence::create(DelayTime::create(2.6), CallFunc::create(this, callfunc_selector(UIProgressMap::toMap)), NULL));
             //unlockEraAnimation();
-            delayTime = 2.6;
+            delayTime = 2.8;
         }
         
         if (ftlc < 20)
@@ -217,7 +217,7 @@ bool UIProgressMap::init()
     unsigned long int numPages = (GameData::getInstance()->getCurrentLevel() / 11);
     int initialPosX = (visibleSize.width / 2) - ((numPages / 2) * (pageIndicator->getContentSize().width * 3));
     int incrX = (pageIndicator->getContentSize().width * 3);
-    for (int i = 0; i < numPages; i++)
+    for (int i = 0; i <= numPages; i++)
     {
         auto pageIndicator = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
                                                 "gui/ProgressMapHexagonLevelOff.png");

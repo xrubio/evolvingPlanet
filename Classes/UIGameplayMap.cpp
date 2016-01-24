@@ -755,7 +755,7 @@ bool UIGameplayMap::init()
     ///TEMP
     /*
     GameLevel::getInstance()->setFinishedGame(Success);
-    GameData::getInstance()->setFirstTimeLevelCompleted(10);
+    GameData::getInstance()->setFirstTimeLevelCompleted(GameLevel::getInstance()->getNumLevel());
     */
     ////
 
@@ -2411,7 +2411,7 @@ void UIGameplayMap::updateAgents(void)
             default:
                 switch ((*it)->getType()) {
                 case 1:
-                    color = Color4B(255, 74, 46, (*it)->getLife() * (255 / 175));
+                    color = Color4B(255, 0, 0, (*it)->getLife() * (255 / 175));
                     break;
                 case 2:
                     color = Color4B(249, 255, 0, (*it)->getLife() * (255 / 175));
@@ -2585,10 +2585,6 @@ void UIGameplayMap::drawExploitedMap(const Point & pos, const Color4B & colour, 
                     if(_exploitedMapTextureData.at(position + j + k).a == 255)
                     {
                         _exploitedMapTextureData.at(position + j + k).a = 1;
-                    }
-                    else
-                    {
-                        _exploitedMapTextureData.at(position + j + k).a = 0;
                     }
                 }
                 else
