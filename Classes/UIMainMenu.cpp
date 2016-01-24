@@ -261,6 +261,12 @@ bool UIMainMenu::init()
     listener->onTouchesBegan = CC_CALLBACK_2(UIMainMenu::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
+    
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    {
+        this->setKeypadEnabled(true);
+    }
+    
     this->scheduleUpdate();
     
     return true;
@@ -610,5 +616,13 @@ void UIMainMenu::update(float delta)
 {
     auto loading = this->getChildByName("loading");
     loading->setVisible(_loading);
+}
+
+void UIMainMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
+{
+    if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+        menuExitCallback(this);
+    }
 }
 

@@ -54,6 +54,7 @@ public:
     CREATE_FUNC(UIMainMenu);
     
     virtual void update(float delta);
+    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
     
 private:
     bool stoppedAnimation = false;
