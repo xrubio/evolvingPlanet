@@ -118,7 +118,7 @@ bool UIEndScene::init()
     tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
     tapToContinue->setOpacity(0);
     tapToContinue->setName("tap");
-    tapToContinue->runAction(Sequence::create(DelayTime::create(23.0f), FadeIn::create(2.0f), nullptr));
+    tapToContinue->runAction(Sequence::create(DelayTime::create(63.0f), FadeIn::create(2.0f), nullptr));
     this->addChild(tapToContinue);
     
         
@@ -240,7 +240,7 @@ bool UIEndScene::init()
         {
             continue;
         }
-        child->runAction(Sequence::create(DelayTime::create(5.0f), MoveBy::create(20.0f, Vec2(0, -initPos)), nullptr));
+        child->runAction(Sequence::create(DelayTime::create(5.0f), MoveBy::create(60.0f, Vec2(0, -initPos)), nullptr));
     }
 
     return true;
