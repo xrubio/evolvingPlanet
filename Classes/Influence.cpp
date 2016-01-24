@@ -48,7 +48,7 @@ void Influence::execute(Agent* agent)
         if(GameLevel::getInstance()->getAgentAtMap(posx, posy) != nullptr and GameLevel::getInstance()->getAgentAtMap(posx, posy)->getType()!=type)
         {
             Agent * target = GameLevel::getInstance()->getAgentAtMap(posx, posy);
-            auto ag = new Agent(target->getId(), target->getLife(), type, posx, posy);
+            Agent * ag = new Agent(target->getId(), target->getLife(), type, posx, posy);
             ag->copyValues(type);
             GameLevel::getInstance()->addAgent(ag);
             target->setLife(0);

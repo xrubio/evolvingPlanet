@@ -582,10 +582,24 @@ void GameLevel::setAttributesToInitialAgents(void)
 
 void GameLevel::initializeAgentsPool(void)
 {
+    for(size_t i=0; i<_agentsPool.size(); i++)
+    {
+        std::list<Agent*> & listAg = _agentsPool.at(i);
+        std::list<Agent*>::iterator it = listAg.begin();
+        while(it!=listAg.end())
+        {
+            Agent * agent = *it;
+            it = listAg.erase(it);
+            delete agent;
+        }
+
+    }
+
+
     for (int i = 0; i < maxAgents.size(); i++) {
         std::list<Agent*> l_agent;
         for (int j = 0; j < maxAgents.at(i); j++) {
-            auto a = new Agent();
+            Agent * a = new Agent();
             l_agent.push_back(a);
         }
         _agentsPool.push_back(l_agent);
@@ -864,7 +878,7 @@ void GameLevel::checkDeath( std::list<Agent*>::iterator & it)
     if (agent->getLife() <= 0)
     {
         addDeletedAgent(Point(agent->getPosition().getX(), agent->getPosition().getY()));
-        GameLevel::getInstance()->deleteAgent(agent);
+        deleteAgent(agent);
         it = _agents.at(agent->getType()).erase(it);
     }
     else

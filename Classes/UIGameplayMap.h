@@ -140,12 +140,12 @@ private:
     int agentColor = 0;
 
     std::vector<Color4B> _agentsTextureData;
-    Texture2D* agentsTexture;
-    Sprite* agentsSprite;
+    Texture2D _agentsTexture;
+    Sprite * _agentsSprite = nullptr;
 
     std::vector<Color4B> _exploitedMapTextureData;
-    Texture2D* exploitedMapTexture = nullptr;
-    Sprite* exploitedMapSprite;
+    Texture2D _exploitedMapTexture;
+    Sprite * _exploitedMapSprite = nullptr;
 
     vector<int> keys;
 
