@@ -66,6 +66,7 @@ bool LevelAchievement::checkAchievement(const std::string & typeAch, int level)
         }
         else if (typeAch == "NoBoosts")
         {
+            CCLOG("score %d power used: %d", GameData::getInstance()->getLevelScore(level), GameLevel::getInstance()->getPowersUsed());
             if((GameData::getInstance()->getLevelScore(level) > 0) && (GameLevel::getInstance()->getPowersUsed() == false))
             {
                 _completed = true;

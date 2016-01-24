@@ -1143,7 +1143,6 @@ void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
         {
             powerButtons.at(0)->onTouchesBegan(touchLocation);
             bool actioned = powerButtons.at(0)->onTouchesEnded(touchLocation);
-            GameLevel::getInstance()->setPowersUsed(true);
             //ANIMACIO RESTA PUNTS
             if (actioned == true)
             {
@@ -1171,7 +1170,6 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     for(size_t i = 0; i < powerButtons.size(); i++)
     {
         bool actioned = powerButtons.at(i)->onTouchesEnded(touchLocation);
-        GameLevel::getInstance()->setPowersUsed(true);
         //ANIMACIO RESTA PUNTS
         if (actioned == true)
         {
@@ -2316,13 +2314,18 @@ void UIGameplayMap::createAchievementWindow(void)
                      GameData::getInstance()->getRaHConversion() * (0.3 + (0.1 * numCompletedAchievements)));
     window->setName("achievementWindow");
     
-    string s = "";
+    std::stringstream ach;
+    ach << LocalizedString::create("YOU_UNLOCKED") + " " + to_string(numCompletedAchievements) + " ";
     if (numCompletedAchievements > 1)
     {
-        s = "S";
+        ach << LocalizedString::create("ACHS_UNLOCK");
     }
-    auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED " + to_string(numCompletedAchievements) + " ACHIEVEMENT" + s,
-                                           "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    else
+    {
+        ach << LocalizedString::create("ACH_UNLOCK");
+    }
+
+    auto titleLabel = Label::createWithTTF(ach.str(), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     titleLabel->setColor(Color3B(255, 255, 255));
     titleLabel->setAnchorPoint(Vec2(0.5, 0));
     titleLabel->setPosition(Vec2(window->getContentSize().width / 2, window->getContentSize().height / 2 - titleLabel->getContentSize().height * 1.1));
@@ -2355,7 +2358,7 @@ void UIGameplayMap::createInGameAchievementWindow(Achievement * ach)
                      GameData::getInstance()->getRaHConversion() * 0.4);
     window->setName("achievementWindow");
     
-    auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED 1 ACHIEVEMENT", "fonts/BebasNeue.otf",
+    auto titleLabel = Label::createWithTTF(LocalizedString::create("YOU_UNLOCKED") + " 1 " + LocalizedString::create("ACH_UNLOCK"), "fonts/BebasNeue.otf",
                                            100 * GameData::getInstance()->getRaConversion());
     titleLabel->setColor(Color3B(255, 255, 255));
     titleLabel->setAnchorPoint(Vec2(0.5, 0));

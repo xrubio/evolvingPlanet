@@ -228,6 +228,14 @@ Toca el logo para conocer más sobre SimulPast!</string>
     <key>DESERT</key>
 	<string>DESIERTO</string>
 
+    <key>YOU_UNLOCKED</key>
+    <string>Has desbloqueado</string>
+    <key>ACHS_UNLOCK</key>
+    <string>Logros</string>
+    <key>ACH_UNLOCK</key>
+    <string>Logro</string>
+
+
     <key>THANKS_PEOPLE</key>
     <string>...y nuestras familias, amigos y mascotas!</string>
     <key>THANKS_PLAYER</key>

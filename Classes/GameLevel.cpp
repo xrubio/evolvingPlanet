@@ -432,9 +432,12 @@ bool GameLevel::getPowersUsed(void)
     return _powersUsed;
 }
 
-void GameLevel::setPowersUsed (bool p)
+void GameLevel::powerUsed()
 {
-    _powersUsed = p;
+    if(!_powersUsed)
+    {
+        _powersUsed;
+    }
 }
 
 int GameLevel::getRegenerationRate(void)

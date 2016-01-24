@@ -26,6 +26,7 @@
 //
 
 #include "Power.h"
+#include "GameLevel.h"
 
 Power::Power( const std::string & name, const PowerType & type, float c, float dur, float _cost) : name(name), _type(type), _cooldown(c), _duration(dur), _cooldownLeft(_cooldown), _durationLeft(_duration), cost(_cost), _activated(false)
 {
@@ -108,6 +109,7 @@ void Power::setCost(float c)
 
 void Power::activate()
 {
+     GameLevel::getInstance()->powerUsed();
     _durationLeft = _duration;
     _lastDurationLeft = _durationLeft;
     _cooldownLeft = 0.0f;
