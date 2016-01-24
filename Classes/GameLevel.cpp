@@ -487,7 +487,7 @@ void GameLevel::playLevel(void)
         }
     }
     
-    if (_finishedGame != UserCancel)
+    if (_finishedGame == Success)
     {
         checkAchievements();
     }
