@@ -87,14 +87,12 @@ bool UIGameplayMap::init()
     this->addChild(gameplayMap, 0);
   
     //HOTSPOT
-    gameplayMapHotSpot = new Image();
-    gameplayMapHotSpot->initWithImageFile("mapsBase/"+GameLevel::getInstance()->getMapFilename()+hotSpotsBase+ext);
+    gameplayMapHotSpot.initWithImageFile("mapsBase/"+GameLevel::getInstance()->getMapFilename()+hotSpotsBase+ext);
     int x = 3;
-    if (gameplayMapHotSpot->hasAlpha()) {
+    if (gameplayMapHotSpot.hasAlpha()) {
         x = 4;
     }
-    dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
-    dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
+    dataGameplayMapHotSpot = gameplayMapHotSpot.getData();
 
     //FINGER SPOT
     fingerSpot = MenuItemImage::create("gui/FingerSpot.png", "gui/FingerSpot.png", CC_CALLBACK_1(UIGameplayMap::removeFingerSpot, this));
@@ -225,21 +223,12 @@ bool UIGameplayMap::init()
         resourcesMap = true;
     }
     if (resourcesMap) {
-        /*gameplayMapResources = new Image();
-        gameplayMapResources->initWithImageFile(map + resources + ext);
-        x = 3;
-        if (gameplayMapResources->hasAlpha()) {
-            x = 4;
-        }
-        dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
-        dataGameplayMapResources = gameplayMapResources->getData();*/
 
         exploitedMapTexture = new Texture2D;
-        auto im = new Image();
+        Image * im = new Image();
         im->initWithImageFile(map + forest + ext);
         //4 = alpha
-        unsigned char* data = new unsigned char[im->getDataLen() * 4];
-        data = im->getData();
+        unsigned char* data = im->getData();
         
         _exploitedMapTextureData.resize(int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight()));
         exploitedMapTexture->initWithData(&(_exploitedMapTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
@@ -250,6 +239,7 @@ bool UIGameplayMap::init()
                 _exploitedMapTextureData.at(i + (j * im->getWidth())) = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
             }
         }
+        delete im;
         exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
         exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
         gameplayMap->addChild(exploitedMapSprite, 2);
@@ -2013,10 +2003,10 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt)
     unsigned char* pixel;
     int x = 3;
 
-    if (gameplayMapHotSpot->hasAlpha()) {
+    if (gameplayMapHotSpot.hasAlpha()) {
         x = 4;
     }
-    pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
+    pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot.getWidth()) * x;
 
     switch (rgb) {
     case 0: {
