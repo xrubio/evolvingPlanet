@@ -87,14 +87,12 @@ bool UIGameplayMap::init()
     this->addChild(gameplayMap, 0);
   
     //HOTSPOT
-    gameplayMapHotSpot = new Image();
-    gameplayMapHotSpot->initWithImageFile("mapsBase/"+GameLevel::getInstance()->getMapFilename()+hotSpotsBase+ext);
+    gameplayMapHotSpot.initWithImageFile("mapsBase/"+GameLevel::getInstance()->getMapFilename()+hotSpotsBase+ext);
     int x = 3;
-    if (gameplayMapHotSpot->hasAlpha()) {
+    if (gameplayMapHotSpot.hasAlpha()) {
         x = 4;
     }
-    dataGameplayMapHotSpot = new unsigned char[gameplayMapHotSpot->getDataLen() * x];
-    dataGameplayMapHotSpot = gameplayMapHotSpot->getData();
+    dataGameplayMapHotSpot = gameplayMapHotSpot.getData();
 
     //FINGER SPOT
     fingerSpot = MenuItemImage::create("gui/FingerSpot.png", "gui/FingerSpot.png", CC_CALLBACK_1(UIGameplayMap::removeFingerSpot, this));
@@ -225,21 +223,12 @@ bool UIGameplayMap::init()
         resourcesMap = true;
     }
     if (resourcesMap) {
-        /*gameplayMapResources = new Image();
-        gameplayMapResources->initWithImageFile(map + resources + ext);
-        x = 3;
-        if (gameplayMapResources->hasAlpha()) {
-            x = 4;
-        }
-        dataGameplayMapResources = new unsigned char[gameplayMapResources->getDataLen() * x];
-        dataGameplayMapResources = gameplayMapResources->getData();*/
 
         exploitedMapTexture = new Texture2D;
-        auto im = new Image();
+        Image * im = new Image();
         im->initWithImageFile(map + forest + ext);
         //4 = alpha
-        unsigned char* data = new unsigned char[im->getDataLen() * 4];
-        data = im->getData();
+        unsigned char* data = im->getData();
         
         _exploitedMapTextureData.resize(int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight()));
         exploitedMapTexture->initWithData(&(_exploitedMapTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
@@ -250,6 +239,7 @@ bool UIGameplayMap::init()
                 _exploitedMapTextureData.at(i + (j * im->getWidth())) = Color4B(*(pixel), *(pixel + 1), *(pixel + 2), *(pixel + 3));
             }
         }
+        delete im;
         exploitedMapSprite = Sprite::createWithTexture(exploitedMapTexture);
         exploitedMapSprite->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
         gameplayMap->addChild(exploitedMapSprite, 2);
@@ -1143,7 +1133,6 @@ void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
         {
             powerButtons.at(0)->onTouchesBegan(touchLocation);
             bool actioned = powerButtons.at(0)->onTouchesEnded(touchLocation);
-            GameLevel::getInstance()->setPowersUsed(true);
             //ANIMACIO RESTA PUNTS
             if (actioned == true)
             {
@@ -1171,7 +1160,6 @@ void UIGameplayMap::onTouchesEnded(const vector<Touch*>& touches, Event* event)
     for(size_t i = 0; i < powerButtons.size(); i++)
     {
         bool actioned = powerButtons.at(i)->onTouchesEnded(touchLocation);
-        GameLevel::getInstance()->setPowersUsed(true);
         //ANIMACIO RESTA PUNTS
         if (actioned == true)
         {
@@ -2015,10 +2003,10 @@ int UIGameplayMap::getValueAtGameplayMap(int rgb, Point pt)
     unsigned char* pixel;
     int x = 3;
 
-    if (gameplayMapHotSpot->hasAlpha()) {
+    if (gameplayMapHotSpot.hasAlpha()) {
         x = 4;
     }
-    pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot->getWidth()) * x;
+    pixel = dataGameplayMapHotSpot + ((int)pt.x + (int)pt.y * gameplayMapHotSpot.getWidth()) * x;
 
     switch (rgb) {
     case 0: {
@@ -2316,13 +2304,18 @@ void UIGameplayMap::createAchievementWindow(void)
                      GameData::getInstance()->getRaHConversion() * (0.3 + (0.1 * numCompletedAchievements)));
     window->setName("achievementWindow");
     
-    string s = "";
+    std::stringstream ach;
+    ach << LocalizedString::create("YOU_UNLOCKED") + " " + to_string(numCompletedAchievements) + " ";
     if (numCompletedAchievements > 1)
     {
-        s = "S";
+        ach << LocalizedString::create("ACHS_UNLOCK");
     }
-    auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED " + to_string(numCompletedAchievements) + " ACHIEVEMENT" + s,
-                                           "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+    else
+    {
+        ach << LocalizedString::create("ACH_UNLOCK");
+    }
+
+    auto titleLabel = Label::createWithTTF(ach.str(), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     titleLabel->setColor(Color3B(255, 255, 255));
     titleLabel->setAnchorPoint(Vec2(0.5, 0));
     titleLabel->setPosition(Vec2(window->getContentSize().width / 2, window->getContentSize().height / 2 - titleLabel->getContentSize().height * 1.1));
@@ -2355,7 +2348,7 @@ void UIGameplayMap::createInGameAchievementWindow(Achievement * ach)
                      GameData::getInstance()->getRaHConversion() * 0.4);
     window->setName("achievementWindow");
     
-    auto titleLabel = Label::createWithTTF("YOU HAVE UNLOCKED 1 ACHIEVEMENT", "fonts/BebasNeue.otf",
+    auto titleLabel = Label::createWithTTF(LocalizedString::create("YOU_UNLOCKED") + " 1 " + LocalizedString::create("ACH_UNLOCK"), "fonts/BebasNeue.otf",
                                            100 * GameData::getInstance()->getRaConversion());
     titleLabel->setColor(Color3B(255, 255, 255));
     titleLabel->setAnchorPoint(Vec2(0.5, 0));

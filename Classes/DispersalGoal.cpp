@@ -77,7 +77,7 @@ bool DispersalGoal::checkGoal(int type, Agent* agent)
     if(agentColorCode != colorZone)
     { 
         // goal failed due to time (timeStep was the last one, and agents did not arrive
-        if (timeSteps >= maxTime)
+        if (timeSteps > maxTime)
         {
             GameLevel::getInstance()->setFinishedGame(GoalFailAfter);
         }

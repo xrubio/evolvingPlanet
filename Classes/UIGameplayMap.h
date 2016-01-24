@@ -97,7 +97,7 @@ private:
     void createLegendEntries();
     void updateLegend(bool visible);
     
-    Image* gameplayMapHotSpot;
+    Image gameplayMapHotSpot;
     //Image* gameplayMapResources;
     unsigned char* dataGameplayMapHotSpot;
     //unsigned char* dataGameplayMapResources;
@@ -144,7 +144,7 @@ private:
     Sprite* agentsSprite;
 
     std::vector<Color4B> _exploitedMapTextureData;
-    Texture2D* exploitedMapTexture;
+    Texture2D* exploitedMapTexture = nullptr;
     Sprite* exploitedMapSprite;
 
     vector<int> keys;

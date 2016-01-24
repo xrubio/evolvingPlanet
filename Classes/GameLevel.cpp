@@ -432,9 +432,12 @@ bool GameLevel::getPowersUsed(void)
     return _powersUsed;
 }
 
-void GameLevel::setPowersUsed (bool p)
+void GameLevel::powerUsed()
 {
-    _powersUsed = p;
+    if(!_powersUsed)
+    {
+        _powersUsed = true;
+    }
 }
 
 int GameLevel::getRegenerationRate(void)
@@ -484,7 +487,7 @@ void GameLevel::playLevel(void)
         }
     }
     
-    if (_finishedGame != UserCancel)
+    if (_finishedGame == Success)
     {
         checkAchievements();
     }

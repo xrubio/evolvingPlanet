@@ -167,7 +167,8 @@ public:
     Achievement* getInGameAchievement(void);
     void setInGameAchievement(Achievement *ach);
     bool getPowersUsed(void);
-    void setPowersUsed (bool p);
+    // notify that some power has been used
+    void powerUsed();
     int getRegenerationRate(void);
     void setRegenerationRate(int r);
     void setTerraformFactor(float t);

@@ -225,6 +225,15 @@ Toca el logo per conèixer més sobre SimulPast!</string>
 	<string>SABANA</string>
 	<key>DESERT</key>
 	<string>DESERT</string>
+
+    <key>YOU_UNLOCKED</key>
+    <string>Has desbloquejat</string>
+    <key>ACHS_UNLOCK</key>
+    <string>Fites</string>
+    <key>ACH_UNLOCK</key>
+    <string>Fita</string>
+
+
 	<key>THANKS_PEOPLE</key>
 	<string>...i les nostres famílies, amics i mascotes!</string>
 	<key>THANKS_PLAYER</key>
