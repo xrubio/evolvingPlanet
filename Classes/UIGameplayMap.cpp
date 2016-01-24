@@ -1595,7 +1595,7 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     string currentName = waveNodes.at(i)->getName();
     graphicBackground->addChild(waveNodes.at(i), 1, 1);
     agentColor = i;
-    graphicLabel->setString(currentName);
+    graphicLabel->setString(LocalizedString::create(currentName.c_str()));
     
     int numResources = 1;
     if (_isWood)
@@ -1889,7 +1889,7 @@ void UIGameplayMap::moveGoalPopup(int index)
             
             graphicBackground->addChild(waveNodes.at(i), 1, 1);
             agentColor = i;
-            graphicLabel->setString(name);
+            graphicLabel->setString(LocalizedString::create(name.c_str()));
             
             int numResources = 1;
             if (_isWood)
