@@ -436,7 +436,7 @@ void GameLevel::powerUsed()
 {
     if(!_powersUsed)
     {
-        _powersUsed;
+        _powersUsed = true;
     }
 }
 
