@@ -1,4 +1,9 @@
 
+@font-face {
+    font-family: "bebas";
+    src: url('BebasNeue.otf') format("truetype");
+}
+
 body
 {
 	background-color: #ebf4f4;
@@ -208,14 +213,14 @@ IMG
 }
 
 .slogan
-{   
-    font-family: Arial, "times new roman", times, roman, serif;
-	font-size: 22pt;
-	line-height: 150%;
+{
+    font-family: "bebas", Arial, roman, serif;
+	font-size: 24pt;
+	line-height: 100%;
     color: #cccccc;
 	text-transform: none;
-    max-width: 50%;
-    text-align: center;
+    max-width: 60%;
+    text-align: right;
 	text-transform: uppercase;
     margin: 0 auto;
     margin-bottom: 100px;
