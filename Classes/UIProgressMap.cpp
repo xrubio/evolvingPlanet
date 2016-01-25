@@ -49,6 +49,7 @@ bool UIProgressMap::init()
         return false;
     }
     
+    //TODO: C
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }

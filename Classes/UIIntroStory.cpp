@@ -11,6 +11,8 @@
 #include "UIProgressMap.h"
 #include "LocalizedString.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 Scene* UIIntroStory::createScene()
 {
     auto scene = Scene::create();
@@ -26,6 +28,11 @@ bool UIIntroStory::init()
     }
   
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    if (GameData::getInstance()->getMusic() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/intro_story.mp3");
+    }
 
     auto descent = Sprite::create("misc/intro/planet.png");
     descent->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height));
