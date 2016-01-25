@@ -37,7 +37,7 @@ Tap twice in any place of the map to suggest the dispersal direction.</string>
 You begin with 10 EvoPoints and receive additional points during the mission.</string>
 	<key>LEVEL1M11</key>
 	<string>EvoPoints are used to increase the three attributes.
-Tap here to spend 1 EvoPoint and upgrade Mobility to Level 2.</string>
+Tap the button to spend 1 EvoPoint and upgrade Mobility to Level 2.</string>
 	<key>LEVEL1M12</key>
 	<string>Reproduction controls the fertility of your bots.
 Move it to level 2.</string>
