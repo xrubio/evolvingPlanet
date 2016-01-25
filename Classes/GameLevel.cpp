@@ -315,6 +315,10 @@ bool GameLevel::getDepleted(int x, int y)
 
 void GameLevel::setDepletedMap(int x, int y, bool val)
 {
+    if(val)
+    {
+        _newDepletedVector.push_back(Point(x, y));
+    }
     depletedMap[x][y] = val;
 }
 
@@ -323,7 +327,7 @@ void GameLevel::addDepletedToVector(int x, int y)
     _depletedVector.push_back(Point(x, y));
 }
 
-std::vector<cocos2d::Point> GameLevel::getRestored(void)
+const std::vector<cocos2d::Point> & GameLevel::getRestored(void) const
 {
     return _restoredVector;
 }
@@ -342,7 +346,7 @@ void GameLevel::setTerraformed(int x, int y, bool val)
     }
 }
 
-std::vector<cocos2d::Point> GameLevel::getTerraformedVector(void)
+const std::vector<cocos2d::Point> & GameLevel::getTerraformedVector(void) const
 {
     return _terraformedVector;
 }
@@ -978,12 +982,23 @@ void GameLevel::act(void)
     checkGoals();
 }
 
-bool GameLevel::validatePosition(int posx, int posy)
+bool GameLevel::isInsideMap(int posx, int posy) const
 {
     //Fora del mapa
-    if (posx < 0 or posx >= 480 or posy < 0 or posy >= 320) {
+    if (posx < 0 or posx >= 480 or posy < 0 or posy >= 320)
+    {
         return false;
     }
+    return true;
+}
+
+bool GameLevel::validatePosition(int posx, int posy) const
+{
+    if(!isInsideMap(posx, posy))
+    {
+        return false;
+    }
+
     //Aigua o similar
     if (gameplayMap->getValueAtGameplayMap(0, posx, posy) == 0) {
         return false;

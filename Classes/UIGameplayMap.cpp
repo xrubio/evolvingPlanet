@@ -2464,9 +2464,11 @@ void UIGameplayMap::updateAgents(void)
                 drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
   
             //}
+                /*
             if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
                 drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
             }
+            */
         }
     }
 
@@ -2475,17 +2477,23 @@ void UIGameplayMap::updateAgents(void)
         //restore map
         for (int i = 0; i < GameLevel::getInstance()->getRestored().size(); i++)
         {
-            drawExploitedMap(Point(GameLevel::getInstance()->getRestored().at(i).x, GameLevel::getInstance()->getRestored().at(i).y), Color4B(255,255,255,255));
+            drawExploitedMap(GameLevel::getInstance()->getRestored().at(i), Color4B(255,255,255,255));
         }
         GameLevel::getInstance()->clearRestored();
        
         for (int i = 0; i < GameLevel::getInstance()->getTerraformedVector().size(); i++)
         {
-            drawExploitedMap(Point(GameLevel::getInstance()->getTerraformedVector().at(i).x, GameLevel::getInstance()->getTerraformedVector().at(i).y), Color4B(0, 0, 0, 0));
+            drawExploitedMap(GameLevel::getInstance()->getTerraformedVector().at(i), Color4B(0, 0, 0, 0));
         
         }
         GameLevel::getInstance()->clearTerraformedVector();
         
+        for (int i = 0; i < GameLevel::getInstance()->getNewDepletedVector().size(); i++)
+        {
+            drawExploitedMap(GameLevel::getInstance()->getNewDepletedVector().at(i), Color4B(0,0,0,0));
+        }
+        GameLevel::getInstance()->clearNewDepletedVector();
+
         _exploitedMapTexture.updateWithData(&(_exploitedMapTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
     }
 }

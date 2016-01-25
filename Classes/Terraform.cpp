@@ -29,17 +29,49 @@
 #include "UIGameplayMap.h"
 
 void Terraform::execute(Agent* agent)
-{
-    //if its not terraformed and is terraformable
-    if (GameLevel::getInstance()->getTerraformed(agent->getPosition().getX(), agent->getPosition().getY()) == false and  GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(2, agent->getPosition().getX(), agent->getPosition().getY()) == 4)
+{       
+    //check if agent terraforms 
+    float probTerraform = agent->getValue(eTerraform);
+    if(cocos2d::RandomHelper::random_real(0.0f, 1.0f) >= probTerraform)
     {
-        //check if agent exploits
-        float probTerraform = agent->getValue(eTerraform);
-        if(cocos2d::RandomHelper::random_real(0.0f, 1.0f) >= probTerraform)
+        return;
+    }
+
+    int mobility = agent->getValue(eMobility);
+    if(GameLevel::getInstance()->powerIsInEffect(MobilityBoost) and GameLevel::getInstance()->powerIsInRadius(MobilityBoost, agent->getPosition()))
+    {
+        mobility = GameLevel::getInstance()->getValueAtLevel(eMobility, 5);
+    }     
+    cocos2d::Rect area = GameLevel::getInstance()->getArea(agent->getPosition(), mobility);
+
+    int maxIterations = 5;
+
+    // first try own position
+    int posx = agent->getPosition().getX();
+    int posy = agent->getPosition().getY();
+    while(maxIterations>0)
+    {   
+        // if this was already tried, look for another place
+        if(maxIterations<5)
         {
+            posx = int(cocos2d::RandomHelper::random_real(area.getMinX(), area.getMaxX()));
+            posy = int(cocos2d::RandomHelper::random_real(area.getMinY(), area.getMaxY()));
+        }
+   
+        // not a valid position
+        if(!GameLevel::getInstance()->isInsideMap(posx, posy))
+        {
+            maxIterations--;
+            continue;
+        }
+
+        //if its not terraformed and is terraformable
+        if (GameLevel::getInstance()->getTerraformed(posx, posy) == false and GameLevel::getInstance()->getUIGameplayMap()->getValueAtGameplayMap(2, posx, posy) == 4)
+        {
+            GameLevel::getInstance()->setTerraformed(posx, posy, true);
             return;
         }
-        GameLevel::getInstance()->setTerraformed(agent->getPosition().getX(), agent->getPosition().getY(), true);
+        maxIterations--;
     }
 }
 

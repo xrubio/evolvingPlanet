@@ -148,10 +148,12 @@ public:
     bool getDepleted(int x, int y);
     void setDepletedMap(int x, int y, bool val);
     void addDepletedToVector(int x, int y);
-    std::vector<cocos2d::Point> getRestored(void);
+    const std::vector<cocos2d::Point> & getNewDepletedVector(void) const { return _newDepletedVector; }
+    void clearNewDepletedVector() { _newDepletedVector.clear(); }
+    const std::vector<cocos2d::Point> & getRestored(void) const;
     bool getTerraformed(int x, int y);
     void setTerraformed(int x, int y, bool val);
-    std::vector<cocos2d::Point> getTerraformedVector(void);
+    const std::vector<cocos2d::Point> & getTerraformedVector(void) const;
     int getCurrentAgentType(void);
     void setCurrentAgentType(int i);
     Agent* getAgentAtMap(int i, int j);
@@ -184,7 +186,10 @@ public:
     void playLevel(void);
     void resetLevel(void);
 
-    bool validatePosition(int posx, int posy);
+    // check if posx/posy are within map boundaries
+    bool isInsideMap(int posx, int posy) const;
+    // check if pos/posy is inside map, in land and empty of agents
+    bool validatePosition(int posx, int posy) const;
     
     int convertAttStringToInt(const string & s);
     string convertAttIntToString(int i);
@@ -247,6 +252,8 @@ private:
     //Resources exploitment
     bool depletedMap[480][320] = { { false } };
     std::vector<cocos2d::Point> _depletedVector;
+    // store cells depleted during this step
+    std::vector<cocos2d::Point> _newDepletedVector;
     std::vector<cocos2d::Point> _restoredVector;
     bool _terraformedMap[480][320] = { { false } };
     std::vector<cocos2d::Point> _terraformedVector;
