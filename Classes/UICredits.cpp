@@ -292,7 +292,7 @@ void UICredits::murphysToastStudios(Layout* layout)
     createName("Guillem H. Pongiluppi", 0.63f, 0.39f, popupBackground);
 
     createGroup("MUSIC_CREDITS", 0.6f, 0.24f, popupBackground);
-    createName("Guillem Laborda", 0.63f, 0.19f, popupBackground);
+    createName("Guillem Laborda", 0.63f, 0.18f, popupBackground);
 }
 
 void UICredits::createAcknowledgment( const std::string & name, float x, float y, Sprite * background)
