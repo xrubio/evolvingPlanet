@@ -57,8 +57,8 @@ bool UIProgressMap::init()
     Director::getInstance()->setAnimationInterval(1.0 / 60);
     //setLoadingAnimation(false);
     //Alliberar memòria
-    SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
-    Director::getInstance()->getTextureCache()->removeUnusedTextures();
+    //SpriteFrameCache::getInstance()->removeUnusedSpriteFrames();
+    //Director::getInstance()->getTextureCache()->removeUnusedTextures();
     GameLevel::getInstance()->resetLevel();
 
     Size visibleSize = Director::getInstance()->getVisibleSize();

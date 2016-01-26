@@ -95,9 +95,14 @@ bool UIIntroToast::init()
 #endif
     
     //load gallery images to cache
-    for (int i = 1; i < 21; i++)
+    int i;
+    for (i = 1; i < GameData::getInstance()->getCurrentLevel(); i++)
     {
         Director::getInstance()->getTextureCache()->addImageAsync("art/Escenari"+to_string(i)+".jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
+    }
+    for (; i < 21; i++)
+    {
+        Director::getInstance()->getTextureCache()->addImageAsync("art/locked/Escenari"+to_string(i)+".jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     }
     
     Director::getInstance()->getTextureCache()->addImageAsync("gui/Clouds3.png", CC_CALLBACK_1(UIIntroToast::doNothing, this));
@@ -117,15 +122,17 @@ bool UIIntroToast::init()
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap1Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap2Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
 
-    this->schedule(SEL_SCHEDULE(&UIIntroToast::update), 1.0);
-    
+    this->runAction(Sequence::create(DelayTime::create(5.8), CallFunc::create(this, callfunc_selector(UIIntroToast::toMainMenu)), NULL));
     return true;
 }
 
-void UIIntroToast::update(float delta)
+void UIIntroToast::doNothing(bool b)
 {
     
-// video player only for ios/android    
+}
+
+void UIIntroToast::toMainMenu(void)
+{
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto * video = (VideoPlayer*)(this->getChildByName("video"));
     if(video and !video->isPlaying())
@@ -143,15 +150,9 @@ void UIIntroToast::update(float delta)
         this->removeChild(logo);
         _eventDispatcher->removeEventListener(_listener);
         auto scene = UIMainMenu::createScene();
-        Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
+        Director::getInstance()->replaceScene(TransitionFade::create(0.1, scene));
         return;
     }
 #endif
-    
-}
-
-void UIIntroToast::doNothing(bool b)
-{
-    
 }
 

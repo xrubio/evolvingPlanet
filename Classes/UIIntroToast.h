@@ -39,14 +39,13 @@ public:
     virtual bool init();
                 
     CREATE_FUNC(UIIntroToast);
-    
-    void update(float delta);
-    
+        
 private:
 
     EventListenerTouchOneByOne* _listener;
     
     void doNothing(bool b);
+    void toMainMenu(void);
     
 };
 

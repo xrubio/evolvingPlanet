@@ -313,6 +313,7 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
             if (GameData::getInstance()->getSFX() == true) {
                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
             }
+            CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
             auto scene = UIIntroStory::createScene();
             auto transition = TransitionFade::create(1.0f, scene);
             Director::getInstance()->replaceScene(transition);
@@ -449,6 +450,7 @@ void UIMainMenu::menuResetYesCallback(Ref* pSender)
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
     GameData::getInstance()->resetGameProgress();
+    CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
     auto scene = UIIntroStory::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
     Director::getInstance()->replaceScene(transition);

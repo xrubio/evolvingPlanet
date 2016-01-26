@@ -31,7 +31,7 @@ bool UIIntroStory::init()
     
     if (GameData::getInstance()->getMusic() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/intro_story.mp3");
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/intro_story.mp3");
     }
 
     auto descent = Sprite::create("misc/intro/planet.png");
@@ -132,7 +132,8 @@ bool UIIntroStory::init()
 
 void UIIntroStory::toMap()
 {
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     auto scene = UIProgressMap::createScene();
-    Director::getInstance()->replaceScene(TransitionFade::create(4.0f, scene));
+    Director::getInstance()->replaceScene(TransitionFade::create(2.0f, scene));
 }
 
