@@ -9,39 +9,39 @@
     <key>LEVEL3HINT</key>
 	<string>Strengthen Resistance. It is critical to avoid extinction at the beginning of this mission.</string>
 	<key>LEVEL4HINT</key>
-	<string>Increasing your technological skills will improve the rest of attributes of your bots.</string>
+	<string>Increasing your technological skills will improve the rest of your bots’ attributes.</string>
 	<key>LEVEL5HINT</key>
-	<string>You should avoid the other population. They are far more experienced on Warfare than you.</string>
+	<string>You should avoid the other population. They are far more experienced in Warfare than you.</string>
 	<key>LEVEL6HINT</key>
-	<string>Lovans did not have enough reproduction rate to reach the recorded population size within the defined time. The new Influence boost can be used to convince bots from other groups to join yours.</string>
+	<string>The Lovans did not have a reproduction rate fast enough to reach the recorded population size by the defined time. The new Influence Boost can be used to convince bots from other groups to join yours.</string>
 	<key>LEVEL7HINT</key>
-	<string>You should increase both your population and Warfare skills before meeting the other group.</string>
+	<string>You should increase both your population and Warfare skills before making contact with the other group.</string>
 	<key>LEVEL8HINT</key>
-	<string>You need a lot of population to cross the desert. Increase Resistance and Influence before entering the eastern part of the map.</string>
+	<string>You need a large population to cross the desert. Increase Resistance and Influence before entering the eastern part of the map.</string>
 	<key>LEVEL9HINT</key>
 	<string>Increase Reproduction and Technology to survive the first difficult times.</string>
 	<key>LEVEL10HINT</key>
-	<string>Increase your population by using Influence in the group living in the forest.</string>
+	<string>Increase your population by using Influence on the group living in the forest.</string>
     <key>LEVEL11HINT</key>
-	<string>The Exploitation rate depends on the skills and of your group. Forests regenerate over time so you should avoid its overexploitation by limiting this rate or moving to other zones.</string>
+	<string>The Exploitation rate depends on the skills and size of your group. Forests regenerate over time, so you should avoid overexploitation by limiting this rate or moving to other areas.</string>
     <key>LEVEL12HINT</key>
-	<string>The forest is not rich enough to maintain both populations. You need to deal with the other group if you want to reach the first goal.</string>
+	<string>The forest is not rich enough to support both populations. You need to deal with the other group if you want to achieve the first goal.</string>
     <key>LEVEL13HINT</key>
 	<string>You will need wood from the two forests to reach the goal. Your population should try to reach the eastern one before the other agents overexploit the region.</string>
     <key>LEVEL14HINT</key>
-	<string>Your low Exploitation rate can be balanced with multiple strategies. You can use a population boost, eliminate the competition or join forces with them.</string>
+	<string>You can balance your low Exploitation rate with different strategies. You can use a population Boost, eliminate the competition or join forces with them.</string>
     <key>LEVEL15HINT</key>
-	<string>Most mineral will already be harvested before you arrive to the mountain. Try to exchange your wood for the other group's mineral.</string>
+	<string>Most minerals will already be harvested before you arrive to the mountain. Try to exchange your wood for the other group's mineral.</string>
     <key>LEVEL16HINT</key>
-	<string>Keep your population in the forest as long as possible. This zone has better survival rates than the open landscape.</string>
+	<string>Keep your population in the forest for as long as possible. This area has better survival rates than the open landscape.</string>
     <key>LEVEL17HINT</key>
-	<string>You shouldn't try to move towards the forest until you are sure your population is strong enough to survive the migration. You also need a lot of wood so allow the forest to regenerate while moving away from overexploited zones.</string>
+	<string>You shouldn’t try to move towards the forest until you are sure your population is strong enough to survive the migration. You also need a lot of wood, so let the forest regenerate while you move away from overexploited zones.</string>
     <key>LEVEL18HINT</key>
-	<string>Technology affects every other aspect of your culture, including Terraform and Exploitation.</string>
+	<string>Technology affects every other aspect of your culture, including Terraforming and Exploitation.</string>
     <key>LEVEL19HINT</key>
-	<string>The enemy is powerful. You shouldn't try to reach the goal until your skills are good enough to face it.</string>
+	<string>The enemy is powerful. You shouldn’t try to achieve the last goal until your skills are good enough to face it.</string>
     <key>LEVEL20HINT</key>
-	<string>You cannot fail this mission.</string>
+	<string>You cannot fail at this mission.</string>
 </dict>
 </plist>
 

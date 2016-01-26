@@ -5,14 +5,14 @@
     <key>INTRO_1</key>
     <string>Professor, welcome to Kepler-1138</string>
     <key>INTRO_2</key>
-    <string>A extinct humanoid species were found here ten years ago
+    <string>An extinct humanoid species was discovered here ten years ago
     
 We called them Lovans
 
-Your task is to discover why they disappeared</string>
+Your task is to find out why they disappeared</string>
     <key>INTRO_3</key>
     <string>We have integrated Lovan DNA into our bots
-
+      
 The first specimens are now being deployed</string>
     <key>INTRO_4</key>
     <string>We are ready to start the first mission</string>
@@ -68,7 +68,7 @@ The first specimens are now being deployed</string>
 	<key>PASS_MISSION</key>
 	<string>PASS MISSION </string>
 	<key>TO_UNLOCK_STORY</key>
-	<string> TO UNLOCK STORY</string>
+	<string>TO UNLOCK STORY</string>
 	<key>LIFE</key>
 	<string>LIFE</string>
 	<key>LEVEL_FEATURES</key>
@@ -94,7 +94,7 @@ The first specimens are now being deployed</string>
 	<key>TECHNOLOGY</key>
 	<string>TECHNOLOGY</string>
 	<key>DESCRIPTION_TECHNOLOGY</key>
-	<string>Improvements on all attributes</string>
+	<string>Improvements to all attributes</string>
 	<key>INFLUENCE</key>
 	<string>INFLUENCE</string>
 	<key>DESCRIPTION_INFLUENCE</key>
@@ -111,7 +111,7 @@ The first specimens are now being deployed</string>
 	<string>TRADE</string>
 	<key>DESCRIPTION_TRADE</key>
 	<string>Exchange abilities with other groups</string>
-	<key>TERRAFORM</key>
+	<key>TERRAFORMING</key>
 	<string>TERRAFORM</string>
 	<key>DESCRIPTION_TERRAFORM</key>
 	<string>Shape the environment to your benefit</string>
@@ -134,7 +134,7 @@ The first specimens are now being deployed</string>
 	<key>MUSIC</key>
     <string>MUSIC</string>
     <key>MUSIC_CREDITS</key>
-	<string>Music &amp; Sound</string>
+	<string>Music and sound</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
 	<key>GAME_SPEED</key>
@@ -152,10 +152,10 @@ The first specimens are now being deployed</string>
 	<key>CONGRATULATIONS</key>
 	<string>Congratulations!</string>
 	<key>GOAL_FAIL_BEFORE</key>
-	<string>Mission failed: Your population reached its goals before 
-archaeological data suggests</string>
+	<string>Mission failed. Your population reached its goals before
+the time indicated by archaeological data</string>
 	<key>GOAL_FAIL_AFTER</key>
-	<string>Mission failed: You have not reached the goal on time</string>
+	<string>Mission failed. You did not reach the goal on time</string>
 	<key>ALL_BOTS_DIED</key>
 	<string>All bots died</string>
 	<key>CONTINUE</key>
@@ -163,9 +163,9 @@ archaeological data suggests</string>
 	<key>PLAY</key>
 	<string>PLAY</string>
 	<key>MURPHY</key>
-	<string>Murphy&apos;s Toast Games</string>
+	<string>Murphy's Toast Games</string>
 	<key>DIRECTOR</key>
-	<string>Game Director &amp; Project Lead</string>
+	<string>Game Director and Project Lead</string>
 	<key>LEAD_PROGRAMMER</key>
 	<string>Lead Programmer</string>
 	<key>ADDITIONAL_PROGRAMMING</key>
@@ -175,17 +175,18 @@ archaeological data suggests</string>
 	<key>UI</key>
 	<string>User Interface</string>
 	<key>STORY_CONTENT</key>
-	<string>Story &amp; content</string>
+	<string>Story and content</string>
 	<key>SIMULPAST_TITLE</key>
 	<string>The SimulPast Project</string>
 	<key>SIMULPAST_TEXT</key>
-	<string>Evolving Planet would not exist without a research project called Simulpast.
+	<string>Evolving Planet would not exist without a research project called SimulPast.
     
-Simulpast is breaking the barriers between Science and Humanities to learn about our origins, our present and our future. Archaeologists, Computer Scientists, Anthropologists and other experts use computer simulation to improve our understanding of the past.
+SimulPast is breaking down the barriers between science and the humanities to learn about our origins, our present and our future. At SimulPast, archaeologists, computer scientists, anthropologists and other experts use
+computer simulations to improve our understanding of the past.
 
-Evolving Planet explores this new way of doing Science. You will be part of the research team studying a species similar to humans through concepts such as evolution, technology, and dispersal.
+Evolving Planet explores this new way of conducting science. You will be part of a research team studying a species similar to humans through concepts such as evolution, technology and dispersal.
 
-Tap the logo to know more about SimulPast!</string>
+Tap the logo to learn more about SimulPast!</string>
 	<key>SPECIAL_THANKS</key>
 	<string>Special thanks</string>
 	<key>SUPPORT</key>
@@ -205,7 +206,7 @@ Tap the logo to know more about SimulPast!</string>
 	<key>GOALS_COMPLETED</key>
 	<string>GOALS COMPLETED</string>
 	<key>BOT_COLOR</key>
-	<string>Bot Color</string>
+	<string>Bot Colour</string>
 	<key>THE_END</key>
 	<string>THE END</string>
 

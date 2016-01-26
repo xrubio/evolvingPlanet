@@ -11,22 +11,22 @@
 
 	<key>LEVEL1M1</key>
 	<string>Professor, welcome to the Console.
-Cool interface, isn't it? I hope you like it because you&apos;ll spend the next weeks using it while drinking coffee</string>
+Cool interface, isn't it? I hope you like it because you'll spend the next few weeks using it while drinking coffee</string>
 	<key>LEVEL1M2</key>
 	<string>The Console shows you data collected by satellites deployed around the planet.</string>
 	<key>LEVEL1M3</key>
 	<string>The mission takes place within this landscape.
 It is full of features, from the highlighted arid region to forests rich in resources.</string>
     <key>LEVEL1M4</key>
-	<string>You can press anytime the goal icon to show a summary of the environment.</string>
+	<string>You can press the goal icon to show a summary of the environment at any time.</string>
 	<key>LEVEL1M5</key>
 	<string>These are your bots.
-We have deployed a small initial population in this area.</string>
+We have deployed a small starting population in this area.</string>
 	<key>LEVEL1M6</key>
 	<string>This first mission has one dispersal goal.
 You should drive your bots to the blinking hexagon in your bottom right.</string>
 	<key>LEVEL1M7</key>
-	<string>Tap the Play button to see what are your bots doing.</string>
+	<string>Tap the Play button to see what your bots are doing.</string>
 	<key>LEVEL1M8</key>
 	<string>The bots move, reproduce and die on their own, but you can guide them using some cool tools.</string>
 	<key>LEVEL1M9</key>
@@ -42,13 +42,13 @@ Tap the button to spend 1 EvoPoint and upgrade Mobility to Level 2.</string>
 	<string>Reproduction controls the fertility of your bots.
 Move it to level 2.</string>
 	<key>LEVEL1M13</key>
-	<string>Each change of an attribute costs 1 additional EvoPoints, as it is highlighted in yellow.
+	<string>Each change of an attribute costs 1 additional EvoPoint, as highlighted in yellow.
 Increase it to 3.</string>
 	<key>LEVEL1M14</key>
 	<string>Tap again to set Reproduction to 4.</string>
 	<key>LEVEL1M15</key>
 	<string>Increasing Resistance improves the survival skills of your bots.
-Spend the remanining on this attribute.</string>
+Spend the remaining points on this attribute.</string>
 	<key>LEVEL1M16</key>
 	<string>Use the remaining 2 EvoPoints to increase Resistance again.</string>
 	<key>LEVEL1M17</key>
@@ -57,68 +57,68 @@ Spend the remanining on this attribute.</string>
 	<string>This panel shows how your population is increasing.
 You should often check it to detect collapses</string>
     <key>LEVEL1M19</key>
-    <string>Set now the orientation marker within the goal zone.</string>
+    <string>Now set the orientation marker within the goal zone.</string>
 	<key>LEVEL1M20</key>
-	<string>As you can see here you received additional EvoPoints. Good luck!</string>
+	<string>As you can see, you received additional EvoPoints here. Good luck!</string>
 
     <key>LEVEL2M1</key>
-	<string>Some missions have more than one goal as shown in the top of the Console.</string>
+	<string>Some missions have more than one goal as shown at the top of the Console.</string>
 	<key>LEVEL2M2</key>
-	<string>The bright zone shows the time interval when your population needs to complete the goal, according to archaeological evidence.
-If you arrive before or after this span the mission will fail.</string>
+	<string>The bright area shows the timeframe within which your population must complete the goal, according to archaeological evidence.
+If you arrive before or after this timeframe, the mission will fail.</string>
 	<key>LEVEL2M3</key>
 	<string>The best arrival time is highlighted here.</string>
 	<key>LEVEL2M4</key>
 	<string>If you feel that the game is too slow you can increase its speed in the Options menu. Good luck!.</string>
 
     <key>LEVEL3M1</key>
-	<string>Welcome Professor.
+	<string>Welcome, Professor.
 You will use a new tool in this mission.</string>
 	<key>LEVEL3M2</key>
 	<string>The technical term is Temporary Augmentation of Population Attributes Through Bursts in Cultural Traits.</string>
 	<key>LEVEL3M3</key>
-	<string>The team just call them Boosts.</string>
+	<string>The team just calls them Boosts.</string>
 	<key>LEVEL3M4</key>
 	<string>You can spend EvoPoints to activate them and temporally increase an attribute.</string>
 	<key>LEVEL3M5</key>
 	<string>The first one increases Reproduction. Tap it now.</string>
 	<key>LEVEL3M6</key>
-	<string>The second Boost increases Resistance, and it has an area of effect.
-You need to tap and drag towards the zone you wish to improve your bots.</string>
+	<string>The second Boost increases Resistance and it has an area of effect.
+You need to tap and drag towards the area that you wish to improve.</string>
 	<key>LEVEL3M7</key>
 	<string>Boosts have a cooldown period so use them wisely. Good luck!</string>
 
     <key>LEVEL6M1</key>
-    <string>The first Goal of this mission checks the size of your group.</string>
+    <string>The first Goal of this mission is to check the size of your group.</string>
     <key>LEVEL6M2</key>
-    <string>You need to reach the size highlighted in this panel within the assigned time span.</string>
+    <string>You need to reach the size highlighted in this panel within the assigned timeframe.</string>
 
     <key>LEVEL11M1</key>
     <string>You will need to collect different resources to pass this mission.</string>
     <key>LEVEL11M2</key>
-    <string>This mountain has plenty of minerals useful for your group.</string>
+    <string>This mountain has plenty of minerals useful to your group.</string>
     <key>LEVEL11M3</key>
     <string>This forest can provide plenty of wood.</string>
     <key>LEVEL11M4</key>
-    <string>You collect resources by moving to these zones and increasing your Exploitation attribute.</string>
+    <string>Collect resources by moving to these areas and increasing your Exploitation attribute.</string>
     <key>LEVEL11M5</key>
-    <string>You can tap here to cycle through collected resources and needed amounts.</string> 
+    <string>You can tap here to cycle through the resources collected and the amounts needed.</string> 
     <key>LEVEL11M6</key>
     <string>Both resources will deplete with exploitation, but if you are careful woods will recover over time.</string> 
     
     <key>LEVEL13M1</key>
     <string>You have a new attribute for this mission: Trade.</string>
     <key>LEVEL13M2</key>
-    <string>If you develop this skill your bots will be able to exchange one resource for goods owned by nearby groups.</string>
+    <string>If you develop this skill, your bots will be able to exchange one resource for goods owned by nearby groups.</string>
     <key>LEVEL13M3</key>
-    <string>You won't be able to collect enough minerals before the time is up, so you will need the attribute to succeed.</string>
+    <string>You won’t be able to collect enough minerals before the time is up, so you will need the attribute to succeed.</string>
 
     <key>LEVEL16M1</key>
     <string>We have integrated all domestication techniques under the concept of Terraforming.</string>
     <key>LEVEL16M2</key>
-    <string>This zone here is rich enough to be transformed into cultivated lands by increasing this skill.</string>
+    <string>This area here is rich enough to be transformed into cultivated land by increasing this skill.</string>
     <key>LEVEL16M3</key>
-    <string>Your population will thrive in terraformed zones, but you will need to reach it before this can happen.</string>
+    <string>Your population will thrive in terraformed areas, but you will need to reach it before this can happen.</string>
 </dict>
 
 </plist>
