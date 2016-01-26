@@ -170,9 +170,8 @@ bool UIGameplayMap::init()
     Director::getInstance()->getTextureCache()->addImage("gui/goals/PopulationGoal.png");
 
     auto currentGoalImg = MenuItemImage::create(getGoalIcon(GameLevel::getInstance()->getGoals().at(0)), getGoalIcon(GameLevel::getInstance()->getGoals().at(0)));
-    currentGoalImg->setAnchorPoint(Vec2(0, 0.5));
     currentGoalImg->setScale(GameData::getInstance()->getRaWConversion()*0.6f, GameData::getInstance()->getRaHConversion()*0.6f);
-    currentGoalImg->setPosition(Vec2(currentGoalLabel->getPositionX() + currentGoalLabel->getContentSize().width + currentGoalImg->getContentSize().width * 0.25f * GameData::getInstance()->getRaWConversion(), 140 * visibleSize.height / 155));
+    currentGoalImg->setPosition(Vec2(0.2f*visibleSize.width, 0.91f * visibleSize.height));
     currentGoalImg->setName("currentGoalImg");
     Menu* goalMenu = Menu::create(currentGoalImg, NULL);
     goalMenu->setName("currentGoalMenu");
@@ -637,9 +636,12 @@ bool UIGameplayMap::init()
                                          attBackgroundTitle->getPositionY()));
     bottomFrame->addChild(attBackgroundTitleCost);
 
-    int k = 1;
-    int tag = 0;
     Vector<MenuItem*> attributesButtons;
+
+    // offset between the 3 panels of attributes
+    int tag = 0;
+    float offsetAttrs = 0.182f;
+    float frameHeight = 0.0466f*visibleSize.height;
     for (size_t j = 0; j < modifAttr.size(); j++)
     {   
         if(modifAttr.at(j)==-1)
@@ -648,58 +650,42 @@ bool UIGameplayMap::init()
         }
         auto labelAttRight = Label::createWithTTF(string(LocalizedString::create(GameLevel::getInstance()->convertAttIntToString(modifAttr.at(j)).c_str())), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
         labelAttRight->setColor(Color3B(216, 229, 236));
+        labelAttRight->setPosition(Vec2((j*offsetAttrs + 0.378f)* bottomFrame->getContentSize().width, 0.46f*bottomFrame->getContentSize().height));
         bottomFrame->addChild(labelAttRight, 1, (int(j) + 1) * 1000);
 
+        auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
+        costBackground->setPosition(Vec2((j*offsetAttrs + 0.325f)* bottomFrame->getContentSize().width, frameHeight));
+        bottomFrame->addChild(costBackground);
+         
         auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/monofonto.ttf", 45 * GameData::getInstance()->getRaConversion());
         attNumLabel->setColor(Color3B::BLACK);
-        attNumLabel->setAnchorPoint(Vec2(-3.5, 0.5));
-        bottomFrame->addChild(attNumLabel, 1, (int(j) + 1) * 1100);
+        attNumLabel->setPosition(Vec2((j*offsetAttrs + 0.325f)* bottomFrame->getContentSize().width, frameHeight));
+        bottomFrame->addChild(attNumLabel, 1, (int(j) + 1) * 1100);        
         
-        auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
-        bottomFrame->addChild(costBackground);
-        
-        auto minusAttButton = MenuItemImage::create("gui/MinusButtonSmall.png", "gui/MinusButtonSmallPressed.png", "gui/MinusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::minusAttCallback, this));
-        minusAttButton->setAnchorPoint(Vec2(0, 0.5));
-        minusAttButton->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.34 * visibleSize.height / 7.5));
-        minusAttButton->setTag(int(j) + 10);
-        minusAttButton->setEnabled(false);
-        minusAttButton->setVisible(false);
-        minusAttButton->setName("minus"+labelAttRight->getString());
-        attributesButtons.pushBack(minusAttButton);
 
         auto plusAttButton = MenuItemImage::create("gui/PlusButtonSmall.png", "gui/PlusButtonSmallPressed.png", "gui/PlusButtonSmallPressed.png", CC_CALLBACK_1(UIGameplayMap::plusAttCallback, this));
-        plusAttButton->setPosition(Vec2((3.8 + (j * 2.35) + 1.95) * bottomFrame->getContentSize().width / 13, 0.34 * visibleSize.height / 7.5));
+        CCLOG("j %d offset %f vis %f", j, offsetAttrs, visibleSize.width);
+        plusAttButton->setPosition(Vec2((j*offsetAttrs + 0.442f)* bottomFrame->getContentSize().width, frameHeight));
         plusAttButton->setTag(int(j) + 50);
         plusAttButton->setEnabled(false);
         plusAttButton->setName("plus"+labelAttRight->getString());
         attributesButtons.pushBack(plusAttButton);
-
-        float posX = minusAttButton->getPosition().x + minusAttButton->getContentSize().width;
-        float incX = ((plusAttButton->getPosition().x - (plusAttButton->getContentSize().width / 2)) - posX) / 6;
-        int posY = 0.34 * visibleSize.height / 7.5;
-
-        for (int m = 0; m < 5; m++) {
-            posX = posX + incX;
-            auto blankAttribute = Sprite::create("gui/BlankAttributePointButtonSmall.png");
-            auto filledAttribute = Sprite::create("gui/FilledAttributePointButtonSmall.png");
-            if (m >= GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))) {
-                blankAttribute->setPosition(Vec2(posX, posY));
-                bottomFrame->addChild(blankAttribute, 1, tag);
-            }
-            else if (m < GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))) {
-                filledAttribute->setPosition(Vec2(posX, posY));
-                bottomFrame->addChild(filledAttribute, 1, tag);
-            }
-            if (m == 2)
+        
+        
+        // offset between bars
+        float offsetBars = 0.0122f;
+        for (int m = 0; m < 5; m++)
+        {
+            auto attrBar = Sprite::create("gui/BlankAttributePointButtonSmall.png");
+            if(m<GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j)))
             {
-                labelAttRight->setPosition(Vec2(posX, 0.93 * bottomFrame->getContentSize().height / 2));
-                attNumLabel->setPosition(Vec2((3.8 + (j * 2.35)) * bottomFrame->getContentSize().width / 13, 0.34 * visibleSize.height / 7.5));
-                costBackground->setPosition(attNumLabel->getPositionX() + 4.0 * attNumLabel->getContentSize().width, attNumLabel->getPositionY());
+               attrBar = Sprite::create("gui/FilledAttributePointButtonSmall.png");
             }
+            float xPos = (0.354f + j*offsetAttrs + m*offsetBars)*bottomFrame->getContentSize().width;
+            attrBar->setPosition(Vec2(xPos, frameHeight));
+            bottomFrame->addChild(attrBar, 1, tag);
             tag++;
         }
-
-        k++;
     }
 
     Menu* attrMenu = cocos2d::Menu::createWithArray(attributesButtons);
@@ -1113,11 +1099,6 @@ void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
         buttonPressed = "plus";
         token = "plus" + LocalizedString::create(token.substr(4).c_str());
     }
-    else if (token.substr(0, 5) == "minus")
-    {
-        buttonPressed = "minus";
-        token = "minus" + LocalizedString::create(token.substr(5).c_str());
-    }
     
     Node * button = parent->getChildByName(token);
     touchLocation = parent->convertToNodeSpace(touch->getLocation());
@@ -1130,10 +1111,6 @@ void UIGameplayMap::onTouchEndedTutorial(Touch * touch, Event* event)
         else if (buttonPressed == "plus")
         {
             plusAttCallback(button);
-        }
-        else if (buttonPressed == "minus")
-        {
-            minusAttCallback(button);
         }
         else if (buttonPressed == "power0")
         {
@@ -1451,48 +1428,6 @@ void UIGameplayMap::NoCallback(Ref* pSender)
     p2->removeChild(p);
 }
 
-void UIGameplayMap::minusAttCallback(Ref* pSender)
-{
-    if (endGameWindowPainted)
-    {
-        return;
-    }
-    
-    MenuItem* pMenuItem = (MenuItem*)(pSender);
-    int tag = pMenuItem->getTag();
-    int i = tag - 10;
-    Layout* layout = (Layout*)(pMenuItem->getParent()->getParent());
-
-    // XRC TODO fix this
-    if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) <= 0)
-    {
-        return;
-    }
-    
-    if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
-    }
-    
-    GameLevel::getInstance()->setAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i), GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) - 1);
-    GameLevel::getInstance()->setEvolutionPoints(GameLevel::getInstance()->getEvolutionPoints() - GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)));
-    int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i));
-    GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i), GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + 1);
-    Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-    l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i))));
-
-    auto filledAttribute = layout->getChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + (i * 5));
-    auto blankAttribute = Sprite::create("gui/BlankAttributePointButtonSmall.png");
-    blankAttribute->setPosition(filledAttribute->getPosition());
-    layout->removeChildByTag(GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + (i * 5));
-    layout->addChild(blankAttribute, 1, GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + (i * 5));
-    
-    //ANIMATION
-    restaEvolutionPointsLabel->setPosition(evolutionPointsIcon->getContentSize().width / 2, evolutionPointsIcon->getContentSize().height / 2);
-    restaEvolutionPointsLabel->setString("-" + to_string(oldCost));
-    auto mov = MoveTo::create(1.5, Vec2(evolutionPointsIcon->getContentSize().width / 2, - evolutionPointsIcon->getContentSize().height / 2));
-    restaEvolutionPointsLabel->runAction(Spawn::create(mov, Sequence::create(FadeIn::create(0.5), FadeOut::create(1.0), NULL), NULL));
-}
-
 void UIGameplayMap::plusAttCallback(Ref* pSender)
 {
     if (endGameWindowPainted)
@@ -1520,7 +1455,7 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     int oldCost = GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i));
     GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i), GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + 1);
     Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
-    l->setAnchorPoint(Vec2(-2.5, 0.5));
+//    l->setAnchorPoint(Vec2(-2.5, 0.5));
     l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i))));
 
     auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) - 1) + (i * 5));
@@ -2050,7 +1985,7 @@ void UIGameplayMap::initializeAgents(void)
         {
             Color3B c = GameData::getInstance()->getPlayerColor();
             Color4B color = Color4B(c.r, c.g, c.b, (*it)->getLife() * (255 / 175));
-            drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 0);
+            drawAgentWithShadow(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
         }
     }
     _agentsTexture.updateWithData(&(_agentsTextureData.at(0)), 0, 0, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight());
@@ -2387,7 +2322,7 @@ void UIGameplayMap::updateAgents(void)
     transparent.a = 0;
     for (size_t i = 0; i < GameLevel::getInstance()->getDeletedAgents().size(); i++)
     {
-        drawAgent(GameLevel::getInstance()->getDeletedAgents().at(i), transparent);
+        drawAgentWithShadow(GameLevel::getInstance()->getDeletedAgents().at(i), transparent, transparent);
     }
 
     Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();
@@ -2413,10 +2348,10 @@ void UIGameplayMap::updateAgents(void)
                     color = Color4B(255, 0, 0, (*it)->getLife() * (255 / 175));
                     break;
                 case 2:
-                    color = Color4B(249, 255, 0, (*it)->getLife() * (255 / 175));
+                    color = Color4B(255, 252, 0, (*it)->getLife() * (255 / 175));
                     break;
                 case 3:
-                    color = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
+                    color = Color4B(19, 1, 253, (*it)->getLife() * (255 / 175));
                     break;
                 default:
                     color = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, (*it)->getLife() * (255 / 175));
@@ -2424,51 +2359,7 @@ void UIGameplayMap::updateAgents(void)
                 }
                 break;
             }
-            
-            /*Color4B colorBorder;
-            switch ((*it)->getType()) {
-                case 1:
-                    colorBorder = Color4B(251, 54, 26, (*it)->getLife() * (255 / 175));
-                    break;
-                case 2:
-                    colorBorder = Color4B(249, 255, 0, (*it)->getLife() * (255 / 175));
-                    break;
-                case 3:
-                    colorBorder = Color4B(68, 165, 195, (*it)->getLife() * (255 / 175));
-                    break;
-                default:
-                    colorBorder = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, (*it)->getLife() * (255 / 175));
-                    break;
-            }
-            
-            //check num_agents painted in accordance with num_resources if not painting population
-            if (agentColor > 0)
-            {
-                if (resourcesPainted < Agent::_resourcesPool.at(i).at(agentColor - 1))
-                {
-                    resourcesPainted++;
-                    drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color, 1, colorBorder);
-                }
-                else
-                {
-                    color.r = colorBorder.r / 2;
-                    color.g = colorBorder.g / 2;
-                    color.b = colorBorder.b / 2;
-                    color.a = (*it)->getLife() * (255 / 175);
-
-                    drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
-                }
-            }
-            else
-            {*/
-                drawAgent(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
-  
-            //}
-                /*
-            if (GameLevel::getInstance()->getDepleted((*it)->getPosition().getX(), (*it)->getPosition().getY()) == true) {
-                drawExploitedMap(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), Color4B(0,0,0,0));
-            }
-            */
+            drawAgentWithShadow(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
         }
     }
 
@@ -2498,63 +2389,47 @@ void UIGameplayMap::updateAgents(void)
     }
 }
 
-void UIGameplayMap::drawAgent(const Point & pos, const Color4B & colour, int geometry, const Color4B & colorBorder)
+
+void UIGameplayMap::drawAgentWithShadow(const Point & pos, const Color4B & colour, const Color4B & shadow)
 {
     int x = (int)(pos.x * GameData::getInstance()->getRowDrawAgentPrecalc());
     int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((pos.y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
     int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());
 
-    switch (geometry) {
-    case 1: {
-        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
-        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
-            for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
-                _agentsTextureData.at(position + j + k) = colorBorder;
-            }
-            k += GameData::getInstance()->getResourcesWidth();
-        }
-        
-        k = -GameData::getInstance()->getResourcesWidth() * (GameLevel::getInstance()->getAgentPixelSize() / 2);
-        while (k <= GameData::getInstance()->getResourcesWidth() * (GameLevel::getInstance()->getAgentPixelSize() / 2)) {
-            for (int j = -(GameLevel::getInstance()->getAgentPixelSize()/2); j < (GameLevel::getInstance()->getAgentPixelSize() /2) + 1; j++) {
-                _agentsTextureData.at(position + j + k) = colour;
-            }
-            k += GameData::getInstance()->getResourcesWidth();
-        }
-        break;
+    int xShadow = x - int(GameLevel::getInstance()->getAgentPixelSize()*2.0f/3.0f);
+    int yShadow = y - int(GameLevel::getInstance()->getAgentPixelSize()*2.0f/3.0f);
+    if(xShadow>0 && yShadow>0)
+    {
+        int positionShadow = xShadow + ((GameData::getInstance()->getResourcesHeight() - yShadow) * GameData::getInstance()->getResourcesWidth());
+        drawAgent(positionShadow, Color4B(shadow.r, shadow.g, shadow.b, colour.a));
     }
-    case 2: {
-        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
-        int times = 0;
-        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
-            for (int j = times; j < abs(times) - 1; j++) {
-                _agentsTextureData.at(position + j + k) = colour;
+    drawAgent(position, colour);
+}
+
+void UIGameplayMap::drawAgent(int position, const Color4B & colour)
+{
+    /*
+    int x = (int)(pos.x * GameData::getInstance()->getRowDrawAgentPrecalc());
+    int y = (int)(GameData::getInstance()->getColumnOffsetDrawAgentPrecalc() + ((pos.y) * GameData::getInstance()->getColumnDrawAgentPrecalc()));
+    int position = x + ((GameData::getInstance()->getResourcesHeight() - y) * GameData::getInstance()->getResourcesWidth());
+    */
+
+    int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
+    while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize())
+    {
+        for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j <= GameLevel::getInstance()->getAgentPixelSize(); j++)
+        {
+            if (k == -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize())) and (j == - GameLevel::getInstance()->getAgentPixelSize() or j == GameLevel::getInstance()->getAgentPixelSize()))
+            {
+                continue;
             }
-            times--;
-            k += GameData::getInstance()->getResourcesWidth();
-        }
-        break;
-    }
-    default:
-        int k = -GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize();
-        while (k <= GameData::getInstance()->getResourcesWidth() * GameLevel::getInstance()->getAgentPixelSize()) {
-            for (int j = -GameLevel::getInstance()->getAgentPixelSize(); j < GameLevel::getInstance()->getAgentPixelSize() + 1; j++) {
-                if (k == -(GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize())) and (j == - GameLevel::getInstance()->getAgentPixelSize() or j == GameLevel::getInstance()->getAgentPixelSize()))
-                {
-                    continue;
-                }
-                else if (k == GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()) and (j == - GameLevel::getInstance()->getAgentPixelSize() or j == GameLevel::getInstance()->getAgentPixelSize()))
-                {
-                    continue;
-                }
-                else
-                {
-                _agentsTextureData.at(position + j + k) = colour;
-                }
+            else if (k == GameData::getInstance()->getResourcesWidth()* (GameLevel::getInstance()->getAgentPixelSize()) and (j == - GameLevel::getInstance()->getAgentPixelSize() or j == GameLevel::getInstance()->getAgentPixelSize()))
+            {
+                continue;
             }
-            k += GameData::getInstance()->getResourcesWidth();
+            _agentsTextureData.at(position + j + k) = colour;
         }
-        break;
+        k += GameData::getInstance()->getResourcesWidth();
     }
 }
 
@@ -2860,6 +2735,7 @@ void UIGameplayMap::setMessage( const Message * message )
             const Spot * spot = message->getSpot();
             image->setTexture(spot->_image+".png");
             image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
+            image->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             image->setVisible(true);
             image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(1, 120), FadeTo::create(1, 255), DelayTime::create(0.5), nullptr)));
         }
@@ -2924,25 +2800,18 @@ void UIGameplayMap::updateAttributesButtons(void)
         {
             continue;
         }
-        MenuItem* minus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 10);
         MenuItem* plus = (MenuItem*) attributesMenu->getChildByTag(int(i) + 50);
         if (GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) > GameLevel::getInstance()->getEvolutionPoints())
         {
             plus->setEnabled(false);
-            minus->setEnabled(false);
         }
         else
         {
             plus->setEnabled(true);
-            minus->setEnabled(true);
         }
         if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) >= 5)
         {
             plus->setEnabled(false);
-        }
-        else if (GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) <= 0)
-        {
-            minus->setEnabled(false);
         }
     }
 }

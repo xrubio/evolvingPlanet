@@ -319,7 +319,7 @@ void GameData::setPlayerColor(string c)
     }
     else if (c == "darkblue")
     {
-        _playerColor = Color3B(84, 169, 247);
+        _playerColor = Color3B(19, 1, 253);
     }
     else if (c == "white")
     {

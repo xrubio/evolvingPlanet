@@ -68,7 +68,6 @@ public:
     void retryCallback(Ref* pSender);
     void retryOkCallback(Ref* pSender);
     void NoCallback(Ref* pSender);
-    void minusAttCallback(Ref* pSender);
     void plusAttCallback(Ref* pSender);
     void hideAchievementWindowCallback(Ref* pSender);
     void removeFingerSpot(Ref* pSender);
@@ -179,8 +178,8 @@ private:
     bool checkPowersClicked(void);
     bool checkButtonPressed(Touch* touch);
 
-    // 0 = square, 1 = triangle
-    inline void drawAgent(const Point & pos, const Color4B & colour, int geometry = 0, const Color4B & colorBorder = Color4B::WHITE);
+    void drawAgentWithShadow(const Point & pos, const Color4B & colour, const Color4B & shadow = Color4B(0,0,0,255));
+    inline void drawAgent(int position, const Color4B & colour);
     inline void drawExploitedMap(const Point & pos, const Color4B & colour, int geometry = 0);
 
     // tutorial related stuff

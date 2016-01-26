@@ -112,7 +112,7 @@ bool AppDelegate::applicationDidFinishLaunching()
   
     // conversion is adjusted to the proportion of the largest of the two axis compared to its value in the standard screen (2048x1536)
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    float widthConversion = GameData::getInstance()->getResourcesWidth()/2048;
+    float widthConversion = visibleSize.width/2048;
     float heightConversion = visibleSize.height/1536;
     CCLOG("\tvisible size: %d/%d scaling: %f/%f", int(visibleSize.width), int(visibleSize.height), widthConversion, heightConversion);
     CCLOG("\tusing conversion rate: %f", std::max(widthConversion, heightConversion));
