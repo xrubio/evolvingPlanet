@@ -2734,10 +2734,11 @@ void UIGameplayMap::setMessage( const Message * message )
         {
             const Spot * spot = message->getSpot();
             image->setTexture(spot->_image+".png");
-            image->setPosition(Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY));
             image->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             image->setVisible(true);
-            image->runAction(RepeatForever::create(Sequence::create(FadeTo::create(1, 120), FadeTo::create(1, 255), DelayTime::create(0.5), nullptr)));
+            image->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
+            image->runAction(MoveTo::create(1.0f, Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY)));
+            image->runAction(RepeatForever::create(Sequence::create(DelayTime::create(1.0f), FadeTo::create(1, 120), FadeTo::create(1, 255), nullptr)));
         }
         
         const Rect & contents = label->getBoundingBox();
