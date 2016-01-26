@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <thanks1>
 <!-- classe de magisteri -->
-<!-- testing addicional --> 
+<!-- testing addicional -->
+<name value="Josue Alcántara"/>
 <name value="Andrea Alcaraz"/>
+<name value="Byron G. Bacusoy"/>
 <name value="Cristina Bajo"/>
 <name value="Hannah Batalla"/>
+<name value="Pilar Calleja"/>
 <name value="Miriam Carmona"/>
 <name value="Simon Carrignon"/>
 <name value="Lydia Casas"/>
@@ -19,6 +22,7 @@
 <name value="Eva Gutiérrez"/>
 <name value="Brenda Hornos"/>
 <name value="Andreu Laborda"/>
+<name value="Pau Martín"/>
 <name value="Andrea Martinez"/>
 <name value="Jean-Marc Montanier"/>
 <name value="Georgina Montoliu"/>

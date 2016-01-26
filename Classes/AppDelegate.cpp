@@ -58,13 +58,13 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
     // folders: 2048 (1:1), 1536 (3/4), 1365 (2:3) i 1024 (1:2)
 
-    if (screenSize.width > 1536) {
+    /*if (screenSize.width > 1536) {
         CCLOG("\tusing artwork of size 2048 (1:1)");
         resDirOrders.push_back("01_hd");
         GameData::getInstance()->setResourcesWidth(2048);
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
-    } else if (screenSize.width > 1280) {
+    } else*/ if (screenSize.width > 1280) {
         CCLOG("\tusing artwork of size 1536 (3:4)");  
         resDirOrders.push_back("02_threeQuarters");
         GameData::getInstance()->setResourcesWidth(1536);
@@ -112,7 +112,8 @@ bool AppDelegate::applicationDidFinishLaunching()
   
     // conversion is adjusted to the proportion of the largest of the two axis compared to its value in the standard screen (2048x1536)
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    float widthConversion = visibleSize.width/2048;
+    //float widthConversion = visibleSize.width/2048;
+    float widthConversion = GameData::getInstance()->getResourcesWidth()/2048;
     float heightConversion = visibleSize.height/1536;
     CCLOG("\tvisible size: %d/%d scaling: %f/%f", int(visibleSize.width), int(visibleSize.height), widthConversion, heightConversion);
     CCLOG("\tusing conversion rate: %f", std::max(widthConversion, heightConversion));

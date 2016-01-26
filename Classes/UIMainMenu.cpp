@@ -301,6 +301,9 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false)
         {
             //WARNING ERASING GAME DATA
+            if (GameData::getInstance()->getSFX() == true) {
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+            }
             createWarningWindow();
             ((MenuItemImage*) pSender)->setEnabled(false);
         }

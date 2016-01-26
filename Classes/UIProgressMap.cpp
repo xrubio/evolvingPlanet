@@ -345,6 +345,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     auto darkBackground = MenuItemImage::create("gui/ProgressMapDarkBackground.png", "gui/ProgressMapDarkBackground.png",
         CC_CALLBACK_1(UIProgressMap::restoreProgressMap, this));
     darkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    darkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     menuButtons.pushBack(darkBackground);
 
     auto popupBackground = MenuItemImage::create("gui/ProgressMapPopupBackground.png", "gui/ProgressMapPopupBackground.png",

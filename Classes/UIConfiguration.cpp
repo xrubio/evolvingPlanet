@@ -74,9 +74,8 @@ bool UIConfiguration::init()
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIConfiguration::menuBackCallback, this));
-    backButton->setAnchorPoint(Vec2(0, 0.5));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 1 * popupBackground->getContentSize().height / 16));
+    backButton->setPosition(Vec2((4 * visibleSize.width / 34), (1.5 * visibleSize.height / 25)));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
@@ -244,7 +243,7 @@ bool UIConfiguration::init()
     
     auto slowButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedSlowCallback, this));
     slowButton->setAnchorPoint(Vec2(0, 0.5));
-    slowButton->setScale(1.5f*GameData::getInstance()->getRaHConversion());
+    slowButton->setScale(1.5f);
     slowButton->setPosition(Vec2(10 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     slowButton->setName("slowButton");
     auto slowLabel = Label::createWithTTF(LocalizedString::create("SLOW"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
@@ -255,7 +254,7 @@ bool UIConfiguration::init()
 
     auto mediumButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedMediumCallback, this));
     mediumButton->setAnchorPoint(Vec2(0, 0.5));
-    mediumButton->setScale(1.5f*GameData::getInstance()->getRaHConversion());
+    mediumButton->setScale(1.5f);
     mediumButton->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     mediumButton->setName("mediumButton");
     auto mediumLabel = Label::createWithTTF(LocalizedString::create("MEDIUM"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
@@ -266,7 +265,7 @@ bool UIConfiguration::init()
     
     auto fastButton = MenuItemImage::create("gui/MainMenuSmallButton.png", "gui/MainMenuSmallButton.png","gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIConfiguration::speedFastCallback, this));
     fastButton->setAnchorPoint(Vec2(0, 0.5));
-    fastButton->setScale(1.5f*GameData::getInstance()->getRaHConversion());
+    fastButton->setScale(1.5f);
     fastButton->setPosition(Vec2(22 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     fastButton->setName("fastButton");
     auto fastLabel = Label::createWithTTF(LocalizedString::create("FAST"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
