@@ -262,9 +262,9 @@ bool UIMainMenu::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
     {
-        this->setKeypadEnabled(true);
+        this->setKeyboardEnabled(true);
     }
     
     this->scheduleUpdate();
