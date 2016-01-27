@@ -64,7 +64,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesWidth(2048);
         GameData::getInstance()->setResourcesHeight(1536);
         GameData::getInstance()->setResourcesMargin(1365);
-    } else*/ if (screenSize.width > 1280) {
+    } else */if (screenSize.width > 1280) {
         CCLOG("\tusing artwork of size 1536 (3:4)");  
         resDirOrders.push_back("02_threeQuarters");
         GameData::getInstance()->setResourcesWidth(1536);

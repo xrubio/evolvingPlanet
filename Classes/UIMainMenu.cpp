@@ -525,7 +525,7 @@ void UIMainMenu::createWarningWindow(void)
     alertBackground->addChild(confirmSeparator);
     auto confirmResetNo = MenuItemImage::create("gui/ConfigurationResetNo.png", "gui/ConfigurationResetNoPressed.png",
                                                 CC_CALLBACK_1(UIMainMenu::menuResetNoCallback, this));
-    confirmResetNo->setPosition(Vec2(Vec2(5.3 * alertBackground->getBoundingBox().size.width / 6,
+    confirmResetNo->setPosition(Vec2(Vec2(5.2 * alertBackground->getBoundingBox().size.width / 6,
                                           alertBackground->getBoundingBox().size.height / 6)));
     confirmReset.pushBack(confirmResetNo);
     
