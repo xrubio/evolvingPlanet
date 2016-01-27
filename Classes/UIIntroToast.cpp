@@ -133,7 +133,7 @@ void UIIntroToast::doNothing(bool b)
 
 void UIIntroToast::toMainMenu(void)
 {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+/*#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto * video = (VideoPlayer*)(this->getChildByName("video"));
     if(video and !video->isPlaying())
     {
@@ -153,6 +153,14 @@ void UIIntroToast::toMainMenu(void)
         Director::getInstance()->replaceScene(TransitionFade::create(0.1, scene));
         return;
     }
-#endif
+#endif*/
+    if(this->getChildByName("video") != nullptr)
+    {
+        this->removeChildByName("video");
+    }
+    _eventDispatcher->removeEventListener(_listener);
+    auto scene = UIMainMenu::createScene();
+    Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene));
+    return;
 }
 

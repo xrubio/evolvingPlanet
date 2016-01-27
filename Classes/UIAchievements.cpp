@@ -44,6 +44,11 @@ bool UIAchievements::init()
     if (!Layer::init()) {
         return false;
     }
+    
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    {
+        this->setKeyboardEnabled(true);
+    }
 
     glEnable(GL_STENCIL_TEST);
 
@@ -335,4 +340,12 @@ void UIAchievements::restoreAchievementsWindow(Ref* pSender)
     this->removeChildByTag(100);
     //Popup
     this->removeChildByTag(101);
+}
+
+void UIAchievements::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
+{
+    if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+        menuBackCallback(this);
+    }
 }

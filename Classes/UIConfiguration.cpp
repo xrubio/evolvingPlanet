@@ -45,6 +45,11 @@ bool UIConfiguration::init()
         return false;
     }
 
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    {
+        this->setKeyboardEnabled(true);
+    }
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     auto background = Sprite::create("gui/MainMenuBackground.png");
@@ -467,5 +472,13 @@ void UIConfiguration::speedFastCallback(Ref* pSender)
     med->setEnabled(true);
 
     GameData::getInstance()->setGameSpeed(eFast);
+}
+
+void UIConfiguration::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
+{
+    if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+        menuBackCallback(this);
+    }
 }
 

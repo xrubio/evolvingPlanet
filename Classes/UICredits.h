@@ -46,6 +46,7 @@ public:
     void openSimulLink( Ref * pSender );
     
     virtual void update(float delta);
+    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 
     CREATE_FUNC(UICredits);
     

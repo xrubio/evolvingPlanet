@@ -72,7 +72,7 @@ bool UIIntroStory::init()
     auto messageLabel2 = Label::createWithTTF(LocalizedString::create("INTRO_2"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     messageLabel2->setColor(Color3B(230, 230, 230));
     messageLabel2->enableShadow();
-    messageLabel2->setMaxLineWidth(0.4f*visibleSize.width);
+    messageLabel2->setMaxLineWidth(0.3f*visibleSize.width);
     messageLabel2->setOpacity(0);
     messageLabel2->setAnchorPoint(Vec2(0.0f, 0.0f));
     messageLabel2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
@@ -132,6 +132,13 @@ bool UIIntroStory::init()
 
 void UIIntroStory::toMap()
 {
+    Director::getInstance()->getTextureCache()->removeTextureForKey("misc/intro/planet.png");
+    Director::getInstance()->getTextureCache()->removeTextureForKey("misc/intro/chamber_1.png");
+    Director::getInstance()->getTextureCache()->removeTextureForKey("misc/intro/CamaraFront.png");
+    Director::getInstance()->getTextureCache()->removeTextureForKey("misc/intro/transport_cut.jpg");
+    Director::getInstance()->getTextureCache()->removeTextureForKey("misc/intro/transport.jpg");
+    Director::getInstance()->getTextureCache()->removeTextureForKey("misc/intro/logo.png");
+    
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     auto scene = UIProgressMap::createScene();
     Director::getInstance()->replaceScene(TransitionFade::create(2.0f, scene));

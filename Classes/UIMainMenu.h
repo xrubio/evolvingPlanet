@@ -70,6 +70,7 @@ private:
     void createSpaceAnimation(void);
     
     void loading(bool b);
+    void loadIntroImages(void);
     
     bool _loading = false;
 };

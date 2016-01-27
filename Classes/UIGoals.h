@@ -49,6 +49,7 @@ public:
     void zoomImageOutCallback(Ref* pSender);
 
     virtual void update(float delta);
+    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 
     CREATE_FUNC(UIGoals);
 

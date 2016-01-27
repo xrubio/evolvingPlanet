@@ -49,6 +49,11 @@ bool UIProgressMap::init()
         return false;
     }
     
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    {
+        this->setKeyboardEnabled(true);
+    }
+    
     //TODO: C
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
@@ -1090,4 +1095,12 @@ void UIProgressMap::setLoadingAnimation(bool visible)
 void UIProgressMap::toMap(void)
 {
     pages->scrollToPage(1);
+}
+
+void UIProgressMap::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
+{
+    if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+        menuBackCallback(this);
+    }
 }

@@ -49,6 +49,8 @@ public:
     void speedSlowCallback(Ref* pSender);
     void speedMediumCallback(Ref* pSender);
     void speedFastCallback(Ref* pSender);
+    
+    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 
     CREATE_FUNC(UIConfiguration);
 

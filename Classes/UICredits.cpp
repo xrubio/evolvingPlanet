@@ -45,6 +45,11 @@ bool UICredits::init()
         return false;
     }
     loadAcknowledgements();
+    
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    {
+        this->setKeyboardEnabled(true);
+    }
 
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
@@ -458,3 +463,11 @@ void UICredits::openSimulLink( Ref * pSender )
     Application::getInstance()->openURL("http://simulpast.es");    
 }
 
+
+void UICredits::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
+{
+    if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+    {
+        menuBackCallback(this);
+    }
+}

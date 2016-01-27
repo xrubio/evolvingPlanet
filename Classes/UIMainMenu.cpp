@@ -76,6 +76,10 @@ bool UIMainMenu::init()
         continueButton->setScale(GameData::getInstance()->getRaHConversion());
         menuButtons.pushBack(continueButton);
     }
+    else {
+        //LOAD INTRO IMAGES TO CACHE
+        loadIntroImages();
+    }
     
     auto startButton = MenuItemImage::create(
         "gui/MainMenuStartButton.png", "gui/MainMenuStartButtonPressed.png", "gui/MainMenuStartButtonPressed.png",
@@ -304,6 +308,8 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
             if (GameData::getInstance()->getSFX() == true) {
                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
             }
+            //LOAD INTRO IMAGES TO CACHE
+            loadIntroImages();
             createWarningWindow();
             ((MenuItemImage*) pSender)->setEnabled(false);
         }
@@ -613,8 +619,8 @@ void UIMainMenu::createSpaceAnimation(void)
 
 void UIMainMenu::loading(bool b)
 {
-    auto loading = this->getChildByName("loading");
-    loading->setVisible(true);
+    /*auto loading = this->getChildByName("loading");
+    loading->setVisible(true);*/
 }
 
 void UIMainMenu::update(float delta)
@@ -623,10 +629,23 @@ void UIMainMenu::update(float delta)
     loading->setVisible(_loading);
 }
 
+void UIMainMenu::loadIntroImages(void)
+{
+    Director::getInstance()->getTextureCache()->addImageAsync("misc/intro/planet.png", CC_CALLBACK_1(UIMainMenu::loading, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("misc/intro/chamber_1.png", CC_CALLBACK_1(UIMainMenu::loading, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("misc/intro/CamaraFront.png", CC_CALLBACK_1(UIMainMenu::loading, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("misc/intro/transport_cut.jpg", CC_CALLBACK_1(UIMainMenu::loading, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("misc/intro/transport.jpg", CC_CALLBACK_1(UIMainMenu::loading, this));
+    Director::getInstance()->getTextureCache()->addImageAsync("misc/intro/logo.png", CC_CALLBACK_1(UIMainMenu::loading, this));
+}
+
 void UIMainMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
 {
     if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
     {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+        }
         menuExitCallback(this);
     }
 }

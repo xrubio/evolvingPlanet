@@ -43,6 +43,8 @@ public:
     
     void showAchievement(Ref* pSender, ui::Widget::TouchEventType aType);
     void restoreAchievementsWindow(Ref* pSender);
+    
+    virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event);
 
     CREATE_FUNC(UIAchievements);
 
