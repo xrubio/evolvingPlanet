@@ -61,7 +61,7 @@ private:
 
     void endActions(void);
     bool allActionsFinished(void);
-    void createWarningWindow(void);
+    void createWarningWindow(bool exit);
         
     void openFacebook( Ref * pSender );
     void openTwitter( Ref * pSender );
@@ -72,6 +72,7 @@ private:
     void loading(bool b);
     void loadIntroImages(void);
     
+    bool _exit = false;
     bool _loading = false;
 };
 

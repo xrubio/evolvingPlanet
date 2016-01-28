@@ -305,13 +305,16 @@ void UIMainMenu::menuStartCallback(Ref* pSender)
         if (UserDefault::getInstance()->getBoolForKey("firsttimeplaying") == false)
         {
             //WARNING ERASING GAME DATA
-            if (GameData::getInstance()->getSFX() == true) {
-                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+            if (this->getChildByName("warningWindow") == nullptr)
+            {
+                if (GameData::getInstance()->getSFX() == true) {
+                    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
+                }
+                //LOAD INTRO IMAGES TO CACHE
+                loadIntroImages();
+                createWarningWindow(false);
+                ((MenuItemImage*) pSender)->setEnabled(false);
             }
-            //LOAD INTRO IMAGES TO CACHE
-            loadIntroImages();
-            createWarningWindow();
-            ((MenuItemImage*) pSender)->setEnabled(false);
         }
         else
         {
@@ -446,8 +449,10 @@ void UIMainMenu::menuResetNoCallback(Ref* pSender)
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
     this->removeChildByTag(30);
-    ((MenuItemImage*)(this->getChildByTag(4)->getChildByName("newCampaign")))->setEnabled(true);
-
+    if (_exit == false)
+    {
+        ((MenuItemImage*)(this->getChildByTag(4)->getChildByName("newCampaign")))->setEnabled(true);
+    }
 }
 
 void UIMainMenu::menuResetYesCallback(Ref* pSender)
@@ -455,11 +460,18 @@ void UIMainMenu::menuResetYesCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
     }
-    GameData::getInstance()->resetGameProgress();
-    CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-    auto scene = UIIntroStory::createScene();
-    auto transition = TransitionFade::create(1.0f, scene);
-    Director::getInstance()->replaceScene(transition);
+    if (_exit == false)
+    {
+        GameData::getInstance()->resetGameProgress();
+        CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+        auto scene = UIIntroStory::createScene();
+        auto transition = TransitionFade::create(1.0f, scene);
+        Director::getInstance()->replaceScene(transition);
+    }
+    else
+    {
+        menuExitCallback(this);
+    }
 }
 
 void UIMainMenu::endActions(void)
@@ -496,24 +508,38 @@ bool UIMainMenu::allActionsFinished(void)
     return false;
 }
 
-void UIMainMenu::createWarningWindow(void)
+void UIMainMenu::createWarningWindow(bool exit)
 {
+    _exit = exit;
     auto alertBackground = Sprite::create("gui/ConfigurationAlert.png");
     alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
-
+    alertBackground->setName("warningPopup");
+    
     auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     alertLabel->setColor(Color3B(255, 255, 255));
     alertLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 5 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertLabel);
     
-    auto alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    Label* alertTextLabel;
+    Label* alertConfirmationLabel;
+    if (exit == false)
+    {
+        alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+        alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("START") + string(" ?"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    }
+    else
+    {
+        alertTextLabel = Label::createWithTTF(LocalizedString::create("WARNING_TEXT_EXIT"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+        alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("SURE") + string(" ?"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+    }
+    
     alertTextLabel->setColor(Color3B(255, 255, 255));
     alertTextLabel->setMaxLineWidth(0.9f*alertBackground->getContentSize().width);
     alertTextLabel->setAlignment(TextHAlignment::CENTER);
     alertTextLabel->setPosition(Vec2(alertBackground->getBoundingBox().size.width / 2, 3 * alertBackground->getBoundingBox().size.height / 6));
     alertBackground->addChild(alertTextLabel);
     
-    auto alertConfirmationLabel = Label::createWithTTF(LocalizedString::create("START") + string(" ?"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
+
     alertConfirmationLabel->setColor(Color3B(255, 255, 255));
     alertConfirmationLabel->setPosition(Vec2(1.2 * alertBackground->getBoundingBox().size.width / 4,
                                              alertBackground->getBoundingBox().size.height / 6));
@@ -646,7 +672,10 @@ void UIMainMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event)
         if (GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click.mp3");
         }
-        menuExitCallback(this);
+        if (this->getChildByName("warningWindow") == nullptr)
+        {
+            createWarningWindow(true);
+        }
     }
 }
 

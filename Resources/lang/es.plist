@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict> 
-    <key>INTRO_1</key>
-    <string>Profesor, bienvenido a Kepler-1138</string>
-    <key>INTRO_2</key>
-    <string>Hace 10 años encontramos aquí una especie humanoide ya extinta
+<dict>
+	<key>INTRO_1</key>
+	<string>Profesor, bienvenido a Kepler-1138</string>
+	<key>INTRO_2</key>
+	<string>Hace 10 años encontramos aquí una especie humanoide ya extinta
 
 Los llamamos Lovan
 
 Tu tarea es descubrir por qué desaparecieron</string>
-    <key>INTRO_3</key>
-    <string>Hemos integrado el ADN Lovan en nuestros bots
+	<key>INTRO_3</key>
+	<string>Hemos integrado el ADN Lovan en nuestros bots
 
 Los primeros especímenes ya están siendo desplegados</string>
-    <key>INTRO_4</key>
-    <string>Estamos a punto para iniciar la primera misión</string>
-
+	<key>INTRO_4</key>
+	<string>Estamos a punto para iniciar la primera misión</string>
 	<key>START</key>
 	<string>INICIO</string>
 	<key>EXIT</key>
@@ -33,6 +32,10 @@ Los primeros especímenes ya están siendo desplegados</string>
 	<string>ALERTA</string>
 	<key>WARNING_TEXT</key>
 	<string>EMPEZAR UNA NUEVA PARTIDA ELIMINARÁ TU PROGRESO</string>
+	<key>WARNING_TEXT_EXIT</key>
+	<string>VAS A SALIR DEL JUEGO</string>
+	<key>SURE</key>
+	<string>ESTAS SEGURO</string>
 	<key>LEVEL</key>
 	<string>MISIÓN</string>
 	<key>OPTIONS</key>
@@ -125,26 +128,26 @@ Los primeros especímenes ya están siendo desplegados</string>
 	<string>Influencia</string>
 	<key>DESCRIPTION_WarfareBoost</key>
 	<string>Guerra</string>
-    <key>POPULATION</key>
-    <string>Población</string>
+	<key>POPULATION</key>
+	<string>Población</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>PUNTOS DE EVOLUCIÓN</string>
 	<key>COST</key>
 	<string>Coste</string>
 	<key>MUSIC</key>
-    <string>Música</string>
-    <key>MUSIC_CREDITS</key>
+	<string>Música</string>
+	<key>MUSIC_CREDITS</key>
 	<string>Música y Sonido</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
 	<key>GAME_SPEED</key>
 	<string>Velocidad de juego</string>
-    <key>SLOW</key>
-    <string>Lenta</string>
-    <key>MEDIUM</key>
-    <string>Media</string>
-    <key>FAST</key>
-    <string>Rápida</string>
+	<key>SLOW</key>
+	<string>Lenta</string>
+	<key>MEDIUM</key>
+	<string>Media</string>
+	<key>FAST</key>
+	<string>Rápida</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLETADO</string>
 	<key>GAME_OVER</key>
@@ -201,49 +204,43 @@ Toca el logo para conocer más sobre SimulPast!</string>
 	<key>CURRENT_GOAL</key>
 	<string>OBJETIVO ACTUAL</string>
 	<key>SKIP</key>
-	<string>SALTAR</string>     
-    <key>GOALS_COMPLETED</key>
-    <string>OBJETIVOS CONSEGUIDOS</string>
+	<string>SALTAR</string>
+	<key>GOALS_COMPLETED</key>
+	<string>OBJETIVOS CONSEGUIDOS</string>
 	<key>BOT_COLOR</key>
 	<string>Color de los bots</string>
 	<key>THE_END</key>
 	<string>FIN</string>
-
-    <key>ARID</key>
+	<key>ARID</key>
 	<string>ÁRIDO</string>
-    <key>IMPASSABLE</key>
+	<key>IMPASSABLE</key>
 	<string>IMPASABLE</string>
-    <key>MINERAL</key>
+	<key>MINERAL</key>
 	<string>MINERAL</string>
-    <key>WOOD</key>
+	<key>WOOD</key>
 	<string>MADERA</string>
-    <key>OBSIDIAN</key>
+	<key>OBSIDIAN</key>
 	<string>OBSIDIANA</string>
-    <key>ARABLE</key>
+	<key>ARABLE</key>
 	<string>CULTIVABLE</string>
-    <key>FOREST</key>
+	<key>FOREST</key>
 	<string>SELVA</string>
-    <key>SAVANNAH</key>
+	<key>SAVANNAH</key>
 	<string>SABANA</string>
-    <key>DESERT</key>
+	<key>DESERT</key>
 	<string>DESIERTO</string>
-
-    <key>YOU_UNLOCKED</key>
-    <string>Has desbloqueado</string>
-    <key>ACHS_UNLOCK</key>
-    <string>Logros</string>
-    <key>ACH_UNLOCK</key>
-    <string>Logro</string>
-
-
-    <key>THANKS_PEOPLE</key>
-    <string>...y nuestras familias, amigos y mascotas!</string>
-    <key>THANKS_PLAYER</key>
-    <string>Evolving Planet fusiona nuestra pasión por los juegos y la ciencia.
+	<key>YOU_UNLOCKED</key>
+	<string>Has desbloqueado</string>
+	<key>ACHS_UNLOCK</key>
+	<string>Logros</string>
+	<key>ACH_UNLOCK</key>
+	<string>Logro</string>
+	<key>THANKS_PEOPLE</key>
+	<string>...y nuestras familias, amigos y mascotas!</string>
+	<key>THANKS_PLAYER</key>
+	<string>Evolving Planet fusiona nuestra pasión por los juegos y la ciencia.
 Esperemos que hayas disfrutado jugando tanto como nosotros haciéndolo.
 
 Gracias!</string>
-
-
 </dict>
 </plist>

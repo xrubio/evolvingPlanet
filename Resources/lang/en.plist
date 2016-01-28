@@ -2,21 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>INTRO_1</key>
-    <string>Professor, welcome to Kepler-1138</string>
-    <key>INTRO_2</key>
-    <string>An extinct humanoid species was discovered here ten years ago
+	<key>INTRO_1</key>
+	<string>Professor, welcome to Kepler-1138</string>
+	<key>INTRO_2</key>
+	<string>An extinct humanoid species was discovered here ten years ago
     
 We called them Lovans
 
 Your task is to find out why they disappeared</string>
-    <key>INTRO_3</key>
-    <string>We have integrated Lovan DNA into our bots
+	<key>INTRO_3</key>
+	<string>We have integrated Lovan DNA into our bots
       
 The first specimens are now being deployed</string>
-    <key>INTRO_4</key>
-    <string>We are ready to start the first mission</string>
-
+	<key>INTRO_4</key>
+	<string>We are ready to start the first mission</string>
 	<key>START</key>
 	<string>START</string>
 	<key>EXIT</key>
@@ -33,6 +32,10 @@ The first specimens are now being deployed</string>
 	<string>WARNING</string>
 	<key>WARNING_TEXT</key>
 	<string>STARTING A NEW GAME WILL DELETE YOUR PROGRESS</string>
+	<key>WARNING_TEXT_EXIT</key>
+	<string>YOU ARE LEAVING THE GAME</string>
+	<key>SURE</key>
+	<string>ARE YOU SURE</string>
 	<key>LEVEL</key>
 	<string>MISSION</string>
 	<key>OPTIONS</key>
@@ -125,26 +128,26 @@ The first specimens are now being deployed</string>
 	<string>Influence</string>
 	<key>DESCRIPTION_WarfareBoost</key>
 	<string>Warfare</string>
-    <key>POPULATION</key>
-    <string>Population</string>
+	<key>POPULATION</key>
+	<string>Population</string>
 	<key>EVOLUTION_POINTS</key>
 	<string>EVOLUTION POINTS</string>
 	<key>COST</key>
 	<string>Cost</string>
 	<key>MUSIC</key>
-    <string>MUSIC</string>
-    <key>MUSIC_CREDITS</key>
+	<string>MUSIC</string>
+	<key>MUSIC_CREDITS</key>
 	<string>Music and sound</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
 	<key>GAME_SPEED</key>
 	<string>Game speed</string>
-    <key>SLOW</key>
-    <string>Slow</string>
-    <key>MEDIUM</key>
-    <string>Medium</string>
-    <key>FAST</key>
-    <string>Fast</string>
+	<key>SLOW</key>
+	<string>Slow</string>
+	<key>MEDIUM</key>
+	<string>Medium</string>
+	<key>FAST</key>
+	<string>Fast</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLETED</string>
 	<key>GAME_OVER</key>
@@ -163,7 +166,7 @@ the time indicated by archaeological data</string>
 	<key>PLAY</key>
 	<string>PLAY</string>
 	<key>MURPHY</key>
-	<string>Murphy's Toast Games</string>
+	<string>Murphy&apos;s Toast Games</string>
 	<key>DIRECTOR</key>
 	<string>Game Director and Project Lead</string>
 	<key>LEAD_PROGRAMMER</key>
@@ -209,40 +212,36 @@ Tap the logo to learn more about SimulPast!</string>
 	<string>Bot Colour</string>
 	<key>THE_END</key>
 	<string>THE END</string>
-
-    <key>ARID</key>
+	<key>ARID</key>
 	<string>ARID</string>
-    <key>IMPASSABLE</key>
+	<key>IMPASSABLE</key>
 	<string>IMPASSABLE</string>
-    <key>MINERAL</key>
+	<key>MINERAL</key>
 	<string>MINERAL</string>
-    <key>WOOD</key>
+	<key>WOOD</key>
 	<string>WOOD</string>
-    <key>OBSIDIAN</key>
+	<key>OBSIDIAN</key>
 	<string>OBSIDIAN</string>
-    <key>ARABLE</key>
+	<key>ARABLE</key>
 	<string>ARABLE</string>
-    <key>FOREST</key>
+	<key>FOREST</key>
 	<string>FOREST</string>
-    <key>SAVANNAH</key>
+	<key>SAVANNAH</key>
 	<string>SAVANNAH</string>
-    <key>DESERT</key>
+	<key>DESERT</key>
 	<string>DESERT</string>
-
-    <key>YOU_UNLOCKED</key>
-    <string>You have unlocked</string>
-    <key>ACHS_UNLOCK</key>
-    <string>Achievements</string>
-    <key>ACH_UNLOCK</key>
-    <string>Achievement</string>
-
-    <key>THANKS_PEOPLE</key>
-    <string>...and our families, friends and pets!</string>
-    <key>THANKS_PLAYER</key>
-    <string>Evolving Planet mixes our passion for gaming and science.
+	<key>YOU_UNLOCKED</key>
+	<string>You have unlocked</string>
+	<key>ACHS_UNLOCK</key>
+	<string>Achievements</string>
+	<key>ACH_UNLOCK</key>
+	<string>Achievement</string>
+	<key>THANKS_PEOPLE</key>
+	<string>...and our families, friends and pets!</string>
+	<key>THANKS_PLAYER</key>
+	<string>Evolving Planet mixes our passion for gaming and science.
 We hope that you enjoyed playing the game as much as we did developing it.
     
 Thank you!</string>
 </dict>
 </plist>
-

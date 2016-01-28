@@ -32,6 +32,10 @@ Els primers espècimens ja s&apos;estan desplegant</string>
 	<string>ALERTA</string>
 	<key>WARNING_TEXT</key>
 	<string>INICIAR UNA NOVA PARTIDA ESBORRARÀ TOTS ELS TEUS AVENÇOS</string>
+	<key>WARNING_TEXT_EXIT</key>
+	<string>ESTÀS A PUNT DE SORTIR DEL JOC</string>
+	<key>SURE</key>
+	<string>N&apos;ESTÀS SEGUR</string>
 	<key>LEVEL</key>
 	<string>MISSIÓ</string>
 	<key>OPTIONS</key>
@@ -132,18 +136,18 @@ Els primers espècimens ja s&apos;estan desplegant</string>
 	<string>Cost</string>
 	<key>MUSIC</key>
 	<string>MÚSICA</string>
-    <key>MUSIC_CREDITS</key>
+	<key>MUSIC_CREDITS</key>
 	<string>MÚSICA I SFX</string>
 	<key>SPECIAL_EFFECTS</key>
 	<string>SFX</string>
 	<key>GAME_SPEED</key>
 	<string>Velocitat del joc</string>
-    <key>SLOW</key>
-    <string>Lenta</string>
-    <key>MEDIUM</key>
-    <string>Mitjana</string>
-    <key>FAST</key>
-    <string>Ràpida</string>
+	<key>SLOW</key>
+	<string>Lenta</string>
+	<key>MEDIUM</key>
+	<string>Mitjana</string>
+	<key>FAST</key>
+	<string>Ràpida</string>
 	<key>LEVEL_COMPLETED</key>
 	<string>COMPLET</string>
 	<key>GAME_OVER</key>
@@ -225,15 +229,12 @@ Toca el logo per conèixer més sobre SimulPast!</string>
 	<string>SABANA</string>
 	<key>DESERT</key>
 	<string>DESERT</string>
-
-    <key>YOU_UNLOCKED</key>
-    <string>Has desbloquejat</string>
-    <key>ACHS_UNLOCK</key>
-    <string>Fites</string>
-    <key>ACH_UNLOCK</key>
-    <string>Fita</string>
-
-
+	<key>YOU_UNLOCKED</key>
+	<string>Has desbloquejat</string>
+	<key>ACHS_UNLOCK</key>
+	<string>Fites</string>
+	<key>ACH_UNLOCK</key>
+	<string>Fita</string>
 	<key>THANKS_PEOPLE</key>
 	<string>...i les nostres famílies, amics i mascotes!</string>
 	<key>THANKS_PLAYER</key>
