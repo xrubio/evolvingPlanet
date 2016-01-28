@@ -571,17 +571,26 @@ void UIMainMenu::createWarningWindow(bool exit)
 
 void UIMainMenu::openFacebook( Ref * pSender )
 {
-    Application::getInstance()->openURL("https://www.facebook.com/evolvingPlanetGame");    
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    Application::getInstance()->openURL("https://www.facebook.com/evolvingPlanetGame");
 }
 
 void UIMainMenu::openTwitter( Ref * pSender )
 {
-    Application::getInstance()->openURL("https://twitter.com/evoPlanetGame");    
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    Application::getInstance()->openURL("https://twitter.com/evoPlanetGame");
 }
 
 void UIMainMenu::openWeb( Ref * pSender )
 {
-    Application::getInstance()->openURL("http://evolvingplanetgame.com");    
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
+    Application::getInstance()->openURL("http://evolvingplanetgame.com");
 }
 
 void UIMainMenu::createSpaceAnimation(void)

@@ -31,6 +31,8 @@
 #include "UIProgressMap.h"
 #include "UIEndScene.h"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 Scene* UITransitionScene::createScene()
 {
     auto scene = Scene::create();
@@ -130,6 +132,9 @@ void UITransitionScene::onTouchesBegan(const vector<Touch*>& touches, Event* eve
         this->getChildByName("imageUnlocked")->runAction(FadeIn::create(3.0f));
         this->getChildByName("text")->runAction(FadeIn::create(2));
         this->getChildByName("unlockLabel")->runAction(FadeOut::create(0.5f));
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/unlock_image_gallery.mp3");
+        }
         this->getChildByName("tapToContinue")->runAction(Sequence::create(DelayTime::create(2.9f), FadeIn::create(0.1), RepeatForever::create(Blink::create(2, 1)), nullptr));
 
         unlockedImage = true;

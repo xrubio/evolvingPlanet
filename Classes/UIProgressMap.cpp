@@ -194,16 +194,8 @@ bool UIProgressMap::init()
             pointerNextLevel->setPositionY(visibleSize.height * 1.5);
             auto fall = MoveTo::create(0.6, pos);
             auto fallEase = EaseBackOut::create(fall);
+            pointerNextLevel->setScale(1.3);
             pointerNextLevel->runAction(Sequence::create(DelayTime::create(delayTime), fallEase, RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerNextLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerNextLevel->getContentSize().width*0.5)), NULL)), NULL));
-            
-            
-            /*auto dropActionLevelButton = MoveBy::create(1.5, Vec2(0, 5));
-            auto easeDropActionLevelButton = EaseOut::create(dropActionLevelButton, 1);
-            auto dropActionLevelButton2 = MoveBy::create(1.5, Vec2(0, -5));
-            auto easeDropActionLevelButton2 = EaseOut::create(dropActionLevelButton2, 1);
-            auto seqDrop = Sequence::create(easeDropActionLevelButton, easeDropActionLevelButton2, NULL);
-            auto actionRep = RepeatForever::create(seqDrop);
-            pointerNextLevel->runAction(actionRep);*/
         }
     
         //RESET FIRST TIME COMPLETED LEVEL FLAG

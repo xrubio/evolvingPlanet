@@ -1741,6 +1741,9 @@ std::string UIGameplayMap::getGoalIcon( const Goal * goal ) const
 
 void UIGameplayMap::moveGoalPopup(int index)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/goal.mp3");
+    }
     Goal * goal;
     if (index >= 0)
     {
@@ -2235,6 +2238,9 @@ void UIGameplayMap::createEndGameWindowLevel20(const LevelState & mode)
 
 void UIGameplayMap::createAchievementWindow(void)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/achievement.mp3");
+    }
     Size visibleSize = Director::getInstance()->getVisibleSize();
     int numCompletedAchievements = (int)GameLevel::getInstance()->getCompletedAchievements().size();
     auto window = MenuItemImage::create("gui/AchievementsBackground.png", "gui/AchievementsBackground.png",
@@ -2280,6 +2286,10 @@ void UIGameplayMap::createAchievementWindow(void)
 
 void UIGameplayMap::createInGameAchievementWindow(Achievement * ach)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/achievement.mp3");
+    }
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     auto window = MenuItemImage::create("gui/AchievementsBackground.png", "gui/AchievementsBackground.png",
                                         CC_CALLBACK_1(UIGameplayMap::hideAchievementWindowCallback, this));
@@ -2832,6 +2842,9 @@ void UIGameplayMap::updateLegend(bool visible)
     // if visible==true and not currently visible
     if(!_infoMap->isVisible())
     {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+        }
         _infoMap->setVisible(visible);
         getChildByName("legend")->setVisible(visible);
     }
