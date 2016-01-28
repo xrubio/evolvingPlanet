@@ -1547,6 +1547,9 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     }
     if (GameLevel::getInstance()->getGoals().at(i)->getGoalType() == Resources)
     {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+        }
         auto goalCollection = (ResourcesGoal*)GameLevel::getInstance()->getGoals().at(i);
         int graphResource = PopulationRes;
         Color4B colorGoal(GameData::getInstance()->getPlayerColor());
@@ -1586,6 +1589,9 @@ void UIGameplayMap::skipTutorial(Ref* pSender)
 {
     auto window = (MenuItemToggle*)pSender;
     auto skipWindow = (MenuItem*)window->getParent()->getChildByName("skipWindow");
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     if (skipWindow->isVisible())
     {
         skipWindow->runAction(FadeOut::create(0.3));
@@ -1602,6 +1608,9 @@ void UIGameplayMap::skipTutorial(Ref* pSender)
 
 void UIGameplayMap::skipTutorialConfirm(Ref* pSender)
 {
+    if (GameData::getInstance()->getSFX() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
+    }
     _tutorial->removeCurrentMessage();
     this->getChildByName("tutorial")->setVisible(false);
     this->getChildByName("tutorialNext")->setVisible(false);
@@ -1741,12 +1750,12 @@ std::string UIGameplayMap::getGoalIcon( const Goal * goal ) const
 
 void UIGameplayMap::moveGoalPopup(int index)
 {
-    if (GameData::getInstance()->getSFX() == true) {
-        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/goal.mp3");
-    }
     Goal * goal;
     if (index >= 0)
     {
+        if (GameData::getInstance()->getSFX() == true) {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/goal.mp3");
+        }
         goal = GameLevel::getInstance()->getGoals().at(index);
         // erase completed goal
         if(goal->getGoalType() == Resources)
@@ -2842,7 +2851,7 @@ void UIGameplayMap::updateLegend(bool visible)
     // if visible==true and not currently visible
     if(!_infoMap->isVisible())
     {
-        if (GameData::getInstance()->getSFX() == true) {
+        if (visible == true and GameData::getInstance()->getSFX() == true) {
             CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
         }
         _infoMap->setVisible(visible);
