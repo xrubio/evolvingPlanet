@@ -1695,7 +1695,6 @@ void UIGameplayMap::playLevel(void)
     bool launchTutorial = GameData::getInstance()->launchTutorial(GameLevel::getInstance()->getNumLevel());
     delete _tutorial;
     _tutorial = nullptr;
-
     disableTutorialGUI();
 
     if(launchTutorial)

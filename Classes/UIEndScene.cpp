@@ -31,6 +31,8 @@
 #include "UIMainMenu.h"
 #include "../libs/pugixml/pugixml.hpp"
 
+#include <audio/include/SimpleAudioEngine.h>
+
 Scene* UIEndScene::createScene()
 {
     auto scene = Scene::create();
@@ -242,6 +244,18 @@ bool UIEndScene::init()
         }
         child->runAction(Sequence::create(DelayTime::create(5.0f), MoveBy::create(60.0f, Vec2(0, -initPos)), nullptr));
     }
+    
+    if (GameData::getInstance()->getMusic() == true) {
+        CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+        if (GameData::getInstance()->getFirstTimeLevelCompleted() == 21)
+        {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/credits_die.mp3");
+        }
+        else
+        {
+            CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/credits_win.mp3");
+        }
+    }
 
     return true;
 }
@@ -253,6 +267,8 @@ void UIEndScene::onTouchesBegan(const vector<Touch*>& touches, Event* event)
     {
         return;
     }
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    
     auto scene = UIMainMenu::createScene();
     auto transition = TransitionFade::create(3.0f, scene);
     Director::getInstance()->replaceScene(transition);

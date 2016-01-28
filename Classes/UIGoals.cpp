@@ -194,8 +194,6 @@ bool UIGoals::init()
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarBorder.png");
     Director::getInstance()->getTextureCache()->addImage("gui/ProgressBarContent.png");
     Director::getInstance()->getTextureCache()->addImage("gui/GoalIcon.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmall.png");
-    Director::getInstance()->getTextureCache()->addImage("gui/MinusButtonSmallPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonSmall.png");
     Director::getInstance()->getTextureCache()->addImage("gui/PlusButtonSmallPressed.png");
     Director::getInstance()->getTextureCache()->addImage("gui/BlankAttributePointButtonSmall.png");

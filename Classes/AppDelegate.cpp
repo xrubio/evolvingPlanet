@@ -20,7 +20,9 @@
 #include "AppDelegate.h"
 #include "UIIntroToast.h"
 #include "GameData.h"
+#include "GameLevel.h"
 #include "LocalizedString.h"
+#include "UIGameplayMap.h"
 #include <string>
 
 #include <audio/include/SimpleAudioEngine.h>
@@ -189,7 +191,7 @@ void AppDelegate::applicationDidEnterBackground()
     UserDefault::getInstance()->setBoolForKey("music", GameData::getInstance()->getMusic());
     UserDefault::getInstance()->setBoolForKey("sfx", GameData::getInstance()->getSFX());
     UserDefault::getInstance()->flush();
-
+    
     // if you use SimpleAudioEngine, it must be pause
     CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
@@ -200,5 +202,5 @@ void AppDelegate::applicationWillEnterForeground()
     Director::getInstance()->startAnimation();
 
     // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+    CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }
