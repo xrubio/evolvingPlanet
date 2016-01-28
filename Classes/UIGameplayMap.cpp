@@ -641,7 +641,7 @@ bool UIGameplayMap::init()
     // offset between the 3 panels of attributes
     int tag = 0;
     float offsetAttrs = 0.182f;
-    float frameHeight = 0.0466f*visibleSize.height;
+    float frameHeight = 0.46f*bottomFrame->getContentSize().height - attBackgroundTitle->getContentSize().height * 1.2;//0.0466f*visibleSize.height;
     for (size_t j = 0; j < modifAttr.size(); j++)
     {   
         if(modifAttr.at(j)==-1)
@@ -2203,7 +2203,7 @@ void UIGameplayMap::createEndGameWindowLevel20(const LevelState & mode)
     continueButton->setPosition(14 * window->getContentSize().width / 18, 1.5 * window->getContentSize().height / 10);
     auto continueLabel = Label::createWithTTF(LocalizedString::create("CONTINUE"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     continueLabel->setColor(Color3B(205, 202, 207));
-    continueLabel->setPosition(continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
+    continueLabel->setPosition(1.1*continueButton->getContentSize().width / 2, continueButton->getContentSize().height / 2);
     continueButton->addChild(continueLabel);
     auto continueMenu = Menu::createWithItem(continueButton);
     continueMenu->setPosition(0, 0);
