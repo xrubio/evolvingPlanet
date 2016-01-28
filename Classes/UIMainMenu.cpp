@@ -513,7 +513,7 @@ void UIMainMenu::createWarningWindow(bool exit)
     _exit = exit;
     auto alertBackground = Sprite::create("gui/ConfigurationAlert.png");
     alertBackground->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
-    alertBackground->setName("warningPopup");
+    alertBackground->setName("warningWindow");
     
     auto alertLabel = Label::createWithTTF(LocalizedString::create("WARNING"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     alertLabel->setColor(Color3B(255, 255, 255));
