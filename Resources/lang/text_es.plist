@@ -20,7 +20,7 @@ Los bots están respondiendo a tus órdenes. Necesitamos que se dispersen hacia 
 	<key>CONTEXT_LEVEL_2</key>
 	<string>El éxito de los Lovans les permitió poblar muchos otros ecosistemas.
 
-Lo hicieron de manera similar a nuestros ancestros, que florecieron por todo África subsahariana usando distintas estrategias, desde la caza a la recolección de plantas comestibles.</string>
+Lo hicieron de manera similar a nuestros ancestros, que florecieron por toda África subsahariana usando distintas estrategias, desde la caza a la recolección de plantas comestibles.</string>
 
 	<key>BRIEF_LEVEL_3</key>
 	<string>Día de campaña 10
@@ -137,7 +137,7 @@ La competición no es la única consecuencia de la explotación de recursos. Hem
 
 Intercambiaron minerales y madera; esta redistribución probablemente benefició a ambas poblaciones.</string>
     <key>CONTEXT_LEVEL_13</key>
-    <string>Esto es fascinante, parece que nuestros chicos consiguieren minerales en esta región mediante el trueque por madera. Los humanos han comerciado por cualquier cosa desde sus inicios, y los Lovan no fueron distintos al respecto.
+    <string>Esto es fascinante, parece que nuestros chicos consiguieron minerales en esta región mediante el trueque por madera. Los humanos han comerciado por cualquier cosa desde sus inicios, y los Lovan no fueron distintos al respecto.
 
 Tus bots necesitan aprender las complejidades del comercio antes de superar esta misión.</string>
         
@@ -180,7 +180,7 @@ Un incremento de población a menudo comporta un uso más intensivo del entorno.
 En esta región los Lovan combinaron Terraformación con Explotación a gran escala de un bosque. Pese a ello, consiguieron evitar sobreexplotar las riquezas de esta región.</string>
 
     <key>CONTEXT_LEVEL_17</key>
-    <string>Las primeras comunidades agricultoras no vivían solo sus rebaños y plantaciones. El medio ambiente proporcionaba mucha comida, así que por qué los deberías descartar?
+    <string>Las primeras comunidades agricultoras no vivían solo de sus rebaños y plantaciones. El medio ambiente proporcionaba mucha comida, así que por qué los deberías descartar?
 
 Pero esto tiene un coste: la agricultura implica más gente. Esto puede generar la sobreexplotación del entorno y generar una situación donde todo el mundo pierde.
 
@@ -206,18 +206,18 @@ Estos son los últimos latidos de los Lovan: desaparecieron junto con el resto d
     <key>CONTEXT_LEVEL_19</key>
     <string>Aquí nos encontramos, después de tantos desafíos: el final de esta historia fascinante. La falta de tierras cultivables generó muchas guerras. Las pocas posibilidades que tenía la población restante se malograron cuando los grupos se atacaron los unos a los otros.
 
-Pese a todo, los Lovan sobrevivieron algunos décadas más. Estudiaremos el último conflicto en el que se vieron involucrados. Necesitarás incrementar tu población mediante Terraformación antes que otro grupo invada la zona. Ten en cuenta que esta situación desesperada generó grupos extremadamente agresivos, así que la Influencia cultural no es posible en esta misión.</string>
+Pese a todo, los Lovan sobrevivieron algunas décadas más. Estudiaremos el último conflicto en el que se vieron involucrados. Necesitarás incrementar tu población mediante Terraformación antes de que otro grupo invada la zona. Ten en cuenta que esta situación desesperada generó grupos extremadamente agresivos, así que la Influencia cultural no es posible en esta misión.</string>
 
     <key>BRIEF_LEVEL_20</key>
     <string>Día de campaña 90
     
 Buen trabajo, el experimento ha finalizado!
     
-Sin embargo, ha pasado algo inesperado. Los bots deberían haber desaparecido después de la última misión, pero aún están ahí. Deberías desactivar la población antes que dejamos Kepler.</string>
+Sin embargo, ha pasado algo inesperado. Los bots deberían haber desaparecido después de la última misión, pero aún están ahí. Deberías desactivar la población antes de que dejemos Kepler.</string>
     <key>CONTEXT_LEVEL_20</key>
     <string>No sé cómo explicar esto: los bots ignoraron nuestras últimas órdenes y ahora mismo están buscando algún territorio dónde poder sobrevivir.
 
-Ya tenemos nuestros resultados finales, y técnicamente deberíamos destruir los bots que quedan antes de dejar el planeta. No sé cómo lo ves, pero más que finalizar un experimento me da más la sensación de cometer un genocidio.
+Ya tenemos nuestros resultados finales, y técnicamente deberíamos destruir los bots que quedan antes de abandonar el planeta. No sé cómo lo ves, pero más que finalizar un experimento me da más la sensación de cometer un genocidio.
 
 No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lovan una nueva oportunidad. Profesor, es tu decisión.</string>
 
@@ -236,7 +236,7 @@ No puedes fallar esta misión: o acabas la Historia otra vez, o les das a los Lo
     <key>LEVEL_7_STORY</key>
 	<string>Pero no estamos solos...</string>
     <key>LEVEL_8_STORY</key>
-	<string>Los Guías nos vigilan y proveen por nosotros</string>
+	<string>Los Guías nos vigilan y se preocupan por nosotros</string>
     <key>LEVEL_9_STORY</key>
 	<string>Los Zho'll triunfarán donde otros fallaron</string>
     <key>LEVEL_10_STORY</key>

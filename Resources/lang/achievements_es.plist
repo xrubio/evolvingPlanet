@@ -47,7 +47,7 @@ Rosalind Franklin fue parte del equipo que descubrió la estructura del ADN. Su 
     <key>DESCR_LVL2_Perfect</key>
 	<string>Misión 2: Consigue 3 estrellas</string>
     <key>ACH_LVL2_2</key>
-    <string>Australopitecus, Homo Habilis o Homo Neandertal fueron distintas especies de homínidos.
+    <string>Australopitecus, Homo Habilis u Homo Neandertal fueron distintas especies de homínidos.
     
 Eran muy diferentes, pero todas ellas compartían el hecho de ser bípedos, tener dentaduras pequeñas y grandes cerebros. El Homo Sapiens es el único homínido aún vivo.</string>
 
@@ -211,14 +211,14 @@ Sus constructores formaban parte de la cultura polinesia que colonizó esta zona
 	<string>Misión 8: Consigue 3 estrellas</string>
     <key>ACH_LVL8_2</key>
     <string>Uno de los primeros documentales hechos explicaba a los occidentales la vida cazadora-recolectora.
-"Nanuk, el esquimal" fue filmada por Robert J. Flaherty en 1922. Narraba la lucha por la supervivencia de una familia de Inuit viviendo en las extremas condiciones del Ártico.</string>
+"Nanuk, el esquimal" fue filmada por Robert J. Flaherty en 1922. Narraba la lucha por la supervivencia de una familia Inuit viviendo en las extremas condiciones del Ártico.</string>
 
     <key>TITLE_LVL8_EPsLeft</key>
     <string>Hielo y Fuego</string>
     <key>DESCR_LVL8_EPsLeft</key>
     <string>Misión 8: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL8_3</key>
-    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglúes, hechos de hielo y nieve, son el único motivo por los humanos pueden vivir en esta zona; incrementan la temperatura hasta unos confortables 16 grados.</string>
+    <string>La temperatura en el Ártico puede descender hasta los -45 grados Celsius. Los iglúes, hechos de hielo y nieve, son el único motivo por el que los humanos pueden vivir en esta zona; incrementan la temperatura hasta unos confortables 16 grados.</string>
 
     <!-- LVL 9 -->
     <key>TITLE_LVL9_Accomplished</key>
@@ -271,7 +271,7 @@ Es uno de los más renombrados astrofísicos y divulgadores de la Ciencia.</stri
     <key>ACH_LVL10_3</key>
     <string>"Cuando vimos tantas ciudades y poblados construidos en el agua y en tierra nos maravillamos (...) algunos de nuestros soldados llegaron a preguntarse si las cosas que veíamos eran un sueño."
     
-Estas son las palabras de Bernal Díaz del Castillo sobre Tenochtitklan, capital de los aztecas. Participó como soldado en la conquista de México por Hernán Cortés durante 1519.</string>
+Estas son las palabras de Bernal Díaz del Castillo sobre Tenochtitlán, capital de los aztecas. Participó como soldado en la conquista de México por Hernán Cortés durante 1519.</string>
     
     <!-- LVL 11 -->
     <key>TITLE_LVL11_Accomplished</key>
@@ -320,7 +320,7 @@ Si visitas ahora mismo cualquier país europeo vas a ver más árboles que los q
     <key>ACH_LVL12_2</key>
     <string>La mayoría de la población del Himalaya es Budista. Los practicantes de esta religión deberían quemar a sus muertos, pero dónde se supone que vas a encontrar madera a 4.000 metros de altura?
 
-Practican un ritual distinto llamado Entierro Celestial: los cuerpos se depositan en un pico, dónde son consumidos por aves carroñeros como los buitres.</string>
+Practican un ritual distinto llamado Entierro Celestial: los cuerpos se depositan en un pico, dónde son consumidos por aves carroñeras como los buitres.</string>
 
     <key>TITLE_LVL12_EPsLeft</key>
     <string>TIENES AGALLAS?</string>
@@ -374,7 +374,7 @@ El estudio de sus restos ha proporcionado una cantidad de información incalcula
     <key>ACH_LVL14_2</key>
     <string>La obsidiana es uno de los materiales más valiosos de la Prehistoria.
 
-Este cristal volcánico se puede para crear objetos muy afilados, como puntas de flecha y cuchillos.</string>
+Este cristal volcánico se puede usar para crear objetos muy afilados, como puntas de flecha y cuchillos.</string>
 
     <key>TITLE_LVL14_Discovery</key>
     <string>LO QUIERES?</string>
@@ -383,7 +383,7 @@ Este cristal volcánico se puede para crear objetos muy afilados, como puntas de
     <key>ACH_LVL14_3</key>
     <string>Los arqueólogos pueden determinar el campo volcánico en el que se formó un fragmento de obsidiana.
     
-Esta información es muy útil como indicador de comercio prehistórico. Se han hallado objetos de obsidiana a yacimientos situados a miles de quilómetros de su lugar de formación.</string>
+Esta información es muy útil como indicador de comercio prehistórico. Se han hallado objetos de obsidiana en yacimientos situados a miles de quilómetros de su lugar de formación.</string>
 
     <!-- LVL 15 -->
     <key>TITLE_LVL15_Accomplished</key>
@@ -484,7 +484,7 @@ Ha recogido evidencia de miles de estudios para mostrar los peligrosos efectos q
     <key>ACH_LVL18_2</key>
     <string>Una leyenda dice que la llegada a la Luna fue en realidad una conspiración, y que en realidad la misión fue un fraude orquestado por Stanley Kubrick en la Tierra.
 
-En realidad Kubrick y la NASA sólo compartieron cámaras. Gracias al modelo usado por la agencia espacial se pudieron rodar algunas escenas de "Barry Lindon" tan sólo usando la luz de velas.</string>
+En realidad Kubrick y la NASA sólo compartieron cámaras. Gracias al modelo usado por la agencia espacial se pudieron rodar algunas escenas de "Barry Lyndon" tan sólo usando la luz de velas.</string>
 
     <key>TITLE_LVL18_Discovery</key>
     <string>CURIOSIDAD</string>

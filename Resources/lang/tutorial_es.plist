@@ -118,7 +118,7 @@ Necesitas presionarlo y arrastrar el área hacia la zona en la que quieras mejor
     <key>LEVEL16M2</key>
     <string>La zona destacada es suficientemente rica para ser transformada en tierras cultivables usando este atributo.</string>
     <key>LEVEL16M3</key>
-    <string>Tu población prosperará en una zona terraformada, pero necesitas llegar a ella antes que esto suceda.</string>
+    <string>Tu población prosperará en una zona terraformada, pero necesitas llegar a ella antes para que esto suceda.</string>
 </dict>
 </plist>
 

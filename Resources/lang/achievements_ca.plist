@@ -212,7 +212,7 @@ Els seus constructors formaven part de la cultura polinèsia que va colonitzar a
 	<string>Missió 8: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL8_2</key>
     <string>Un dels primers documentals mai fets explicava als occidentals la vida caçadora-recol·lectora.
-"Nanuk, l'esquimal" va ser filmada per Robert J. Flaherty al 1922. Narrava la lluita per la supervivència d'una família d'Innuit vivint sota les extremes condicions de l'Àrtic.</string>
+"Nanuk, l'esquimal" va ser filmada per Robert J. Flaherty al 1922. Narrava la lluita per la supervivència d'una família Innuit vivint sota les extremes condicions de l'Àrtic.</string>
 
     <key>TITLE_LVL8_EPsLeft</key>
     <string>Gel i Foc</string>
@@ -272,7 +272,7 @@ Entendre aquest fet ens ajudaria a comprendre els perills als que ens enfrontem 
     <key>ACH_LVL10_3</key>
     <string>"Quan vam veure tantes ciutats i pobles construïts a l'aigua i a terra ens vam meravellar (...) alguns dels nostres soldats van arribar a preguntar-se si les coses que estàvem veient eren un somni."
    
-Aquestes són les paraules de Bernal Díaz del Castillo sobre Tenochtitklan, capital dels asteques. Va participar com a soldat en la conquesta de Mèxic per Hernán Cortés al 1519.</string>
+Aquestes són les paraules de Bernal Díaz del Castillo sobre Tenochtitlan, capital dels asteques. Va participar com a soldat en la conquesta de Mèxic per Hernán Cortés al 1519.</string>
     
     <!-- LVL 11 -->
     <key>TITLE_LVL11_Accomplished</key>
@@ -486,7 +486,7 @@ Ha recollit evidència de milers d'estudis per tal de mostrar els perillosos efe
     <key>ACH_LVL18_2</key>
     <string>Una llegenda diu que l'arribada a la Lluna va ser en realitat una conspiració, i que de fet la missió va ser un frau dirigit per Stanley Kubrick a la Terra.
 
-En realitat Kubrick i la NASA només van compartir càmeres. Gràcies al model emprat per l'agència espacial es van poder filmar algunes escenes de "Barry Lindon" fent servir només la llum de les espelmes.</string>
+En realitat Kubrick i la NASA només van compartir càmeres. Gràcies al model emprat per l'agència espacial es van poder filmar algunes escenes de "Barry Lyndon" fent servir només la llum de les espelmes.</string>
 
     <key>TITLE_LVL18_Discovery</key>
     <string>CURIOSITAT</string>
