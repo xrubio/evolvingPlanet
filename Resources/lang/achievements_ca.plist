@@ -323,10 +323,10 @@ Si visites ara mateix qualsevol país europeu veuràs més arbres que els que hi
 
 Practiquen un ritual diferent anomenat Enterrament Celestial: els cossos són dipositats en un cim, a on són consumits per aus carronyaires com els voltors.</string>
 
-    <key>TITLE_LVL12_NoBoosts</key>
+    <key>TITLE_LVL12_EPsLeft</key>
     <string>TENS GANYES?</string>
-    <key>DESCR_LVL12_NoBoosts</key>
-    <string>Missió 12: Supera-la sense Augments</string>
+    <key>DESCR_LVL12_EPsLeft</key>
+    <string>Missió 12: Passar-la estalviant 10 EPs</string>
     <key>ACH_LVL12_3</key>
     <string>A quina profunditat pots arribar sota l'aigua? Els Sama-Bajau poden capturar un peix a 20 m. de profunditat mentre aguanten la respiració gairebé 3 minuts seguits.</string>
 
@@ -377,10 +377,10 @@ L'estudi de les seves restes ha proporcionat una quantitat d'informació increï
     
 Aquest cristall volcànic es pot servir per a crear objectes molt afilats com puntes de fletxa i ganivets.</string>
 
-    <key>TITLE_LVL14_NoBoosts</key>
+    <key>TITLE_LVL14_Discovery</key>
     <string>HO VOLS?</string>
-    <key>DESCR_LVL14_NoBoosts</key>
-    <string>Missió 14: Supera-la sense Augments</string>
+    <key>DESCR_LVL14_Discovery</key>
+    <string>Missió 14: Arriba a la muntanya sudest</string>
     <key>ACH_LVL14_3</key>
     <string>Els arqueòlegs poden determinar el camp volcànic a on es va crear un fragment d'obsidiana.
 
@@ -434,10 +434,10 @@ Aquestes domesticació no sols va afectar a plantes i animals, sinó també als 
 
 Amb els anys les temperatures van anar baixant fins que ja no va ser possible. D'altra banda, el ràpid canvi climàtic generats pels humans podria canviar aquesta situació en les properes dècades.</string>
  
-    <key>TITLE_LVL16_NoBoosts</key>
+    <key>TITLE_LVL16_EPsLeft</key>
     <string>KLAATU BARADA NIKTO</string>
-    <key>DESCR_LVL16_NoBoosts</key>
-    <string>Missió 16: Supera-la sense Augments</string>
+    <key>DESCR_LVL16_EPsLeft</key>
+    <string>Missió 16: Passar-la estalviant 10 EPs</string>
     <key>ACH_LVL16_3</key>
     <string>Fas servir Mozilla Firefox? Escriu 'about:robots' a la barra de direccions per a veure un secret força friki!</string>
  

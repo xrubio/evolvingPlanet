@@ -125,7 +125,7 @@ bool UIIntroStory::init()
     logo->setPosition(Vec2(0.5f*visibleSize.width, 0.7f*visibleSize.height));
     logo->setName("logo");
     this->addChild(logo, 5);
-    logo->runAction(Sequence::create(DelayTime::create(50.0f), FadeIn::create(4.0f), DelayTime::create(4.0f), CallFunc::create(this, callfunc_selector(UIIntroStory::toMap)), NULL));
+    logo->runAction(Sequence::create(DelayTime::create(50.0f), FadeIn::create(4.0f), DelayTime::create(6.0f), FadeOut::create(5.0f), CallFunc::create(this, callfunc_selector(UIIntroStory::toMap)), NULL));
     
     return true;
 }
@@ -141,6 +141,6 @@ void UIIntroStory::toMap()
     
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     auto scene = UIProgressMap::createScene();
-    Director::getInstance()->replaceScene(TransitionFade::create(2.0f, scene));
+    Director::getInstance()->replaceScene(TransitionFade::create(3.0f, scene));
 }
 

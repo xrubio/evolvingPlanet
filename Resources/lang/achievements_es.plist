@@ -322,10 +322,10 @@ Si visitas ahora mismo cualquier país europeo vas a ver más árboles que los q
 
 Practican un ritual distinto llamado Entierro Celestial: los cuerpos se depositan en un pico, dónde son consumidos por aves carroñeros como los buitres.</string>
 
-    <key>TITLE_LVL12_NoBoosts</key>
+    <key>TITLE_LVL12_EPsLeft</key>
     <string>TIENES AGALLAS?</string>
-    <key>DESCR_LVL12_NoBoosts</key>
-    <string>Misión 12: Pásala sin Aumentos</string>
+    <key>DESCR_LVL12_EPsLeft</key>
+    <string>Misión 12: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL12_3</key>
     <string>A qué profundidad bajo el agua puedes llegar? Los Sama-Bajau pueden capturar un pez a 20 m. de profundidad mientras aguantan la respiración por casi 3 minutos.</string>
 
@@ -376,10 +376,10 @@ El estudio de sus restos ha proporcionado una cantidad de información incalcula
 
 Este cristal volcánico se puede para crear objetos muy afilados, como puntas de flecha y cuchillos.</string>
 
-    <key>TITLE_LVL14_NoBoosts</key>
+    <key>TITLE_LVL14_Discovery</key>
     <string>LO QUIERES?</string>
-    <key>DESCR_LVL14_NoBoosts</key>
-    <string>Misión 14: Pásala sin Aumentos</string>
+    <key>DESCR_LVL14_Discovery</key>
+    <string>Misión 14: Llega a la montaña del sureste</string>
     <key>ACH_LVL14_3</key>
     <string>Los arqueólogos pueden determinar el campo volcánico en el que se formó un fragmento de obsidiana.
     
@@ -432,10 +432,10 @@ Esta domesticación no sólo afectó a plantas y animales, sino también a los h
 
 Con los años las temperaturas declinaron hasta que esto ya no fue posible. Sin embargo, el rápido cambio climático generado por los humanos podría cambiar esto en las próximas décadas.</string>
  
-    <key>TITLE_LVL16_NoBoosts</key>
+    <key>TITLE_LVL16_EPsLeft</key>
     <string>KLAATU BARADA NIKTO</string>
-    <key>DESCR_LVL16_NoBoosts</key>
-    <string>Misión 16: Pásala sin Aumentos</string>
+    <key>DESCR_LVL16_EPsLeft</key>
+    <string>Misión 16: Superarla ahorrando 10 EPs</string>
     <key>ACH_LVL16_3</key>
     <string>Usas Mozilla Firefox? Escribe 'about:robots' en la barra de direcciones para ver un secreto bastante friki!</string>
  
