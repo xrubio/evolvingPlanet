@@ -62,6 +62,7 @@ bool UIGameplayMap::init()
         return false;
     }
 
+    setName("gameplayMap");
     _tutorial = nullptr;
     Director::getInstance()->setAnimationInterval(1.0 / 60);
     
