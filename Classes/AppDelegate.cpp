@@ -1,4 +1,5 @@
 /*
+
  * Copyright (c) 2015
  * MURPHY'S TOAST GAMES
  * 
@@ -194,6 +195,13 @@ void AppDelegate::applicationDidEnterBackground()
     
     // if you use SimpleAudioEngine, it must be pause
     CocosDenshion::SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
+
+    Scene* scene = Director::getInstance()->getRunningScene();
+    UIGameplayMap * gameLayer = scene->getChildByName<UIGameplayMap*>("gameplayMap");
+    if (gameLayer != 0)
+    {
+        gameLayer->pauseGame();
+    }
 }
 
 // this function will be called when the app is active again
@@ -204,3 +212,4 @@ void AppDelegate::applicationWillEnterForeground()
     // if you use SimpleAudioEngine, it must resume here
     CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }
+
