@@ -114,6 +114,33 @@ body
 	width: 100%;
 }
 
+.langText
+{
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 20pt;
+	line-height: 150%;
+    color: #cccccc;
+	text-transform: none;
+    max-width: 90%;
+    text-align: right;
+    margin: 0 auto;
+    margin-bottom: 50px;    
+    text-shadow: 1px 1px #222222;
+}
+
+.langTextSelected
+{
+    font-family: Arial, "times new roman", times, roman, serif;
+	font-size: 22pt;
+	line-height: 150%;
+    color: #ffffff;
+	text-transform: none;
+    max-width: 90%;
+    text-align: right;
+    margin: 0 auto;
+    margin-bottom: 50px;    
+    text-shadow: 1px 1px #222222;
+}
 
 .bodytext
 {
@@ -246,7 +273,7 @@ IMG
 A, A:visited
 {
 	text-decoration: none;
-	color: #f15340;
+	color: #cccccc;
 }
 
 A:hover
