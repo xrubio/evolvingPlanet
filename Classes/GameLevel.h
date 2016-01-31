@@ -168,7 +168,7 @@ public:
     int getEvolutionPointsFreq(void);
     Achievement* getInGameAchievement(void);
     void setInGameAchievement(Achievement *ach);
-    bool getPowersUsed(void);
+    bool getPowersUsed(void) const;
     // notify that some power has been used
     void powerUsed();
     int getRegenerationRate(void);
@@ -276,7 +276,7 @@ private:
     std::vector<std::vector<pair<int, cocos2d::Point> > > _agentFutureDirections;
     
     Achievement* _inGameAchievement = nullptr;
-    bool _powersUsed = false;
+    bool _powersUsed;
 
     GameLevel();
 

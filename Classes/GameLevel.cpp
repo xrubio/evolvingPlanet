@@ -46,7 +46,7 @@ GameLevel* GameLevel::getInstance()
     return gamelevelInstance;
 }
 
-GameLevel::GameLevel() : _play(false)
+GameLevel::GameLevel() : _play(false), _powersUsed(false)
 {
 }
 
@@ -431,7 +431,7 @@ void GameLevel::setInGameAchievement(Achievement *ach)
     _inGameAchievement = ach;
 }
 
-bool GameLevel::getPowersUsed(void)
+bool GameLevel::getPowersUsed(void) const
 {
     return _powersUsed;
 }
@@ -506,6 +506,7 @@ void GameLevel::resetLevel(void)
 
     currentTime = 0;
     numLevel = 0;
+    _powersUsed = false;
     _agentAttributes.clear();
     _modifiableAtt.clear();
     _modifiableAtt.resize(3);
