@@ -251,7 +251,7 @@ bool UIConfiguration::init()
     //slowButton->setScale(1.5f);
     slowButton->setPosition(Vec2(10 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     slowButton->setName("slowButton");
-    auto slowLabel = Label::createWithTTF(LocalizedString::create("SLOW"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto slowLabel = Label::createWithTTF(LocalizedString::create("SLOW"), "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
     slowLabel->setColor(Color3B(205, 202, 207));
     slowLabel->setPosition(slowButton->getContentSize().width / 2, slowButton->getContentSize().height / 2);
     slowButton->addChild(slowLabel);
@@ -262,7 +262,7 @@ bool UIConfiguration::init()
     //mediumButton->setScale(1.5f);
     mediumButton->setPosition(Vec2(16 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     mediumButton->setName("mediumButton");
-    auto mediumLabel = Label::createWithTTF(LocalizedString::create("MEDIUM"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto mediumLabel = Label::createWithTTF(LocalizedString::create("MEDIUM"), "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
     mediumLabel->setColor(Color3B(205, 202, 207));
     mediumLabel->setPosition(mediumButton->getContentSize().width / 2, mediumButton->getContentSize().height / 2);
     mediumButton->addChild(mediumLabel);
@@ -273,7 +273,7 @@ bool UIConfiguration::init()
     //fastButton->setScale(1.5f);
     fastButton->setPosition(Vec2(22 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
     fastButton->setName("fastButton");
-    auto fastLabel = Label::createWithTTF(LocalizedString::create("FAST"), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto fastLabel = Label::createWithTTF(LocalizedString::create("FAST"), "fonts/BebasNeue.otf", 45 * GameData::getInstance()->getRaConversion());
     fastLabel->setColor(Color3B(205, 202, 207));
     fastLabel->setPosition(fastButton->getContentSize().width / 2, fastButton->getContentSize().height / 2);
     fastButton->addChild(fastLabel);

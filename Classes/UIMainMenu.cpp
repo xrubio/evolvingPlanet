@@ -146,8 +146,8 @@ bool UIMainMenu::init()
         auto exitButton = MenuItemImage::create(
                                                 "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
         exitButton->setAnchorPoint(Vec2(0, 0.5));
-        exitButton->setPosition(Vec2((21 * visibleSize.width / 25), (1 * visibleSize.height / 18)));
-        auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+        exitButton->setPosition(Vec2((21 * visibleSize.width / 25), (1 * visibleSize.height / 16)));
+        auto exitLabel = Label::createWithTTF(LocalizedString::create("EXIT"), "fonts/BebasNeue.otf", 55 * GameData::getInstance()->getRaConversion());
         exitLabel->setColor(Color3B(73, 109, 118));
         exitLabel->setPosition(exitButton->getContentSize().width / 2, exitButton->getContentSize().height / 2);
         exitButton->addChild(exitLabel);
@@ -159,8 +159,8 @@ bool UIMainMenu::init()
     auto creditsButton = MenuItemImage::create(
                                                "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuCreditsCallback, this));
     creditsButton->setAnchorPoint(Vec2(0, 0.5));
-    creditsButton->setPosition(Vec2((21 * visibleSize.width / 25), (pos * visibleSize.height / 18)));
-    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    creditsButton->setPosition(Vec2((21 * visibleSize.width / 25), (pos * visibleSize.height / 16)));
+    auto credLabel = Label::createWithTTF(LocalizedString::create("CREDITS"), "fonts/BebasNeue.otf", 55 * GameData::getInstance()->getRaConversion());
     credLabel->setColor(Color3B(73, 109, 118));
     credLabel->setPosition(creditsButton->getContentSize().width / 2, creditsButton->getContentSize().height / 2);
     creditsButton->addChild(credLabel);
@@ -170,8 +170,8 @@ bool UIMainMenu::init()
     auto configurationButton = MenuItemImage::create(
         "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuConfigurationCallback, this));
     configurationButton->setAnchorPoint(Vec2(0, 0.5));
-    configurationButton->setPosition(Vec2((21 * visibleSize.width / 25), ((pos + 1) * visibleSize.height / 18)));
-    auto confLabel = Label::createWithTTF(LocalizedString::create("OPTIONS"), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
+    configurationButton->setPosition(Vec2((21 * visibleSize.width / 25), ((pos + 1) * visibleSize.height / 16)));
+    auto confLabel = Label::createWithTTF(LocalizedString::create("OPTIONS"), "fonts/BebasNeue.otf", 55 * GameData::getInstance()->getRaConversion());
     confLabel->setColor(Color3B(73, 109, 118));
     confLabel->setPosition(configurationButton->getContentSize().width / 2, configurationButton->getContentSize().height / 2);
     configurationButton->addChild(confLabel);
