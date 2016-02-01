@@ -371,7 +371,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         attLabel->setColor(Color3B(211, 230, 236));
         attLabel->setAnchorPoint(Vec2(0, 0.5));
         attLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        attLabel->enableGlow(Color4B(150,150,200,150));
+        //attLabel->enableGlow(Color4B(150,150,200,150));
         layout->addChild(attLabel);
     }
     
@@ -394,7 +394,7 @@ void UIGoals::setLevelGoals(Layout* layout)
         powerLabel->setColor(Color3B(211, 230, 236));
         powerLabel->setAnchorPoint(Vec2(0, 0.5));
         powerLabel->cocos2d::Node::setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-        powerLabel->enableGlow(Color4B(150,150,200,150));
+        //powerLabel->enableGlow(Color4B(150,150,200,150));
         layout->addChild(powerLabel);
     }
     //POWERS NOT AVAILABLE
