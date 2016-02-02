@@ -90,9 +90,9 @@ bool UITransitionScene::init()
         int diff = (visibleSize.height - imageUnlocked->getContentSize().height*visibleSize.width / imageUnlocked->getContentSize().width)/2;
         this->addChild(imageUnlocked);
 
-        auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
+        auto storyLine = Label::createWithTTF(LocalizedString::create(("LEVEL_" + to_string(GameData::getInstance()->getFirstTimeLevelCompleted()) + "_STORY").c_str(), "text"), "fonts/arial.ttf", 55 * GameData::getInstance()->getRaConversion());
         storyLine->setColor(Color3B(216, 229, 235));
-        storyLine->setMaxLineWidth(0.7f*visibleSize.width);
+        storyLine->setMaxLineWidth(0.9f*visibleSize.width);
         storyLine->setAnchorPoint(Vec2(0.0, 0.0));
         storyLine->enableShadow();
         storyLine->setPosition(Vec2(0.05f*visibleSize.width, 1.05*diff));
@@ -101,7 +101,7 @@ bool UITransitionScene::init()
      
         this->addChild(storyLine);
         
-        auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+        auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
         tapToContinue->setAnchorPoint(Vec2(0, 0));
         tapToContinue->setColor(Color3B::WHITE);
         tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);

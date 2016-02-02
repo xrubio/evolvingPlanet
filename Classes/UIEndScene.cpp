@@ -43,7 +43,7 @@ Scene* UIEndScene::createScene()
 
 void UIEndScene::addJob(const std::string & jobName, float offset)
 {
-    auto label = Label::createWithTTF(LocalizedString::create(jobName.c_str()), "fonts/BebasNeue.otf", 65 * GameData::getInstance()->getRaConversion());
+    auto label = Label::createWithTTF(LocalizedString::create(jobName.c_str()), "fonts/BebasNeue.otf", 70 * GameData::getInstance()->getRaConversion());
     label->setColor(Color3B(255, 255, 255));
     label->setAnchorPoint(Vec2(0.5, 0.5));
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -54,7 +54,7 @@ void UIEndScene::addJob(const std::string & jobName, float offset)
 
 void UIEndScene::addName(const std::string & name, float offset)
 {
-    auto label = Label::createWithTTF(name, "fonts/arial.ttf", 45 * GameData::getInstance()->getRaConversion());
+    auto label = Label::createWithTTF(name, "fonts/arial.ttf", 55 * GameData::getInstance()->getRaConversion());
     label->setColor(Color3B(255, 255, 255));
     label->setAnchorPoint(Vec2(0.5, 0.5));
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -66,7 +66,7 @@ void UIEndScene::addName(const std::string & name, float offset)
 
 void UIEndScene::addAcknowledgement(const std::string & name, float offset)
 {
-    auto label = Label::createWithTTF(name, "fonts/arial.ttf", 35 * GameData::getInstance()->getRaConversion());
+    auto label = Label::createWithTTF(name, "fonts/arial.ttf", 40 * GameData::getInstance()->getRaConversion());
     label->setColor(Color3B(255, 255, 255));
     label->setAnchorPoint(Vec2(0.5, 0.5));
     Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -114,13 +114,13 @@ bool UIEndScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     
-    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
+    auto tapToContinue = Label::createWithTTF(string(LocalizedString::create("TAP_TO_CONTINUE")), "fonts/BebasNeue.otf", 50 * GameData::getInstance()->getRaConversion());
     tapToContinue->setAnchorPoint(Vec2(0, 0));
     tapToContinue->setColor(Color3B::WHITE);
     tapToContinue->setPosition(visibleSize.width - tapToContinue->getContentSize().width, tapToContinue->getContentSize().height);
     tapToContinue->setOpacity(0);
     tapToContinue->setName("tap");
-    tapToContinue->runAction(Sequence::create(DelayTime::create(63.0f), FadeIn::create(2.0f), nullptr));
+    tapToContinue->runAction(Sequence::create(DelayTime::create(77.0f), FadeIn::create(2.0f), nullptr));
     this->addChild(tapToContinue);
     
         
@@ -136,9 +136,9 @@ bool UIEndScene::init()
     theEndLabel->runAction(FadeIn::create(3.0f));
     this->addChild(theEndLabel);
 
-    float offsetJob = 100.0f*GameData::getInstance()->getRaConversion();
-    float offsetName = 50.0f*GameData::getInstance()->getRaConversion();
-    float offsetAck = 40.0f*GameData::getInstance()->getRaConversion();
+    float offsetJob = 120.0f*GameData::getInstance()->getRaConversion();
+    float offsetName = 55.0f*GameData::getInstance()->getRaConversion();
+    float offsetAck = 45.0f*GameData::getInstance()->getRaConversion();
 
     float initPos = -offsetJob;
     // team
@@ -211,7 +211,7 @@ bool UIEndScene::init()
     initPos -= offsetName;
     addName("Wikimedia Commons", initPos);
     initPos -= offsetName;
-    addName("Trajecte Final members", initPos);
+    addName("Trajecte Final", initPos);
     initPos -= offsetName;
     addName(LocalizedString::create("THANKS_PEOPLE"), initPos);    
     initPos -= offsetJob;
@@ -242,7 +242,7 @@ bool UIEndScene::init()
         {
             continue;
         }
-        child->runAction(Sequence::create(DelayTime::create(5.0f), MoveBy::create(60.0f, Vec2(0, -initPos)), nullptr));
+        child->runAction(Sequence::create(DelayTime::create(7.0f), MoveBy::create(70.0f, Vec2(0, -initPos)), nullptr));
     }
     
     if (GameData::getInstance()->getMusic() == true) {
