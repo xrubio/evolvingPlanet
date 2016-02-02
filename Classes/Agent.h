@@ -60,7 +60,7 @@ public:
 
     int getId(void);
     void setId(int i);
-    int getLife(void);
+    int getLife(void) const;
     // maybe we could set init life as default and then only implement decreaseLife(int amount)
     void setLife(int lf);
     int getType(void);

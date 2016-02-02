@@ -63,7 +63,6 @@ public:
     // pause completely the game
     void pauseGame();
 
-    void attributeSelectionCallback(Ref* pSender);
     void quitCallback(Ref* pSender);
     void retryCallback(Ref* pSender);
     void retryOkCallback(Ref* pSender);
@@ -135,8 +134,6 @@ private:
     Sprite* evolutionPointsIcon;
 
     vector<UIPower*> powerButtons;
-
-    int agentColor = 0;
 
     std::vector<Color4B> _agentsTextureData;
     Texture2D _agentsTexture;

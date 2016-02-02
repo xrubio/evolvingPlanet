@@ -1300,22 +1300,6 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     }
 }
 
-void UIGameplayMap::attributeSelectionCallback(Ref* pSender)
-{
-    MenuItem* lifeButton = (MenuItem*)pSender;
-    lifeButton->setEnabled(false);
-    agentColor = lifeButton->getTag();
-    Menu* attributesMenu = (Menu*)lifeButton->getParent();
-    for(int i = 0; i < attributesMenu->getChildren().size(); i++)
-    {
-        if (((MenuItem*)attributesMenu->getChildren().at(i))->getTag() != agentColor)
-        {
-            auto item = ((MenuItem*)attributesMenu->getChildren().at(i));
-            item->setEnabled(true);
-        }
-    }
-}
-    
 void UIGameplayMap::quitCallback(Ref* pSender)
 {
     if (GameData::getInstance()->getSFX() == true) {
@@ -1524,7 +1508,6 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     }
     string currentName = waveNodes.at(i)->getName();
     graphicBackground->addChild(waveNodes.at(i), 1, 1);
-    agentColor = i;
     graphicLabel->setString(LocalizedString::create(currentName.c_str()));
     
     int numResources = 1;
@@ -1829,7 +1812,6 @@ void UIGameplayMap::moveGoalPopup(int index)
             }
             
             graphicBackground->addChild(waveNodes.at(i), 1, 1);
-            agentColor = i;
             graphicLabel->setString(LocalizedString::create(name.c_str()));
             
             int numResources = 1;
@@ -1993,6 +1975,9 @@ void UIGameplayMap::initializeAgents(void)
     vector<list<Agent*> > agentsDomain = GameLevel::getInstance()->getAgents();
     for (size_t i = 0; i < agentsDomain.size(); i++)
     {
+        std::list<Agent *> & aList = agentsDomain.at(i);
+        aList.sort([](const Agent * a, const Agent * b) { return a->getLife() > b->getLife(); });
+        
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); it++)
         {
             Color3B c = GameData::getInstance()->getPlayerColor();
@@ -2347,22 +2332,14 @@ void UIGameplayMap::updateAgents(void)
     Color3B agentColorPlayer = GameData::getInstance()->getPlayerColor();
     for (int i = int(agentsDomain.size()) - 1; i >= 0 ; i--)
     {
-        //int resourcesPainted = 0;
+        std::list<Agent *> & aList = agentsDomain.at(i);
+        aList.sort([](const Agent * a, const Agent * b) { return a->getLife() < b->getLife(); });
+ 
         for (list<Agent*>::iterator it = agentsDomain.at(i).begin(); it != agentsDomain.at(i).end(); ++it)
         {
             Color4B color;
-            switch (agentColor) {
-            //wood
-            /*case 1:
-                color = Color4B(103, 222, 31, 255);
-                break;
-            //mineral
-            case 2:
-                color = Color4B(241, 200, 10, 255);
-                break;*/
-            //normal
-            default:
-                switch ((*it)->getType()) {
+            switch ((*it)->getType())
+            {
                 case 1:
                     color = Color4B(255, 0, 0, (*it)->getLife() * (255 / 175));
                     break;
@@ -2374,9 +2351,6 @@ void UIGameplayMap::updateAgents(void)
                     break;
                 default:
                     color = Color4B(agentColorPlayer.r, agentColorPlayer.g, agentColorPlayer.b, (*it)->getLife() * (255 / 175));
-                    break;
-                }
-                break;
             }
             drawAgentWithShadow(Point((*it)->getPosition().getX(), (*it)->getPosition().getY()), color);
         }

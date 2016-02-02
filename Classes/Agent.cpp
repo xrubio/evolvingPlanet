@@ -49,7 +49,7 @@ void Agent::setId(int i)
     id = i;
 }
 
-int Agent::getLife(void)
+int Agent::getLife(void) const
 {
     return life;
 }
