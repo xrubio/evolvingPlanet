@@ -20,7 +20,7 @@
     <message id="8" x="0.5" y="0.6" lineWidth="0.4" trigger="time" step="2"/>
     <message id="9" x="0.5" y="0.6" lineWidth="0.4" trigger="next" closesWhen="spot"/>
     <message id="10" x="0.5" y="0.6" lineWidth="0.4" trigger="next">
-        <spot image="tutorial/tEvoTrack" centerX="0.46" centerY="0.07"/>
+        <spot image="tutorial/tEvoTrack" centerX="0.564" centerY="0.066"/>
     </message>        
     <message id="11" x="0.5" y="0.6" lineWidth="0.4" trigger="next" closesWhen="tapButton" button="bottomFrame/attrMenu/plusMOBILITY">
         <spot image="tutorial/tEvoPlus" centerX="0.442" centerY="0.031"/>
