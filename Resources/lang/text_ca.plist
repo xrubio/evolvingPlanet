@@ -11,11 +11,15 @@ L&apos;equip espera les teves ordres per començar la missió.</string>
 	<key>CONTEXT_LEVEL_1</key>
 	<string>Professor, sóc la doctora Rosalind Lovelace i lidero l&apos;equip xenoarqueològic. T&apos;ajudarem a fer servir els bots per entendre el que va passar en aquest planeta.
             
-Hem desplegat els bots a la zona on es van trobar els primers fòssils de Lovans. Aquest medi ambient em recorda els nostres propis orígens a l&apos;Àfrica Oriental. Els nostres primers avantpassat van viure a una selva similar a aquesta fa 4 milions d&apos;anys.</string>
+Hem desplegat una població inicial de bots a la zona on es van trobar els primers fòssils Lovan.
+
+Aquest medi ambient em recorda els nostres propis orígens a l&apos;Àfrica Oriental. Fa 4 milions d&apos;anys els nostres primers avantpassat van viure a una selva similar a aquesta.</string>
 	<key>BRIEF_LEVEL_2</key>
 	<string>Dia de campanya 7
             
-Els bots estan responent a les teves ordres. Necessitem que es dispersin cap a la resta de la península on vam començar.</string>
+Els bots estan responent correctament a les teves ordres.
+
+Necessitem que es dispersin cap a la resta de la península on vam començar.</string>
 	<key>CONTEXT_LEVEL_2</key>
 	<string>L&apos;èxit dels Lovan els va permetre poblar molts altres ecosistemes.
             
@@ -35,7 +39,7 @@ Començarem amb un increment de població i després ja mirarem cap a on anem a 
             
 La Dra. Lovelace no està convençuda dels resultats anteriors, així que provarem de fer les coses de manera diferent.</string>
 	<key>CONTEXT_LEVEL_4</key>
-	<string>Els darrers informes suggereixen que la dispersió dels Lovan va ser molt més ràpida que no pas el que vam aconseguir a la darrera missió.
+	<string>Els darrers informes suggereixen que la dispersió dels Lovan va ser força més ràpida del que vam aconseguir a la darrera missió.
             
 Vull provar una altra estratègia; que passaria si els hi proporcionem tecnologia?
             
@@ -47,7 +51,7 @@ A mesura que colonitzaven el món els Lovan es van trobar altres espècies. Per 
 	<key>CONTEXT_LEVEL_5</key>
 	<string>Els nostres bots hauran d&apos;interactuar amb altres grups durant l&apos;expedició arqueològica.
             
-Aquest planeta no només va ser poblat per Lovans, de la mateixa manera que la Terra no era un club exclusiu per Sapiens. Vam compartir Euràsia amb els Neandertals durant 5.000 anys. Aquests homínids eren bastant similars a nosaltres en tots els aspectes, incloent la tecnologia, cultura, fins i tot llenguatge.
+Aquest planeta no només va ser poblat pels Lovan, de la mateixa manera que la Terra no era un club exclusiu per Sapiens. Vam compartir Euràsia amb els Neandertals durant 5.000 anys. Aquests homínids eren bastant similars a nosaltres en tots els aspectes, incloent tecnologia, cultura, i fins i tot llenguatge.
           
 Van desaparèixer com a espècie fa 30.000 anys; no obstant això, el nostre ADN ens explica que cadascú de nosaltres té un petit Neandertal dintre seu... i creu-me, l&apos;ADN no menteix!</string>
 	<key>BRIEF_LEVEL_6</key>
@@ -69,13 +73,13 @@ Hem trobat una altra espècie extingida. Hi ha evidències de conflicte amb els 
 	<key>CONTEXT_LEVEL_7</key>
 	<string>I jo que pensava que eren bons nois...hem descobert molts esquelets amb senyals clares de violència.
 
-La violència no és estranya entre espècies competint pels mateixos recursos. Aquest conflicte es va fent més terrorífic a mesura que la organització social i la tecnologia augmenten en complexitat. Els humans tenim experiència en això: gairebé ens matem a nosaltres mateixos durant el segle XX. Em pregunto si podria ser exactament això el que va causar l&apos;extinció Lovan
+La violència no és estranya entre espècies competint pels mateixos recursos. Aquest conflicte es va fent més terrorífic a mesura que la organització social i la tecnologia augmenten en complexitat. Els humans tenim experiència en això: gairebé ens matem a nosaltres mateixos durant el segle XX. Em pregunto si podria ser exactament això el que va causar l&apos;extinció dels Lovan.
 
 En aquest cas es van carregar a una altra espècie mentre ocupaven el seu territori, així que els nostres bots hauran de replicar la situació.</string>
 	<key>BRIEF_LEVEL_8</key>
 	<string>Dia de campanya 23
             
-El clima va variar dràsticament durant la dispersió Lovan. En aquest regió van haver de creuar un desert mentre els recursos disponibles s&apos;anaven reduint dràsticament.</string>
+El clima va anar variant durant la dispersió dels Lovan. En aquest regió van haver de creuar un desert mentre els recursos disponibles s&apos;anaven reduint dràsticament.</string>
 	<key>CONTEXT_LEVEL_8</key>
 	<string>La caça i la recol·lecció són un estil de vida força decent. D&apos;acord, depens del que et dóna la natura, però la teva dieta és menys avorrida que si fossis un pagès. I a sobre, treballes menys hores!
 
@@ -87,13 +91,13 @@ En aquesta missió una llarga sequera va convertir una selva exuberant en un des
             
 Sembla que aquest planeta estava abarrotat. En aquesta missió els teus bots es trobaran a la vegada amb dues espècies diferents.</string>
 	<key>CONTEXT_LEVEL_9</key>
-	<string>Hauràs de cooperar i competir al mateix temps.
+	<string>Cooperació i competició són processos que sovint es donen simultàniament.
 
-Crec que en aquest escenari els Lovan es van aliar amb un dels grups per a atacar al darrer. Et suggereixo que intentis influenciar al més proper per, un cop el teu grup sigui suficientment gran, afrontar la resta d&apos;objectius.</string>
+Crec que en aquest escenari els Lovan van aliar-se primer amb un dels grups per tal d'atacar a l'altre. Et suggereixo que intentis influenciar al més proper per, un cop el teu grup sigui suficientment gran, afrontar la resta d&apos;objectius.</string>
 	<key>BRIEF_LEVEL_10</key>
 	<string>Dia de campanya 30
             
-Aquesta missió completa la dispersió Lovan. Van demostrar la seva capacitat adaptativa poblant el planeta de pol a pol.
+Aquesta missió completa la dispersió dels Lovan. Certament van demostrar la seva capacitat adaptativa poblant el planeta de pol a pol.
 
 Per desgràcia l&apos;evidència d&apos;aquesta última zona és molt escassa, i no sabem què hi va succeïr.</string>
 	<key>CONTEXT_LEVEL_10</key>
@@ -101,13 +105,13 @@ Per desgràcia l&apos;evidència d&apos;aquesta última zona és molt escassa, i
         
 Explorarem la última dispersió amb diferents estratègies. Pots provar amb bots més agressius, tecnològicament avançats o capaços d&apos;influenciar als altres grups.
 
-La incertesa m&apos;està matant, però així és la Ciència! Acceptem una explicació fins que en tenim una altra que s&apos;ajusta millor a l&apos;evidència, tan simple com això.</string>
+La incertesa m&apos;està matant, però així és la Ciència! Acceptem una explicació fins que en tenim una altra que s&apos;ajusta millor a l&apos;evidència. Sembla simple oi?</string>
 	<key>BRIEF_LEVEL_11</key>
 	<string>Dia de campanya 41
             
 Els Lovan van prosperar al llarg de tot Kepler-1138. L&apos;increment de població va promoure el desenvolupament de noves tecnologies i l&apos;explotació dels vastos recursos del planeta.</string>
 	<key>CONTEXT_LEVEL_11</key>
-	<string>Els Lovan van explotar tots els recursos disponibles al seu entorn per tal de millorar les opcions de supervivència. Això inclou obsidiana i altres minerals útils per a fer eines, així com fusta feta servir de combustible i per crear millors habitatges.
+	<string>Els Lovan van explotar tots els recursos disponibles al seu entorn per tal de millorar les opcions de supervivència. Això inclou obsidiana i altres minerals útils per a fer eines, així com fusta destinada a ser combustible i mataerial per a crear millors habitatges.
 
 Hem desplegat en aquesta missió els dos recursos, per tal d&apos;entendre com van explotar el planeta els Lovan, i esbrinar si ho feien de manera similar als humans a la Terra.</string>
 	<key>BRIEF_LEVEL_12</key>
@@ -117,7 +121,7 @@ Els recursos naturals d&apos;un ecosistema es comparteixen entre tots els indivi
 
 Això crea tensions quan grups diferents volen tenir accés al mateix recurs finit.</string>
 	<key>CONTEXT_LEVEL_12</key>
-	<string>Menjar, fusta, minerals...res és infinit així que aquestes quantitats disponibles defineixen quanta població pot viure en un indret determinat. Aquest límit genera dinàmiques de competició entre individus, com la que hem observat en aquesta àrea.
+	<string>Menjar, fusta, minerals...res és infinit així que les quantitats disponibles defineixen quanta població pot viure en un indret determinat. Aquest límit genera dinàmiques de competició entre individus, com la que hem observat en aquesta àrea.
 
 Els teus bots hauran de guanyar el control d&apos;un bosc, que està en mans d&apos;un altre grup. Tens moltes opcions disponibles per tal de tenir èxit: millorar Influència, Violència o potser Mobilitat?</string>
 	<key>BRIEF_LEVEL_13</key>
@@ -133,7 +137,7 @@ Els teus bots necessiten aprendre les complexitats del comerç abans de superar 
 	<key>BRIEF_LEVEL_14</key>
 	<string>Dia de campanya 53
             
-El comerç és una de les activitats que potencien el contacte entre poblacions. Els Lovan es van aliar amb un altre grup per tal de controlar els recursos minerals d&apos;una de les àrees més riques del planeta.</string>
+El comerç és una de les activitats que més potencia el contacte entre poblacions. Els Lovan es van aliar amb un altre grup per tal de controlar els recursos minerals d&apos;una de les àrees més riques del planeta.</string>
 	<key>CONTEXT_LEVEL_14</key>
 	<string>L&apos;intercanvi no només està relacionat amb coses. El comerç requereix de comunicació entre individus. No només es comparteixen béns, sinó també idees.
 
@@ -141,13 +145,13 @@ Sembla que els Lovan i un altre grup van unir forces per tal de controlar la obs
 	<key>BRIEF_LEVEL_15</key>
 	<string>Dia de campanya 60
             
-La conquesta Lovan del planeta va tenir diverses causes: des de les seves capacitats d&apos;explotació al desenvolupament tecnològic i la influència cultural.
+La conquesta Lovan del planeta va tenir diverses causes: des de les seves capacitats d&apos;explotació al desenvolupament tecnològic i la seva forta influència cultural.
 
 En aquest cas van ser capaços de controlar els recursos d&apos;una gran regió a una velocitat esfereïdora.</string>
 	<key>CONTEXT_LEVEL_15</key>
 	<string>Ara estem segurs que l&apos;èxit dels Lovan es va deure en part a les seves habilitats negociadores. La seva cultura va deixar una forta petjada en altres grups, i nombrosa evidència suggereix que també eren excel·lents comerciants.
 
-Si volem ajustar-nos a les dates de dispersió en aquesta zona necessitem que els teus bots adquireixin diferents recursos, amb una combinació de capacitats socials i tècniques.</string>
+Volem ajustar-nos a les dates de dispersió identificades en aquesta zona. Per a fer-ho necessitem que els teus bots adquireixin diferents recursos mitjançant una combinació de capacitats socials i tècniques.</string>
 	<key>BRIEF_LEVEL_16</key>
 	<string>Dia de campanya 70
             
@@ -163,23 +167,23 @@ Aquest complex procés s&apos;anomena Neolític, i sembla que hem trobat aquí u
             
 Un increment de població comporta sovint un ús més intensiu de l&apos;enton.
         
-En aquesta regió els Lovan van combinar Terraformació amb Explotació a gran escala d&apos;un bosc. Malgrat tot, van aconseguir evitar la sobreexplotació de les riqueses de la regió.</string>
+Els Lovan van combinar la Terraformació d'aquesta regió amb l'Explotació a gran escala d&apos;un bosc. Malgrat tot, van aconseguir evitar la sobreexplotació de les riqueses de la zona.</string>
 	<key>CONTEXT_LEVEL_17</key>
-	<string>Les primeres comunitats agricultores no vivien tan sols dels seus ramats i cultius. El medi ambient seguia proporcionant molt de menjar, així que per què hauries de descartar-lo?
+	<string>Les primeres comunitats agricultores no vivien tan sols dels seus ramats i cultius. El medi ambient seguia proporcionant molt de menjar, així que per què haurien de descartar-lo?
 
-Malgrat tot, això té un cost: l&apos;agricultura implica més gent. Això pot generar una sobreexplotació de l&apos;entorn i generar una situació a on tothom hi perd.
+Malgrat tot, hi ha una diferència, i és que l&apos;agricultura permet mantenir més gent. Això té un cost, doncs es pot generar una sobreexplotació de l&apos;entorn a on s'esgotin tots els recursos.
 
-Els Lovan van aconseguir evitar aquest problema, més o menys com els humans van fer amb la crisi mundial succeïda a mitjans del segle XXI.</string>
+Els Lovan van aconseguir evitar aquest problema, més o menys com els humans vam fer amb la crisi mundial succeïda a mitjans del segle XXI.</string>
 	<key>BRIEF_LEVEL_18</key>
 	<string>Dia de campanya 79
             
 Sembla que hem trobat el punt d&apos;inflexió de l&apos;existència dels Lovan.
         
-Un seguit de sequeres van baixar la disponibilitat de recursos fins al punt que els diferents grups van començar a competir entre ells.</string>
+Un seguit de sequeres van limitar la disponibilitat de recursos fins al punt que els diferents grups van començar a competir entre ells.</string>
 	<key>CONTEXT_LEVEL_18</key>
-	<string>Els nostres estudis suggereixen que les condicions ambientals es van deteriorar ràpidament, desencadenant conflictes de gran escala.
+	<string>Els nostres estudis suggereixen que les condicions ambientals es van deteriorar ràpidament, desencadenant conflictes a gran escala.
             
-La nostra missió aquí és entendre la relació entre canvi climàtic i conflicte a mida que els recursos esdevenen escassos. Pots intentar diverses opcions, però tingues en compte que la sobreexplotació pot conduir a un augment dels enfrontaments.</string>
+La nostra missió aquí és entendre la relació entre canvi climàtic i conflicte a mida que els recursos esdevenen escassos. Pots intentar diverses opcions, però tingues en compte que la sobreexplotació pot conduir a un augment dels enfrontaments amb altres grups.</string>
 	<key>BRIEF_LEVEL_19</key>
 	<string>Dia de campanya 87
             
@@ -187,9 +191,11 @@ La minvant població va intentar sobreviure en un medi ambient molt deteriorat.
         
 Aquests són els últims batecs dels Lovan: van desaparèixer junt amb la resta de grups a mida que la població col·lapsava durant una sèrie d&apos;interminables conflictes bèl·lics.</string>
 	<key>CONTEXT_LEVEL_19</key>
-	<string>Doncs aquí ens trobem, després de tants reptes: el final d&apos;aquesta fascinant història. La falta de terres cultivables va generar moltes guerres. Les poques possibilitats que tenia la població que quedava van arruïnar-se quan els grups van començar a atacar-se els uns als altres.
+	<string>Doncs aquí ens trobem, després de tants reptes: al final d&apos;aquesta fascinant història.
+    
+La falta de terres cultivables va generar moltes guerres. Les poques possibilitats que tenia la població que quedava van arruïnar-se quan els grups van començar a atacar-se els uns als altres.
             
-Malgrat tot, els Lovan van sobreviure algunes dècades més. Estudiarem l&apos;últim conflicte final en el que es van veure involucrats. Necessites incrementar la població mitjançant Terraformació abans que un altre grup envaeixi la zona. Tingues en compte que aquesta situació desesperada va generar grups extremadament agressius, així que la Influència cultural no és possible en aquesta missió.</string>
+Malgrat tot, els Lovan van sobreviure algunes dècades més. Estudiarem l&apos;últim conflicte en el que es van veure involucrats. Necessites incrementar la població mitjançant Terraformació abans que un altre grup envaeixi la zona. Tingues en compte que aquesta situació desesperada va generar grups extremadament agressius, així que la Influència cultural no és possible en aquesta missió.</string>
 	<key>BRIEF_LEVEL_20</key>
 	<string>Dia de campanya 90
             
@@ -201,7 +207,7 @@ Malgrat tot, ha passat una cosa inesperada. Els bots haurien d&apos;haver desapa
 
 Ja tenim els resultats finals, i tècnicament hauríem de destruir els bots que queden abans de deixar el planeta. No sé com ho veus, però més que acabar un experiment tinc la sensació que estem a punt de cometre un genocidi.
 
-Com procedim? O bé acabem la Història de nou, o ara bé donem als Lovan una altra oportunitat. Professor, és la teva elecció.</string>
+Com procedim? O bé acabem la Història de nou, o donem als Lovan una altra oportunitat. Professor, és la teva elecció.</string>
 
         <key>LEVEL_1_STORY</key>
         <string>Qui som? Qui ens ha creat?</string>

@@ -11,7 +11,9 @@ The team is waiting for your orders to start the mission.</string>
 	<key>CONTEXT_LEVEL_1</key>
 	<string>Professor, my name is Dr. Rosalind Lovelace and I’m the leader of the xenoarchaeological team. We will help you to understand what happened here using bots.
 
-We deployed the bots in the area where the first Lovan fossils were found. The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
+We deployed a initial population of bots in the area where the first Lovan fossils were found.
+
+The environment reminds me of our own origins in East Africa, as our first ancestors lived in a forest similar to this one 4 million years ago.</string>
 
 	<key>BRIEF_LEVEL_2</key>
 	<string>Campaign Day 7
@@ -56,7 +58,7 @@ The Neanderthals disappeared as a species over 30,000 years ago. However, our DN
     <key>BRIEF_LEVEL_6</key>
 	<string>Campaign Day 17
 
-We discovered that one of the species present on this planet disappeared after contacting the Lovans.	  
+We discovered that one of the species present on this planet disappeared after contacting the Lovans.
 
 Mission control wants to test to see if they interbred and somehow became a single species.</string>
 	<key>CONTEXT_LEVEL_6</key>
@@ -92,7 +94,7 @@ In this mission, a long drought turned a green forest into a desert. The Lovans 
 
 It looks like this planet was a crowded place. For this mission, you will have to face two species simultaneously.</string>
 	<key>CONTEXT_LEVEL_9</key>
-	<string>It seems like you’ll find both competition and cooperation here.
+	<string>Cooperation and competition are two processes that are often happening at the same time.
 	  
 I think that we face a situation here where the Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest groups, then dealing with the remaining objectives once your group is large enough.</string>
 
@@ -152,13 +154,13 @@ It seems that the Lovans joined forces with another group to control the obsidia
     <key>BRIEF_LEVEL_15</key>
     <string>Campaign Day 60
     
-The Lovan conquest of the planet has several causes: from the use of skills to technological development and cultural influence.
+The Lovan conquest of the planet has several causes: from the use of exploitation skills to technological development and their strong cultural influence.
     
 In this case, they managed to control the resources of a large region at an astonishing pace.</string>
     <key>CONTEXT_LEVEL_15</key>
     <string>We are now certain that the Lovans’ success was partially based on their negotiation skills. Their culture left an imprint on other groups and some evidence suggests that they were excellent traders.
       
-If we want to match the dates of dispersal here, your bots will need to collect a wide range of goods by using a combination of technical and social skills.</string>
+We want to match the dates of dispersal here. To achieve this goal your bots will need to collect a wide range of goods by using a combination of technical and social skills.</string>
 
     <key>BRIEF_LEVEL_16</key>
     <string>Campaign Day 70
@@ -193,7 +195,7 @@ A series of droughts decreased resource availability up to the point where group
     <key>CONTEXT_LEVEL_18</key>
     <string>Our analysis suggests that rapidly deteriorating environmental conditions triggered large-scale conflicts.
       
-Our mission here is to understand the link between climate change and conflict as resources became scarce. You can try different options here, but be aware that overexploitation can lead to increasing confrontation.</string>
+Our mission here is to understand the link between climate change and conflict as resources became scarce. You can try different options here, but be aware that overexploitation can lead to increasing confrontation between groups.</string>
 
     <key>BRIEF_LEVEL_19</key>
     <string>Campaign Day 87
