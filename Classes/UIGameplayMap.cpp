@@ -587,8 +587,8 @@ bool UIGameplayMap::init()
     this->addChild(labelGraphic);
     
     auto labelCounterGraphic = Label::createWithTTF("( 1 / " + to_string(numResources) + " )", "fonts/BebasNeue.otf", 40 * GameData::getInstance()->getRaConversion());
-    labelCounterGraphic->setPosition(graphicBackground->getPositionX(), graphicBackground->getPositionY() - (graphicBackground->getBoundingBox().size.height / 2) - (labelCounterGraphic->getBoundingBox().size.height / 2));
     labelCounterGraphic->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    labelCounterGraphic->setPosition(graphicBackground->getPositionX(), (graphicBackground->getPositionY() - (graphicBackground->getBoundingBox().size.height / 2))/2);
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
     
