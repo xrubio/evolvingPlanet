@@ -391,7 +391,7 @@ void UICredits::specialThanks2(Layout* layout)
     auto supportLabel = Label::createWithTTF(LocalizedString::create("SUPPORT"), "fonts/BebasNeue.otf", 60* GameData::getInstance()->getRaConversion()); 
     supportLabel->setColor(Color3B(255, 255, 255));
     supportLabel->setAnchorPoint(Vec2(0, 0.5));
-    supportLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.93f*popupBackground->getContentSize().height));
+    supportLabel->setPosition(Vec2(0.05f*popupBackground->getContentSize().width, 0.95f*popupBackground->getContentSize().height));
     popupBackground->addChild(supportLabel);
 
     auto poweredLabel = Label::createWithTTF(LocalizedString::create("POWERED"), "fonts/BebasNeue.otf", 60* GameData::getInstance()->getRaConversion()); 
