@@ -9,7 +9,7 @@
 	<key>DESCR_LVL1_Accomplished</key>
 	<string>Missió 1: Acomplerta</string>
     <key>ACH_LVL1_1</key>
-    <string>Els primers avantpassats dels humans van aparèixer fa 4 milions d'anys a les selves de l'Àfrica oriental.
+    <string>Els primers avantpassats dels humans van aparèixer fa 4 milions d'anys a les selves de l'Àfrica Oriental.
 
 Les espècies més antigues s'anomenen Australopitecins. Ja caminaven de peu, i sembla que aquesta característica és crucial per explicar el seu èxit. Podien viure en els més diversos entorns, des de la selva a la sabana.</string>
 
@@ -98,14 +98,14 @@ A les societats occidentals no va tornar a pujar fins al segle XX.</string>
     <string>"La principal característica del nostre temps és el canvi, i la literatura hauria d'explorar com la gent s'ajusta a ell. La millor ciència-ficció fa exactament això."
         David Brin
 
-Una de les bases de la ciència-ficció és l'especulació sobre l'impacte dels avenços tecnològics en la societat. Alguns dels millors exemples són les novel·les "Jo, Robot" (Isaac Asimov) i "Les Estrelles el meu Destí" (Alfred Bester), o la pel·lícula "Blade Runner" (Ridley Scott).</string>
+Una de les bases de la ciència-ficció és l'especulació sobre l'impacte dels avenços tecnològics en la societat. Alguns dels millors exemples són les novel·les "Jo, Robot" (Isaac Asimov) i "Les Estrelles, el meu Destí" (Alfred Bester), o la pel·lícula "Blade Runner" (Ridley Scott).</string>
 
     <key>TITLE_LVL4_Perfect</key>
     <string>PARLANT DEL REI DE ROMA</string>
     <key>DESCR_LVL4_Perfect</key>
 	<string>Missió 4: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL4_2</key>
-    <string>Els nostres avantpassats can començar a fer servir eines fa 2 milions d'anys. No va ser una innovació aïllada, ja que requeria d'altres elements culturals per tal de garantir la transmissió del coneixement.
+    <string>Els nostres avantpassats van començar a fer servir eines fa 2 milions d'anys. No va ser una innovació aïllada, ja que requeria d'altres elements culturals per tal de garantir la transmissió del coneixement.
 
 Per aquest motiu no és sorprenent que els homínids comencessin a parlar durant el mateix període.</string>
 
@@ -125,16 +125,16 @@ Un dels físics més importants del segle XX.</string>
     <key>DESCR_LVL5_Accomplished</key>
     <string>Missió 5: Acomplerta</string>
     <key>ACH_LVL5_1</key>
-    <string>El primer projecte per a connectar l'Atlàntic i el Pacífic a través de Panamà el va encarregar l'emperador Carles I al 1534.
+    <string>El primer projecte per a connectar l'Atlàntic i el Pacífic a través de Panamà el va encarregar l'emperador Carles I el 1534.
     
-Malgrat tot, problemes tècnics i econòmics van frenar la iniciativa fins la seva construcció final al 1914 per EEUU i Panamà.</string>
+Malgrat tot, problemes tècnics i econòmics van frenar la iniciativa fins la seva construcció final el 1914 per EEUU i Panamà.</string>
 
     <key>TITLE_LVL5_Perfect</key>
     <string>COEXISTÈNCIA</string>
     <key>DESCR_LVL5_Perfect</key>
 	<string>Missió 5: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL5_2</key>
-    <string>Contra més sabem dels Neandertals més ens adonem de la nostra semblança. Aquest interès no només ha generat debats científics, sinó també moltes obres de ficció.
+    <string>Com més en sabem dels Neandertals més ens adonem de la nostra semblança. Aquest interès no només ha generat debats científics, sinó també moltes obres de ficció.
 
 Tres de les més interessants són el film "A la Recerca del Foc" de Jean-Jacques Annaud, la novel·la històrica "El Clan de l'Ós de les Cavernes" de J.M. Auel i la trilogia de ciència-ficció "La Paral·laxi Neandertal" de Robert J. Sawyer.</string>
 
@@ -143,7 +143,7 @@ Tres de les més interessants són el film "A la Recerca del Foc" de Jean-Jacque
     <key>DESCR_LVL5_Discovery</key>
     <string>Missió 5: Arriba a la regió Nord-est</string>
     <key>ACH_LVL5_3</key>
-    <string>El cèlebre viatge de Cristòfor Colom al 1942 no va ser el primer contacte entre Europeus i Americans. Nombroses expedicions víkings van arribar a Amèrica del Nord durant el segle X.</string>
+    <string>El cèlebre viatge de Cristòfor Colom el 1942 no va ser el primer contacte entre Europeus i Americans. Nombroses expedicions víkingues van arribar a Amèrica del Nord durant el segle X.</string>
 
     <!-- LVL 6 -->
     <key>TITLE_LVL6_Accomplished</key>
@@ -185,7 +185,7 @@ Novel·lista, humanista, científic, professor, comunicador...Asimov és una de 
     <key>DESCR_LVL7_Perfect</key>
 	<string>Missió 7: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL7_2</key>
-    <string>Les primeres evidències bèl·liques estan datades al voltant dels 13.000 anys. Nombroses pintures rupestres mostren escenes de combat, y els arqueòlegs també han trobat esquelets del mateix període amb puntes de fletxa incrustades.</string>
+    <string>Les primeres evidències bèl·liques estan datades al voltant dels 13.000 anys. Nombroses pintures rupestres mostren escenes de combat, i els arqueòlegs també han trobat esquelets del mateix període amb puntes de fletxa incrustades.</string>
     
     <key>TITLE_LVL7_Discovery</key>
     <string>EL MÓN A CAVALL</string>
@@ -212,7 +212,7 @@ Els seus constructors formaven part de la cultura polinèsia que va colonitzar a
 	<string>Missió 8: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL8_2</key>
     <string>Un dels primers documentals mai fets explicava als occidentals la vida caçadora-recol·lectora.
-"Nanuk, l'esquimal" va ser filmada per Robert J. Flaherty al 1922. Narrava la lluita per la supervivència d'una família Innuit vivint sota les extremes condicions de l'Àrtic.</string>
+"Nanuk, l'esquimal" va ser filmada per Robert J. Flaherty el 1922. Narrava la lluita per la supervivència d'una família Innuit vivint sota les extremes condicions de l'Àrtic.</string>
 
     <key>TITLE_LVL8_EPsLeft</key>
     <string>Gel i Foc</string>
@@ -236,7 +236,7 @@ Aquesta flauta té 43.000 anys, i va ser trobada en una cova de l'Alemanya merid
     <key>DESCR_LVL9_Perfect</key>
 	<string>Missió 9: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL9_2</key>
-    <string>Conflicte amb els Sapiens? Canvi climàtic? Competició per recursos? os con los Sapiens? Desconeixem la causa de l'extinció Neandertal, i això ens segueix fascinant.
+    <string>Conflicte amb els Sapiens? Canvi climàtic? Competició per recursos? Desconeixem la causa de l'extinció Neandertal, i això ens segueix fascinant.
 
 Entendre aquest fet ens ajudaria a comprendre els perills als que ens enfrontem en l'actualitat.</string>
 
@@ -300,7 +300,7 @@ Aquest tòpic és incorrecte: es movien al voltant del territori, i només feien
     <key>ACH_LVL11_3</key>
     <string>La estratigrafia és un dels conceptes claus en l'arqueologia actual.
 
-Veus en aquest perfil capes horitzontals de diferents colors? Cadascuna d'elles ens parla d'un període temporal diferent. Contra més profunditat tenen, més antigues són.</string>
+Veus en aquest perfil capes horitzontals de diferents colors? Cadascuna d'elles ens parla d'un període temporal diferent. Com més profunditat tenen, més antigues són.</string>
 
     <!-- LVL 12 -->
     <key>TITLE_LVL12_Accomplished</key>
@@ -319,7 +319,7 @@ Si visites ara mateix qualsevol país europeu veuràs més arbres que els que hi
     <key>DESCR_LVL12_Perfect</key>
 	<string>Missió 12: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL12_2</key>
-    <string>La majoria de la població de l'Himalàia és Budista. Els practicants d'aquesta religió haurien de cremar els seus morts, però a on pots trobar fusta si vius a 4.000 metres d'alçada?
+    <string>La majoria de la població de l'Himàlaia és Budista. Els practicants d'aquesta religió haurien de cremar els seus morts, però a on pots trobar fusta si vius a 4.000 metres d'alçada?
 
 Practiquen un ritual diferent anomenat Enterrament Celestial: els cossos són dipositats en un cim, a on són consumits per aus carronyaires com els voltors.</string>
 
@@ -347,7 +347,7 @@ Per exemple, les celles de la famosa màscara de Tutankhamon estan fetes d'aques
     <key>ACH_LVL13_2</key>
     <string>La Ruta de la Seda és una de les xarxes comercials més famoses de la Història.
 
-La seva activitat va començar fa 2.000 anys, i va connectar tota Euràsia, des del Mediterrani a la Xina oriental. També va tenir extensions cap a Àfrica i les illes del Pacífic.</string>
+La seva activitat va començar fa 2.000 anys, i va connectar tota Euràsia, des del Mediterrani a la Xina Oriental. També va tenir extensions cap a Àfrica i les illes del Pacífic.</string>
 
     <key>TITLE_LVL13_EPsLeft</key>
     <string>DINER FÀCIL</string>
@@ -423,7 +423,7 @@ Aquest brillant inventor és responsable que puguis fer funcionar aquest disposi
     <key>ACH_LVL16_1</key>
     <string>El Neolític és la transició entre una vida basada en caça i recol·lecció, i una altra fonamentada en el cultiu i el pasturatge.
 
-Aquestes domesticació no sols va afectar a plantes i animals, sinó també als humans. Va transformar la seva cultura, incloent dieta, mobilitat i comunicació.</string>
+Aquesta domesticació no sols va afectar a plantes i animals, sinó també als humans. Va transformar la seva cultura, incloent dieta, mobilitat i comunicació.</string>
 
     <key>TITLE_LVL16_Perfect</key>
     <string>ELS TEMPS ESTAN CANVIANT</string>
@@ -513,7 +513,7 @@ El seu declivi és un dels misteris més apassionants de l'arqueologia actual.</
     <key>DESCR_LVL19_Perfect</key>
 	<string>Missió 19: Aconsegueix 3 estrelles</string>
     <key>ACH_LVL19_2</key>
-    <string>Aquesta bomba rebia el nom de Little Boy. Un bombarder de la US Air Force la va llençar sobre la ciutat japonesa de Hiroshima el 6 d'agost del 1945.
+    <string>Aquesta bomba rebia el nom de Little Boy. Un bombarder de la US Air Force la va llençar sobre la ciutat japonesa d'Hiroshima el 6 d'agost del 1945.
 
 La primera bomba atòmica va causar milers de morts i va transformar la humanitat per sempre més.</string>
     
