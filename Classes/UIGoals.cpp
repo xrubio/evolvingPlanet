@@ -137,8 +137,8 @@ bool UIGoals::init()
     auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel())).c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "fonts/arial.ttf", 50 * GameData::getInstance()->getRaConversion());
     contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
     contextIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    contextIntroduction->setScaleX(GameData::getInstance()->getRaWConversion());
-    contextIntroduction->setScaleY(GameData::getInstance()->getRaHConversion());
+    contextIntroduction->setScale(GameData::getInstance()->getRaWConversion());
+    //contextIntroduction->setScaleY(GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(contextIntroduction);
     
     auto contextLabelIntroduction = Label::createWithTTF(LocalizedString::create(("DATE_LEVEL_"+to_string(GameLevel::getInstance()->getNumLevel())).c_str(), "text"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
