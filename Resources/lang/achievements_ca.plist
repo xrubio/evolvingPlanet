@@ -20,7 +20,7 @@ Les espècies més antigues s'anomenen Australopitecins. Ja caminaven de peu, i 
     <key>ACH_LVL1_2</key>
     <string>La història d'Evolving Planet es desenvolupa en un exoplaneta imaginari anomenat Kepler-1138.
 
-Un exoplaneta és un planta que orbita al voltant d'una estrella diferent del Sol. S'han descobert uns 2.000 exoplanetes, la majoria gràcies al telescopi espacial Kepler llençat per la NASA al 2009.</string>
+Un exoplaneta és un planeta que orbita al voltant d'una estrella diferent del Sol. S'han descobert uns 2.000 exoplanetes, la majoria gràcies al telescopi espacial Kepler llençat per la NASA el 2009.</string>
 
     <key>TITLE_LVL1_EPsLeft</key>
     <string>RESERVA</string>
@@ -67,7 +67,7 @@ La cultura és una poderosa eina, i gràcies a ella poblem la superfície sencer
     <key>DESCR_LVL3_Accomplished</key>
     <string>Missió 3: Acomplerta</string>
     <key>ACH_LVL3_1</key>
-    <string>La datació por Radiocarboni va revolucionar l'arqueologia a finals del segle XX.
+    <string>La datació per Radiocarboni va revolucionar l'arqueologia a finals del segle XX.
 
 Aquesta tècnica permet datar restes orgàniques trobades en una excavació. Això permet als investigadors conèixer l'edat del jaciment.</string>
 
