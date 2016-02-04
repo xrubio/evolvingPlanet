@@ -88,8 +88,8 @@ bool UIGoals::init()
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIGoals::menuBackCallback, this));
-    backButton->setPosition(Vec2((4 * visibleSize.width / 42),
-        (34 * visibleSize.height / 36)));
+    //backButton->setPosition(Vec2((4 * visibleSize.width / 42), (34 * visibleSize.height / 36)));
+    backButton->setPosition(Vec2((4 * visibleSize.width / 34), (1.2 * visibleSize.height / 25)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(207, 203, 208));
@@ -129,7 +129,7 @@ bool UIGoals::init()
     auto layoutContextIntroduction = Layout::create();
     //TRIAR ESTIL SEGONS EL LVL
     auto pageBackgroundIntroduction = Sprite::create("gui/PageBackground.png");
-    pageBackgroundIntroduction->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    pageBackgroundIntroduction->setPosition(Vec2(visibleSize.width / 2, 1.05*visibleSize.height / 2));
     pageBackgroundIntroduction->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
     layoutContextIntroduction->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
@@ -152,7 +152,7 @@ bool UIGoals::init()
 
     auto layout = Layout::create();
     auto pageBackground2 = Sprite::create("gui/PageBackground.png");
-    pageBackground2->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    pageBackground2->setPosition(Vec2(visibleSize.width / 2, 1.05*visibleSize.height / 2));
     pageBackground2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(pageBackground2, -1);
     layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));

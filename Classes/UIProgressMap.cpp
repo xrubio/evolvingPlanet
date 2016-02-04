@@ -71,7 +71,8 @@ bool UIProgressMap::init()
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIProgressMap::menuBackCallback, this));
-    backButton->setPosition(Vec2((3 * visibleSize.width / 34), (2 * visibleSize.height / 25)));
+    //backButton->setPosition(Vec2((3 * visibleSize.width / 34), (2 * visibleSize.height / 25)));
+    backButton->setPosition(Vec2((4 * visibleSize.width / 34), (1.5 * visibleSize.height / 25)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));

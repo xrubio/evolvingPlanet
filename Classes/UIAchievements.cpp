@@ -82,8 +82,10 @@ bool UIAchievements::init()
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create(
         "gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png", CC_CALLBACK_1(UIAchievements::menuBackCallback, this));
-    backButton->setAnchorPoint(Vec2(0, 0.5));
-    backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    //backButton->setAnchorPoint(Vec2(0, 0.5));
+    //backButton->setPosition(Vec2(1 * popupBackground->getContentSize().width / 28, 2 * popupBackground->getContentSize().height / 16));
+    backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    backButton->setPosition(Vec2((4 * visibleSize.width / 34), (1.5 * visibleSize.height / 25)));
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(205, 202, 207));
     backLabel->setPosition(backButton->getContentSize().width / 2, backButton->getContentSize().height / 2);
@@ -92,7 +94,7 @@ bool UIAchievements::init()
 
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
-    popupBackground->addChild(menu, 1, 20);
+    this->addChild(menu, 1, 20);
 
     auto configLabel = Label::createWithTTF(LocalizedString::create("ACHIEVEMENTS"), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     configLabel->setColor(Color3B(255, 255, 255));

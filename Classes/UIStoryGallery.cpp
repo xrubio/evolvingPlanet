@@ -59,8 +59,8 @@ bool UIStoryGallery::init()
     Vector<MenuItem*> menuButtons;
     auto backButton = MenuItemImage::create("gui/ProgressMapBackButton.png", "gui/ProgressMapBackButtonPressed.png",
                                             CC_CALLBACK_1(UIStoryGallery::menuBackCallback, this));
-    backButton->setPosition(Vec2((4 * visibleSize.width / 42),
-                                 (34 * visibleSize.height / 36)));
+    //backButton->setPosition(Vec2((4 * visibleSize.width / 42), (34 * visibleSize.height / 36)));
+    backButton->setPosition(Vec2((4 * visibleSize.width / 34), (1.5 * visibleSize.height / 25)));
     backButton->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     auto backLabel = Label::createWithTTF(LocalizedString::create("BACK"), "fonts/BebasNeue.otf", 60 * GameData::getInstance()->getRaConversion());
     backLabel->setColor(Color3B(207, 203, 208));
