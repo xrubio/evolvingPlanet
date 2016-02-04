@@ -5,7 +5,7 @@
 	<key>BRIEF_LEVEL_1</key>
 	<string>Campaign Day 1
 
-We will use bots to replicate Lovan history. These bots combine advanced bioengineering with artificial intelligence designed to resemble the extinct species.
+We will use bots to replicate Lovan history. They combine advanced bioengineering with artificial intelligence designed to resemble the extinct species.
 
 The team is waiting for your orders to start the mission.</string>
 	<key>CONTEXT_LEVEL_1</key>
@@ -18,7 +18,9 @@ The environment reminds me of our own origins in East Africa, as our first ances
 	<key>BRIEF_LEVEL_2</key>
 	<string>Campaign Day 7
 
-The bots are responding to our commands. We need them to disperse to the rest of the peninsula where they started.</string>
+The bots are correctly responding to our commands.
+
+We need them to disperse to the rest of the peninsula where they started.</string>
 	<key>CONTEXT_LEVEL_2</key>
 	<string>The success of the Lovans allowed them to populate several other ecosystems.
 	  
@@ -60,7 +62,7 @@ The Neanderthals disappeared as a species over 30,000 years ago. However, our DN
 
 We discovered that one of the species present on this planet disappeared after contacting the Lovans.
 
-Mission control wants to test to see if they interbred and somehow became a single species.</string>
+Mission control wants to test if they interbred and somehow became a single species.</string>
 	<key>CONTEXT_LEVEL_6</key>
 	<string>This situation raises many questions.
 	  
@@ -94,9 +96,9 @@ In this mission, a long drought turned a green forest into a desert. The Lovans 
 
 It looks like this planet was a crowded place. For this mission, you will have to face two species simultaneously.</string>
 	<key>CONTEXT_LEVEL_9</key>
-	<string>Cooperation and competition are two processes that are often happening at the same time.
+	<string>Cooperation and competition are two processes that often happen at the same time.
 	  
-I think that we face a situation here where the Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest groups, then dealing with the remaining objectives once your group is large enough.</string>
+I think that we face a situation here where the Lovans allied with one of the groups to attack the other one. I recommend trying to influence the closest group, then dealing with the remaining objectives once your group is large enough.</string>
 
     <key>BRIEF_LEVEL_10</key>
 	<string>Campaign Day 30
@@ -116,7 +118,7 @@ The uncertainty is killing me, but this is science! We accept an explanation unt
         
 Groups of Lovans bloomed over Kepler-1138. Increased population fostered the development of new technologies and further exploitation of the vast resources of the planet.</string>
     <key>CONTEXT_LEVEL_11</key>
-    <string>The Lovans exploited any available resource in their environment to improve their chances of survival. This included obsidian and minerals for crafting tools and wood for fuel and better housing.
+    <string>The Lovans exploited any available resource in their environment to improve their chances of survival. This included obsidian and minerals for crafting tools and wood for fuel and better housing materials.
       
 We have deployed these two resources in this mission to understand if the Lovans exploited the planet in a similar way to what humans did on Earth.</string>
 
@@ -127,7 +129,7 @@ Natural resources are shared by all the individuals living in the same landscape
 
 This creates tensions between groups when they all look for the same finite resource.</string>
     <key>CONTEXT_LEVEL_12</key>
-    <string>Food, wood, minerals… nothing is infinite, so this availability limits the size of the population that can live in a particular place. This threshold creates competitive dynamics between individuals such as the one we observed in this area.
+    <string>Food, wood, minerals… nothing is infinite, and the availability of these goods limits the size of the population that can live in a particular place. This threshold creates competitive dynamics between individuals such as the one we observed in this area.
       
 Your bots will need to gain control of this forest from a different group. You have many paths to achieve this mission: through increasing Influence, Warfare or even Mobility.</string>
 
@@ -138,7 +140,7 @@ Competition is not the only consequence of resource exploitation. We have found 
 
 They exchanged minerals and wood. The redistribution of goods benefited both populations.</string>
     <key>CONTEXT_LEVEL_13</key>
-    <string>This is fascinating! It seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading all sorts of goods since their beginnings and it seems that the Lovans were no different in this regard.
+    <string>This is fascinating, it seems that our kids acquired their first mineral in this region by bartering it for wood. Humans have been trading all sorts of goods since their beginnings and the Lovans were no different in this regard.
 
 Your bots will need to learn the complexities of trading before you can pass this mission successfully.</string>
         
@@ -178,11 +180,11 @@ This complex process is called Neolithic, and it seems that we have found a simi
     
 An increase in population size often leads to intensive use of the environment.
 
-In this region the Lovans combined Terraforming with large-scale forest Exploitation. However, they managed to avoid overexploiting this rich region.</string>
+The Lovans combined Terraforming this region with large-scale Exploitation of a forest. However, they managed to avoid overexploiting this rich zone.</string>
     <key>CONTEXT_LEVEL_17</key>
-    <string>The first farming communities did not rely exclusively on crops and cattle. The environment still provided lots of food, so why would you discard them?
+    <string>The first farming communities did not rely exclusively on crops and cattle. The environment still provided lots of food, so why would they discard it as a source of richness?
       
-But here comes the catch: more food means more people. This can lead to overexploitation of the environment and generate a situation where everybody loses.
+But there is a difference: agriculture is able to sustain more people. The situation has a cost, as a large population size will increase the risk of overexploiting the environment and exhausting the available resources.
 
 The Lovans managed to solve the issue, as humans managed to do with the world crisis that took place in the mid-21st century.</string>
 
