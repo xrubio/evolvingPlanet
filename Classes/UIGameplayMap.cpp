@@ -2724,13 +2724,49 @@ void UIGameplayMap::setMessage( const Message * message )
 
         // if message shows an image in a particular spot
         if(message->getSpot()!=nullptr)
-        {
+        {     
             const Spot * spot = message->getSpot();
             image->setTexture(spot->_image+".png");
             image->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
             image->setVisible(true);
             image->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
-            image->runAction(MoveTo::create(1.0f, Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY)));
+
+            // locate the spot in the exact position of the button
+            if(message->getPostCondition()=="tapButton")
+            { 
+                std::string buttonName = _tutorial->getCurrentMessage()->getPostConditionButtonTap();
+                Node * parent = this;
+                std::size_t pos;
+                std::string delimiter = "/";
+                std::string token;
+                while ((pos = buttonName.find(delimiter)) != std::string::npos)
+                {
+                    token = buttonName.substr(0, pos);
+                    parent = parent->getChildByName(token);
+                    buttonName.erase(0, pos + delimiter.length());
+                }
+                
+                token = buttonName.substr(0, pos);
+                std::string buttonPressed = token;
+                
+                //attribute translation
+                if (token.substr(0, 4) == "plus")
+                {
+                    buttonPressed = "plus";
+                    token = "plus" + LocalizedString::create(token.substr(4).c_str());
+                }
+                Node * button = parent->getChildByName(token);
+                if(button)
+                {
+                    auto screenPosition = parent->convertToWorldSpace(button->getPosition());
+                    image->runAction(MoveTo::create(1.0f, Vec2(screenPosition.x, screenPosition.y)));
+                }
+
+            }
+            else
+            {
+                image->runAction(MoveTo::create(1.0f, Vec2(visibleSize.width*spot->_centerX, visibleSize.height*spot->_centerY)));
+            }
             image->runAction(RepeatForever::create(Sequence::create(DelayTime::create(1.0f), FadeTo::create(1, 120), FadeTo::create(1, 255), nullptr)));
         }
         
