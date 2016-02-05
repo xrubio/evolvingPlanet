@@ -284,12 +284,12 @@ void GameData::setResourcesMargin(int r)
     resourcesMargin = r;
 }
 
-cocos2d::Color3B GameData::getPlayerColor(void)
+const cocos2d::Color3B & GameData::getPlayerColor(void) const
 {
     return _playerColor;
 }
 
-string GameData::getPlayerColorString(void)
+string GameData::getPlayerColorString(void) const
 {
     if (_playerColor.r == 63)
     {

@@ -102,8 +102,8 @@ public:
     float getResourcesMargin(void);
     void setResourcesMargin(int r);
     
-    cocos2d::Color3B getPlayerColor(void);
-    string getPlayerColorString(void);
+    const cocos2d::Color3B & getPlayerColor(void) const;
+    string getPlayerColorString(void) const;
     void setPlayerColor(string c);
     
     bool getAnimationSpace(void);

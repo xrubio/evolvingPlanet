@@ -288,6 +288,20 @@ bool UIGameplayMap::init()
     _infoMap->setVisible(false);
     gameplayMap->addChild(_infoMap, 2);
 
+    // deployment map
+    auto deploymentMap = Sprite::create("maps/deployment/"+GameLevel::getInstance()->getMapFilename()+".png");
+    deploymentMap->setPosition(Vec2(gameplayMap->getBoundingBox().size.width / 2, gameplayMap->getBoundingBox().size.height / 2));
+   
+    deploymentMap->setName("deploymentMap");
+    const Color3B & playerColor = GameData::getInstance()->getPlayerColor();
+    deploymentMap->setColor(playerColor);
+    deploymentMap->setCascadeOpacityEnabled(true);
+    deploymentMap->setVisible(true);
+    deploymentMap->runAction(RepeatForever::create(Sequence::create(DelayTime::create(1.0f), FadeTo::create(1, 120), FadeTo::create(1, 255), nullptr)));
+
+
+    gameplayMap->addChild(deploymentMap, 3);
+
     GameLevel::getInstance()->setUIGameplayMap(this);
 
     //INITIALIZE AGENTS AND EXPLOITED MAP TEXTUREDATA
@@ -343,7 +357,7 @@ bool UIGameplayMap::init()
     pauseDarkBackground->setName("pauseDarkBackground");
     pauseDarkBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     pauseDarkBackground->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-    pauseDarkBackground->setOpacity(150);
+    pauseDarkBackground->setOpacity(100);
     auto pauseDarkLabel = Label::createWithTTF(string(LocalizedString::create("SET_ATTRIBUTES")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
     pauseDarkLabel->setTextColor(Color4B(216, 229, 235, 60));
     pauseDarkLabel->setPosition(Vec2(pauseDarkBackground->getContentSize().width / 2, pauseDarkBackground->getContentSize().height / 2));
@@ -1275,10 +1289,13 @@ void UIGameplayMap::togglePlay(Ref* pSender)
     if (firstPlayFF == true)
     {
         setAttributesToInitialAgents();
+        pauseDarkBackground->setOpacity(150);
         auto l = ((Label*)pauseDarkBackground->getChildByName("pauseDarkLabel"));
         l->setTTFConfig(_ttfConfig("fonts/BebasNeue.otf", 150 * GameData::getInstance()->getRaConversion()));
         l->setString(string(LocalizedString::create("PAUSE")));
         timeBorderBar->getChildByName("degradateTime")->setVisible(true);
+        auto deploymentMap = gameplayMap->getChildByName("deploymentMap");
+        deploymentMap->setVisible(false);
         firstPlayFF = false;
     }
 
