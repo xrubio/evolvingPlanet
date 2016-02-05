@@ -144,7 +144,7 @@ private:
     float resourcesHeight;
     float resourcesWidth;
     float resourcesMargin;
-    cocos2d::Color3B _playerColor = cocos2d::Color3B(255, 4, 4);
+    cocos2d::Color3B _playerColor = cocos2d::Color3B(63, 239, 250);
     bool _animationSpace = true;
 
 
