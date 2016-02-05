@@ -21,7 +21,7 @@ It is full of features, from the highlighted arid region to forests rich in reso
 	<string>You can press the goal icon to show a summary of the environment at any time.</string>
 	<key>LEVEL1M5</key>
 	<string>These are your bots.
-We have deployed a small starting population in this area.</string>
+The circle shows the area where we have deployed a small starting population.</string>
 	<key>LEVEL1M6</key>
 	<string>This first mission has one dispersal goal.
 You should drive your bots to the blinking hexagon in your bottom right.</string>
