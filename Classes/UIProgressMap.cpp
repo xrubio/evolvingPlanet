@@ -195,7 +195,7 @@ bool UIProgressMap::init()
             pointerNextLevel->setPositionY(visibleSize.height * 1.5);
             auto fall = MoveTo::create(0.6, pos);
             auto fallEase = EaseBackOut::create(fall);
-            pointerNextLevel->setScale(1.5);
+            //pointerNextLevel->setScale(1.5);
             pointerNextLevel->runAction(Sequence::create(DelayTime::create(delayTime), fallEase, RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerNextLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerNextLevel->getContentSize().width*0.5)), NULL)), NULL));
         }
     
