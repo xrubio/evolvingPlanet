@@ -670,8 +670,7 @@ bool UIGameplayMap::init()
 
         auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
         costBackground->setPosition(Vec2((j*offsetAttrs + 0.325f)* bottomFrame->getContentSize().width, frameHeight));
-        costBackground->setName("costBackground");
-        bottomFrame->addChild(costBackground);
+        bottomFrame->addChild(costBackground, 1, (int(j) + 1) * 1200);
          
         auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/monofonto.ttf", 45 * GameData::getInstance()->getRaConversion());
         attNumLabel->setColor(Color3B::BLACK);
@@ -1466,9 +1465,9 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     // top level
     else
     {
-        Sprite * costBackground = (Sprite*)(layout->getChildByName("costBackground"));
+        Sprite * costBackground = (Sprite*)(layout->getChildByTag((i+1)*1200));
         costBackground->setTexture("gui/EvolutionPointsCostDisabled.png");
-        l->setString("-");
+        l->setString("");
     }
 
     auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) - 1) + (i * 5));
