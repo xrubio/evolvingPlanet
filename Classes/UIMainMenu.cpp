@@ -661,7 +661,7 @@ void UIMainMenu::loading(bool b)
 void UIMainMenu::update(float delta)
 {
     auto loading = this->getChildByName("loading");
-    loading->setVisible(_loading);
+    //loading->setVisible(_loading);
 }
 
 void UIMainMenu::loadIntroImages(void)

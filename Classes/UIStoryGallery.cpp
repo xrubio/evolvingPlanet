@@ -141,7 +141,7 @@ bool UIStoryGallery::init()
             {
                 numMission = 20;
             }
-            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION")+" "+to_string(numMission)+" "+LocalizedString::create("TO_UNLOCK_STORY")), "fonts/BebasNeue.otf", 100 * GameData::getInstance()->getRaConversion());
+            auto unlockLabel = Label::createWithTTF(string(LocalizedString::create("PASS_MISSION")+" "+to_string(numMission)+" "+LocalizedString::create("TO_UNLOCK_STORY")), "fonts/BebasNeue.otf", 75 * GameData::getInstance()->getRaConversion());
             unlockLabel->setTextColor(Color4B(50, 50, 100, 180));
             unlockLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
             unlockLabel->setName("unlockLabel");
