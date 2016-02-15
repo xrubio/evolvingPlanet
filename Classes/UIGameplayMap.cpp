@@ -670,6 +670,7 @@ bool UIGameplayMap::init()
 
         auto costBackground = Sprite::create("gui/EvolutionPointsCost.png");
         costBackground->setPosition(Vec2((j*offsetAttrs + 0.325f)* bottomFrame->getContentSize().width, frameHeight));
+        costBackground->setName("costBackground");
         bottomFrame->addChild(costBackground);
          
         auto attNumLabel = Label::createWithTTF(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), modifAttr.at(j))), "fonts/monofonto.ttf", 45 * GameData::getInstance()->getRaConversion());
@@ -1458,7 +1459,17 @@ void UIGameplayMap::plusAttCallback(Ref* pSender)
     GameLevel::getInstance()->setAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i), GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) + 1);
     Label* l = (Label*)layout->getChildByTag((i + 1) * 1100);
 //    l->setAnchorPoint(Vec2(-2.5, 0.5));
-    l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i))));
+    if(oldCost<5)
+    {
+        l->setString(to_string(GameLevel::getInstance()->getAttributeCost(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i))));
+    }
+    // top level
+    else
+    {
+        Sprite * costBackground = (Sprite*)(layout->getChildByName("costBackground"));
+        costBackground->setTexture("gui/EvolutionPointsCostDisabled.png");
+        l->setString("-");
+    }
 
     auto blankAttribute = layout->getChildByTag((GameLevel::getInstance()->getAgentAttribute(GameLevel::getInstance()->getCurrentAgentType(), GameLevel::getInstance()->getModifiableAttr().at(i)) - 1) + (i * 5));
     auto filledAttribute = Sprite::create("gui/FilledAttributePointButtonSmall.png");
