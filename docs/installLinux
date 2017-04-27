@@ -38,8 +38,8 @@ $ ln -s repo/libs/ .
 $ ln -s repo/CMakeLists.txt .
 
 # cp CCApplication-linux.cpp and CCCommon.h to the place where they should be:
-cp repo/CCApplication-linux.cpp evolvingPlanet/cocos2d/cocos/platform
-cp repo/CCCommon.h evolvingPlanet/cocos2d/cocos/platform/linux
+ln -s repo/CCApplication-linux.cpp evolvingPlanet/cocos2d/cocos/platform/linux/
+ln -s repo/CCCommon.h evolvingPlanet/cocos2d/cocos/platform/
 
 # compile again
 $ cocos compile -p linux
