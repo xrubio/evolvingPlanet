@@ -590,7 +590,7 @@ void UIMainMenu::openWeb( Ref * pSender )
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    Application::getInstance()->openURL("http://evolvingplanetgame.com");
+    Application::getInstance()->openURL("http://evoplanetgame.com");
 }
 
 void UIMainMenu::createSpaceAnimation(void)
