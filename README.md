@@ -1,7 +1,7 @@
 Evolving Planet
 =========
 
-Source code and artwork for [Evolving Planet](www.evoplanetgame.com), the first project of Murphy's Toast Studios.
+Source code and artwork for [Evolving Planet](http://www.evoplanetgame.com), the first project of Murphy's Toast Studios.
 The game uses Cocos2D-X library and has been compiled and tested under Android, iOS and Linux. 
 
 # Downloads
