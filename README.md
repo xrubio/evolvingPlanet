@@ -31,5 +31,5 @@ Do you want to know more about the project? We wrote a chapter book about the de
 
 Rubio-Campillo, X., Caro Saiz, J., H. Pongiluppi, G., Laborda Cabo, G., Ramos Garcia, D., 2017. Explaining archaeological research with videogames: The case of Evolving Planet, in: Mol, A., Ariese-Vandemeulebroucke, C., Boom, K., Politopoulos, A. (Eds.), The Interactive Past: A Book on Video Games and Archaeology. Sidestone Press, pp. 153–166.
 
-The entire book with other awesome chapters can be freely downloaded from [https://www.sidestone.com/books/the-interactive-past](Sidestone Press).
+The entire book with other awesome chapters can be freely downloaded from [Sidestone Press](https://www.sidestone.com/books/the-interactive-past).
 
