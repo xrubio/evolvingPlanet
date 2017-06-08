@@ -30,6 +30,7 @@
 #include "ProgressAchievement.h"
 #include <cocos2d.h>
 #include "../libs/pugixml/pugixml.hpp"
+#include <string>
 
 using namespace pugi;
 using namespace cocos2d;
@@ -73,7 +74,7 @@ void GameData::setLevelsFailedForHint(vector<int> lvlsFailedForHint)
 void GameData::setLevelFailedForHint(int lvl)
 {
     _levelsFailedForHint[lvl]++;
-    cocos2d::UserDefault::getInstance()->setIntegerForKey(("failed"+to_string(lvl)).c_str(), _levelsFailedForHint[lvl]);
+    cocos2d::UserDefault::getInstance()->setIntegerForKey(("failed"+std::to_string(lvl)).c_str(), _levelsFailedForHint[lvl]);
     cocos2d::UserDefault::getInstance()->flush();
 }
 
