@@ -1,0 +1,6 @@
+
+
+1. link Android.mk and Application.mk from /home/xrubio/workspace/dev/EvolvingPlanet/proj.android-studio/app/jni
+2. Download and install Android Studio
+3. Open the build.gradle file as project from Android Studio
+
