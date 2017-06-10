@@ -116,12 +116,12 @@ bool UIGoals::init()
     auto background = Sprite::create("gui/MainMenuBackground.png");
     background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
+    addChild(background);
 
     pages = PageView::create();
-    pages->addChild(background);
-    
     pages->setTouchEnabled(true);
     pages->setContentSize(Size(visibleSize.width, visibleSize.height));
+    pages->setBackGroundColorType(Layout::BackGroundColorType::NONE);
     pages->setPosition(Point(0, 0));
 
     // BRIEFING
@@ -153,7 +153,8 @@ bool UIGoals::init()
     auto pageBackground2 = Sprite::create("gui/PageBackground.png");
     pageBackground2->setPosition(Vec2(visibleSize.width / 2, 1.05*visibleSize.height / 2));
     pageBackground2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    layout->addChild(pageBackground2, -1);
+
+    layout->addChild(pageBackground2);
     layout->setContentSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
 
     setLevelGoals(layout);

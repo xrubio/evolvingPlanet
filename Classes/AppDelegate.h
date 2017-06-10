@@ -28,6 +28,8 @@
 The reason for implement as private inheritance is to hide some interface call by Director.
 */
 class AppDelegate : private cocos2d::Application {
+    
+    void initGLContextAttrs();
 public:
     AppDelegate();
     virtual ~AppDelegate();

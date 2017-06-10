@@ -36,6 +36,7 @@ AppDelegate::~AppDelegate() {}
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    initGLContextAttrs();
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
@@ -213,5 +214,11 @@ void AppDelegate::applicationWillEnterForeground()
 
     // if you use SimpleAudioEngine, it must resume here
     CocosDenshion::SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+}
+
+void AppDelegate::initGLContextAttrs()
+{
+    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+    GLView::setGLContextAttrs(glContextAttrs);
 }
 
