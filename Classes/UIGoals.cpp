@@ -118,11 +118,10 @@ bool UIGoals::init()
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
 
     pages = PageView::create();
-    pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->addChild(background);
     
     pages->setTouchEnabled(true);
-    pages->setSize(Size(visibleSize.width, visibleSize.height));
+    pages->setContentSize(Size(visibleSize.width, visibleSize.height));
     pages->setPosition(Point(0, 0));
 
     // BRIEFING
@@ -132,7 +131,7 @@ bool UIGoals::init()
     pageBackgroundIntroduction->setPosition(Vec2(visibleSize.width / 2, 1.05*visibleSize.height / 2));
     pageBackgroundIntroduction->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layoutContextIntroduction->addChild(pageBackgroundIntroduction, -1);
-    layoutContextIntroduction->setSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    layoutContextIntroduction->setContentSize(Size((36 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     auto contextIntroduction = TextFieldTTF::textFieldWithPlaceHolder(LocalizedString::create(("CONTEXT_LEVEL_" + to_string(GameLevel::getInstance()->getNumLevel())).c_str(), "text"), Size(visibleSize.width / (1.5 * GameData::getInstance()->getRaWConversion()), visibleSize.height), TextHAlignment::LEFT, "fonts/arial.ttf", 50 * GameData::getInstance()->getRaConversion());
     contextIntroduction->setColorSpaceHolder(Color4B(216, 229, 235, 255));
@@ -155,7 +154,7 @@ bool UIGoals::init()
     pageBackground2->setPosition(Vec2(visibleSize.width / 2, 1.05*visibleSize.height / 2));
     pageBackground2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(pageBackground2, -1);
-    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    layout->setContentSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
 
     setLevelGoals(layout);
     
@@ -230,7 +229,7 @@ void UIGoals::menuStartCallback(Ref* pSender)
         int j = 0;
         for (map<string, vector<int> >::const_iterator it = temp.begin(); it != temp.end(); it++) {
             for (int k = 0; k < 6; k++) {
-                auto v = (ui::TextField*)pages->getPage(3 + index)->getChildByTag((j * 6) + k);
+                auto v = (ui::TextField*)pages->getItem(3 + index)->getChildByTag((j * 6) + k);
                 if (v->getString().empty() == false) {
                     GameLevel::getInstance()->setAttributesValues(index, it->first, k, stoi(v->getString()));
                 }
@@ -256,18 +255,18 @@ void UIGoals::menuArrowBackCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    if (pages->getCurPageIndex() <= 0)
+    if (pages->getCurrentPageIndex() <= 0)
     {
         return;
     }
-    if (pages->getCurPageIndex() == 1)
+    if (pages->getCurrentPageIndex() == 1)
     {
-        if (pages->getPage(1)->getChildByTag(100) != nullptr)
+        if (pages->getItem(1)->getChildByTag(100) != nullptr)
         {
             zoomImageOutCallback(nullptr);
         }
     }
-    pages->scrollToPage(pages->getCurPageIndex() - 1);
+    pages->scrollToPage(pages->getCurrentPageIndex() - 1);
 }
 
 void UIGoals::menuArrowNextCallback(Ref* pSender)
@@ -275,18 +274,18 @@ void UIGoals::menuArrowNextCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    if (pages->getCurPageIndex() >= pages->getPages().size() - 1)
+    if (pages->getCurrentPageIndex() >= pages->getItems().size() - 1)
     {
         return;
     }
-    if (pages->getCurPageIndex() == 1)
+    if (pages->getCurrentPageIndex() == 1)
     {
-        if (pages->getPage(1)->getChildByTag(100) != nullptr)
+        if (pages->getItem(1)->getChildByTag(100) != nullptr)
         {
             zoomImageOutCallback(nullptr);
         }
     }
-    pages->scrollToPage(pages->getCurPageIndex() + 1);
+    pages->scrollToPage(pages->getCurrentPageIndex() + 1);
 }
 
 void UIGoals::zoomImageInCallback(Ref* pSender)
@@ -308,7 +307,7 @@ void UIGoals::zoomImageInCallback(Ref* pSender)
     menuButtons.pushBack(darkBackground);
     auto menu = Menu::createWithArray(menuButtons);
     menu->setPosition(0, 0);
-    pages->getPage(1)->addChild(menu, 1, 100);
+    pages->getItem(1)->addChild(menu, 1, 100);
     
     image->runAction(Spawn::create(ScaleTo::create(0.5, 0.8 * GameData::getInstance()->getRaWConversion()),
                                    MoveTo::create(0.5, Vec2(visibleSize.width / 2, 6 * visibleSize.height / 12)), NULL));
@@ -317,7 +316,7 @@ void UIGoals::zoomImageInCallback(Ref* pSender)
 
 void UIGoals::zoomImageOutCallback(Ref* pSender)
 {
-    auto image = (MenuItemImage*)pages->getPage(1)->getChildByName("menuContext")->getChildren().at(0);
+    auto image = (MenuItemImage*)pages->getItem(1)->getChildByName("menuContext")->getChildren().at(0);
     if (image->getNumberOfRunningActions() != 0)
     {
         return;
@@ -326,8 +325,8 @@ void UIGoals::zoomImageOutCallback(Ref* pSender)
     image->runAction(Spawn::create(ScaleTo::create(0.5, 0.4 * GameData::getInstance()->getRaWConversion()),
                                    MoveTo::create(0.5, Vec2(visibleSize.width / 2, 6.8 * visibleSize.height / 12)), NULL));
     image->setCallback(CC_CALLBACK_1(UIGoals::zoomImageInCallback, this));
-    pages->getPage(1)->getChildByTag(100)->runAction(FadeOut::create(0.5));
-    pages->getPage(1)->removeChildByTag(100);
+    pages->getItem(1)->getChildByTag(100)->runAction(FadeOut::create(0.5));
+    pages->getItem(1)->removeChildByTag(100);
 }     
 
 UIPower * UIGoals::createPower(int i)
@@ -411,19 +410,19 @@ void UIGoals::setLevelGoals(Layout* layout)
 
 void UIGoals::update(float delta)
 {
-    //GameLevel::getInstance()->setCurrentAgentType(pages->getCurPageIndex() - 2);
-    if (pages->getCurPageIndex() == 0)
+    //GameLevel::getInstance()->setCurrentAgentType(pages->getCurrentPageIndex() - 2);
+    if (pages->getCurrentPageIndex() == 0)
     {
         hexagonButtonLevel0->setEnabled(true);
         hexagonButtonLevel1->setEnabled(false);
     }
-    else if (pages->getCurPageIndex() == 1)
+    else if (pages->getCurrentPageIndex() == 1)
     {
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(true);
     }
 
-    if (pages->getCurPageIndex() == 0)
+    if (pages->getCurrentPageIndex() == 0)
     {
         arrowBack->setVisible(false);
         arrowNext->setVisible(true);

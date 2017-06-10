@@ -85,11 +85,10 @@ bool UIStoryGallery::init()
     GameLevel::getInstance()->setCurrentAgentType(0);
     
     pages = PageView::create();
-    pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->setTouchEnabled(true);
-    pages->setSize(Size(visibleSize.width, visibleSize.height));
+    pages->setContentSize(Size(visibleSize.width, visibleSize.height));
     pages->setPosition(Point(0, 0));
-    //pages->setSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
+    //pages->setContentSize(Size(34 * visibleSize.width / 42, 25 * visibleSize.height * 31));
     
     for (int i = 1; i < NUM_LEVELS + 1; i++)
     {
@@ -173,12 +172,12 @@ void UIStoryGallery::menuArrowBackCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    if (pages->getCurPageIndex() <= 0)
+    if (pages->getCurrentPageIndex() <= 0)
     {
         return;
     }
 
-    pages->scrollToPage(pages->getCurPageIndex() - 1);
+    pages->scrollToPage(pages->getCurrentPageIndex() - 1);
 }
 
 void UIStoryGallery::menuArrowNextCallback(Ref* pSender)
@@ -186,26 +185,26 @@ void UIStoryGallery::menuArrowNextCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    if (pages->getCurPageIndex() >= pages->getPages().size() - 1)
+    if (pages->getCurrentPageIndex() >= pages->getItems().size() - 1)
     {
         return;
     }
     
-    pages->scrollToPage(pages->getCurPageIndex() + 1);
+    pages->scrollToPage(pages->getCurrentPageIndex() + 1);
 }
 
 void UIStoryGallery::update(float delta)
 {
-    if (pages->getCurPageIndex() > 0 and pages->getCurPageIndex() < pages->getPages().size() - 1) {
+    if (pages->getCurrentPageIndex() > 0 and pages->getCurrentPageIndex() < pages->getItems().size() - 1) {
         arrowBack->setVisible(true);
         arrowNext->setVisible(true);
     }
     else {
-        if (pages->getCurPageIndex() == 0) {
+        if (pages->getCurrentPageIndex() == 0) {
             arrowBack->setVisible(false);
             arrowNext->setVisible(true);
         }
-        else if (pages->getCurPageIndex() == pages->getPages().size() - 1) {
+        else if (pages->getCurrentPageIndex() == pages->getItems().size() - 1) {
             arrowBack->setVisible(true);
             arrowNext->setVisible(false);
         }

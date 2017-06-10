@@ -131,13 +131,12 @@ bool UICredits::init()
     this->addChild(menu, 1);
     
     pages = PageView::create();
-    pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->addChild(background);
     pages->addChild(title);
     pages->addChild(planet2);
     
     pages->setTouchEnabled(true);
-    pages->setSize(Size(visibleSize.width, visibleSize.height));
+    pages->setContentSize(Size(visibleSize.width, visibleSize.height));
     pages->setPosition(Point(0, 0));
     
     auto layoutSimulpast = Layout::create();
@@ -181,11 +180,11 @@ void UICredits::menuArrowBackCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    if (pages->getCurPageIndex() <= 0)
+    if (pages->getCurrentPageIndex() <= 0)
     {
         return;
     }
-    pages->scrollToPage(pages->getCurPageIndex() - 1);
+    pages->scrollToPage(pages->getCurrentPageIndex() - 1);
 }
 
 void UICredits::menuArrowNextCallback(Ref* pSender)
@@ -193,11 +192,11 @@ void UICredits::menuArrowNextCallback(Ref* pSender)
     if (GameData::getInstance()->getSFX() == true) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("audio/click2.mp3");
     }
-    if (pages->getCurPageIndex() >= pages->getPages().size() - 1)
+    if (pages->getCurrentPageIndex() >= pages->getItems().size() - 1)
     {
         return;
     }
-    pages->scrollToPage(pages->getCurPageIndex() + 1);
+    pages->scrollToPage(pages->getCurrentPageIndex() + 1);
 }
 
 
@@ -208,7 +207,7 @@ void UICredits::simulpast(Layout* layout)
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
-    layout->setSize(Size(0.9f*visibleSize.width, 0.9f*visibleSize.height));
+    layout->setContentSize(Size(0.9f*visibleSize.width, 0.9f*visibleSize.height));
     
     //SIMULPAST
     
@@ -259,7 +258,7 @@ void UICredits::murphysToastStudios(Layout* layout)
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
-    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    layout->setContentSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //MURPHYS TOAST
     auto configLabel = Label::createWithTTF(LocalizedString::create("MURPHY"), "fonts/BebasNeue.otf", 80 * GameData::getInstance()->getRaConversion());
@@ -346,7 +345,7 @@ void UICredits::specialThanks1(Layout* layout)
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
-    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    layout->setContentSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //THANKS 1
     
@@ -381,7 +380,7 @@ void UICredits::specialThanks2(Layout* layout)
     popupBackground->setPosition(Vec2((visibleSize.width / 2), (7.5 * visibleSize.height / 18)));
     popupBackground->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
     layout->addChild(popupBackground, -1);
-    layout->setSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
+    layout->setContentSize(Size((34 * visibleSize.width / 42), (25 * visibleSize.height / 31)));
     
     //THANKS 2
     auto credits = Sprite::create("misc/logos.png");
@@ -411,28 +410,28 @@ void UICredits::specialThanks2(Layout* layout)
 
 void UICredits::update(float delta)
 {
-    if (pages->getCurPageIndex() == 0)
+    if (pages->getCurrentPageIndex() == 0)
     {
         hexagonButtonLevel0->setEnabled(true);
         hexagonButtonLevel1->setEnabled(false);
         hexagonButtonLevel2->setEnabled(false);
         hexagonButtonLevel3->setEnabled(false);
     }
-    else if (pages->getCurPageIndex() == 1)
+    else if (pages->getCurrentPageIndex() == 1)
     {
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(true);
         hexagonButtonLevel2->setEnabled(false);
         hexagonButtonLevel3->setEnabled(false);
     }
-    else if (pages->getCurPageIndex() == 2)
+    else if (pages->getCurrentPageIndex() == 2)
     {
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(false);
         hexagonButtonLevel2->setEnabled(true);
         hexagonButtonLevel3->setEnabled(false);
     }
-    else if (pages->getCurPageIndex() == 3)
+    else if (pages->getCurrentPageIndex() == 3)
     {
         hexagonButtonLevel0->setEnabled(false);
         hexagonButtonLevel1->setEnabled(false);
@@ -440,12 +439,12 @@ void UICredits::update(float delta)
         hexagonButtonLevel3->setEnabled(true);
     }
     
-    if (pages->getCurPageIndex() == 0)
+    if (pages->getCurrentPageIndex() == 0)
     {
         arrowBack->setVisible(false);
         arrowNext->setVisible(true);
     }
-    else if (pages->getCurPageIndex() == 3)
+    else if (pages->getCurrentPageIndex() == 3)
     {
         arrowBack->setVisible(true);
         arrowNext->setVisible(false);

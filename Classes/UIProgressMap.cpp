@@ -132,9 +132,8 @@ bool UIProgressMap::init()
     }
     
     pages = PageView::create();
-    pages->setCustomScrollThreshold(visibleSize.width / 6);
     pages->setTouchEnabled(true);
-    pages->setSize(Size(visibleSize.width, visibleSize.height));
+    pages->setContentSize(Size(visibleSize.width, visibleSize.height));
     pages->setPosition(Point(0, 0));
     this->addChild(pages);
     
@@ -144,7 +143,7 @@ bool UIProgressMap::init()
         pages->addPage(setEpisode2());
     }
     
-    pages->setCurPageIndex(GameData::getInstance()->getCurrentEra());
+    pages->setCurrentPageIndex(GameData::getInstance()->getCurrentEra());
     
     //RESET INITIAL CONFIG
     GameLevel::getInstance()->resetAgentAttributesInitialConfig();
@@ -153,7 +152,7 @@ bool UIProgressMap::init()
     if (ftlc > 0 and ftlc < 22)
     {
         //STAR ANIMATION
-        auto pointerLevel = (MenuItem*)(pages->getPage(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(min(ftlc, 20)));
+        auto pointerLevel = (MenuItem*)(pages->getItem(ftlc/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(min(ftlc, 20)));
 
         auto star1 = (Sprite*)(pointerLevel->getChildByName("star1"));
         auto scalePlus1 = ScaleTo::create(0.4, 1.7);
@@ -175,7 +174,7 @@ bool UIProgressMap::init()
         if (ftlc == 10)
         {
             //ADD PAGE SECOND ERA AND THEN SCROLL
-            pages->setCurPageIndex(GameData::getInstance()->getCurrentEra() - 1);
+            pages->setCurrentPageIndex(GameData::getInstance()->getCurrentEra() - 1);
             pages->runAction(Sequence::create(DelayTime::create(2.6), CallFunc::create(this, callfunc_selector(UIProgressMap::toMap)), NULL));
             //unlockEraAnimation();
             delayTime = 2.8;
@@ -189,7 +188,7 @@ bool UIProgressMap::init()
                 divisor = 11;
             }
             //POINTER LEVEL UNLOCKED ANIMATION
-            auto pointerNextLevel = (MenuItem*)(pages->getPage(ftlc/divisor)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
+            auto pointerNextLevel = (MenuItem*)(pages->getItem(ftlc/divisor)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(ftlc + 1));
             
             Vec2 pos = pointerNextLevel->getPosition();
             pointerNextLevel->setPositionY(visibleSize.height * 1.5);
@@ -205,7 +204,7 @@ bool UIProgressMap::init()
     
     if (GameData::getInstance()->getCurrentLevel() < 21)
     {
-        auto pointerCurrentLevel = (MenuItem*)(pages->getPage(GameData::getInstance()->getCurrentLevel()/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(GameData::getInstance()->getCurrentLevel()));
+        auto pointerCurrentLevel = (MenuItem*)(pages->getItem(GameData::getInstance()->getCurrentLevel()/11)->getChildByName("progressMap")->getChildByName("menuLevelButton")->getChildByTag(GameData::getInstance()->getCurrentLevel()));
         pointerCurrentLevel->runAction(RepeatForever::create(Sequence::create(MoveBy::create(1.5, Vec2(0, pointerCurrentLevel->getContentSize().width*0.5)), MoveBy::create(1.5, Vec2(0, -pointerCurrentLevel->getContentSize().width*0.5)), NULL)));
     }
     
@@ -336,7 +335,7 @@ void UIProgressMap::menuLevelCallback(Ref* pSender)
     zoneTimer->setPosition(Vec2(pMenuItem->getPositionX(), pMenuItem->getPositionY() - (pMenuItem->getContentSize().height / 4)));
     zoneTimer->setType(ProgressTimer::Type::RADIAL);
     zoneTimer->runAction(radialTimer);
-    pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->addChild(zoneTimer, 1, 102);
+    pages->getItem(pages->getCurrentPageIndex())->getChildByName("progressMap")->addChild(zoneTimer, 1, 102);
 
     Vector<MenuItem*> menuButtons;
 
@@ -646,7 +645,7 @@ void UIProgressMap::proceedLevelCallback(Ref* pSender)
     LevelLoader loader;
     loader.loadXmlFile(filename);
 
-    GameData::getInstance()->setCurrentEra(int(pages->getCurPageIndex()));
+    GameData::getInstance()->setCurrentEra(int(pages->getCurrentPageIndex()));
     
     auto scene = UIGoals::createScene();
     auto transition = TransitionFade::create(1.0f, scene);
@@ -669,8 +668,8 @@ void UIProgressMap::restoreProgressMap(Ref* pSender)
         this->removeChildByTag(101);
     }*/
     //Hexagon
-    if (pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->getChildByTag(102) != nullptr) {
-        pages->getPage(pages->getCurPageIndex())->getChildByName("progressMap")->removeChildByTag(102);
+    if (pages->getItem(pages->getCurrentPageIndex())->getChildByName("progressMap")->getChildByTag(102) != nullptr) {
+        pages->getItem(pages->getCurrentPageIndex())->getChildByName("progressMap")->removeChildByTag(102);
     }
 }
 
@@ -682,7 +681,7 @@ void UIProgressMap::menuEraCallback(Ref* pSender)
     /*auto arrowPrev = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowPrev");
     auto arrowNext = (MenuItem*)this->getChildByName("eraWindow")->getChildByName("menuEra")->getChildByName("arrowNext");*/
     auto arrow = (MenuItem*)pSender;
-    ssize_t currentPage = pages->getCurPageIndex();
+    ssize_t currentPage = pages->getCurrentPageIndex();
     
     if (arrow->getName() == "arrowPrev")
     {
@@ -1035,7 +1034,7 @@ void UIProgressMap::update(float delta)
 
     if (GameData::getInstance()->getCurrentLevel() > 10)
     {
-    switch (pages->getCurPageIndex()) {
+    switch (pages->getCurrentPageIndex()) {
         case 1:
         {
             arrowPrev->setVisible(true);
@@ -1055,7 +1054,7 @@ void UIProgressMap::update(float delta)
     
     for (int i = 0; i < pagesIndicatorVec.size(); i++)
     {
-        if (i == pages->getCurPageIndex())
+        if (i == pages->getCurrentPageIndex())
         {
             pagesIndicatorVec.at(i)->setEnabled(true);
         }
