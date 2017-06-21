@@ -61,13 +61,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCLOG("graphic config for screen: %d/%d", int(screenSize.width), int(screenSize.height));
     // folders: 2048 (1:1), 1536 (3/4), 1365 (2:3) i 1024 (1:2)
 
-    /*if (screenSize.width > 1536) {
-        CCLOG("\tusing artwork of size 2048 (1:1)");
-        resDirOrders.push_back("01_hd");
-        GameData::getInstance()->setResourcesWidth(2048);
-        GameData::getInstance()->setResourcesHeight(1536);
-        GameData::getInstance()->setResourcesMargin(1365);
-    } else */if (screenSize.width > 1280) {
+    if (screenSize.width > 1280)
+    {
         CCLOG("\tusing artwork of size 1536 (3:4)");  
         resDirOrders.push_back("02_threeQuarters");
         GameData::getInstance()->setResourcesWidth(1536);
@@ -80,15 +75,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         GameData::getInstance()->setResourcesWidth(1280);
         GameData::getInstance()->setResourcesHeight(960);
         GameData::getInstance()->setResourcesMargin(853);
-    }/* else {
-        CCLOG("\tusing artwork of size 1024 (1:2)");
-        resDirOrders.push_back("04_half");
-        GameData::getInstance()->setResourcesWidth(1024);
-        GameData::getInstance()->setResourcesHeight(768);
-        GameData::getInstance()->setResourcesMargin(682);
-    }
-    */
-    
+    }    
     fileUtils->setSearchPaths(resDirOrders);
 
     glview->setDesignResolutionSize(screenSize.width, screenSize.height, ResolutionPolicy::NO_BORDER);
