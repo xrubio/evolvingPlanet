@@ -58,21 +58,21 @@ bool UICredits::init()
     background->setPosition(Vec2(visibleSize.width / 2,
                                  visibleSize.height / 2));
     background->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    //this->addChild(background, 0);
+    this->addChild(background, 0);
     
     auto title = Sprite::create("gui/MainMenuTitle.png");
     title->setAnchorPoint(Vec2(0, 0.5));
     title->setPosition(Vec2((2 * visibleSize.width / 25),
                             (15 * visibleSize.height / 18)));
     title->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    //this->addChild(title, 5, 0);
+    this->addChild(title, 5, 0);
     
     auto planet2 = Sprite::create("gui/MainMenuBackgroundPlanet2.png");
     planet2->setScale(1.3);
     planet2->setPosition(Vec2((18 * visibleSize.width / 40),
                               (10 * visibleSize.height / 31)));
     planet2->setScale(GameData::getInstance()->getRaWConversion(), GameData::getInstance()->getRaHConversion());
-    //this->addChild(planet2, 1, 2);
+    this->addChild(planet2, 0, 2);
     
     hexagonButtonLevel0 = MenuItemImage::create("gui/ProgressMapHexagonLevelOn.png", "gui/ProgressMapHexagonLevelOff.png",
                                                 "gui/ProgressMapHexagonLevelOff.png");
@@ -132,9 +132,9 @@ bool UICredits::init()
     this->addChild(menu, 1);
     
     pages = PageView::create();
-    pages->addChild(background);
-    pages->addChild(title);
-    pages->addChild(planet2);
+    //pages->addChild(background);
+    //pages->addChild(title);
+    //pages->addChild(planet2);
     
     pages->setTouchEnabled(true);
     pages->setContentSize(Size(visibleSize.width, visibleSize.height));
