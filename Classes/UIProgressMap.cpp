@@ -31,7 +31,7 @@
 #include "LevelLoader.h"
 #include "LocalizedString.h"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 using namespace ui;
 
@@ -49,12 +49,12 @@ bool UIProgressMap::init()
         return false;
     }
     
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+        or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
     {
-        this->setKeyboardEnabled(true);
+        _keyboardEnabled = true;
     }
     
-    //TODO: C
     if (GameData::getInstance()->getMusic() == true and CocosDenshion::SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying() == false) {
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("audio/main.mp3", true);
     }
@@ -175,7 +175,7 @@ bool UIProgressMap::init()
         {
             //ADD PAGE SECOND ERA AND THEN SCROLL
             pages->setCurrentPageIndex(GameData::getInstance()->getCurrentEra() - 1);
-            pages->runAction(Sequence::create(DelayTime::create(2.6), CallFunc::create(this, callfunc_selector(UIProgressMap::toMap)), NULL));
+            pages->runAction(Sequence::create(DelayTime::create(2.6), CallFunc::create(std::bind(&UIProgressMap::toMap,this)), NULL));
             //unlockEraAnimation();
             delayTime = 2.8;
         }

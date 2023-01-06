@@ -29,7 +29,7 @@
 #include "GameData.h"
 #include "LocalizedString.h"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 Scene* UIConfiguration::createScene()
 {
@@ -45,9 +45,10 @@ bool UIConfiguration::init()
         return false;
     }
 
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+        or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
     {
-        this->setKeyboardEnabled(true);
+        _keyboardEnabled = true;
     }
     
     Size visibleSize = Director::getInstance()->getVisibleSize();

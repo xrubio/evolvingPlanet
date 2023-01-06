@@ -31,7 +31,7 @@
 #include "UIProgressMap.h"
 #include "UIEndScene.h"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 Scene* UITransitionScene::createScene()
 {

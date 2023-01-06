@@ -28,7 +28,7 @@
 #include "UIGlobalPower.h"
 #include "UIGameplayMap.h"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 UIGlobalPower::UIGlobalPower(Power* p) : UIPower(p)
 {

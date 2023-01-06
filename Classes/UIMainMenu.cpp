@@ -36,7 +36,7 @@
 #include "UIIntroStory.h"
 #include "UITransitionScene.h"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 USING_NS_CC;
 
@@ -141,7 +141,7 @@ bool UIMainMenu::init()
     menuButtons.pushBack(achievementsButton);
     
     int pos = 1;
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
     {
         auto exitButton = MenuItemImage::create(
                                                 "gui/MainMenuSmallButton.png", "gui/MainMenuSmallButtonPressed.png", CC_CALLBACK_1(UIMainMenu::menuExitCallback, this));
@@ -266,9 +266,10 @@ bool UIMainMenu::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     
-    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
+    if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 or CC_TARGET_PLATFORM == CC_PLATFORM_LINUX or CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+        or CC_TARGET_PLATFORM==CC_PLATFORM_ANDROID)
     {
-        this->setKeyboardEnabled(true);
+        _keyboardEnabled = true;
     }
     
     this->scheduleUpdate();

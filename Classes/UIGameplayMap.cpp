@@ -38,7 +38,9 @@
 #include "Message.h"
 #include "Tutorial.h"
 #include "UITransitionScene.h"
-#include <audio/include/SimpleAudioEngine.h>
+#include "ChartLine.h"
+
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 Scene* UIGameplayMap::createScene()
 {
@@ -231,7 +233,7 @@ bool UIGameplayMap::init()
         
         _exploitedMapTextureData.clear();
         _exploitedMapTextureData.resize(int(GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight()));
-        _exploitedMapTexture.initWithData(&(_exploitedMapTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
+        _exploitedMapTexture.initWithData(&(_exploitedMapTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), PixelFormat::RGBA8888, GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
                 
         for (int i = 0; i < im.getWidth(); i++) {
             for (int j = 0; j < im.getHeight(); j++) {
@@ -316,7 +318,7 @@ bool UIGameplayMap::init()
         _agentsTextureData.at(i) = white; // i is an index running from 0 to w*h-1
     }
 
-    _agentsTexture.initWithData(&(_agentsTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), Texture2D::PixelFormat::RGBA8888,
+    _agentsTexture.initWithData(&(_agentsTextureData.at(0)), GameData::getInstance()->getResourcesWidth() * GameData::getInstance()->getResourcesHeight(), PixelFormat::RGBA8888,
         GameData::getInstance()->getResourcesWidth(), GameData::getInstance()->getResourcesHeight(), contentSize);
     if(_agentsSprite)
     {
@@ -606,33 +608,28 @@ bool UIGameplayMap::init()
     labelCounterGraphic->setName("graphicCounterLabel");
     this->addChild(labelCounterGraphic);
     
-    ///////////////////////////////////////////////   WAVE NODE   //////////////////////////////////////////////////////
-    auto populationNode = new WaveNode();
-    populationNode->init();
-    populationNode->glDrawMode = kDrawLines;
-    populationNode->setReadyToDrawDynamicVerts(true);
-    populationNode->setName("POPULATION");
-    graphicBackground->addChild(populationNode, 1, 1);
-    waveNodes.push_back(populationNode);
+    ///////////////////////////////////////////////   CHART LINES   //////////////////////////////////////////////////////
+    auto populationLine = ChartLine::create ();
+    populationLine->init();
+    populationLine->setName("POPULATION");
+    populationLine->setLineWidth(5);
+    graphicBackground->addChild(populationLine, 1, 1);
+    mChartLines.push_back(populationLine);
     
     if (_isWood)
     {
-        auto woodNode = new WaveNode();
-        woodNode->init();
-        woodNode->glDrawMode = kDrawLines;
-        woodNode->setReadyToDrawDynamicVerts(true);
-        woodNode->setName("WOOD");
-        waveNodes.push_back(woodNode);
+        auto woodLine = ChartLine::create ();
+        woodLine->init();
+        woodLine->setName("WOOD");
+        mChartLines.push_back(woodLine);
     }
     
     if (_isMineral)
     {
-        auto mineralNode = new WaveNode();
-        mineralNode->init();
-        mineralNode->glDrawMode = kDrawLines;
-        mineralNode->setReadyToDrawDynamicVerts(true);
-        mineralNode->setName("MINERAL");
-        waveNodes.push_back(mineralNode);
+        auto mineralLine = ChartLine::create ();
+        mineralLine->init();
+        mineralLine->setName("MINERAL");
+        mChartLines.push_back(mineralLine);
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1519,13 +1516,13 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     }
     
     int i = 0;
-    while (i < waveNodes.size() and waveNodes.at(i)->getName() != name)
+    while (i < mChartLines.size() and mChartLines.at(i)->getName() != name)
     {
         i++;
     }
     
-    graphicBackground->removeChild(waveNodes.at(i));
-    if (i == waveNodes.size() - 1)
+    graphicBackground->removeChild(mChartLines.at(i));
+    if (i == mChartLines.size() - 1)
     {
         i = 0;
     }
@@ -1533,8 +1530,8 @@ void UIGameplayMap::changeGraphicCallback(Ref* pSender)
     {
         i++;
     }
-    string currentName = waveNodes.at(i)->getName();
-    graphicBackground->addChild(waveNodes.at(i), 1, 1);
+    string currentName = mChartLines.at(i)->getName();
+    graphicBackground->addChild(mChartLines.at(i), 1, 1);
     graphicLabel->setString(LocalizedString::create(currentName.c_str()));
     
     int numResources = 1;
@@ -1813,12 +1810,12 @@ void UIGameplayMap::moveGoalPopup(int index)
             }
             
             int i = 0;
-            while (i < waveNodes.size() and waveNodes.at(i)->getName() != name)
+            while (i < mChartLines.size() and mChartLines.at(i)->getName() != name)
             {
                 i++;
             }
             
-            graphicBackground->removeChild(waveNodes.at(i));
+            graphicBackground->removeChild(mChartLines.at(i));
             
             //set new graphic corresponding next goal
             
@@ -1833,12 +1830,12 @@ void UIGameplayMap::moveGoalPopup(int index)
             }
             
             i = 0;
-            while(waveNodes.at(i)->getName() != name)
+            while(mChartLines.at(i)->getName() != name)
             {
                 i++;
             }
             
-            graphicBackground->addChild(waveNodes.at(i), 1, 1);
+            graphicBackground->addChild(mChartLines.at(i), 1, 1);
             graphicLabel->setString(LocalizedString::create(name.c_str()));
             
             int numResources = 1;
@@ -2824,19 +2821,17 @@ void UIGameplayMap::updateWave(int index, int variable, int maxVariable, Color4B
 {
     auto graphicBackground = (MenuItem*)this->getChildByName("menuGraphic")->getChildByName("graphicBackground");
     
-    float height = float(variable)/float(maxVariable) * graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion();
+    float height = float(variable)/float(maxVariable) * graphicBackground->getContentSize().height;
 
     // Space the verticies out evenly across the screen for the wave.
-    float vertexHorizontalSpacing = graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion()/ float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
+    float vertexHorizontalSpacing = graphicBackground->getContentSize().width / float(GameLevel::getInstance()->getGoals().back()->getMaxTime());
     
-    // Used to increment to the next vertexX position.
-    float currentWaveVertX = this->convertToWorldSpace(graphicBackground->getPosition()).x - (graphicBackground->getContentSize().width * GameData::getInstance()->getRaWConversion() / 2);
+    Vec2 point;
+    point.x = vertexHorizontalSpacing * Timing::getInstance()->getTimeStep();
+    point.y = height;
 
-    WavePoint w;
-    w.x = currentWaveVertX + vertexHorizontalSpacing * Timing::getInstance()->getTimeStep();
-    w.y = height + this->convertToWorldSpace(graphicBackground->getPosition()).y - (graphicBackground->getContentSize().height * GameData::getInstance()->getRaHConversion() / 2);
-    w.z = 0;
-    waveNodes.at(index)->addToDynamicVerts3D(w, color);
+    mChartLines.at(index)->addPoint (point);
+    mChartLines.at(index)->drawAsPoly (Color4F (color));
 }
 
 void UIGameplayMap::restoreGameplayMap(void)

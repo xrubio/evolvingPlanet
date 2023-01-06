@@ -29,7 +29,7 @@
 #include "UIGameplayMap.h"
 #include "AreaPower.h"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 UIAreaPower::UIAreaPower(Power* p) : UIPower(p)
 {

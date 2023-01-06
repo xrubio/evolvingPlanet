@@ -26,7 +26,7 @@
 #include "UIGameplayMap.h"
 #include <string>
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 USING_NS_CC;
 

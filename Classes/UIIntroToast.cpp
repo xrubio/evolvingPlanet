@@ -30,7 +30,7 @@
 #include "GameData.h"
 #include <extensions/cocos-ext.h>
 #include <ui/CocosGUI.h>
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
@@ -122,7 +122,7 @@ bool UIIntroToast::init()
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap1Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
     Director::getInstance()->getTextureCache()->addImageAsync("gui/ProgressMap2Background.jpg", CC_CALLBACK_1(UIIntroToast::doNothing, this));
 
-    this->runAction(Sequence::create(DelayTime::create(5.8), CallFunc::create(this, callfunc_selector(UIIntroToast::toMainMenu)), NULL));
+    this->runAction(Sequence::create(DelayTime::create(5.8), CallFunc::create(std::bind(&UIIntroToast::toMainMenu,this)), NULL));
     return true;
 }
 

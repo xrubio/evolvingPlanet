@@ -31,7 +31,7 @@
 #include "UIMainMenu.h"
 #include "../libs/pugixml/pugixml.hpp"
 
-#include <audio/include/SimpleAudioEngine.h>
+#include <editor-support/cocostudio/SimpleAudioEngine.h>
 
 Scene* UIEndScene::createScene()
 {

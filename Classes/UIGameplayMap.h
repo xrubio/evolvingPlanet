@@ -32,10 +32,10 @@
 #include "UIProgressMap.h"
 #include "GameLevel.h"
 #include "UIPower.h"
-#include "WaveNode.h"
 
 class Message;
 class Tutorial;
+class ChartLine;
 
 class UIGameplayMap : public Layer
 {
@@ -126,7 +126,7 @@ private:
     PointArray *numAgentsEvolution;
     int indexAgentsEvolution = 0;
     // 0 = population, 1 = wood, 2 = mineral
-    vector<WaveNode*> waveNodes;
+    vector<ChartLine*> mChartLines;
 
     Label* timeSteps;
     Label* evolutionPointsLabel;
