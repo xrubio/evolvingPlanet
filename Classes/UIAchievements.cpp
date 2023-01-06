@@ -51,8 +51,6 @@ bool UIAchievements::init()
         _keyboardEnabled = true;
     }
 
-    glEnable(GL_STENCIL_TEST);
-
     Size visibleSize = Director::getInstance()->getVisibleSize();
 
     auto background = Sprite::create("gui/MainMenuBackground.png");
