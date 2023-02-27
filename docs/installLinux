@@ -31,13 +31,15 @@ $ cocos compile -p linux
 $ rm -rf Classes Resources CMakeLists.txt 
 # clone repo inside structure
 $ git clone https://github.com/xrubio/simulplay repo
-# create links to needed files
+# create links to needed filescocos2d/cocos/platform/linux/
+
 $ ln -s repo/Classes/ .
 $ ln -s repo/Resources/ .
 $ ln -s repo/libs/ .
 $ ln -s repo/CMakeLists.txt .
 
 # cp CCApplication-linux.cpp and CCCommon.h to the place where they should be:
+# no cal?
 ln -s repo/CCApplication-linux.cpp evolvingPlanet/cocos2d/cocos/platform/linux/
 ln -s repo/CCCommon.h evolvingPlanet/cocos2d/cocos/platform/
 
